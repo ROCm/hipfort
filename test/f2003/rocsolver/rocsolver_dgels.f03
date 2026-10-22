@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dgels example (double-precision least-squares solve, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x for a square
 ! nonsingular A, solve the least-squares problem with gels, and confirm the
@@ -63,6 +63,7 @@ program dgels
 
   type(c_ptr) :: dA
   type(c_ptr) :: dB
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -81,14 +82,18 @@ program dgels
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), size_B * 8, hipMemcpyHostToDevice))
 
   ! Solve min || A*X - B || in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_dgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, dInfo))
+  call rocsolverCheck(rocsolver_dgels(handle, rocblas_operation_none, M, N, nrhs, dA, lda, dB, ldb, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dgels info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))
@@ -106,7 +111,7 @@ program dgels
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

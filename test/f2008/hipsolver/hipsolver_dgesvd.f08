@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver dgesvd example (singular value decomposition)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Computes the singular values of A (jobu = jobv = 'N', values only) and checks
 ! the convention-independent invariant sum(sigma_i^2) == ||A||_F^2.
@@ -55,6 +55,7 @@ program hipsolver_dgesvd
   integer(c_size_t) :: szA = M*N, szS = mn, szU = M*M, szV = N*N, szR = mn
   real(c_double) :: frob, ssum, error
   real(c_double), parameter :: rtol = 1.0d-9
+  integer(c_int), target :: hInfo
   integer :: i
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_dgesvd' (Fortran 2008 interfaces) - "
@@ -74,6 +75,11 @@ program hipsolver_dgesvd
   ! Singular values only (jobu = jobv = 'N').
   call hipsolverCheck(hipsolverDgesvd(handle, 'N', 'N', M, N, dA, lda, dS, &
                                       dU, ldu, dV, ldv, dWork, lwork, dRwork, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szS * 8, hipMemcpyDeviceToHost))
 

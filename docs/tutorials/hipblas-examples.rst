@@ -52,7 +52,7 @@ Keep the following conventions in mind:
   results such as a dot product are read from host memory without any setup
   call. Only a program that wants those values to live on the device needs
   ``hipblasSetPointerMode``. This is the main day-to-day difference from
-  rocBLAS, whose examples set the pointer mode explicitly.
+  rocBLAS, whose examples mostly set the pointer mode explicitly.
 * hipBLAS matrices are stored column-major, which matches Fortran's native
   array layout directly, so no transpose trick is needed to call hipBLAS from
   Fortran.
@@ -64,8 +64,6 @@ Keep the following conventions in mind:
   ``use hipfort_hipblas`` on its own is enough.
 * Every hipBLAS call returns a status code. The examples wrap them in
   ``hipblasCheck`` from the ``hipfort_check`` module, which aborts on failure.
-  (``sgemv.f08`` and ``sger.f08`` route their hipBLAS calls through
-  ``hipCheck`` instead; both abort on a non-zero status.)
 
 Building an example
 ===================
@@ -375,11 +373,12 @@ Extended-precision matrix multiplication (GemmEx)
 ``hipblasGemmEx`` computes ``C := alpha * op(A) * op(B) + beta * C`` with the
 type of every buffer, and the type used for the arithmetic, given explicitly
 as arguments rather than fixed by the routine name. That makes it the entry
-point for mixed precision work.
+point for mixed-precision work.
 
 .. literalinclude:: ../../test/f2008/hipblas/gemmex.f08
    :language: fortran
 
 Because the buffer types are runtime arguments, there is a single ``GemmEx``
-program rather than one per precision. Note the source file is ``gemmex.f08``,
-without the underscore used by the rocBLAS equivalent ``gemm_ex.f08``.
+program rather than one per precision. Note that the source file is
+``gemmex.f08``, without the underscore used by the rocBLAS equivalent
+``gemm_ex.f08``.

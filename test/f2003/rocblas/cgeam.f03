@@ -33,15 +33,15 @@ program rocblas_cgeam_test
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
-  ! so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = 2, beta = -1,
+  ! so C = 2*A - B; distinct alpha and beta catch an alpha/beta or A/B swap.
   integer, parameter :: m = 2, n = 2
-  complex(c_float_complex), parameter :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_float_complex), target :: alpha = (2.0, 0.0), beta = (-1.0, 0.0)
 
   complex(c_float_complex), target :: hA(m,n) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [m,n])
   complex(c_float_complex), target :: hB(m,n) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [m,n])
   complex(c_float_complex), target :: hC(m,n)
-  complex(c_float_complex) :: expected(m,n) = reshape([(11.0, 0.0), (22.0, 0.0), (33.0, 0.0), (44.0, 0.0)], [m,n])
+  complex(c_float_complex) :: expected(m,n) = reshape([(-8.0, 0.0), (-16.0, 0.0), (-24.0, 0.0), (-32.0, 0.0)], [m,n])
 
   type(c_ptr) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -52,7 +52,7 @@ program rocblas_cgeam_test
   write(*,"(a)",advance="no") "-- Running test 'cgeam' (Fortran 2003 interfaces) - "
 
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0)) ! host pointer mode
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hC = (0.0, 0.0)
 
@@ -64,7 +64,7 @@ program rocblas_cgeam_test
   call hipCheck(hipMemcpy(dC, c_loc(hC(1,1)), int(m*n,c_size_t) * 8, hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_cgeam(handle, rocblas_operation_none, rocblas_operation_none, m, n, &
-       alpha, dA, m, beta, dB, m, dC, m))
+       c_loc(alpha), dA, m, c_loc(beta), dB, m, dC, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, int(m*n,c_size_t) * 8, hipMemcpyDeviceToHost))
 

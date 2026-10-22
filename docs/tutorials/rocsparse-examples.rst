@@ -24,8 +24,9 @@ see the :doc:`hipSPARSE examples <hipsparse-examples>`.
 Many routines come in the four precisions: ``s`` (real single), ``d`` (real
 double), ``c`` (complex single), and ``z`` (complex double). Where several are
 provided, this page shows the double-precision program of the group; the other
-precisions differ only in the host data type and the ``rocsparse_`` prefix
-letter.
+precisions differ only in the host data type, the precision letter after the
+``rocsparse_`` prefix and, in the generic API, the ``rocsparse_datatype_*``
+value passed to the descriptors.
 
 Conventions
 ===========
@@ -71,16 +72,16 @@ See :doc:`../how-to/using-hipfort` for the full set of build options.
 Sparse matrix-vector and matrix-matrix products
 ===============================================
 
-``spmv`` multiplies a sparse matrix by a dense vector, ``y = alpha*A*x + beta*y``,
-using the generic API: a CSR descriptor for ``A`` and dense-vector descriptors
+``spmv`` multiplies a sparse matrix by a dense vector,
+``y = alpha*A*x + beta*y``, using the generic API: a CSR descriptor for ``A`` and dense-vector descriptors
 for ``x`` and ``y``, run through the ``buffer_size``, ``preprocess``, and
 ``compute`` stages.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dspmv.f08
    :language: fortran
 
-``spmm`` multiplies a sparse matrix by a dense matrix, ``C = alpha*A*B + beta*C``,
-with dense-matrix descriptors for ``B`` and ``C`` and the three
+``spmm`` multiplies a sparse matrix by a dense matrix,
+``C = alpha*A*B + beta*C``, with dense-matrix descriptors for ``B`` and ``C`` and the three
 ``buffer_size`` / ``preprocess`` / ``compute`` stages.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dspmm.f08
@@ -89,7 +90,7 @@ with dense-matrix descriptors for ``B`` and ``C`` and the three
 Sampled dense-dense matrix multiplication
 =========================================
 
-``sddmm`` is the transpose of the SpMM data flow: the dense product ``A*B`` is
+``sddmm`` reverses the roles of SpMM: the dense product ``A*B`` is
 evaluated only at the nonzero positions of a sparse ``C``, giving
 ``C = alpha * (A*B) .* spy(C) + beta*C``. It is the core primitive behind
 attention and graph-neural-network kernels. The program uses dense descriptors
@@ -177,7 +178,8 @@ Tridiagonal and pentadiagonal solvers
 =====================================
 
 ``gtsv`` solves a tridiagonal system given its three diagonals. It is a direct
-banded solver rather than an iterative one.
+banded solver rather than an iterative one. Only the single-precision program
+exists, so it is the one shown below.
 
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_sgtsv.f08
    :language: fortran

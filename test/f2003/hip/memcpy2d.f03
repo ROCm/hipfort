@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipMemcpy2D (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Copies a contiguous MxN column-major matrix host -> device -> host with the
 ! raw type(c_ptr) hipMemcpy2D (pitch/width in BYTES) and verifies the round trip.

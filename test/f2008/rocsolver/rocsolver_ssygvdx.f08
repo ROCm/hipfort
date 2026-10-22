@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssygvdx example (partial generalized symmetric-definite eigensolver)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! sygvdx solves a selected subset of A*x = lambda*B*x (itype=eform_ax). erange=index
 ! with il=1, iu=N requests the full spectrum; eigenvectors go to Z.
@@ -57,6 +57,7 @@ program ssygvdx
   real(c_float), pointer :: dA(:,:), dB(:,:), dZ(:,:)
   real(c_float), pointer :: dW(:)
   integer(c_int), pointer :: dNev(:), dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -75,11 +76,15 @@ program ssygvdx
   call hipCheck(hipMalloc(dNev, 1))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_ssygvdx(handle, rocblas_eform_ax, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_ssygvdx(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_erange_index, rocblas_fill_upper, N, c_loc(dA(1,1)), lda, c_loc(dB(1,1)), ldb, &
        0.0, 0.0, 1, N, c_loc(dNev(1)), c_loc(dW(1)), c_loc(dZ(1,1)), ldz, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hNev, dNev(1), hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hW, dW, hipMemcpyDeviceToHost))
@@ -98,11 +103,16 @@ program ssygvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! Eigenvectors are B-normalised (itype 1): v_k^H*B0*v_k = 1
+    error = abs(dot_product(hZ(:,k), matmul(hB0, hZ(:,k))) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! v^H*B*v - 1 = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))
   call hipCheck(hipFree(dZ)); call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -42,7 +42,9 @@ Building and testing hipFORT from source
 
       ``-DHIPFORT_BUILD_NVPTX=OFF`` restricts the build to the ROCm backend
       (``hipfort-amdgcn``). The CUDA backend archive (``hipfort-nvptx``) is built by
-      default, so omit the option if you also want it.
+      default, so omit the option if you also want it. ``HIPFORT_BUILD_AMDGCN`` is
+      the mirror switch: the two are independent, so ``-DHIPFORT_BUILD_AMDGCN=OFF``
+      gives a CUDA-only build. Turning both off is an error.
       When installing hipFORT from source, you do not need to specify the ``HIP_PLATFORM`` environment variable.
 
 Customizing the build
@@ -60,6 +62,7 @@ or by setting the CMake cache variables:
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
 *  ``ROCM_PATH``: The ROCm installation root, if it cannot be detected automatically
+*  ``HIPFORT_BUILD_AMDGCN``: Build the ROCm (``amdgcn``) backend archive (``ON`` by default)
 *  ``HIPFORT_BUILD_NVPTX``: Build the CUDA (``nvptx``) backend archive (``ON`` by default)
 *  ``HIPFORT_USE_FPOINTER_INTERFACES``: Enable the Fortran 2008 array interfaces (``ON`` by default when the compiler supports Fortran 2008)
 *  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
@@ -71,12 +74,12 @@ or by setting the CMake cache variables:
 Toolchain files
 ---------------
 
-Rather than setting the compiler and backend cache variables by hand, you can select a
+Rather than setting the compiler cache variables by hand, you can select a
 ready-made CMake toolchain file from ``cmake/toolchains/`` with ``-DCMAKE_TOOLCHAIN_FILE``:
 
 .. code-block:: shell
 
-   cmake -S . -Bbuild -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
+   cmake -S . -Bbuild -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
 
 Each file only sets the Fortran and C compilers, so they compose with the other build
 options above. hipFORT is pure Fortran, so no C++ compiler is required.
@@ -84,13 +87,14 @@ options above. hipFORT is pure Fortran, so no C++ compiler is required.
 Linking against hipFORT
 =======================
 
-To use hipFORT in your project, invoke your Fortran and HIP compilers directly and link
-against the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
+To use hipFORT in your project, compile your code with your Fortran compiler and link
+against hipFORT and the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
 ``hipfort::hip``, ``hipfort::rocblas``, and ``hipfort::hipblas``) to make this straightforward:
 
 .. code-block:: cmake
 
-   project(my_app Fortran)
+   # C is required by the CMake package of HIP, which finds Threads.
+   project(my_app LANGUAGES Fortran C)
 
    find_package(hipfort REQUIRED COMPONENTS hip hipblas)
    add_executable(my_app main.f08)
@@ -101,12 +105,24 @@ is only defined when that component is requested. The Fortran language must be e
 before ``find_package(hipfort)``. See :doc:`../how-to/using-hipfort` for the full
 component list.
 
-The installed CMake package targets the ROCm backend only. ``hipfort-config.cmake``
-is written when hipFORT is configured for ROCm; it pulls in ``libhipfort-amdgcn`` and
-resolves each component against its ROCm package, so ``find_package(hipfort)`` does
-not work against the optional CUDA (``nvptx``) backend even when that archive is
-built and installed. Link ``libhipfort-nvptx`` and the CUDA libraries directly
-instead.
+On Linux, link your executable with ``-Wl,--gc-sections``. It keeps only the
+hipFORT wrappers your program calls, and lets the program link against a ROCm
+release older than hipFORT as long as it does not call the newer routines. See
+:ref:`hipfort-gc-sections`.
+
+The installed CMake package follows the backend the components were exported for.
+On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves each
+component against its ROCm package. On a host where HIP does not target
+the AMD platform, and provided the CUDA Toolkit is found and the ``nvptx`` archive is
+built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip``,
+``hipblas``, ``hipfft``, ``hiprand``, ``hipsolver`` and ``hipsparse`` components, and
+resolves them against ``CUDAToolkit``.
+
+With the ``nvptx`` archive, a ``complex(8)`` host scalar passed by address, such as
+``alpha`` or ``beta`` given as ``c_loc(alpha)``, must be 16-byte aligned: the CUDA
+libraries access a ``cuDoubleComplex`` with an aligned load or store, and a Fortran
+``complex(8)`` variable is only guaranteed 8-byte alignment. Declaring the scalar
+``allocatable`` places it on the heap, which is 16-byte aligned.
 
 
 Examples and tests
@@ -116,11 +132,11 @@ The examples in the ``f2003`` and ``f2008`` subdirectories of the ``test`` folde
 also serve as tests. The two collections largely overlap, but they are not identical: some tests exist
 only in one of them. The ``f2008`` tests require the Fortran compiler to support the Fortran 2008
 standard or newer. The ``f2003`` tests only require support for the Fortran 2003 standard.
-The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various hip* and roc* libraries.
+The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various ``hip*`` and ``roc*`` libraries.
 The ``test`` folder also contains an ``f2018`` subdirectory holding an experimental example built on the
 Fortran 2018 assumed-rank interfaces. That example is only registered with CTest when hipFORT is configured
 with ``-DHIPFORT_ASSUMED_RANK=ON`` (off by default). The ``openmp`` subdirectory holds OpenMP target-offload
-tests, which require an offload-capable compiler.
+tests, which require an offload-capable compiler (LLVM Flang) and a host LAPACK.
 
 Building and running the tests
 ------------------------------

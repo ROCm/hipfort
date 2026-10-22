@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! dcsr2csc example (double-precision CSR -> CSC conversion / sparse transpose,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T.
 ! We check the resulting csc_col_ptr / csc_row_ind / csc_val against the known
@@ -36,7 +36,7 @@
 ! is moved with hipMemcpy + c_loc. csr2csc args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program dcsr2csc
+program hipsparse_dcsr2csc
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -128,4 +128,4 @@ program dcsr2csc
 
   write(*,*) "PASSED!"
 
-end program dcsr2csc
+end program hipsparse_dcsr2csc

@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! zungqr example (double-complex generation of Q from a QR factorization,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: factorize A with geqrf, generate the unitary factor Q with
 ! ungqr, and confirm Q**H * Q = I. Unitarity is phase-convention independent,
@@ -75,14 +75,14 @@ program zungqr
   call hipCheck(hipMalloc(dIpiv, szp * 16))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sz * 16, hipMemcpyHostToDevice))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
-  call hipCheck(rocsolver_zungqr(handle, M, N, K, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_zungqr(handle, M, N, K, dA, lda, dIpiv))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sz * 16, hipMemcpyDeviceToHost))
@@ -106,7 +106,7 @@ program zungqr
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

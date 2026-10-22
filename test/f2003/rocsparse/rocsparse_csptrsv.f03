@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! csptrsv example (single-precision complex sparse triangular solve, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsv API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y (dense product on host), solve L*y' = x, and confirm
@@ -139,6 +139,9 @@ program csptrsv
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matL))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecX))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecY))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

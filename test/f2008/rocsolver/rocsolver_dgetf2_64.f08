@@ -44,6 +44,7 @@ program dgetf2_64
   real(c_double), target :: hLU(3,3)
   integer(c_size_t) :: size_A = 9
   type(c_ptr) :: dA, dIpiv, dInfo, handle
+  integer(c_int64_t), target :: hInfo(1)
   integer :: i, j, k
   real(c_double) :: lij, recon, error
   real(c_double), parameter :: error_max = 1.0d-10
@@ -51,9 +52,13 @@ program dgetf2_64
   call hipCheck(hipMalloc(dA,    size_A * 8))
   call hipCheck(hipMalloc(dIpiv, 3_c_size_t * 8))   ! int64 pivots
   call hipCheck(hipMalloc(dInfo, 8_c_size_t))       ! int64 info
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
-  call hipCheck(rocsolver_dgetf2_64(handle, M, N, dA, lda, dIpiv, dInfo))
+  call rocsolverCheck(rocsolver_dgetf2_64(handle, M, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 8_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
   call hipCheck(hipMemcpy(c_loc(hLU(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
   ! Reconstruct A = L*U (unit-lower L below the diagonal, U on/above).
   do j = 1, 3
@@ -71,6 +76,6 @@ program dgetf2_64
      end do
   end do
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program dgetf2_64

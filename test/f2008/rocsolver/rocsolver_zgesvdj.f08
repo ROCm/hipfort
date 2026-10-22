@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zgesvdj example (double-complex Jacobi SVD)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**H with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using
@@ -73,6 +73,7 @@ program zgesvdj
   real(c_double), pointer :: dResidual(:)
   integer(c_int), pointer :: dNsweeps(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -93,12 +94,16 @@ program zgesvdj
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the singular value decomposition
-  call hipCheck(rocsolver_zgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
+  call rocsolverCheck(rocsolver_zgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, c_loc(dA(1,1)), lda, abstol, c_loc(dResidual(1)), max_sweeps, c_loc(dNsweeps(1)), &
        c_loc(dS(1)), c_loc(dU(1,1)), ldu, c_loc(dV(1,1)), ldv, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))
@@ -130,7 +135,7 @@ program zgesvdj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

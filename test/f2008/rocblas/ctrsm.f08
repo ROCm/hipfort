@@ -40,7 +40,7 @@ program rocblas_ctrsm_test
   integer, parameter :: m = 512, n = 512
 
   complex(kind=4), allocatable, dimension(:,:) :: hA, hB
-  complex(c_float_complex), parameter :: alpha = (2., 0.)
+  complex(c_float_complex), target :: alpha = (2., 0.)
   complex(kind=4), parameter :: x_exact = (1., 0.)
 
   complex(kind=4), pointer, dimension(:,:) :: dA, dB
@@ -54,7 +54,7 @@ program rocblas_ctrsm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   allocate(hA(m,m), hB(m,n))
 

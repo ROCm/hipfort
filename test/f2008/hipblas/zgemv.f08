@@ -31,10 +31,11 @@ program hipblas_zgemv_test
 
   implicit none
 
-  complex(kind=8), parameter :: alpha = (1.1d0, 0.0d0), beta = (0.9d0, 0.0d0)
+  complex(kind=8), allocatable, target :: alpha, beta
   integer, parameter :: m = 512, n = 512
 
-  complex(kind=8), allocatable, target, dimension(:) :: hA, hx, hy
+  complex(kind=8), allocatable, target, dimension(:,:) :: hA
+  complex(kind=8), allocatable, target, dimension(:) :: hx, hy
   complex(kind=8), pointer, dimension(:,:) :: dA
   complex(kind=8), pointer, dimension(:)   :: dx, dy
   type(c_ptr) :: handle = c_null_ptr
@@ -43,16 +44,21 @@ program hipblas_zgemv_test
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
   integer :: i
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.1d0, 0.0d0)
+  beta = (0.9d0, 0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMV' (Fortran 2008 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
-  allocate(hA(m*n), hx(n), hy(m))
+  allocate(hA(m,n), hx(n), hy(m))
   hA = (1.d0, 0.d0);  hx = (1.d0, 0.d0);  hy = (1.d0, 0.d0)
   y_exact = alpha * n + beta
 
-  call hipCheck(hipMalloc(dA, source=reshape(hA, [m, n])))
+  call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dx, source=hx))
   call hipCheck(hipMalloc(dy, source=hy))
 
@@ -72,7 +78,7 @@ program hipblas_zgemv_test
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
   call hipblasCheck(hipblasDestroy(handle))
-  deallocate(hA, hx, hy)
+  deallocate(hA, hx, hy, alpha, beta)
   write(*,*) "PASSED!"
 
 end program hipblas_zgemv_test

@@ -62,7 +62,7 @@ for filename in glob.glob("../lib/hipfort/*.[fF]90"):
             "-E",
             "-cpp",
             "-P",
-            "-DUSE_FPOINTER_INTERFACES",
+            "-DUSE_ASSUMED_SHAPE",
             "-UUSE_CUDA_NAMES",
             str(path),
             "-o",
@@ -106,3 +106,30 @@ if not "exclude_patterns" in globals():
 html_theme_options["show_navbar_depth"] = 2
 exclude_patterns.append("doxygen/input")
 exclude_patterns.append("README.md")
+
+# The tutorials literalinclude the test programs, which all open with the MIT
+# license header; drop that leading comment block from the rendered listings.
+# Line-based options (:emphasize-lines:, :lineno-match:) would still count the
+# stripped lines, so pair them with :start-at: rather than relying on this.
+from docutils import nodes
+from sphinx.directives.code import LiteralInclude
+
+_license_header = re.compile(
+    r"\A(?:[!#/][^\n]*\n)*?[!#/][^\n]*SPDX-License-Identifier[^\n]*\n"
+    r"(?:[!#/][^\n]*\n)*?[!#/]{3,}[ \t]*\n(?:[ \t]*\n)*"
+)
+
+
+class LiteralIncludeWithoutLicense(LiteralInclude):
+    def run(self) -> List[nodes.Node]:
+        result = super().run()
+        for node in result:
+            for block in node.findall(nodes.literal_block):
+                text = _license_header.sub("", block.astext(), count=1)
+                block.rawsource = text
+                block[:] = [nodes.Text(text)]
+        return result
+
+
+def setup(app):
+    app.add_directive("literalinclude", LiteralIncludeWithoutLicense, override=True)

@@ -36,7 +36,8 @@ program hiprand_mrg32k3a_normal_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_float), parameter :: mean = 0.0, stddev = 1.0, delta = 0.2
+    ! Not the standard normal, so a binding that drops mean or stddev cannot pass.
+    real(c_float), parameter :: mean = 2.0, stddev = 0.5, delta = 0.05
 
     type(c_ptr) :: gen = c_null_ptr
 
@@ -51,7 +52,7 @@ program hiprand_mrg32k3a_normal_test
     call hiprandCheck(hiprandSetPseudoRandomGeneratorSeed(gen, seed))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Normal(mean, stddev) samples recover both moments.
     call hiprandCheck(hiprandGenerateNormal(gen, c_loc(dx(1)), N, mean, stddev))

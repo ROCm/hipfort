@@ -39,8 +39,8 @@ rocFFT in ``clients/samples/rocfft``:
    * - ``rocfft_example_set_stream.cpp``
      - `Running on HIP streams`_
    * - ``rocfft_example_callback.cpp``
-     - `Callbacks`_, in part: registering a callback needs the address of a
-       device function, which Fortran cannot take.
+     - `Callbacks`_, in part: the sample registers a JIT callback compiled
+       from HIP source with hipRTC, which this program does not do.
 
 The remaining programs cover material from the rocFFT how-to guides:
 `Normalizing with a scale factor`_, `Inspecting a plan`_ and
@@ -117,8 +117,8 @@ demonstrates that rocFFT does not normalize.
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_c2c_1d_z.f08
    :language: fortran
 
-Use ``rocfft_precision_single`` and ``complex(4)`` host data for a single
-precision transform, as in ``test/f2008/rocfft/rocfft_c2c_1d_c.f08``.
+Use ``rocfft_precision_single`` and ``complex(4)`` host data for a
+single-precision transform, as in ``test/f2008/rocfft/rocfft_c2c_1d_c.f08``.
 
 Real-to-complex and complex-to-real transforms
 ==============================================
@@ -219,13 +219,20 @@ every element it writes, which folds pre- and post-processing into the
 transform. Both are registered on an execution info handle with
 ``rocfft_execution_info_set_load_callback`` and
 ``rocfft_execution_info_set_store_callback``, and both are given as arrays with
-one function pointer per brick of the field. A null array selects the default
-behaviour, a plain load or store, and clears any previous registration.
+exactly one function pointer. These function-pointer callbacks are deprecated
+in rocFFT, which recommends JIT callbacks set on a plan description with
+``rocfft_plan_description_set_load_callback`` and
+``rocfft_plan_description_set_store_callback``, and they cannot be combined
+with fields. A null array selects the default behavior, a plain load or store,
+and clears any previous registration.
 ``shared_mem_bytes`` must be 0, since rocFFT allocates no shared memory for
 callbacks.
 
-The callback functions themselves have to be device functions, so a Fortran
-program can only use the default callbacks.
+The callback functions themselves have to be device code. A Fortran program
+cannot provide a function pointer to one, so this program only registers the
+default callbacks; the JIT interface instead takes the callback as a symbol
+name and a buffer of device bitcode compiled separately, for example from HIP
+source.
 
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_callback_z.f08
    :language: fortran

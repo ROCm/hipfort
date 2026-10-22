@@ -14,7 +14,8 @@ Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
 program lives in ``test/f2008/hipfft``, and the equivalent Fortran 2003 version,
 which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
-Fortran array pointers, lives in ``test/f2003/hipfft``.
+Fortran array pointers, lives in ``test/f2003/hipfft``. The Xt programs exist
+only in the Fortran 2003 form.
 
 If you want direct access to rocFFT rather than a cuFFT-style interface, see
 the :doc:`rocFFT examples <rocfft-examples>`. For FFTW3-compatible code, see the
@@ -76,7 +77,7 @@ demonstrates that hipFFT does not normalize.
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_c2c_1d_z.f08
    :language: fortran
 
-Use ``HIPFFT_C2C`` and ``complex(4)`` host data for a single precision
+Use ``HIPFFT_C2C`` and ``complex(4)`` host data for a single-precision
 transform, as in ``test/f2008/hipfft/hipfft_c2c_1d_c.f08``.
 
 Real-to-complex and complex-to-real transforms
@@ -88,7 +89,7 @@ real data is Hermitian symmetric, the complex buffer holds ``N/2 + 1`` elements.
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_r2c_c2r_1d_d.f08
    :language: fortran
 
-``test/f2008/hipfft/hipfft_r2c_c2r_1d_s.f08`` is the single precision
+``test/f2008/hipfft/hipfft_r2c_c2r_1d_s.f08`` is the single-precision
 equivalent, using ``HIPFFT_R2C`` and ``HIPFFT_C2R``.
 
 Multi-dimensional transforms
@@ -164,3 +165,112 @@ input harmonics so that a swapped stream would be visible in the output.
 
 .. literalinclude:: ../../test/f2008/hipfft/hipfft_setstream_z.f08
    :language: fortran
+
+Transforms on hipDataType with the Xt API
+=========================================
+
+``hipfftXtMakePlanMany`` describes a batched transform like
+``hipfftMakePlanMany``, but takes 64-bit lengths, strides and distances, and
+names the input, output and execution data types with ``hipDataType`` values
+(``HIP_C_32F``, ``HIP_C_64F``, ``HIP_R_32F``, ...) instead of a transform type.
+``hipfftXtGetSizeMany`` returns the work area size for the same parameters, and
+``hipfftXtExec`` runs the plan whatever its data types, taking the direction for
+complex transforms.
+
+.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_makeplanmany_c.f03
+   :language: fortran
+
+Multi-GPU transforms
+====================
+
+A plan can be spread over several GPUs of the same process. The data then lives
+in a descriptor that hipFFT allocates and distributes, rather than in a buffer
+of yours:
+
+#. Create an empty plan with ``hipfftCreate``, and list the GPUs with
+   ``hipfftXtSetGPUs`` **before** making it.
+#. Make the plan with ``hipfftMakePlan2d``, ``hipfftMakePlan3d`` or
+   ``hipfftMakePlanMany``. A multi-GPU plan writes one work area size per GPU,
+   so pass ``c_loc`` of an ``integer(c_size_t), target`` array with one slot
+   per GPU, through the ``type(c_ptr)`` form. The form that takes an
+   ``integer(c_size_t)`` variable is for a plan on one GPU.
+#. Allocate the data with ``hipfftXtMalloc``. It returns the address of a
+   ``hipLibXtDesc`` in a ``type(c_ptr)``.
+#. Copy the host data in and out with ``hipfftXtMemcpy``, passing that
+   ``type(c_ptr)`` on the device side, and run the transform with the
+   ``hipfftXtExecDescriptor`` routine matching the plan type
+   (``hipfftXtExecDescriptorZ2Z``, ``hipfftXtExecDescriptorC2C``, ...).
+#. Release the descriptor with ``hipfftXtFree``, then the plan with
+   ``hipfftDestroy``.
+
+The descriptor is owned by hipFFT. Associate a ``type(hipLibXtDesc), pointer``
+with the address ``hipfftXtMalloc`` returned, using ``c_f_pointer``, and pass
+that pointer to ``hipfftXtExecDescriptor*`` and ``hipfftXtFree``. Never pass a
+copy of the type: ``hipfftXtFree`` would then release the wrong address. The
+``descriptor`` field leads in the same way to a ``hipXtDesc``, whose ``nGPUs``,
+``GPUs``, ``data`` and ``size`` fields say where each part of the data is.
+
+The ``hipLibXtDesc`` and ``hipXtDesc`` types are in the
+``hipfort_hipfft_types`` module, which ``hipfort_hipfft`` uses, and the Xt
+constants (``HIPFFT_XT_FORMAT_INPLACE``, ``HIPFFT_COPY_HOST_TO_DEVICE``, ...)
+are in ``hipfort_hipfft_enums``.
+
+On AMD GPUs a descriptor needs a plan over two or more GPUs, and unbatched
+one-dimensional transforms are not supported. This program runs a
+two-dimensional transform on two GPUs, forward then inverse, and checks the
+result against the input; on a machine with fewer than two GPUs it reports so
+and the test is skipped.
+
+.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_descriptor_z.f03
+   :language: fortran
+
+Multi-process transforms with MPI
+=================================
+
+``hipfftMpAttachComm``, ``hipfftXtSetDistribution`` and
+``hipfftXtSetSubformatDefault`` distribute a transform over the ranks of an MPI
+communicator. They are bound in ``hipfort_hipfft``, but exist only in a hipFFT
+built with MPI support (``HIPFFT_MPI_ENABLE``), which the ROCm packages are
+not: with those, a program that calls them does not link.
+
+``hipfftMpAttachComm`` takes a ``type(c_ptr)`` to a **C** ``MPI_Comm``, not a
+Fortran communicator handle. The size and the representation of ``MPI_Comm``
+depend on the MPI implementation, so build it in C from the Fortran handle with
+``MPI_Comm_f2c``, for example with this helper:
+
+.. code-block:: c
+
+   #include <mpi.h>
+   #include <stdlib.h>
+
+   /* The C communicator for a Fortran one, in storage the caller frees. */
+   void* c_comm_from_fortran(MPI_Fint fcomm)
+   {
+     MPI_Comm* comm = malloc(sizeof *comm);
+     *comm = MPI_Comm_f2c(fcomm);
+     return comm;
+   }
+
+.. code-block:: fortran
+
+   use iso_c_binding
+   use mpi_f08
+   use hipfort_check
+   use hipfort_hipfft
+
+   interface
+     function c_comm_from_fortran(fcomm) bind(c, name="c_comm_from_fortran")
+       import :: c_ptr, c_int
+       integer(c_int), value :: fcomm
+       type(c_ptr) :: c_comm_from_fortran
+     end function
+   end interface
+
+   type(c_ptr) :: comm
+
+   comm = c_comm_from_fortran(MPI_COMM_WORLD%MPI_VAL)
+   call hipfftCheck(hipfftMpAttachComm(plan, HIPFFT_COMM_MPI, comm))
+
+hipFFT keeps the pointer rather than a copy of the communicator, so the storage
+it points to has to outlive the plan. The plan must be attached to the
+communicator before it is made.

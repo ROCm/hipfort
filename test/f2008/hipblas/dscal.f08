@@ -34,7 +34,7 @@ program hip_dscal
 
   integer, parameter :: N = 10240;
 
-  double precision, parameter :: alpha = 10.d0
+  double precision, target :: alpha = 10.d0
 
   double precision,pointer,dimension(:) :: dx
 

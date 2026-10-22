@@ -36,7 +36,7 @@ program hip_strsm
   integer(kind(HIPBLAS_OP_N)),            parameter :: transA = HIPBLAS_OP_N
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 1024, n = 1024
-  real(c_float), parameter :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   real(c_float), allocatable, target, dimension(:,:) :: hA, hB
   real(c_float), pointer, dimension(:,:) :: dA, dB
   type(c_ptr) :: handle = c_null_ptr

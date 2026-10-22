@@ -25,10 +25,12 @@
 
 !!!!!!!!!!!!!/
 ! zhegvd example (complex generalized Hermitian-definite eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! hegvd solves A*x = lambda*B*x (itype=eform_ax). f2003 style: device buffers are
 ! type(c_ptr). Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! A is Hermitian with non-zero imaginary off-diagonal entries (A(j,i) = conjg(A(i,j)));
+! B is Hermitian positive definite (diagonally dominant), also with complex off-diagonals.
 !!!!!!!!!!!!!!/
 !
 program zhegvd
@@ -46,9 +48,9 @@ program zhegvd
   integer(c_int), parameter :: N = 3, lda = 3, ldb = 3
 
   complex(c_double_complex), target :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(1.,-1.),(0.,0.), (1.,1.),(3.,0.),(0.,-1.), (0.,0.),(0.,1.),(4.,0.) /), (/3,3/))
   complex(c_double_complex), target :: hB(3,3) = reshape((/ &
-       (2.,0.),(0.,0.),(0.,0.), (0.,0.),(2.,0.),(0.,0.), (0.,0.),(0.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(0.,-.5),(0.,0.), (0.,.5),(2.,0.),(.5,.5), (0.,0.),(.5,-.5),(2.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3), hB0(3,3)
   real(c_double), target :: hD(3)
   real(c_double), target :: hE(3)
@@ -61,7 +63,7 @@ program zhegvd
   type(c_ptr) :: handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_zhegvd' (Fortran 2003 interfaces) - "
 
@@ -77,10 +79,14 @@ program zhegvd
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), sizeB * 16, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zhegvd(handle, rocblas_eform_ax, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_zhegvd(handle, rocblas_eform_ax, rocblas_evect_original, &
        rocblas_fill_upper, N, dA, lda, dB, ldb, dD, dE, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! zhegvd info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hD(1)), dD, sizeD * 8, hipMemcpyDeviceToHost))
@@ -96,9 +102,17 @@ program zhegvd
     end do
   end do
 
+  ! Each eigenvector must be B-normalised (v^H*B0*v = 1), which v = 0 would fail
+  do k = 1,N
+    error = abs(real(dot_product(hA(:,k), matmul(hB0, hA(:,k)))) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! Error = ", error, " eigenvector ", k; call exit(1)
+    end if
+  end do
+
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dD)); call hipCheck(hipFree(dE)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverZungqr example (double-complex generation of Q from a QR
 ! factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf, generate the unitary factor Q with
 ! ungqr, and confirm Q**H * Q = I. Unitarity is phase-convention independent,
@@ -59,6 +59,7 @@ program zungqr
   complex(c_double_complex), pointer :: dA(:,:)
   complex(c_double_complex), pointer :: dTau(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork_qr, lwork_un, lwork
 
@@ -76,13 +77,23 @@ program zungqr
 
   ! Workspace big enough for both geqrf and ungqr
   call hipsolverCheck(hipsolverZgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverZungqr_bufferSize(handle, M, N, K, dA, lda, dTau(1), lwork_un))
+  call hipsolverCheck(hipsolverZungqr_bufferSize(handle, M, N, K, dA, lda, dTau, lwork_un))
   lwork = max(lwork_qr, lwork_un)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 16))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
-  call hipsolverCheck(hipsolverZungqr(handle, M, N, K, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverZgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
+  call hipsolverCheck(hipsolverZungqr(handle, M, N, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! ungqr info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

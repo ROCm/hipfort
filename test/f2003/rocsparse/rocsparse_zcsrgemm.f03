@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zcsrgemm example (double-precision complex sparse-matrix sparse-matrix multiply, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
 !
 ! Two-phase flow: csrgemm_buffer_size -> csrgemm_nnz (fills row_ptr_C and
 ! nnz_C) -> allocate col_ind_C/val_C -> csrgemm (computes C). Here B = A, so
@@ -66,7 +66,6 @@ program zcsrgemm
 
   type(c_ptr) :: d_csr_row_ptr, d_csr_col_ind, d_csr_val
   type(c_ptr) :: d_row_ptr_C, d_col_ind_C, d_val_C
-  type(c_ptr) :: d_nnz_C
 
   type(c_ptr) :: handle, descr_A, descr_B, descr_C, info_C, d_buffer
   integer(c_size_t) :: buffer_size
@@ -101,7 +100,6 @@ program zcsrgemm
   call hipCheck(hipMalloc(d_csr_col_ind, size_ci * 4))
   call hipCheck(hipMalloc(d_csr_val,     size_v * 16))
   call hipCheck(hipMalloc(d_row_ptr_C,   size_rp * 4))
-  call hipCheck(hipMalloc(d_nnz_C,       4_c_size_t))
 
   call hipCheck(hipMemcpy(d_csr_row_ptr, c_loc(h_csr_row_ptr(1)), size_rp * 4,  hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(d_csr_col_ind, c_loc(h_csr_col_ind(1)), size_ci * 4,  hipMemcpyHostToDevice))
@@ -109,9 +107,9 @@ program zcsrgemm
 
   ! Phase 0: workspace size
   call rocsparseCheck(rocsparse_zcsrgemm_buffer_size(handle, rocsparse_operation_none, rocsparse_operation_none, &
-                          M, N, K, alpha, descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
+                          M, N, K, c_loc(alpha), descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
-                          beta, c_null_ptr, 0, c_null_ptr, c_null_ptr, info_C, buffer_size))
+                          c_loc(beta), c_null_ptr, 0, c_null_ptr, c_null_ptr, info_C, buffer_size))
   call hipCheck(hipMalloc(d_buffer, max(buffer_size, 1_c_size_t)))
 
   ! Phase 1: compute the sparsity of C (row_ptr_C + total nnz_C)
@@ -119,18 +117,17 @@ program zcsrgemm
                           descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           c_null_ptr, 0, c_null_ptr, c_null_ptr, &
-                          descr_C, d_row_ptr_C, d_nnz_C, info_C, d_buffer))
-  call hipCheck(hipMemcpy(c_loc(nnz_C), d_nnz_C, 4_c_size_t, hipMemcpyDeviceToHost))
+                          descr_C, d_row_ptr_C, c_loc(nnz_C), info_C, d_buffer))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, int(nnz_C,c_size_t) * 4))
   call hipCheck(hipMalloc(d_val_C,     int(nnz_C,c_size_t) * 16))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_zcsrgemm(handle, rocsparse_operation_none, rocsparse_operation_none, M, N, K, alpha, &
+  call rocsparseCheck(rocsparse_zcsrgemm(handle, rocsparse_operation_none, rocsparse_operation_none, M, N, K, c_loc(alpha), &
                           descr_A, nnz_A, d_csr_val, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_val, d_csr_row_ptr, d_csr_col_ind, &
-                          beta, c_null_ptr, 0, c_null_ptr, c_null_ptr, c_null_ptr, &
+                          c_loc(beta), c_null_ptr, 0, c_null_ptr, c_null_ptr, c_null_ptr, &
                           descr_C, d_val_C, d_row_ptr_C, d_col_ind_C, info_C, d_buffer))
   call hipCheck(hipDeviceSynchronize())
 
@@ -175,7 +172,6 @@ program zcsrgemm
   call hipCheck(hipFree(d_csr_col_ind))
   call hipCheck(hipFree(d_csr_val))
   call hipCheck(hipFree(d_row_ptr_C))
-  call hipCheck(hipFree(d_nnz_C))
   call hipCheck(hipFree(d_buffer))
   call rocsparseCheck(rocsparse_destroy_mat_info(info_C))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_A))

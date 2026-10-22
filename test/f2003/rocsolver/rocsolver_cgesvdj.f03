@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cgesvdj example (single-complex Jacobi SVD, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**H with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using
@@ -71,6 +71,7 @@ program cgesvdj
   integer(c_size_t) :: szv = 3
 
   type(c_ptr) :: dA, dS, dU, dV
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dResidual, dNsweeps, dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -92,14 +93,18 @@ program cgesvdj
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sz * 8, hipMemcpyHostToDevice))
 
   ! Compute the singular value decomposition
-  call hipCheck(rocsolver_cgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
+  call rocsolverCheck(rocsolver_cgesvdj(handle, rocblas_svect_singular, rocblas_svect_singular, &
        M, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dS, dU, ldu, dV, ldv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! cgesvdj info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szv * 4, hipMemcpyDeviceToHost))
@@ -131,7 +136,7 @@ program cgesvdj
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

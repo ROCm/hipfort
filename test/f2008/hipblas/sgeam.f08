@@ -32,15 +32,15 @@ program hip_sgeam
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
-  ! transposition, so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B) with alpha = 2, beta = -1 and no
+  ! transposition, so C = 2*A - B (a swap of alpha and beta, or of A and B, shows).
   integer, parameter :: ld = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 2.0, beta = -1.0
 
   real(c_float) :: hA(ld,ld) = reshape([1.0, 2.0, 3.0, 4.0], [ld,ld])
   real(c_float) :: hB(ld,ld) = reshape([10.0, 20.0, 30.0, 40.0], [ld,ld])
   real(c_float) :: hC(ld,ld)
-  real(c_float) :: expected(ld,ld) = reshape([11.0, 22.0, 33.0, 44.0], [ld,ld])
+  real(c_float) :: expected(ld,ld) = reshape([-8.0, -16.0, -24.0, -32.0], [ld,ld])
   real(c_float), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j

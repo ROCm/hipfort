@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dpotri example (double-precision inverse of an SPD matrix via Cholesky)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Factorizes A = U**T U with potrf, then inverts it in place with potri, and
 ! checks A * A^-1 == I. rocSOLVER writes `info` to DEVICE memory (passed as
@@ -51,6 +51,7 @@ program dpotri
 
   real(c_double), pointer :: dA(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -63,11 +64,19 @@ program dpotri
   call hipCheck(hipMalloc(dA,    source=hA))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Cholesky factorization, then inverse (both on the upper triangle).
-  call hipCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
+  call rocsolverCheck(rocsolver_dpotri(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hAinv, dA, hipMemcpyDeviceToHost))
 
@@ -95,7 +104,7 @@ program dpotri
 
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

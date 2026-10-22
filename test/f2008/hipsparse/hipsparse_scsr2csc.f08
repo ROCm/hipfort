@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse scsr2csc example (single-precision CSR -> CSC / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is the CSR of A**T. We check the resulting
 ! csc_col_ptr / csc_row_ind / csc_val against the known transpose. The hipSPARSE

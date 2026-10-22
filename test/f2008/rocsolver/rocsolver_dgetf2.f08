@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dgetf2 example (double-precision unblocked LU factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! getf2 is the unblocked variant of getrf and produces the same packed LU.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device
@@ -55,6 +55,7 @@ program dgetf2
   real(c_double), pointer :: dA(:,:)
   integer(c_int), pointer :: dIpiv(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
@@ -67,9 +68,13 @@ program dgetf2
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dgetf2(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hIpiv, dIpiv, hipMemcpyDeviceToHost))
@@ -94,7 +99,7 @@ program dgetf2
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

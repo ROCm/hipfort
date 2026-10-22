@@ -43,7 +43,7 @@ program rocblas_saxpy_rank3_test
 
   real(c_float), allocatable, dimension(:,:,:) :: hx, hy
   real(c_float), pointer, dimension(:,:,:) :: dx => null(), dy => null()
-  real(c_float) :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   real(c_float), parameter :: y_exact = 5.0   ! alpha*1 + 3 = 5
   type(c_ptr) :: handle = c_null_ptr
 

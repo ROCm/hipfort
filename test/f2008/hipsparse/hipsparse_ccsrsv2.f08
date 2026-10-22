@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Ccsrsv2 example (sparse triangular solve v2, single complex)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Solves the lower-triangular system L*x = alpha*f for x using the legacy
 ! csrsv2 API (bufferSize -> analysis -> solve, with a mat descriptor and a
@@ -48,7 +48,7 @@ program hipsparse_ccsrsv2
   complex(c_float_complex) :: hF(3)
   complex(c_float_complex) :: hX(3)
   complex(c_float_complex) :: hExp(3) = (/(1.0,1.0), (2.0,-1.0), (3.0,0.0)/)
-  complex(c_float_complex) :: alpha = (1.0,0.0)
+  complex(c_float_complex), target :: alpha = (1.0,0.0)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descrA = c_null_ptr
   type(c_ptr) :: info = c_null_ptr

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime virtual memory management (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Reserves a virtual address range, backs it with a physical allocation, makes
 ! it accessible to the device, uses it as ordinary device memory, and unwinds
@@ -64,7 +64,7 @@ program virtual_memory
   prop%allocFlags = 0
 
   granularity = 0
-  call hipCheck(hipMemGetAllocationGranularity(c_loc(granularity), prop, &
+  call hipCheck(hipMemGetAllocationGranularity(granularity, prop, &
                                                hipMemAllocationGranularityMinimum))
   if (granularity <= 0) then
      write(*,*) "FAILED! allocation granularity =", granularity

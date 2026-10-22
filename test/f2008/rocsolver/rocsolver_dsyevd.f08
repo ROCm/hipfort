@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dsyevd example (double-precision symmetric eigensolver)
-! see: https:!www.netlib.org/lapack/explore-html/d2/d8a/group__double_s_yeigen_ga694ddc6e5527b6223748e3462013d867.html
+! see: https://www.netlib.org/lapack/explore-html/d2/d8a/group__double_s_yeigen_ga694ddc6e5527b6223748e3462013d867.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the eigenvectors
 ! (as columns) and D holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.
@@ -60,6 +60,7 @@ program dsyevd
   real(c_double), pointer :: dD(:)
   real(c_double), pointer :: dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -77,10 +78,14 @@ program dsyevd
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_dsyevd(handle, rocblas_evect_original, rocblas_fill_upper, N, dA, lda, dD, dE, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_dsyevd(handle, rocblas_evect_original, rocblas_fill_upper, N, dA, lda, dD, dE, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -97,6 +102,11 @@ program dsyevd
             call exit(1)
         end if
     end do
+    ! Eigenvectors are normalised: ||v_k|| = 1
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! ||v|| - 1 = ", error, " eigenvector ", k; call exit(1)
+    end if
   end do
 
   ! Clean up
@@ -104,7 +114,7 @@ program dsyevd
   call hipCheck(hipFree(dD))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssptrsm example (single-precision sparse triangular solve with multiple rhs)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsm API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y, solve L*C = X, and confirm C
@@ -136,6 +136,9 @@ program ssptrsm
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matL))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matB))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matC))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

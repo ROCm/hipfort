@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Zsctr example (scatter xVal -> y[xInd], double complex)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Scatters the packed vector xVal into the dense vector y at the sparse index
 ! set xInd, then checks the resulting dense vector.

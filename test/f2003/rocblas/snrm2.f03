@@ -50,7 +50,7 @@ program rocblas_snrm2_test
 
     ! Create rocblas handle
     call rocblasCheck(rocblas_create_handle(rocblas_handle))
-    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0)) ! host pointer mode
+    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, rocblas_pointer_mode_host)) ! host pointer mode
 
     ! Allocate and initialize host memory: x = 1, so nrm2 = sqrt(n)
     allocate(hx(N))

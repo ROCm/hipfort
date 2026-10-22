@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime asynchronous copies
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Copies host -> device with hipMemcpyAsync and device -> host with
 ! hipMemcpyWithStream on a user stream, then verifies the round trip.

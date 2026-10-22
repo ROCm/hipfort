@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zspmm example (double-precision complex sparse-matrix times dense-matrix)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-matrix
 ! descriptors for B and C, then run the three spmm stages
@@ -132,6 +132,9 @@ program zspmm
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matA))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matB))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matC))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverCungqr example (single-complex generation of Q from a QR
 ! factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf, generate the unitary factor Q with
 ! ungqr, and confirm Q**H * Q = I. Unitarity is phase-convention independent,
@@ -59,6 +59,7 @@ program cungqr
   complex(c_float_complex), pointer :: dA(:,:)
   complex(c_float_complex), pointer :: dTau(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork_qr, lwork_un, lwork
 
@@ -76,13 +77,23 @@ program cungqr
 
   ! Workspace big enough for both geqrf and ungqr
   call hipsolverCheck(hipsolverCgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverCungqr_bufferSize(handle, M, N, K, dA, lda, dTau(1), lwork_un))
+  call hipsolverCheck(hipsolverCungqr_bufferSize(handle, M, N, K, dA, lda, dTau, lwork_un))
   lwork = max(lwork_qr, lwork_un)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
-  call hipsolverCheck(hipsolverCungqr(handle, M, N, K, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverCgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
+  call hipsolverCheck(hipsolverCungqr(handle, M, N, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! ungqr info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

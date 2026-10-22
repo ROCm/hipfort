@@ -23,11 +23,10 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-! Note: hipfort's Fortran 2008 pointer-convenience interfaces for
-! rocblas_?gemm_batched call c_loc() on a plain array and therefore pass a
-! single pointer, not the array of device pointers the routine requires. This
-! test consequently uses the type(c_ptr) array-of-pointers idiom (as in f2003);
-! only the per-batch device allocation uses the f2008 hipMalloc(source=) style.
+! Note: rocblas_?gemm_batched takes A, B and C as device arrays of device
+! pointers (one per batch), which this program builds itself. It therefore
+! uses the type(c_ptr) array-of-pointers form (as in f2003); only the
+! per-batch device allocation uses the f2008 hipMalloc(source=) style.
 
 program rocblas_cgemm_batched_test
 
@@ -40,7 +39,7 @@ program rocblas_cgemm_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_float_complex), parameter :: alpha = (1.1, 0.), beta = (0.9, 0.)
+  complex(c_float_complex), target :: alpha = (1.1, 0.), beta = (0.9, 0.)
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer, parameter :: bytes_per_element = 8 ! 2x float
@@ -66,7 +65,7 @@ program rocblas_cgemm_batched_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   lda = m; ldb = k; ldc = m
 
@@ -105,7 +104,7 @@ program rocblas_cgemm_batched_test
   call hipCheck(hipMemcpy(dc_p, c_loc(dc(1)), int(batch_count,c_size_t)*c_sizeof(dc(1)), hipMemcpyHostToDevice))
 
   call rocblasCheck(rocblas_cgemm_batched(handle,transa,transb,m,n,k, &
-       alpha,da_p,lda,db_p,ldb,beta,dc_p,ldc,batch_count))
+       c_loc(alpha),da_p,lda,db_p,ldb,c_loc(beta),dc_p,ldc,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime module / kernel API (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Loads a separately compiled code object, looks up the kernel it contains,
 ! queries its attributes and occupancy, then runs it as a graph kernel node,
@@ -59,7 +59,7 @@ program module_kernel
   type(hipKernelNodeParams) :: kparams
   integer(c_size_t) :: nbytes
   integer(c_int), target :: maxthreads
-  integer(c_int) :: gridsize, blocksize, numblocks
+  integer(c_int) :: gridsize, blocksize, numblocks, coop
 
   write(*,"(a)",advance="no") "-- Running test 'hip module_kernel' (Fortran 2003 interfaces) - "
 
@@ -144,10 +144,14 @@ program module_kernel
   call check_result("hipGraphExecKernelNodeSetParams", dout2)
 
   ! Cooperative launch takes no extra pointer, so the argument array goes as-is.
-  call hipCheck(hipMemset(dout, 0, nbytes))
-  call hipCheck(hipModuleLaunchCooperativeKernel(kfunc, 4, 1, 1, 256, 1, 1, 0, stream, args(1)))
-  call hipCheck(hipStreamSynchronize(stream))
-  call check_result("hipModuleLaunchCooperativeKernel", dout)
+  ! Skip it on a device without cooperative launch, as cooperative_launch does.
+  call hipCheck(hipDeviceGetAttribute(coop, hipDeviceAttributeCooperativeLaunch, 0))
+  if (coop /= 0) then
+     call hipCheck(hipMemset(dout, 0, nbytes))
+     call hipCheck(hipModuleLaunchCooperativeKernel(kfunc, 4, 1, 1, 256, 1, 1, 0, stream, args(1)))
+     call hipCheck(hipStreamSynchronize(stream))
+     call check_result("hipModuleLaunchCooperativeKernel", dout)
+  end if
 
   call hipCheck(hipGraphExecDestroy(gexec))
   call hipCheck(hipGraphDestroy(graph))

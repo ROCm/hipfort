@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverZgesvdj example (double-complex Jacobi SVD, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**H with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using
@@ -72,6 +72,7 @@ program zgesvdj
   type(c_ptr) :: params = c_null_ptr
   type(c_ptr) :: dA, dS, dU, dV, dInfo, dWork
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork
 
   real(c_double) :: error
@@ -102,7 +103,14 @@ program zgesvdj
 
   ! Compute the singular value decomposition
   call hipsolverCheck(hipsolverZgesvdj(handle, HIPSOLVER_EIG_MODE_VECTOR, econ, &
-       M, N, dA, lda, dS, dU, ldu, dV, ldv, dWork, lwork, dInfo_p(1), params))
+       M, N, dA, lda, dS, dU, ldu, dV, ldv, dWork, lwork, c_loc(dInfo_p(1)), params))
+
+  ! Check info
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szv * 8, hipMemcpyDeviceToHost))

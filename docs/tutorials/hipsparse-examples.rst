@@ -12,9 +12,10 @@ layer over rocSPARSE whose API follows cuSPARSE. hipFORT exposes it through the
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
-program lives in ``test/f2008/hipsparse``, and the equivalent Fortran 2003
-version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
-instead of Fortran array pointers, lives in ``test/f2003/hipsparse``.
+program lives in ``test/f2008/hipsparse``. Most programs also have an
+equivalent Fortran 2003 version, which uses ``type(c_ptr)`` device pointers and
+explicit byte counts instead of Fortran array pointers, in
+``test/f2003/hipsparse``.
 
 If you want direct access to rocSPARSE rather than a cuSPARSE-style interface,
 see the :doc:`rocSPARSE examples <rocsparse-examples>`, where the equivalent
@@ -23,8 +24,9 @@ programs are written against the ``hipfort_rocsparse`` module.
 Many routines come in the four precisions: ``s`` (real single), ``d`` (real
 double), ``c`` (complex single), and ``z`` (complex double). Where several are
 provided, this page shows the double-precision program of the group; the other
-precisions differ only in the host data type and the ``hipsparse`` prefix
-letter.
+precisions differ only in the host data type, the precision letter after the
+``hipsparse`` prefix and, in the generic API, the ``HIP_R_*``/``HIP_C_*`` value
+passed to the descriptors.
 
 Conventions
 ===========
@@ -35,20 +37,21 @@ hipSPARSE follows a small number of conventions that recur in every program:
   (compressed sparse row): a row-pointer array, a column-index array, and a
   values array. A few routines take COO (coordinate) row/column arrays.
 * **Zero-based indexing.** The programs use ``HIPSPARSE_INDEX_BASE_ZERO``, so
-  CSR row pointers and column indices start at 0, matching the cuSPARSE
+  CSR row pointers and column indices start at 0, matching the hipSPARSE C
   samples. The Fortran host arrays that hold them are ordinary 1-based arrays
   whose *values* are 0-based.
 * **Two API generations.** The generic API (SpMV, SpMM, SDDMM, SpSV, SpSM)
   wraps the operands in matrix/vector descriptors (``hipsparseCreateCsr``,
   ``hipsparseCreateDnMat``, ``hipsparseCreateDnVec``) and runs in stages: query
   a workspace size, optionally preprocess/analyze, then compute. The older
-  level-2/level-3 API (``csrsv2``, ``csrilu02``) uses an info handle and a
+  API (``csrsv2``, ``csrilu02``) uses an info handle and a
   matrix descriptor (``hipsparseCreateMatDescr``), while ``gemvi`` only needs a
   plain workspace buffer.
-* **Zero-size buffers.** When a workspace query returns 0, pass a null pointer,
-  not an allocated one: hipSPARSE returns ``HIPSPARSE_STATUS_INVALID_VALUE`` if
-  a non-null buffer is supplied for a zero-size workspace. The programs allocate
-  the buffer only when the queried size is positive.
+* **Zero-size buffers.** For SpMV, SpMM and SDDMM, when the workspace query
+  returns 0, pass a null pointer, not an allocated one: hipSPARSE returns
+  ``HIPSPARSE_STATUS_INVALID_VALUE`` if a non-null buffer is supplied for a
+  zero-size workspace. Those programs allocate the buffer only when the queried
+  size is positive.
 * **Every call returns a status code.** The programs wrap hipSPARSE calls in
   ``hipsparseCheck`` and HIP calls in ``hipCheck`` from the ``hipfort_check``
   module, both of which abort on failure.
@@ -87,7 +90,7 @@ and dense-vector descriptors for ``x`` and ``y``, run through the
 Sampled dense-dense matrix multiplication
 =========================================
 
-``SDDMM`` is the transpose of the SpMM data flow: the dense product ``A*B`` is
+``SDDMM`` reverses the roles of SpMM: the dense product ``A*B`` is
 evaluated only at the nonzero positions of a sparse ``C``, giving
 ``C = alpha * (A*B) .* spy(C) + beta*C``. The program uses dense descriptors for
 ``A`` and ``B``, a CSR descriptor for ``C``, and the three
@@ -143,8 +146,8 @@ Tridiagonal solver
 ==================
 
 ``gtsv2`` solves a tridiagonal system given its three diagonals. It is a direct
-banded solver rather than an iterative one. The program below is the single
-precision one.
+banded solver rather than an iterative one. Only a single-precision program
+is provided.
 
 .. literalinclude:: ../../test/f2008/hipsparse/hipsparse_sgtsv.f08
    :language: fortran

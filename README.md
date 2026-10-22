@@ -27,7 +27,7 @@ ctest --test-dir build
 ### Toolchain files
 
 Example CMake toolchain files are provided in [`cmake/toolchains`](cmake/toolchains)
-to select the Fortran compiler and backend without setting cache variables by
+to select the Fortran and C compilers without setting cache variables by
 hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
 
 ```shell
@@ -48,15 +48,16 @@ cuRAND, cuSOLVER, and cuSPARSE), whereas hipFFTW follows FFTW3. The `roc*` libra
 expose AMD-specific APIs.
 
 The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
-As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler 
+As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler
 that supports the Fortran 2003 standard (`f2003`).
 These interfaces typically require passing `type(c_ptr)` variables and the number of bytes to memory
-management (e.g. `hipMalloc`) and math library routines (e.g. `hipblasDgemm`).
+management routines (e.g. `hipMalloc`), and `type(c_ptr)` variables to math library
+routines (e.g. `hipblasDgemm`).
 
 If your compiler understands the Fortran 2008 (`f2008`) code constructs,
-additional interfaces are compiled into the `hipfort` modules and libraries. 
+additional interfaces are compiled into the `hipfort` modules and libraries.
 These directly take Fortran (array) variables and the number of
-elements instead of `type(c_ptr)` variables and the number of bytes, respectively. 
+elements instead of `type(c_ptr)` variables and the number of bytes, respectively.
 Therefore, they reduce the chance of introducing compile-time and runtime errors
 into your code and make it easier to read too.
 These additional interfaces are enabled automatically once `hipfort` detects
@@ -77,8 +78,8 @@ if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfa
 It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
 Off by default.
 
-The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous (the dummy is declared `contiguous`).
-A non-contiguous section (e.g. `a(:,::2)`) would force the compiler to pass a temporary copy, so pass whole arrays or contiguous slices only.
+The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous: pass whole arrays or contiguous slices only.
+As in the per-rank wrappers, the dummy is not declared `contiguous`, so a non-contiguous section (e.g. `a(:,::2)`) is not copied into a host temporary, which would be fatal for an array in device memory; the library reads the wrong elements instead.
 
 ### Example
 
@@ -92,7 +93,7 @@ real,target :: a_h(5,6)    ! host array
 type(c_ptr) :: a_d         ! device array pointer
 !
 ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
-                                           ! append suffix '_c_size_t' to write '4' 
+                                           ! append suffix '_c_size_t' to write '4'
                                            ! as 'integer(c_size_t)'
 ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
 ```
@@ -113,6 +114,7 @@ The `f2008` interfaces also overload `hipMalloc` similarly to the Fortran `ALLOC
 So you could write the whole code as shown below:
 
 ```Fortran
+use hipfort
 integer     :: ierr        ! error code
 real        :: a_h(5,6)    ! host array
 real,pointer :: a_d(:,:)   ! device array pointer
@@ -124,7 +126,9 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The current batch of HIPFORT interfaces is derived from ROCm 10.0.0.
+The current batch of hipfort interfaces is derived from ROCm 10.1.0.
+With an older ROCm, link with `-Wl,--gc-sections` (see [Linking against hipfort](#linking-against-hipfort))
+so that routines missing from the installed libraries do not break the link.
 The following tables list the supported API:
 
 * [HIP](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hip.html)
@@ -142,18 +146,19 @@ The following tables list the supported API:
 * [ROCTx](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__roctx.html)
 
 You may further find it convenient to directly use the search function on
-[HIPFORT's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.
+[hipfort's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.
 Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
 ## Linking against hipfort
 
-To use hipfort in your project, invoke your Fortran and HIP compilers directly and
-link against the appropriate ROCm libraries. hipfort provides exported CMake targets
+To use hipfort in your project, compile your code with your Fortran compiler and
+link against hipfort and the appropriate ROCm libraries. hipfort provides exported CMake targets
 (such as `hipfort::hip`, `hipfort::rocblas`, and `hipfort::hipblas`) to make this
 straightforward:
 
 ```cmake
-project(my_app Fortran)
+# C is required by the CMake package of HIP, which finds Threads.
+project(my_app LANGUAGES Fortran C)
 
 find_package(hipfort REQUIRED COMPONENTS hip hipblas)
 add_executable(my_app main.f08)
@@ -163,6 +168,26 @@ target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 List each library you use as a `COMPONENTS` entry: a `hipfort::<component>` target is
 only defined when that component is requested. The Fortran language must be enabled
 before `find_package(hipfort)`.
+
+Each hipfort module compiles to one object, and a linker takes whole objects from an
+archive, so a program that calls one rocBLAS routine links every rocBLAS wrapper.
+hipfort compiles each procedure into its own section, so on Linux you can link with
+`-Wl,--gc-sections` to keep only the wrappers you call. This also lets your program
+link against a ROCm release older than hipfort, as long as it does not call routines
+that release lacks:
+
+```cmake
+if(NOT APPLE AND NOT WIN32)
+  target_link_options(my_app PRIVATE -Wl,--gc-sections)
+endif()
+```
+
+Without CMake, add `-Wl,--gc-sections` to the link command. If you build a shared
+library rather than an executable, also link it with
+`-Wl,--exclude-libs,libhipfort-amdgcn.a`: a shared library exports the hipfort
+wrappers it links by default, and an exported symbol is never removed. The option
+keeps the wrappers in your library, where your code calls them as before, but
+stops exporting them, so the unused ones can be removed.
 
 ## Examples and tests
 
@@ -185,7 +210,7 @@ build hipfort, and run the suite with `ctest`.
 detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=<path>`.
 
 ```shell
-cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_TESTING=ON
+cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
 cmake --build build
 ctest --test-dir build
 ```

@@ -332,10 +332,18 @@ module hipfort_types
     integer(c_int) :: reserved(12)
   end type HIP_TEXTURE_DESC
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipResourceDesc  ! cudaResourceDesc as of cuda 13.3
+    integer(c_int) :: resType
+    integer(c_int64_t) :: res(16)  ! 128-byte C union
+    integer(c_int) :: flags
+  end type hipResourceDesc
+#else
   type, bind(c) :: hipResourceDesc
     integer(c_int) :: resType !< Resource type
     integer(c_int64_t) :: res(7) !< 56-byte C union: keeps the layout exact, members not individually accessible
   end type hipResourceDesc
+#endif
 
   type, bind(c) :: HIP_RESOURCE_DESC
     integer(c_int) :: resType !< Resource type
@@ -343,6 +351,19 @@ module hipfort_types
     integer(c_int) :: flags !< Flags (must be zero)
   end type HIP_RESOURCE_DESC
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipResourceViewDesc  ! cudaResourceViewDesc as of cuda 13.3
+    integer(c_int) :: format
+    integer(c_size_t) :: width
+    integer(c_size_t) :: height
+    integer(c_size_t) :: depth
+    integer(c_int) :: firstMipmapLevel
+    integer(c_int) :: lastMipmapLevel
+    integer(c_int) :: firstLayer
+    integer(c_int) :: lastLayer
+    integer(c_int) :: reserved(16)
+  end type hipResourceViewDesc
+#else
   type, bind(c) :: hipResourceViewDesc
     integer(c_int) :: format !< Resource view format
     integer(c_size_t) :: width !< Width of the resource view
@@ -353,6 +374,7 @@ module hipfort_types
     integer(c_int) :: firstLayer !< First layer index
     integer(c_int) :: lastLayer !< Last layer index
   end type hipResourceViewDesc
+#endif
 
   type, bind(c) :: HIP_RESOURCE_VIEW_DESC
     integer(c_int) :: format !< Resource view format
@@ -482,6 +504,23 @@ module hipfort_types
     integer(c_int) :: format
   end type textureReference
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipTextureDesc  ! cudaTextureDesc as of cuda 13.3
+    integer(c_int) :: addressMode(3)
+    integer(c_int) :: filterMode
+    integer(c_int) :: readMode
+    integer(c_int) :: sRGB
+    real(c_float) :: borderColor(4)
+    integer(c_int) :: normalizedCoords
+    integer(c_int) :: maxAnisotropy
+    integer(c_int) :: mipmapFilterMode
+    real(c_float) :: mipmapLevelBias
+    real(c_float) :: minMipmapLevelClamp
+    real(c_float) :: maxMipmapLevelClamp
+    integer(c_int) :: disableTrilinearOptimization
+    integer(c_int) :: seamlessCubemap
+  end type hipTextureDesc
+#else
   type, bind(c) :: hipTextureDesc
     integer(c_int) :: addressMode(3)
     integer(c_int) :: filterMode
@@ -495,6 +534,7 @@ module hipfort_types
     real(c_float) :: minMipmapLevelClamp
     real(c_float) :: maxMipmapLevelClamp
   end type hipTextureDesc
+#endif
 
   type, bind(c) :: surfaceReference
     type(c_ptr) :: surfaceObject
@@ -544,6 +584,29 @@ module hipfort_types
     character(c_char) :: data(64)
   end type hipMemFabricHandle_t
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipFuncAttributes  ! cudaFuncAttributes as of cuda 13.3
+    integer(c_size_t) :: sharedSizeBytes
+    integer(c_size_t) :: constSizeBytes
+    integer(c_size_t) :: localSizeBytes
+    integer(c_int) :: maxThreadsPerBlock
+    integer(c_int) :: numRegs
+    integer(c_int) :: ptxVersion
+    integer(c_int) :: binaryVersion
+    integer(c_int) :: cacheModeCA
+    integer(c_int) :: maxDynamicSharedSizeBytes
+    integer(c_int) :: preferredShmemCarveout
+    integer(c_int) :: clusterDimMustBeSet
+    integer(c_int) :: requiredClusterWidth
+    integer(c_int) :: requiredClusterHeight
+    integer(c_int) :: requiredClusterDepth
+    integer(c_int) :: clusterSchedulingPolicyPreference
+    integer(c_int) :: nonPortableClusterSizeAllowed
+    integer(c_int) :: deviceNodeUpdateStatus
+    integer(c_int) :: reserved1
+    integer(c_int) :: reserved(14)
+  end type hipFuncAttributes
+#else
   type, bind(c) :: hipFuncAttributes
     integer(c_int) :: binaryVersion
     integer(c_int) :: cacheModeCA
@@ -556,6 +619,7 @@ module hipfort_types
     integer(c_int) :: ptxVersion
     integer(c_size_t) :: sharedSizeBytes
   end type hipFuncAttributes
+#endif
 
   type, bind(c) :: hipBatchMemOpNodeParams
     type(c_ptr) :: ctx
@@ -625,6 +689,16 @@ module hipfort_types
     integer(c_int) :: reserved(16)
   end type hipExternalMemoryBufferDesc
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipExternalMemoryMipmappedArrayDesc  ! cudaExternalMemoryMipmappedArrayDesc as of cuda 13.3
+    integer(c_int64_t) :: offset
+    type(hipChannelFormatDesc) :: formatDesc
+    type(hipExtent) :: extent
+    integer(c_int) :: flags
+    integer(c_int) :: numLevels
+    integer(c_int) :: reserved(16)
+  end type hipExternalMemoryMipmappedArrayDesc
+#else
   type, bind(c) :: hipExternalMemoryMipmappedArrayDesc
     integer(c_int64_t) :: offset
     type(hipChannelFormatDesc) :: formatDesc
@@ -632,6 +706,7 @@ module hipfort_types
     integer(c_int) :: flags
     integer(c_int) :: numLevels
   end type hipExternalMemoryMipmappedArrayDesc
+#endif
 
   type, bind(c) :: hipExternalSemaphoreHandleDesc
     integer(c_int) :: type
@@ -657,6 +732,16 @@ module hipfort_types
     type(c_ptr) :: userData
   end type hipHostNodeParams
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipKernelNodeParams  ! cudaKernelNodeParams as of cuda 13.3
+    type(c_ptr) :: func
+    type(dim3) :: gridDim
+    type(dim3) :: blockDim
+    integer(c_int) :: sharedMemBytes
+    type(c_ptr) :: kernelParams
+    type(c_ptr) :: extra
+  end type hipKernelNodeParams
+#else
   type, bind(c) :: hipKernelNodeParams
     type(dim3) :: blockDim
     type(c_ptr) :: extra
@@ -665,7 +750,18 @@ module hipfort_types
     type(c_ptr) :: kernelParams
     integer(c_int) :: sharedMemBytes
   end type hipKernelNodeParams
+#endif
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipMemsetParams  ! cudaMemsetParams as of cuda 13.3
+    type(c_ptr) :: dst
+    integer(c_size_t) :: pitch
+    integer(c_int) :: value
+    integer(c_int) :: elementSize
+    integer(c_size_t) :: width
+    integer(c_size_t) :: height
+  end type hipMemsetParams
+#else
   type, bind(c) :: hipMemsetParams
     type(c_ptr) :: dst
     integer(c_int) :: elementSize
@@ -674,6 +770,7 @@ module hipfort_types
     integer(c_int) :: value
     integer(c_size_t) :: width
   end type hipMemsetParams
+#endif
 
   type, bind(c) :: hipMemAllocNodeParams
     type(hipMemPoolProps) :: poolProps !< Pool properties, which contain where the location should reside
@@ -683,6 +780,15 @@ module hipfort_types
     type(c_ptr) :: dptr !< Returned device address of the allocation
   end type hipMemAllocNodeParams
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipAccessPolicyWindow  ! cudaAccessPolicyWindow as of cuda 13.3
+    type(c_ptr) :: base_ptr
+    integer(c_size_t) :: num_bytes
+    real(c_float) :: hitRatio
+    integer(c_int) :: hitProp
+    integer(c_int) :: missProp
+  end type hipAccessPolicyWindow
+#else
   type, bind(c) :: hipAccessPolicyWindow
     type(c_ptr) :: base_ptr !< Starting address of the access policy window
     integer(c_int) :: hitProp !< hipAccessProperty set for hit
@@ -690,6 +796,7 @@ module hipfort_types
     integer(c_int) :: missProp !< hipAccessProperty set for miss
     integer(c_size_t) :: num_bytes !< Size in bytes of the window policy.
   end type hipAccessPolicyWindow
+#endif
 
   type, bind(c) :: hipLaunchMemSyncDomainMap
     character(c_char) :: default_ !< The default domain ID to use for designated kernels
@@ -709,12 +816,21 @@ module hipfort_types
     type(hipExtDynDataPrefetchRegion) :: regions(2) !< Prefetch regions
   end type hipExtDynDataPrefetchConfig
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipGraphInstantiateParams  ! cudaGraphInstantiateParams as of cuda 13.3
+    integer(c_int64_t) :: flags
+    type(c_ptr) :: uploadStream
+    type(c_ptr) :: errNode_out
+    integer(c_int) :: result_out
+  end type hipGraphInstantiateParams
+#else
   type, bind(c) :: hipGraphInstantiateParams
     type(c_ptr) :: errNode_out !< The node which caused instantiation to fail, if any
     integer(c_int64_t) :: flags !< Instantiation flags
     integer(c_int) :: result_out !< Whether instantiation was successful. If it failed, the reason why
     type(c_ptr) :: uploadStream !< Upload stream
   end type hipGraphInstantiateParams
+#endif
 
   type, bind(c) :: hipMemAllocationProp
     integer(c_int) :: type !< Memory allocation type
@@ -736,6 +852,21 @@ module hipfort_types
     integer(c_int) :: numExtSems
   end type hipExternalSemaphoreWaitNodeParams
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipArrayMapInfo  ! CUarrayMapInfo as of cuda 13.3
+    integer(c_int) :: resourceType
+    integer(c_int64_t) :: resource(1)  ! 8-byte C union (CUmipmappedArray or CUarray)
+    integer(c_int) :: subresourceType
+    integer(c_int64_t) :: subresource(4)  ! 32-byte C union
+    integer(c_int) :: memOperationType
+    integer(c_int) :: memHandleType
+    type(c_ptr) :: memHandle
+    integer(c_int64_t) :: offset
+    integer(c_int) :: deviceBitMask
+    integer(c_int) :: flags
+    integer(c_int) :: reserved(2)
+  end type hipArrayMapInfo
+#else
   type, bind(c) :: hipArrayMapInfo
     integer(c_int) :: resourceType !< Resource type
     integer(c_int64_t) :: resource(8) !< 64-byte C union: keeps the layout exact, members not individually accessible
@@ -749,6 +880,7 @@ module hipfort_types
     integer(c_int) :: flags !< flags for future use, must be zero now.
     integer(c_int) :: reserved(2) !< Reserved for future use, must be zero now.
   end type hipArrayMapInfo
+#endif
 
   type, bind(c) :: hipMemcpyNodeParams
     integer(c_int) :: flags !< Must be zero.
@@ -779,12 +911,21 @@ module hipfort_types
     integer(c_int64_t) :: reserved2
   end type hipGraphNodeParams
 
+#ifdef USE_CUDA_NAMES
+  type,bind(c) :: hipGraphEdgeData  ! cudaGraphEdgeData as of cuda 13.3
+    character(c_char) :: from_port
+    character(c_char) :: to_port
+    character(c_char) :: type
+    character(c_char) :: reserved(5)
+  end type hipGraphEdgeData
+#else
   type, bind(c) :: hipGraphEdgeData
     character(c_char) :: from_port !< This indicates when the dependency is triggered from the upstream node on the edge. The...
     character(c_char) :: reserved(5) !< These bytes are unused and must be zeroed
     character(c_char) :: to_port !< Currently no node types define non-zero ports. This field must be set to zero.
     character(c_char) :: type !< This should be populated with a value from hipGraphDependencyType
   end type hipGraphEdgeData
+#endif
 
   type, bind(c) :: hipLaunchAttribute
     integer(c_int) :: id !< Identifier of the launch attribute

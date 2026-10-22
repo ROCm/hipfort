@@ -77,7 +77,7 @@ program dgetrf_strided_batched
                                  0.d0,   0.d0,   5.d0/), (/lda, N/))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Allocate device-side memory
   call hipCheck(hipMalloc(dA,    size_A    * 8))  ! c_double
@@ -90,7 +90,7 @@ program dgetrf_strided_batched
   ! Compute the batched LU factorization on the device.
   ! `dInfo` is a device pointer to an array of `batch_count` ints, which is
   ! exactly what the myInfo -> c_ptr binding fix enables.
-  call hipCheck(rocsolver_dgetrf_strided_batched(handle, M, N, dA, lda, strideA, &
+  call rocsolverCheck(rocsolver_dgetrf_strided_batched(handle, M, N, dA, lda, strideA, &
                                                  dIpiv, strideP, dInfo, batch_count))
 
   ! Copy the info array back to the host
@@ -108,7 +108,7 @@ program dgetrf_strided_batched
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

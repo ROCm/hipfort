@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! dsptrsv example (double-precision sparse triangular solve, op(A)*y = alpha*x,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSV API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y, solve L*y' = x, and confirm y' recovers y. The
@@ -37,7 +37,7 @@
 ! is moved with hipMemcpy + c_loc. Descriptor/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program dsptrsv
+program hipsparse_dsptrsv
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -143,4 +143,4 @@ program dsptrsv
 
   write(*,*) "PASSED!"
 
-end program dsptrsv
+end program hipsparse_dsptrsv

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! cgesvd example (single-precision complex singular value decomposition)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7e/group__double_g_esing_ga84fdf22a62b12ff364621e4713ce02f2.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7e/group__double_g_esing_ga84fdf22a62b12ff364621e4713ce02f2.html
 !
 ! Self-verifying: compute A = U * S * V (rocSOLVER returns V as V**H), then
 ! confirm the reconstruction matches the original A.
@@ -69,6 +69,7 @@ program cgesvd
   complex(c_float_complex), pointer :: dV(:,:)
   real(c_float), pointer :: dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -89,11 +90,15 @@ program cgesvd
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the full SVD on the device
-  call hipCheck(rocsolver_cgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
+  call rocsolverCheck(rocsolver_cgesvd(handle, rocblas_svect_all, rocblas_svect_all, M, N, dA, lda, &
                                  dS, dU, ldu, dV, ldv, dE, rocblas_outofplace, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy factors back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))
@@ -125,7 +130,7 @@ program cgesvd
   call hipCheck(hipFree(dV))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

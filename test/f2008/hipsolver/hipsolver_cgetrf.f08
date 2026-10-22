@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver cgetrf example (single-precision complex LU factorization, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! f2008 style: device buffers are native Fortran array pointers allocated with
 ! hipMalloc(source=/mold=); A and the pivots are passed as typed arrays. The
@@ -83,7 +83,8 @@ program hipsolver_cgetrf
   call hipsolverCheck(hipsolverCgetrf_bufferSize(handle, M, N, dA, lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
 
-  ! Compute the LU factorization (A/pivots as native arrays, devInfo by reference)
+  ! Compute the LU factorization. A and the pivots are native arrays, and devInfo is
+  ! the device-resident integer itself, like them.
   call hipsolverCheck(hipsolverCgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo))
 
   ! Copy results back to host

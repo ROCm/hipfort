@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! zcsr2csc example (double-complex CSR -> CSC conversion / sparse transpose,
 ! Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T
 ! (structural transpose; values are permuted, not conjugated). We check the
@@ -36,7 +36,7 @@
 ! is moved with hipMemcpy + c_loc. csr2csc args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program zcsr2csc
+program hipsparse_zcsr2csc
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -129,4 +129,4 @@ program zcsr2csc
 
   write(*,*) "PASSED!"
 
-end program zcsr2csc
+end program hipsparse_zcsr2csc

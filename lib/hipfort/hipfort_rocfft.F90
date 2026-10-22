@@ -34,7 +34,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_setup_
+      integer(c_int) :: rocfft_setup_
     end function
   end interface
 
@@ -45,7 +45,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cleanup_
+      integer(c_int) :: rocfft_cleanup_
     end function
   end interface
 
@@ -88,24 +88,24 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_create_
+      integer(c_int) :: rocfft_plan_create_
       type(c_ptr) :: plan
-      integer(kind(rocfft_placement_inplace)),value :: placement
-      integer(kind(rocfft_transform_type_complex_forward)),value :: transform_type
-      integer(kind(rocfft_precision_single)),value :: myPrecision
+      integer(c_int),value :: placement
+      integer(c_int),value :: transform_type
+      integer(c_int),value :: myPrecision
       integer(c_size_t),value :: dimensions
       type(c_ptr),value :: lengths
       integer(c_size_t),value :: number_of_transforms
       type(c_ptr),value :: description
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_create_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_create_rank_0,&
       rocfft_plan_create_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocfft_plan_create_assumed_rank
 #endif
 #endif
   end interface
@@ -148,7 +148,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execute_
+      integer(c_int) :: rocfft_execute_
       type(c_ptr),value :: plan
       type(c_ptr) :: in_buffer
       type(c_ptr) :: out_buffer
@@ -164,7 +164,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_destroy_
+      integer(c_int) :: rocfft_plan_destroy_
       type(c_ptr),value :: plan
     end function
   end interface
@@ -183,7 +183,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_factor_
+      integer(c_int) :: rocfft_plan_description_set_scale_factor_
       type(c_ptr),value :: description
       real(c_double),value :: scale_factor
     end function
@@ -241,10 +241,10 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_
+      integer(c_int) :: rocfft_plan_description_set_data_layout_
       type(c_ptr),value :: description
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: in_array_type
-      integer(kind(rocfft_array_type_complex_interleaved)),value :: out_array_type
+      integer(c_int),value :: in_array_type
+      integer(c_int),value :: out_array_type
       type(c_ptr),value :: in_offsets
       type(c_ptr),value :: out_offsets
       integer(c_size_t),value :: in_strides_size
@@ -255,13 +255,13 @@ module hipfort_rocfft
       integer(c_size_t),value :: out_distance
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_plan_description_set_data_layout_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocfft_plan_description_set_data_layout_rank_0,&
       rocfft_plan_description_set_data_layout_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocfft_plan_description_set_data_layout_assumed_rank
 #endif
 #endif
   end interface
@@ -274,7 +274,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_create_
+      integer(c_int) :: rocfft_field_create_
       type(c_ptr) :: field
     end function
   end interface
@@ -291,7 +291,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_destroy_
+      integer(c_int) :: rocfft_field_destroy_
       type(c_ptr),value :: field
     end function
   end interface
@@ -305,7 +305,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_get_version_string_
+      integer(c_int) :: rocfft_get_version_string_
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
@@ -328,9 +328,9 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_comm_
+      integer(c_int) :: rocfft_plan_description_set_comm_
       type(c_ptr),value :: description
-      integer(kind(rocfft_comm_none)),value :: comm_type
+      integer(c_int),value :: comm_type
       type(c_ptr),value :: comm_handle
     end function
   end interface
@@ -386,7 +386,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_load_callback_
+      integer(c_int) :: rocfft_plan_description_set_load_callback_
       type(c_ptr),value :: description
       type(c_ptr),value :: symbol_name
       type(c_ptr),value :: bitcode_data
@@ -446,7 +446,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_store_callback_
+      integer(c_int) :: rocfft_plan_description_set_store_callback_
       type(c_ptr),value :: description
       type(c_ptr),value :: symbol_name
       type(c_ptr),value :: bitcode_data
@@ -493,7 +493,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_brick_create_
+      integer(c_int) :: rocfft_brick_create_
       type(c_ptr) :: brick
       type(c_ptr),value :: field_lower
       type(c_ptr),value :: field_upper
@@ -511,7 +511,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_brick_destroy_
+      integer(c_int) :: rocfft_brick_destroy_
       type(c_ptr),value :: brick
     end function
   end interface
@@ -534,7 +534,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_field_add_brick_
+      integer(c_int) :: rocfft_field_add_brick_
       type(c_ptr),value :: field
       type(c_ptr),value :: brick
     end function
@@ -555,7 +555,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_infield_
+      integer(c_int) :: rocfft_plan_description_add_infield_
       type(c_ptr),value :: description
       type(c_ptr),value :: field
     end function
@@ -576,7 +576,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_add_outfield_
+      integer(c_int) :: rocfft_plan_description_add_outfield_
       type(c_ptr),value :: description
       type(c_ptr),value :: field
     end function
@@ -600,10 +600,12 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_
+      integer(c_int) :: rocfft_plan_get_work_buffer_size_
       type(c_ptr),value :: plan
-      integer(c_size_t) :: size_in_bytes
+      type(c_ptr),value :: size_in_bytes
     end function
+
+    module procedure rocfft_plan_get_work_buffer_size_typed
   end interface
 
   !>  @brief Print all plan information
@@ -614,7 +616,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_get_print_
+      integer(c_int) :: rocfft_plan_get_print_
       type(c_ptr),value :: plan
     end function
   end interface
@@ -630,7 +632,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_create_
+      integer(c_int) :: rocfft_plan_description_create_
       type(c_ptr) :: description
     end function
   end interface
@@ -645,7 +647,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_destroy_
+      integer(c_int) :: rocfft_plan_description_destroy_
       type(c_ptr),value :: description
     end function
   end interface
@@ -660,7 +662,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_create_
+      integer(c_int) :: rocfft_execution_info_create_
       type(c_ptr) :: myInfo
     end function
   end interface
@@ -675,7 +677,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_destroy_
+      integer(c_int) :: rocfft_execution_info_destroy_
       type(c_ptr),value :: myInfo
     end function
   end interface
@@ -717,7 +719,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_work_buffer_
+      integer(c_int) :: rocfft_execution_info_set_work_buffer_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: work_buffer
       integer(c_size_t),value :: size_in_bytes
@@ -746,7 +748,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_stream_
+      integer(c_int) :: rocfft_execution_info_set_stream_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: stream
     end function
@@ -805,7 +807,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_load_callback_
+      integer(c_int) :: rocfft_execution_info_set_load_callback_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: cb_functions
       type(c_ptr),value :: cb_data
@@ -839,9 +841,9 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_load_callback_data_
+      integer(c_int) :: rocfft_execution_info_set_load_callback_data_
       type(c_ptr),value :: myInfo
-      type(c_ptr) :: cb_data
+      type(c_ptr),value :: cb_data
       integer(c_size_t),value :: count
     end function
   end interface
@@ -899,7 +901,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_
+      integer(c_int) :: rocfft_execution_info_set_store_callback_
       type(c_ptr),value :: myInfo
       type(c_ptr),value :: cb_functions
       type(c_ptr),value :: cb_data
@@ -933,9 +935,9 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_execution_info_set_store_callback_data_
+      integer(c_int) :: rocfft_execution_info_set_store_callback_data_
       type(c_ptr),value :: myInfo
-      type(c_ptr) :: cb_data
+      type(c_ptr),value :: cb_data
       integer(c_size_t),value :: count
     end function
   end interface
@@ -951,10 +953,12 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_
+      integer(c_int) :: rocfft_cache_serialize_
       type(c_ptr) :: buffer
       type(c_ptr),value :: buffer_len_bytes
     end function
+
+    module procedure rocfft_cache_serialize_typed
   end interface
 
   !>  @brief Free cache serialization buffer
@@ -965,7 +969,7 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_buffer_free_
+      integer(c_int) :: rocfft_cache_buffer_free_
       type(c_ptr),value :: buffer
     end function
   end interface
@@ -983,15 +987,40 @@ module hipfort_rocfft
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_cache_deserialize_
+      integer(c_int) :: rocfft_cache_deserialize_
       type(c_ptr),value :: buffer
       integer(c_size_t),value :: buffer_len_bytes
     end function
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocfft_plan_get_work_buffer_size_typed(plan,size_in_bytes)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_typed
+      type(c_ptr), value :: plan
+      integer(c_size_t),target :: size_in_bytes
+      !
+      rocfft_plan_get_work_buffer_size_typed = rocfft_plan_get_work_buffer_size_(plan, &
+        c_loc(size_in_bytes))
+    end function
+
+    function rocfft_cache_serialize_typed(buffer,buffer_len_bytes)
+      use iso_c_binding
+      use hipfort_rocfft_enums
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_typed
+      type(c_ptr) :: buffer
+      integer(c_size_t),target :: buffer_len_bytes
+      !
+      rocfft_cache_serialize_typed = rocfft_cache_serialize_(buffer,c_loc(buffer_len_bytes))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocfft_plan_create_assumed_rank(plan,placement,transform_type,myPrecision,dimensions, &
@@ -1005,9 +1034,9 @@ module hipfort_rocfft
       integer(kind(rocfft_transform_type_complex_forward)) :: transform_type
       integer(kind(rocfft_precision_single)) :: myPrecision
       integer(c_size_t) :: dimensions
-      integer(c_size_t),target,contiguous,dimension(..) :: lengths
+      integer(c_size_t),target,dimension(..) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_assumed_rank = rocfft_plan_create_(plan,placement,transform_type, &
         myPrecision,dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1027,7 +1056,7 @@ module hipfort_rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_0 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1046,7 +1075,7 @@ module hipfort_rocfft
       integer(c_size_t) :: dimensions
       integer(c_size_t),target,dimension(:) :: lengths
       integer(c_size_t) :: number_of_transforms
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       !
       rocfft_plan_create_rank_1 = rocfft_plan_create_(plan,placement,transform_type,myPrecision, &
         dimensions,c_loc(lengths),number_of_transforms,description)
@@ -1061,16 +1090,16 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_assumed_rank
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
-      integer(c_size_t),target,contiguous,dimension(..) :: in_offsets
-      integer(c_size_t),target,contiguous,dimension(..) :: out_offsets
+      integer(c_size_t),target,dimension(..) :: in_offsets
+      integer(c_size_t),target,dimension(..) :: out_offsets
       integer(c_size_t) :: in_strides_size
-      integer(c_size_t),target,contiguous,dimension(..) :: in_strides
+      integer(c_size_t),target,dimension(..) :: in_strides
       integer(c_size_t) :: in_distance
       integer(c_size_t) :: out_strides_size
-      integer(c_size_t),target,contiguous,dimension(..) :: out_strides
+      integer(c_size_t),target,dimension(..) :: out_strides
       integer(c_size_t) :: out_distance
       !
       rocfft_plan_description_set_data_layout_assumed_rank = &
@@ -1087,7 +1116,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target :: in_offsets
@@ -1112,7 +1141,7 @@ module hipfort_rocfft
       use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
-      type(c_ptr) :: description
+      type(c_ptr), value :: description
       integer(kind(rocfft_array_type_complex_interleaved)) :: in_array_type
       integer(kind(rocfft_array_type_complex_interleaved)) :: out_array_type
       integer(c_size_t),target,dimension(:) :: in_offsets

@@ -40,7 +40,7 @@ program rocblas_strsm_test
   integer, parameter :: m = 1024, n = 1024
 
   real(c_float), allocatable, target, dimension(:) :: hA, hB
-  real(c_float), parameter :: alpha = 2.0
+  real(c_float), target :: alpha = 2.0
   real(c_float), parameter :: x_exact = 1.0
 
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr
@@ -57,7 +57,7 @@ program rocblas_strsm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   NAbytes = int(m, c_size_t) * int(m, c_size_t) * bytes_per_element
   NBbytes = int(m, c_size_t) * int(n, c_size_t) * bytes_per_element
@@ -87,7 +87,7 @@ program rocblas_strsm_test
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
   ! Solve A * X = alpha * B, in place: dB holds B on entry, X on exit
-  call rocblasCheck(rocblas_strsm(handle, side, uplo, transA, diag, m, n, alpha, dA, m, dB, m))
+  call rocblasCheck(rocblas_strsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, m, dB, m))
 
   call hipCheck(hipDeviceSynchronize())
 

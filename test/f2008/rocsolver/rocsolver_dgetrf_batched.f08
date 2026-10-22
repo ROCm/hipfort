@@ -69,8 +69,8 @@ program dgetrf_batched
   call hipCheck(hipMalloc(dIpiv, int(N,c_size_t) * int(batch,c_size_t) * 4))
   call hipCheck(hipMalloc(dInfo, int(batch,c_size_t) * 4))
 
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_dgetrf_batched(handle, M, N, dA_ptrs, lda, dIpiv, int(N,c_int64_t), dInfo, batch))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_dgetrf_batched(handle, M, N, dA_ptrs, lda, dIpiv, int(N,c_int64_t), dInfo, batch))
 
   call hipCheck(hipMemcpy(c_loc(hInfo_t(1)), dInfo, int(batch,c_size_t)*4, hipMemcpyDeviceToHost))
   hInfo = hInfo_t
@@ -106,7 +106,7 @@ program dgetrf_batched
 
   call hipCheck(hipFree(d1)); call hipCheck(hipFree(d2)); call hipCheck(hipFree(dA_ptrs))
   call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"
 end program dgetrf_batched

@@ -24,18 +24,19 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse scsrilu0 example (incomplete LU, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse ccsrilu0 example (incomplete LU, single complex, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes the ILU(0) factorization of a sparse matrix in place
 ! (buffer_size -> analysis -> compute, with a mat descriptor and a mat info
 ! object). For a tridiagonal matrix there is no fill-in, so ILU(0) equals the
 ! exact LU factorization and the overwritten CSR values are checked against the
-! hand-computed factors (unit lower L, upper U packed into one array).
+! factors (unit lower L, upper U packed into one array) computed on the host from
+! the same values. A is complex, non-Hermitian and diagonally dominant:
 !
-!   A = [ 4 1 0 ]     LU (in place) = [ 4    1    0   ]
-!       [ 1 4 1 ]                     [ 1/4  15/4 1   ]
-!       [ 0 1 4 ]                     [ 0    4/15 56/15]
+!   A = [ 4+i  1-i   0    ]   l21 = a21/a11, u22 = a22 - l21*a12
+!       [ 2+i  5-2i  1+2i ]   l32 = a32/u22, u33 = a33 - l32*a23
+!       [ 0    1-i   6+i  ]
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host data
 ! is moved with hipMemcpy + c_loc.
@@ -52,8 +53,8 @@ program ccsrilu0
   integer(c_int), target :: hRowPtr(4) = (/0, 2, 5, 7/)
   integer(c_int), target :: hColInd(7) = (/0, 1, 0, 1, 2, 1, 2/)
   complex(c_float_complex), target :: hVal(7) = (/ &
-    (4.0,0.0), (1.0,0.0), (1.0,0.0), (4.0,0.0), &
-    (1.0,0.0), (1.0,0.0), (4.0,0.0)/)
+    (4.0,1.0), (1.0,-1.0), (2.0,1.0), (5.0,-2.0), &
+    (1.0,2.0), (1.0,-1.0), (6.0,1.0)/)
   complex(c_float_complex), target :: hOut(7)
   complex(c_float_complex) :: hExp(7)
   type(c_ptr) :: handle = c_null_ptr
@@ -62,13 +63,13 @@ program ccsrilu0
   integer(c_size_t) :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_ccsrilu0' (Fortran 2003 interfaces) - "
 
-  hExp(1) = (4.0,0.0)
-  hExp(2) = (1.0,0.0)
-  hExp(3) = (1.0,0.0)/(4.0,0.0)
-  hExp(4) = (4.0,0.0) - ((1.0,0.0)/(4.0,0.0))*(1.0,0.0)
-  hExp(5) = (1.0,0.0)
-  hExp(6) = (1.0,0.0)/hExp(4)
-  hExp(7) = (4.0,0.0) - hExp(6)*(1.0,0.0)
+  hExp(1) = hVal(1)
+  hExp(2) = hVal(2)
+  hExp(3) = hVal(3) / hExp(1)
+  hExp(4) = hVal(4) - hExp(3)*hExp(2)
+  hExp(5) = hVal(5)
+  hExp(6) = hVal(6) / hExp(4)
+  hExp(7) = hVal(7) - hExp(6)*hExp(5)
 
   call hipCheck(hipMalloc(dRowPtr, int(m+1,c_size_t) * 4))
   call hipCheck(hipMalloc(dColInd, int(nnz,c_size_t) * 4))

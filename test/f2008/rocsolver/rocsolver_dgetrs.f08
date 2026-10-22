@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dgetrs example (double-precision LU solve)
-! see: https:!www.netlib.org/lapack/explore-html/d6/d49/group__double_g_ecomputational_gafa35ce1d7865b80563bbed6317050ad7.html
+! see: https://www.netlib.org/lapack/explore-html/d6/d49/group__double_g_ecomputational_gafa35ce1d7865b80563bbed6317050ad7.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x, factorize A with
 ! getrf, solve A*X = b with getrs, and confirm X recovers x.
@@ -61,6 +61,7 @@ program dgetrs
   real(c_double), pointer :: dB(:,:)
   integer(c_int), pointer :: dIpiv(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -79,11 +80,15 @@ program dgetrs
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Factorize, then solve A*X = B in place (B is overwritten with the solution)
-  call hipCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
-  call hipCheck(rocsolver_dgetrs(handle, rocblas_operation_none, N, nrhs, dA, lda, dIpiv, dB, ldb))
+  call rocsolverCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
+  call rocsolverCheck(rocsolver_dgetrs(handle, rocblas_operation_none, N, nrhs, dA, lda, dIpiv, dB, ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
@@ -102,7 +107,7 @@ program dgetrs
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

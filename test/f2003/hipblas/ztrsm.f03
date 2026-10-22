@@ -37,7 +37,7 @@ program hip_ztrsm
   integer(kind(HIPBLAS_DIAG_NON_UNIT)),   parameter :: diag   = HIPBLAS_DIAG_NON_UNIT
   integer, parameter :: m = 512, n = 512
   integer, parameter :: bytes_per_element = 16
-  complex(kind=8), parameter :: alpha = (2.d0, 0.d0)
+  complex(kind=8), allocatable, target :: alpha
   integer(c_size_t) :: NAbytes, NBbytes
   complex(kind=8), allocatable, target, dimension(:) :: hA, hB
   complex(kind=8), parameter :: x_exact = (1.d0, 0.d0)
@@ -46,6 +46,10 @@ program hip_ztrsm
   type(c_ptr) :: dA = c_null_ptr, dB = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (2.d0, 0.d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZTRSM' (Fortran 2003 interfaces) - "
 
@@ -72,7 +76,7 @@ program hip_ztrsm
   call hipCheck(hipMemcpy(dA, c_loc(hA(1)), NAbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)), NBbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZtrsm(handle, side, uplo, transA, diag, m, n, alpha, dA, m, dB, m))
+  call hipblasCheck(hipblasZtrsm(handle, side, uplo, transA, diag, m, n, c_loc(alpha), dA, m, dB, m))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hB(1)), dB, NBbytes, hipMemcpyDeviceToHost))
 
@@ -87,7 +91,7 @@ program hip_ztrsm
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipblasCheck(hipblasDestroy(handle))
-  deallocate(hA, hB)
+  deallocate(hA, hB, alpha)
   write(*,*) "PASSED!"
 
 end program hip_ztrsm

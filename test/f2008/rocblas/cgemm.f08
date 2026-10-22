@@ -34,7 +34,7 @@ program rocblas_cgemm_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  complex(c_float_complex), parameter :: alpha = (1.1, 0.), beta = (0.9, 0.)
+  complex(c_float_complex), target :: alpha = (1.1, 0.), beta = (0.9, 0.)
 
   integer, parameter :: m = 512, n = 512, k = 512
 
@@ -51,7 +51,7 @@ program rocblas_cgemm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   ! C = A_MxK * B_KxN
   allocate(ha(m,k))

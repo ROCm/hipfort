@@ -25,10 +25,11 @@
 
 !!!!!!!!!!!!!!
 ! ssygvd example (generalized symmetric-definite eigensolver, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! sygvd solves A*x = lambda*B*x (itype=1). f2003 style: device buffers are
 ! type(c_ptr). Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! Also checks devInfo = 0 and the B-normalisation v_k**T * B0 * v_k = 1.
 !!!!!!!!!!!!!!
 !
 program hipsolver_ssygvd
@@ -51,11 +52,12 @@ program hipsolver_ssygvd
   integer(c_size_t) :: sizeA = 9, sizeB = 9, sizeW = 3
 
   type(c_ptr) :: dA, dB, dW
-  integer(c_int), pointer :: dInfo(:)
+  type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
+  integer(c_int), target :: hInfo
 
-  real(c_float) :: error
+  real(c_float) :: error, vBv
   real(c_float), parameter :: error_max = 1.0e-5
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_ssygvd' (Fortran 2003 interfaces) - "
@@ -66,7 +68,7 @@ program hipsolver_ssygvd
   call hipCheck(hipMalloc(dA, sizeA * 4))
   call hipCheck(hipMalloc(dB, sizeB * 4))
   call hipCheck(hipMalloc(dW, sizeW * 4))
-  call hipCheck(hipMalloc(dInfo, 1))
+  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), sizeB * 4, hipMemcpyHostToDevice))
 
@@ -77,10 +79,15 @@ program hipsolver_ssygvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
 
   call hipsolverCheck(hipsolverSsygvd(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
-       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, dInfo(1)))
+       HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, dW, dWork, lwork, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 4, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 4, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   do k = 1,N
     lhs = matmul(hA0, hA(:,k))
@@ -91,6 +98,12 @@ program hipsolver_ssygvd
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! B-normalisation (itype 1): v_k**T * B0 * v_k = 1
+    vBv = real(dot_product(hA(:,k), matmul(hB0, hA(:,k))), kind(vBv))
+    error = abs(vBv - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! v**T*B*v = ", vBv, " eigenpair ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

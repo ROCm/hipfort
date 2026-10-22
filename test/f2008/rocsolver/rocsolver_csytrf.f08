@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! csytrf example (Bunch-Kaufman symmetric factorization, single complex)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Factorizes a complex SYMMETRIC matrix (A = A^T, not Hermitian) and checks the
 ! algorithm succeeded (info == 0). rocSOLVER writes info to DEVICE memory, so it
@@ -56,13 +56,13 @@ program csytrf
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_csytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
   if (hInfo(1) /= 0) then
      write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
   end if
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program csytrf

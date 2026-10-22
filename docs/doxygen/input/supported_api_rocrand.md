@@ -27,7 +27,7 @@
 23 | [rocrand_set_offset](interfacehipfort__rocrand_1_1rocrand__set__offset.html "Interface documentation") | C binding
 24 | [rocrand_set_ordering](interfacehipfort__rocrand_1_1rocrand__set__ordering.html "Interface documentation") | C binding
 25 | [rocrand_set_quasi_random_generator_dimensions](interfacehipfort__rocrand_1_1rocrand__set__quasi__random__generator__dimensions.html "Interface documentation") | C binding
-26 | [rocrand_get_version](interfacehipfort__rocrand_1_1rocrand__get__version.html "Interface documentation") | C binding
+26 | [rocrand_get_version](interfacehipfort__rocrand_1_1rocrand__get__version.html "Interface documentation") | C binding, typed
 27 | [rocrand_create_poisson_distribution](interfacehipfort__rocrand_1_1rocrand__create__poisson__distribution.html "Interface documentation") | C binding
 28 | [rocrand_create_discrete_distribution](interfacehipfort__rocrand_1_1rocrand__create__discrete__distribution.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 29 | [rocrand_destroy_discrete_distribution](interfacehipfort__rocrand_1_1rocrand__destroy__discrete__distribution.html "Interface documentation") | C binding

@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse sgemvi example (dense matrix * sparse vector, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse dgemvi example (dense matrix * sparse vector, double, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values x_val at indices x_ind). The result is checked
@@ -48,7 +48,7 @@ program dgemvi
   real(c_double), target :: hXval(2) = (/2.0d0, 3.0d0/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   real(c_double), target :: hY(3) = (/1.0d0, 1.0d0, 1.0d0/)
-  real(c_double) :: alpha = 2.0d0, beta = 3.0d0
+  real(c_double), target :: alpha = 2.0d0, beta = 3.0d0
   real(c_double) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
@@ -73,8 +73,8 @@ program dgemvi
   call rocsparseCheck(rocsparse_create_handle(handle))
   call rocsparseCheck(rocsparse_dgemvi_buffer_size(handle, rocsparse_operation_none, m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
-  call rocsparseCheck(rocsparse_dgemvi(handle, rocsparse_operation_none, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, rocsparse_index_base_zero, dBuf))
+  call rocsparseCheck(rocsparse_dgemvi(handle, rocsparse_operation_none, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, rocsparse_index_base_zero, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(m,c_size_t) * 8, hipMemcpyDeviceToHost))
 

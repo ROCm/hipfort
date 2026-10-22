@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zungqr example (double-complex generation of Q from a QR factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: factorize A with geqrf, generate the unitary factor Q with
 ! ungqr, and confirm Q**H * Q = I. Unitarity is phase-convention independent,
@@ -70,11 +70,11 @@ program zungqr
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
-  call hipCheck(rocsolver_zungqr(handle, M, N, K, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_zungqr(handle, M, N, K, dA, lda, dIpiv))
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -98,7 +98,7 @@ program zungqr
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -25,11 +25,12 @@
 
 !!!!!!!!!!!!!/
 ! zheevdx example (complex partial Hermitian eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! heevdx computes a selected subset of eigenvalues/eigenvectors. erange=index with
 ! il=1, iu=N requests the full spectrum. f2003 style: device buffers are
 ! type(c_ptr). Self-verifying: A0*v_k = lambda_k*v_k.
+! A is Hermitian with non-zero imaginary off-diagonal entries (A(j,i) = conjg(A(i,j))).
 !!!!!!!!!!!!!!/
 !
 program zheevdx
@@ -47,7 +48,7 @@ program zheevdx
   integer(c_int), parameter :: N = 3, lda = 3, ldz = 3
 
   complex(c_double_complex), target :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(1.,-1.),(0.,0.), (1.,1.),(3.,0.),(0.,-1.), (0.,0.),(0.,1.),(4.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3)
   real(c_double), target :: hW(3)
   complex(c_double_complex), target :: hZ(3,3)
@@ -60,7 +61,7 @@ program zheevdx
   type(c_ptr) :: handle
 
   real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double), parameter :: error_max = 1.0d-10
   !
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_zheevdx' (Fortran 2003 interfaces) - "
 
@@ -74,10 +75,14 @@ program zheevdx
 
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zheevdx(handle, rocblas_evect_original, rocblas_erange_index, &
+  call rocsolverCheck(rocsolver_zheevdx(handle, rocblas_evect_original, rocblas_erange_index, &
        rocblas_fill_upper, N, dA, lda, 0.0d0, 0.0d0, 1, N, dNev, dW, dZ, ldz, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! zheevdx info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(c_loc(hNev), dNev, 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
@@ -98,9 +103,17 @@ program zheevdx
     end do
   end do
 
+  ! Each eigenvector must be normalised (||v|| = 1), which v = 0 would fail
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hZ(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not normalised! Error = ", error, " eigenvector ", k; call exit(1)
+    end if
+  end do
+
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW)); call hipCheck(hipFree(dZ))
   call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

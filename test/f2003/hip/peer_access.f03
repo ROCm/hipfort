@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP peer access query/enable (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipDeviceCanAccessPeer (and enable/disable when a second device is
 ! present). On a single-GPU host a device is not its own peer, so the query must

@@ -32,7 +32,7 @@ program hip_zgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  complex(kind=8), parameter ::  alpha = 1.1d0, beta = 0.9d0;
+  complex(kind=8), allocatable, target :: alpha, beta
 
   integer, parameter :: m = 512, n = 512, k = 512;
 
@@ -45,6 +45,11 @@ program hip_zgemm
   integer :: i,j
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = 1.1d0
+  beta = 0.9d0;
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMM' (Fortran 2008 interfaces) - "
 
@@ -97,7 +102,7 @@ program hip_zgemm
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(ha,hb,hc,hc_exact)
+  deallocate(ha,hb,hc,hc_exact, alpha, beta)
 
   write(*,*) "PASSED!"
 

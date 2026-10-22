@@ -33,7 +33,7 @@ program hip_dgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  double precision, parameter ::  alpha = 1.1d0, beta = 0.9d0;
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0;
 
   integer, parameter ::  m = 1024, n = 1024, k = 1024;
 

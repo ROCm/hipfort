@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver dpotrf example (Cholesky factorization, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Native-array f2008 form: A is a Fortran array pointer; the workspace is a
 ! type(c_ptr) sized by hipsolverDpotrf_bufferSize; devInfo is device-backed.
@@ -46,6 +46,7 @@ program hipsolver_dpotrf
     -8.0000000000000000d0,  5.0000000000000000d0,   3.0000000000000000d0/), (/3, 3/))
   real(c_double), pointer :: dA(:,:)
   integer(c_int), pointer :: dInfo
+  integer(c_int) :: hInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
   real(c_double) :: error
@@ -56,7 +57,12 @@ program hipsolver_dpotrf
   call hipCheck(hipMalloc(dInfo))
   call hipsolverCheck(hipsolverDpotrf_bufferSize(handle, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, lwork))
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 8, 1_c_size_t)))
-  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dWork, lwork, dInfo))
+  call hipsolverCheck(hipsolverDpotrf(handle, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dWork, lwork, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
   do j = 1,3
     do i = 1,3

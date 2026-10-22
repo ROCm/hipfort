@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! dpotrs example (double-precision Cholesky solve, Fortran 2003 interfaces)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x, factorize A with
 ! potrf, solve A*X = b with potrs, and confirm X recovers x.
@@ -61,6 +61,7 @@ program dpotrs
 
   type(c_ptr) :: dA
   type(c_ptr) :: dB
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -79,15 +80,19 @@ program dpotrs
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), size_B * 8, hipMemcpyHostToDevice))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
-  call hipCheck(rocsolver_dpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call rocsolverCheck(rocsolver_dpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dpotrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
+  call rocsolverCheck(rocsolver_dpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))
@@ -105,7 +110,7 @@ program dpotrs
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

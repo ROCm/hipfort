@@ -56,7 +56,7 @@ if(DEFINED HIPFORT_INSTALL_DIR)
 endif()
 
 # hipfort itself is pure Fortran. C is enabled because hip-config.cmake pulls in FindThreads.
-PROJECT(hipfort VERSION 0.9.0 LANGUAGES Fortran C)
+PROJECT(hipfort VERSION 0.10.0 LANGUAGES Fortran C)
 
 # get compiler name
 get_filename_component(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
@@ -198,12 +198,19 @@ ENDIF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F08)
 # bindings rely on: an assumed-rank (dimension(..)) dummy passed to c_loc(). This
 # is exactly what the assumed-rank wrappers do, so it is the right
 # discriminator for whether HIPFORT_ASSUMED_RANK can be enabled.
+#
+# Compiling is not enough: nvfortran 26.5 accepts c_loc() of an assumed-rank
+# dummy but, for a scalar or an array of rank 2 or more, returns an address that
+# is not the actual argument's (rank 1 is right), so the assumed-rank wrappers
+# would hand the C library a wrong pointer. The probe therefore runs the program
+# and checks the address for ranks 0, 1 and 2. When cross-compiling it cannot
+# run, so it only checks that the program compiles.
 IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
   MESSAGE(CHECK_START "Checking whether ${CMAKE_Fortran_COMPILER} supports Fortran 2018")
-  INCLUDE(CheckFortranSourceCompiles)
-  # NB: CHECK_FORTRAN_SOURCE_COMPILES writes the snippet to a .F file (fixed form),
-  # so — like the Fortran 2008 test above — every statement must start at column 7.
-  CHECK_FORTRAN_SOURCE_COMPILES("
+  # NB: the CHECK_FORTRAN_SOURCE_* macros write the snippet to a .F file (fixed
+  # form), so — like the Fortran 2008 test above — every statement must start at
+  # column 7.
+  set(_hipfort_f18_probe "
       module mod18
       contains
       function foo(x) result(p)
@@ -217,11 +224,20 @@ IF(NOT DEFINED CMAKE_Fortran_COMPILER_SUPPORTS_F18)
       use mod18
       use iso_c_binding
       implicit none
-      integer(c_int),target :: a(5)
-      type(c_ptr) :: p
-      p = foo(a)
+      integer(c_int),target :: s, a(5), b(2,3)
+      if (.not. c_associated(foo(s), c_loc(s))) stop 1
+      if (.not. c_associated(foo(a), c_loc(a))) stop 1
+      if (.not. c_associated(foo(b), c_loc(b))) stop 1
       END PROGRAM TESTFortran18
-    " CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+    ")
+  IF(CMAKE_CROSSCOMPILING)
+    INCLUDE(CheckFortranSourceCompiles)
+    CHECK_FORTRAN_SOURCE_COMPILES("${_hipfort_f18_probe}" CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  ELSE()
+    INCLUDE(CheckFortranSourceRuns)
+    CHECK_FORTRAN_SOURCE_RUNS("${_hipfort_f18_probe}" CMAKE_Fortran_COMPILER_SUPPORTS_F18)
+  ENDIF()
+  unset(_hipfort_f18_probe)
   IF(CMAKE_Fortran_COMPILER_SUPPORTS_F18)
     MESSAGE(CHECK_PASS "yes")
     set(CMAKE_Fortran_COMPILER_SUPPORTS_F18 1)
@@ -261,11 +277,15 @@ if(BUILD_TESTING OR HIPFORT_EXTENDED_TESTS)
   enable_testing()
 endif()
 
+# Optional gcov instrumentation plus the `coverage` / `coverage_cleanup` targets.
+# Defines HIPFORT_CODE_COVERAGE and returns immediately when it is OFF.
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/CodeCoverage.cmake)
+
 # Subdirectories and packaging
 # NOTE: rocm-cmake must be included before
 # adding subdirectories.
 INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
-rocm_setup_version(VERSION ${VERSION})
+rocm_setup_version(VERSION ${PROJECT_VERSION} NO_GIT_TAG_VERSION)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
 

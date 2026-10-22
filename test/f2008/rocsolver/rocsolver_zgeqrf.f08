@@ -73,10 +73,10 @@ program zgeqrf
   call hipCheck(hipMalloc(dIpiv, source=hIpiv))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the QR factorization on the device
-  call hipCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_zgeqrf(handle, M, N, dA, lda, dIpiv))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
@@ -96,7 +96,7 @@ program zgeqrf
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

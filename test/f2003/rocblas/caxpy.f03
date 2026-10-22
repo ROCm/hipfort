@@ -74,13 +74,13 @@ program rocblas_caxpy_test
         hz(i) = cmplx(n - i, 0)
     end do
 
-    ! Transfer data from host to deivce memory
+    ! Transfer data from host to device memory
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
     call hipCheck(hipmemcpy(dy, c_loc(hy(1)), Nbytes, hipMemcpyHostToDevice))
 
     ! Call rocblas function
-    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
-    call rocblasCheck(rocblas_caxpy(rocblas_handle, N, alpha, dx, 1, dy, 1))
+    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, rocblas_pointer_mode_host))
+    call rocblasCheck(rocblas_caxpy(rocblas_handle, N, c_loc(alpha), dx, 1, dy, 1))
     call hipCheck(hipDeviceSynchronize())
 
     ! Transfer data back to host memory

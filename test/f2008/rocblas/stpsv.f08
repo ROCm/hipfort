@@ -67,7 +67,7 @@ program rocblas_stpsv_test
   call hipCheck(hipMalloc(dx,  source=hx))
 
   ! Packed triangular solve L x = b, in place. dAP is passed as a Fortran array
-  ! (the generic array form) — this is the case that used to fail to compile
+  ! (the generic array form): this is the case that used to fail to compile
   ! because the packed matrix dummy was declared type(c_ptr) (SWDEV-485451).
   call rocblasCheck(rocblas_stpsv(handle, uplo, transA, diag, n, dAP, dx, 1))
 

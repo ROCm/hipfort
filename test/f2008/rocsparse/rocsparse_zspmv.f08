@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zspmv example (double-precision complex sparse-matrix dense-vector multiply)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic API: build a CSR descriptor for A and dense-vector
 ! descriptors for x and y, then run the three spmv stages
@@ -124,6 +124,9 @@ program zspmv
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matA))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecX))
+  call rocsparseCheck(rocsparse_destroy_dnvec_descr(vecY))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

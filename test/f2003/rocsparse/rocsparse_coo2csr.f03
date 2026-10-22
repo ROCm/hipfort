@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse coo2csr example (COO row indices -> CSR row pointers, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Compresses a per-nonzero COO row-index array into a CSR row-pointer array and
 ! checks the offsets. Inverse of csr2coo.

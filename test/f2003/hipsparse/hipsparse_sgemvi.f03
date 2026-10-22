@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Sgemvi example (dense matrix * sparse vector, single, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values xVal at indices xInd). The result is checked
@@ -48,7 +48,7 @@ program hipsparse_sgemvi
   real(c_float), target :: hXval(2) = (/2.0, 3.0/)
   integer(c_int), target :: hXind(2) = (/0, 2/)
   real(c_float), target :: hY(3) = (/1.0, 1.0, 1.0/)
-  real(c_float) :: alpha = 2.0, beta = 3.0
+  real(c_float), target :: alpha = 2.0, beta = 3.0
   real(c_float) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dXval, dXind, dY, dBuf
@@ -75,8 +75,8 @@ program hipsparse_sgemvi
   call hipsparseCheck(hipsparseSgemvi_bufferSize(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
        m, n, nnz, bufSize))
   call hipCheck(hipMalloc(dBuf, int(max(bufSize,1),c_size_t)))
-  call hipsparseCheck(hipsparseSgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, alpha, &
-       dA, lda, nnz, dXval, dXind, beta, dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
+  call hipsparseCheck(hipsparseSgemvi(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, m, n, c_loc(alpha), &
+       dA, lda, nnz, dXval, dXind, c_loc(beta), dY, HIPSPARSE_INDEX_BASE_ZERO, dBuf))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hY(1)), dY, int(m,c_size_t) * 4, hipMemcpyDeviceToHost))
 

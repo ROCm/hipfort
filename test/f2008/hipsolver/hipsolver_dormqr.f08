@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverDormqr example (double-precision multiply by Q from a QR
 ! factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf to obtain Q (as Householder vectors),
 ! then form Q*C with ormqr. Q is orthogonal, so it preserves the Frobenius norm:
@@ -61,6 +61,7 @@ program dormqr
   real(c_double), pointer :: dC(:,:)
   real(c_double), pointer :: dTau(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork_qr, lwork_mq, lwork
 
@@ -83,14 +84,24 @@ program dormqr
   ! Workspace big enough for both geqrf and ormqr
   call hipsolverCheck(hipsolverDgeqrf_bufferSize(handle, M, K, dA, lda, lwork_qr))
   call hipsolverCheck(hipsolverDormqr_bufferSize(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau(1), dC, ldc, lwork_mq))
+       M, N, K, dA, lda, dTau, dC, ldc, lwork_mq))
   lwork = max(lwork_qr, lwork_mq)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = Q*R (Q stored as reflectors), then form C <- Q*C in place
-  call hipsolverCheck(hipsolverDgeqrf(handle, M, K, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverDgeqrf(handle, M, K, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverDormqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau(1), dC, ldc, dWork, lwork, dInfo(1)))
+       M, N, K, dA, lda, dTau, dC, ldc, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! ormqr info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy the transformed C back to host
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))

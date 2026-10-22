@@ -18,8 +18,8 @@ Every program on this page is a complete, self-contained example that is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
 program lives in ``test/f2008/rocblas``. Most also have an equivalent Fortran
 2003 version in ``test/f2003/rocblas``, which uses ``type(c_ptr)`` device
-pointers and explicit byte counts instead of Fortran array pointers. The two
-batched-pointer and packed-storage examples, ``dgemv_batched`` and ``stpsv``,
+pointers and explicit byte counts instead of Fortran array pointers. The
+batched ``gemv`` and packed-storage examples, ``dgemv_batched`` and ``stpsv``,
 are Fortran 2008 only. One further program, ``test/f2018/rocblas/saxpy.f90``,
 exercises the Fortran 2018 assumed-rank interfaces and is described below.
 
@@ -41,9 +41,10 @@ A rocBLAS program always follows the same sequence:
 
 #. Create a handle with ``rocblas_create_handle``.
 #. Optionally choose how scalar arguments and results are passed with
-   ``rocblas_set_pointer_mode``: host pointer mode (``0``) reads ``alpha``,
-   ``beta`` and scalar results such as a dot product from host memory, while
-   device pointer mode expects them on the device.
+   ``rocblas_set_pointer_mode``: host pointer mode
+   (``rocblas_pointer_mode_host``) reads ``alpha``, ``beta`` and scalar results
+   such as a dot product from host memory, while device pointer mode
+   (``rocblas_pointer_mode_device``) expects them on the device.
 #. Allocate device memory and copy the input data over, either with
    ``hipMalloc``/``hipMemcpy`` or, in the Fortran 2008 interfaces, with the
    ``hipMalloc(source=...)`` shortcut that allocates and copies in one call.
@@ -66,8 +67,6 @@ Keep the following conventions in mind:
   ``hipfort_rocblas_enums`` module (re-exported by ``hipfort_rocblas``).
 * Every rocBLAS call returns a status code. The examples wrap them in
   ``rocblasCheck`` from the ``hipfort_check`` module, which aborts on failure.
-  (``dgemv_batched.f08`` uses ``hipCheck`` for its rocBLAS calls instead; both
-  abort on a non-zero status.)
 
 Building an example
 ===================
@@ -311,7 +310,7 @@ use the Fortran 2008 ``hipMalloc(source=...)`` shortcut.
 
 .. literalinclude:: ../../test/f2008/rocblas/dgemm_batched.f08
    :language: fortran
-   :start-at: ! Note: hipfort's Fortran 2008 pointer-convenience interfaces for
+   :start-at: ! Note: rocblas_?gemm_batched takes A, B and C as device arrays of device
 
 ``test/f2008/rocblas/sgemm_batched.f08``, ``cgemm_batched.f08`` and
 ``zgemm_batched.f08`` cover the remaining precisions.
@@ -412,9 +411,9 @@ Extended-precision matrix multiplication (gemm_ex)
 
 ``rocblas_gemm_ex`` computes ``D := alpha * op(A) * op(B) + beta * C`` with the
 type of every buffer, and the type used for the arithmetic, given explicitly as
-``rocblas_datatype_*`` arguments. That makes it the entry point for mixed
-precision work, and it writes to a separate ``D`` rather than overwriting
-``C``. A ``rocblas_gemm_algo_*`` argument selects the algorithm. This example
+``rocblas_datatype_*`` arguments. That makes it the entry point for
+mixed-precision work, and it writes to a separate ``D`` rather than
+overwriting ``C``. A ``rocblas_gemm_algo_*`` argument selects the algorithm. This example
 keeps every buffer and the compute type at ``rocblas_datatype_f32_r``, so it
 performs an ordinary single-precision ``gemm``.
 

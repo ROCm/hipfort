@@ -32,15 +32,16 @@ program hip_ssymm
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
-  ! A = [1 2; 2 3] and B = I, so C = A.
-  integer, parameter :: ld = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 0.0
+  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced) on the left.
+  ! B is m x n with m /= n and A(2,1) holds junk, so swapping A and B, the side
+  ! or the triangle changes the result.
+  integer, parameter :: m = 2, n = 3
+  real(c_float), target :: alpha = 1.0, beta = 0.0
 
-  real(c_float) :: hA(ld,ld) = reshape([1.0, 2.0, 2.0, 3.0], [ld,ld])
-  real(c_float) :: hB(ld,ld) = reshape([1.0, 0.0, 0.0, 1.0], [ld,ld])
-  real(c_float) :: hC(ld,ld)
-  real(c_float) :: expected(ld,ld) = reshape([1.0, 2.0, 2.0, 3.0], [ld,ld])
+  real(c_float) :: hA(m,m) = reshape([1.0, 7.0, 2.0, 3.0], [m,m])
+  real(c_float) :: hB(m,n) = reshape([1.0, 4.0, 2.0, 5.0, 3.0, -6.0], [m,n])
+  real(c_float) :: hC(m,n)
+  real(c_float) :: expected(m,n), Aref(m,m)
   real(c_float), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -53,6 +54,14 @@ program hip_ssymm
 
   hC = 0.0
 
+  ! Host reference built from the upper triangle only, A(2,1) is junk
+  do j = 1, m
+    do i = 1, m
+      Aref(i,j) = hA(min(i,j), max(i,j))
+    end do
+  end do
+  expected = alpha*matmul(Aref, hB)
+
   call hipCheck(hipMalloc(dA, shape(hA)))
   call hipCheck(hipMemcpy(dA, hA, hipMemcpyHostToDevice))
   call hipCheck(hipMalloc(dB, shape(hB)))
@@ -60,13 +69,13 @@ program hip_ssymm
   call hipCheck(hipMalloc(dC, shape(hC)))
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasSsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
+  call hipblasCheck(hipblasSsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, m, n, &
        alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 
-  do j = 1, ld
-    do i = 1, ld
+  do j = 1, n
+    do i = 1, m
       error = abs(expected(i,j) - hC(i,j))
       if (error > error_max) then
         write(*,*) "FAILED! error = ", error, " at ", i, j

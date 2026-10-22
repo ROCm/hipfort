@@ -25,14 +25,14 @@
 
 !!!!!!!!!!!!!!
 ! dgemv_batched example (batched matrix-vector, array-of-pointers form)
-! see: https:!rocm.docs.amd.com/projects/rocBLAS/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocBLAS/en/latest/
 !
 ! Exercises the "array of device pointers" argument class for rocBLAS: A, x and
 ! y are each a device array of pointers, one per batch. Computes y = A*x for two
 ! batches (alpha=1, beta=0) and checks the result.
 !!!!!!!!!!!!!!
 !
-program dgemv_batched
+program rocblas_dgemv_batched_test
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -41,7 +41,7 @@ program dgemv_batched
   implicit none
   integer :: b, i
   integer(c_int), parameter :: M = 2, N = 2, lda = 2, incx = 1, incy = 1, batch = 2
-  real(c_double) :: alpha = 1.0d0, beta = 0.0d0
+  real(c_double), target :: alpha = 1.0d0, beta = 0.0d0
   ! A = [[2,0],[0,3]] (column-major), x = [1,1] -> y = [2,3]
   real(c_double), target :: hA(2,2) = reshape((/2.0d0, 0.0d0, 0.0d0, 3.0d0/), (/2,2/))
   real(c_double), target :: hx(2)   = (/1.0d0, 1.0d0/)
@@ -54,7 +54,7 @@ program dgemv_batched
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10 * epsilon(error_max)
 
-  write(*,"(a)",advance="no") "-- Running test 'rocblas_dgemv_batched' (Fortran 2008 interfaces) - "
+  write(*,"(a)",advance="no") "-- Running test 'DGEMV_BATCHED' (Fortran 2008 interfaces) - "
 
   mbytes = int(M,c_size_t) * int(N,c_size_t) * 8
   vbytes = int(M,c_size_t) * 8
@@ -78,9 +78,9 @@ program dgemv_batched
   call hipCheck(hipMalloc(dyp, int(batch,c_size_t)*psize))
   call hipCheck(hipMemcpy(dyp, c_loc(hyp(1)), int(batch,c_size_t)*psize, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, alpha, dAp, lda, &
-                                      dxp, incx, beta, dyp, incy, batch))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_dgemv_batched(handle, rocblas_operation_none, M, N, c_loc(alpha), dAp, lda, &
+                                      dxp, incx, c_loc(beta), dyp, incy, batch))
   call hipCheck(hipDeviceSynchronize())
 
   do b = 1, batch
@@ -103,8 +103,8 @@ program dgemv_batched
   call hipCheck(hipFree(dx1)); call hipCheck(hipFree(dx2))
   call hipCheck(hipFree(dy1)); call hipCheck(hipFree(dy2))
   call hipCheck(hipFree(dAp)); call hipCheck(hipFree(dxp)); call hipCheck(hipFree(dyp))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"
 
-end program dgemv_batched
+end program rocblas_dgemv_batched_test

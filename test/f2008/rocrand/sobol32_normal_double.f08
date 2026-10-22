@@ -36,7 +36,8 @@ program rocrand_sobol32_normal_double_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int), parameter :: dimensions = 1
-    real(c_double), parameter :: mean = 0.0_c_double, stddev = 1.0_c_double, delta = 0.2_c_double
+    ! Not the standard normal, so a binding that drops mean or stddev cannot pass.
+    real(c_double), parameter :: mean = 2.0_c_double, stddev = 0.5_c_double, delta = 0.05_c_double
 
     type(c_ptr) :: gen = c_null_ptr
 
@@ -53,7 +54,7 @@ program rocrand_sobol32_normal_double_test
     call rocrandCheck(rocrand_set_quasi_random_generator_dimensions(gen, dimensions))
 
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Normal(mean, stddev) samples recover both moments.
     call rocrandCheck(rocrand_generate_normal_double(gen, c_loc(dx(1)), N, mean, stddev))

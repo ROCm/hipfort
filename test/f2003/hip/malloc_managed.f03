@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime hipMallocManaged (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Allocates unified (managed) memory, writes it from the host, overwrites it
 ! from the device (hipMemset), and checks the host sees the device's write.

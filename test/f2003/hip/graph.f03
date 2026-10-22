@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime graphs via stream capture (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Captures a device memset into a HIP graph, instantiates it, launches the
 ! executable graph and verifies the buffer was written. Exercises
@@ -49,7 +49,7 @@ program test_graph
   type(c_ptr) :: errnode = c_null_ptr
   type(c_ptr) :: dptr = c_null_ptr
   integer(c_size_t) :: nbytes
-  integer(kind(hipStreamCaptureStatusNone)), target :: capstat
+  integer(kind(hipStreamCaptureStatusNone)) :: capstat
   integer :: i
 
   write(*,"(a)",advance="no") "-- Running test 'hip graph' (Fortran 2003 interfaces) - "
@@ -103,7 +103,7 @@ contains
     integer(kind(hipStreamCaptureStatusNone)), intent(in) :: want
     character(len=*), intent(in) :: what
     capstat = -1
-    call hipCheck(hipStreamIsCapturing(stream, c_loc(capstat)))
+    call hipCheck(hipStreamIsCapturing(stream, capstat))
     if (capstat /= want) then
        write(*,*) "FAILED! capture status ", what, " = ", capstat, " (expected ", want, ")"
        call exit(1)

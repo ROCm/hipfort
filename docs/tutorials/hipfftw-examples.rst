@@ -13,8 +13,8 @@ code moves across with little change. hipFORT exposes it through the
 ``hipfort_hipfftw`` module.
 
 The one difference that matters: the ``in`` and ``out`` arguments must point to
-**GPU-accessible** memory. FFTW declares them ``void*``, so a pointer from
-``hipMalloc`` — or from ``fftw_alloc_real``/``fftw_alloc_complex`` — passes
+**GPU-accessible** memory. hipFORT declares them ``type(c_ptr)``, so a pointer
+from ``hipMalloc`` — or from ``fftw_alloc_real``/``fftw_alloc_complex`` — passes
 straight through, but a plain Fortran host array does not work.
 
 Every program on this page is complete and self-contained, and is built and run
@@ -55,7 +55,7 @@ Keep the following conventions in mind:
   ``N/2 + 1`` complex values are stored. Size the complex buffer accordingly.
 * Multi-dimensional transforms use C row-major order, so the last dimension is
   contiguous.
-* The double precision routines are named ``fftw_*`` and the single precision
+* The double-precision routines are named ``fftw_*`` and the single-precision
   ones ``fftwf_*``.
 
 Building and running
@@ -123,9 +123,9 @@ The guru interface describes a transform as arrays of ``fftw_iodim``
 descriptors, one per dimension, each giving a length and its input and output
 strides. It expresses layouts the simpler planners cannot.
 
-Note how the arrays are passed: the dummy arguments are scalar
-``type(fftw_iodim)``, so the program passes the first element of each array and
-the callee receives the base address of the contiguous struct array.
+The ``dims`` and ``howmany_dims`` dummy arguments are assumed-size arrays of
+``type(fftw_iodim)``, so the program passes the Fortran arrays directly and the
+callee receives the base address of the contiguous struct array.
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_guru.f03
    :language: fortran
@@ -134,10 +134,10 @@ Allocating buffers
 ==================
 
 ``fftw_alloc_real`` and ``fftw_alloc_complex``, along with the ``fftwf_``
-single precision forms, return correctly aligned host-accessible buffers that
+single-precision forms, return correctly aligned host-accessible buffers that
 can be handed straight to a plan. Use ``c_f_pointer`` to get a Fortran array
-view, and release them with ``fftw_free`` (``fftwf_free`` for the single
-precision buffers).
+view, and release them with ``fftw_free`` (``fftwf_free`` for the
+single-precision buffers).
 
 .. literalinclude:: ../../test/f2003/hipfftw/hipfftw_alloc.f03
    :language: fortran

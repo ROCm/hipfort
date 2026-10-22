@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! scsrgeam example (single-precision sparse matrix addition, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/extra.html
 !
 ! Two-phase flow: csrgeam_nnz (fills row_ptr_C and nnz_C) -> allocate
 ! col_ind_C/val_C -> csrgeam (computes C = alpha*A + beta*B). csrgeam needs no
@@ -60,7 +60,7 @@ program scsrgeam
   integer(c_int) :: h_exp_col_ind(5) = (/0, 2, 1, 0, 2/)
   real(c_float) :: h_exp_val(5)     = (/11, 2, 23, 4, 35/)
 
-  real(c_float) :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 1.0, beta = 1.0
 
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: nnz_C
@@ -71,7 +71,6 @@ program scsrgeam
   type(c_ptr) :: d_row_ptr_A, d_col_ind_A, d_val_A
   type(c_ptr) :: d_row_ptr_B, d_col_ind_B, d_val_B
   type(c_ptr) :: d_row_ptr_C, d_col_ind_C, d_val_C
-  type(c_ptr) :: d_nnz_C
 
   type(c_ptr) :: handle, descr_A, descr_B, descr_C
 
@@ -94,7 +93,6 @@ program scsrgeam
   call hipCheck(hipMalloc(d_col_ind_B, size_ciB * 4))
   call hipCheck(hipMalloc(d_val_B,     size_vB * 4))
   call hipCheck(hipMalloc(d_row_ptr_C, size_rpA * 4))
-  call hipCheck(hipMalloc(d_nnz_C,     4_c_size_t))
 
   ! Copy A and B to device
   call hipCheck(hipMemcpy(d_row_ptr_A, c_loc(h_row_ptr_A(1)), size_rpA * 4, hipMemcpyHostToDevice))
@@ -108,17 +106,16 @@ program scsrgeam
   call rocsparseCheck(rocsparse_csrgeam_nnz(handle, M, N, &
                           descr_A, nnz_A, d_row_ptr_A, d_col_ind_A, &
                           descr_B, nnz_B, d_row_ptr_B, d_col_ind_B, &
-                          descr_C, d_row_ptr_C, d_nnz_C))
-  call hipCheck(hipMemcpy(c_loc(nnz_C), d_nnz_C, 4_c_size_t, hipMemcpyDeviceToHost))
+                          descr_C, d_row_ptr_C, c_loc(nnz_C)))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, int(nnz_C,c_size_t) * 4))
   call hipCheck(hipMalloc(d_val_C,     int(nnz_C,c_size_t) * 4))
 
   ! Phase 2: compute the values of C
-  call rocsparseCheck(rocsparse_scsrgeam(handle, M, N, alpha, &
+  call rocsparseCheck(rocsparse_scsrgeam(handle, M, N, c_loc(alpha), &
                           descr_A, nnz_A, d_val_A, d_row_ptr_A, d_col_ind_A, &
-                          beta, descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
+                          c_loc(beta), descr_B, nnz_B, d_val_B, d_row_ptr_B, d_col_ind_B, &
                           descr_C, d_val_C, d_row_ptr_C, d_col_ind_C))
   call hipCheck(hipDeviceSynchronize())
 
@@ -166,7 +163,6 @@ program scsrgeam
   call hipCheck(hipFree(d_col_ind_B))
   call hipCheck(hipFree(d_val_B))
   call hipCheck(hipFree(d_row_ptr_C))
-  call hipCheck(hipFree(d_nnz_C))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_A))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_B))
   call rocsparseCheck(rocsparse_destroy_mat_descr(descr_C))

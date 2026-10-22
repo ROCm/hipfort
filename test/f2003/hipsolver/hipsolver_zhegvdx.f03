@@ -25,11 +25,14 @@
 
 !!!!!!!!!!!!!!
 ! zhegvdx example (complex partial generalized Hermitian-definite eigensolver, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! hegvdx solves a selected subset of A*x = lambda*B*x (itype=1, range=all). f2003
 ! style: device buffers are type(c_ptr); nev is a host integer, devInfo is
 ! device-backed. Self-verifying: A0*v_k = lambda_k * B0*v_k.
+! Also checks devInfo = 0 and the B-normalisation v_k**H * B0 * v_k = 1.
+! A and B are Hermitian with non-zero imaginary off-diagonal entries (B is
+! diagonally dominant, hence positive definite); both triangles are filled.
 !!!!!!!!!!!!!!
 !
 program hipsolver_zhegvdx
@@ -44,9 +47,9 @@ program hipsolver_zhegvdx
   integer(c_int), parameter :: N = 3, lda = 3, ldb = 3
 
   complex(c_double_complex), target :: hA(3,3) = reshape((/ &
-       (2.,0.),(-1.,0.),(0.,0.), (-1.,0.),(2.,0.),(-1.,0.), (0.,0.),(-1.,0.),(2.,0.) /), (/3,3/))
+       (2.,0.),(-1.,-1.),(0.,0.), (-1.,1.),(3.,0.),(0.,1.), (0.,0.),(0.,-1.),(2.,0.) /), (/3,3/))
   complex(c_double_complex), target :: hB(3,3) = reshape((/ &
-       (2.,0.),(0.,0.),(0.,0.), (0.,0.),(2.,0.),(0.,0.), (0.,0.),(0.,0.),(2.,0.) /), (/3,3/))
+       (4.,0.),(1.,-1.),(0.,0.), (1.,1.),(4.,0.),(0.,-1.), (0.,0.),(0.,1.),(4.,0.) /), (/3,3/))
   complex(c_double_complex) :: hA0(3,3), hB0(3,3)
   real(c_double), target :: hW(3)
   integer(c_int) :: hNev, nevBuf
@@ -55,12 +58,13 @@ program hipsolver_zhegvdx
   integer(c_size_t) :: sizeA = 9, sizeB = 9, sizeW = 3
 
   type(c_ptr) :: dA, dB, dW
-  integer(c_int), pointer :: dInfo(:)
+  type(c_ptr) :: dInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
+  integer(c_int), target :: hInfo
 
-  real(c_double) :: error
-  real(c_double), parameter :: error_max = 1.0e-5
+  real(c_double) :: error, vBv
+  real(c_double), parameter :: error_max = 1.0d-10
 
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_zhegvdx' (Fortran 2003 interfaces) - "
 
@@ -70,7 +74,7 @@ program hipsolver_zhegvdx
   call hipCheck(hipMalloc(dA, sizeA * 16))
   call hipCheck(hipMalloc(dB, sizeB * 16))
   call hipCheck(hipMalloc(dW, sizeW * 8))
-  call hipCheck(hipMalloc(dInfo, 1))
+  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 16, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1,1)), sizeB * 16, hipMemcpyHostToDevice))
 
@@ -83,10 +87,15 @@ program hipsolver_zhegvdx
 
   call hipsolverCheck(hipsolverZhegvdx(handle, HIPSOLVER_EIG_TYPE_1, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, dB, ldb, &
-       0.0d0, 0.0d0, 1, N, hNev, dW, dWork, lwork, dInfo(1)))
+       0.0d0, 0.0d0, 1, N, hNev, dW, dWork, lwork, dInfo))
 
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 16, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 8, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -101,6 +110,12 @@ program hipsolver_zhegvdx
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " eigenpair ", k; call exit(1)
         end if
     end do
+    ! B-normalisation (itype 1): v_k**H * B0 * v_k = 1
+    vBv = real(dot_product(hA(:,k), matmul(hB0, hA(:,k))), kind(vBv))
+    error = abs(vBv - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not B-normalised! v**H*B*v = ", vBv, " eigenpair ", k; call exit(1)
+    end if
   end do
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB)); call hipCheck(hipFree(dW))

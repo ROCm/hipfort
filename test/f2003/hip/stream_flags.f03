@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime stream flag and priority API
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipDeviceGetStreamPriorityRange, hipStreamCreateWithFlags,
 ! hipStreamCreateWithPriority, hipStreamGetFlags, hipStreamGetPriority,

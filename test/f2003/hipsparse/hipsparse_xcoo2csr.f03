@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Xcoo2csr example (COO row indices -> CSR row pointers, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Compresses the per-nonzero COO row-index array into a CSR row-pointer array
 ! and checks it against the expected offsets. Inverse of Xcsr2coo.

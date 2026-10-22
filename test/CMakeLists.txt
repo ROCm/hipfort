@@ -42,10 +42,152 @@ if(BUILD_TESTING)
   # extensions and skip such files ("no action performed"). Force Fortran
   # compilation by inserting -Tf immediately before the source in the compile
   # rule (set_source_files_properties(LANGUAGE Fortran) alone is not enough).
+  # hipfort sets CMAKE_Fortran_PREPROCESS, so with Ninja every source first goes
+  # through a separate preprocessing rule, which needs the same -Tf: without it
+  # no preprocessed file is written and no test builds.
   if(CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
     string(REPLACE "<SOURCE>" "-Tf <SOURCE>"
            CMAKE_Fortran_COMPILE_OBJECT "${CMAKE_Fortran_COMPILE_OBJECT}")
+    string(REPLACE "<SOURCE>" "-Tf <SOURCE>"
+           CMAKE_Fortran_PREPROCESS_SOURCE "${CMAKE_Fortran_PREPROCESS_SOURCE}")
   endif()
+
+  # Keep only the binding wrappers a test calls (the archives are built with one
+  # section per procedure), so a test links even when another wrapper names a C
+  # symbol the installed library does not export. Spelled -Wl, rather than
+  # LINKER:, which CMake 3.27 passes to LLVMFlang as a bare --gc-sections.
+  if(NOT APPLE AND NOT WIN32)
+    add_link_options(-Wl,--gc-sections)
+  endif()
+
+  # Which backend the tests link: hipfort::hip carries the archive of the one
+  # lib/ built the components for (nvptx when HIPFORT_BUILD_AMDGCN is OFF, even on
+  # an AMD host). On the CUDA backend the symbol tests are compiled with
+  # -DUSE_CUDA_NAMES and the ROCm-only tests below are skipped. Without the
+  # in-tree target (test/ configured on its own), fall back to HIP_PLATFORM, as
+  # lib/CMakeLists.txt does: CUDAToolkit alone is often found on an AMD box too.
+  set(_hipfort_cuda_backend FALSE)
+  if(TARGET hipfort-hip)
+    get_target_property(_hipfort_hip_links hipfort-hip INTERFACE_LINK_LIBRARIES)
+    if("hipfort-nvptx" IN_LIST _hipfort_hip_links)
+      set(_hipfort_cuda_backend TRUE)
+    endif()
+  else()
+    find_package(hip QUIET PATHS ${ROCM_PATH})
+    find_package(CUDAToolkit QUIET)
+    if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
+      set(_hipfort_cuda_backend TRUE)
+    endif()
+  endif()
+
+  # Tests that only build on the ROCm backend. Under USE_CUDA_NAMES a routine
+  # with no CUDA counterpart of the same signature is left out of the bindings
+  # (see audit_cuda_mappings.jl in rocm-fortran), and so is the typed form of a
+  # routine bound to the CUDA driver API; a test calling one cannot compile there.
+  # Keyed <dir>/<lib>/<test>, since the f2003 and f2008 variants differ.
+  set(HIPFORT_TESTS_ROCM_ONLY
+    # hipSOLVER compat API (hipsolverX, no Dn): getrf, getrs, potrs, potrfBatched
+    # and gesvd_bufferSize take a workspace cuSOLVER does not, and the Rf getter
+    # hipsolverRfGet_Algs has no cuSOLVER counterpart.
+    f2003/hipsolver/hipsolver_cgesvd
+    f2003/hipsolver/hipsolver_cgetrf
+    f2003/hipsolver/hipsolver_cpotrfbatched
+    f2003/hipsolver/hipsolver_cpotrs
+    f2003/hipsolver/hipsolver_dgetrf
+    f2003/hipsolver/hipsolver_dpotrfbatched
+    f2003/hipsolver/hipsolver_dpotrs
+    f2003/hipsolver/hipsolver_rf_params
+    f2003/hipsolver/hipsolver_sgesvd
+    f2003/hipsolver/hipsolver_sgetrf
+    f2003/hipsolver/hipsolver_spotrfbatched
+    f2003/hipsolver/hipsolver_spotrs
+    f2003/hipsolver/hipsolver_zgesvd
+    f2003/hipsolver/hipsolver_zgetrf
+    f2003/hipsolver/hipsolver_zpotrfbatched
+    f2003/hipsolver/hipsolver_zpotrs
+    f2008/hipsolver/hipsolver_cgesvd
+    f2008/hipsolver/hipsolver_cgetrf
+    f2008/hipsolver/hipsolver_cpotrfbatched
+    f2008/hipsolver/hipsolver_cpotrs
+    f2008/hipsolver/hipsolver_dgesvd
+    f2008/hipsolver/hipsolver_dgetrf
+    f2008/hipsolver/hipsolver_dgetrs
+    f2008/hipsolver/hipsolver_dpotrfbatched
+    f2008/hipsolver/hipsolver_dpotrs
+    f2008/hipsolver/hipsolver_rf_params
+    f2008/hipsolver/hipsolver_sgesvd
+    f2008/hipsolver/hipsolver_sgetrf
+    f2008/hipsolver/hipsolver_spotrfbatched
+    f2008/hipsolver/hipsolver_spotrs
+    f2008/hipsolver/hipsolver_zgesvd
+    f2008/hipsolver/hipsolver_zgetrf
+    f2008/hipsolver/hipsolver_zpotrfbatched
+    f2008/hipsolver/hipsolver_zpotrs
+    # hipSPARSE routines cuSPARSE 12 removed: csrsv2, csrgemm, gthr, sctr,
+    # csr2csc; and hipsparseGetGitRevision, which is hipSPARSE's own.
+    f2003/hipsparse/hipsparse_ccsr2csc
+    f2003/hipsparse/hipsparse_ccsrgemm
+    f2003/hipsparse/hipsparse_ccsrsv2
+    f2003/hipsparse/hipsparse_ccsrsv2_devptr
+    f2003/hipsparse/hipsparse_cgthr
+    f2003/hipsparse/hipsparse_csctr
+    f2003/hipsparse/hipsparse_dcsr2csc
+    f2003/hipsparse/hipsparse_dcsrgemm
+    f2003/hipsparse/hipsparse_dcsrsv2
+    f2003/hipsparse/hipsparse_dcsrsv2_devptr
+    f2003/hipsparse/hipsparse_dgthr
+    f2003/hipsparse/hipsparse_dsctr
+    f2003/hipsparse/hipsparse_scsrgemm
+    f2003/hipsparse/hipsparse_scsrsv2
+    f2003/hipsparse/hipsparse_scsrsv2_devptr
+    f2003/hipsparse/hipsparse_sgthr
+    f2003/hipsparse/hipsparse_ssctr
+    f2003/hipsparse/hipsparse_version
+    f2003/hipsparse/hipsparse_zcsr2csc
+    f2003/hipsparse/hipsparse_zcsrgemm
+    f2003/hipsparse/hipsparse_zcsrsv2
+    f2003/hipsparse/hipsparse_zcsrsv2_devptr
+    f2003/hipsparse/hipsparse_zcsrsv2_typed
+    f2003/hipsparse/hipsparse_zgthr
+    f2003/hipsparse/hipsparse_zsctr
+    f2008/hipsparse/hipsparse_ccsr2csc
+    f2008/hipsparse/hipsparse_ccsrgemm
+    f2008/hipsparse/hipsparse_ccsrsv2
+    f2008/hipsparse/hipsparse_cgthr
+    f2008/hipsparse/hipsparse_csctr
+    f2008/hipsparse/hipsparse_dcsr2csc
+    f2008/hipsparse/hipsparse_dcsrgemm
+    f2008/hipsparse/hipsparse_dcsrsv2
+    f2008/hipsparse/hipsparse_dgthr
+    f2008/hipsparse/hipsparse_dsctr
+    f2008/hipsparse/hipsparse_scsr2csc
+    f2008/hipsparse/hipsparse_scsrgemm
+    f2008/hipsparse/hipsparse_scsrsv2
+    f2008/hipsparse/hipsparse_sgthr
+    f2008/hipsparse/hipsparse_ssctr
+    f2008/hipsparse/hipsparse_version
+    f2008/hipsparse/hipsparse_zcsr2csc
+    f2008/hipsparse/hipsparse_zcsrgemm
+    f2008/hipsparse/hipsparse_zcsrsv2
+    f2008/hipsparse/hipsparse_zgthr
+    f2008/hipsparse/hipsparse_zsctr
+    # hipFFT Xt API: no cufftXt twin mapped yet, so not bound under USE_CUDA_NAMES.
+    f2003/hipfft/hipfft_xt_descriptor_z
+    f2003/hipfft/hipfft_xt_makeplanmany_c
+    # HIP runtime
+    f2003/hip/device_management              # hipDeviceTotalMem typed form (driver API: c_ptr form only)
+    f2003/hip/device_properties              # hipDeviceProp_t%clockRate (gone from CUDA 13)
+    f2003/hip/event_timing                   # hipMemcpyWithStream
+    f2003/hip/graph_empty_node               # hipGraphAddDependencies (CUDA 13 adds edgeData)
+    f2003/hip/graph_nodes                    # hipGraphAddDependencies (CUDA 13 adds edgeData)
+    f2003/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
+    f2003/hip/memcpy_async                   # hipMemcpyWithStream
+    f2003/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
+    f2003/hip/stream_capture_info            # hipStreamGetCaptureInfo (CUDA 13 takes 6 arguments)
+    f2003/hip/virtual_memory                 # typed hipMemGetAllocationGranularity (driver API)
+    f2008/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
+    f2008/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
+  )
 
   function(hipfort_add_test lib func dir)
     # The f2008 tests exercise the per-rank array overloads and
@@ -55,6 +197,9 @@ if(BUILD_TESTING)
       return()
     endif()
     if(dir STREQUAL "f2018" AND NOT HIPFORT_ASSUMED_RANK)
+      return()
+    endif()
+    if(_hipfort_cuda_backend AND "${dir}/${lib}/${func}" IN_LIST HIPFORT_TESTS_ROCM_ONLY)
       return()
     endif()
     if(dir STREQUAL "f2008")
@@ -105,21 +250,10 @@ if(BUILD_TESTING)
   # backend, where the interfaces bind to cu* symbols. On that backend the test
   # must be compiled with -DUSE_CUDA_NAMES to match the nvptx library it links.
   #
-  # Detect the active backend the way lib/CMakeLists.txt does: this test/ tree is
-  # a sibling add_subdirectory and cannot see lib/'s HIP_PLATFORM, so re-run the
-  # same detection here. The symbol tests build whenever HIPFORT_EXTENDED_TESTS is
-  # on and the backend's runtime libraries are found (the per-test if(TARGET
-  # hipfort::<lib>) guards handle that); this only decides the symbol naming.
-  # NB: CUDAToolkit is often found on an AMD box too, so it alone is not the
-  # discriminator -- HIP_PLATFORM is.
-  set(_hipfort_cuda_backend FALSE)
-  if(HIPFORT_EXTENDED_TESTS)
-    find_package(hip QUIET PATHS ${ROCM_PATH})
-    find_package(CUDAToolkit QUIET)
-    if(NOT HIP_PLATFORM STREQUAL "amd" AND CUDAToolkit_FOUND)
-      set(_hipfort_cuda_backend TRUE)
-    endif()
-  endif()
+  # The backend comes from _hipfort_cuda_backend, set above. The symbol tests
+  # build whenever HIPFORT_EXTENDED_TESTS is on and the backend's runtime
+  # libraries are found (the per-test if(TARGET hipfort::<lib>) guards handle
+  # that); the backend only decides the symbol naming.
   function(hipfort_add_symbol_test lib)
     if(NOT HIPFORT_EXTENDED_TESTS)
       return()
@@ -151,6 +285,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas cgemm f2003)
     hipfort_add_test(hipblas dgemm f2003)
     hipfort_add_test(hipblas sgemm f2003)
+    hipfort_add_test(hipblas sgemm_typed f2003)
     hipfort_add_test(hipblas zgemm f2003)
     hipfort_add_test(hipblas sgemm_batched f2003)
     hipfort_add_test(hipblas dgemm_batched f2003)
@@ -166,6 +301,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas daxpy f2003)
     hipfort_add_test(hipblas caxpy f2003)
     hipfort_add_test(hipblas zaxpy f2003)
+    hipfort_add_test(hipblas zaxpy_typed f2003)
     hipfort_add_test(hipblas scopy f2003)
     hipfort_add_test(hipblas sgemv f2003)
     hipfort_add_test(hipblas dgemv f2003)
@@ -180,6 +316,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas ctrsm f2003)
     hipfort_add_test(hipblas ztrsm f2003)
     hipfort_add_test(hipblas snrm2 f2003)
+    hipfort_add_test(hipblas snrm2_typed f2003)
     hipfort_add_test(hipblas dnrm2 f2003)
     hipfort_add_test(hipblas scnrm2 f2003)
     hipfort_add_test(hipblas dznrm2 f2003)
@@ -286,6 +423,73 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas sger f2008)
     hipfort_add_test(hipblas sswap f2008)
     hipfort_add_test(hipblas stpsv f2008)
+
+    # Device pointer mode variants: the same math, but alpha/beta live in
+    # device memory and the handle is switched to HIPBLAS_POINTER_MODE_DEVICE.
+    # The expected result is still computed from the host scalars, so a library
+    # that read them from host memory produces a wrong answer rather than
+    # passing. f2003 only: the f2008 array wrappers take a host scalar and
+    # c_loc() it themselves, so a device scalar is unreachable through them.
+    # test/check_devptr_tests.sh audits the structure of every one of these.
+    hipfort_add_test(hipblas caxpy_devptr f2003)
+    hipfort_add_test(hipblas cgeam_devptr f2003)
+    hipfort_add_test(hipblas cgemm_batched_devptr f2003)
+    hipfort_add_test(hipblas cgemm_devptr f2003)
+    hipfort_add_test(hipblas cgemm_strided_batched_devptr f2003)
+    hipfort_add_test(hipblas cgemv_devptr f2003)
+    hipfort_add_test(hipblas csymm_devptr f2003)
+    hipfort_add_test(hipblas csyrk_devptr f2003)
+    hipfort_add_test(hipblas ctrmm_devptr f2003)
+    hipfort_add_test(hipblas ctrsm_devptr f2003)
+    hipfort_add_test(hipblas daxpy_devptr f2003)
+    hipfort_add_test(hipblas dgeam_devptr f2003)
+    hipfort_add_test(hipblas dgemm_batched_devptr f2003)
+    hipfort_add_test(hipblas dgemm_devptr f2003)
+    hipfort_add_test(hipblas dgemm_strided_batched_devptr f2003)
+    hipfort_add_test(hipblas dgemv_devptr f2003)
+    hipfort_add_test(hipblas dger_devptr f2003)
+    hipfort_add_test(hipblas dscal_devptr f2003)
+    hipfort_add_test(hipblas dsymm_devptr f2003)
+    hipfort_add_test(hipblas dsyrk_devptr f2003)
+    hipfort_add_test(hipblas dtrmm_devptr f2003)
+    hipfort_add_test(hipblas dtrsm_devptr f2003)
+    hipfort_add_test(hipblas gemmex_devptr f2003)
+    hipfort_add_test(hipblas saxpy_devptr f2003)
+    hipfort_add_test(hipblas sgeam_devptr f2003)
+    hipfort_add_test(hipblas sgemm_batched_devptr f2003)
+    hipfort_add_test(hipblas sgemm_devptr f2003)
+    hipfort_add_test(hipblas sgemm_strided_batched_devptr f2003)
+    hipfort_add_test(hipblas sgemv_devptr f2003)
+    hipfort_add_test(hipblas sger_devptr f2003)
+    hipfort_add_test(hipblas ssymm_devptr f2003)
+    hipfort_add_test(hipblas ssyrk_devptr f2003)
+    hipfort_add_test(hipblas strmm_devptr f2003)
+    hipfort_add_test(hipblas strsm_devptr f2003)
+    hipfort_add_test(hipblas zaxpy_devptr f2003)
+    hipfort_add_test(hipblas zgeam_devptr f2003)
+    hipfort_add_test(hipblas zgemm_batched_devptr f2003)
+    hipfort_add_test(hipblas zgemm_devptr f2003)
+    hipfort_add_test(hipblas zgemm_strided_batched_devptr f2003)
+    hipfort_add_test(hipblas zgemv_devptr f2003)
+    hipfort_add_test(hipblas zsymm_devptr f2003)
+    hipfort_add_test(hipblas zsyrk_devptr f2003)
+    hipfort_add_test(hipblas ztrmm_devptr f2003)
+    hipfort_add_test(hipblas ztrsm_devptr f2003)
+    # Library/handle query routines: the version number and the handle state
+    # (pointer mode, atomics mode, stream) read back through the getters.
+    hipfort_add_test(hipblas hipblas_version f2003)
+    hipfort_add_test(hipblas hipblas_version f2008)
+    hipfort_add_test(hipblas hipblas_pointer_mode f2003)
+    hipfort_add_test(hipblas hipblas_pointer_mode f2008)
+    hipfort_add_test(hipblas hipblas_handle_state f2003)
+    hipfort_add_test(hipblas hipblas_handle_state f2008)
+    # every transa/transb (gemm) and trans (gemv) value, on rectangular padded data
+    foreach(std IN ITEMS f2003 f2008)
+      foreach(prec IN ITEMS s d c z)
+        hipfort_add_test(hipblas ${prec}gemm_trans ${std})
+        hipfort_add_test(hipblas ${prec}gemv_trans ${std})
+      endforeach()
+    endforeach()
   endif()
 
   if(TARGET hipfort::hipfft)
@@ -314,6 +518,16 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft_estimate_getsize_d f2008)
     hipfort_add_test(hipfft hipfft_setstream_z f2003)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
+    hipfort_add_test(hipfft hipfft_version f2003)
+    hipfort_add_test(hipfft hipfft_version f2008)
+    # The Xt API: a hipDataType plan on one GPU, and multi-GPU descriptors.
+    hipfort_add_test(hipfft hipfft_xt_makeplanmany_c f2003)
+    hipfort_add_test(hipfft hipfft_xt_descriptor_z f2003)
+    # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
+    if(TEST hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z)
+      set_tests_properties(hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z
+        PROPERTIES SKIP_RETURN_CODE 77)
+    endif()
   endif()
 
   if(TARGET hipfort::hipfftw)
@@ -361,6 +575,7 @@ if(BUILD_TESTING)
     if(HIPFFTW_HAS_PLAN_MANY_DFT)
       hipfort_add_test(hipfftw hipfftw_many f2003)
       hipfort_add_test(hipfftw hipfftw_guru f2003)
+      hipfort_add_test(hipfftw hipfftw_guru64 f2003)
     else()
       message(STATUS "Skipping hipfftw_many/hipfftw_guru tests (requires hipfft >= 1.0.23)")
     endif()
@@ -468,6 +683,13 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_cunmqr f2008)
     hipfort_add_test(hipsolver hipsolver_zunmqr f2003)
     hipfort_add_test(hipsolver hipsolver_zunmqr f2008)
+    # Handle/info state read back through the getters.
+    hipfort_add_test(hipsolver hipsolver_deterministic_mode f2003)
+    hipfort_add_test(hipsolver hipsolver_deterministic_mode f2008)
+    hipfort_add_test(hipsolver hipsolver_syevj_info f2003)
+    hipfort_add_test(hipsolver hipsolver_syevj_info f2008)
+    hipfort_add_test(hipsolver hipsolver_rf_params f2003)
+    hipfort_add_test(hipsolver hipsolver_rf_params f2008)
   endif()
 
   if(TARGET hipfort::hipsparse)
@@ -497,6 +719,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsparse hipsparse_sgemvi f2003)
     hipfort_add_test(hipsparse hipsparse_sgemvi f2008)
     hipfort_add_test(hipsparse hipsparse_dgemvi f2003)
+    hipfort_add_test(hipsparse hipsparse_dgemvi_typed f2003)
     hipfort_add_test(hipsparse hipsparse_dgemvi f2008)
     hipfort_add_test(hipsparse hipsparse_cgemvi f2003)
     hipfort_add_test(hipsparse hipsparse_cgemvi f2008)
@@ -509,6 +732,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsparse hipsparse_ccsrsv2 f2003)
     hipfort_add_test(hipsparse hipsparse_ccsrsv2 f2008)
     hipfort_add_test(hipsparse hipsparse_zcsrsv2 f2003)
+    hipfort_add_test(hipsparse hipsparse_zcsrsv2_typed f2003)
     hipfort_add_test(hipsparse hipsparse_zcsrsv2 f2008)
     hipfort_add_test(hipsparse hipsparse_scsrilu02 f2003)
     hipfort_add_test(hipsparse hipsparse_scsrilu02 f2008)
@@ -572,6 +796,44 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsparse hipsparse_ccsr2csc f2008)
     hipfort_add_test(hipsparse hipsparse_zcsr2csc f2003)
     hipfort_add_test(hipsparse hipsparse_zcsr2csc f2008)
+
+    # Device pointer mode variants, see the hipblas block above.
+    hipfort_add_test(hipsparse hipsparse_ccsrsv2_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_cgemvi_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_csddmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_cspmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_cspmv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_csptrsm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_csptrsv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dcsrsv2_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dgemvi_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dsddmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dspmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dspmv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dsptrsm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_dsptrsv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_scsrsv2_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_sgemvi_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_ssddmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_sspmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_sspmv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_ssptrsm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_ssptrsv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zcsrsv2_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zgemvi_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zsddmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zspmm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zspmv_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zsptrsm_devptr f2003)
+    hipfort_add_test(hipsparse hipsparse_zsptrsv_devptr f2003)
+    # Library/descriptor query routines: version, handle pointer mode, and the
+    # descriptor getters that return the values the descriptor was built with.
+    hipfort_add_test(hipsparse hipsparse_version f2003)
+    hipfort_add_test(hipsparse hipsparse_version f2008)
+    hipfort_add_test(hipsparse hipsparse_pointer_mode f2003)
+    hipfort_add_test(hipsparse hipsparse_pointer_mode f2008)
+    hipfort_add_test(hipsparse hipsparse_descr_get f2003)
+    hipfort_add_test(hipsparse hipsparse_descr_get f2008)
   endif()
 
   if(TARGET hipfort::rocblas)
@@ -579,6 +841,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas saxpy f2003)
     hipfort_add_test(rocblas daxpy f2003)
     hipfort_add_test(rocblas caxpy f2003)
+    hipfort_add_test(rocblas caxpy_typed f2003)
     hipfort_add_test(rocblas zaxpy f2003)
     hipfort_add_test(rocblas dtrmm f2003)
     hipfort_add_test(rocblas saxpy f2008)
@@ -589,6 +852,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas dtrmm f2008)
     hipfort_add_test(rocblas sgemm f2003)
     hipfort_add_test(rocblas dgemm f2003)
+    hipfort_add_test(rocblas dgemm_typed f2003)
     hipfort_add_test(rocblas cgemm f2003)
     hipfort_add_test(rocblas zgemm f2003)
     hipfort_add_test(rocblas sgemm f2008)
@@ -716,6 +980,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas izamin f2008)
     hipfort_add_test(rocblas sdot  f2003)
     hipfort_add_test(rocblas ddot  f2003)
+    hipfort_add_test(rocblas ddot_typed f2003)
     hipfort_add_test(rocblas cdotu f2003)
     hipfort_add_test(rocblas cdotc f2003)
     hipfort_add_test(rocblas zdotu f2003)
@@ -739,6 +1004,77 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas csscal f2008)
     hipfort_add_test(rocblas zdscal f2008)
     hipfort_add_test(rocblas dgemv_batched f2008)
+
+    # Device pointer mode variants, see the hipblas block above.
+    hipfort_add_test(rocblas caxpy_devptr f2003)
+    hipfort_add_test(rocblas cgeam_devptr f2003)
+    hipfort_add_test(rocblas cgemm_batched_devptr f2003)
+    hipfort_add_test(rocblas cgemm_devptr f2003)
+    hipfort_add_test(rocblas cgemm_strided_batched_devptr f2003)
+    hipfort_add_test(rocblas cgemv_devptr f2003)
+    hipfort_add_test(rocblas cgerc_devptr f2003)
+    hipfort_add_test(rocblas cgeru_devptr f2003)
+    hipfort_add_test(rocblas chemm_devptr f2003)
+    hipfort_add_test(rocblas cherk_devptr f2003)
+    hipfort_add_test(rocblas cscal_devptr f2003)
+    hipfort_add_test(rocblas csscal_devptr f2003)
+    hipfort_add_test(rocblas csymm_devptr f2003)
+    hipfort_add_test(rocblas csyrk_devptr f2003)
+    hipfort_add_test(rocblas ctrsm_devptr f2003)
+    hipfort_add_test(rocblas daxpy_devptr f2003)
+    hipfort_add_test(rocblas dgeam_devptr f2003)
+    hipfort_add_test(rocblas dgemm_batched_devptr f2003)
+    hipfort_add_test(rocblas dgemm_devptr f2003)
+    hipfort_add_test(rocblas dgemm_strided_batched_devptr f2003)
+    hipfort_add_test(rocblas dgemv_devptr f2003)
+    hipfort_add_test(rocblas dger_devptr f2003)
+    hipfort_add_test(rocblas dscal_devptr f2003)
+    hipfort_add_test(rocblas dsymm_devptr f2003)
+    hipfort_add_test(rocblas dsyrk_devptr f2003)
+    hipfort_add_test(rocblas dtrmm_devptr f2003)
+    hipfort_add_test(rocblas dtrsm_devptr f2003)
+    hipfort_add_test(rocblas gemm_ex_devptr f2003)
+    hipfort_add_test(rocblas saxpy_devptr f2003)
+    hipfort_add_test(rocblas sgeam_devptr f2003)
+    hipfort_add_test(rocblas sgemm_batched_devptr f2003)
+    hipfort_add_test(rocblas sgemm_devptr f2003)
+    hipfort_add_test(rocblas sgemm_strided_batched_devptr f2003)
+    hipfort_add_test(rocblas sgemv_devptr f2003)
+    hipfort_add_test(rocblas sger_devptr f2003)
+    hipfort_add_test(rocblas sscal_devptr f2003)
+    hipfort_add_test(rocblas ssymm_devptr f2003)
+    hipfort_add_test(rocblas ssyrk_devptr f2003)
+    hipfort_add_test(rocblas strsm_devptr f2003)
+    hipfort_add_test(rocblas zaxpy_devptr f2003)
+    hipfort_add_test(rocblas zdscal_devptr f2003)
+    hipfort_add_test(rocblas zgeam_devptr f2003)
+    hipfort_add_test(rocblas zgemm_batched_devptr f2003)
+    hipfort_add_test(rocblas zgemm_devptr f2003)
+    hipfort_add_test(rocblas zgemm_strided_batched_devptr f2003)
+    hipfort_add_test(rocblas zgemv_devptr f2003)
+    hipfort_add_test(rocblas zgerc_devptr f2003)
+    hipfort_add_test(rocblas zgeru_devptr f2003)
+    hipfort_add_test(rocblas zhemm_devptr f2003)
+    hipfort_add_test(rocblas zherk_devptr f2003)
+    hipfort_add_test(rocblas zscal_devptr f2003)
+    hipfort_add_test(rocblas zsymm_devptr f2003)
+    hipfort_add_test(rocblas zsyrk_devptr f2003)
+    hipfort_add_test(rocblas ztrsm_devptr f2003)
+    # Library/handle query routines: the version string and the handle state
+    # (pointer mode, atomics mode, math mode, stream, batch strides).
+    hipfort_add_test(rocblas rocblas_version f2003)
+    hipfort_add_test(rocblas rocblas_version f2008)
+    hipfort_add_test(rocblas rocblas_handle_modes f2003)
+    hipfort_add_test(rocblas rocblas_handle_modes f2008)
+    hipfort_add_test(rocblas rocblas_handle_query f2003)
+    hipfort_add_test(rocblas rocblas_handle_query f2008)
+    # every transa/transb (gemm) and trans (gemv) value, on rectangular padded data
+    foreach(std IN ITEMS f2003 f2008)
+      foreach(prec IN ITEMS s d c z)
+        hipfort_add_test(rocblas ${prec}gemm_trans ${std})
+        hipfort_add_test(rocblas ${prec}gemv_trans ${std})
+      endforeach()
+    endforeach()
   endif()
 
   if(TARGET hipfort::rocrand)
@@ -789,6 +1125,8 @@ if(BUILD_TESTING)
     hipfort_add_test(rocrand xorwow_normal_double  f2008)
     hipfort_add_test(rocrand philox_uniform_double f2008)
     hipfort_add_test(rocrand philox_normal_double  f2008)
+    hipfort_add_test(rocrand rocrand_version f2003)
+    hipfort_add_test(rocrand rocrand_version f2008)
   endif()
 
   if(TARGET hipfort::hiprand)
@@ -839,6 +1177,8 @@ if(BUILD_TESTING)
     hipfort_add_test(hiprand xorwow_normal_double  f2008)
     hipfort_add_test(hiprand philox_uniform_double f2008)
     hipfort_add_test(hiprand philox_normal_double  f2008)
+    hipfort_add_test(hiprand hiprand_version f2003)
+    hipfort_add_test(hiprand hiprand_version f2008)
   endif()
 
   if(TARGET hipfort::rocfft)
@@ -880,6 +1220,13 @@ if(BUILD_TESTING)
     # Single-process multi-GPU field/brick decomposition; skips on < 2 GPUs.
     hipfort_add_test(rocfft rocfft_field_brick_z f2003)
     hipfort_add_test(rocfft rocfft_field_brick_z f2008)
+    # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
+    foreach(std IN ITEMS f2003 f2008)
+      if(TEST hipfort_test_${std}_rocfft_rocfft_field_brick_z)
+        set_tests_properties(hipfort_test_${std}_rocfft_rocfft_field_brick_z
+          PROPERTIES SKIP_RETURN_CODE 77)
+      endif()
+    endforeach()
   endif()
 
   if(TARGET hipfort::rocsolver)
@@ -1064,11 +1411,18 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsolver rocsolver_cunmqr f2008)
     hipfort_add_test(rocsolver rocsolver_zunmqr f2003)
     hipfort_add_test(rocsolver rocsolver_zunmqr f2008)
+    # Library/handle query routines: the version string and the handle alg mode.
+    hipfort_add_test(rocsolver rocsolver_version f2003)
+    hipfort_add_test(rocsolver rocsolver_version f2008)
+    hipfort_add_test(rocsolver rocsolver_alg_mode f2003)
+    hipfort_add_test(rocsolver rocsolver_alg_mode f2008)
   endif()
 
   if(TARGET hipfort::rocsparse)
     hipfort_add_symbol_test(rocsparse)
     hipfort_add_test(rocsparse ddoti f2003)
+    hipfort_add_test(rocsparse ddoti_typed f2003)
+    hipfort_add_test(rocsparse rocsparse_handle_create f2003)
     hipfort_add_test(rocsparse ddoti f2008)
     hipfort_add_test(rocsparse rocsparse_sgthr f2003)
     hipfort_add_test(rocsparse rocsparse_sgthr f2008)
@@ -1091,6 +1445,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_sgemvi f2003)
     hipfort_add_test(rocsparse rocsparse_sgemvi f2008)
     hipfort_add_test(rocsparse rocsparse_dgemvi f2003)
+    hipfort_add_test(rocsparse rocsparse_dgemvi_typed f2003)
     hipfort_add_test(rocsparse rocsparse_dgemvi f2008)
     hipfort_add_test(rocsparse rocsparse_cgemvi f2003)
     hipfort_add_test(rocsparse rocsparse_cgemvi f2008)
@@ -1168,6 +1523,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_dsptrsm f2008)
     hipfort_add_test(rocsparse rocsparse_csptrsm f2008)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2008)
+    hipfort_add_test(rocsparse zgpsv_interleaved_batch f2003)
     hipfort_add_test(rocsparse zgpsv_interleaved_batch f2008)
     hipfort_add_test(rocsparse rocsparse_csr2coo f2003)
     hipfort_add_test(rocsparse rocsparse_scsr2csc f2003)
@@ -1188,6 +1544,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_zspmv f2003)
     hipfort_add_test(rocsparse rocsparse_scsrgemm f2003)
     hipfort_add_test(rocsparse rocsparse_dcsrgemm f2003)
+    hipfort_add_test(rocsparse rocsparse_dcsrgemm_typed f2003)
     hipfort_add_test(rocsparse rocsparse_ccsrgemm f2003)
     hipfort_add_test(rocsparse rocsparse_zcsrgemm f2003)
     hipfort_add_test(rocsparse rocsparse_ssptrsv f2003)
@@ -1198,6 +1555,59 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_dsptrsm f2003)
     hipfort_add_test(rocsparse rocsparse_csptrsm f2003)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2003)
+
+    # Device pointer mode variants, see the hipblas block above. The spmv/spmm/
+    # sddmm ones pass the scalars to every stage (buffer_size -> preprocess ->
+    # compute), which also proves no stage dereferences them on the host.
+    hipfort_add_test(rocsparse rocsparse_cbsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_ccsrgeam_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_ccsrgemm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_cgebsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_cgemvi_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_csddmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_cspmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_cspmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_csptrsm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_csptrsv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dbsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dcsrgeam_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dcsrgemm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dgebsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dgemvi_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dsddmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dspmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dspmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dsptrsm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_dsptrsv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_sbsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_scsrgeam_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_scsrgemm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_sgebsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_sgemvi_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_ssddmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_sspmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_sspmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_ssptrsm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_ssptrsv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zbsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zcsrgeam_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zcsrgemm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zgebsrmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zgemvi_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zsddmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zspmm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zspmv_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zsptrsm_devptr f2003)
+    hipfort_add_test(rocsparse rocsparse_zsptrsv_devptr f2003)
+    # Library/descriptor query routines: version and git revision, handle
+    # pointer mode, and the descriptor getters that return the values the
+    # descriptor was built with.
+    hipfort_add_test(rocsparse rocsparse_version f2003)
+    hipfort_add_test(rocsparse rocsparse_version f2008)
+    hipfort_add_test(rocsparse rocsparse_pointer_mode f2003)
+    hipfort_add_test(rocsparse rocsparse_pointer_mode f2008)
+    hipfort_add_test(rocsparse rocsparse_descr_get f2003)
+    hipfort_add_test(rocsparse rocsparse_descr_get f2008)
   endif()
 
   # HIP runtime API tests: device management, streams, events, memset,
@@ -1215,11 +1625,18 @@ if(BUILD_TESTING)
     hipfort_add_test(hip malloc_managed f2008)
     hipfort_add_test(hip host_malloc f2003)
     hipfort_add_test(hip host_malloc f2008)
+    hipfort_add_test(hip malloc_lbounds f2008)
+    hipfort_add_test(hip malloc_failure f2008)
     hipfort_add_test(hip host_register f2003)
     hipfort_add_test(hip graph f2003)
     hipfort_add_test(hip graph_nodes f2003)
     hipfort_add_test(hip graph_memset_node f2003)
     hipfort_add_test(hip peer_access f2003)
+    # Copies between two GPUs; exits 77 (skipped) with fewer than two.
+    hipfort_add_test(hip peer_copy f2003)
+    if(TEST hipfort_test_f2003_hip_peer_copy)
+      set_tests_properties(hipfort_test_f2003_hip_peer_copy PROPERTIES SKIP_RETURN_CODE 77)
+    endif()
     hipfort_add_test(hip graph_empty_node f2003)
     hipfort_add_test(hip stream_flags f2003)
     hipfort_add_test(hip stream_callback f2003)
@@ -1227,18 +1644,41 @@ if(BUILD_TESTING)
     hipfort_add_test(hip memory_ops f2003)
     hipfort_add_test(hip device_properties f2003)
     hipfort_add_test(hip error_version f2003)
+    # hipblasCheck on a failing status: it must name the status, then stop. The
+    # nvptx build reports CUDA statuses, which the HIP names do not describe, so
+    # it prints the code alone, and HIPBLAS_STATUS_INVALID_VALUE there carries
+    # cuBLAS's value, 7. PASS_REGULAR_EXPRESSION replaces the exit-status check,
+    # so the stop is not a failure here.
+    hipfort_add_test(hip check_message f2003)
+    if(_hipfort_cuda_backend)
+      set(_hipfort_check_regex "HIPBLAS ERROR: code = +7")
+    else()
+      set(_hipfort_check_regex "HIPBLAS ERROR: HIPBLAS_STATUS_INVALID_VALUE \\(code 3\\)")
+    endif()
+    set_tests_properties(hipfort_test_f2003_hip_check_message PROPERTIES
+      PASS_REGULAR_EXPRESSION "${_hipfort_check_regex}"
+      FAIL_REGULAR_EXPRESSION "FAILED!")
     hipfort_add_test(hip pointer_attributes f2003)
     hipfort_add_test(hip mem_advise f2003)
+    if(TEST hipfort_test_f2003_hip_mem_advise)
+      set_tests_properties(hipfort_test_f2003_hip_mem_advise PROPERTIES SKIP_RETURN_CODE 77)
+    endif()
     hipfort_add_test(hip virtual_memory f2003)
+    hipfort_add_test(hip cache_config f2003)
+    hipfort_add_test(hip mem_pool f2003)
+    hipfort_add_test(hip stream_capture_info f2003)
     hipfort_add_test(hip pointer_attributes f2008)
     hipfort_add_test(hip mem_advise f2008)
+    if(TEST hipfort_test_f2008_hip_mem_advise)
+      set_tests_properties(hipfort_test_f2008_hip_mem_advise PROPERTIES SKIP_RETURN_CODE 77)
+    endif()
 
     # The hipModule* entry points need a real GPU kernel, so this test loads a
-    # standalone code object built from the existing vecadd source. They have no
-    # CUDA-driver counterpart in the generated bindings, hence the AMD-only guard.
+    # standalone code object built from the existing vecadd source. hipcc builds
+    # it for AMD, hence the ROCm-backend guard.
     find_package(hip QUIET PATHS ${ROCM_PATH})
     find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin)
-    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd")
+    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd" AND NOT _hipfort_cuda_backend)
       # --offload-arch=native and `rocm_agent_enumerator -name` both append the
       # :xnack suffix, which pins the code object to one XNACK mode and makes
       # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
@@ -1307,9 +1747,13 @@ if(BUILD_TESTING)
   endif()
 
   # hipOccupancy* and hipLaunchCooperativeKernel take the host stub of a kernel.
-  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd")
+  # Like module_kernel, these need the ROCm backend: the kernel is built for AMD.
+  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd"
+     AND NOT _hipfort_cuda_backend)
     foreach(kernel_test IN ITEMS occupancy cooperative_launch)
       hipfort_add_test(hip ${kernel_test} f2003)
+      # Exits 77 (skipped) on a device without the feature it exercises.
+      set_tests_properties(hipfort_test_f2003_hip_${kernel_test} PROPERTIES SKIP_RETURN_CODE 77)
       target_sources(hipfort_test_f2003_hip_${kernel_test}
         PRIVATE f2003/vecadd/hip_implementation.cpp)
       set_source_files_properties(f2003/vecadd/hip_implementation.cpp
@@ -1412,5 +1856,9 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
   if(NOT CMAKE_HOST_WIN32)
     add_test(NAME hipfort_fortran_line_length
       COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/check_line_length.sh)
+    # A *_devptr test that quietly kept its host scalar would still pass and
+    # assert nothing, so audit their structure rather than trusting the name.
+    add_test(NAME hipfort_devptr_audit
+      COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/check_devptr_tests.sh)
   endif()
 endif()

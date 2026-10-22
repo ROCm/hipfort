@@ -66,7 +66,7 @@ program rocblas_zaxpy_test
         hx(i) = cmplx(i, 0, kind=8)
         hy(i) = cmplx(N - i, 0, kind=8)
         hz(i) = cmplx(N - i, 0, kind=8)
-    eNd do
+    end do
 
     ! Allocate device-side memory
     ! Transfer data from host to device memory
@@ -74,7 +74,7 @@ program rocblas_zaxpy_test
     call hipCheck(hipMalloc(dy, source=hy))
 
     ! Call rocblas function
-    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, 0))
+    call rocblasCheck(rocblas_set_pointer_mode(rocblas_handle, rocblas_pointer_mode_host))
     call rocblasCheck(rocblas_zaxpy(rocblas_handle, N, alpha, dx, 1, dy, 1))
     call hipCheck(hipDeviceSynchronize())
 

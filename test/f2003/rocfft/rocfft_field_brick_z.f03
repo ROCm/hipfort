@@ -74,9 +74,10 @@ program rocfft_field_brick_z
 
   ! Mandatory guard: need at least 2 GPUs
   call hipCheck(hipGetDeviceCount(ndev))
+  ! Exit 77, which CTest reports as skipped: nothing was checked.
   if (ndev < 2_c_int) then
     write(*,*) "SKIPPED (requires 2 GPUs)"
-    stop
+    stop 77
   end if
 
   ! The field/brick API is marked experimental in the rocFFT headers.
@@ -104,7 +105,7 @@ program rocfft_field_brick_z
 
     blower  = [0_c_size_t,  brick_lower1, 0_c_size_t]
     bupper  = [N0,           brick_upper1, 1_c_size_t]
-    bstride = [1_c_size_t,  N0,           brick_len1]
+    bstride = [1_c_size_t,  N0,           N0*brick_len1]
 
     ! rocfft_brick_create takes c_ptr,value for lower/upper/stride; no f2008
     ! rank-N wrapper exists, so c_loc is used in both dialect files.
@@ -147,7 +148,7 @@ program rocfft_field_brick_z
 
     blower  = [0_c_size_t,  brick_lower1, 0_c_size_t]
     bupper  = [N0,           brick_upper1, 1_c_size_t]
-    bstride = [1_c_size_t,  N0,           brick_len1]
+    bstride = [1_c_size_t,  N0,           N0*brick_len1]
 
     call rocfftCheck(rocfft_brick_create(abrick, &
       c_loc(blower(1)), c_loc(bupper(1)), c_loc(bstride(1)), &

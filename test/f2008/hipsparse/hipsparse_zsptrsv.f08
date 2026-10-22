@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsptrsv example (double-complex sparse triangular solve, op(A)*y = alpha*x)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSV API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y (dense), solve L*y' = x, and confirm y' recovers y.
@@ -36,7 +36,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program zsptrsv
+program hipsparse_zsptrsv
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -60,7 +60,7 @@ program zsptrsv
   complex(c_double_complex) :: h_yout(3)       ! recovered solution
   complex(c_double_complex) :: L_dense(3,3)
 
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha
   integer(kind(HIPSPARSE_FILL_MODE_LOWER)), target :: fill = HIPSPARSE_FILL_MODE_LOWER
   integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)), target :: diag = HIPSPARSE_DIAG_TYPE_NON_UNIT
 
@@ -73,6 +73,10 @@ program zsptrsv
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 100 * epsilon(error_max)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zsptrsv' (Fortran 2008 interfaces) - "
 
@@ -142,4 +146,4 @@ program zsptrsv
 
   write(*,*) "PASSED!"
 
-end program zsptrsv
+end program hipsparse_zsptrsv

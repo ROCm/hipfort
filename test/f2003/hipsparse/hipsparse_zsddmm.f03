@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SDDMM example (z, sampled dense-dense matmul, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! SDDMM computes C = alpha * (A * B) .* spy(C) + beta * C: the dense product
 ! A*B is evaluated only at the nonzero positions of the sparse (CSR) C. Generic
@@ -59,7 +59,7 @@ program hipsparse_zsddmm
   complex(c_double_complex), target :: h_csr_val(4)     = (/(0.0,0.0), (0.0,0.0), (0.0,0.0), (0.0,0.0)/)
 
   complex(c_double_complex) :: h_AB(3,2), h_expected(4)
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   integer(c_size_t) :: size_rp = 4, size_ci = 4, size_v = 4
   integer(c_size_t) :: size_A = 9, size_B = 6
@@ -68,8 +68,13 @@ program hipsparse_zsddmm
   type(c_ptr) :: handle, matA, matB, matC, d_buffer
   integer(c_size_t) :: buffer_size
 
-  real :: error
-  real, parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double) :: error
+  real(c_double), parameter :: error_max = 10 * epsilon(error_max)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0d0,0.0d0)
+  beta = (0.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zsddmm' (Fortran 2003 interfaces) - "
 
@@ -115,7 +120,7 @@ program hipsparse_zsddmm
   call hipCheck(hipMemcpy(c_loc(h_csr_val(1)), d_csr_val, size_v * 16, hipMemcpyDeviceToHost))
 
   do i = 1, nnz
-    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0)
+    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0_c_double)
     if(error .gt. error_max) then
         write(*,*) "FAILED! val(", i, ") = ", h_csr_val(i), " expected ", h_expected(i); call exit(1)
     end if

@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverCpotrs example (single-complex Cholesky solve, Fortran 2003
 ! interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: pick a known solution x, form b = A*x for a Hermitian positive
 ! definite A, factorize with potrf, solve A*X = b with potrs, and confirm X
@@ -67,6 +67,7 @@ program cpotrs
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: dA, dB, dInfo, dWork
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_f, lwork_s, lwork
 
   real(c_float) :: error
@@ -96,8 +97,19 @@ program cpotrs
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = L*L**H, then solve A*X = B in place
-  call hipsolverCheck(hipsolverCpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, dInfo_p(1)))
-  call hipsolverCheck(hipsolverCpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverCpotrf(handle, HIPSOLVER_FILL_MODE_LOWER, N, dA, lda, dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! potrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
+  call hipsolverCheck(hipsolverCpotrs(handle, HIPSOLVER_FILL_MODE_LOWER, N, nrhs, dA, lda, dB, ldb, &
+       dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! potrs info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))

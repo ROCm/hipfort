@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverDorgqr example (double-precision generation of Q from a QR
 ! factorization, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf, generate the orthogonal factor Q with
 ! orgqr, and confirm Q**T * Q = I. Orthogonality is sign-convention independent,
@@ -62,6 +62,7 @@ program dorgqr
   type(c_ptr) :: dA, dTau, dInfo, dWork
   real(c_double), pointer :: dTau_p(:)
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_qr, lwork_or, lwork
 
   real(c_double) :: error
@@ -83,13 +84,23 @@ program dorgqr
 
   ! Workspace big enough for both geqrf and orgqr
   call hipsolverCheck(hipsolverDgeqrf_bufferSize(handle, M, N, dA, lda, lwork_qr))
-  call hipsolverCheck(hipsolverDorgqr_bufferSize(handle, M, N, K, dA, lda, dTau_p(1), lwork_or))
+  call hipsolverCheck(hipsolverDorgqr_bufferSize(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), lwork_or))
   lwork = max(lwork_qr, lwork_or)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 8))
 
   ! Factorize A = Q*R, then form the explicit Q in place
-  call hipsolverCheck(hipsolverDgeqrf(handle, M, N, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
-  call hipsolverCheck(hipsolverDorgqr(handle, M, N, K, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverDgeqrf(handle, M, N, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
+  call hipsolverCheck(hipsolverDorgqr(handle, M, N, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! orgqr info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy Q back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

@@ -15,9 +15,10 @@ enumerators.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
-program lives in ``test/f2008/rocsolver``, and the equivalent Fortran 2003
-version, which uses ``type(c_ptr)`` device pointers and explicit byte counts
-instead of Fortran array pointers, lives in ``test/f2003/rocsolver``.
+program lives in ``test/f2008/rocsolver``. Most programs also have an
+equivalent Fortran 2003 version, which uses ``type(c_ptr)`` device pointers and
+explicit byte counts instead of Fortran array pointers, in
+``test/f2003/rocsolver``.
 
 hipSOLVER offers the same functionality through an API that follows cuSOLVER;
 see the :doc:`hipSOLVER examples <hipsolver-examples>`.
@@ -42,9 +43,10 @@ rocSOLVER follows a small number of conventions that recur in every program:
   pass ``c_loc(dInfo)``; passing a host scalar faults on the GPU. For the
   batched routines ``info`` is an array of ``batch_count`` integers on the
   device.
-* **Pivots and scalar factors are device arrays.** Arguments such as ``ipiv``
-  (pivot indices) and ``tau`` (Householder scalars) are outputs written on the
-  device and are passed as device buffers.
+* **Pivots and scalar factors are device arrays.** Arguments such as ``ipiv``,
+  which holds the pivot indices or, for the QR routines, the Householder scalars
+  that LAPACK calls ``tau``, are outputs written on the device and are passed as
+  device buffers.
 * **Enumerators select variants.** ``rocblas_operation_none`` /
   ``rocblas_operation_transpose`` choose whether a routine works on ``A`` or
   ``A**T``, and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
@@ -54,11 +56,7 @@ rocSOLVER follows a small number of conventions that recur in every program:
   ``hipfort_rocsolver_enums`` despite their prefix.
 * **Every call returns a status code.** The ``hipfort_check`` module provides
   ``hipCheck`` for HIP calls, ``rocblasCheck`` for the rocBLAS handle calls, and
-  ``rocsolverCheck`` for rocSOLVER calls; all abort on failure. Most of the
-  programs below route the rocBLAS and rocSOLVER status codes through
-  ``hipCheck`` as well. That works because both status enumerations use ``0``
-  for success, but prefer the matching helper in new code so that a failure is
-  reported as a rocBLAS or rocSOLVER error rather than a HIP one.
+  ``rocsolverCheck`` for rocSOLVER calls; all abort on failure.
 
 Building and running
 ====================
@@ -104,8 +102,8 @@ Batched LU
 
 rocSOLVER factorizes many matrices with one call in two forms. The
 *array-of-pointers* form, ``getrf_batched``, takes ``A`` as a device array of
-per-matrix device pointers, and ``ipiv`` and ``info`` as device arrays indexed
-by batch.
+per-matrix device pointers, ``ipiv`` as one device buffer with a per-matrix
+stride (``strideP``), and ``info`` as a device array indexed by batch.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf_batched.f08
    :language: fortran
@@ -120,9 +118,10 @@ The 64-bit integer API
 
 The ``_64`` routines accept 64-bit problem dimensions, pivots, and ``info`` for
 problems that exceed the 32-bit range. ``getrf_64`` performs the same
-factorization as ``getrf`` with ``integer(c_int64_t)`` dimensions; the device
-buffers, including the int64 ``ipiv`` and ``info``, are passed as
-``type(c_ptr)`` because the ``_64`` routines have no native-array overloads.
+factorization as ``getrf`` with ``integer(c_int64_t)`` dimensions. The ``_64``
+routines have the same Fortran array overloads as the 32-bit ones; this example
+passes all its device buffers, including the int64 ``ipiv`` and ``info``, as
+``type(c_ptr)``, so it calls the C binding.
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgetrf_64.f08
    :language: fortran
@@ -147,7 +146,7 @@ QR factorization
 
 ``geqrf`` computes ``A = Q*R``, storing ``R`` in the upper triangle of ``A`` and
 the Householder vectors that represent ``Q`` below it, with their scalar factors
-in ``ipiv``/``tau``.
+in the argument rocSOLVER names ``ipiv`` (``tau`` in LAPACK).
 
 .. literalinclude:: ../../test/f2008/rocsolver/rocsolver_dgeqrf.f08
    :language: fortran

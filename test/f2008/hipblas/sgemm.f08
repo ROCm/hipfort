@@ -33,7 +33,7 @@ program hip_sgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  real(c_float), parameter ::  alpha = 1.1, beta = 0.9;
+  real(c_float), target :: alpha = 1.1, beta = 0.9;
 
   integer, parameter ::  m = 1024, n = 1024, k = 1024;
 

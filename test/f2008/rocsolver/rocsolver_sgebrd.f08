@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sgebrd example (single-precision bidiagonal reduction)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! gebrd reduces A to bidiagonal form B = Q**T * A * P. We check the diagonal D
 ! and superdiagonal E of B against reference values, and confirm the reduction
@@ -82,10 +82,10 @@ program sgebrd
   call hipCheck(hipMalloc(dTaup, mold=hTaup))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Reduce A to bidiagonal form
-  call hipCheck(rocsolver_sgebrd(handle, M, N, dA, lda, dD, dE, dTauq, dTaup))
+  call rocsolverCheck(rocsolver_sgebrd(handle, M, N, dA, lda, dD, dE, dTauq, dTaup))
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
@@ -120,7 +120,7 @@ program sgebrd
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dTauq))
   call hipCheck(hipFree(dTaup))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

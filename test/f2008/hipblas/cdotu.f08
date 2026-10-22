@@ -37,7 +37,7 @@ program hip_cdotu
   complex(kind=4), target :: res
   complex(kind=4) :: res_exact
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
   type(c_ptr) :: handle = c_null_ptr
 
   write(*,"(a)",advance="no") "-- Running test 'CDOTU' (Fortran 2008 interfaces) - "

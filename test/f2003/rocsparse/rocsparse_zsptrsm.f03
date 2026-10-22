@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsptrsm example (double-precision complex sparse triangular solve, multiple rhs, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! Uses the generic spsm API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (host dense product), solve
@@ -145,6 +145,9 @@ program zsptrsm
   end do
 
   ! Clean up
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matL))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matB))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matC))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

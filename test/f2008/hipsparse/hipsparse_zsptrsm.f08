@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsptrsm example (double-complex sparse triangular solve with multiple rhs)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSM API on a lower-triangular L with a dense rhs matrix.
 ! Self-verifying: pick a known Y, form X = L*Y (dense), solve L*C = X, and
@@ -37,7 +37,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program zsptrsm
+program hipsparse_zsptrsm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -62,7 +62,7 @@ program zsptrsm
   complex(c_double_complex) :: h_C(3,2)          ! recovered solution
   complex(c_double_complex) :: L_dense(3,3)
 
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha
   integer(kind(HIPSPARSE_FILL_MODE_LOWER)), target :: fill = HIPSPARSE_FILL_MODE_LOWER
   integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)), target :: diag = HIPSPARSE_DIAG_TYPE_NON_UNIT
 
@@ -76,6 +76,10 @@ program zsptrsm
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 100 * epsilon(error_max)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha)
+  alpha = (1.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zsptrsm' (Fortran 2008 interfaces) - "
 
@@ -149,4 +153,4 @@ program zsptrsm
 
   write(*,*) "PASSED!"
 
-end program zsptrsm
+end program hipsparse_zsptrsm

@@ -70,7 +70,8 @@ program graph_empty_node
   do i = 1, n
     hsrc(i) = i
   end do
-  hdst = 0
+  ! Sentinel that differs from the expected zeros, so a D2H node that never runs fails.
+  hdst = -1
 
   call hipCheck(hipSetDevice(0))
   call hipCheck(hipMalloc(dptr, nbytes))
@@ -112,7 +113,7 @@ program graph_empty_node
   call hipCheck(hipGraphAddDependencies(graph, nodeMemset, nodeD2H, 1_c_size_t))
 
   numnodes = size(nodes_out, kind=c_size_t)
-  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), c_loc(numnodes)))
+  call hipCheck(hipGraphGetNodes(graph, nodes_out(1), numnodes))
   if (numnodes /= 4) then
     write(*,*) "FAILED! graph node count =", numnodes, " (expected 4)"
     call exit(1)

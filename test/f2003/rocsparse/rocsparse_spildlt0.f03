@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse spildlt0 example (incomplete LDL^H factorization, level 0, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Exercises the generic staged SpILDLT0 preconditioner API: create the config
 ! descriptor, set inputs (algorithm, compute datatype, analysis policy), then run
@@ -55,7 +55,7 @@ program spildlt0
   integer(kind(rocsparse_analysis_policy_reuse)), target :: apol = rocsparse_analysis_policy_reuse
   integer(kind(rocsparse_datatype_f64_r)), target :: cdt = rocsparse_datatype_f64_r
   integer(kind(rocsparse_singularity_none)), target :: sing
-  integer(c_size_t), target :: bufSize
+  integer(c_size_t) :: bufSize
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_spildlt0' (Fortran 2003 interfaces) - "
 
   call hipCheck(hipMalloc(d_row_ptr, int(m+1,c_size_t) * 4))
@@ -79,20 +79,21 @@ program spildlt0
        c_loc(apol), int(c_sizeof(apol),c_size_t), c_null_ptr))
 
   call rocsparseCheck(rocsparse_spildlt0_buffer_size(handle, descr, matA, matA, &
-       rocsparse_spildlt0_stage_analysis, c_loc(bufSize), c_null_ptr))
+       rocsparse_spildlt0_stage_analysis, bufSize, c_null_ptr))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
   call rocsparseCheck(rocsparse_spildlt0(handle, descr, matA, matA, &
        rocsparse_spildlt0_stage_analysis, bufSize, dBuf, c_null_ptr))
   call hipCheck(hipFree(dBuf))
 
   call rocsparseCheck(rocsparse_spildlt0_buffer_size(handle, descr, matA, matA, &
-       rocsparse_spildlt0_stage_compute, c_loc(bufSize), c_null_ptr))
+       rocsparse_spildlt0_stage_compute, bufSize, c_null_ptr))
   call hipCheck(hipMalloc(dBuf, max(bufSize, 1_c_size_t)))
   call rocsparseCheck(rocsparse_spildlt0(handle, descr, matA, matA, &
        rocsparse_spildlt0_stage_compute, bufSize, dBuf, c_null_ptr))
   call hipCheck(hipDeviceSynchronize())
 
   call rocsparseCheck(rocsparse_set_pointer_mode(handle, rocsparse_pointer_mode_host))
+  sing = -1   ! sentinel: must be overwritten with rocsparse_singularity_none
   call rocsparseCheck(rocsparse_spildlt0_get_output(handle, descr, rocsparse_spildlt0_output_singularity, &
        c_loc(sing), int(c_sizeof(sing),c_size_t), c_null_ptr))
 

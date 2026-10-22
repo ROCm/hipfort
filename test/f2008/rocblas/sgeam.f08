@@ -33,15 +33,15 @@ program rocblas_sgeam_test
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = beta = 1,
-  ! so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B), both non-transposed, alpha = 2, beta = -1,
+  ! so C = 2*A - B; distinct alpha and beta catch an alpha/beta or A/B swap.
   integer, parameter :: m = 2, n = 2
-  real(c_float), parameter :: alpha = 1.0, beta = 1.0
+  real(c_float), target :: alpha = 2.0, beta = -1.0
 
   real(c_float) :: hA(m,n) = reshape([1.0, 2.0, 3.0, 4.0], [m,n])
   real(c_float) :: hB(m,n) = reshape([10.0, 20.0, 30.0, 40.0], [m,n])
   real(c_float) :: hC(m,n)
-  real(c_float) :: expected(m,n) = reshape([11.0, 22.0, 33.0, 44.0], [m,n])
+  real(c_float) :: expected(m,n) = reshape([-8.0, -16.0, -24.0, -32.0], [m,n])
 
   real(c_float), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -52,7 +52,7 @@ program rocblas_sgeam_test
   write(*,"(a)",advance="no") "-- Running test 'sgeam' (Fortran 2008 interfaces) - "
 
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0)) ! host pointer mode
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hC = 0.0
 

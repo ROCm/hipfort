@@ -25,11 +25,11 @@
 
 !!!!!!!!!!!!!!
 ! dtrtri example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Inverts an upper-triangular matrix in place and checks U * U^-1 == I.
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device
-! allocation and passed as c_loc(dInfo).
+! allocation and passed as a device pointer.
 !!!!!!!!!!!!!!
 !
 program dtrtri
@@ -54,6 +54,7 @@ program dtrtri
 
   integer(c_size_t) :: size_A = n*n
 
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dA, dInfo
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -72,6 +73,10 @@ program dtrtri
 
   call rocsolverCheck(rocsolver_dtrtri(handle, rocblas_fill_upper, rocblas_diagonal_non_unit, &
                                        n, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dtrtri info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hUinv(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))

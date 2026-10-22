@@ -80,7 +80,7 @@ program hip_sswap
   call hipCheck(hipFree(dx))
   call hipCheck(hipFree(dy))
   
-  deallocate(x,y)
+  deallocate(x,y,x_exact,y_exact)
   
   write(*,*) "PASSED!"
   

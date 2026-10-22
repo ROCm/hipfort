@@ -57,11 +57,11 @@ A hipRAND program always follows the same sequence:
 
 Keep the following conventions in mind:
 
-* The programs generate **directly into device memory**. The C-binding
-  overload takes ``type(c_ptr)``, and the programs call it explicitly with
-  ``c_loc(dx(1))`` so the same source compiles whether or not the Fortran
-  2008 array overloads are enabled. (hipRAND also provides host generators via
-  ``hiprandCreateGeneratorHost``, which are not covered here.)
+* The programs generate **directly into device memory**. The C binding takes
+  ``type(c_ptr)``; the programs pass ``c_loc(dx(1))`` to it explicitly, although
+  an array overload that accepts ``dx`` directly also exists. (hipRAND also
+  provides host generators via ``hiprandCreateGeneratorHost``, which are not covered
+  here.)
 * The count argument is the number of *elements*, typed
   ``integer(c_size_t)``, not a byte count.
 * A fixed seed makes a pseudo-random sequence reproducible, which is what lets
@@ -110,8 +110,9 @@ XORWOW
 ------
 
 ``HIPRAND_RNG_PSEUDO_XORWOW`` selects the xorshift-based XORWOW generator.
-This example generates uniform single-precision values and checks the sample
-mean.
+This example generates uniform single-precision values and checks that they
+lie in ``(0, 1]`` and that the sample mean and standard deviation are close to
+0.5 and 1/sqrt(12).
 
 .. literalinclude:: ../../test/f2008/hiprand/xorwow_uniform.f08
    :language: fortran
@@ -195,13 +196,15 @@ Poisson
 ``lambda``. Unlike the other distributions it produces **unsigned 32-bit
 integers** rather than floating-point values, so the host and device buffers
 are ``integer(c_int)`` while ``lambda`` remains ``real(c_double)``. A Poisson
-distribution has mean ``lambda``, which is what the program checks.
+distribution has both mean and variance ``lambda``, which is what the program
+checks.
 
 .. literalinclude:: ../../test/f2008/hiprand/philox_poisson.f08
    :language: fortran
    :start-at: program hiprand_philox_poisson_test
 
-This is the only Poisson program in the test suite.
+This is the only hipRAND Poisson program; its Fortran 2003 version is
+``test/f2003/hiprand/philox_poisson.f03``.
 
 Log-normal
 ----------
@@ -217,3 +220,15 @@ taking logs and checking the resulting mean and standard deviation.
 
 ``hiprandGenerateLogNormalDouble`` is the double-precision form; see
 ``test/f2008/hiprand/philox_log_normal_double.f08``.
+
+Querying the hipRAND version
+============================
+
+``hiprandGetVersion`` writes the library version to a plain ``integer(c_int)``
+argument, so the variable is passed directly rather than through ``c_loc``. On
+ROCm it reports the version of the underlying rocRAND library, encoded as
+``major*100000 + minor*100 + patch``.
+
+.. literalinclude:: ../../test/f2008/hiprand/hiprand_version.f08
+   :language: fortran
+   :start-at: program hiprand_version_test

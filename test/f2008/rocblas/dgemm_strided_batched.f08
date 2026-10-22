@@ -34,7 +34,7 @@ program rocblas_dgemm_strided_batched_test
 
   integer(kind(rocblas_operation_none)), parameter :: transa = rocblas_operation_none, &
                                                        transb = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 512, n = 512, k = 512, batch_count = 4
   integer :: lda, ldb, ldc, i, b
@@ -54,7 +54,7 @@ program rocblas_dgemm_strided_batched_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   lda = m; ldb = k; ldc = m
   stride_a = int(lda,c_int64_t)*k

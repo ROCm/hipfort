@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime event timing
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipEventCreate, hipEventRecord, hipEventSynchronize,
 ! hipEventElapsedTime and hipEventDestroy by timing a device memset on the

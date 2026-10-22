@@ -840,9 +840,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru_dft_
       integer(c_int),value :: rank
-      type(fftw_iodim) :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim) :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: sign
@@ -856,12 +856,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: sign
@@ -891,9 +892,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru_dft_r2c_
       integer(c_int),value :: rank
-      type(fftw_iodim) :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim) :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -906,12 +907,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_r2c_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -940,9 +942,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru_dft_c2r_
       integer(c_int),value :: rank
-      type(fftw_iodim) :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim) :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -955,12 +957,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru_dft_c2r_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -978,9 +981,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru64_dft_
       integer(c_int),value :: rank
-      type(fftw_iodim64) :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim64) :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: sign
@@ -995,12 +998,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru64_dft")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: sign
@@ -1019,9 +1023,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru64_dft_r2c_
       integer(c_int),value :: rank
-      type(fftw_iodim64) :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim64) :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -1035,12 +1039,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru64_dft_r2c")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_r2c_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -1058,9 +1063,9 @@ module hipfort_hipfftw
       implicit none
       type(c_ptr) :: fftw_plan_guru64_dft_c2r_
       integer(c_int),value :: rank
-      type(fftw_iodim64) :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(fftw_iodim64) :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags
@@ -1074,12 +1079,13 @@ module hipfort_hipfftw
         bind(c, name="fftwf_plan_guru64_dft_c2r")
       use iso_c_binding
       use hipfort_hipfftw_enums
+      use hipfort_hipfftw_types
       implicit none
       type(c_ptr) :: fftwf_plan_guru64_dft_c2r_
       integer(c_int),value :: rank
-      type(c_ptr),value :: dims
+      type(fftw_iodim64) :: dims(*)
       integer(c_int),value :: howmany_rank
-      type(c_ptr),value :: howmany_dims
+      type(fftw_iodim64) :: howmany_dims(*)
       type(c_ptr),value :: in
       type(c_ptr),value :: out
       integer(c_int),value :: flags

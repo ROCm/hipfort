@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse SpMM example (double complex, C = alpha*A*B + beta*C)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Generic API: build a CSR descriptor for the sparse A and dense-matrix
 ! descriptors for B and C, query the workspace with SpMM_bufferSize, then run
@@ -54,7 +54,7 @@ program hipsparse_zspmm
     (1.0d0,0.0d0), (2.0d0,1.0d0), (3.0d0,0.0d0), (4.0d0,1.0d0), (5.0d0,0.0d0), (6.0d0,1.0d0)/), (/3,2/))
   complex(c_double_complex) :: h_C(3,2)
   complex(c_double_complex) :: h_Adense(3,3), h_expected(3,2)
-  complex(c_double_complex), target :: alpha = (1.0d0,0.0d0), beta = (0.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
   integer(c_int), pointer :: d_csr_row_ptr(:), d_csr_col_ind(:)
   complex(c_double_complex), pointer :: d_csr_val(:), d_B(:,:), d_C(:,:)
@@ -63,6 +63,11 @@ program hipsparse_zspmm
 
   real(c_double) :: error
   real(c_double), parameter :: error_max = 1.0d-11
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0d0,0.0d0)
+  beta = (0.0d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zspmm' (Fortran 2008 interfaces) - "
 

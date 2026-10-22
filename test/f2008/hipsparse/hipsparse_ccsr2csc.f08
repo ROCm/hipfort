@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ccsr2csc example (single-complex CSR -> CSC conversion / sparse transpose)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Converting A from CSR to CSC is equivalent to producing the CSR of A**T
 ! (structural transpose; values are permuted, not conjugated). We check the
@@ -34,7 +34,7 @@
 ! NOTE: csr2csc args are c_ptr-only, so device buffers are passed via c_loc(...).
 !!!!!!!!!!!!!!/
 !
-program ccsr2csc
+program hipsparse_ccsr2csc
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -125,4 +125,4 @@ program ccsr2csc
 
   write(*,*) "PASSED!"
 
-end program ccsr2csc
+end program hipsparse_ccsr2csc

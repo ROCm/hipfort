@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime cooperative kernel launch (Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Launches the kernel of the existing vecadd test with
 ! hipLaunchCooperativeKernel on an occupancy-sized grid, checks the result, and
@@ -60,6 +60,8 @@ program cooperative_launch
   type(c_ptr), target :: args(4)
   integer(c_int), target :: nn, nblocks
   integer(c_int) :: coop, ncu, i
+  type(c_funptr) :: kfun
+  type(c_ptr)    :: kernel
   integer(kind(hipSuccess)) :: stat
   integer(c_size_t) :: nbytes
   type(dim3) :: grid, block
@@ -69,8 +71,8 @@ program cooperative_launch
   call hipCheck(hipSetDevice(0))
   call hipCheck(hipDeviceGetAttribute(coop, hipDeviceAttributeCooperativeLaunch, 0))
   if (coop == 0) then
-     write(*,*) "PASSED! (cooperative launch unsupported on this device)"
-     stop
+     write(*,*) "SKIPPED (cooperative launch unsupported on this device)"
+     stop 77
   end if
 
   nbytes = int(n, c_size_t) * 8
@@ -95,14 +97,20 @@ program cooperative_launch
 
   ! A cooperative grid must be co-resident, so it is capped by the occupancy of
   ! the kernel times the number of compute units.
-  call hipCheck(hipOccupancyMaxActiveBlocksPerMultiprocessor(c_loc(nblocks), &
+  call hipCheck(hipOccupancyMaxActiveBlocksPerMultiprocessor(nblocks, &
                                                              c_funloc(vector_add), &
                                                              blocksize, 0_c_size_t))
   call hipCheck(hipDeviceGetAttribute(ncu, hipDeviceAttributeMultiprocessorCount, 0))
 
   grid = dim3(nblocks * ncu, 1, 1)
   block = dim3(blocksize, 1, 1)
-  call hipCheck(hipLaunchCooperativeKernel(transfer(c_funloc(vector_add), c_null_ptr), &
+
+  ! hipLaunchCooperativeKernel takes the stub as a type(c_ptr). Convert through a
+  ! variable: transfer() of the constant c_funloc(vector_add) is itself a
+  ! .rodata constant holding an absolute address (ld: DT_TEXTREL in a PIE).
+  kfun = c_funloc(vector_add)
+  kernel = transfer(kfun, kernel)
+  call hipCheck(hipLaunchCooperativeKernel(kernel, &
                                            grid, block, args(1), 0, c_null_ptr))
   call hipCheck(hipDeviceSynchronize())
 
@@ -116,7 +124,7 @@ program cooperative_launch
 
   ! More blocks than can be resident at once cannot be launched cooperatively.
   grid = dim3(nblocks * ncu * 64, 1, 1)
-  stat = hipLaunchCooperativeKernel(transfer(c_funloc(vector_add), c_null_ptr), &
+  stat = hipLaunchCooperativeKernel(kernel, &
                                     grid, block, args(1), 0, c_null_ptr)
   if (stat /= hipErrorCooperativeLaunchTooLarge) then
      write(*,*) "FAILED! oversized cooperative launch returned", stat, &

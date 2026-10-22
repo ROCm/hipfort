@@ -48,8 +48,9 @@ program test_rocsolver_zhegvdx
         integer(i32)              :: lwork, liwork, lrwork, lwork_gpu
         complex(r64), allocatable :: work(:)
         real(r64), allocatable    :: rwork(:)
-        integer(r64), allocatable :: iwork(:), ifail(:)
-        integer(i32) :: info, m, cerr, i, j
+        integer(i32), allocatable :: iwork(:)
+        integer(i32) :: info, cerr, i, j
+        integer(i32), target :: m
         real(r64), parameter      :: rtol = 1.0e-6_r64
 
         complex(r64), allocatable :: Z(:,:), Zref(:,:)
@@ -109,7 +110,7 @@ program test_rocsolver_zhegvdx
         write(*,*) "Eigenvalues :",  W(:)
         write(*,*) "Eigenvector 0 ", A_lapack(:,1)
         write(*,*) "Eigenvector 1 ", A_lapack(:,2)
-        write(*,*) "Eigenvector 3 ", A_lapack(:,3)
+        write(*,*) "Eigenvector 2 ", A_lapack(:,3)
 
         call move_alloc(W, Wref)
         call move_alloc(A_lapack, Zref)
@@ -128,15 +129,15 @@ program test_rocsolver_zhegvdx
         dB     = get_device_pointer(B_rocsolver, device_id)
         dW     = get_device_pointer(W, device_id)
         dZ     = get_device_pointer(Z, device_id)
-        ! rocsolver_zhegvdx takes info as a device pointer, not a Fortran integer
+        ! rocsolver_zhegvdx takes info and nev as device pointers, not Fortran integers
         dInfo  = get_device_pointer(info, device_id)
         cerr = rocsolver_zhegvdx(handle, rocblas_eform_ax, rocblas_evect_original, rocblas_erange_index, rocblas_fill_upper, &
-                                 n, dA, n, dB, n, vl, vu, il, iu, m, dW, dZ, n, dInfo)
+                                 n, dA, n, dB, n, vl, vu, il, iu, c_loc(m), dW, dZ, n, dInfo)
         if (cerr /= rocblas_status_success) error stop "rocsolver_zhegvdx failed"
 
         ! NOTE: it will be better to get the stream of the rocblas handler and sync that instead of the whole device
         cerr = hipDeviceSynchronize()
-        if (cerr /= rocblas_status_success) error stop "hipDeviceSynchronize failed"
+        if (cerr /= hipSuccess) error stop "hipDeviceSynchronize failed"
         !$omp end target data
         !$omp end target data
 
@@ -156,7 +157,7 @@ program test_rocsolver_zhegvdx
 
         !$omp target exit data map(delete: A_rocsolver, B_rocsolver)
 
-        deallocate(A_lapack, B_lapack)
+        deallocate(B_lapack)
 
         write(*,*) "###CHECKS####"
         if (expected_m /= m) then
@@ -176,6 +177,8 @@ program test_rocsolver_zhegvdx
         else
             write(*,*) "Correct: eigenvectors"
         end if
+
+        deallocate(Zref)
 
 contains
 

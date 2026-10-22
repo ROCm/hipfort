@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! ssyevj example (single-precision symmetric Jacobi eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: with evect=original, A is overwritten with the eigenvectors
 ! (as columns) and W holds the eigenvalues. We confirm A0*v_k = lambda_k*v_k.
@@ -65,6 +65,7 @@ program ssyevj
   type(c_ptr) :: dW
   type(c_ptr) :: dResidual
   type(c_ptr) :: dNsweeps
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -84,14 +85,18 @@ program ssyevj
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 4, hipMemcpyHostToDevice))
 
   ! Compute eigenvalues and eigenvectors (A overwritten with eigenvectors)
-  call hipCheck(rocsolver_ssyevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
+  call rocsolverCheck(rocsolver_ssyevj(handle, rocblas_esort_ascending, rocblas_evect_original, &
        rocblas_fill_upper, N, dA, lda, abstol, dResidual, max_sweeps, dNsweeps, dW, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! ssyevj info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 4, hipMemcpyDeviceToHost))
@@ -110,13 +115,21 @@ program ssyevj
     end do
   end do
 
+  ! Each eigenvector must be normalised (||v|| = 1), which v = 0 would fail
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! Eigenvector not normalised! Error = ", error, " eigenvector ", k; call exit(1)
+    end if
+  end do
+
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dW))
   call hipCheck(hipFree(dResidual))
   call hipCheck(hipFree(dNsweeps))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

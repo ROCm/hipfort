@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverDgesvdj example (double-precision Jacobi SVD)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: compute the singular value decomposition A = U*S*V**T with the
 ! Jacobi method and confirm the factors reconstruct the original matrix. Using
@@ -65,6 +65,7 @@ program dgesvdj
   real(c_double), pointer :: dA(:,:), dU(:,:), dV(:,:)
   real(c_double), pointer :: dS(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork
 
@@ -93,7 +94,14 @@ program dgesvdj
   ! Compute the singular value decomposition
   call hipsolverCheck(hipsolverDgesvdj(handle, HIPSOLVER_EIG_MODE_VECTOR, econ, &
        M, N, c_loc(dA(1,1)), lda, c_loc(dS(1)), c_loc(dU(1,1)), ldu, c_loc(dV(1,1)), ldv, &
-       dWork, lwork, dInfo(1), params))
+       dWork, lwork, c_loc(dInfo(1)), params))
+
+  ! Check info
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy results back to host
   call hipCheck(hipMemcpy(hS, dS, hipMemcpyDeviceToHost))

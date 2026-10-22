@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zpotrs example (double-precision complex Cholesky solve)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational.html
 !
 ! Self-verifying: pick a known solution x, form b = A*x, factorize A with
 ! potrf, solve A*X = b with potrs, and confirm X recovers x.
@@ -59,6 +59,7 @@ program zpotrs
   complex(c_double_complex), pointer :: dA(:,:)
   complex(c_double_complex), pointer :: dB(:,:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -76,11 +77,15 @@ program zpotrs
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Factorize (Cholesky), then solve A*X = B in place (B overwritten with solution)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
-  call hipCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
+  call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
+  call rocsolverCheck(rocsolver_zpotrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dB, ldb))
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
@@ -98,7 +103,7 @@ program zpotrs
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolver zgetrf example (double-precision complex LU factorization, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host
 ! data is moved with hipMemcpy + c_loc.
@@ -89,7 +89,7 @@ program hipsolver_zgetrf
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 16, 1_c_size_t)))
 
   ! LU factorization
-  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, dInfo_p(1)))
+  call hipsolverCheck(hipsolverZgetrf(handle, M, N, dA, lda, dWork, lwork, dIpiv, c_loc(dInfo_p(1))))
 
   ! Copy back
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 16, hipMemcpyDeviceToHost))

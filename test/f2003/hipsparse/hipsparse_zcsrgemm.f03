@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! zcsrgemm example (double-complex sparse-matrix sparse-matrix multiply,
 ! C = A*B, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Two-phase flow with the classic hipSPARSE API: XcsrgemmNnz fills row_ptr_C and
 ! the total nnz, then Xcsrgemm computes the values. Here B = A, so C = A*A;
@@ -37,7 +37,7 @@
 ! pointer mode). csrgemm's mat-descr/array args are c_ptr-only.
 !!!!!!!!!!!!!!/
 !
-program zcsrgemm
+program hipsparse_zcsrgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -65,7 +65,7 @@ program zcsrgemm
   integer(c_int), target :: h_row_ptr_C(4)
   integer(c_int), target :: h_col_ind_C(5)
   complex(c_double_complex), target :: h_val_C(5)
-  integer(c_int) :: nnz_C
+  integer(c_int), target :: nnz_C
 
   integer(c_size_t) :: size_rp = 4, size_nz = 5
 
@@ -111,7 +111,7 @@ program zcsrgemm
   call hipsparseCheck(hipsparseXcsrgemmNnz(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
                           M, N, K, descr_A, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
                           descr_B, nnz_A, d_csr_row_ptr, d_csr_col_ind, &
-                          descr_C, d_row_ptr_C, nnz_C))
+                          descr_C, d_row_ptr_C, c_loc(nnz_C)))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, int(nnz_C,c_size_t) * 4))
@@ -167,4 +167,4 @@ program zcsrgemm
 
   write(*,*) "PASSED!"
 
-end program zcsrgemm
+end program hipsparse_zcsrgemm

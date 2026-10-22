@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! hipsolverSgeqrf example (single-precision QR factorization)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: geqrf overwrites the upper triangle of A with R. Because
 ! A = Q*R with Q orthogonal, A**T * A = R**T * R, so we recover R from the
@@ -58,6 +58,7 @@ program sgeqrf
   real(c_float), pointer :: dA(:,:)
   real(c_float), pointer :: dTau(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
   type(c_ptr) :: dWork
   integer(c_int) :: lwork
 
@@ -80,7 +81,12 @@ program sgeqrf
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
   ! Compute the QR factorization
-  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, dTau(1), dWork, lwork, dInfo(1)))
+  call hipsolverCheck(hipsolverSgeqrf(handle, M, N, dA, lda, dTau, dWork, lwork, c_loc(dInfo(1))))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if(hInfo(1) /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo(1), " (expected 0)"
+    call exit(1)
+  end if
 
   ! Copy the factorized matrix back to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))

@@ -37,7 +37,7 @@ program rocblas_dger_test
   ! is simply A(i,j) = x(i)*y(j); the data is real-valued so the 'u' and 'c'
   ! (conjugated) forms agree.
   integer, parameter :: m = 3, n = 2
-  real(c_double), parameter :: alpha = 1.0
+  real(c_double), target :: alpha = 1.0
 
   real(c_double) :: hx(m) = [1.0, 2.0, 3.0]
   real(c_double) :: hy(n) = [10.0, 20.0]
@@ -54,7 +54,7 @@ program rocblas_dger_test
   write(*,"(a)",advance="no") "-- Running test 'dger' (Fortran 2008 interfaces) - "
 
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0)) ! host pointer mode
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hA = 0.0
   do j = 1, n

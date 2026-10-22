@@ -32,26 +32,41 @@ program hip_zsymm
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced).
-  ! A = [1 2; 2 3] and B = I, so C = A.
-  integer, parameter :: ld = 2
-  complex(c_double_complex), parameter :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  ! C := alpha*A*B + beta*C with A symmetric (upper triangle referenced) on the left.
+  ! B is m x n with m /= n and A(2,1) holds junk, so swapping A and B, the side
+  ! or the triangle changes the result.
+  integer, parameter :: m = 2, n = 3
+  complex(c_double_complex), allocatable, target :: alpha, beta
 
-  complex(c_double_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
-  complex(c_double_complex) :: hB(ld,ld) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [ld,ld])
-  complex(c_double_complex) :: hC(ld,ld)
-  complex(c_double_complex) :: expected(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [ld,ld])
+  complex(c_double_complex) :: hA(m,m) = reshape([(1.0, 1.0), (7.0, -7.0), (2.0, -1.0), (3.0, 0.5)], [m,m])
+  complex(c_double_complex) :: hB(m,n) = reshape([(1.0, 0.0), (4.0, 1.0), (2.0, -2.0), &
+       (5.0, 0.0), (3.0, 1.0), (-6.0, 0.0)], [m,n])
+  complex(c_double_complex) :: hC(m,n)
+  complex(c_double_complex) :: expected(m,n), Aref(m,m)
   complex(c_double_complex), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
   real(c_double) :: error
   real(c_double), parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.0, 0.0)
+  beta = (0.0, 0.0)
 
   write(*,"(a)",advance="no") "-- Running test 'zsymm' (Fortran 2008 interfaces) - "
 
   call hipblasCheck(hipblasCreate(handle))
 
   hC = (0.0, 0.0)
+
+  ! Host reference built from the upper triangle only, A(2,1) is junk
+  do j = 1, m
+    do i = 1, m
+      Aref(i,j) = hA(min(i,j), max(i,j))
+    end do
+  end do
+  expected = alpha*matmul(Aref, hB)
 
   call hipCheck(hipMalloc(dA, shape(hA)))
   call hipCheck(hipMemcpy(dA, hA, hipMemcpyHostToDevice))
@@ -60,13 +75,13 @@ program hip_zsymm
   call hipCheck(hipMalloc(dC, shape(hC)))
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasZsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, ld, ld, &
-       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dA,1)))
+  call hipblasCheck(hipblasZsymm(handle, HIPBLAS_SIDE_LEFT, HIPBLAS_FILL_MODE_UPPER, m, n, &
+       alpha, dA, size(dA,1), dB, size(dB,1), beta, dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 
-  do j = 1, ld
-    do i = 1, ld
+  do j = 1, n
+    do i = 1, m
       error = abs(expected(i,j) - hC(i,j))
       if (error > error_max) then
         write(*,*) "FAILED! error = ", error, " at ", i, j
@@ -79,6 +94,8 @@ program hip_zsymm
   call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dC))
   call hipblasCheck(hipblasDestroy(handle))
+
+  deallocate(alpha, beta)
 
   write(*,*) "PASSED!"
 

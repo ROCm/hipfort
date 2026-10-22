@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! dposv example (rocSOLVER)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Solves the symmetric positive-definite system A*X = B (X overwrites B).
 ! rocSOLVER writes `info` to DEVICE memory, so it is backed by a device
@@ -55,6 +55,7 @@ program dposv
   integer(c_size_t) :: size_A = n*n
   integer(c_size_t) :: size_B = n*nrhs
 
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dA, dB, dInfo
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -75,6 +76,10 @@ program dposv
 
   ! Device buffers passed as type(c_ptr) (resolves to the raw bind(c) interface).
   call rocsolverCheck(rocsolver_dposv(handle, rocblas_fill_upper, n, nrhs, dA, lda, dB, ldb, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dposv info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hB(1,1)), dB, size_B * 8, hipMemcpyDeviceToHost))

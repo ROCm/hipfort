@@ -35,7 +35,8 @@ program rocrand_xorwow_normal_double_test
 
     integer(c_size_t), parameter :: N = 65536
     integer(c_int64_t), parameter :: seed = 12345_c_int64_t
-    real(c_double), parameter :: mean = 0.0_c_double, stddev = 1.0_c_double, delta = 0.2_c_double
+    ! Not the standard normal, so a binding that drops mean or stddev cannot pass.
+    real(c_double), parameter :: mean = 2.0_c_double, stddev = 0.5_c_double, delta = 0.05_c_double
 
     type(c_ptr) :: gen = c_null_ptr
 
@@ -51,7 +52,7 @@ program rocrand_xorwow_normal_double_test
 
     ! Allocate host- and device-side memory
     allocate(hx(N))
-    call hipCheck(hipMalloc(dx, source=hx))
+    call hipCheck(hipMalloc(dx, mold=hx))
 
     ! Generate normally distributed doubles on the device.
     ! output_data is type(c_ptr); take the address of the device pointer target.

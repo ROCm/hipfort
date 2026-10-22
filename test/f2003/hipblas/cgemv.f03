@@ -31,14 +31,14 @@ program hipblas_cgemv_test
 
   implicit none
 
-  complex(kind=4), parameter :: alpha = (1.1, 0.0), beta = (0.9, 0.0)
+  complex(kind=4), target :: alpha = (1.1, 0.0), beta = (0.9, 0.0)
   integer, parameter :: m = 512, n = 512
   integer, parameter :: bytes_per_element = 8
   integer(c_size_t) :: NAbytes, Nxbytes, Nybytes
   complex(kind=4), allocatable, target, dimension(:) :: hA, hx, hy
   complex(kind=4) :: y_exact
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
   type(c_ptr) :: dA = c_null_ptr, dx = c_null_ptr, dy = c_null_ptr
   type(c_ptr) :: handle = c_null_ptr
   integer :: i
@@ -61,7 +61,7 @@ program hipblas_cgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCgemv(handle, HIPBLAS_OP_N, m, n, alpha, dA, m, dx, 1, beta, dy, 1))
+  call hipblasCheck(hipblasCgemv(handle, HIPBLAS_OP_N, m, n, c_loc(alpha), dA, m, dx, 1, c_loc(beta), dy, 1))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(c_loc(hy(1)), dy, Nybytes, hipMemcpyDeviceToHost))
 

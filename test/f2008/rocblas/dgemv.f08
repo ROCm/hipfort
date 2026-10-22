@@ -33,7 +33,7 @@ program rocblas_dgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  double precision, parameter :: alpha = 1.1d0, beta = 0.9d0
+  double precision, target :: alpha = 1.1d0, beta = 0.9d0
 
   integer, parameter :: m = 1024, n = 1024
 
@@ -53,7 +53,7 @@ program rocblas_dgemv_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   allocate(hA(m,n))
   allocate(hx(n))

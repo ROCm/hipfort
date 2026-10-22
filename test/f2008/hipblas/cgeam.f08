@@ -32,15 +32,15 @@ program hip_cgeam
 
   implicit none
 
-  ! C := alpha*op(A) + beta*op(B) with alpha = beta = 1 and no
-  ! transposition, so C is the elementwise sum A + B.
+  ! C := alpha*op(A) + beta*op(B) with alpha = 2, beta = -1 and no
+  ! transposition, so C = 2*A - B (a swap of alpha and beta, or of A and B, shows).
   integer, parameter :: ld = 2
-  complex(c_float_complex), parameter :: alpha = (1.0, 0.0), beta = (1.0, 0.0)
+  complex(c_float_complex), target :: alpha = (2.0, 0.0), beta = (-1.0, 0.0)
 
   complex(c_float_complex) :: hA(ld,ld) = reshape([(1.0, 0.0), (2.0, 0.0), (3.0, 0.0), (4.0, 0.0)], [ld,ld])
   complex(c_float_complex) :: hB(ld,ld) = reshape([(10.0, 0.0), (20.0, 0.0), (30.0, 0.0), (40.0, 0.0)], [ld,ld])
   complex(c_float_complex) :: hC(ld,ld)
-  complex(c_float_complex) :: expected(ld,ld) = reshape([(11.0, 0.0), (22.0, 0.0), (33.0, 0.0), (44.0, 0.0)], [ld,ld])
+  complex(c_float_complex) :: expected(ld,ld) = reshape([(-8.0, 0.0), (-16.0, 0.0), (-24.0, 0.0), (-32.0, 0.0)], [ld,ld])
   complex(c_float_complex), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
   integer :: i, j
@@ -61,7 +61,7 @@ program hip_cgeam
   call hipCheck(hipMemcpy(dC, hC, hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasCgeam(handle, HIPBLAS_OP_N, HIPBLAS_OP_N, ld, ld, &
-       alpha, dA, size(dA,1), beta, dB, size(dB,1), dC, size(dA,1)))
+       alpha, dA, size(dA,1), beta, dB, size(dB,1), dC, size(dC,1)))
   call hipCheck(hipDeviceSynchronize())
   call hipCheck(hipMemcpy(hC, dC, hipMemcpyDeviceToHost))
 

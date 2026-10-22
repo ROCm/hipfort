@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! sgesvd example (singular value decomposition, Fortran 2008 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Computes the singular values of A (jobu = jobv = 'N') and checks the
 ! convention-independent invariant sum(sigma_i^2) == ||A||_F^2.
@@ -46,6 +46,7 @@ program hipsolver_sgesvd
   integer(c_size_t) :: szA = M*N, szS = mn, szU = M*M, szV = N*N, szR = mn
   real(c_float) :: frob, ssum, error
   real(c_float), parameter :: rtol = 1.0e-5
+  integer(c_int), target :: hInfo
   integer :: i
   write(*,"(a)",advance="no") "-- Running test 'hipsolver_sgesvd' (Fortran 2008 interfaces) - "
   call hipsolverCheck(hipsolverCreate(handle))
@@ -60,6 +61,11 @@ program hipsolver_sgesvd
   call hipCheck(hipMalloc(dWork, max(int(lwork,c_size_t) * 4, 1_c_size_t)))
   call hipsolverCheck(hipsolverSgesvd(handle, 'N', 'N', M, N, dA, lda, dS, &
                                       dU, ldu, dV, ldv, dWork, lwork, dRwork, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
   call hipCheck(hipMemcpy(c_loc(hS(1)), dS, szS * 4, hipMemcpyDeviceToHost))
   frob = 1.0 + 9.0 + 4.0 + 16.0
   ssum = 0.0

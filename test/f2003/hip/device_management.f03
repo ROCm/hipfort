@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! HIP runtime device-management queries
-! see: https:!rocm.docs.amd.com/projects/HIP/en/latest/
+! see: https://rocm.docs.amd.com/projects/HIP/en/latest/
 !
 ! Exercises hipGetDeviceCount, hipSetDevice/hipGetDevice, hipDeviceGetAttribute,
 ! hipDeviceGetLimit, hipDeviceTotalMem and hipMemGetInfo, checking basic

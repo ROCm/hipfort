@@ -1,5 +1,5 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-! Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 !
 ! SPDX-License-Identifier: MIT
 !
@@ -27,56 +27,76 @@ program test_hipfft
   use iso_c_binding
   use hipfort_hipfft
   use hipfort_hipfft_enums
+  use hipfort_hipfft_types
   implicit none
   logical :: never
   type(c_ptr) :: v0
   integer(c_int) :: v1
-  integer(kind(HIPFFT_R2C)) :: v2
-  integer(kind(HIPFFT_SUCCESS)) :: v3
-  real(c_double) :: v4
-  integer(c_size_t) :: v5
-  integer(c_int64_t) :: v6
-  integer(kind(HIPFFT_MAJOR_VERSION)) :: v7
+  real(c_double) :: v2
+  integer(c_int64_t) :: v3
+  integer(c_size_t) :: v4
+  type(hipLibXtDesc) :: v5
 
   ! Always .false., but not foldable by the compiler, so every guarded
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
-    if (never) v3 = hipfftPlan1d_(v0, v1, v2, v1)
-    if (never) v3 = hipfftPlan2d_(v0, v1, v1, v2)
-    if (never) v3 = hipfftPlan3d_(v0, v1, v1, v1, v2)
-    if (never) v3 = hipfftPlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1)
-    if (never) v3 = hipfftCreate_(v0)
+    if (never) v1 = hipfftPlan1d_(v0, v1, v1, v1)
+    if (never) v1 = hipfftPlan2d_(v0, v1, v1, v1)
+    if (never) v1 = hipfftPlan3d_(v0, v1, v1, v1, v1)
+    if (never) v1 = hipfftPlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v1, v1)
+    if (never) v1 = hipfftCreate_(v0)
 #ifndef USE_CUDA_NAMES
-    if (never) v3 = hipfftExtPlanScaleFactor_(v0, v4)
+    if (never) v1 = hipfftExtPlanScaleFactor_(v0, v2)
 #endif
-    if (never) v3 = hipfftMakePlan1d_(v0, v1, v2, v1, v5)
-    if (never) v3 = hipfftMakePlan2d_(v0, v1, v1, v2, v5)
-    if (never) v3 = hipfftMakePlan3d_(v0, v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftMakePlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftMakePlanMany64_(v0, v1, v0, v0, v6, v6, v0, v6, v6, v2, v6, v5)
-    if (never) v3 = hipfftEstimate1d_(v1, v2, v1, v5)
-    if (never) v3 = hipfftEstimate2d_(v1, v1, v2, v5)
-    if (never) v3 = hipfftEstimate3d_(v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftEstimateMany_(v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSize1d_(v0, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSize2d_(v0, v1, v1, v2, v5)
-    if (never) v3 = hipfftGetSize3d_(v0, v1, v1, v1, v2, v5)
-    if (never) v3 = hipfftGetSizeMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v2, v1, v5)
-    if (never) v3 = hipfftGetSizeMany64_(v0, v1, v0, v0, v6, v6, v0, v6, v6, v2, v6, v5)
-    if (never) v3 = hipfftGetSize_(v0, v5)
-    if (never) v3 = hipfftSetAutoAllocation_(v0, v1)
-    if (never) v3 = hipfftSetWorkArea_(v0, v0)
-    if (never) v3 = hipfftExecC2C_(v0, v0, v0, v1)
-    if (never) v3 = hipfftExecR2C_(v0, v0, v0)
-    if (never) v3 = hipfftExecC2R_(v0, v0, v0)
-    if (never) v3 = hipfftExecZ2Z_(v0, v0, v0, v1)
-    if (never) v3 = hipfftExecD2Z_(v0, v0, v0)
-    if (never) v3 = hipfftExecZ2D_(v0, v0, v0)
-    if (never) v3 = hipfftSetStream_(v0, v0)
-    if (never) v3 = hipfftDestroy_(v0)
-    if (never) v3 = hipfftGetVersion_(v1)
-    if (never) v3 = hipfftGetProperty_(v7, v0)
+    if (never) v1 = hipfftMakePlan1d_(v0, v1, v1, v1, v0)
+    if (never) v1 = hipfftMakePlan2d_(v0, v1, v1, v1, v0)
+    if (never) v1 = hipfftMakePlan3d_(v0, v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftMakePlanMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftMakePlanMany64_(v0, v1, v0, v0, v3, v3, v0, v3, v3, v1, v3, v0)
+    if (never) v1 = hipfftEstimate1d_(v1, v1, v1, v0)
+    if (never) v1 = hipfftEstimate2d_(v1, v1, v1, v0)
+    if (never) v1 = hipfftEstimate3d_(v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftEstimateMany_(v1, v0, v0, v1, v1, v0, v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftGetSize1d_(v0, v1, v1, v1, v0)
+    if (never) v1 = hipfftGetSize2d_(v0, v1, v1, v1, v0)
+    if (never) v1 = hipfftGetSize3d_(v0, v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftGetSizeMany_(v0, v1, v0, v0, v1, v1, v0, v1, v1, v1, v1, v0)
+    if (never) v1 = hipfftGetSizeMany64_(v0, v1, v0, v0, v3, v3, v0, v3, v3, v1, v3, v0)
+    if (never) v1 = hipfftGetSize_(v0, v0)
+    if (never) v1 = hipfftSetAutoAllocation_(v0, v1)
+    if (never) v1 = hipfftSetWorkArea_(v0, v0)
+    if (never) v1 = hipfftXtSetWorkArea_(v0, v0)
+    if (never) v1 = hipfftExecC2C_(v0, v0, v0, v1)
+    if (never) v1 = hipfftExecR2C_(v0, v0, v0)
+    if (never) v1 = hipfftExecC2R_(v0, v0, v0)
+    if (never) v1 = hipfftExecZ2Z_(v0, v0, v0, v1)
+    if (never) v1 = hipfftExecD2Z_(v0, v0, v0)
+    if (never) v1 = hipfftExecZ2D_(v0, v0, v0)
+    if (never) v1 = hipfftSetStream_(v0, v0)
+    if (never) v1 = hipfftDestroy_(v0)
+    if (never) v1 = hipfftGetVersion_(v0)
+    if (never) v1 = hipfftGetProperty_(v1, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v1 = hipfftXtSetCallback_(v0, v0, v1, v0)
+    if (never) v1 = hipfftXtClearCallback_(v0, v1)
+    if (never) v1 = hipfftXtSetCallbackSharedSize_(v0, v1, v4)
+    if (never) v1 = hipfftXtSetJITCallback_(v0, v0, v0, v4, v1, v0)
+    if (never) v1 = hipfftXtMakePlanMany_(v0, v1, v0, v0, v3, v3, v1, v0, v3, v3, v1, v3, v0, v1)
+    if (never) v1 = hipfftXtGetSizeMany_(v0, v1, v0, v0, v3, v3, v1, v0, v3, v3, v1, v3, v0, v1)
+    if (never) v1 = hipfftXtExec_(v0, v0, v0, v1)
+    if (never) v1 = hipfftXtSetGPUs_(v0, v1, v0)
+    if (never) v1 = hipfftXtMalloc_(v0, v0, v1)
+    if (never) v1 = hipfftXtMemcpy_(v0, v0, v0, v1)
+    if (never) v1 = hipfftXtFree_(v5)
+    if (never) v1 = hipfftXtExecDescriptorC2C_(v0, v5, v5, v1)
+    if (never) v1 = hipfftXtExecDescriptorR2C_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorC2R_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorZ2Z_(v0, v5, v5, v1)
+    if (never) v1 = hipfftXtExecDescriptorD2Z_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptorZ2D_(v0, v5, v5)
+    if (never) v1 = hipfftXtExecDescriptor_(v0, v5, v5, v1)
+#endif
 
   write(*,"(a)") "-- test_hipfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfft

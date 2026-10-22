@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zpotrf example (double-precision complex Cholesky factorization)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational_ga2f55f604a6003d03b5cd4a0adcfb9e07.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational_ga2f55f604a6003d03b5cd4a0adcfb9e07.html
 !
 ! NOTE: rocSOLVER writes the `info` output to DEVICE memory. The hipfort
 ! binding types the info argument as a device pointer (type(c_ptr)), so it must be backed
@@ -66,6 +66,7 @@ program zpotrf
 
   complex(c_double_complex), pointer :: dA(:,:)  ! GPU buffer for A
   integer(c_int), pointer :: dInfo(:)   ! GPU buffer for info (rocSOLVER writes to device)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -79,10 +80,14 @@ program zpotrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the Cholesky factorization on the device (upper triangle)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA, dA, hipMemcpyDeviceToHost))
@@ -101,7 +106,7 @@ program zpotrf
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

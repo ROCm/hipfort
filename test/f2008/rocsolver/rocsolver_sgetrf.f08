@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sgetrf example (single-precision LU factorization)
-! see: https:!www.netlib.org/lapack/explore-html/dd/d9a/group__double_g_ecomputational_ga0019443faea08275ca60a734d0593e60.html
+! see: https://www.netlib.org/lapack/explore-html/dd/d9a/group__double_g_ecomputational_ga0019443faea08275ca60a734d0593e60.html
 !
 ! NOTE: rocSOLVER writes the `info` output to DEVICE memory. The hipfort
 ! binding types the info argument as a device pointer (type(c_ptr)), so it must be backed
@@ -60,6 +60,7 @@ program sgetrf
   real(c_float), pointer :: dA(:,:)     ! GPU buffer for A
   integer(c_int), pointer :: dIpiv(:)   ! GPU buffer for pivots
   integer(c_int), pointer :: dInfo(:)   ! GPU buffer for info (rocSOLVER writes to device)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle ! rocblas_handle
 
@@ -75,10 +76,14 @@ program sgetrf
   call hipCheck(hipMalloc(dInfo, 1))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Compute the LU factorization on the device
-  call hipCheck(rocsolver_sgetrf(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call rocsolverCheck(rocsolver_sgetrf(handle, M, N, dA, lda, dIpiv, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(hA,    dA,    hipMemcpyDeviceToHost))
@@ -107,7 +112,7 @@ program sgetrf
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

@@ -25,11 +25,11 @@
 
 !!!!!!!!!!!!!!
 ! ssyevdx example (partial symmetric eigensolver, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! syevdx computes a selected subset of eigenvalues/eigenvectors (range=all -> full
-! spectrum). f2003 style: device buffers are type(c_ptr); nev is a device-backed
-! integer. Self-verifying: A0*v_k = lambda_k*v_k.
+! spectrum). f2003 style: device buffers are type(c_ptr); nev is a host integer.
+! Self-verifying: A0*v_k = lambda_k*v_k and ||v_k|| = 1.
 !!!!!!!!!!!!!!
 !
 program hipsolver_ssyevdx
@@ -46,14 +46,15 @@ program hipsolver_ssyevdx
   real(c_float), target :: hA(3,3) = reshape((/2, -1, 0, -1, 2, -1, 0, -1, 2/), (/3, 3/))
   real(c_float) :: hA0(3,3)
   real(c_float), target :: hW(3)
-  integer(c_int), target :: hNev
+  integer(c_int) :: hNev
   real(c_float) :: lhs(3), rhs(3)
 
   integer(c_size_t) :: sizeA = 9, sizeW = 3
   integer(c_int) :: nevBuf
 
   type(c_ptr) :: dA, dW
-  integer(c_int), pointer :: dNev(:), dInfo(:)
+  type(c_ptr) :: dInfo
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dWork, handle = c_null_ptr
   integer(c_int) :: lwork
 
@@ -66,8 +67,7 @@ program hipsolver_ssyevdx
 
   call hipCheck(hipMalloc(dA, sizeA * 4))
   call hipCheck(hipMalloc(dW, sizeW * 4))
-  call hipCheck(hipMalloc(dNev, 1))
-  call hipCheck(hipMalloc(dInfo, 1))
+  call hipCheck(hipMalloc(dInfo, 4_c_size_t))
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), sizeA * 4, hipMemcpyHostToDevice))
 
   call hipsolverCheck(hipsolverCreate(handle))
@@ -79,11 +79,15 @@ program hipsolver_ssyevdx
 
   call hipsolverCheck(hipsolverSsyevdx(handle, HIPSOLVER_EIG_MODE_VECTOR, &
        HIPSOLVER_EIG_RANGE_ALL, HIPSOLVER_FILL_MODE_UPPER, N, dA, lda, &
-       0.0, 0.0, 1, N, c_loc(dNev(1)), dW, dWork, lwork, c_loc(dInfo(1))))
+       0.0, 0.0, 1, N, hNev, dW, dWork, lwork, dInfo))
 
-  call hipCheck(hipMemcpy(c_loc(hNev), c_loc(dNev(1)), 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, sizeA * 4, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hW(1)), dW, sizeW * 4, hipMemcpyDeviceToHost))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+     write(*,*) "FAILED! info = ", hInfo, " (expected 0)"
+     call exit(1)
+  end if
 
   if (hNev /= N) then
     write(*,*) "FAILED! nev = ", hNev, " expected ", N; call exit(1)
@@ -100,8 +104,16 @@ program hipsolver_ssyevdx
     end do
   end do
 
+  ! Each returned eigenvector must have unit 2-norm
+  do k = 1,N
+    error = abs(sqrt(sum(abs(hA(:,k))**2)) - 1)
+    if(error .gt. error_max) then
+        write(*,*) "FAILED! eigenvector ", k, " has norm ", sqrt(sum(abs(hA(:,k))**2)), " expected 1"; call exit(1)
+    end if
+  end do
+
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dW))
-  call hipCheck(hipFree(dNev)); call hipCheck(hipFree(dInfo)); call hipCheck(hipFree(dWork))
+  call hipCheck(hipFree(dInfo)); call hipCheck(hipFree(dWork))
   call hipsolverCheck(hipsolverDestroy(handle))
   call hipCheck(hipDeviceReset())
 

@@ -33,7 +33,7 @@ program hip_sgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  real(c_float), parameter ::  alpha = 1.1, beta = 0.9;
+  real(c_float), target :: alpha = 1.1, beta = 0.9;
 
   integer, parameter ::  m = 1024, n = 1024, k = 1024;
   integer :: lda, ldb, ldc, size_a, size_b, size_c;
@@ -90,7 +90,7 @@ program hip_sgemm
   call hipCheck(hipMemcpy(dc, c_loc(hc(1)), Ncbytes, hipMemcpyHostToDevice))
 
 
-  call hipblasCheck(hipblasSgemm(handle,transa,transb,m,n,k,alpha,da,lda,db,ldb,beta,dc,ldc))
+  call hipblasCheck(hipblasSgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,lda,db,ldb,c_loc(beta),dc,ldc))
 
   call hipCheck(hipDeviceSynchronize())
 

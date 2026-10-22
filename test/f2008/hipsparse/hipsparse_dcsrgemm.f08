@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! dcsrgemm example (double-precision sparse-matrix sparse-matrix multiply,
 ! C = A*B)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Two-phase flow with the classic hipSPARSE API: XcsrgemmNnz fills row_ptr_C and
 ! the total nnz, then Xcsrgemm computes the values. Here B = A, so C = A*A,
@@ -36,7 +36,7 @@
 ! passed via c_loc(...). nnzTotal is a host int (hipSPARSE default pointer mode).
 !!!!!!!!!!!!!!/
 !
-program dcsrgemm
+program hipsparse_dcsrgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -60,7 +60,7 @@ program dcsrgemm
   real(c_double) :: h_exp_val(5)     = (/9, 12, 9, 24, 33/)
 
   integer(c_int) :: h_row_ptr_C(4)
-  integer(c_int) :: nnz_C
+  integer(c_int), target :: nnz_C
 
   integer(c_int), pointer :: d_csr_row_ptr(:), d_csr_col_ind(:)
   real(c_double), pointer :: d_csr_val(:)
@@ -91,7 +91,7 @@ program dcsrgemm
   call hipsparseCheck(hipsparseXcsrgemmNnz(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
                           M, N, K, descr_A, nnz_A, c_loc(d_csr_row_ptr(1)), c_loc(d_csr_col_ind(1)), &
                           descr_B, nnz_A, c_loc(d_csr_row_ptr(1)), c_loc(d_csr_col_ind(1)), &
-                          descr_C, c_loc(d_row_ptr_C(1)), nnz_C))
+                          descr_C, c_loc(d_row_ptr_C(1)), c_loc(nnz_C)))
 
   ! Allocate C column indices and values now that nnz_C is known
   call hipCheck(hipMalloc(d_col_ind_C, dims=(/nnz_C/)))
@@ -153,4 +153,4 @@ program dcsrgemm
 
   write(*,*) "PASSED!"
 
-end program dcsrgemm
+end program hipsparse_dcsrgemm

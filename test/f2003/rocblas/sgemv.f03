@@ -33,7 +33,7 @@ program rocblas_sgemv_test
   implicit none
 
   integer(kind(rocblas_operation_none)), parameter :: trans = rocblas_operation_none
-  real(c_float), parameter :: alpha = 1.1, beta = 0.9
+  real(c_float), target :: alpha = 1.1, beta = 0.9
 
   integer, parameter :: m = 1024, n = 1024
 
@@ -54,7 +54,7 @@ program rocblas_sgemv_test
 
   ! Create rocblas handle and set host pointer mode for host alpha/beta
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   NAbytes = int(m*n, c_size_t) * bytes_per_element
   Nxbytes = int(n,   c_size_t) * bytes_per_element
@@ -79,7 +79,7 @@ program rocblas_sgemv_test
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nxbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dy, c_loc(hy(1)), Nybytes, hipMemcpyHostToDevice))
 
-  call rocblasCheck(rocblas_sgemv(handle, trans, m, n, alpha, dA, m, dx, 1, beta, dy, 1))
+  call rocblasCheck(rocblas_sgemv(handle, trans, m, n, c_loc(alpha), dA, m, dx, 1, c_loc(beta), dy, 1))
 
   call hipCheck(hipDeviceSynchronize())
 

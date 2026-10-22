@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! ssytrs example (solve A*X = B for a symmetric matrix, double, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+! ssytrs example (solve A*X = B for a symmetric matrix, single, Fortran 2003)
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Self-verifying: factorize a symmetric A with sytrf (Bunch-Kaufman), then solve
 ! A*x = b with sytrs for a right-hand side built from a known solution, and check
@@ -67,9 +67,9 @@ program ssytrs
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), int(N*N,c_size_t) * 4, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dB, c_loc(hB(1)),   int(N,c_size_t) * 4, hipMemcpyHostToDevice))
 
-  call hipCheck(rocblas_create_handle(handle))
-  call hipCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
-  call hipCheck(rocsolver_ssytrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dIpiv, dB, ldb))
+  call rocblasCheck(rocblas_create_handle(handle))
+  call rocsolverCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call rocsolverCheck(rocsolver_ssytrs(handle, rocblas_fill_upper, N, nrhs, dA, lda, dIpiv, dB, ldb))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(c_loc(hB(1)), dB, int(N,c_size_t) * 4, hipMemcpyDeviceToHost))
 
@@ -84,6 +84,6 @@ program ssytrs
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program ssytrs

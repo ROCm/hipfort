@@ -36,7 +36,7 @@ program hip_caxpy
   integer :: j
   complex(kind=4), allocatable, dimension(:) :: x, y, y_exact
 
-  complex(kind=4), parameter :: alpha = (2.0, 0.)
+  complex(kind=4), target :: alpha = (2.0, 0.)
   complex(kind=4), pointer, dimension(:) :: dx, dy
 
   real(kind=4) :: error
@@ -84,7 +84,7 @@ program hip_caxpy
 
   call hipblasCheck(hipblasDestroy(handle))
 
-  deallocate(x, y)
+  deallocate(x, y, y_exact)
 
   write(*,*) "PASSED!"
 

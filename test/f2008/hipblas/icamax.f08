@@ -63,6 +63,8 @@ program hip_icamax
   call hipCheck(hipFree(dx))
   call hipblasCheck(hipblasDestroy(handle))
 
+  deallocate(hx)
+
   write(*,*) "PASSED!"
 
 end program hip_icamax

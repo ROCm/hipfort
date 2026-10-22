@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsolver cpotrfBatched example (batched Cholesky factorization, single complex, Fortran 2003)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes a batch of Hermitian positive-definite matrices. The batched API
 ! takes A as an array of device pointers that itself lives in DEVICE memory: each
@@ -80,22 +80,26 @@ program cpotrfbatched
        N, dPtrArray, lda, lwork, batch))
   call hipCheck(hipMalloc(dWork, int(max(lwork,1),c_size_t) * 8))
   call hipsolverCheck(hipsolverCpotrfBatched(handle, HIPSOLVER_FILL_MODE_UPPER, &
-       N, dPtrArray, lda, dWork, lwork, dInfo_p(1), batch))
+       N, dPtrArray, lda, dWork, lwork, c_loc(dInfo_p(1)), batch))
   call hipCheck(hipDeviceSynchronize())
 
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, int(batch,c_size_t) * 4, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hOut(1,1)), dA1, int(N*N,c_size_t) * 8, hipMemcpyDeviceToHost))
 
   do b = 1, batch
      if (hInfo(b) /= 0) then
         write(*,*) "FAILED! info(", b, ") = ", hInfo(b), " (expected 0)"; call exit(1)
      end if
   end do
-  if (abs(real(hOut(1,1))-2.0) > 1.0e-5 .or. abs(real(hOut(2,2))-3.0) > 1.0e-5 .or. &
-      abs(real(hOut(3,3))-4.0) > 1.0e-5) then
-     write(*,*) "FAILED! chol diag = ", real(hOut(1,1)), real(hOut(2,2)), real(hOut(3,3)), " expected 2 3 4"
-     call exit(1)
-  end if
+
+  ! Check the Cholesky diagonal of every batch entry
+  do b = 1, batch
+     call hipCheck(hipMemcpy(c_loc(hOut(1,1)), hostPtrs(b), int(N*N,c_size_t) * 8, hipMemcpyDeviceToHost))
+     if (abs(real(hOut(1,1))-2.0) > 1.0e-5 .or. abs(real(hOut(2,2))-3.0) > 1.0e-5 .or. &
+         abs(real(hOut(3,3))-4.0) > 1.0e-5) then
+        write(*,*) "FAILED! batch ", b, " chol diag = ", real(hOut(1,1)), real(hOut(2,2)), real(hOut(3,3)), " expected 2 3 4"
+        call exit(1)
+     end if
+  end do
 
   call hipCheck(hipFree(dA1)); call hipCheck(hipFree(dA2)); call hipCheck(hipFree(dPtrArray))
   call hipCheck(hipFree(dWork)); call hipCheck(hipFree(dInfo))

@@ -33,16 +33,20 @@ program rocblas_chemm_test
 
   implicit none
 
-  ! C := alpha*A*B + beta*C with A Hermitian (upper triangle referenced).
-  ! A = [1 2; 2 3], B = I, alpha = 1, beta = 0, so C = A. The data is
-  ! real-valued, so the symmetric and Hermitian forms agree.
-  integer, parameter :: m = 2, n = 2
-  complex(c_float_complex), parameter :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
+  ! C := alpha*A*B + beta*C with A Hermitian, side left, upper triangle referenced.
+  ! A is m x m and B is m x n with m /= n and B not the identity, so a side or
+  ! m/n swap is caught. The strictly lower triangle of A holds junk that must not
+  ! be read, so a fill swap is caught. A has complex off-diagonal entries, so a
+  ! symm call in place of hemm is caught.
+  ! The expected result is computed on the host from the upper triangle.
+  integer, parameter :: m = 3, n = 2
+  complex(c_float_complex), target :: alpha = (1.0, 0.0), beta = (0.0, 0.0)
 
-  complex(c_float_complex) :: hA(m,m) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [m,m])
-  complex(c_float_complex) :: hB(m,n) = reshape([(1.0, 0.0), (0.0, 0.0), (0.0, 0.0), (1.0, 0.0)], [m,n])
+  complex(c_float_complex) :: hA(m,m)
+  complex(c_float_complex) :: hB(m,n) = reshape([(1.0, 1.0), (2.0, 0.0), (0.0, -1.0), &
+      (-1.0, 0.0), (3.0, 2.0), (1.0, 1.0)], [m,n])
   complex(c_float_complex) :: hC(m,n)
-  complex(c_float_complex) :: expected(m,n) = reshape([(1.0, 0.0), (2.0, 0.0), (2.0, 0.0), (3.0, 0.0)], [m,n])
+  complex(c_float_complex) :: expected(m,n), Afull(m,m)
 
   complex(c_float_complex), pointer, dimension(:,:) :: dA, dB, dC
   type(c_ptr) :: handle = c_null_ptr
@@ -53,9 +57,30 @@ program rocblas_chemm_test
   write(*,"(a)",advance="no") "-- Running test 'chemm' (Fortran 2008 interfaces) - "
 
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0)) ! host pointer mode
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host)) ! host pointer mode
 
   hC = (0.0, 0.0)
+
+  ! Referenced upper triangle (real diagonal); the strictly lower triangle is junk.
+  hA = (99.0, 99.0)
+  hA(1,1) = (1.0, 0.0)
+  hA(1,2) = (2.0, 1.0)
+  hA(2,2) = (4.0, 0.0)
+  hA(1,3) = (3.0, -1.0)
+  hA(2,3) = (5.0, 2.0)
+  hA(3,3) = (6.0, 0.0)
+
+  ! Full Hermitian A rebuilt from the upper triangle, for the host reference
+  do j = 1, m
+    do i = 1, m
+      if (i .le. j) then
+        Afull(i,j) = hA(i,j)
+      else
+        Afull(i,j) = conjg(hA(j,i))
+      end if
+    end do
+  end do
+  expected = alpha * matmul(Afull, hB) + beta * hC
 
   call hipCheck(hipMalloc(dA, source=hA))
   call hipCheck(hipMalloc(dB, source=hB))

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zpotrf example (double-precision complex Cholesky factorization, Fortran 2003 interfaces)
-! see: https:!www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational_ga2f55f604a6003d03b5cd4a0adcfb9e07.html
+! see: https://www.netlib.org/lapack/explore-html/d1/d7a/group__double_p_ocomputational_ga2f55f604a6003d03b5cd4a0adcfb9e07.html
 !
 ! f2003 style: device buffers are type(c_ptr) allocated by byte count; host
 ! data is moved with hipMemcpy + c_loc. rocSOLVER writes `info` to device
@@ -66,6 +66,7 @@ program zpotrf
   integer(c_size_t) :: size_A = size(hA)
 
   type(c_ptr) :: dA     ! GPU buffer for A
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo  ! GPU buffer for info (rocSOLVER writes to device)
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -80,13 +81,17 @@ program zpotrf
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 16, hipMemcpyHostToDevice))
 
   ! Compute the Cholesky factorization on the device (upper triangle)
-  call hipCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call rocsolverCheck(rocsolver_zpotrf(handle, rocblas_fill_upper, N, dA, lda, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! zpotrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy result from device to host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 16, hipMemcpyDeviceToHost))
@@ -105,7 +110,7 @@ program zpotrf
   ! Clean up
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

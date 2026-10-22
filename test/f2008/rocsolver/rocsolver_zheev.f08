@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! zheev example (double-precision complex Hermitian eigenvalues)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Computes the eigenvalues of a Hermitian matrix. rocSOLVER writes `info` to
 ! DEVICE memory (passed as c_loc(dInfo)). A Hermitian matrix has a real trace
@@ -57,25 +57,31 @@ program zheev
   real(c_double), pointer :: dD(:)
   real(c_double), pointer :: dE(:)
   integer(c_int), pointer :: dInfo(:)
+  integer(c_int) :: hInfo(1)
 
   type(c_ptr) :: handle
 
-  real(c_double) :: trace_A, error
+  real(c_double) :: trace_A, frob2_A, error
   real(c_double), parameter :: rtol = 1.0d-9
 
   write(*,"(a)",advance="no") "-- Running test 'rocsolver_zheev' (Fortran 2008 interfaces) - "
 
   trace_A = real(hA(1,1),c_double) + real(hA(2,2),c_double) + real(hA(3,3),c_double)   ! = 12
+  frob2_A = sum(abs(hA)**2)   ! ||A||_F**2, from the original A
 
   call hipCheck(hipMalloc(dA,    source=hA))
   call hipCheck(hipMalloc(dD,    source=hD))
   call hipCheck(hipMalloc(dE,    source=hE))
   call hipCheck(hipMalloc(dInfo, 1))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
-  call hipCheck(rocsolver_zheev(handle, rocblas_evect_none, rocblas_fill_upper, N, dA, lda, &
+  call rocsolverCheck(rocsolver_zheev(handle, rocblas_evect_none, rocblas_fill_upper, N, dA, lda, &
                                 dD, dE, c_loc(dInfo)))
+  call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
+  if (hInfo(1) /= 0) then
+    write(*,*) "FAILED! info = ", hInfo(1), " (expected 0)"; call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(hD, dD, hipMemcpyDeviceToHost))
 
@@ -86,11 +92,18 @@ program zheev
      call exit(1)
   end if
 
+  ! The squared Frobenius norm is also invariant: sum of squared eigenvalues = ||A||_F**2.
+  error = abs(sum(hD**2) - frob2_A) / abs(frob2_A)
+  if (error > rtol) then
+     write(*,*) "FAILED! sum(eigenvalues**2) = ", sum(hD**2), " expected ||A||_F**2 = ", frob2_A
+     call exit(1)
+  end if
+
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dD))
   call hipCheck(hipFree(dE))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

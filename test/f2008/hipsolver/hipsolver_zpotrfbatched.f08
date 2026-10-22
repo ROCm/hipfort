@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! hipsolver cpotrfBatched example (batched Cholesky factorization, single complex)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! hipsolver zpotrfBatched example (batched Cholesky factorization, double complex)
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Factorizes a batch of Hermitian positive-definite matrices. The batched API
 ! takes A as an array of device pointers that itself lives in DEVICE memory: each
@@ -76,22 +76,26 @@ program zpotrfbatched
        N, dPtrArray, lda, lwork, batch))
   call hipCheck(hipMalloc(dWork, int(max(lwork,1),c_size_t) * 16))
   call hipsolverCheck(hipsolverZpotrfBatched(handle, HIPSOLVER_FILL_MODE_UPPER, &
-       N, dPtrArray, lda, dWork, lwork, dInfo(1), batch))
+       N, dPtrArray, lda, dWork, lwork, c_loc(dInfo(1)), batch))
   call hipCheck(hipDeviceSynchronize())
 
   call hipCheck(hipMemcpy(hInfo, dInfo, hipMemcpyDeviceToHost))
-  call hipCheck(hipMemcpy(c_loc(hOut(1,1)), dA1, int(N*N,c_size_t) * 16, hipMemcpyDeviceToHost))
 
   do b = 1, batch
      if (hInfo(b) /= 0) then
         write(*,*) "FAILED! info(", b, ") = ", hInfo(b), " (expected 0)"; call exit(1)
      end if
   end do
-  if (abs(real(hOut(1,1))-2.0d0) > 1.0d-9 .or. abs(real(hOut(2,2))-3.0d0) > 1.0d-9 .or. &
-      abs(real(hOut(3,3))-4.0d0) > 1.0d-9) then
-     write(*,*) "FAILED! chol diag = ", real(hOut(1,1)), real(hOut(2,2)), real(hOut(3,3)), " expected 2 3 4"
-     call exit(1)
-  end if
+
+  ! Check the Cholesky diagonal of every batch entry
+  do b = 1, batch
+     call hipCheck(hipMemcpy(c_loc(hOut(1,1)), hostPtrs(b), int(N*N,c_size_t) * 16, hipMemcpyDeviceToHost))
+     if (abs(real(hOut(1,1))-2.0d0) > 1.0d-9 .or. abs(real(hOut(2,2))-3.0d0) > 1.0d-9 .or. &
+         abs(real(hOut(3,3))-4.0d0) > 1.0d-9) then
+        write(*,*) "FAILED! batch ", b, " chol diag = ", real(hOut(1,1)), real(hOut(2,2)), real(hOut(3,3)), " expected 2 3 4"
+        call exit(1)
+     end if
+  end do
 
   call hipCheck(hipFree(dA1)); call hipCheck(hipFree(dA2)); call hipCheck(hipFree(dPtrArray))
   call hipCheck(hipFree(dWork)); call hipCheck(hipFree(dInfo))

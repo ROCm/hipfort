@@ -82,7 +82,7 @@ program hipfft_setstream_z
   call hipfftCheck(hipfftExecZ2Z(plan0, dx0, dx0, HIPFFT_FORWARD))
   call hipfftCheck(hipfftExecZ2Z(plan1, dx1, dx1, HIPFFT_FORWARD))
 
-  ! Synchronise each stream individually — this is what is under test.
+  ! Synchronise each stream individually: this is what is under test.
   call hipCheck(hipStreamSynchronize(stream0))
   call hipCheck(hipStreamSynchronize(stream1))
 

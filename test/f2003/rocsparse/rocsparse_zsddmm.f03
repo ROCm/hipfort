@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! zsddmm example (complex sampled dense-dense matrix multiplication, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/reference/generic.html
 !
 ! SDDMM computes C = alpha * (A * B) .* spy(C) + beta * C, where A and B are
 ! dense and C is sparse (CSR): the dense product A*B is only evaluated at the
@@ -48,12 +48,12 @@ program zsddmm
   integer(c_int), parameter :: M = 3, N = 2, K = 3, nnz = 4
 
   complex(c_double_complex), target :: h_A(3,3) = reshape((/ &
-       (1.,0.),(4.,0.),(7.,0.), &
-       (2.,0.),(5.,0.),(8.,0.), &
-       (3.,0.),(6.,0.),(10.,0.) /), (/3,3/))
+       (1.,1.),(4.,-2.),(7.,0.5), &
+       (2.,-1.),(5.,3.),(8.,-0.5), &
+       (3.,2.),(6.,-1.),(10.,1.) /), (/3,3/))
   complex(c_double_complex), target :: h_B(3,2) = reshape((/ &
-       (1.,0.),(3.,0.),(5.,0.), &
-       (2.,0.),(4.,0.),(6.,0.) /), (/3,2/))
+       (1.,-1.),(3.,2.),(5.,-0.5), &
+       (2.,1.),(4.,-3.),(6.,0.5) /), (/3,2/))
 
   integer(c_int), target :: h_csr_row_ptr(4) = (/0, 1, 2, 4/)
   integer(c_int), target :: h_csr_col_ind(4) = (/0, 1, 0, 1/)
@@ -71,8 +71,8 @@ program zsddmm
   type(c_ptr) :: handle, matA, matB, matC, d_buffer
   integer(c_size_t) :: buffer_size
 
-  real :: error
-  real, parameter :: error_max = 10 * epsilon(error_max)
+  real(c_double) :: error
+  real(c_double), parameter :: error_max = 10 * epsilon(error_max)
 
   write(*,"(a)",advance="no") "-- Running test 'rocsparse_zsddmm' (Fortran 2003 interfaces) - "
 
@@ -121,13 +121,17 @@ program zsddmm
   call hipCheck(hipMemcpy(c_loc(h_csr_val(1)), d_csr_val, size_v * 16, hipMemcpyDeviceToHost))
 
   do i = 1,nnz
-    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0)
+    error = abs(h_csr_val(i) - h_expected(i)) / max(abs(h_expected(i)), 1.0_c_double)
     if(error .gt. error_max) then
         write(*,*) "FAILED! Error bigger than max! Error = ", error, " at nnz ", i
         call exit(1)
     end if
   end do
 
+  ! Clean up
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matA))
+  call rocsparseCheck(rocsparse_destroy_dnmat_descr(matB))
+  call rocsparseCheck(rocsparse_destroy_spmat_descr(matC))
   call rocsparseCheck(rocsparse_destroy_handle(handle))
   call hipCheck(hipFree(d_csr_row_ptr))
   call hipCheck(hipFree(d_csr_col_ind))

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse dbsrmv example (block-sparse matrix-vector multiply, double)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y for a BSR matrix A. Here A is
 ! block-diagonal with mb=nb=2 blocks of block_dim=2 (a 4x4 dense equivalent):
@@ -50,7 +50,7 @@ program dbsrmv
   real(c_double) :: hX(4) = (/1.0d0, 2.0d0, 3.0d0, 4.0d0/)
   real(c_double) :: hY(4) = (/0.0d0, 0.0d0, 0.0d0, 0.0d0/)
   real(c_double) :: hRef(4)
-  real(c_double) :: alpha = 1.0d0, beta = 0.0d0
+  real(c_double), target :: alpha = 1.0d0, beta = 0.0d0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   real(c_double), pointer :: dVal(:), dX(:), dY(:)

@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Zgemvi example (dense matrix * sparse vector, double complex)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values xVal at indices xInd). The result is checked
@@ -46,13 +46,19 @@ program hipsparse_zgemvi
   complex(c_double_complex) :: hXval(2) = (/(2.0d0,1.0d0), (3.0d0,-1.0d0)/)
   integer(c_int) :: hXind(2) = (/0, 2/)
   complex(c_double_complex) :: hY(3) = (/(1.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0)/)
-  complex(c_double_complex) :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
+  complex(c_double_complex), allocatable, target :: alpha, beta
   complex(c_double_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   complex(c_double_complex), pointer :: dA(:,:), dXval(:), dY(:)
   integer(c_int), pointer :: dXind(:)
   type(c_ptr) :: dBuf
   integer(c_int) :: bufSize
+
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (2.0d0,1.0d0)
+  beta = (3.0d0,0.0d0)
   write(*,"(a)",advance="no") "-- Running test 'hipsparse_zgemvi' (Fortran 2008 interfaces) - "
 
   ! Dense host reference.

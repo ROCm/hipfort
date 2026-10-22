@@ -53,6 +53,7 @@ program dgetri
 
   type(c_ptr) :: dA     ! GPU buffer for A (holds inv(A) on output)
   type(c_ptr) :: dIpiv  ! GPU buffer for pivots
+  integer(c_int), target :: hInfo
   type(c_ptr) :: dInfo  ! GPU buffer for info (rocSOLVER writes to device)
 
   type(c_ptr) :: handle ! rocblas_handle
@@ -68,14 +69,22 @@ program dgetri
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Copy memory from host to device
   call hipCheck(hipMemcpy(dA, c_loc(hA(1,1)), size_A * 8, hipMemcpyHostToDevice))
 
   ! LU factorization, then invert in place
-  call hipCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, dInfo))
-  call hipCheck(rocsolver_dgetri(handle, N,    dA, lda, dIpiv, dInfo))
+  call rocsolverCheck(rocsolver_dgetrf(handle, N, N, dA, lda, dIpiv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dgetrf info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
+  call rocsolverCheck(rocsolver_dgetri(handle, N,    dA, lda, dIpiv, dInfo))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if (hInfo /= 0) then
+    write(*,*) "FAILED! dgetri info = ", hInfo, " (expected 0)"; call exit(1)
+  end if
 
   ! Copy the inverse back to the host
   call hipCheck(hipMemcpy(c_loc(hA(1,1)), dA, size_A * 8, hipMemcpyDeviceToHost))
@@ -95,7 +104,7 @@ program dgetri
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dIpiv))
   call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

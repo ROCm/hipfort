@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! csptrsv example (single-complex sparse triangular solve, op(A)*y = alpha*x)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Uses the generic SpSV API on a lower-triangular L. Self-verifying: pick a
 ! known y, form x = L*y (dense), solve L*y' = x, and confirm y' recovers y.
@@ -36,7 +36,7 @@
 ! size_t.
 !!!!!!!!!!!!!!/
 !
-program csptrsv
+program hipsparse_csptrsv
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -142,4 +142,4 @@ program csptrsv
 
   write(*,*) "PASSED!"
 
-end program csptrsv
+end program hipsparse_csptrsv

@@ -63,9 +63,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_
+      integer(c_int) :: rocrand_create_generator_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -92,9 +92,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_
+      integer(c_int) :: rocrand_create_generator_host_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -108,9 +108,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_generator_host_blocking_
+      integer(c_int) :: rocrand_create_generator_host_blocking_
       type(c_ptr) :: generator
-      integer(kind(ROCRAND_RNG_PSEUDO_DEFAULT)),value :: rng_type
+      integer(c_int),value :: rng_type
     end function
   end interface
 
@@ -128,7 +128,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_generator_
+      integer(c_int) :: rocrand_destroy_generator_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -156,19 +156,19 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_
+      integer(c_int) :: rocrand_generate_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_rank_0,&
       rocrand_generate_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_assumed_rank
 #endif
 #endif
   end interface
@@ -198,19 +198,19 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_
+      integer(c_int) :: rocrand_generate_long_long_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_long_long_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_long_long_rank_0,&
       rocrand_generate_long_long_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_long_long_assumed_rank
 #endif
 #endif
   end interface
@@ -238,7 +238,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_char_
+      integer(c_int) :: rocrand_generate_char_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -268,7 +268,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_short_
+      integer(c_int) :: rocrand_generate_short_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -299,19 +299,19 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_
+      integer(c_int) :: rocrand_generate_uniform_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_rank_0,&
       rocrand_generate_uniform_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_uniform_assumed_rank
 #endif
 #endif
   end interface
@@ -340,19 +340,19 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_
+      integer(c_int) :: rocrand_generate_uniform_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_uniform_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_uniform_double_rank_0,&
       rocrand_generate_uniform_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_uniform_double_assumed_rank
 #endif
 #endif
   end interface
@@ -381,7 +381,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_half_
+      integer(c_int) :: rocrand_generate_uniform_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -411,7 +411,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_
+      integer(c_int) :: rocrand_generate_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -419,13 +419,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_rank_0,&
       rocrand_generate_normal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -453,7 +453,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_
+      integer(c_int) :: rocrand_generate_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -461,13 +461,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_normal_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_normal_double_rank_0,&
       rocrand_generate_normal_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -495,7 +495,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_half_
+      integer(c_int) :: rocrand_generate_normal_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -527,7 +527,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_
+      integer(c_int) :: rocrand_generate_log_normal_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -535,13 +535,13 @@ module hipfort_rocrand
       real(c_float),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_rank_0,&
       rocrand_generate_log_normal_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_log_normal_assumed_rank
 #endif
 #endif
   end interface
@@ -569,7 +569,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_
+      integer(c_int) :: rocrand_generate_log_normal_double_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -577,13 +577,13 @@ module hipfort_rocrand
       real(c_double),value :: stddev
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_log_normal_double_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_log_normal_double_rank_0,&
       rocrand_generate_log_normal_double_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_log_normal_double_assumed_rank
 #endif
 #endif
   end interface
@@ -611,7 +611,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_half_
+      integer(c_int) :: rocrand_generate_log_normal_half_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
@@ -643,20 +643,20 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_
+      integer(c_int) :: rocrand_generate_poisson_
       type(c_ptr),value :: generator
       type(c_ptr),value :: output_data
       integer(c_size_t),value :: n
       real(c_double),value :: lambda
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_generate_poisson_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_generate_poisson_rank_0,&
       rocrand_generate_poisson_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_generate_poisson_assumed_rank
 #endif
 #endif
   end interface
@@ -681,7 +681,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_initialize_generator_
+      integer(c_int) :: rocrand_initialize_generator_
       type(c_ptr),value :: generator
     end function
   end interface
@@ -702,7 +702,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_stream_
+      integer(c_int) :: rocrand_set_stream_
       type(c_ptr),value :: generator
       type(c_ptr),value :: stream
     end function
@@ -737,7 +737,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_
+      integer(c_int) :: rocrand_set_seed_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: seed
     end function
@@ -769,7 +769,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       use hipfort_rocrand_types
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_seed_uint4_
+      integer(c_int) :: rocrand_set_seed_uint4_
       type(c_ptr),value :: generator
       type(uint4),value :: seed
     end function
@@ -798,7 +798,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_offset_
+      integer(c_int) :: rocrand_set_offset_
       type(c_ptr),value :: generator
       integer(c_int64_t),value :: offset
     end function
@@ -835,9 +835,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_ordering_
+      integer(c_int) :: rocrand_set_ordering_
       type(c_ptr),value :: generator
-      integer(kind(ROCRAND_ORDERING_PSEUDO_BEST)),value :: order
+      integer(c_int),value :: order
     end function
   end interface
 
@@ -863,7 +863,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_set_quasi_random_generator_dimensions_
+      integer(c_int) :: rocrand_set_quasi_random_generator_dimensions_
       type(c_ptr),value :: generator
       integer(c_int),value :: dimensions
     end function
@@ -884,9 +884,11 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_
-      integer(c_int) :: version
+      integer(c_int) :: rocrand_get_version_
+      type(c_ptr),value :: version
     end function
+
+    module procedure rocrand_get_version_typed
   end interface
 
   !>  \brief Construct the histogram for a Poisson distribution.
@@ -907,7 +909,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_poisson_distribution_
+      integer(c_int) :: rocrand_create_poisson_distribution_
       real(c_double),value :: lambda
       type(c_ptr) :: discrete_distribution
     end function
@@ -936,20 +938,20 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_
+      integer(c_int) :: rocrand_create_discrete_distribution_
       type(c_ptr),value :: probabilities
       integer(c_int),value :: mySize
       integer(c_int),value :: offset
       type(c_ptr) :: discrete_distribution
     end function
 
+#ifdef USE_ASSUMED_RANK
+    module procedure rocrand_create_discrete_distribution_assumed_rank
+#else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocrand_create_discrete_distribution_rank_0,&
       rocrand_create_discrete_distribution_rank_1
-#else
-#ifdef USE_ASSUMED_RANK
-    module procedure rocrand_create_discrete_distribution_assumed_rank
 #endif
 #endif
   end interface
@@ -970,7 +972,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_destroy_discrete_distribution_
+      integer(c_int) :: rocrand_destroy_discrete_distribution_
       type(c_ptr),value :: discrete_distribution
     end function
   end interface
@@ -990,9 +992,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_direction_vectors32_
+      integer(c_int) :: rocrand_get_direction_vectors32_
       type(c_ptr) :: vectors
-      integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1011,9 +1013,9 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_direction_vectors64_
+      integer(c_int) :: rocrand_get_direction_vectors64_
       type(c_ptr) :: vectors
-      integer(kind(ROCRAND_DIRECTION_VECTORS_32_JOEKUO6)),value :: set
+      integer(c_int),value :: set
     end function
   end interface
 
@@ -1029,7 +1031,7 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_scramble_constants32_
+      integer(c_int) :: rocrand_get_scramble_constants32_
       type(c_ptr) :: constants
     end function
   end interface
@@ -1046,14 +1048,26 @@ module hipfort_rocrand
       use iso_c_binding
       use hipfort_rocrand_enums
       implicit none
-      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_scramble_constants64_
+      integer(c_int) :: rocrand_get_scramble_constants64_
       type(c_ptr) :: constants
     end function
   end interface
 
 
-#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
   contains
+
+    function rocrand_get_version_typed(version)
+      use iso_c_binding
+      use hipfort_rocrand_enums
+      implicit none
+      integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_get_version_typed
+      integer(c_int),target :: version
+      !
+      rocrand_get_version_typed = rocrand_get_version_(c_loc(version))
+    end function
+
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
     function rocrand_generate_assumed_rank(generator,output_data,n)
@@ -1061,8 +1075,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_assumed_rank
-      type(c_ptr) :: generator
-      integer(c_int),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      integer(c_int),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_assumed_rank = rocrand_generate_(generator,c_loc(output_data),n)
@@ -1074,7 +1088,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1086,7 +1100,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1100,8 +1114,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_assumed_rank
-      type(c_ptr) :: generator
-      integer(c_int64_t),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      integer(c_int64_t),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_long_long_assumed_rank = rocrand_generate_long_long_(generator, &
@@ -1114,7 +1128,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1127,7 +1141,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_long_long_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int64_t),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1142,8 +1156,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_assumed_rank
-      type(c_ptr) :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_uniform_assumed_rank = rocrand_generate_uniform_(generator, &
@@ -1156,7 +1170,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1168,7 +1182,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1182,8 +1196,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_assumed_rank
-      type(c_ptr) :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       !
       rocrand_generate_uniform_double_assumed_rank = rocrand_generate_uniform_double_(generator, &
@@ -1196,7 +1210,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       !
@@ -1209,7 +1223,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_uniform_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       !
@@ -1224,8 +1238,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_assumed_rank
-      type(c_ptr) :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
       real(c_float) :: stddev
@@ -1240,7 +1254,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1255,7 +1269,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1272,8 +1286,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_assumed_rank
-      type(c_ptr) :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
       real(c_double) :: stddev
@@ -1288,7 +1302,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1303,7 +1317,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1320,8 +1334,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_assumed_rank
-      type(c_ptr) :: generator
-      real(c_float),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_float),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
       real(c_float) :: stddev
@@ -1336,7 +1350,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1351,7 +1365,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_float),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_float) :: mean
@@ -1368,8 +1382,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_assumed_rank
-      type(c_ptr) :: generator
-      real(c_double),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      real(c_double),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
       real(c_double) :: stddev
@@ -1384,7 +1398,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1399,7 +1413,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_log_normal_double_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       real(c_double),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: mean
@@ -1416,8 +1430,8 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_assumed_rank
-      type(c_ptr) :: generator
-      integer(c_int),target,contiguous,dimension(..) :: output_data
+      type(c_ptr), value :: generator
+      integer(c_int),target,dimension(..) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
       !
@@ -1431,7 +1445,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_0
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1445,7 +1459,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_generate_poisson_rank_1
-      type(c_ptr) :: generator
+      type(c_ptr), value :: generator
       integer(c_int),target,dimension(:) :: output_data
       integer(c_size_t) :: n
       real(c_double) :: lambda
@@ -1462,7 +1476,7 @@ module hipfort_rocrand
       use hipfort_rocrand_enums
       implicit none
       integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrand_create_discrete_distribution_assumed_rank
-      real(c_double),target,contiguous,dimension(..) :: probabilities
+      real(c_double),target,dimension(..) :: probabilities
       integer(c_int) :: mySize
       integer(c_int) :: offset
       type(c_ptr) :: discrete_distribution

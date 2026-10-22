@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! rocsparse sbsrmv example (block-sparse matrix-vector multiply, single)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y for a BSR matrix A. Here A is
 ! block-diagonal with mb=nb=2 blocks of block_dim=2 (a 4x4 dense equivalent):
@@ -50,7 +50,7 @@ program sbsrmv
   real(c_float) :: hX(4) = (/1.0, 2.0, 3.0, 4.0/)
   real(c_float) :: hY(4) = (/0.0, 0.0, 0.0, 0.0/)
   real(c_float) :: hRef(4)
-  real(c_float) :: alpha = 1.0, beta = 0.0
+  real(c_float), target :: alpha = 1.0, beta = 0.0
   type(c_ptr) :: handle = c_null_ptr
   type(c_ptr) :: descr = c_null_ptr, info = c_null_ptr
   real(c_float), pointer :: dVal(:), dX(:), dY(:)

@@ -33,7 +33,7 @@ program hip_zgemm_batched
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N
-  complex(kind=8), parameter :: alpha = (1.1d0,0.0d0), beta = (0.9d0,0.0d0)
+  complex(kind=8), allocatable, target :: alpha, beta
 
   integer, parameter :: m = 256, n = 256, k = 256, batch_count = 4
   integer, parameter :: bytes_per_element = 16 ! 2x double
@@ -54,6 +54,11 @@ program hip_zgemm_batched
 
   double precision :: error
   double precision, parameter :: error_max = 10*epsilon(error)
+  ! On the heap, so 16-byte aligned: the CUDA backend accesses a
+  ! cuDoubleComplex scalar with an aligned load or store.
+  allocate(alpha, beta)
+  alpha = (1.1d0,0.0d0)
+  beta = (0.9d0,0.0d0)
 
   write(*,"(a)",advance="no") "-- Running test 'ZGEMM_BATCHED' (Fortran 2003 interfaces) - "
 
@@ -96,7 +101,7 @@ program hip_zgemm_batched
   call hipCheck(hipMemcpy(dc_p, c_loc(dc(1)), int(batch_count,c_size_t)*c_sizeof(dc(1)), hipMemcpyHostToDevice))
 
   call hipblasCheck(hipblasZgemmBatched(handle,transa,transb,m,n,k, &
-       alpha,da_p,lda,db_p,ldb,beta,dc_p,ldc,batch_count))
+       c_loc(alpha),da_p,lda,db_p,ldb,c_loc(beta),dc_p,ldc,batch_count))
 
   call hipCheck(hipDeviceSynchronize())
 
@@ -130,6 +135,8 @@ program hip_zgemm_batched
   deallocate(hb)
   deallocate(hc)
   deallocate(hc_exact)
+  deallocate(alpha)
+  deallocate(beta)
 
   write(*,*) "PASSED!"
 

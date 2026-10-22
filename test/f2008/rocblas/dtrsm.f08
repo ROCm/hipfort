@@ -40,7 +40,7 @@ program rocblas_dtrsm_test
   integer, parameter :: m = 1024, n = 1024
 
   double precision, allocatable, dimension(:,:) :: hA, hB
-  double precision, parameter :: alpha = 2.d0
+  double precision, target :: alpha = 2.d0
   double precision, parameter :: x_exact = 1.d0
 
   double precision, pointer, dimension(:,:) :: dA, dB
@@ -54,7 +54,7 @@ program rocblas_dtrsm_test
 
   ! Create rocblas handle and set host pointer mode for host alpha
   call rocblasCheck(rocblas_create_handle(handle))
-  call rocblasCheck(rocblas_set_pointer_mode(handle, 0))
+  call rocblasCheck(rocblas_set_pointer_mode(handle, rocblas_pointer_mode_host))
 
   allocate(hA(m,m), hB(m,n))
 

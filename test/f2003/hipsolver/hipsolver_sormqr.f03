@@ -26,7 +26,7 @@
 !!!!!!!!!!!!!/
 ! hipsolverSormqr example (single-precision multiply by Q from a QR
 ! factorization, Fortran 2003 interfaces)
-! see: https:!rocm.docs.amd.com/projects/hipSOLVER/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSOLVER/en/latest/
 !
 ! Self-verifying: factorize A with geqrf to obtain Q (as Householder vectors),
 ! then form Q*C with ormqr. Q is orthogonal, so it preserves the Frobenius norm:
@@ -66,6 +66,7 @@ program sormqr
   type(c_ptr) :: dA, dC, dTau, dInfo, dWork
   real(c_float), pointer :: dTau_p(:)
   integer(c_int), pointer :: dInfo_p(:)
+  integer(c_int), target :: hInfo
   integer(c_int) :: lwork_qr, lwork_mq, lwork
 
   real(c_float) :: error
@@ -89,13 +90,23 @@ program sormqr
 
   call hipsolverCheck(hipsolverSgeqrf_bufferSize(handle, M, K, dA, lda, lwork_qr))
   call hipsolverCheck(hipsolverSormqr_bufferSize(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau_p(1), dC, ldc, lwork_mq))
+       M, N, K, dA, lda, c_loc(dTau_p(1)), dC, ldc, lwork_mq))
   lwork = max(lwork_qr, lwork_mq)
   call hipCheck(hipMalloc(dWork, int(lwork,c_size_t) * 4))
 
-  call hipsolverCheck(hipsolverSgeqrf(handle, M, K, dA, lda, dTau_p(1), dWork, lwork, dInfo_p(1)))
+  call hipsolverCheck(hipsolverSgeqrf(handle, M, K, dA, lda, c_loc(dTau_p(1)), dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! geqrf info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
   call hipsolverCheck(hipsolverSormqr(handle, HIPSOLVER_SIDE_LEFT, HIPSOLVER_OP_N, &
-       M, N, K, dA, lda, dTau_p(1), dC, ldc, dWork, lwork, dInfo_p(1)))
+       M, N, K, dA, lda, c_loc(dTau_p(1)), dC, ldc, dWork, lwork, c_loc(dInfo_p(1))))
+  call hipCheck(hipMemcpy(c_loc(hInfo), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
+  if(hInfo /= 0) then
+    write(*,*) "FAILED! ormqr info = ", hInfo, " (expected 0)"
+    call exit(1)
+  end if
 
   call hipCheck(hipMemcpy(c_loc(hC(1,1)), dC, size_C * 4, hipMemcpyDeviceToHost))
 

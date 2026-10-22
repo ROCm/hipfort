@@ -87,9 +87,8 @@ program rocfft_cache_z
                                       c_null_ptr))
 
   ! Copy the cache into a buffer that rocFFT allocates. The buffer address is
-  ! written to the first argument, its size in bytes to the second, which is
-  ! why the length is passed as the address of a size_t variable.
-  call rocfftCheck(rocfft_cache_serialize(cache, c_loc(cache_bytes)))
+  ! written to the first argument, its size in bytes to the second.
+  call rocfftCheck(rocfft_cache_serialize(cache, cache_bytes))
   if (.not. c_associated(cache) .or. cache_bytes == 0) then
      write(*,*) "FAILED! empty kernel cache"
      call rocfftCheck(rocfft_cleanup())

@@ -23,7 +23,7 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-program hip_dgemm
+program hip_cgemm
   use iso_c_binding
   use hipfort
   use hipfort_check
@@ -32,7 +32,7 @@ program hip_dgemm
   implicit none
 
   integer(kind(HIPBLAS_OP_N)), parameter :: transa = HIPBLAS_OP_N, transb = HIPBLAS_OP_N;
-  complex(kind=4), parameter ::  alpha = 1.1d0, beta = 0.9d0;
+  complex(kind=4), target :: alpha = 1.1d0, beta = 0.9d0;
 
   integer, parameter ::  m = 512, n = 512, k = 512;
   integer :: lda, ldb, ldc, size_a, size_b, size_c;
@@ -48,7 +48,7 @@ program hip_dgemm
 
   integer :: i,j
   double precision :: error
-  double precision, parameter :: error_max = 10*epsilon(error)
+  double precision, parameter :: error_max = 10*epsilon(real(1.0,kind=4))
 
   write(*,"(a)",advance="no") "-- Running test 'CGEMM' (Fortran 2003 interfaces) - "
 
@@ -90,7 +90,7 @@ program hip_dgemm
   call hipCheck(hipMemcpy(db, c_loc(hb(1,1)), Nbbytes, hipMemcpyHostToDevice))
   call hipCheck(hipMemcpy(dc, c_loc(hc(1,1)), Ncbytes, hipMemcpyHostToDevice))
 
-  call hipblasCheck(hipblasCgemm(handle,transa,transb,m,n,k,alpha,da,lda,db,ldb,beta,dc,ldc))
+  call hipblasCheck(hipblasCgemm(handle,transa,transb,m,n,k,c_loc(alpha),da,lda,db,ldb,c_loc(beta),dc,ldc))
 
   call hipCheck(hipDeviceSynchronize())
 
@@ -121,4 +121,4 @@ program hip_dgemm
 
   write(*,*) "PASSED!"
 
-end program hip_dgemm
+end program hip_cgemm

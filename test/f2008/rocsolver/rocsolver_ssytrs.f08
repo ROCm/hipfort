@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! ssytrs example (solve A*X = B for a symmetric matrix, double)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/
+! ssytrs example (solve A*X = B for a symmetric matrix, single)
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/
 !
 ! Self-verifying: factorize a symmetric A with sytrf (Bunch-Kaufman), then solve
 ! A*x = b with sytrs for a right-hand side built from a known solution, and check
@@ -68,11 +68,11 @@ program ssytrs
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
   call hipCheck(hipMalloc(dInfo, 4_c_size_t))
 
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
   ! sytrf: array overload (dA, dIpiv passed directly)
-  call hipCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
+  call rocsolverCheck(rocsolver_ssytrf(handle, rocblas_fill_upper, N, dA, lda, dIpiv, dInfo))
   ! sytrs: c_ptr-only, pass the same device arrays via c_loc
-  call hipCheck(rocsolver_ssytrs(handle, rocblas_fill_upper, N, nrhs, &
+  call rocsolverCheck(rocsolver_ssytrs(handle, rocblas_fill_upper, N, nrhs, &
        c_loc(dA), lda, c_loc(dIpiv), c_loc(dB), ldb))
   call hipCheck(hipMemcpy(c_loc(hInfo(1)), dInfo, 4_c_size_t, hipMemcpyDeviceToHost))
   call hipCheck(hipMemcpy(hB, dB, hipMemcpyDeviceToHost))
@@ -88,6 +88,6 @@ program ssytrs
 
   call hipCheck(hipFree(dA)); call hipCheck(hipFree(dB))
   call hipCheck(hipFree(dIpiv)); call hipCheck(hipFree(dInfo))
-  call hipCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
+  call rocblasCheck(rocblas_destroy_handle(handle)); call hipCheck(hipDeviceReset())
   write(*,*) "PASSED!"
 end program ssytrs

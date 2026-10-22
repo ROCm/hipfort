@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!/
 ! sormqr example (single-precision multiplication by Q from a QR factorization)
-! see: https:!rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
+! see: https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/reference/lapack.html
 !
 ! Self-verifying: factorize A with geqrf to obtain Q (as Householder vectors),
 ! then apply Q and Q**T successively to a matrix C. Since Q**T * Q = I, the
@@ -74,13 +74,13 @@ program sormqr
   call hipCheck(hipMalloc(dIpiv, mold=hIpiv))
 
   ! Create rocBLAS handle
-  call hipCheck(rocblas_create_handle(handle))
+  call rocblasCheck(rocblas_create_handle(handle))
 
   ! Factorize to get Q, then apply C <- Q*C followed by C <- Q**T*C
-  call hipCheck(rocsolver_sgeqrf(handle, M, K, dA, lda, dIpiv))
-  call hipCheck(rocsolver_sormqr(handle, rocblas_side_left, rocblas_operation_none, &
+  call rocsolverCheck(rocsolver_sgeqrf(handle, M, K, dA, lda, dIpiv))
+  call rocsolverCheck(rocsolver_sormqr(handle, rocblas_side_left, rocblas_operation_none, &
        M, N, K, dA, lda, dIpiv, dC, ldc))
-  call hipCheck(rocsolver_sormqr(handle, rocblas_side_left, rocblas_operation_transpose, &
+  call rocsolverCheck(rocsolver_sormqr(handle, rocblas_side_left, rocblas_operation_transpose, &
        M, N, K, dA, lda, dIpiv, dC, ldc))
 
   ! Copy result back to host
@@ -101,7 +101,7 @@ program sormqr
   call hipCheck(hipFree(dA))
   call hipCheck(hipFree(dC))
   call hipCheck(hipFree(dIpiv))
-  call hipCheck(rocblas_destroy_handle(handle))
+  call rocblasCheck(rocblas_destroy_handle(handle))
   call hipCheck(hipDeviceReset())
 
   write(*,*) "PASSED!"

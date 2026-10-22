@@ -25,7 +25,7 @@
 
 !!!!!!!!!!!!!!
 ! hipsparse Sgemvi example (dense matrix * sparse vector, single)
-! see: https:!rocm.docs.amd.com/projects/hipSPARSE/en/latest/
+! see: https://rocm.docs.amd.com/projects/hipSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector (nnz values xVal at indices xInd). The result is checked
@@ -45,7 +45,7 @@ program hipsparse_sgemvi
   real(c_float) :: hXval(2) = (/2.0, 3.0/)
   integer(c_int) :: hXind(2) = (/0, 2/)
   real(c_float) :: hY(3) = (/1.0, 1.0, 1.0/)
-  real(c_float) :: alpha = 2.0, beta = 3.0
+  real(c_float), target :: alpha = 2.0, beta = 3.0
   real(c_float) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   real(c_float), pointer :: dA(:,:), dXval(:), dY(:)

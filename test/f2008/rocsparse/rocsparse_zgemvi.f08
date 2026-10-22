@@ -24,8 +24,8 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 !!!!!!!!!!!!!!
-! rocsparse cgemvi example (dense matrix * sparse vector, single complex)
-! see: https:!rocm.docs.amd.com/projects/rocSPARSE/en/latest/
+! rocsparse zgemvi example (dense matrix * sparse vector, double complex)
+! see: https://rocm.docs.amd.com/projects/rocSPARSE/en/latest/
 !
 ! Computes y = alpha * A * x + beta * y, where A is a dense m-by-n matrix and x
 ! is a sparse vector. The result is checked against a dense host reference
@@ -46,7 +46,7 @@ program zgemvi
   complex(c_double_complex) :: hXval(2) = (/(2.0d0,1.0d0), (3.0d0,-1.0d0)/)
   integer(c_int) :: hXind(2) = (/0, 2/)
   complex(c_double_complex) :: hY(3) = (/(1.0d0,0.0d0), (1.0d0,0.0d0), (1.0d0,0.0d0)/)
-  complex(c_double_complex) :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
+  complex(c_double_complex), target :: alpha = (2.0d0,1.0d0), beta = (3.0d0,0.0d0)
   complex(c_double_complex) :: xDense(4), hRef(3)
   type(c_ptr) :: handle = c_null_ptr
   complex(c_double_complex), pointer :: dA(:,:), dXval(:), dY(:)
