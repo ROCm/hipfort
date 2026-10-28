@@ -34,10 +34,8 @@
 !
 program rocblas_dgemv_batched_test
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocblas
-  use hipfort_rocblas_enums
+  use hip
+  use rocblas
   implicit none
   integer :: b, i
   integer(c_int), parameter :: M = 2, N = 2, lda = 2, incx = 1, incy = 1, batch = 2

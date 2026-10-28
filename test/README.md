@@ -12,25 +12,17 @@ suffix without compiler-dependent flags.
 Build and run them the usual way:
 
 ```bash
-cmake -S . -B build -DBUILD_TESTING=ON
+cmake -S . -B build -DBUILD_FORTRAN_CLIENTS=ON
 cmake --build build -j
 cd build && ctest --output-on-failure
 ```
 
 The `f2018/` tests are only registered when the experimental assumed-rank
-interfaces are enabled with `-DHIPFORT_ASSUMED_RANK=ON`.
+interfaces are enabled with `-DFORTRAN_ARRAY_INTERFACES=assumed-rank`.
 
 Besides the per-library programs, `CMakeLists.txt` also registers the
-`find_package(hipfort)` install regression test (`find_package/`) and the
+`find_package(hip-fortran)` install regression test (`find_package/`) and the
 `check_line_length.sh` source lint.
-
-Two more test groups are gated as well. The exhaustive per-library symbol tests
-(`f2003/<lib>/test_<lib>.F03`, auto-generated files that reference every
-`bind(c)` routine of a library) and the shared-link checks are opt-in with
-`-DHIPFORT_EXTENDED_TESTS=ON` (off by default): they need a complete ROCm (or
-CUDA) install and turn any missing symbol into a build error. The runtime
-library directories they link against can be overridden with
-`-DHIPFORT_ROCM_LIB_DIR=` and `-DHIPFORT_CUDA_LIB_DIR=`.
 
 The `openmp/` tests need OpenMP offload, so they are only built with LLVM Flang
 (`amdflang`) and a host LAPACK for the reference result; any other toolchain
@@ -40,7 +32,7 @@ overridden with `-DHIPFORT_OFFLOAD_ARCH=gfxNNN`.
 
 ## check_compilers.sh
 
-Fortran `.mod` files are not portable between compilers, and `HIPFORT_ASSUMED_RANK`
+Fortran `.mod` files are not portable between compilers, and `FORTRAN_ARRAY_INTERFACES`
 changes which interfaces are compiled, so each combination needs its own build.
 `check_compilers.sh` does that for every compiler it finds, using the toolchain
 files in `cmake/toolchains`:

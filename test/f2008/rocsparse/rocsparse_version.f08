@@ -36,8 +36,8 @@
 ! major.minor.patch triple and the git revision string is not empty.
 program rocsparse_version
   use iso_c_binding
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
 
   implicit none
 

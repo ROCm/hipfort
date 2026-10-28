@@ -27,25 +27,53 @@
 
 ### Changed
 
+* **Breaking: one module per library, with no `hipfort_` prefix.** The flat
+  `lib/hipfort/` directory is replaced by one directory per library, grouped by
+  the upstream repository the bindings will be co-located with
+  (`lib/rocm-systems/`, `lib/rocm-libraries/`), and each library ships a single
+  self-contained module named after itself. The enums, derived types, opaque
+  handles and the `<lib>Check` helper are folded into it, so thirteen modules
+  replace thirty-three files.
+
+  Every `use` statement changes. `hipfort_rocblas` and its `_enums` companion
+  become `rocblas`; the HIP runtime modules (`hipfort`, `hipfort_check`,
+  `hipfort_enums`, `hipfort_types`, `hipfort_auxiliary`, `hipfort_hipmalloc`,
+  `hipfort_hipmemcpy`, `hipfort_hiphostregister`) all become `hip`:
+
+  ```fortran
+  ! before                 ! after
+  use hipfort              use hip
+  use hipfort_check        use rocblas
+  use hipfort_rocblas
+  ```
+
+  The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
+  from `rocblas`, and only `hipCheck` is in `hip`. `find_package(hipfort)`
+  and the `hipfort::*` targets are gone: each library has its own package and
+  target, for example `find_package(rocblas-fortran)` and `roc::rocblas_fortran`.
+* **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
+  generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
+  build would compile cleanly while binding `hip*`/`roc*` symbols.
+  `HIPFORT_BUILD_NVPTX` now defaults to `OFF` and raises a fatal error if
+  enabled, rather than producing a silently wrong archive.
 * **Breaking for calls by keyword.** The `bind(C)` specifics of
   `hipblasSetVector`, `hipblasGetVector`,
   `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
   arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
   `elem_size`, `A` and `B`. Only calls by keyword are affected; the array
   overloads are unchanged.
-* Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
-  compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
-  wrappers it calls, instead of all of a library's wrappers, and still links
-  when another wrapper names a C function that the installed library does not
-  export. The tests link that way. A shared library that links an archive also
-  needs `-Wl,--exclude-libs` naming it, for example
-  `-Wl,--exclude-libs,libhipfort-amdgcn.a`.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
-  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  those of the math libraries. A build with `-DFORTRAN_ARRAY_INTERFACES=none`
   no longer has them: pass a `type(c_ptr)` and a byte count.
+* Each binding archive is compiled with one section per procedure
+  (`-ffunction-sections -fdata-sections`). A program linked with
+  `-Wl,--gc-sections` keeps only the wrappers it calls, instead of all of a
+  library's wrappers, and still links when another wrapper names a C function
+  that the installed library does not export yet. The tests link that way.
+  A shared library that links an archive also needs `-Wl,--exclude-libs`
+  naming it, for example `-Wl,--exclude-libs,librocblas_fortran.a`.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
   compiles with a Fortran 2003 compiler. Both kinds are equal on every
@@ -54,7 +82,7 @@
   arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
   `integer(kind(HIP_R_32F))`. Both are the C `int` kind, so existing code is
   unaffected, and these routines no longer `use hipfort_enums`.
-* The assumed-rank overloads (`-DHIPFORT_ASSUMED_RANK=ON`) no longer declare
+* The assumed-rank overloads (`-DFORTRAN_ARRAY_INTERFACES=assumed-rank`) no longer declare
   their arrays `contiguous`, like the per-rank ones. Given a non-contiguous
   section, the compiler used to pass a copy made in a host temporary: fatal for
   an array in device memory on GPUs without XNACK enabled, and freed when the
