@@ -60,6 +60,14 @@ if(BUILD_TESTING)
     add_link_options(-Wl,--gc-sections)
   endif()
 
+  # clang appends <rocm>/include after /usr/include, so a distro HIP in
+  # /usr/include/hip shadows the headers matching the compiler. CMake drops
+  # ROCM_PATH/include from the target include directories since clang reports
+  # it as implicit, hence a raw -isystem to put it first for the HIP sources.
+  if(ROCM_PATH)
+    add_compile_options("$<$<COMPILE_LANGUAGE:HIP>:SHELL:-isystem ${ROCM_PATH}/include>")
+  endif()
+
   # Which backend the tests link: hipfort::hip carries the archive of the one
   # lib/ built the components for (nvptx when HIPFORT_BUILD_AMDGCN is OFF, even on
   # an AMD host). On the CUDA backend the symbol tests are compiled with
@@ -1695,9 +1703,9 @@ if(BUILD_TESTING)
           list(GET _hipfort_agents 0 _hipfort_arch)
         endif()
       endif()
-      # clang appends <rocm>/include after /usr/include, so a distro HIP in
-      # /usr/include/hip shadows the headers matching the compiler. -isystem
-      # puts ROCM_PATH first; --rocm-path takes the device libraries from there too.
+      # The custom command does not see the HIP compile options set at the top
+      # of this file, so it repeats the -isystem; --rocm-path takes the device
+      # libraries from ROCM_PATH too.
       set(_hipfort_code_object "${CMAKE_CURRENT_BINARY_DIR}/vecadd_kernel.co")
       add_custom_command(
         OUTPUT "${_hipfort_code_object}"
