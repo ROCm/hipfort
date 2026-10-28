@@ -1695,14 +1695,14 @@ if(BUILD_TESTING)
           list(GET _hipfort_agents 0 _hipfort_arch)
         endif()
       endif()
-      # --rocm-path pins clang to the HIP headers and device libraries of
-      # ROCM_PATH. Without it clang searches on its own and can pick up a
-      # distro HIP in /usr/include whose headers do not match the compiler.
+      # clang appends <rocm>/include after /usr/include, so a distro HIP in
+      # /usr/include/hip shadows the headers matching the compiler. -isystem
+      # puts ROCM_PATH first; --rocm-path takes the device libraries from there too.
       set(_hipfort_code_object "${CMAKE_CURRENT_BINARY_DIR}/vecadd_kernel.co")
       add_custom_command(
         OUTPUT "${_hipfort_code_object}"
         COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=${_hipfort_arch}
-                --rocm-path=${ROCM_PATH}
+                --rocm-path=${ROCM_PATH} -isystem ${ROCM_PATH}/include
                 "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
                 -o "${_hipfort_code_object}"
         DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
