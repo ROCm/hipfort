@@ -4,6 +4,13 @@
 
 ### Added
 
+* Regenerated all Fortran bindings against the ROCm 10.2 API, adding 77
+  routines: four in the HIP runtime (`hipDeviceFlushGPUDirectRDMAWrites`,
+  `hipKernelSetAttributeForDevice`, `hipLibraryGetModule`,
+  `hipModuleEnumerateFunctions`), the batched `gels`, `geqrf`, `getrf`, `getri`
+  and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
+  `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
+  `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
 * The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
   forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
   routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,

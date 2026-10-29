@@ -122,6 +122,9 @@ program test_hip
     if (never) v0 = hipGetDevice_(v2)
     if (never) v0 = hipGetDeviceCount_(v2)
     if (never) v0 = hipDeviceGetAttribute_(v2, v0, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v0 = hipDeviceFlushGPUDirectRDMAWrites_(v0, v0)
+#endif
     if (never) v0 = hipDeviceGetDefaultMemPool_(v2, v0)
     if (never) v0 = hipDeviceSetMemPool_(v0, v2)
     if (never) v0 = hipDeviceGetMemPool_(v2, v0)
@@ -134,8 +137,8 @@ program test_hip
     if (never) v0 = hipGetDeviceFlags_(v2)
     if (never) v0 = hipDeviceSetSharedMemConfig_(v0)
     if (never) v0 = hipSetDeviceFlags_(v0)
-    if (never) v0 = hipInitDevice_(v0, v0, v0)
     if (never) v0 = hipChooseDeviceR0600_(v2, v5)
+    if (never) v0 = hipInitDevice_(v0, v0, v0)
 #ifndef USE_CUDA_NAMES
     if (never) v0 = hipExtGetLinkTypeAndHopCount_(v0, v0, v2, v2)
 #endif
@@ -145,6 +148,9 @@ program test_hip
     if (never) v0 = hipIpcGetEventHandle_(v7, v2)
     if (never) v0 = hipIpcOpenEventHandle_(v2, v7)
     if (never) v0 = hipFuncSetAttribute_(v2, v0, v0)
+#ifndef USE_CUDA_NAMES
+    if (never) v0 = hipKernelSetAttributeForDevice_(v2, v0, v0, v0)
+#endif
     if (never) v0 = hipFuncSetCacheConfig_(v2, v0)
     if (never) v0 = hipFuncSetSharedMemConfig_(v2, v0)
     if (never) v0 = hipGetLastError_()
@@ -217,10 +223,10 @@ program test_hip
     if (never) v0 = hipMemPrefetchAsync_(v2, v4, v0, v2)
 #endif
     if (never) v0 = hipMemPrefetchAsync_v2_(v2, v4, v18, v0, v2)
+    if (never) v0 = hipMemAdvise_v2_(v2, v4, v0, v18)
 #ifndef USE_CUDA_NAMES
     if (never) v0 = hipMemAdvise_(v2, v4, v0, v0)
 #endif
-    if (never) v0 = hipMemAdvise_v2_(v2, v4, v0, v18)
     if (never) v0 = hipMemRangeGetAttribute_(v2, v4, v0, v2, v4)
     if (never) v0 = hipMemRangeGetAttributes_(v2, v2, v2, v4, v2, v4)
     if (never) v0 = hipStreamAttachMemAsync_(v2, v2, v4, v0)
@@ -355,11 +361,17 @@ program test_hip
     if (never) v0 = hipModuleUnload_(v2)
     if (never) v0 = hipModuleGetFunction_(v2, v2, v2)
     if (never) v0 = hipModuleGetFunctionCount_(v2, v2)
+#ifndef USE_CUDA_NAMES
+    if (never) v0 = hipModuleEnumerateFunctions_(v2, v0, v2)
+#endif
     if (never) v0 = hipLibraryLoadData_(v2, v2, v2, v2, v0, v2, v2, v0)
     if (never) v0 = hipLibraryLoadFromFile_(v2, v2, v2, v2, v0, v2, v2, v0)
     if (never) v0 = hipLibraryUnload_(v2)
     if (never) v0 = hipLibraryGetKernel_(v2, v2, v2)
     if (never) v0 = hipLibraryGetKernelCount_(v2, v2)
+#ifndef USE_CUDA_NAMES
+    if (never) v0 = hipLibraryGetModule_(v2, v2)
+#endif
     if (never) v0 = hipLibraryEnumerateKernels_(v2, v0, v2)
     if (never) v0 = hipKernelGetLibrary_(v2, v2)
     if (never) v0 = hipKernelGetName_(v2, v2)

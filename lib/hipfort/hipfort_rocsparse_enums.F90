@@ -445,6 +445,8 @@ module hipfort_rocsparse_enums
   ! rocsparse_sptrsm_output_
   enum, bind(c)
     enumerator :: rocsparse_sptrsm_output_zero_pivot_position = 0
+    enumerator :: rocsparse_sptrsm_output_singularity = 1
+    enumerator :: rocsparse_sptrsm_output_singularity_position = 2
   end enum
 
   ! rocsparse_spic0_alg_
@@ -563,6 +565,24 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_spgeam_alg_default = 0
   end enum
 
+  ! rocsparse_spsort_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spsort_alg_default = 0
+    enumerator :: rocsparse_spsort_alg_radix_sort = 1
+  end enum
+
+  ! rocsparse_spsort_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spsort_input_alg = 0
+    enumerator :: rocsparse_spsort_input_direction = 1
+  end enum
+
+  ! rocsparse_spsort_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spsort_stage_analysis = 0
+    enumerator :: rocsparse_spsort_stage_compute = 1
+  end enum
+
   ! rocsparse_gpsv_interleaved_alg_
   enum, bind(c)
     enumerator :: rocsparse_gpsv_interleaved_alg_default = 0
@@ -570,7 +590,7 @@ module hipfort_rocsparse_enums
   end enum
 
   integer(c_int), parameter :: ROCSPARSE_VERSION_MAJOR = 5
-  integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 1
+  integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 2
   integer(c_int), parameter :: ROCSPARSE_VERSION_PATCH = 0
 
 end module hipfort_rocsparse_enums

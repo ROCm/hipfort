@@ -576,6 +576,39 @@ module hipfort
     module procedure hipDeviceGetAttribute_typed
   end interface
 
+  !>  @brief Blocks until remote writes are visible to the specified scope
+  !>
+  !>  Blocks until GPUDirect RDMA writes to the target device, issued by a third-party device
+  !>  such as an RDMA-capable NIC, are visible to the specified scope. This is a host-ordered
+  !>  visibility barrier on inbound remote writes; it does not synchronize with any stream or
+  !>  kernel.
+  !>
+  !>  If @p scope is at or within the scope reported by
+  !>  `hipDeviceAttributeGPUDirectRDMAWritesOrdering`, the writes are already ordered by the
+  !>  hardware and the call is a no-op.
+  !>
+  !>  Support is reported by `hipDeviceAttributeGPUDirectRDMAFlushWritesOptions`. The call
+  !>  returns `hipErrorNotSupported` when that bitmask does not contain
+  !>  `hipFlushGPUDirectRDMAWritesOptionHost`.
+  !>
+  !>  @param [in] target The target of the operation, see `hipFlushGPUDirectRDMAWritesTarget`
+  !>  @param [in] scope  The scope of the operation, see `hipFlushGPUDirectRDMAWritesScope`
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
+#ifndef USE_CUDA_NAMES
+  interface hipDeviceFlushGPUDirectRDMAWrites
+    function hipDeviceFlushGPUDirectRDMAWrites_(target,scope) &
+        bind(c, name="hipDeviceFlushGPUDirectRDMAWrites")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipDeviceFlushGPUDirectRDMAWrites_
+      integer(c_int),value :: target
+      integer(c_int),value :: scope
+    end function
+  end interface
+#endif
+
   !>  @brief Returns the default memory pool of the specified device
   !>
   !>  @param [out] mem_pool Default memory pool to return
@@ -922,6 +955,24 @@ module hipfort
     end function
   end interface
 
+  interface hipChooseDeviceR0600
+#ifdef USE_CUDA_NAMES
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
+#else
+    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
+#endif
+      use iso_c_binding
+      use hipfort_enums
+      use hipfort_types
+      implicit none
+      integer(c_int) :: hipChooseDeviceR0600_
+      type(c_ptr),value :: device
+      type(hipDeviceProp_t) :: prop
+    end function
+
+    module procedure hipChooseDeviceR0600_typed
+  end interface
+
   !>  @brief Initialize the specified device to be used for GPU executions.
   !>
   !>  @param [in] device       Ordinal of the device to initialize.
@@ -958,30 +1009,6 @@ module hipfort
       integer(c_int),value :: deviceFlags
       integer(c_int),value :: flags
     end function
-  end interface
-
-  !>  @brief Device which matches hipDeviceProp_t is returned
-  !>
-  !>  @param [out] device Pointer of the device
-  !>  @param [in]  prop Pointer of the properties
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  interface hipChooseDeviceR0600
-#ifdef USE_CUDA_NAMES
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
-#else
-    function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
-#endif
-      use iso_c_binding
-      use hipfort_enums
-      use hipfort_types
-      implicit none
-      integer(c_int) :: hipChooseDeviceR0600_
-      type(c_ptr),value :: device
-      type(hipDeviceProp_t) :: prop
-    end function
-
-    module procedure hipChooseDeviceR0600_typed
   end interface
 
   !>  @brief Returns the link type and hop count between two devices
@@ -1251,6 +1278,46 @@ module hipfort
       integer(c_int),value :: dev
     end function
   end interface
+
+  !>  @brief Set a device-wide attribute for a kernel on a specific device.
+  !>
+  !>  Sets @p attr for @p kernel on @p device without requiring @p device to be
+  !>  current. Supported attributes are `hipFuncAttributeMaxDynamicSharedMemorySize`,
+  !>  `hipFuncAttributePreferredSharedMemoryCarveout`,
+  !>  `hipFuncAttributeRequiredClusterWidth`,
+  !>  `hipFuncAttributeRequiredClusterHeight`,
+  !>  `hipFuncAttributeRequiredClusterDepth`,
+  !>  `hipFuncAttributeNonPortableClusterSizeAllowed`, and
+  !>  `hipFuncAttributeClusterSchedulingPolicyPreference`.
+  !>
+  !>  Attributes set with `hipFuncSetAttribute` override values set by this function
+  !>  for the corresponding device, regardless of call order.
+  !>
+  !>  @note On AMD devices, non-portable cluster size and cluster scheduling policy
+  !>  are stored for readback but may not affect dispatch.
+  !>
+  !>  @param [in] kernel Kernel to set the attribute for
+  !>  @param [in] attr Attribute to set
+  !>  @param [in] value Value to set
+  !>  @param [in] device Device ordinal on which to set the attribute
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`, `hipErrorInvalidValue`,
+  !>  `hipErrorInvalidDevice`, `hipErrorInvalidDeviceFunction`
+#ifndef USE_CUDA_NAMES
+  interface hipKernelSetAttributeForDevice
+    function hipKernelSetAttributeForDevice_(kernel,attr,myValue,device) &
+        bind(c, name="hipKernelSetAttributeForDevice")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipKernelSetAttributeForDevice_
+      type(c_ptr),value :: kernel
+      integer(c_int),value :: attr
+      integer(c_int),value :: myValue
+      integer(c_int),value :: device
+    end function
+  end interface
+#endif
 
   !>  @brief Function will be extracted for specific kernel
   !>
@@ -1543,6 +1610,7 @@ module hipfort
   !>  @param[out] stream - Pointer to new stream
   !>  @param[in] flags - Parameters to control stream creation
   !>  @param[in] priority - Priority of the stream. Lower numbers represent higher priorities.
+  !>  Stream priority is disabled at this time.
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   !>
   !>  Creates a new asynchronous stream with the specified priority, with its associated current
@@ -1556,6 +1624,9 @@ module hipfort
   !>  The @p flags parameter controls behavior of the stream. The valid values are
   !>  `hipStreamDefault`
   !>  and `hipStreamNonBlocking`.
+  !>
+  !>  @warning Stream priority is currently disabled to avoid queue-priority-related
+  !>  issues in KFD.
   !>
   !>  @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
   interface hipStreamCreateWithPriority
@@ -1580,8 +1651,8 @@ module hipfort
   !>
   !>  @param[in, out] leastPriority - Pointer in which a value corresponding to least priority
   !>  is returned.
-  !>  @param[in, out] greatestPriority - Pointer in which a value corresponding to greatest priority
-  !>  is returned.
+  !>  @param[in, out] greatestPriority - Pointer in which a value corresponding to
+  !>  greatest priority. Stream priority is disabled at this time.
   !>  @returns `hipSuccess`
   !>
   !>  Returns in *leastPriority and *greatestPriority the numerical values that correspond to the
@@ -1591,7 +1662,8 @@ module hipfort
   !>  value that is outside the meaningful range as specified by this API, the priority is
   !>  automatically clamped to within the valid range.
   !>
-  !>  @warning This API is under development on AMD GPUs and simply returns `hipSuccess`.
+  !>  @warning Stream priority is currently disabled to avoid queue-priority-related
+  !>  issues in KFD.
   interface hipDeviceGetStreamPriorityRange
 #ifdef USE_CUDA_NAMES
     function hipDeviceGetStreamPriorityRange_(leastPriority,greatestPriority) &
@@ -1714,6 +1786,7 @@ module hipfort
   !>  @param[in] flags - Parameters to control the operation
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidHandle`, `hipErrorInvalidValue`,
+  !>  `hipErrorStreamCaptureInvalidated`, `hipErrorStreamCaptureMerge`,
   !>  `hipErrorStreamCaptureIsolation`
   !>
   !>  This function inserts a wait operation into the specified stream.
@@ -1802,6 +1875,9 @@ module hipfort
   !>  @param[in] stream - Stream to be queried
   !>  @param[in,out] priority - Pointer to an unsigned integer in which the stream's priority is
   !>  returned
+  !>
+  !>  @warning Stream priority is currently disabled by default to avoid queue-priority-related
+  !>  issues in KFD.
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`.
   !>
@@ -3321,39 +3397,6 @@ module hipfort
 
   !>  @brief Advise about the usage of a given memory range to HIP.
   !>
-  !>  @param [in] dev_ptr  pointer to memory to set the advice for
-  !>  @param [in] count    size in bytes of the memory range, it should be CPU page size alligned.
-  !>  @param [in] advice   advice to be applied for the specified memory range
-  !>  @param [in] device   device to apply the advice for
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
-  !>
-  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
-  !>  range starting from the pointer address devPtr, with the size of count bytes.
-  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
-  !>  range will be handled with proper round down and round up respectively in the driver to
-  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
-  !>  8.0
-  !>  and afterwards.
-  !>
-  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
-#ifndef USE_CUDA_NAMES
-  interface hipMemAdvise
-    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
-      use iso_c_binding
-      use hipfort_enums
-      implicit none
-      integer(c_int) :: hipMemAdvise_
-      type(c_ptr),value :: dev_ptr
-      integer(c_size_t),value :: count
-      integer(c_int),value :: advice
-      integer(c_int),value :: device
-    end function
-  end interface
-#endif
-
-  !>  @brief Advise about the usage of a given memory range to HIP.
-  !>
   !>  @param [in] dev_ptr    pointer to memory to set the advice for
   !>  @param [in] count      size in bytes of the memory range, it should be CPU page size alligned.
   !>  @param [in] advice     advice to be applied for the specified memory range
@@ -3387,6 +3430,39 @@ module hipfort
       type(hipMemLocation),value :: location
     end function
   end interface
+
+  !>  @brief Advise about the usage of a given memory range to HIP.
+  !>
+  !>  @param [in] dev_ptr  pointer to memory to set the advice for
+  !>  @param [in] count    size in bytes of the memory range, it should be CPU page size alligned.
+  !>  @param [in] advice   advice to be applied for the specified memory range
+  !>  @param [in] device   device to apply the advice for
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>
+  !>  This HIP API advises about the usage to be applied on unified memory allocation in the
+  !>  range starting from the pointer address devPtr, with the size of count bytes.
+  !>  The memory range must refer to managed memory allocated via the API hipMallocManaged, and the
+  !>  range will be handled with proper round down and round up respectively in the driver to
+  !>  be aligned to CPU page size, the same way as corresponding CUDA API behaves in CUDA version
+  !>  8.0
+  !>  and afterwards.
+  !>
+  !>  @note  This API is implemented on Linux and is under development on Microsoft Windows.
+#ifndef USE_CUDA_NAMES
+  interface hipMemAdvise
+    function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipMemAdvise_
+      type(c_ptr),value :: dev_ptr
+      integer(c_size_t),value :: count
+      integer(c_int),value :: advice
+      integer(c_int),value :: device
+    end function
+  end interface
+#endif
 
   !>  @brief Query an attribute of a given memory range in HIP.
   !>
@@ -4697,9 +4773,10 @@ module hipfort
   !>   @ingroup Module
   !>
   !>   Returns in *dptr and *bytes the pointer and size of the global of name name located in module
-  !>  hmod. If no variable of that name exists, it returns hipErrorNotFound. Both parameters dptr
-  !>  and
-  !>  bytes are optional. If one of them is NULL, it is ignored and hipSuccess is returned.
+  !>  hmod. If no variable of that name exists, it returns hipErrorNotFound. A registered
+  !>  `__device__` global that the compiler dropped from the loaded code object is also reported as
+  !>  hipErrorNotFound (the runtime no longer aborts). Both parameters dptr and bytes are optional.
+  !>  If one of them is NULL, it is ignored and hipSuccess is returned.
   !>
   !>   @param[out] dptr - Returns global device pointer
   !>   @param[out] bytes - Returns global size in bytes
@@ -4740,7 +4817,7 @@ module hipfort
   !>   @param[out] devPtr - pointer to the device associated the symbole
   !>   @param[in] symbol - pointer to the symbole of the device
   !>
-  !>   @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>   @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidSymbol`
   interface hipGetSymbolAddress
 #ifdef USE_CUDA_NAMES
     function hipGetSymbolAddress_(devPtr,symbol) bind(c, name="cudaGetSymbolAddress")
@@ -7603,9 +7680,16 @@ module hipfort
   !>
   !>  @param [in] module  Module to free
   !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`
+  !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`, `hipErrorNotFound`,
+  !>           `hipErrorNotPermitted`
   !>
   !>  The module is freed, and the code objects associated with it are destroyed.
+  !>
+  !>  @note Returns `hipErrorNotPermitted` if @p module was obtained from
+  !>  hipLibraryGetModule(). Such a module is owned by its library and should be released with
+  !>  hipLibraryUnload() instead.
+  !>
+  !>  @see hipLibraryGetModule, hipLibraryUnload
   interface hipModuleUnload
 #ifdef USE_CUDA_NAMES
     function hipModuleUnload_(myModule) bind(c, name="cuModuleUnload")
@@ -7671,6 +7755,29 @@ module hipfort
     module procedure hipModuleGetFunctionCount_typed
 #endif
   end interface
+
+  !>  @brief Returns the function handles within a module.
+  !>
+  !>  @param [out] functions Buffer where the function handles are returned
+  !>  @param [in] numFunctions Maximum number of function handles to return to the buffer
+  !>  @param [in] mod Module to query from
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
+  !>  `hipErrorInvalidContext`, `hipErrorNotInitialized`, `hipErrorNotFound`
+#ifndef USE_CUDA_NAMES
+  interface hipModuleEnumerateFunctions
+    function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
+        bind(c, name="hipModuleEnumerateFunctions")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipModuleEnumerateFunctions_
+      type(c_ptr) :: functions
+      integer(c_int),value :: numFunctions
+      type(c_ptr),value :: mod
+    end function
+  end interface
+#endif
 
   !>  @brief Returns information about a kernel.
   !>
@@ -7877,7 +7984,7 @@ module hipfort
   !>  @param [in]  library Input hip library handle.
   !>  @param [in]  name   Name of the global symbol to look up.
   !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
-  !>          `hipErrorNotFound`
+  !>          `hipErrorNotFound`, `hipErrorInvalidSymbol`
   interface
 #ifdef USE_CUDA_NAMES
     function hipLibraryGetGlobal_(dptr,bytes,library,name) bind(c, name="cudaLibraryGetGlobal")
@@ -7939,6 +8046,35 @@ module hipfort
       hipLibraryGetManaged_opt,&
       hipLibraryGetManaged_typed
   end interface
+
+  !>  @brief Get the module handle backing a library.
+  !>
+  !>  Returns the `hipModule_t` that @p library was loaded into, so a library can be
+  !>  consumed by the module-based APIs
+  !>
+  !>  @param [out] pMod    Pointer to receive the module handle.
+  !>  @param [in]  library Input hip library handle to retrieve module from.
+  !>  @return `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
+  !>          `hipErrorNotFound`
+  !>
+  !>  @note The returned module is owned by @p library and stays valid until
+  !>  hipLibraryUnload(). Do not release it with hipModuleUnload(), which returns
+  !>  `hipErrorNotPermitted` for such a handle.
+  !>
+  !>  @see hipLibraryLoadData, hipLibraryLoadFromFile, hipLibraryUnload,
+  !>  hipModuleGetFunction, hipModuleUnload
+#ifndef USE_CUDA_NAMES
+  interface hipLibraryGetModule
+    function hipLibraryGetModule_(pMod,library) bind(c, name="hipLibraryGetModule")
+      use iso_c_binding
+      use hipfort_enums
+      implicit none
+      integer(c_int) :: hipLibraryGetModule_
+      type(c_ptr) :: pMod
+      type(c_ptr),value :: library
+    end function
+  end interface
+#endif
 
   !>  @brief Retrieve kernel handles within a library
   !>
@@ -10600,9 +10736,10 @@ module hipfort
   !>  @brief Ends capture on a stream, returning the captured graph.
   !>
   !>  @param [in] stream - Stream to end capture.
-  !>  @param [out] pGraph - Captured graph.
+  !>  @param [out] pGraph - Captured graph. Set to NULL on every error.
   !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorStreamCaptureInvalidated`,
+  !>  `hipErrorStreamCaptureUnjoined`
   interface hipStreamEndCapture
 #ifdef USE_CUDA_NAMES
     function hipStreamEndCapture_(stream,pGraph) bind(c, name="cudaStreamEndCapture")
@@ -10717,7 +10854,8 @@ module hipfort
   !>  @param [in] numDependencies  Size of the dependencies array.
   !>  @param [in] flags  Flag to update dependency set. Should be one of the values
   !>  in enum `hipStreamUpdateCaptureDependenciesFlags`.
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorIllegalState`
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorIllegalState`,
+  !>  `hipErrorStreamCaptureInvalidated`
 #ifndef USE_CUDA_NAMES
   interface hipStreamUpdateCaptureDependencies
     function hipStreamUpdateCaptureDependencies_(stream,dependencies,numDependencies,flags) &
@@ -14511,12 +14649,6 @@ module hipfort
   end interface
 #endif
 
-  !>  @brief Device which matches hipDeviceProp_t is returned
-  !>
-  !>  @param [out] device Pointer of the device
-  !>  @param [in]  prop Pointer of the properties
-  !>
-  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipChooseDevice
     procedure hipChooseDeviceR0600_
 

@@ -53,9 +53,9 @@ contains
       hipErrorLaunchTimeOut, hipErrorPeerAccessAlreadyEnabled, hipErrorPeerAccessNotEnabled, &
       hipErrorSetOnActiveProcess, hipErrorContextIsDestroyed, hipErrorAssert, &
       hipErrorHostMemoryAlreadyRegistered, hipErrorHostMemoryNotRegistered, hipErrorLaunchFailure, &
-      hipErrorCooperativeLaunchTooLarge, hipErrorNotSupported, hipErrorStreamCaptureUnsupported, &
-      hipErrorStreamCaptureInvalidated, hipErrorStreamCaptureMerge, &
-      hipErrorStreamCaptureUnmatched, hipErrorStreamCaptureUnjoined, &
+      hipErrorCooperativeLaunchTooLarge, hipErrorNotPermitted, hipErrorNotSupported, &
+      hipErrorStreamCaptureUnsupported, hipErrorStreamCaptureInvalidated, &
+      hipErrorStreamCaptureMerge, hipErrorStreamCaptureUnmatched, hipErrorStreamCaptureUnjoined, &
       hipErrorStreamCaptureIsolation, hipErrorStreamCaptureImplicit, hipErrorCapturedEvent, &
       hipErrorStreamCaptureWrongThread, hipErrorGraphExecUpdateFailure, &
       hipErrorInvalidChannelDescriptor, hipErrorInvalidTexture, hipErrorInvalidResourceType, &
@@ -182,6 +182,8 @@ contains
         name = "hipErrorLaunchFailure"
       case (hipErrorCooperativeLaunchTooLarge)
         name = "hipErrorCooperativeLaunchTooLarge"
+      case (hipErrorNotPermitted)
+        name = "hipErrorNotPermitted"
       case (hipErrorNotSupported)
         name = "hipErrorNotSupported"
       case (hipErrorStreamCaptureUnsupported)

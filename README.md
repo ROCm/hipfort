@@ -126,7 +126,7 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The current batch of hipfort interfaces is derived from ROCm 10.1.0.
+The current batch of hipfort interfaces is derived from ROCm 10.2.0.
 With an older ROCm, link with `-Wl,--gc-sections` (see [Linking against hipfort](#linking-against-hipfort))
 so that routines missing from the installed libraries do not break the link.
 The following tables list the supported API:

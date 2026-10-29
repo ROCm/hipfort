@@ -172,7 +172,7 @@ For the FFTW3-compatible interface, see the
 Supported HIP and ROCm APIs
 ---------------------------
 
-The current set of hipFORT interfaces is derived from ROCm 10.1.0. With an older
+The current set of hipFORT interfaces is derived from ROCm 10.2.0. With an older
 ROCm, some of these routines are missing from the installed libraries: link with
 ``-Wl,--gc-sections`` (see :ref:`hipfort-gc-sections`) so that your program still
 links as long as it does not call them. The following tables list the supported APIs:
