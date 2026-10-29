@@ -77,7 +77,6 @@ program test_hipfft
     if (never) v1 = hipfftDestroy_(v0)
     if (never) v1 = hipfftGetVersion_(v0)
     if (never) v1 = hipfftGetProperty_(v1, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipfftXtSetCallback_(v0, v0, v1, v0)
     if (never) v1 = hipfftXtClearCallback_(v0, v1)
     if (never) v1 = hipfftXtSetCallbackSharedSize_(v0, v1, v4)
@@ -96,7 +95,6 @@ program test_hipfft
     if (never) v1 = hipfftXtExecDescriptorD2Z_(v0, v5, v5)
     if (never) v1 = hipfftXtExecDescriptorZ2D_(v0, v5, v5)
     if (never) v1 = hipfftXtExecDescriptor_(v0, v5, v5, v1)
-#endif
 
   write(*,"(a)") "-- test_hipfft (bind(C) symbols): PASSED (compile+link only)!"
 end program test_hipfft

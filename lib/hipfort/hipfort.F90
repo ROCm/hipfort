@@ -595,10 +595,14 @@ module hipfort
   !>  @param [in] scope  The scope of the operation, see `hipFlushGPUDirectRDMAWritesScope`
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotSupported`
-#ifndef USE_CUDA_NAMES
   interface hipDeviceFlushGPUDirectRDMAWrites
+#ifdef USE_CUDA_NAMES
+    function hipDeviceFlushGPUDirectRDMAWrites_(target,scope) &
+        bind(c, name="cudaDeviceFlushGPUDirectRDMAWrites")
+#else
     function hipDeviceFlushGPUDirectRDMAWrites_(target,scope) &
         bind(c, name="hipDeviceFlushGPUDirectRDMAWrites")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -607,7 +611,6 @@ module hipfort
       integer(c_int),value :: scope
     end function
   end interface
-#endif
 
   !>  @brief Returns the default memory pool of the specified device
   !>
@@ -955,6 +958,12 @@ module hipfort
     end function
   end interface
 
+  !>  @brief Device which matches hipDeviceProp_t is returned
+  !>
+  !>  @param [out] device Pointer of the device
+  !>  @param [in]  prop Pointer of the properties
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipChooseDeviceR0600
 #ifdef USE_CUDA_NAMES
     function hipChooseDeviceR0600_(device,prop) bind(c, name="cudaChooseDevice")
@@ -1303,10 +1312,14 @@ module hipfort
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidResourceHandle`, `hipErrorInvalidValue`,
   !>  `hipErrorInvalidDevice`, `hipErrorInvalidDeviceFunction`
-#ifndef USE_CUDA_NAMES
   interface hipKernelSetAttributeForDevice
+#ifdef USE_CUDA_NAMES
+    function hipKernelSetAttributeForDevice_(kernel,attr,myValue,device) &
+        bind(c, name="cudaKernelSetAttributeForDevice")
+#else
     function hipKernelSetAttributeForDevice_(kernel,attr,myValue,device) &
         bind(c, name="hipKernelSetAttributeForDevice")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -1317,7 +1330,6 @@ module hipfort
       integer(c_int),value :: device
     end function
   end interface
-#endif
 
   !>  @brief Function will be extracted for specific kernel
   !>
@@ -7764,10 +7776,14 @@ module hipfort
   !>
   !>  @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`,
   !>  `hipErrorInvalidContext`, `hipErrorNotInitialized`, `hipErrorNotFound`
-#ifndef USE_CUDA_NAMES
   interface hipModuleEnumerateFunctions
+#ifdef USE_CUDA_NAMES
+    function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
+        bind(c, name="cuModuleEnumerateFunctions")
+#else
     function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
         bind(c, name="hipModuleEnumerateFunctions")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -7777,7 +7793,6 @@ module hipfort
       type(c_ptr),value :: mod
     end function
   end interface
-#endif
 
   !>  @brief Returns information about a kernel.
   !>
@@ -8063,9 +8078,12 @@ module hipfort
   !>
   !>  @see hipLibraryLoadData, hipLibraryLoadFromFile, hipLibraryUnload,
   !>  hipModuleGetFunction, hipModuleUnload
-#ifndef USE_CUDA_NAMES
   interface hipLibraryGetModule
+#ifdef USE_CUDA_NAMES
+    function hipLibraryGetModule_(pMod,library) bind(c, name="cuLibraryGetModule")
+#else
     function hipLibraryGetModule_(pMod,library) bind(c, name="hipLibraryGetModule")
+#endif
       use iso_c_binding
       use hipfort_enums
       implicit none
@@ -8074,7 +8092,6 @@ module hipfort
       type(c_ptr),value :: library
     end function
   end interface
-#endif
 
   !>  @brief Retrieve kernel handles within a library
   !>
@@ -14649,6 +14666,12 @@ module hipfort
   end interface
 #endif
 
+  !>  @brief Device which matches hipDeviceProp_t is returned
+  !>
+  !>  @param [out] device Pointer of the device
+  !>  @param [in]  prop Pointer of the properties
+  !>
+  !>  @returns `hipSuccess`, `hipErrorInvalidValue`
   interface hipChooseDevice
     procedure hipChooseDeviceR0600_
 

@@ -16229,11 +16229,16 @@ module hipfort_hipsolver
     end function
   end interface
 
-#ifndef USE_CUDA_NAMES
   interface hipsolverDnXtrtri_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXtrtri_bufferSize_(handle,uplo,diag,n,dataTypeA,A,lda,lworkOnDevice, &
+        lworkOnHost) &
+        bind(c, name="cusolverDnXtrtri_bufferSize")
+#else
     function hipsolverDnXtrtri_bufferSize_(handle,uplo,diag,n,dataTypeA,A,lda,lworkOnDevice, &
         lworkOnHost) &
         bind(c, name="hipsolverDnXtrtri_bufferSize")
+#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
@@ -16251,13 +16256,17 @@ module hipfort_hipsolver
 
     module procedure hipsolverDnXtrtri_bufferSize_typed
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipsolverDnXtrtri
+#ifdef USE_CUDA_NAMES
+    function hipsolverDnXtrtri_(handle,uplo,diag,n,dataTypeA,A,lda,workOnDevice,lworkOnDevice, &
+        workOnHost,lworkOnHost,devInfo) &
+        bind(c, name="cusolverDnXtrtri")
+#else
     function hipsolverDnXtrtri_(handle,uplo,diag,n,dataTypeA,A,lda,workOnDevice,lworkOnDevice, &
         workOnHost,lworkOnHost,devInfo) &
         bind(c, name="hipsolverDnXtrtri")
+#endif
       use iso_c_binding
       use hipfort_hipsolver_enums
       implicit none
@@ -16276,7 +16285,6 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
     end function
   end interface
-#endif
 
   interface hipsolverRfCreate
 #ifdef USE_CUDA_NAMES
@@ -23257,7 +23265,6 @@ module hipfort_hipsolver
         dataTypeA,A,lda,devIpiv,dataTypeB,B,ldb,c_loc(lworkOnDevice),c_loc(lworkOnHost))
     end function
 
-#ifndef USE_CUDA_NAMES
     function hipsolverDnXtrtri_bufferSize_typed(handle,uplo,diag,n,dataTypeA,A,lda,lworkOnDevice, &
         lworkOnHost)
       use iso_c_binding
@@ -23278,7 +23285,6 @@ module hipfort_hipsolver
         dataTypeA,A,lda,c_loc(lworkOnDevice),c_loc(lworkOnHost))
     end function
 
-#endif
     function hipsolverRfAccessBundledFactorsDevice_typed(handle,nnzM,Mp,Mi,Mx)
       use iso_c_binding
       use hipfort_hipsolver_enums

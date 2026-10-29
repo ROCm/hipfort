@@ -606,10 +606,8 @@ program test_hipsolver
     if (never) v1 = hipsolverDnXsyevBatched_(v0, v0, v1, v1, v6, v1, v0, v6, v1, v0, v1, v0, v3, v0, v3, v0, v6)
     if (never) v1 = hipsolverDnXsytrs_bufferSize_(v0, v1, v6, v6, v1, v0, v6, v0, v1, v0, v6, v0, v0)
     if (never) v1 = hipsolverDnXsytrs_(v0, v1, v6, v6, v1, v0, v6, v0, v1, v0, v6, v0, v3, v0, v3, v0)
-#ifndef USE_CUDA_NAMES
     if (never) v1 = hipsolverDnXtrtri_bufferSize_(v0, v1, v1, v6, v1, v0, v6, v0, v0)
     if (never) v1 = hipsolverDnXtrtri_(v0, v1, v1, v6, v1, v0, v6, v0, v3, v0, v3, v0)
-#endif
     if (never) v1 = hipsolverRfCreate_(v0)
     if (never) v1 = hipsolverRfDestroy_(v0)
     if (never) v1 = hipsolverRfSetupDevice_(v1, v1, v0, v0, v0, v1, v0, v0, v0, v1, v0, v0, v0, v0, v0, v0)
