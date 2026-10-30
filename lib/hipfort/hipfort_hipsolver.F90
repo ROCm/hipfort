@@ -2570,6 +2570,16 @@ module hipfort_hipsolver
     end function
 
     module procedure hipsolverSgelsBatched_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSgelsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverSgelsBatched_rank_0,&
+      hipsolverSgelsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -2599,6 +2609,16 @@ module hipfort_hipsolver
     end function
 
     module procedure hipsolverDgelsBatched_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDgelsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverDgelsBatched_rank_0,&
+      hipsolverDgelsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -2628,6 +2648,16 @@ module hipfort_hipsolver
     end function
 
     module procedure hipsolverCgelsBatched_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCgelsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverCgelsBatched_rank_0,&
+      hipsolverCgelsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -2657,6 +2687,16 @@ module hipfort_hipsolver
     end function
 
     module procedure hipsolverZgelsBatched_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZgelsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverZgelsBatched_rank_0,&
+      hipsolverZgelsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -4567,16 +4607,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverSgetrfBatched_assumed_rank,&
-      hipsolverSgetrfBatched_assumed_rank_devptr
+    module procedure hipsolverSgetrfBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetrfBatched_rank_0,&
-      hipsolverSgetrfBatched_rank_0_devptr,&
-      hipsolverSgetrfBatched_rank_1,&
-      hipsolverSgetrfBatched_rank_1_devptr
+      hipsolverSgetrfBatched_rank_1
 #endif
 #endif
   end interface
@@ -4605,16 +4641,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverDgetrfBatched_assumed_rank,&
-      hipsolverDgetrfBatched_assumed_rank_devptr
+    module procedure hipsolverDgetrfBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetrfBatched_rank_0,&
-      hipsolverDgetrfBatched_rank_0_devptr,&
-      hipsolverDgetrfBatched_rank_1,&
-      hipsolverDgetrfBatched_rank_1_devptr
+      hipsolverDgetrfBatched_rank_1
 #endif
 #endif
   end interface
@@ -4643,16 +4675,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverCgetrfBatched_assumed_rank,&
-      hipsolverCgetrfBatched_assumed_rank_devptr
+    module procedure hipsolverCgetrfBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetrfBatched_rank_0,&
-      hipsolverCgetrfBatched_rank_0_devptr,&
-      hipsolverCgetrfBatched_rank_1,&
-      hipsolverCgetrfBatched_rank_1_devptr
+      hipsolverCgetrfBatched_rank_1
 #endif
 #endif
   end interface
@@ -4681,16 +4709,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverZgetrfBatched_assumed_rank,&
-      hipsolverZgetrfBatched_assumed_rank_devptr
+    module procedure hipsolverZgetrfBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetrfBatched_rank_0,&
-      hipsolverZgetrfBatched_rank_0_devptr,&
-      hipsolverZgetrfBatched_rank_1,&
-      hipsolverZgetrfBatched_rank_1_devptr
+      hipsolverZgetrfBatched_rank_1
 #endif
 #endif
   end interface
@@ -4860,16 +4884,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverSgetriBatched_assumed_rank,&
-      hipsolverSgetriBatched_assumed_rank_devptr
+    module procedure hipsolverSgetriBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverSgetriBatched_rank_0,&
-      hipsolverSgetriBatched_rank_0_devptr,&
-      hipsolverSgetriBatched_rank_1,&
-      hipsolverSgetriBatched_rank_1_devptr
+      hipsolverSgetriBatched_rank_1
 #endif
 #endif
   end interface
@@ -4899,16 +4919,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverDgetriBatched_assumed_rank,&
-      hipsolverDgetriBatched_assumed_rank_devptr
+    module procedure hipsolverDgetriBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverDgetriBatched_rank_0,&
-      hipsolverDgetriBatched_rank_0_devptr,&
-      hipsolverDgetriBatched_rank_1,&
-      hipsolverDgetriBatched_rank_1_devptr
+      hipsolverDgetriBatched_rank_1
 #endif
 #endif
   end interface
@@ -4938,16 +4954,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverCgetriBatched_assumed_rank,&
-      hipsolverCgetriBatched_assumed_rank_devptr
+    module procedure hipsolverCgetriBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverCgetriBatched_rank_0,&
-      hipsolverCgetriBatched_rank_0_devptr,&
-      hipsolverCgetriBatched_rank_1,&
-      hipsolverCgetriBatched_rank_1_devptr
+      hipsolverCgetriBatched_rank_1
 #endif
 #endif
   end interface
@@ -4977,16 +4989,12 @@ module hipfort_hipsolver
     end function
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsolverZgetriBatched_assumed_rank,&
-      hipsolverZgetriBatched_assumed_rank_devptr
+    module procedure hipsolverZgetriBatched_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsolverZgetriBatched_rank_0,&
-      hipsolverZgetriBatched_rank_0_devptr,&
-      hipsolverZgetriBatched_rank_1,&
-      hipsolverZgetriBatched_rank_1_devptr
+      hipsolverZgetriBatched_rank_1
 #endif
 #endif
   end interface
@@ -5990,6 +5998,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrfBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverSpotrfBatched_rank_0,&
+      hipsolverSpotrfBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6011,6 +6029,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrfBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverDpotrfBatched_rank_0,&
+      hipsolverDpotrfBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6032,6 +6060,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrfBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverCpotrfBatched_rank_0,&
+      hipsolverCpotrfBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6053,6 +6091,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrfBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverZpotrfBatched_rank_0,&
+      hipsolverZpotrfBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6758,6 +6806,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverSpotrsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverSpotrsBatched_rank_0,&
+      hipsolverSpotrsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6783,6 +6841,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverDpotrsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverDpotrsBatched_rank_0,&
+      hipsolverDpotrsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6808,6 +6876,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverCpotrsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverCpotrsBatched_rank_0,&
+      hipsolverCpotrsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -6833,6 +6911,16 @@ module hipfort_hipsolver
       type(c_ptr),value :: devInfo
       integer(c_int),value :: batch_count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsolverZpotrsBatched_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsolverZpotrsBatched_rank_0,&
+      hipsolverZpotrsBatched_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -17910,7 +17998,7 @@ module hipfort_hipsolver
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: hInfo
-      type(c_ptr),value :: devInfo
+      type(c_ptr) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSgelsBatched_typed = hipsolverSgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc,work, &
@@ -17937,7 +18025,7 @@ module hipfort_hipsolver
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: hInfo
-      type(c_ptr),value :: devInfo
+      type(c_ptr) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDgelsBatched_typed = hipsolverDgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc,work, &
@@ -17964,7 +18052,7 @@ module hipfort_hipsolver
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: hInfo
-      type(c_ptr),value :: devInfo
+      type(c_ptr) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCgelsBatched_typed = hipsolverCgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc,work, &
@@ -17991,7 +18079,7 @@ module hipfort_hipsolver
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
       integer(c_int),target :: hInfo
-      type(c_ptr),value :: devInfo
+      type(c_ptr) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZgelsBatched_typed = hipsolverZgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc,work, &
@@ -29498,6 +29586,326 @@ module hipfort_hipsolver
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverSgelsBatched_assumed_rank(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork, &
+        hInfo,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgelsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSgelsBatched_assumed_rank = hipsolverSgelsBatched_(handle,trans,m,n,nrhs,A,lda,C, &
+        ldc,work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverSgelsBatched_rank_0(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgelsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSgelsBatched_rank_0 = hipsolverSgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverSgelsBatched_rank_1(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgelsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSgelsBatched_rank_1 = hipsolverSgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverDgelsBatched_assumed_rank(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork, &
+        hInfo,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgelsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDgelsBatched_assumed_rank = hipsolverDgelsBatched_(handle,trans,m,n,nrhs,A,lda,C, &
+        ldc,work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverDgelsBatched_rank_0(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgelsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDgelsBatched_rank_0 = hipsolverDgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverDgelsBatched_rank_1(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgelsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDgelsBatched_rank_1 = hipsolverDgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverCgelsBatched_assumed_rank(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork, &
+        hInfo,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgelsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCgelsBatched_assumed_rank = hipsolverCgelsBatched_(handle,trans,m,n,nrhs,A,lda,C, &
+        ldc,work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverCgelsBatched_rank_0(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgelsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCgelsBatched_rank_0 = hipsolverCgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverCgelsBatched_rank_1(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgelsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCgelsBatched_rank_1 = hipsolverCgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverZgelsBatched_assumed_rank(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork, &
+        hInfo,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgelsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZgelsBatched_assumed_rank = hipsolverZgelsBatched_(handle,trans,m,n,nrhs,A,lda,C, &
+        ldc,work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverZgelsBatched_rank_0(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgelsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZgelsBatched_rank_0 = hipsolverZgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverZgelsBatched_rank_1(handle,trans,m,n,nrhs,A,lda,C,ldc,work,lwork,hInfo, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgelsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_OP_N)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: C
+      integer(c_int) :: ldc
+      type(c_ptr), value :: work
+      integer(c_size_t) :: lwork
+      integer(c_int),target :: hInfo
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZgelsBatched_rank_1 = hipsolverZgelsBatched_(handle,trans,m,n,nrhs,A,lda,C,ldc, &
+        work,lwork,c_loc(hInfo),c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
       use iso_c_binding
@@ -32475,33 +32883,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSgetrfBatched_assumed_rank = hipsolverSgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverSgetrfBatched_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv, &
-        strideP,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrfBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetrfBatched_assumed_rank_devptr = hipsolverSgetrfBatched_(handle,m,n,A,lda,work, &
-        lwork,c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #else
@@ -32527,28 +32913,6 @@ module hipfort_hipsolver
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverSgetrfBatched_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrfBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetrfBatched_rank_0_devptr = hipsolverSgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
-    end function
-
     function hipsolverSgetrfBatched_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
         batch_count)
       use iso_c_binding
@@ -32564,33 +32928,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSgetrfBatched_rank_1 = hipsolverSgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverSgetrfBatched_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrfBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetrfBatched_rank_1_devptr = hipsolverSgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #endif
@@ -32612,33 +32954,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDgetrfBatched_assumed_rank = hipsolverDgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverDgetrfBatched_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv, &
-        strideP,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrfBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetrfBatched_assumed_rank_devptr = hipsolverDgetrfBatched_(handle,m,n,A,lda,work, &
-        lwork,c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #else
@@ -32664,28 +32984,6 @@ module hipfort_hipsolver
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverDgetrfBatched_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrfBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetrfBatched_rank_0_devptr = hipsolverDgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
-    end function
-
     function hipsolverDgetrfBatched_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
         batch_count)
       use iso_c_binding
@@ -32701,33 +32999,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDgetrfBatched_rank_1 = hipsolverDgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverDgetrfBatched_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrfBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetrfBatched_rank_1_devptr = hipsolverDgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #endif
@@ -32749,33 +33025,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCgetrfBatched_assumed_rank = hipsolverCgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverCgetrfBatched_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv, &
-        strideP,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrfBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetrfBatched_assumed_rank_devptr = hipsolverCgetrfBatched_(handle,m,n,A,lda,work, &
-        lwork,c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #else
@@ -32801,28 +33055,6 @@ module hipfort_hipsolver
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverCgetrfBatched_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrfBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetrfBatched_rank_0_devptr = hipsolverCgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
-    end function
-
     function hipsolverCgetrfBatched_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
         batch_count)
       use iso_c_binding
@@ -32838,33 +33070,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCgetrfBatched_rank_1 = hipsolverCgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverCgetrfBatched_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrfBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetrfBatched_rank_1_devptr = hipsolverCgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #endif
@@ -32886,33 +33096,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(..) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZgetrfBatched_assumed_rank = hipsolverZgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverZgetrfBatched_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv, &
-        strideP,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrfBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetrfBatched_assumed_rank_devptr = hipsolverZgetrfBatched_(handle,m,n,A,lda,work, &
-        lwork,c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #else
@@ -32938,28 +33126,6 @@ module hipfort_hipsolver
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverZgetrfBatched_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrfBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetrfBatched_rank_0_devptr = hipsolverZgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
-    end function
-
     function hipsolverZgetrfBatched_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,strideP,devInfo, &
         batch_count)
       use iso_c_binding
@@ -32975,33 +33141,11 @@ module hipfort_hipsolver
       integer(c_size_t) :: lwork
       integer(c_int),target,dimension(:) :: devIpiv
       integer(c_int) :: strideP
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZgetrfBatched_rank_1 = hipsolverZgetrfBatched_(handle,m,n,A,lda,work,lwork, &
         c_loc(devIpiv),strideP,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverZgetrfBatched_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,strideP, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrfBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetrfBatched_rank_1_devptr = hipsolverZgetrfBatched_(handle,m,n,A,lda,work,lwork, &
-        c_loc(devIpiv),strideP,devInfo,batch_count)
     end function
 
 #endif
@@ -33296,34 +33440,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSgetriBatched_assumed_rank = hipsolverSgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverSgetriBatched_assumed_rank_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work, &
-        lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetriBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetriBatched_assumed_rank_devptr = hipsolverSgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #else
@@ -33350,29 +33471,6 @@ module hipfort_hipsolver
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverSgetriBatched_rank_0_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetriBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetriBatched_rank_0_devptr = hipsolverSgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
-    end function
-
     function hipsolverSgetriBatched_rank_1(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
         devInfo,batch_count)
       use iso_c_binding
@@ -33389,34 +33487,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverSgetriBatched_rank_1 = hipsolverSgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverSgetriBatched_rank_1_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetriBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverSgetriBatched_rank_1_devptr = hipsolverSgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #endif
@@ -33439,34 +33514,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDgetriBatched_assumed_rank = hipsolverDgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverDgetriBatched_assumed_rank_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work, &
-        lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetriBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetriBatched_assumed_rank_devptr = hipsolverDgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #else
@@ -33493,29 +33545,6 @@ module hipfort_hipsolver
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverDgetriBatched_rank_0_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetriBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetriBatched_rank_0_devptr = hipsolverDgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
-    end function
-
     function hipsolverDgetriBatched_rank_1(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
         devInfo,batch_count)
       use iso_c_binding
@@ -33532,34 +33561,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverDgetriBatched_rank_1 = hipsolverDgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverDgetriBatched_rank_1_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetriBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverDgetriBatched_rank_1_devptr = hipsolverDgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #endif
@@ -33582,34 +33588,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCgetriBatched_assumed_rank = hipsolverCgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverCgetriBatched_assumed_rank_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work, &
-        lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetriBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetriBatched_assumed_rank_devptr = hipsolverCgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #else
@@ -33636,29 +33619,6 @@ module hipfort_hipsolver
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverCgetriBatched_rank_0_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetriBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetriBatched_rank_0_devptr = hipsolverCgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
-    end function
-
     function hipsolverCgetriBatched_rank_1(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
         devInfo,batch_count)
       use iso_c_binding
@@ -33675,34 +33635,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverCgetriBatched_rank_1 = hipsolverCgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverCgetriBatched_rank_1_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetriBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverCgetriBatched_rank_1_devptr = hipsolverCgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #endif
@@ -33725,34 +33662,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(..) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZgetriBatched_assumed_rank = hipsolverZgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverZgetriBatched_assumed_rank_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work, &
-        lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetriBatched_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(..) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetriBatched_assumed_rank_devptr = hipsolverZgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #else
@@ -33779,29 +33693,6 @@ module hipfort_hipsolver
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
     end function
 
-    function hipsolverZgetriBatched_rank_0_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetriBatched_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetriBatched_rank_0_devptr = hipsolverZgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
-    end function
-
     function hipsolverZgetriBatched_rank_1(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
         devInfo,batch_count)
       use iso_c_binding
@@ -33818,34 +33709,11 @@ module hipfort_hipsolver
       integer(c_int) :: ldc
       type(c_ptr), value :: work
       integer(c_size_t) :: lwork
-      integer(c_int),target :: devInfo
+      integer(c_int),target,dimension(:) :: devInfo
       integer(c_int) :: batch_count
       !
       hipsolverZgetriBatched_rank_1 = hipsolverZgetriBatched_(handle,n,A,lda,c_loc(devIpiv), &
         strideP,C,ldc,work,lwork,c_loc(devInfo),batch_count)
-    end function
-
-    function hipsolverZgetriBatched_rank_1_devptr(handle,n,A,lda,devIpiv,strideP,C,ldc,work,lwork, &
-        devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
-      implicit none
-      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetriBatched_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: n
-      type(c_ptr), value :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: devIpiv
-      integer(c_int) :: strideP
-      type(c_ptr), value :: C
-      integer(c_int) :: ldc
-      type(c_ptr), value :: work
-      integer(c_size_t) :: lwork
-      type(c_ptr),value :: devInfo
-      integer(c_int) :: batch_count
-      !
-      hipsolverZgetriBatched_rank_1_devptr = hipsolverZgetriBatched_(handle,n,A,lda, &
-        c_loc(devIpiv),strideP,C,ldc,work,lwork,devInfo,batch_count)
     end function
 
 #endif
@@ -36406,6 +36274,254 @@ module hipfort_hipsolver
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverSpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrfBatched_assumed_rank = hipsolverSpotrfBatched_(handle,uplo,n,A,lda,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverSpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrfBatched_rank_0 = hipsolverSpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverSpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrfBatched_rank_1 = hipsolverSpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverDpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrfBatched_assumed_rank = hipsolverDpotrfBatched_(handle,uplo,n,A,lda,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverDpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrfBatched_rank_0 = hipsolverDpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverDpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrfBatched_rank_1 = hipsolverDpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverCpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrfBatched_assumed_rank = hipsolverCpotrfBatched_(handle,uplo,n,A,lda,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverCpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrfBatched_rank_0 = hipsolverCpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverCpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrfBatched_rank_1 = hipsolverCpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverZpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrfBatched_assumed_rank = hipsolverZpotrfBatched_(handle,uplo,n,A,lda,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverZpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrfBatched_rank_0 = hipsolverZpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverZpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrfBatched_rank_1 = hipsolverZpotrfBatched_(handle,uplo,n,A,lda,work,lwork, &
+        c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
       use iso_c_binding
@@ -38274,6 +38390,302 @@ module hipfort_hipsolver
       !
       hipsolverZpotrs_full_rank_devptr = hipsolverZpotrs_(handle,uplo,n,nrhs,c_loc(A),lda, &
         c_loc(B),ldb,work,lwork,devInfo)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverSpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrsBatched_assumed_rank = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,A,lda,B, &
+        ldb,work,lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverSpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrsBatched_rank_0 = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverSpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverSpotrsBatched_rank_1 = hipsolverSpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverDpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrsBatched_assumed_rank = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,A,lda,B, &
+        ldb,work,lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverDpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrsBatched_rank_0 = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverDpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverDpotrsBatched_rank_1 = hipsolverDpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverCpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrsBatched_assumed_rank = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,A,lda,B, &
+        ldb,work,lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverCpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrsBatched_rank_0 = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverCpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverCpotrsBatched_rank_1 = hipsolverCpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsolverZpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
+        devInfo,batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_assumed_rank
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(..) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrsBatched_assumed_rank = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,A,lda,B, &
+        ldb,work,lwork,c_loc(devInfo),batch_count)
+    end function
+
+#else
+    function hipsolverZpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrsBatched_rank_0 = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
+    end function
+
+    function hipsolverZpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
+        batch_count)
+      use iso_c_binding
+      use hipfort_hipsolver_enums
+      implicit none
+      integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(HIPSOLVER_FILL_MODE_UPPER)) :: uplo
+      integer(c_int) :: n
+      integer(c_int) :: nrhs
+      type(c_ptr), value :: A
+      integer(c_int) :: lda
+      type(c_ptr), value :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: work
+      integer(c_int) :: lwork
+      integer(c_int),target,dimension(:) :: devInfo
+      integer(c_int) :: batch_count
+      !
+      hipsolverZpotrsBatched_rank_1 = hipsolverZpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work, &
+        lwork,c_loc(devInfo),batch_count)
     end function
 
 #endif
