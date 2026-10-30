@@ -35,7 +35,8 @@
   overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
+  -fdata-sections`) when the Fortran compiler accepts these flags, which the
+  amdflang of ROCm 7.13 does not. A program linked with `-Wl,--gc-sections` keeps only the
   wrappers it calls, instead of all of a library's wrappers, and still links
   when another wrapper names a C function that the installed library does not
   export. The tests link that way. A shared library that links an archive also
@@ -289,6 +290,29 @@
 * `use hipfort` now re-exports the host-register helpers (`hipHostRegister`,
   `hipHostGetDevicePointer`, `hipHostUnregister`); they previously required an
   explicit `use hipfort_hiphostregister`.
+
+## hipfort 0.7.2 for ROCm 7.13.0
+
+### Added
+
+* This release is a backport to ROCm 7.13 of hipfort as it stands for ROCm
+  10.2: the modules, interfaces, tests and tooling are those of the ROCm 10.2
+  release (the changes of hipfort 0.8.0, 0.9.0 and 0.10.0, and the ROCm 10.2
+  work listed under Unreleased), and only the bound routines follow ROCm 7.13.
+  The bindings are generated from the ROCm 7.13.0 headers (the rocm-libraries
+  and rocm-systems commits TheRock 7.13.0 pins), for ROCm 7.13 installs that
+  build hipfort from source. Routines added to ROCm after 7.13, such as
+  `hipblasGetVersion`, `rocblas_set_batch_alpha_stride`, the 1stage/2stage/auto
+  algorithm modes of `rocsolver_set_alg_mode`, the `rocsparse_spildlt0` family
+  or the batched `getrf`, `getrs`, `getri`, `gels` and `geqrf` routines of
+  hipSOLVER, are not bound. Staying on ROCm 7.13 is not recommended: if
+  possible, upgrade directly to ROCm 10.2 and the hipfort release for it
+  instead.
+
+### Changed
+
+* The `-ffunction-sections -fdata-sections` flags are only passed when the
+  Fortran compiler accepts them: the amdflang of ROCm 7.13 rejects them.
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 

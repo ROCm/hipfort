@@ -119,9 +119,17 @@ endif()
 # archive, so a program that calls one wrapper links all of that module's. One
 # section per procedure lets a program linked with -Wl,--gc-sections keep only
 # the wrappers it calls; without that flag it changes nothing. Only these
-# compilers split the sections (the Intel ones accept the flags but do not).
-set(HIPFORT_SECTION_FLAGS
-  "$<$<COMPILE_LANG_AND_ID:Fortran,GNU,LLVMFlang,Flang,NVHPC>:-ffunction-sections;-fdata-sections>")
+# compilers split the sections (the Intel ones accept the flags but do not), and
+# not every version takes the flags: the amdflang of ROCm 7.13 rejects them.
+include(CheckFortranCompilerFlag)
+check_fortran_compiler_flag(-ffunction-sections HIPFORT_HAVE_FUNCTION_SECTIONS)
+check_fortran_compiler_flag(-fdata-sections HIPFORT_HAVE_DATA_SECTIONS)
+if(HIPFORT_HAVE_FUNCTION_SECTIONS AND HIPFORT_HAVE_DATA_SECTIONS)
+  set(HIPFORT_SECTION_FLAGS
+    "$<$<COMPILE_LANG_AND_ID:Fortran,GNU,LLVMFlang,Flang,NVHPC>:-ffunction-sections;-fdata-sections>")
+else()
+  set(HIPFORT_SECTION_FLAGS "")
+endif()
 
 if(HIPFORT_BUILD_AMDGCN)
 set(HIPFORT_ARCH "amdgcn")
