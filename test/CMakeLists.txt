@@ -95,8 +95,9 @@ if(BUILD_TESTING)
   # Keyed <dir>/<lib>/<test>, since the f2003 and f2008 variants differ.
   set(HIPFORT_TESTS_ROCM_ONLY
     # hipSOLVER compat API (hipsolverX, no Dn): getrf, getrs, potrs, potrfBatched
-    # and gesvd_bufferSize take a workspace cuSOLVER does not, and the Rf getter
-    # hipsolverRfGet_Algs has no cuSOLVER counterpart.
+    # and gesvd_bufferSize take a workspace cuSOLVER does not, the Rf getter
+    # hipsolverRfGet_Algs has no cuSOLVER counterpart, and the gels, geqrf and
+    # getrf/getrs/getri Batched routines are hipSOLVER's own.
     f2003/hipsolver/hipsolver_cgesvd
     f2003/hipsolver/hipsolver_cgetrf
     f2003/hipsolver/hipsolver_cpotrfbatched
@@ -113,6 +114,9 @@ if(BUILD_TESTING)
     f2003/hipsolver/hipsolver_zgetrf
     f2003/hipsolver/hipsolver_zpotrfbatched
     f2003/hipsolver/hipsolver_zpotrs
+    f2003/hipsolver/hipsolver_dgelsbatched
+    f2003/hipsolver/hipsolver_dgeqrfbatched
+    f2003/hipsolver/hipsolver_dgetrfbatched
     f2008/hipsolver/hipsolver_cgesvd
     f2008/hipsolver/hipsolver_cgetrf
     f2008/hipsolver/hipsolver_cpotrfbatched
@@ -698,6 +702,11 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_syevj_info f2008)
     hipfort_add_test(hipsolver hipsolver_rf_params f2003)
     hipfort_add_test(hipsolver hipsolver_rf_params f2008)
+    # Added in ROCm 10.2
+    hipfort_add_test(hipsolver hipsolver_dgetrfbatched f2003)
+    hipfort_add_test(hipsolver hipsolver_dgeqrfbatched f2003)
+    hipfort_add_test(hipsolver hipsolver_dgelsbatched f2003)
+    hipfort_add_test(hipsolver hipsolver_dnxtrtri f2003)
   endif()
 
   if(TARGET hipfort::hipsparse)
@@ -1424,6 +1433,10 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsolver rocsolver_version f2008)
     hipfort_add_test(rocsolver rocsolver_alg_mode f2003)
     hipfort_add_test(rocsolver rocsolver_alg_mode f2008)
+    # Added in ROCm 10.2
+    hipfort_add_test(rocsolver rocsolver_dgehrd f2003)
+    hipfort_add_test(rocsolver rocsolver_zgehrd f2003)
+    hipfort_add_test(rocsolver rocsolver_dgehrd_batched f2003)
   endif()
 
   if(TARGET hipfort::rocsparse)
@@ -1616,6 +1629,9 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_pointer_mode f2008)
     hipfort_add_test(rocsparse rocsparse_descr_get f2003)
     hipfort_add_test(rocsparse rocsparse_descr_get f2008)
+    # Added in ROCm 10.2
+    hipfort_add_test(rocsparse rocsparse_spsort f2003)
+    hipfort_add_test(rocsparse rocsparse_dnmat_copy_transpose f2003)
   endif()
 
   # HIP runtime API tests: device management, streams, events, memset,
@@ -1675,6 +1691,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hip cache_config f2003)
     hipfort_add_test(hip mem_pool f2003)
     hipfort_add_test(hip stream_capture_info f2003)
+    hipfort_add_test(hip rdma_flush f2003)
     hipfort_add_test(hip pointer_attributes f2008)
     hipfort_add_test(hip mem_advise f2008)
     if(TEST hipfort_test_f2008_hip_mem_advise)
@@ -1719,6 +1736,11 @@ if(BUILD_TESTING)
       hipfort_add_test(hip module_kernel f2003)
       add_dependencies(hipfort_test_f2003_hip_module_kernel hipfort_test_code_object)
       set_tests_properties(hipfort_test_f2003_hip_module_kernel PROPERTIES
+        ENVIRONMENT "HIPFORT_TEST_CODE_OBJECT=${_hipfort_code_object}")
+      # hipLibrary* on the same code object, and the module behind the library
+      hipfort_add_test(hip library_module f2003)
+      add_dependencies(hipfort_test_f2003_hip_library_module hipfort_test_code_object)
+      set_tests_properties(hipfort_test_f2003_hip_library_module PROPERTIES
         ENVIRONMENT "HIPFORT_TEST_CODE_OBJECT=${_hipfort_code_object}")
     endif()
   endif()
