@@ -48,10 +48,6 @@ program test_rocblas
     if (never) v1 = rocblas_get_pointer_mode_(v0, v0)
     if (never) v1 = rocblas_set_atomics_mode_(v0, v1)
     if (never) v1 = rocblas_get_atomics_mode_(v0, v0)
-    if (never) v1 = rocblas_set_batch_alpha_stride_(v0, v2)
-    if (never) v1 = rocblas_get_batch_alpha_stride_(v0, v0)
-    if (never) v1 = rocblas_set_batch_beta_stride_(v0, v2)
-    if (never) v1 = rocblas_get_batch_beta_stride_(v0, v0)
     if (never) v1 = rocblas_set_math_mode_(v0, v1)
     if (never) v1 = rocblas_get_math_mode_(v0, v0)
     if (never) v1 = rocblas_pointer_to_mode_(v0)
@@ -1155,10 +1151,6 @@ program test_rocblas
       v2, v2)
     if (never) v1 = rocblas_zgemm_strided_batched_64_(v0, v1, v1, v2, v2, v2, v0, v0, v2, v2, v0, v2, v2, v0, v0, v2, &
       v2, v2)
-    if (never) v1 = rocblas_sgemm_grouped_batched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v1, v0)
-    if (never) v1 = rocblas_dgemm_grouped_batched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v1, v0)
-    if (never) v1 = rocblas_sgemm_grouped_batched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v2, v0)
-    if (never) v1 = rocblas_dgemm_grouped_batched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v2, v0)
     if (never) v1 = rocblas_sdgmm_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = rocblas_ddgmm_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1)
     if (never) v1 = rocblas_cdgmm_(v0, v1, v1, v1, v0, v1, v0, v1, v0, v1)
@@ -1223,10 +1215,6 @@ program test_rocblas
       v0, v1, v1, v2, v0, v1, v1, v2, v1, v1, v1, v3, v3)
     if (never) v1 = rocblas_gemm_strided_batched_ex_64_(v0, v1, v1, v2, v2, v2, v0, v0, v1, v2, v2, v0, v1, v2, v2, &
       v0, v0, v1, v2, v2, v0, v1, v2, v2, v2, v1, v1, v3, v3)
-    if (never) v1 = rocblas_gemm_grouped_batched_ex_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, v1, &
-      v0, v0, v1, v0, v1, v0, v1, v1, v3)
-    if (never) v1 = rocblas_gemm_grouped_batched_ex_64_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, &
-      v1, v0, v0, v1, v0, v2, v0, v1, v1, v3)
     if (never) v1 = rocblas_sgemmt_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v0, v1, v0, v0, v1)
     if (never) v1 = rocblas_dgemmt_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v0, v1, v0, v0, v1)
     if (never) v1 = rocblas_cgemmt_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v0, v1, v0, v0, v1)

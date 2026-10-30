@@ -136,11 +136,6 @@ module hipfort_hipsparse_enums
 #else
     enumerator :: HIPSPARSE_FORMAT_SLICED_ELL = 6
 #endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSPARSE_FORMAT_BSR = 6
-#else
-    enumerator :: HIPSPARSE_FORMAT_BSR = 7
-#endif
   end enum
 
   ! hipsparseOrder_t
@@ -169,8 +164,6 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPMV_CSR_ALG2 = 3
     enumerator :: HIPSPARSE_SPMV_COO_ALG2 = 4
     enumerator :: HIPSPARSE_SPMV_SELL_ALG1 = 5
-    enumerator :: HIPSPARSE_SPMV_BSR_ALG1 = 6
-    enumerator :: HIPSPARSE_SPMV_CSR_ALG3 = 7
   end enum
 
   ! hipsparseSpMMAlg_t
@@ -189,7 +182,6 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPMM_CSR_ALG2 = 6
     enumerator :: HIPSPARSE_SPMM_CSR_ALG3 = 12
     enumerator :: HIPSPARSE_SPMM_BLOCKED_ELL_ALG1 = 13
-    enumerator :: HIPSPARSE_SPMM_BSR_ALG1 = 14
   end enum
 
   ! hipsparseSparseToDenseAlg_t
@@ -233,17 +225,8 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPGEMM_ALG3 = 5
   end enum
 
-  ! hipsparseSpGEAMAlg_t
-  enum, bind(c)
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSPARSE_SPGEAM_ALG1 = 1
-#else
-    enumerator :: HIPSPARSE_SPGEAM_ALG1 = 0
-#endif
-  end enum
-
   integer(c_int), parameter :: hipsparseVersionMajor = 4
-  integer(c_int), parameter :: hipsparseVersionMinor = 8
+  integer(c_int), parameter :: hipsparseVersionMinor = 5
   integer(c_int), parameter :: hipsparseVersionPatch = 0
 
 end module hipfort_hipsparse_enums

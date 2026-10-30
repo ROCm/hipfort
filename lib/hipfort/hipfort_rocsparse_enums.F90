@@ -60,18 +60,6 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_fill_mode_upper = 1
   end enum
 
-  ! rocsparse_solve_mode_
-  enum, bind(c)
-    enumerator :: rocsparse_solve_mode_triangular = 0
-    enumerator :: rocsparse_solve_mode_diagonal = 1
-  end enum
-
-  ! rocsparse_diagonal_modifier_
-  enum, bind(c)
-    enumerator :: rocsparse_diagonal_modifier_none = 0
-    enumerator :: rocsparse_diagonal_modifier_absolute = 1
-  end enum
-
   ! rocsparse_storage_mode_
   enum, bind(c)
     enumerator :: rocsparse_storage_mode_sorted = 0
@@ -155,6 +143,7 @@ module hipfort_rocsparse_enums
 
   ! rocsparse_indextype_
   enum, bind(c)
+    enumerator :: rocsparse_indextype_u16 = 1
     enumerator :: rocsparse_indextype_i32 = 2
     enumerator :: rocsparse_indextype_i64 = 3
   end enum
@@ -407,8 +396,6 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_sptrsv_input_compute_datatype = 3
     enumerator :: rocsparse_sptrsv_input_scalar_alpha = 4
     enumerator :: rocsparse_sptrsv_input_analysis_policy = 5
-    enumerator :: rocsparse_sptrsv_input_solve_mode = 6
-    enumerator :: rocsparse_sptrsv_input_diagonal_modifier = 7
   end enum
 
   ! rocsparse_sptrsv_output_
@@ -438,15 +425,11 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_sptrsm_input_scalar_datatype = 4
     enumerator :: rocsparse_sptrsm_input_scalar_alpha = 5
     enumerator :: rocsparse_sptrsm_input_analysis_policy = 6
-    enumerator :: rocsparse_sptrsm_input_solve_mode = 7
-    enumerator :: rocsparse_sptrsm_input_diagonal_modifier = 8
   end enum
 
   ! rocsparse_sptrsm_output_
   enum, bind(c)
     enumerator :: rocsparse_sptrsm_output_zero_pivot_position = 0
-    enumerator :: rocsparse_sptrsm_output_singularity = 1
-    enumerator :: rocsparse_sptrsm_output_singularity_position = 2
   end enum
 
   ! rocsparse_spic0_alg_
@@ -505,35 +488,6 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_spilu0_output_singularity_position = 1
   end enum
 
-  ! rocsparse_spildlt0_alg_
-  enum, bind(c)
-    enumerator :: rocsparse_spildlt0_alg_default = 0
-  end enum
-
-  ! rocsparse_spildlt0_stage_
-  enum, bind(c)
-    enumerator :: rocsparse_spildlt0_stage_analysis = 0
-    enumerator :: rocsparse_spildlt0_stage_compute = 1
-  end enum
-
-  ! rocsparse_spildlt0_input_
-  enum, bind(c)
-    enumerator :: rocsparse_spildlt0_input_alg = 0
-    enumerator :: rocsparse_spildlt0_input_analysis_policy = 1
-    enumerator :: rocsparse_spildlt0_input_compute_datatype = 2
-    enumerator :: rocsparse_spildlt0_input_boost_enable = 3
-    enumerator :: rocsparse_spildlt0_input_boost_tolerance = 4
-    enumerator :: rocsparse_spildlt0_input_boost_value = 5
-    enumerator :: rocsparse_spildlt0_input_singularity_tolerance = 6
-    enumerator :: rocsparse_spildlt0_input_diag = 7
-  end enum
-
-  ! rocsparse_spildlt0_output_
-  enum, bind(c)
-    enumerator :: rocsparse_spildlt0_output_singularity = 0
-    enumerator :: rocsparse_spildlt0_output_singularity_position = 1
-  end enum
-
   ! rocsparse_spgeam_stage_
   enum, bind(c)
     enumerator :: rocsparse_spgeam_stage_analysis = 1
@@ -565,32 +519,14 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_spgeam_alg_default = 0
   end enum
 
-  ! rocsparse_spsort_alg_
-  enum, bind(c)
-    enumerator :: rocsparse_spsort_alg_default = 0
-    enumerator :: rocsparse_spsort_alg_radix_sort = 1
-  end enum
-
-  ! rocsparse_spsort_input_
-  enum, bind(c)
-    enumerator :: rocsparse_spsort_input_alg = 0
-    enumerator :: rocsparse_spsort_input_direction = 1
-  end enum
-
-  ! rocsparse_spsort_stage_
-  enum, bind(c)
-    enumerator :: rocsparse_spsort_stage_analysis = 0
-    enumerator :: rocsparse_spsort_stage_compute = 1
-  end enum
-
   ! rocsparse_gpsv_interleaved_alg_
   enum, bind(c)
     enumerator :: rocsparse_gpsv_interleaved_alg_default = 0
     enumerator :: rocsparse_gpsv_interleaved_alg_qr = 1
   end enum
 
-  integer(c_int), parameter :: ROCSPARSE_VERSION_MAJOR = 5
-  integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 2
+  integer(c_int), parameter :: ROCSPARSE_VERSION_MAJOR = 4
+  integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 6
   integer(c_int), parameter :: ROCSPARSE_VERSION_PATCH = 0
 
 end module hipfort_rocsparse_enums

@@ -468,94 +468,86 @@
 464 | [hipsparseCreateConstBlockedEll](interfacehipfort__hipsparse_1_1hipsparsecreateconstblockedell.html "Interface documentation") | C binding
 465 | [hipsparseCreateSlicedEll](interfacehipfort__hipsparse_1_1hipsparsecreateslicedell.html "Interface documentation") | C binding
 466 | [hipsparseCreateConstSlicedEll](interfacehipfort__hipsparse_1_1hipsparsecreateconstslicedell.html "Interface documentation") | C binding
-467 | [hipsparseCreateBsr](interfacehipfort__hipsparse_1_1hipsparsecreatebsr.html "Interface documentation") | C binding
-468 | [hipsparseCreateConstBsr](interfacehipfort__hipsparse_1_1hipsparsecreateconstbsr.html "Interface documentation") | C binding
-469 | [hipsparseDestroySpMat](interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | C binding
-470 | [hipsparseCooGet](interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | C binding, typed
-471 | [hipsparseConstCooGet](interfacehipfort__hipsparse_1_1hipsparseconstcooget.html "Interface documentation") | C binding, typed
-472 | [hipsparseCooAoSGet](interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | C binding, typed
-473 | [hipsparseCsrGet](interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | C binding, typed
-474 | [hipsparseConstCsrGet](interfacehipfort__hipsparse_1_1hipsparseconstcsrget.html "Interface documentation") | C binding, typed
-475 | [hipsparseCscGet](interfacehipfort__hipsparse_1_1hipsparsecscget.html "Interface documentation") | C binding, typed
-476 | [hipsparseConstCscGet](interfacehipfort__hipsparse_1_1hipsparseconstcscget.html "Interface documentation") | C binding, typed
-477 | [hipsparseBlockedEllGet](interfacehipfort__hipsparse_1_1hipsparseblockedellget.html "Interface documentation") | C binding, typed
-478 | [hipsparseConstBlockedEllGet](interfacehipfort__hipsparse_1_1hipsparseconstblockedellget.html "Interface documentation") | C binding, typed
-479 | [hipsparseCsrSetPointers](interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | C binding
-480 | [hipsparseCscSetPointers](interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | C binding
-481 | [hipsparseCooSetPointers](interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | C binding
-482 | [hipsparseBlockedEllSetPointers](interfacehipfort__hipsparse_1_1hipsparseblockedellsetpointers.html "Interface documentation") | C binding
-483 | [hipsparseSpMatGetSize](interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | C binding, typed
-484 | [hipsparseSpMatGetFormat](interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | C binding, typed
-485 | [hipsparseSpMatGetIndexBase](interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | C binding, typed
-486 | [hipsparseSpMatGetValues](interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | C binding
-487 | [hipsparseConstSpMatGetValues](interfacehipfort__hipsparse_1_1hipsparseconstspmatgetvalues.html "Interface documentation") | C binding
-488 | [hipsparseSpMatSetValues](interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | C binding
-489 | [hipsparseSpMatGetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsespmatgetstridedbatch.html "Interface documentation") | C binding, typed
-490 | [hipsparseSpMatSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsespmatsetstridedbatch.html "Interface documentation") | C binding
-491 | [hipsparseCooSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsecoosetstridedbatch.html "Interface documentation") | C binding
-492 | [hipsparseCsrSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsecsrsetstridedbatch.html "Interface documentation") | C binding
-493 | [hipsparseSpMatGetAttribute](interfacehipfort__hipsparse_1_1hipsparsespmatgetattribute.html "Interface documentation") | C binding
-494 | [hipsparseSpMatSetAttribute](interfacehipfort__hipsparse_1_1hipsparsespmatsetattribute.html "Interface documentation") | C binding
-495 | [hipsparseCreateDnVec](interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | C binding
-496 | [hipsparseCreateConstDnVec](interfacehipfort__hipsparse_1_1hipsparsecreateconstdnvec.html "Interface documentation") | C binding
-497 | [hipsparseDestroyDnVec](interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | C binding
-498 | [hipsparseDnVecGet](interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | C binding, typed
-499 | [hipsparseConstDnVecGet](interfacehipfort__hipsparse_1_1hipsparseconstdnvecget.html "Interface documentation") | C binding, typed
-500 | [hipsparseDnVecGetValues](interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | C binding
-501 | [hipsparseConstDnVecGetValues](interfacehipfort__hipsparse_1_1hipsparseconstdnvecgetvalues.html "Interface documentation") | C binding
-502 | [hipsparseDnVecSetValues](interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | C binding
-503 | [hipsparseCreateDnMat](interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | C binding
-504 | [hipsparseCreateConstDnMat](interfacehipfort__hipsparse_1_1hipsparsecreateconstdnmat.html "Interface documentation") | C binding
-505 | [hipsparseDestroyDnMat](interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | C binding
-506 | [hipsparseDnMatGet](interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | C binding, typed
-507 | [hipsparseConstDnMatGet](interfacehipfort__hipsparse_1_1hipsparseconstdnmatget.html "Interface documentation") | C binding, typed
-508 | [hipsparseDnMatGetValues](interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | C binding
-509 | [hipsparseConstDnMatGetValues](interfacehipfort__hipsparse_1_1hipsparseconstdnmatgetvalues.html "Interface documentation") | C binding
-510 | [hipsparseDnMatSetValues](interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | C binding
-511 | [hipsparseDnMatGetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsednmatgetstridedbatch.html "Interface documentation") | C binding, typed
-512 | [hipsparseDnMatSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsednmatsetstridedbatch.html "Interface documentation") | C binding
-513 | [hipsparseAxpby](interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | C binding
-514 | [hipsparseDenseToSparse_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | C binding, typed
-515 | [hipsparseDenseToSparse_analysis](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | C binding
-516 | [hipsparseDenseToSparse_convert](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | C binding
-517 | [hipsparseGather](interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | C binding
-518 | [hipsparseRot](interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | C binding
-519 | [hipsparseScatter](interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | C binding
-520 | [hipsparseSDDMM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | C binding, typed
-521 | [hipsparseSDDMM_preprocess](interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | C binding
-522 | [hipsparseSDDMM](interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | C binding
-523 | [hipsparseSparseToDense_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | C binding, typed
-524 | [hipsparseSparseToDense](interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | C binding
-525 | [hipsparseSpGEAM_createDescr](interfacehipfort__hipsparse_1_1hipsparsespgeam__createdescr.html "Interface documentation") | C binding
-526 | [hipsparseSpGEAM_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespgeam__destroydescr.html "Interface documentation") | C binding
-527 | [hipsparseSpGEAM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespgeam__buffersize.html "Interface documentation") | C binding, typed
-528 | [hipsparseSpGEAM_nnz](interfacehipfort__hipsparse_1_1hipsparsespgeam__nnz.html "Interface documentation") | C binding
-529 | [hipsparseSpGEAM](interfacehipfort__hipsparse_1_1hipsparsespgeam.html "Interface documentation") | C binding
-530 | [hipsparseSpGEMM_createDescr](interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | C binding
-531 | [hipsparseSpGEMM_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | C binding
-532 | [hipsparseSpGEMM_workEstimation](interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | C binding, typed
-533 | [hipsparseSpGEMM_compute](interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | C binding, typed
-534 | [hipsparseSpGEMM_copy](interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | C binding
-535 | [hipsparseSpGEMMreuse_workEstimation](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__workestimation.html "Interface documentation") | C binding, typed
-536 | [hipsparseSpGEMMreuse_nnz](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__nnz.html "Interface documentation") | C binding, typed
-537 | [hipsparseSpGEMMreuse_copy](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__copy.html "Interface documentation") | C binding, typed
-538 | [hipsparseSpGEMMreuse_compute](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__compute.html "Interface documentation") | C binding
-539 | [hipsparseSpMM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | C binding, typed
-540 | [hipsparseSpMM_preprocess](interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | C binding
-541 | [hipsparseSpMM](interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | C binding
-542 | [hipsparseSpMV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | C binding, typed
-543 | [hipsparseSpMV_preprocess](interfacehipfort__hipsparse_1_1hipsparsespmv__preprocess.html "Interface documentation") | C binding
-544 | [hipsparseSpMV](interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | C binding
-545 | [hipsparseSpSM_createDescr](interfacehipfort__hipsparse_1_1hipsparsespsm__createdescr.html "Interface documentation") | C binding
-546 | [hipsparseSpSM_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespsm__destroydescr.html "Interface documentation") | C binding
-547 | [hipsparseSpSM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespsm__buffersize.html "Interface documentation") | C binding, typed
-548 | [hipsparseSpSM_analysis](interfacehipfort__hipsparse_1_1hipsparsespsm__analysis.html "Interface documentation") | C binding
-549 | [hipsparseSpSM_solve](interfacehipfort__hipsparse_1_1hipsparsespsm__solve.html "Interface documentation") | C binding
-550 | [hipsparseSpSM_solve_ex](interfacehipfort__hipsparse_1_1hipsparsespsm__solve__ex.html "Interface documentation") | C binding
-551 | [hipsparseSpSV_createDescr](interfacehipfort__hipsparse_1_1hipsparsespsv__createdescr.html "Interface documentation") | C binding
-552 | [hipsparseSpSV_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespsv__destroydescr.html "Interface documentation") | C binding
-553 | [hipsparseSpSV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespsv__buffersize.html "Interface documentation") | C binding, typed
-554 | [hipsparseSpSV_analysis](interfacehipfort__hipsparse_1_1hipsparsespsv__analysis.html "Interface documentation") | C binding
-555 | [hipsparseSpSV_solve](interfacehipfort__hipsparse_1_1hipsparsespsv__solve.html "Interface documentation") | C binding
-556 | [hipsparseSpVV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | C binding, typed
-557 | [hipsparseSpVV](interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | C binding
+467 | [hipsparseDestroySpMat](interfacehipfort__hipsparse_1_1hipsparsedestroyspmat.html "Interface documentation") | C binding
+468 | [hipsparseCooGet](interfacehipfort__hipsparse_1_1hipsparsecooget.html "Interface documentation") | C binding, typed
+469 | [hipsparseConstCooGet](interfacehipfort__hipsparse_1_1hipsparseconstcooget.html "Interface documentation") | C binding, typed
+470 | [hipsparseCooAoSGet](interfacehipfort__hipsparse_1_1hipsparsecooaosget.html "Interface documentation") | C binding, typed
+471 | [hipsparseCsrGet](interfacehipfort__hipsparse_1_1hipsparsecsrget.html "Interface documentation") | C binding, typed
+472 | [hipsparseConstCsrGet](interfacehipfort__hipsparse_1_1hipsparseconstcsrget.html "Interface documentation") | C binding, typed
+473 | [hipsparseCscGet](interfacehipfort__hipsparse_1_1hipsparsecscget.html "Interface documentation") | C binding, typed
+474 | [hipsparseConstCscGet](interfacehipfort__hipsparse_1_1hipsparseconstcscget.html "Interface documentation") | C binding, typed
+475 | [hipsparseBlockedEllGet](interfacehipfort__hipsparse_1_1hipsparseblockedellget.html "Interface documentation") | C binding, typed
+476 | [hipsparseConstBlockedEllGet](interfacehipfort__hipsparse_1_1hipsparseconstblockedellget.html "Interface documentation") | C binding, typed
+477 | [hipsparseCsrSetPointers](interfacehipfort__hipsparse_1_1hipsparsecsrsetpointers.html "Interface documentation") | C binding
+478 | [hipsparseCscSetPointers](interfacehipfort__hipsparse_1_1hipsparsecscsetpointers.html "Interface documentation") | C binding
+479 | [hipsparseCooSetPointers](interfacehipfort__hipsparse_1_1hipsparsecoosetpointers.html "Interface documentation") | C binding
+480 | [hipsparseSpMatGetSize](interfacehipfort__hipsparse_1_1hipsparsespmatgetsize.html "Interface documentation") | C binding, typed
+481 | [hipsparseSpMatGetFormat](interfacehipfort__hipsparse_1_1hipsparsespmatgetformat.html "Interface documentation") | C binding, typed
+482 | [hipsparseSpMatGetIndexBase](interfacehipfort__hipsparse_1_1hipsparsespmatgetindexbase.html "Interface documentation") | C binding, typed
+483 | [hipsparseSpMatGetValues](interfacehipfort__hipsparse_1_1hipsparsespmatgetvalues.html "Interface documentation") | C binding
+484 | [hipsparseConstSpMatGetValues](interfacehipfort__hipsparse_1_1hipsparseconstspmatgetvalues.html "Interface documentation") | C binding
+485 | [hipsparseSpMatSetValues](interfacehipfort__hipsparse_1_1hipsparsespmatsetvalues.html "Interface documentation") | C binding
+486 | [hipsparseSpMatGetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsespmatgetstridedbatch.html "Interface documentation") | C binding, typed
+487 | [hipsparseSpMatSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsespmatsetstridedbatch.html "Interface documentation") | C binding
+488 | [hipsparseCooSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsecoosetstridedbatch.html "Interface documentation") | C binding
+489 | [hipsparseCsrSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsecsrsetstridedbatch.html "Interface documentation") | C binding
+490 | [hipsparseSpMatGetAttribute](interfacehipfort__hipsparse_1_1hipsparsespmatgetattribute.html "Interface documentation") | C binding
+491 | [hipsparseSpMatSetAttribute](interfacehipfort__hipsparse_1_1hipsparsespmatsetattribute.html "Interface documentation") | C binding
+492 | [hipsparseCreateDnVec](interfacehipfort__hipsparse_1_1hipsparsecreatednvec.html "Interface documentation") | C binding
+493 | [hipsparseCreateConstDnVec](interfacehipfort__hipsparse_1_1hipsparsecreateconstdnvec.html "Interface documentation") | C binding
+494 | [hipsparseDestroyDnVec](interfacehipfort__hipsparse_1_1hipsparsedestroydnvec.html "Interface documentation") | C binding
+495 | [hipsparseDnVecGet](interfacehipfort__hipsparse_1_1hipsparsednvecget.html "Interface documentation") | C binding, typed
+496 | [hipsparseConstDnVecGet](interfacehipfort__hipsparse_1_1hipsparseconstdnvecget.html "Interface documentation") | C binding, typed
+497 | [hipsparseDnVecGetValues](interfacehipfort__hipsparse_1_1hipsparsednvecgetvalues.html "Interface documentation") | C binding
+498 | [hipsparseConstDnVecGetValues](interfacehipfort__hipsparse_1_1hipsparseconstdnvecgetvalues.html "Interface documentation") | C binding
+499 | [hipsparseDnVecSetValues](interfacehipfort__hipsparse_1_1hipsparsednvecsetvalues.html "Interface documentation") | C binding
+500 | [hipsparseCreateDnMat](interfacehipfort__hipsparse_1_1hipsparsecreatednmat.html "Interface documentation") | C binding
+501 | [hipsparseCreateConstDnMat](interfacehipfort__hipsparse_1_1hipsparsecreateconstdnmat.html "Interface documentation") | C binding
+502 | [hipsparseDestroyDnMat](interfacehipfort__hipsparse_1_1hipsparsedestroydnmat.html "Interface documentation") | C binding
+503 | [hipsparseDnMatGet](interfacehipfort__hipsparse_1_1hipsparsednmatget.html "Interface documentation") | C binding, typed
+504 | [hipsparseConstDnMatGet](interfacehipfort__hipsparse_1_1hipsparseconstdnmatget.html "Interface documentation") | C binding, typed
+505 | [hipsparseDnMatGetValues](interfacehipfort__hipsparse_1_1hipsparsednmatgetvalues.html "Interface documentation") | C binding
+506 | [hipsparseConstDnMatGetValues](interfacehipfort__hipsparse_1_1hipsparseconstdnmatgetvalues.html "Interface documentation") | C binding
+507 | [hipsparseDnMatSetValues](interfacehipfort__hipsparse_1_1hipsparsednmatsetvalues.html "Interface documentation") | C binding
+508 | [hipsparseDnMatGetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsednmatgetstridedbatch.html "Interface documentation") | C binding, typed
+509 | [hipsparseDnMatSetStridedBatch](interfacehipfort__hipsparse_1_1hipsparsednmatsetstridedbatch.html "Interface documentation") | C binding
+510 | [hipsparseAxpby](interfacehipfort__hipsparse_1_1hipsparseaxpby.html "Interface documentation") | C binding
+511 | [hipsparseDenseToSparse_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__buffersize.html "Interface documentation") | C binding, typed
+512 | [hipsparseDenseToSparse_analysis](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__analysis.html "Interface documentation") | C binding
+513 | [hipsparseDenseToSparse_convert](interfacehipfort__hipsparse_1_1hipsparsedensetosparse__convert.html "Interface documentation") | C binding
+514 | [hipsparseGather](interfacehipfort__hipsparse_1_1hipsparsegather.html "Interface documentation") | C binding
+515 | [hipsparseRot](interfacehipfort__hipsparse_1_1hipsparserot.html "Interface documentation") | C binding
+516 | [hipsparseScatter](interfacehipfort__hipsparse_1_1hipsparsescatter.html "Interface documentation") | C binding
+517 | [hipsparseSDDMM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesddmm__buffersize.html "Interface documentation") | C binding, typed
+518 | [hipsparseSDDMM_preprocess](interfacehipfort__hipsparse_1_1hipsparsesddmm__preprocess.html "Interface documentation") | C binding
+519 | [hipsparseSDDMM](interfacehipfort__hipsparse_1_1hipsparsesddmm.html "Interface documentation") | C binding
+520 | [hipsparseSparseToDense_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesparsetodense__buffersize.html "Interface documentation") | C binding, typed
+521 | [hipsparseSparseToDense](interfacehipfort__hipsparse_1_1hipsparsesparsetodense.html "Interface documentation") | C binding
+522 | [hipsparseSpGEMM_createDescr](interfacehipfort__hipsparse_1_1hipsparsespgemm__createdescr.html "Interface documentation") | C binding
+523 | [hipsparseSpGEMM_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespgemm__destroydescr.html "Interface documentation") | C binding
+524 | [hipsparseSpGEMM_workEstimation](interfacehipfort__hipsparse_1_1hipsparsespgemm__workestimation.html "Interface documentation") | C binding, typed
+525 | [hipsparseSpGEMM_compute](interfacehipfort__hipsparse_1_1hipsparsespgemm__compute.html "Interface documentation") | C binding, typed
+526 | [hipsparseSpGEMM_copy](interfacehipfort__hipsparse_1_1hipsparsespgemm__copy.html "Interface documentation") | C binding
+527 | [hipsparseSpGEMMreuse_workEstimation](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__workestimation.html "Interface documentation") | C binding, typed
+528 | [hipsparseSpGEMMreuse_nnz](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__nnz.html "Interface documentation") | C binding, typed
+529 | [hipsparseSpGEMMreuse_copy](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__copy.html "Interface documentation") | C binding, typed
+530 | [hipsparseSpGEMMreuse_compute](interfacehipfort__hipsparse_1_1hipsparsespgemmreuse__compute.html "Interface documentation") | C binding
+531 | [hipsparseSpMM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespmm__buffersize.html "Interface documentation") | C binding, typed
+532 | [hipsparseSpMM_preprocess](interfacehipfort__hipsparse_1_1hipsparsespmm__preprocess.html "Interface documentation") | C binding
+533 | [hipsparseSpMM](interfacehipfort__hipsparse_1_1hipsparsespmm.html "Interface documentation") | C binding
+534 | [hipsparseSpMV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespmv__buffersize.html "Interface documentation") | C binding, typed
+535 | [hipsparseSpMV_preprocess](interfacehipfort__hipsparse_1_1hipsparsespmv__preprocess.html "Interface documentation") | C binding
+536 | [hipsparseSpMV](interfacehipfort__hipsparse_1_1hipsparsespmv.html "Interface documentation") | C binding
+537 | [hipsparseSpSM_createDescr](interfacehipfort__hipsparse_1_1hipsparsespsm__createdescr.html "Interface documentation") | C binding
+538 | [hipsparseSpSM_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespsm__destroydescr.html "Interface documentation") | C binding
+539 | [hipsparseSpSM_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespsm__buffersize.html "Interface documentation") | C binding, typed
+540 | [hipsparseSpSM_analysis](interfacehipfort__hipsparse_1_1hipsparsespsm__analysis.html "Interface documentation") | C binding
+541 | [hipsparseSpSM_solve](interfacehipfort__hipsparse_1_1hipsparsespsm__solve.html "Interface documentation") | C binding
+542 | [hipsparseSpSM_solve_ex](interfacehipfort__hipsparse_1_1hipsparsespsm__solve__ex.html "Interface documentation") | C binding
+543 | [hipsparseSpSV_createDescr](interfacehipfort__hipsparse_1_1hipsparsespsv__createdescr.html "Interface documentation") | C binding
+544 | [hipsparseSpSV_destroyDescr](interfacehipfort__hipsparse_1_1hipsparsespsv__destroydescr.html "Interface documentation") | C binding
+545 | [hipsparseSpSV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespsv__buffersize.html "Interface documentation") | C binding, typed
+546 | [hipsparseSpSV_analysis](interfacehipfort__hipsparse_1_1hipsparsespsv__analysis.html "Interface documentation") | C binding
+547 | [hipsparseSpSV_solve](interfacehipfort__hipsparse_1_1hipsparsespsv__solve.html "Interface documentation") | C binding
+548 | [hipsparseSpVV_bufferSize](interfacehipfort__hipsparse_1_1hipsparsespvv__buffersize.html "Interface documentation") | C binding, typed
+549 | [hipsparseSpVV](interfacehipfort__hipsparse_1_1hipsparsespvv.html "Interface documentation") | C binding

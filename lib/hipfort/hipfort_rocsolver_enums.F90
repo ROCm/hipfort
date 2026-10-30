@@ -115,9 +115,6 @@ module hipfort_rocsolver_enums
     enumerator :: rocsolver_alg_mode_gpu = 291
     enumerator :: rocsolver_alg_mode_hybrid = 292
     enumerator :: rocsolver_alg_mode_mixed = 293
-    enumerator :: rocsolver_alg_mode_1stage = 294
-    enumerator :: rocsolver_alg_mode_2stage = 295
-    enumerator :: rocsolver_alg_mode_auto = 296
   end enum
 
   ! rocsolver_norm_type_
@@ -128,13 +125,6 @@ module hipfort_rocsolver_enums
     enumerator :: rocsolver_norm_type_max = 304
   end enum
 
-  ! rocsolver_cholqr_shift_
-  enum, bind(c)
-    enumerator :: rocsolver_cholqr_shift_none = 311
-    enumerator :: rocsolver_cholqr_shift_computed = 312
-    enumerator :: rocsolver_cholqr_shift_provided = 313
-  end enum
-
   ! rocsolver_function_
   enum, bind(c)
     enumerator :: rocsolver_function_bdsqr = 401
@@ -142,11 +132,6 @@ module hipfort_rocsolver_enums
     enumerator :: rocsolver_function_sterf = 403
     enumerator :: rocsolver_function_steqr = 404
     enumerator :: rocsolver_function_syev_heev = 405
-    enumerator :: rocsolver_function_syev = 405
-    enumerator :: rocsolver_function_heev = 405
-    enumerator :: rocsolver_function_sytrd_hetrd = 406
-    enumerator :: rocsolver_function_sytrd = 406
-    enumerator :: rocsolver_function_hetrd = 406
   end enum
 
 end module hipfort_rocsolver_enums

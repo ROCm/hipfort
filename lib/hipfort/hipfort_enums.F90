@@ -173,7 +173,7 @@ module hipfort_enums
     enumerator :: hipLibraryBinaryIsPreserved = 1
   end enum
 
-  ! enum (unnamed at hip/hip_runtime_api.h:37:1)
+  ! enum (unnamed at hip/hip_runtime_api.h:33:1)
   enum, bind(c)
     enumerator :: HIP_SUCCESS = 0
     enumerator :: HIP_ERROR_INVALID_VALUE = 1
@@ -186,6 +186,24 @@ module hipfort_enums
     enumerator :: HIP_ERROR_LAUNCH_OUT_OF_RESOURCES = 701
 #else
     enumerator :: HIP_ERROR_LAUNCH_OUT_OF_RESOURCES = 3
+#endif
+  end enum
+
+  ! hipMemoryType
+  enum, bind(c)
+    enumerator :: hipMemoryTypeUnregistered = 0
+    enumerator :: hipMemoryTypeHost = 1
+    enumerator :: hipMemoryTypeDevice = 2
+    enumerator :: hipMemoryTypeManaged = 3
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemoryTypeArray = 3
+#else
+    enumerator :: hipMemoryTypeArray = 10
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipMemoryTypeUnified = 4
+#else
+    enumerator :: hipMemoryTypeUnified = 11
 #endif
   end enum
 
@@ -254,7 +272,6 @@ module hipfort_enums
     enumerator :: hipErrorHostMemoryNotRegistered = 713
     enumerator :: hipErrorLaunchFailure = 719
     enumerator :: hipErrorCooperativeLaunchTooLarge = 720
-    enumerator :: hipErrorNotPermitted = 800
     enumerator :: hipErrorNotSupported = 801
     enumerator :: hipErrorStreamCaptureUnsupported = 900
     enumerator :: hipErrorStreamCaptureInvalidated = 901
@@ -276,13 +293,6 @@ module hipfort_enums
 #else
     enumerator :: hipErrorInvalidTexture = 912
 #endif
-    enumerator :: hipErrorInvalidResourceType = 914
-    enumerator :: hipErrorInvalidResourceConfiguration = 915
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipErrorStreamDetached = 917
-#else
-    enumerator :: hipErrorStreamDetached = 916
-#endif
     enumerator :: hipErrorUnknown = 999
     enumerator :: hipErrorRuntimeMemory = 1052
     enumerator :: hipErrorRuntimeOther = 1053
@@ -292,24 +302,6 @@ module hipfort_enums
     enumerator :: hipErrorInvalidClusterSize = 1054
 #endif
     enumerator :: hipErrorTbd = 1055
-  end enum
-
-  ! hipMemoryType
-  enum, bind(c)
-    enumerator :: hipMemoryTypeUnregistered = 0
-    enumerator :: hipMemoryTypeHost = 1
-    enumerator :: hipMemoryTypeDevice = 2
-    enumerator :: hipMemoryTypeManaged = 3
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipMemoryTypeArray = 3
-#else
-    enumerator :: hipMemoryTypeArray = 10
-#endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipMemoryTypeUnified = 4
-#else
-    enumerator :: hipMemoryTypeUnified = 11
-#endif
   end enum
 
   ! hipDeviceAttribute_t
@@ -790,19 +782,6 @@ module hipfort_enums
 #else
     enumerator :: hipDeviceAttributeGPUDirectRDMAWithHipVMMSupported = 94
 #endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipDeviceAttributeHandleTypeFabricSupported = -24
-#else
-    enumerator :: hipDeviceAttributeHandleTypeFabricSupported = 95
-#endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = -25
-#else
-    enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = 96
-#endif
-    enumerator :: hipDeviceAttributeGPUDirectRDMASupported = 97
-    enumerator :: hipDeviceAttributeGPUDirectRDMAFlushWritesOptions = 98
-    enumerator :: hipDeviceAttributeGPUDirectRDMAWritesOrdering = 99
     enumerator :: hipDeviceAttributeCudaCompatibleEnd = 9999
     enumerator :: hipDeviceAttributeAmdSpecificBegin = 10000
 #ifdef USE_CUDA_NAMES
@@ -839,7 +818,6 @@ module hipfort_enums
     enumerator :: hipDeviceAttributeMaxAvailableVgprsPerThread = 10019
     enumerator :: hipDeviceAttributePciChipId = 10020
     enumerator :: hipDeviceAttributeExpertSchedMode = 10021
-    enumerator :: hipDeviceAttributeMaxDynDataPrefetchRegions = 10022
     enumerator :: hipDeviceAttributeAmdSpecificEnd = 19999
     enumerator :: hipDeviceAttributeVendorSpecificBegin = 20000
   end enum
@@ -870,17 +848,6 @@ module hipfort_enums
     enumerator :: hipGPUDirectRDMAWritesOrderingNone = 0
     enumerator :: hipGPUDirectRDMAWritesOrderingOwner = 100
     enumerator :: hipGPUDirectRDMAWritesOrderingAllDevices = 200
-  end enum
-
-  ! hipFlushGPUDirectRDMAWritesTarget
-  enum, bind(c)
-    enumerator :: hipFlushGPUDirectRDMAWritesTargetCurrentDevice = 0
-  end enum
-
-  ! hipFlushGPUDirectRDMAWritesScope
-  enum, bind(c)
-    enumerator :: hipFlushGPUDirectRDMAWritesToOwner = 100
-    enumerator :: hipFlushGPUDirectRDMAWritesToAllDevices = 200
   end enum
 
   ! hipChannelFormatKind
@@ -1041,8 +1008,6 @@ module hipfort_enums
     enumerator :: hipMemcpyFlagPreferOverlapWithCompute = 1
     enumerator :: hipMemcpyFlagExtPreferCE = 256
     enumerator :: hipMemcpyFlagExtOpSwap = 512
-    enumerator :: hipMemcpyFlagExtOpIndirectSrc = 1024
-    enumerator :: hipMemcpyFlagExtOpIndirectDst = 2048
   end enum
 
   ! hipMemcpySrcAccessOrder
@@ -1140,32 +1105,6 @@ module hipfort_enums
 #else
     enumerator :: hipBoundaryModeClamp = 2
 #endif
-  end enum
-
-  ! hipDevResourceType
-  enum, bind(c)
-    enumerator :: hipDevResourceTypeInvalid = 0
-    enumerator :: hipDevResourceTypeSm = 1
-    enumerator :: hipDevResourceTypeWorkqueueConfig = 1000
-    enumerator :: hipDevResourceTypeWorkqueue = 10000
-  end enum
-
-  ! hipDevSmResourceGroup_flags
-  enum, bind(c)
-    enumerator :: hipDevSmResourceGroupDefault = 0
-    enumerator :: hipDevSmResourceGroupBackfill = 1
-  end enum
-
-  ! hipDevSmResourceSplitByCount_flags
-  enum, bind(c)
-    enumerator :: hipDevSmResourceSplitIgnoreSmCoscheduling = 1
-    enumerator :: hipDevSmResourceSplitMaxPotentialClusterSize = 2
-  end enum
-
-  ! hipDevWorkqueueConfigScope
-  enum, bind(c)
-    enumerator :: hipDevWorkqueueConfigScopeDeviceCtx = 0
-    enumerator :: hipDevWorkqueueConfigScopeGreenCtxBalanced = 1
   end enum
 
   ! hipDeviceP2PAttr
@@ -1282,7 +1221,6 @@ module hipfort_enums
     enumerator :: hipMemHandleTypePosixFileDescriptor = 1
     enumerator :: hipMemHandleTypeWin32 = 2
     enumerator :: hipMemHandleTypeWin32Kmt = 4
-    enumerator :: hipMemHandleTypeFabric = 8
   end enum
 
   ! hipFuncAttribute
@@ -1404,12 +1342,6 @@ module hipfort_enums
     enumerator :: hipClusterSchedulingPolicyLoadBalancing = 2
   end enum
 
-  ! hipExtDynDataPrefetchTemporal
-  enum, bind(c)
-    enumerator :: hipExtDynDataPrefetchTemporalRegular = 0
-    enumerator :: hipExtDynDataPrefetchTemporalHigh = 1
-  end enum
-
   ! hipLaunchAttributeID
   enum, bind(c)
     enumerator :: hipLaunchAttributeIgnore = 0
@@ -1421,8 +1353,7 @@ module hipfort_enums
     enumerator :: hipLaunchAttributePriority = 8
     enumerator :: hipLaunchAttributeMemSyncDomainMap = 9
     enumerator :: hipLaunchAttributeMemSyncDomain = 10
-    enumerator :: hipLaunchAttributeExtDynDataPrefetch = 1024
-    enumerator :: hipLaunchAttributeMax = 1025
+    enumerator :: hipLaunchAttributeMax = 11
   end enum
 
   ! hipGraphExecUpdateResult
@@ -1548,8 +1479,8 @@ module hipfort_enums
   end enum
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
-  integer(c_int), parameter :: HIP_VERSION_MINOR = 17
-  integer(c_int), parameter :: HIP_VERSION_PATCH = 26422
+  integer(c_int), parameter :: HIP_VERSION_MINOR = 13
+  integer(c_int), parameter :: HIP_VERSION_PATCH = 99004
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_LEGACY_STREAM = 1
@@ -1568,7 +1499,6 @@ module hipfort_enums
   integer(c_int), parameter :: hipTextureTypeCubemapLayered = 252
   integer(c_int), parameter :: HIP_IMAGE_OBJECT_SIZE_DWORD = 12
   integer(c_int), parameter :: HIP_SAMPLER_OBJECT_SIZE_DWORD = 8
-  integer(c_int), parameter :: HIP_RESOURCE_ABI_BYTES = 40
   integer(c_int), parameter :: hipIpcMemLazyEnablePeerAccess = 1
   integer(c_int), parameter :: HIP_IPC_HANDLE_SIZE = 64
   integer(c_int), parameter :: hipStreamDefault = 0
@@ -1621,7 +1551,6 @@ module hipfort_enums
   integer(c_int), parameter :: hipDeviceScheduleMask = 7
   integer(c_int), parameter :: hipDeviceMapHost = 8
   integer(c_int), parameter :: hipDeviceLmemResizeToMax = 16
-  integer(c_int), parameter :: hipInitDeviceFlagsAreValid = 1
   integer(c_int), parameter :: hipArrayDefault = 0
   integer(c_int), parameter :: hipArrayLayered = 1
   integer(c_int), parameter :: hipArraySurfaceLoadStore = 2
@@ -1642,7 +1571,6 @@ module hipfort_enums
   integer(c_int), parameter :: hipExtStreamWriteValueIncrement = 4096
   integer(c_int), parameter :: hipExtStreamWriteValueDecrement = 4097
   integer(c_int), parameter :: hipExternalMemoryDedicated = 1
-  integer(c_int), parameter :: HIP_EXT_DYN_DATA_PREFETCH_MAX_REGIONS = 2
   integer(c_int), parameter :: hipGraphKernelNodePortDefault = 0
   integer(c_int), parameter :: hipGraphKernelNodePortLaunchCompletion = 2
   integer(c_int), parameter :: hipGraphKernelNodePortProgrammatic = 1

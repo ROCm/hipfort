@@ -26,7 +26,7 @@
 ! Exercises the rocBLAS handle query routines, i.e. the getters whose output
 ! scalar is now a plain Fortran dummy argument instead of a type(c_ptr),value.
 !
-! Three independent properties are asserted:
+! Two independent properties are asserted:
 !   (a) rocblas_get_stream returns, bit for bit, the HIP stream that was handed
 !       to rocblas_set_stream.  'stream' is passed by value, 'got' is a bare
 !       type(c_ptr) that rocBLAS fills in, so it is passed directly.
@@ -34,13 +34,11 @@
 !       rocblas_pointer_mode_device and a plain Fortran host array as
 !       rocblas_pointer_mode_host.  It is a pure query function returning the
 !       mode (not a status), so it is not wrapped in rocblasCheck.
-!   (c) The int64 batch stride setters/getters round-trip: a fresh handle
-!       reports 0, the values written with rocblas_set_batch_{alpha,beta}_stride
-!       are read back by the matching getters (bare integer(c_int64_t) dummies),
-!       and resetting them to 0 leaves the handle in its documented default.
+!   The int64 batch stride setters/getters (rocblas_{set,get}_batch_*_stride)
+!   came after ROCm 7.13, so they are not tested here.
 !
 ! Any mismatch prints "FAILED! ..." and stops with exit code 1; otherwise the
-! test prints "PASSED!" together with the strides it recovered.
+! test prints "PASSED!".
 program rocblas_handle_query
 
     use iso_c_binding
@@ -61,7 +59,6 @@ program rocblas_handle_query
     real(c_double), pointer, dimension(:) :: d_x
 
     integer(kind(rocblas_pointer_mode_host)) :: mode
-    integer(c_int64_t) :: astride, bstride
 
     write(*,"(a)",advance="no") "-- Running test 'rocblas_handle_query' &
                                 &(Fortran 2008 interfaces) - "
@@ -99,50 +96,9 @@ program rocblas_handle_query
 
     call hipCheck(hipFree(d_x))
 
-    ! (c) Batch stride round-trip; the getters take bare integer(c_int64_t).
-    astride = -1_c_int64_t
-    call rocblasCheck(rocblas_get_batch_alpha_stride(handle, astride))
-    if (astride /= 0_c_int64_t) then
-        write(*,*) "FAILED! default batch alpha stride is not 0, got ", astride
-        STOP 1
-    end if
-
-    bstride = -1_c_int64_t
-    call rocblasCheck(rocblas_get_batch_beta_stride(handle, bstride))
-    if (bstride /= 0_c_int64_t) then
-        write(*,*) "FAILED! default batch beta stride is not 0, got ", bstride
-        STOP 1
-    end if
-
-    call rocblasCheck(rocblas_set_batch_alpha_stride(handle, 4_c_int64_t))
-    astride = -1_c_int64_t
-    call rocblasCheck(rocblas_get_batch_alpha_stride(handle, astride))
-    if (astride /= 4_c_int64_t) then
-        write(*,*) "FAILED! batch alpha stride did not round-trip, expected 4, got ", astride
-        STOP 1
-    end if
-
-    call rocblasCheck(rocblas_set_batch_beta_stride(handle, 7_c_int64_t))
-    bstride = -1_c_int64_t
-    call rocblasCheck(rocblas_get_batch_beta_stride(handle, bstride))
-    if (bstride /= 7_c_int64_t) then
-        write(*,*) "FAILED! batch beta stride did not round-trip, expected 7, got ", bstride
-        STOP 1
-    end if
-
-    ! The strides are modal handle state: restore the documented default.
-    call rocblasCheck(rocblas_set_batch_alpha_stride(handle, 0_c_int64_t))
-    call rocblasCheck(rocblas_set_batch_beta_stride(handle, 0_c_int64_t))
-    call rocblasCheck(rocblas_get_batch_alpha_stride(handle, astride))
-    call rocblasCheck(rocblas_get_batch_beta_stride(handle, bstride))
-    if (astride /= 0_c_int64_t .or. bstride /= 0_c_int64_t) then
-        write(*,*) "FAILED! batch strides were not restored to 0, got ", astride, bstride
-        STOP 1
-    end if
-
     call rocblasCheck(rocblas_destroy_handle(handle))
     call hipCheck(hipStreamDestroy(stream))
 
-    write(*,*) "PASSED! stream round-trip ok, pointer modes host/device ok, batch strides: ", astride, bstride
+    write(*,*) "PASSED! stream round-trip ok, pointer modes host/device ok"
 
 end program rocblas_handle_query

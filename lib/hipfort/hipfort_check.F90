@@ -53,13 +53,12 @@ contains
       hipErrorLaunchTimeOut, hipErrorPeerAccessAlreadyEnabled, hipErrorPeerAccessNotEnabled, &
       hipErrorSetOnActiveProcess, hipErrorContextIsDestroyed, hipErrorAssert, &
       hipErrorHostMemoryAlreadyRegistered, hipErrorHostMemoryNotRegistered, hipErrorLaunchFailure, &
-      hipErrorCooperativeLaunchTooLarge, hipErrorNotPermitted, hipErrorNotSupported, &
-      hipErrorStreamCaptureUnsupported, hipErrorStreamCaptureInvalidated, &
-      hipErrorStreamCaptureMerge, hipErrorStreamCaptureUnmatched, hipErrorStreamCaptureUnjoined, &
+      hipErrorCooperativeLaunchTooLarge, hipErrorNotSupported, hipErrorStreamCaptureUnsupported, &
+      hipErrorStreamCaptureInvalidated, hipErrorStreamCaptureMerge, &
+      hipErrorStreamCaptureUnmatched, hipErrorStreamCaptureUnjoined, &
       hipErrorStreamCaptureIsolation, hipErrorStreamCaptureImplicit, hipErrorCapturedEvent, &
       hipErrorStreamCaptureWrongThread, hipErrorGraphExecUpdateFailure, &
-      hipErrorInvalidChannelDescriptor, hipErrorInvalidTexture, hipErrorInvalidResourceType, &
-      hipErrorInvalidResourceConfiguration, hipErrorStreamDetached, hipErrorUnknown, &
+      hipErrorInvalidChannelDescriptor, hipErrorInvalidTexture, hipErrorUnknown, &
       hipErrorRuntimeMemory, hipErrorRuntimeOther, hipErrorInvalidClusterSize, hipErrorTbd
     implicit none
     integer(kind(hipSuccess)) :: status
@@ -182,8 +181,6 @@ contains
         name = "hipErrorLaunchFailure"
       case (hipErrorCooperativeLaunchTooLarge)
         name = "hipErrorCooperativeLaunchTooLarge"
-      case (hipErrorNotPermitted)
-        name = "hipErrorNotPermitted"
       case (hipErrorNotSupported)
         name = "hipErrorNotSupported"
       case (hipErrorStreamCaptureUnsupported)
@@ -210,12 +207,6 @@ contains
         name = "hipErrorInvalidChannelDescriptor"
       case (hipErrorInvalidTexture)
         name = "hipErrorInvalidTexture"
-      case (hipErrorInvalidResourceType)
-        name = "hipErrorInvalidResourceType"
-      case (hipErrorInvalidResourceConfiguration)
-        name = "hipErrorInvalidResourceConfiguration"
-      case (hipErrorStreamDetached)
-        name = "hipErrorStreamDetached"
       case (hipErrorUnknown)
         name = "hipErrorUnknown"
       case (hipErrorRuntimeMemory)

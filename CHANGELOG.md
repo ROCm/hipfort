@@ -4,20 +4,18 @@
 
 ### Added
 
-* Regenerated all Fortran bindings against the ROCm 10.2 API, adding 77
-  routines: four in the HIP runtime (`hipDeviceFlushGPUDirectRDMAWrites`,
-  `hipKernelSetAttributeForDevice`, `hipLibraryGetModule`,
-  `hipModuleEnumerateFunctions`), the batched `gels`, `geqrf`, `getrf`, `getri`
-  and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
-  `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
-  `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
+* Regenerated all Fortran bindings against the ROCm 7.13 API.
+* This release is a backport to ROCm 7.13. If possible, upgrade directly to
+  ROCm 10.2 and the hipfort release for it instead, to limit the disruption.
 * The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
   forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
   routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
   the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
   `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
-  routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
-  `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
+  routines (`hipfftXtSetCallback`, `hipfftXtClearCallback`,
+  `hipfftXtSetCallbackSharedSize`). The `hipXtDesc` and `hipLibXtDesc` types are
+  in the new `hipfort_hipfft_types` module, and the Xt enums in
+  `hipfort_hipfft_enums`.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
   and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
   `integer(c_size_t)` array as `workSize`. The multi-process routines
@@ -42,7 +40,8 @@
   overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
+  -fdata-sections`) when the Fortran compiler accepts these flags, which the
+  amdflang of ROCm 7.13 does not. A program linked with `-Wl,--gc-sections` keeps only the
   wrappers it calls, instead of all of a library's wrappers, and still links
   when another wrapper names a C function that the installed library does not
   export. The tests link that way. A shared library that links an archive also
@@ -54,12 +53,11 @@
   those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
   no longer has them: pass a `type(c_ptr)` and a byte count.
 * **Breaking.** The array overloads of the hipSOLVER batched routines
-  (`hipsolver[SDCZ]{potrf,potrs,getrf,getri,gels,gesvdj,syevj,heevj}Batched`)
+  (`hipsolver[SDCZ]{potrf,potrs,gesvdj,syevj,heevj}Batched`)
   take `devInfo` as an `integer(c_int)` array of `batch_count` entries, which is
   what hipSOLVER writes, instead of a single integer. Their `_devptr` forms, which
   took it as a `type(c_ptr)`, are gone: pass the device array itself, or call the
-  `bind(C)` specific with `type(c_ptr)` arguments. The `gels` batched routines
-  gain array overloads.
+  `bind(C)` specific with `type(c_ptr)` arguments.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
   compiles with a Fortran 2003 compiler. Both kinds are equal on every

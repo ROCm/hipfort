@@ -253,17 +253,9 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_GEMM_FLAGS_FP16_ALT_IMPL_RNZ = 16
   end enum
 
-  ! hipblasLibraryProperty_t
-  enum, bind(c)
-    enumerator :: HIPBLAS_MAJOR_VERSION = 0
-    enumerator :: HIPBLAS_MINOR_VERSION = 1
-    enumerator :: HIPBLAS_PATCH_LEVEL = 2
-  end enum
-
   integer(c_int), parameter :: hipblasVersionMajor = 3
-  integer(c_int), parameter :: hipblaseVersionMinor = 8
-  integer(c_int), parameter :: hipblasVersionMinor = 8
+  integer(c_int), parameter :: hipblaseVersionMinor = 4
+  integer(c_int), parameter :: hipblasVersionMinor = 4
   integer(c_int), parameter :: hipblasVersionPatch = 0
-  integer(c_int), parameter :: hipblasVersionK = 100
 
 end module hipfort_hipblas_enums

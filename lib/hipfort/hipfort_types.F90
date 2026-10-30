@@ -540,38 +540,6 @@ module hipfort_types
     type(c_ptr) :: surfaceObject
   end type surfaceReference
 
-  type, bind(c) :: hipDevSmResource
-    integer(c_int) :: smCount
-    integer(c_int) :: minSmPartitionSize
-    integer(c_int) :: smCoscheduledAlignment
-    integer(c_int) :: flags
-  end type hipDevSmResource
-
-  type, bind(c) :: hipDevWorkqueueConfigResource
-    integer(c_int) :: device
-    integer(c_int) :: wqConcurrencyLimit
-    integer(c_int) :: sharingScope
-  end type hipDevWorkqueueConfigResource
-
-  type, bind(c) :: hipDevWorkqueueResource
-    character(c_char) :: reserved(40)
-  end type hipDevWorkqueueResource
-
-  type, bind(c) :: hipDevResource
-    integer(c_int) :: type
-    character(c_char) :: internal_padding(92)
-    integer(c_int32_t) :: anonymous_union(10) !< 40-byte C union: keeps the layout exact, members not individually accessible
-    type(c_ptr) :: nextResource
-  end type hipDevResource
-
-  type, bind(c) :: hipDevSmResourceGroupParams
-    integer(c_int) :: smCount
-    integer(c_int) :: coscheduledSmCount
-    integer(c_int) :: preferredCoscheduledSmCount
-    integer(c_int) :: flags
-    integer(c_int) :: reserved(12)
-  end type hipDevSmResourceGroupParams
-
   type, bind(c) :: hipIpcMemHandle_t
     character(c_char) :: reserved(64)
   end type hipIpcMemHandle_t
@@ -579,10 +547,6 @@ module hipfort_types
   type, bind(c) :: hipIpcEventHandle_t
     character(c_char) :: reserved(64)
   end type hipIpcEventHandle_t
-
-  type, bind(c) :: hipMemFabricHandle_t
-    character(c_char) :: data(64)
-  end type hipMemFabricHandle_t
 
 #ifdef USE_CUDA_NAMES
   type,bind(c) :: hipFuncAttributes  ! cudaFuncAttributes as of cuda 13.3
@@ -802,19 +766,6 @@ module hipfort_types
     character(c_char) :: default_ !< The default domain ID to use for designated kernels
     character(c_char) :: remote !< The remote domain ID to use for designated kernels
   end type hipLaunchMemSyncDomainMap
-
-  type, bind(c) :: hipExtDynDataPrefetchRegion
-    type(c_ptr) :: address !< Base address (must be cache-line aligned)
-    integer(c_size_t) :: stride !< Stride between row starts in bytes
-    integer(c_size_t) :: width !< Width of each row in bytes (must be a multiple of cache line size)
-    integer(c_size_t) :: height !< Number of rows to prefetch
-  end type hipExtDynDataPrefetchRegion
-
-  type, bind(c) :: hipExtDynDataPrefetchConfig
-    integer(c_int) :: numRegions !< Number of valid regions (1-max)
-    integer(c_int) :: temporal !< Cache retention policy for prefetched data
-    type(hipExtDynDataPrefetchRegion) :: regions(2) !< Prefetch regions
-  end type hipExtDynDataPrefetchConfig
 
 #ifdef USE_CUDA_NAMES
   type,bind(c) :: hipGraphInstantiateParams  ! cudaGraphInstantiateParams as of cuda 13.3

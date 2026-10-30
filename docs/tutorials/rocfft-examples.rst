@@ -39,8 +39,8 @@ rocFFT in ``clients/samples/rocfft``:
    * - ``rocfft_example_set_stream.cpp``
      - `Running on HIP streams`_
    * - ``rocfft_example_callback.cpp``
-     - `Callbacks`_, in part: the sample registers a JIT callback compiled
-       from HIP source with hipRTC, which this program does not do.
+     - `Callbacks`_, in part: the sample registers a load callback written
+       as a HIP device function, which a Fortran program cannot provide.
 
 The remaining programs cover material from the rocFFT how-to guides:
 `Normalizing with a scale factor`_, `Inspecting a plan`_ and
@@ -218,21 +218,17 @@ A load callback runs on every element rocFFT reads and a store callback on
 every element it writes, which folds pre- and post-processing into the
 transform. Both are registered on an execution info handle with
 ``rocfft_execution_info_set_load_callback`` and
-``rocfft_execution_info_set_store_callback``, and both are given as arrays with
-exactly one function pointer. These function-pointer callbacks are deprecated
-in rocFFT, which recommends JIT callbacks set on a plan description with
-``rocfft_plan_description_set_load_callback`` and
-``rocfft_plan_description_set_store_callback``, and they cannot be combined
-with fields. A null array selects the default behavior, a plain load or store,
-and clears any previous registration.
+``rocfft_execution_info_set_store_callback``, and both are given as arrays of
+function pointers: one per brick when the plan uses fields, exactly one
+otherwise. Callbacks are an experimental feature of rocFFT. A null array
+selects the default behavior, a plain load or store, and clears any previous
+registration.
 ``shared_mem_bytes`` must be 0, since rocFFT allocates no shared memory for
 callbacks.
 
 The callback functions themselves have to be device code. A Fortran program
 cannot provide a function pointer to one, so this program only registers the
-default callbacks; the JIT interface instead takes the callback as a symbol
-name and a buffer of device bitcode compiled separately, for example from HIP
-source.
+default callbacks.
 
 .. literalinclude:: ../../test/f2008/rocfft/rocfft_callback_z.f08
    :language: fortran

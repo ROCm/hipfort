@@ -231,10 +231,6 @@ module hipfort_hipfft
   !>   @details Assumes that the plan has been created already, and
   !>   modifies the plan associated with the plan handle.
   !>
-  !>   If the plan has been configured for multiple GPUs via `hipfftXtSetGPUs`,
-  !>   this function returns `HIPFFT_NOT_IMPLEMENTED` when `batch` is `1`, with
-  !>   rocFFT backend.
-  !>
   !>   @param[in] plan - Handle of the FFT plan.
   !>   @param[in] nx - FFT length.
   !>   @param[in] myType - FFT type.
@@ -293,7 +289,7 @@ module hipfort_hipfft
     module procedure hipfftMakePlan2d_typed
   end interface
 
-  !>  @brief Initialize a new three-dimensional FFT plan.
+  !>  @brief Initialize a new two-dimensional FFT plan.
   !>
   !>   @details Assumes that the plan has been created already, and
   !>   modifies the plan associated with the plan handle.
@@ -755,12 +751,10 @@ module hipfort_hipfft
 #endif
   end interface
 
-  !>  @brief Return size(s) of the work area(s) required for an initialized plan.
+  !>  @brief Return size of the work area size required for a rank-dimensional plan.
   !>
-  !>   @param[in] plan - Pointer to the initialized FFT plan.
-  !>   @param[out] workSize - Pointer to work area size(s). As many values as the number
-  !>   of (local) devices used by the plan are written (following the same order as
-  !>   set via `hipfftXtSetGPUs` if more than one local device is used).
+  !>   @param[in] plan - Pointer to the FFT plan.
+  !>   @param[out] workSize - Pointer to work area size (returned value).
   interface hipfftGetSize
 #ifdef USE_CUDA_NAMES
     function hipfftGetSize_(plan,workSize) bind(c, name="cufftGetSize")
@@ -778,7 +772,7 @@ module hipfort_hipfft
     module procedure hipfftGetSize_typed
   end interface
 
-  !>  @brief Set the plan's auto-allocation flag.  The plan will allocate its own workarea(s).
+  !>  @brief Set the plan's auto-allocation flag.  The plan will allocate its own workarea.
   !>
   !>   @param[in] plan - Pointer to the FFT plan.
   !>   @param[in] autoAllocate - 0 to disable auto-allocation, non-zero to enable.
@@ -798,9 +792,9 @@ module hipfort_hipfft
   end interface
 
   !>  @brief Set the plan's work area.
-  !>   @note This function rejects multi-device plans. Use `hipfftXtSetWorkArea` instead.
+  !>
   !>   @param[in] plan - Pointer to the FFT plan.
-  !>   @param[in] workArea - Pointer to the work area (must be accessible by the device).
+  !>   @param[in] workArea - Pointer to the work area (on device).
   interface hipfftSetWorkArea
 #ifdef USE_CUDA_NAMES
     function hipfftSetWorkArea_(plan,workArea) bind(c, name="cufftSetWorkArea")
@@ -813,27 +807,6 @@ module hipfort_hipfft
       integer(c_int) :: hipfftSetWorkArea_
       type(c_ptr),value :: plan
       type(c_ptr),value :: workArea
-    end function
-  end interface
-
-  !>  @brief Generalized version of `hipfftSetWorkArea` accepting multi-device plans.
-  !>
-  !>   @param[in] plan - Pointer to the (possibly multi-device) FFT plan.
-  !>   @param[in] workArea - Array of pointer(s) to the plan's work area(s), which must
-  !>   be accessible by the plan's used device(s) (in the same order as communicated
-  !>   via `hipfftXtSetGPUs`, if used prior).
-  interface hipfftXtSetWorkArea
-#ifdef USE_CUDA_NAMES
-    function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="cufftXtSetWorkArea")
-#else
-    function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="hipfftXtSetWorkArea")
-#endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(c_int) :: hipfftXtSetWorkArea_
-      type(c_ptr),value :: plan
-      type(c_ptr) :: workArea
     end function
   end interface
 
@@ -1136,6 +1109,17 @@ module hipfort_hipfft
     module procedure hipfftGetProperty_typed
   end interface
 
+  !>  @brief Set a callback on a plan
+  !>
+  !>  @details Set either a load or store callback to run with a plan.
+  !>  The type of callback is specified with the 'cbtype' parameter.
+  !>  An array ofcallback and callback data pointers must be given -
+  !>  one per device executing the plan.
+  !>
+  !>  @param[in] plan - The FFT plan.
+  !>  @param[in] callbacks - Array of callback function pointers.
+  !>  @param[in] cbtype - Type of callback being set.
+  !>  @param[in] callbackData - Array of callback function data pointers
   interface hipfftXtSetCallback
 #ifdef USE_CUDA_NAMES
     function hipfftXtSetCallback_(plan,callbacks,cbtype,callbackData) &
@@ -1155,6 +1139,12 @@ module hipfort_hipfft
     end function
   end interface
 
+  !>  @brief Remove a callback from a plan
+  !>
+  !>  @details Remove a previously-set callback from a plan.
+  !>
+  !>  @param[in] plan - The FFT plan.
+  !>  @param[in] cbtype - Type of callback being removed.
   interface hipfftXtClearCallback
 #ifdef USE_CUDA_NAMES
     function hipfftXtClearCallback_(plan,cbtype) bind(c, name="cufftXtClearCallback")
@@ -1194,65 +1184,6 @@ module hipfort_hipfft
       type(c_ptr),value :: plan
       integer(c_int),value :: cbtype
       integer(c_size_t),value :: sharedSize
-    end function
-  end interface
-
-  !>  @brief Set a JIT callback on a plan
-  !>
-  !>  @details Set either a load or store callback to run with a plan.
-  !>  The type of callback is specified with the `cbtype` parameter.
-  !>  The callback is provided as SPIR-V on AMD platforms and as
-  !>  LTO-IR fatbin on CUDA platforms.
-  !>
-  !>   Note: JIT callbacks cannot currently be used on multi-GPU transforms.
-  !>   This support will be added in a future release of hipFFT.
-  !>
-  !>  JIT callbacks can be cleared from the plan by passing nullptr
-  !>  for `symbol_name` and `bitcode_data`, and 0 for
-  !>  `bitcode_len_bytes`.
-  !>
-  !>  `cbdata` is an optional array of pointers of data that is passed
-  !>  to the callback function.  As JIT callbacks are currently only
-  !>  supported for single-device transforms, this array must have one
-  !>  pointer element in it if it is specified.  The pointer will be
-  !>  passed to the callback function's `cbdata` parameter when it is
-  !>  executed on that device.
-  !>
-  !>  If specified, the `cbdata` array must remain valid until either
-  !>  the plan is destroyed or callbacks are cleared from the plan.
-  !>
-  !>  This function must be called after the plan is allocated using
-  !>  `hipfftCreate`, but before the plan is initialized by any of the
-  !>  "MakePlan" functions.  Therefore, API functions that combine
-  !>  creation and initialization (`hipfftPlan1d`, `hipfftPlan2d`,
-  !>  `hipfftPlan3d`, and `hipfftPlanMany`) cannot set a JIT callback.
-  !>
-  !>  @param[in] plan - The FFT plan.
-  !>  @param[in] symbol_name - Name of the symbol in the compiled bitcode.
-  !>  @param[in] bitcode_data - Pointer to bitcode data.
-  !>  @param[in] bitcode_len_bytes - Number of bytes in the bitcode data.
-  !>  @param[in] cbtype - Type of callback function.
-  !>  @param[in] cbdata - Array of callback function data pointers.
-  interface hipfftXtSetJITCallback
-#ifdef USE_CUDA_NAMES
-    function hipfftXtSetJITCallback_(plan,symbol_name,bitcode_data,bitcode_len_bytes,cbtype, &
-        cbdata) &
-        bind(c, name="cufftXtSetJITCallback")
-#else
-    function hipfftXtSetJITCallback_(plan,symbol_name,bitcode_data,bitcode_len_bytes,cbtype, &
-        cbdata) &
-        bind(c, name="hipfftXtSetJITCallback")
-#endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      implicit none
-      integer(c_int) :: hipfftXtSetJITCallback_
-      type(c_ptr),value :: plan
-      type(c_ptr),value :: symbol_name
-      type(c_ptr),value :: bitcode_data
-      integer(c_size_t),value :: bitcode_len_bytes
-      integer(c_int),value :: cbtype
-      type(c_ptr) :: cbdata
     end function
   end interface
 
@@ -1422,7 +1353,9 @@ module hipfort_hipfft
     end function
   end interface
 
-  !>  @brief Instructs hipFFT to use multiple GPUs for a plan.
+  !>  @brief Set multiple GPUs on a plan.
+  !>
+  !>   Instructs hipFFT to use multiple GPUs for a plan.
   !>
   !>   This function must be called after the plan is allocated using
   !>   `hipfftCreate`, but before the plan is initialized by any of the
@@ -1430,12 +1363,9 @@ module hipfort_hipfft
   !>   creation and initialization (`hipfftPlan1d`, `hipfftPlan2d`,
   !>   `hipfftPlan3d`, and `hipfftPlanMany`) cannot use multiple GPUs.
   !>
-  !>  @note The rocFFT backend currently requires all device IDs in
-  !>   the `gpus` array to be distinct.
-  !>
-  !>  @param[in, out] plan - The FFT plan.
-  !>  @param[in] count - Number of GPUs (length of the `gpus` array).
-  !>  @param[in] gpus - Array of device IDs.
+  !>  @param[in, out] plan
+  !>  @param[in] count - : length gpus array
+  !>  @param[in] gpus - : array of ints specifying deviceIDs
   !>
   !>  @warning Experimental
   interface hipfftXtSetGPUs
@@ -1454,29 +1384,21 @@ module hipfort_hipfft
     end function
   end interface
 
-  !>  @brief Allocates a multi-device descriptor (i.e., a `hipLibXtDesc` instance),
-  !>   tailored to a specific multi-device plan's needs. The allocated descriptor
-  !>   must be freed using `hipfftXtFree` when no longer needed.
+  !>  @brief Allocate memory on multiple devices.
   !>
-  !>   @details The data set of interest that is considered for the definition of
-  !>   the desired descriptor is the plan's expected input data set, unless
-  !>   `format` is `HIPFFT_XT_FORMAT_OUTPUT`. For values of `format` consistent
-  !>   with in-place operations (i.e., `HIPFFT_XT_FORMAT_INPLACE` or
-  !>   `HIPFFT_XT_FORMAT_INPLACE_SHUFFLED`), the created descriptor is usable for
-  !>   both the plan's input and output data sets.
+  !>   Allocate memory on multiple devices for the specified plan.
+  !>   Returns a `hipLibXtDesc` descriptor which includes pointers
+  !>   to the allocated memory, devices that memory resides on, and
+  !>   sizes allocated.
   !>
-  !>   @note Multi-device descriptors resulting in a division of real data sets
-  !>     along their fastest dimension are not supported. As a result,
-  !>     `hipfftXtMalloc` does not produce usable descriptors for requests to
-  !>     create a multi-device descriptor of subformat value
-  !>     `HIPFFT_XT_FORMAT_INPLACE_SHUFFLED` (resp. `HIPFFT_XT_FORMAT_INPLACE`)
-  !>     given a plan initialized for an unbatched two-dimensional real forward
-  !>     (resp. inverse) transform.
+  !>   The subformat indicates whether the memory will be used for FFT
+  !>   input or output.
   !>
-  !>  @param[in] plan - Multi-device FFT plan to allocate descriptor memory for.
-  !>  @param[out] desc - Address of the pointer to the created descriptor.
-  !>  @param[in] myFormat - Desired descriptor's subformat, identifying the plan's
-  !>  I/O data set of interest (see `hipfftXtSubFormat` for more details).
+  !>   The memory must be freed by calling `hipfftXtFree`.
+  !>
+  !>  @param[in] plan - FFT plan to allocate descriptor memory for.
+  !>  @param[out] desc - Pointer to descriptors for allocated memory, the devices used, and sizes.
+  !>  @param[in] myFormat - Subformat determines whether memory is used for FFT input or output.
   !>
   !>  @warning Experimental
   interface hipfftXtMalloc
@@ -1497,23 +1419,19 @@ module hipfort_hipfft
 
   !>  @brief Copy data to/from `hipLibXtDesc` descriptors.
   !>
-  !>  @details If `type` is `HIPFFT_COPY_HOST_TO_DEVICE` (resp.
-  !>  `HIPFFT_COPY_DEVICE_TO_HOST`), `src` (resp. `dest`) must point to a
-  !>  host-residing memory buffer and `dest` (resp. `src`) must point to a
-  !>  `hipLibXtDesc` descriptor. That descriptor must be fit for storing the plan's
-  !>  input (resp. output) data set assuming it's distributed consistently with the
-  !>  descriptor's own `subFormat` value (see `hipfftXtSubFormat` for more details).
-  !>  The host buffer must be large enough to hold the plan's input (resp. output)
-  !>  data (accounting for possible padding in real domain for plans and descriptors
-  !>  specific to data for in-place real transforms).
-  !>  `HIPFFT_COPY_DEVICE_TO_DEVICE` copies are supported only from descriptors of
-  !>  format `HIPFFT_XT_FORMAT_INPLACE_SHUFFLED` to descriptors of format
-  !>  `HIPFFT_XT_FORMAT_INPLACE` along with plans that support both formats.
+  !>   Copy data according to the hipfftXtCopyType
   !>
-  !>  @param[in] plan - Multi-device FFT plan of interest, defining the data set of
-  !>  relevance for the desired copy operation.
-  !>  @param[out] dest - Opaque pointer to the copy destination.
-  !>  @param[in] src - Opaque pointer to the copy source.
+  !>   - `HIPFFT_COPY_HOST_TO_DEVICE`: dest points to a `hipLibXtDesc` structure that describes
+  !>   multi-device memory layout. src points to a host memory buffer.
+  !>   - `HIPFFT_COPY_DEVICE_TO_HOST`: src points to a `hipLibXtDesc` structure that describes
+  !>   multi-device memory layout. dest points to a host memory buffer.
+  !>   - `HIPFFT_COPY_DEVICE_TO_DEVICE`: Both dest and src point to a `hipLibXtDesc` structure that
+  !>   describes multi-device memory layout. The two structures must describe memory with the same
+  !>   number of devices and memory sizes.
+  !>
+  !>  @param[in] plan - Plan which has the descriptor.
+  !>  @param[out] dest - Buffer that will be populated.
+  !>  @param[in] src - Buffer that will be copied from.
   !>  @param[in] myType - Type of copy operation to perform.
   !>
   !>  @warning Experimental

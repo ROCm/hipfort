@@ -218,34 +218,6 @@ module hipfort_hipsolver_enums
 #endif
   end enum
 
-  ! hipsolverDirectMode_t
-  enum, bind(c)
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSOLVER_DIRECT_FORWARD = 0
-#else
-    enumerator :: HIPSOLVER_DIRECT_FORWARD = 251
-#endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSOLVER_DIRECT_BACKWARD = 1
-#else
-    enumerator :: HIPSOLVER_DIRECT_BACKWARD = 252
-#endif
-  end enum
-
-  ! hipsolverStorevMode_t
-  enum, bind(c)
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSOLVER_STOREV_COLUMNWISE = 0
-#else
-    enumerator :: HIPSOLVER_STOREV_COLUMNWISE = 261
-#endif
-#ifdef USE_CUDA_NAMES
-    enumerator :: HIPSOLVER_STOREV_ROWWISE = 1
-#else
-    enumerator :: HIPSOLVER_STOREV_ROWWISE = 262
-#endif
-  end enum
-
   ! hipsolverAlgMode_t
   enum, bind(c)
 #ifdef USE_CUDA_NAMES
@@ -306,7 +278,7 @@ module hipfort_hipsolver_enums
   end enum
 
   integer(c_int), parameter :: hipsolverVersionMajor = 3
-  integer(c_int), parameter :: hipsolverVersionMinor = 8
+  integer(c_int), parameter :: hipsolverVersionMinor = 4
   integer(c_int), parameter :: hipsolverVersionPatch = 0
 
 end module hipfort_hipsolver_enums

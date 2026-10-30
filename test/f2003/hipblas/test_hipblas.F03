@@ -40,8 +40,6 @@ program test_hipblas
 
     if (never) v1 = hipblasCreate_(v0)
     if (never) v1 = hipblasDestroy_(v0)
-    if (never) v1 = hipblasGetVersion_(v0, v0)
-    if (never) v1 = hipblasGetProperty_(v1, v0)
     if (never) v1 = hipblasSetStream_(v0, v0)
     if (never) v1 = hipblasGetStream_(v0, v0)
     if (never) v1 = hipblasSetPointerMode_(v0, v1)
@@ -59,12 +57,6 @@ program test_hipblas
     if (never) v1 = hipblasGetMatrixAsync_(v1, v1, v1, v0, v1, v0, v1, v0)
     if (never) v1 = hipblasSetAtomicsMode_(v0, v1)
     if (never) v1 = hipblasGetAtomicsMode_(v0, v0)
-#ifndef USE_CUDA_NAMES
-    if (never) v1 = hipblasSetBatchAlphaStride_(v0, v3)
-    if (never) v1 = hipblasGetBatchAlphaStride_(v0, v0)
-    if (never) v1 = hipblasSetBatchBetaStride_(v0, v3)
-    if (never) v1 = hipblasGetBatchBetaStride_(v0, v0)
-#endif
     if (never) v1 = hipblasIsamax_(v0, v1, v0, v1, v0)
     if (never) v1 = hipblasIdamax_(v0, v1, v0, v1, v0)
     if (never) v1 = hipblasIcamax_(v0, v1, v0, v1, v0)
@@ -951,10 +943,6 @@ program test_hipblas
     if (never) v1 = hipblasDgemmBatched_64_(v0, v1, v1, v3, v3, v3, v0, v0, v3, v0, v3, v0, v0, v3, v3)
     if (never) v1 = hipblasCgemmBatched_64_(v0, v1, v1, v3, v3, v3, v0, v0, v3, v0, v3, v0, v0, v3, v3)
     if (never) v1 = hipblasZgemmBatched_64_(v0, v1, v1, v3, v3, v3, v0, v0, v3, v0, v3, v0, v0, v3, v3)
-    if (never) v1 = hipblasSgemmGroupedBatched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v1, v0)
-    if (never) v1 = hipblasDgemmGroupedBatched_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v1, v0)
-    if (never) v1 = hipblasSgemmGroupedBatched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v3, v0)
-    if (never) v1 = hipblasDgemmGroupedBatched_64_(v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v0, v3, v0)
     if (never) v1 = hipblasHgemmStridedBatched_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v3, v0, v1, v3, v0, v0, v1, v3, v1)
     if (never) v1 = hipblasSgemmStridedBatched_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v3, v0, v1, v3, v0, v0, v1, v3, v1)
     if (never) v1 = hipblasDgemmStridedBatched_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v3, v0, v1, v3, v0, v0, v1, v3, v1)
@@ -1333,14 +1321,6 @@ program test_hipblas
 #ifndef USE_CUDA_NAMES
     if (never) v1 = hipblasGemmBatchedExWithFlags_64_(v0, v1, v1, v3, v3, v3, v0, v0, v1, v3, v0, v1, v3, v0, v0, v1, &
       v3, v3, v1, v1, v1)
-    if (never) v1 = hipblasGemmGroupedBatchedEx_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, v1, v0, &
-      v0, v1, v0, v1, v0, v1, v1)
-    if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, &
-      v1, v0, v0, v1, v0, v1, v0, v1, v1, v1)
-    if (never) v1 = hipblasGemmGroupedBatchedEx_64_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, v0, v1, &
-      v0, v0, v1, v0, v3, v0, v1, v1)
-    if (never) v1 = hipblasGemmGroupedBatchedExWithFlags_64_(v0, v0, v0, v0, v0, v0, v0, v0, v1, v0, v0, v1, v0, v0, &
-      v0, v1, v0, v0, v1, v0, v3, v0, v1, v1, v1)
 #endif
     if (never) v1 = hipblasGemmStridedBatchedEx_(v0, v1, v1, v1, v1, v1, v0, v0, v1, v1, v3, v0, v1, v1, v3, v0, v0, &
       v1, v1, v3, v1, v1, v1)

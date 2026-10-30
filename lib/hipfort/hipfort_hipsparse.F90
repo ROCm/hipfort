@@ -76,15 +76,15 @@ module hipfort_hipsparse
   !>   \details
   !>   \p hipsparseGetErrorName takes a hipSPARSE status as input and first converts it to the
   !>   matching backend
-  !>   status (either \p rocsparse_status or \p cusparseStatus_t). It then returns the string
+  !>   status (either rocsparse_status or cusparseStatus_t). It then returns the string
   !>   representation of this status
   !>   enum name. If the status is not recognized, the function returns "Unrecognized status code".
   !>
-  !>   For example, \p hipsparseGetErrorName( `HIPSPARSE_STATUS_SUCCESS` ) on a system with a
-  !>   rocSPARSE backend will
-  !>   return \p rocsparse_status_success. On a system with a cuSPARSE backend this function would
+  !>   For example, hipsparseGetErrorName(HIPSPARSE_STATUS_SUCCESS) on a system with a rocSPARSE
+  !>   backend will
+  !>   return "rocsparse_status_success". On a system with a cuSPARSE backend this function would
   !>   return
-  !>   \p CUSPARSE_STATUS_SUCCESS.
+  !>   "CUSPARSE_STATUS_SUCCESS".
   interface hipsparseGetErrorName
 #ifdef USE_CUDA_NAMES
     function hipsparseGetErrorName_(status) bind(c, name="cusparseGetErrorName")
@@ -105,8 +105,8 @@ module hipfort_hipsparse
   !>   \details
   !>   \p hipsparseGetErrorString takes a hipSPARSE status as input and first converts it to the
   !>   matching backend
-  !>   status (either \p rocsparse_status or \p cusparseStatus_t). It then returns the string
-  !>   description of this status.
+  !>   status (either rocsparse_status or cusparseStatus_t). It then returns the string description
+  !>   of this status.
   !>   If the status is not recognized, the function returns "Unrecognized status code".
   interface hipsparseGetErrorString
 #ifdef USE_CUDA_NAMES
@@ -7758,7 +7758,8 @@ module hipfort_hipsparse
   !>   Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>
   !>   \deprecated
-  !>   This function is deprecated and will be removed in a future release.
+  !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
+  !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
   !>
   !>   @param[in] handle - handle to the hipSPARSE library context queue.
   !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$. Must
@@ -7863,9 +7864,6 @@ module hipfort_hipsparse
   !>   \note Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
   !>   \note This function is non-blocking and executed asynchronously with respect to the
   !>         host. It can return before the actual computation has finished.
-  !>
-  !>   \deprecated
-  !>   This function is deprecated and will be removed in a future release.
   !>
   !>   @param[in] handle - handle to the hipSPARSE library context queue.
   !>   @param[in] m - number of rows of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
@@ -23697,68 +23695,6 @@ module hipfort_hipsparse
     end function
   end interface
 
-  interface hipsparseCreateBsr
-#ifdef USE_CUDA_NAMES
-    function hipsparseCreateBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
-        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
-        bind(c, name="cusparseCreateBsr")
-#else
-    function hipsparseCreateBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
-        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
-        bind(c, name="hipsparseCreateBsr")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseCreateBsr_
-      type(c_ptr) :: spMatDescr
-      integer(c_int64_t),value :: mb
-      integer(c_int64_t),value :: nb
-      integer(c_int64_t),value :: nnzb
-      integer(c_int64_t),value :: rowBlockDim
-      integer(c_int64_t),value :: colBlockDim
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrColInd
-      type(c_ptr),value :: bsrValues
-      integer(c_int),value :: bsrRowPtrType
-      integer(c_int),value :: bsrColIndType
-      integer(c_int),value :: idxBase
-      integer(c_int),value :: valueType
-      integer(c_int),value :: order
-    end function
-  end interface
-
-  interface hipsparseCreateConstBsr
-#ifdef USE_CUDA_NAMES
-    function hipsparseCreateConstBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
-        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
-        bind(c, name="cusparseCreateConstBsr")
-#else
-    function hipsparseCreateConstBsr_(spMatDescr,mb,nb,nnzb,rowBlockDim,colBlockDim,bsrRowPtr, &
-        bsrColInd,bsrValues,bsrRowPtrType,bsrColIndType,idxBase,valueType,order) &
-        bind(c, name="hipsparseCreateConstBsr")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseCreateConstBsr_
-      type(c_ptr) :: spMatDescr
-      integer(c_int64_t),value :: mb
-      integer(c_int64_t),value :: nb
-      integer(c_int64_t),value :: nnzb
-      integer(c_int64_t),value :: rowBlockDim
-      integer(c_int64_t),value :: colBlockDim
-      type(c_ptr),value :: bsrRowPtr
-      type(c_ptr),value :: bsrColInd
-      type(c_ptr),value :: bsrValues
-      integer(c_int),value :: bsrRowPtrType
-      integer(c_int),value :: bsrColIndType
-      integer(c_int),value :: idxBase
-      integer(c_int),value :: valueType
-      integer(c_int),value :: order
-    end function
-  end interface
-
   interface hipsparseDestroySpMat
 #ifdef USE_CUDA_NAMES
     function hipsparseDestroySpMat_(spMatDescr) bind(c, name="cusparseDestroySpMat")
@@ -24089,21 +24025,6 @@ module hipfort_hipsparse
       type(c_ptr),value :: cooValues
     end function
   end interface
-
-#ifndef USE_CUDA_NAMES
-  interface hipsparseBlockedEllSetPointers
-    function hipsparseBlockedEllSetPointers_(spMatDescr,ellColInd,ellValue) &
-        bind(c, name="hipsparseBlockedEllSetPointers")
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseBlockedEllSetPointers_
-      type(c_ptr),value :: spMatDescr
-      type(c_ptr),value :: ellColInd
-      type(c_ptr),value :: ellValue
-    end function
-  end interface
-#endif
 
   interface hipsparseSpMatGetSize
 #ifdef USE_CUDA_NAMES
@@ -24900,123 +24821,6 @@ module hipfort_hipsparse
       type(c_ptr),value :: matA
       type(c_ptr),value :: matB
       integer(c_int),value :: alg
-      type(c_ptr),value :: externalBuffer
-    end function
-  end interface
-
-  interface hipsparseSpGEAM_createDescr
-#ifdef USE_CUDA_NAMES
-    function hipsparseSpGEAM_createDescr_(descr) bind(c, name="cusparseSpGEAM_createDescr")
-#else
-    function hipsparseSpGEAM_createDescr_(descr) bind(c, name="hipsparseSpGEAM_createDescr")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseSpGEAM_createDescr_
-      type(c_ptr) :: descr
-    end function
-  end interface
-
-  interface hipsparseSpGEAM_destroyDescr
-#ifdef USE_CUDA_NAMES
-    function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="cusparseSpGEAM_destroyDescr")
-#else
-    function hipsparseSpGEAM_destroyDescr_(descr) bind(c, name="hipsparseSpGEAM_destroyDescr")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseSpGEAM_destroyDescr_
-      type(c_ptr),value :: descr
-    end function
-  end interface
-
-  interface hipsparseSpGEAM_bufferSize
-#ifdef USE_CUDA_NAMES
-    function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,bufferSize) &
-        bind(c, name="cusparseSpGEAM_bufferSize")
-#else
-    function hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,bufferSize) &
-        bind(c, name="hipsparseSpGEAM_bufferSize")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseSpGEAM_bufferSize_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: opA
-      integer(c_int),value :: opB
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: beta
-      type(c_ptr),value :: matB
-      type(c_ptr),value :: matC
-      integer(c_int),value :: computeType
-      integer(c_int),value :: alg
-      type(c_ptr),value :: spgeamDescr
-      type(c_ptr),value :: bufferSize
-    end function
-
-    module procedure hipsparseSpGEAM_bufferSize_typed
-  end interface
-
-  interface hipsparseSpGEAM_nnz
-#ifdef USE_CUDA_NAMES
-    function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,externalBuffer) &
-        bind(c, name="cusparseSpGEAM_nnz")
-#else
-    function hipsparseSpGEAM_nnz_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,externalBuffer) &
-        bind(c, name="hipsparseSpGEAM_nnz")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseSpGEAM_nnz_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: opA
-      integer(c_int),value :: opB
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: beta
-      type(c_ptr),value :: matB
-      type(c_ptr),value :: matC
-      integer(c_int),value :: computeType
-      integer(c_int),value :: alg
-      type(c_ptr),value :: spgeamDescr
-      type(c_ptr),value :: externalBuffer
-    end function
-  end interface
-
-  interface hipsparseSpGEAM
-#ifdef USE_CUDA_NAMES
-    function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,externalBuffer) &
-        bind(c, name="cusparseSpGEAM")
-#else
-    function hipsparseSpGEAM_(handle,opA,opB,alpha,matA,beta,matB,matC,computeType,alg, &
-        spgeamDescr,externalBuffer) &
-        bind(c, name="hipsparseSpGEAM")
-#endif
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(c_int) :: hipsparseSpGEAM_
-      type(c_ptr),value :: handle
-      integer(c_int),value :: opA
-      integer(c_int),value :: opB
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: matA
-      type(c_ptr),value :: beta
-      type(c_ptr),value :: matB
-      type(c_ptr),value :: matC
-      integer(c_int),value :: computeType
-      integer(c_int),value :: alg
-      type(c_ptr),value :: spgeamDescr
       type(c_ptr),value :: externalBuffer
     end function
   end interface
@@ -32363,29 +32167,6 @@ module hipfort_hipsparse
       !
       hipsparseSparseToDense_bufferSize_typed = hipsparseSparseToDense_bufferSize_(handle,matA, &
         matB,alg,c_loc(pBufferSizeInBytes))
-    end function
-
-    function hipsparseSpGEAM_bufferSize_typed(handle,opA,opB,alpha,matA,beta,matB,matC, &
-        computeType,alg,spgeamDescr,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEAM_bufferSize_typed
-      type(c_ptr), value :: handle
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: opA
-      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: opB
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: matA
-      type(c_ptr), value :: beta
-      type(c_ptr), value :: matB
-      type(c_ptr), value :: matC
-      integer(c_int) :: computeType
-      integer(kind(HIPSPARSE_SPGEAM_ALG1)) :: alg
-      type(c_ptr), value :: spgeamDescr
-      integer(c_size_t),target :: bufferSize
-      !
-      hipsparseSpGEAM_bufferSize_typed = hipsparseSpGEAM_bufferSize_(handle,opA,opB,alpha,matA, &
-        beta,matB,matC,computeType,alg,spgeamDescr,c_loc(bufferSize))
     end function
 
     function hipsparseSpGEMM_workEstimation_typed(handle,opA,opB,alpha,matA,matB,beta,matC, &

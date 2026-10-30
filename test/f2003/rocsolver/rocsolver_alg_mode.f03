@@ -32,10 +32,11 @@
 ! The test sets a mode for a function, resets the local variable to the
 ! sentinel -1, reads the mode back and requires an exact match.  Because the
 ! sentinel is restored before every get, a getter that fails to write through
-! the reference is caught immediately.  Because two (resp. three) DISTINCT
-! modes are exercised per function, a getter that returns a constant or a
-! setter that is ignored is caught as well.  No default mode is asserted:
-! defaults are not portable across GPUs.
+! the reference is caught immediately.  Because two DISTINCT modes are
+! exercised per function, a getter that returns a constant or a setter that is
+! ignored is caught as well.  No default mode is asserted: defaults are not
+! portable across GPUs.  ROCm 7.13 has no tridiagonalization modes
+! (1stage/2stage/auto for sytrd_hetrd), which came later.
 program rocsolver_alg_mode
   use iso_c_binding
   use hipfort_check
@@ -54,10 +55,6 @@ program rocsolver_alg_mode
      rocsolver_function_steqr, rocsolver_function_syev_heev]
   integer(kind(rocsolver_alg_mode_gpu)), parameter :: modes(2) = &
     [rocsolver_alg_mode_hybrid, rocsolver_alg_mode_gpu]
-
-  ! The tridiagonalization family uses a different family of algorithm modes.
-  integer(kind(rocsolver_alg_mode_gpu)), parameter :: tridiag_modes(3) = &
-    [rocsolver_alg_mode_2stage, rocsolver_alg_mode_1stage, rocsolver_alg_mode_auto]
 
   integer(kind(rocsolver_alg_mode_gpu)) :: mode, want
   integer :: i, j
@@ -84,22 +81,8 @@ program rocsolver_alg_mode
      end do
   end do
 
-  do j = 1, size(tridiag_modes)
-     want = tridiag_modes(j)
-     call rocsolverCheck(rocsolver_set_alg_mode(handle, rocsolver_function_sytrd_hetrd, want))
-
-     mode = -1
-     call rocsolverCheck(rocsolver_get_alg_mode(handle, rocsolver_function_sytrd_hetrd, mode))
-
-     if (mode /= want) then
-        write(*,*) "FAILED! rocsolver_get_alg_mode returned ", mode, &
-                   " after setting ", want, " for function ", rocsolver_function_sytrd_hetrd
-        STOP 1
-     end if
-  end do
-
   call rocblasCheck(rocblas_destroy_handle(handle))
 
-  write(*,*) "PASSED! alg mode round-tripped for 6 rocSOLVER functions (gpu/hybrid and 1stage/2stage/auto)"
+  write(*,*) "PASSED! alg mode round-tripped for 5 rocSOLVER functions (gpu/hybrid)"
 
 end program rocsolver_alg_mode

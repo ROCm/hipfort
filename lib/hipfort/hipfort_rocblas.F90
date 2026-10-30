@@ -133,78 +133,6 @@ module hipfort_rocblas
     module procedure rocblas_get_atomics_mode_typed
   end interface
 
-  !>  \brief Set alpha stride for limited set of batched and strided_batched functions to specify
-  !>  the stride for alpha between successive batch elements.
-  !> Only applies to rocblas_pointer_mode_device and thus device side allocations.
-  !> It enables interpretation of the alpha pointer for both batched and strided_batched functions
-  !> as a pointer to a vector of values.
-  !> Default value is 0 which treats it as a pointer to a single scalar. Support is denoted with
-  !> specific function documentation.
-  !> Warning this is a modal like state in the handle. Restore to value 0 if no longer applicable to
-  !> later function calls.
-  interface rocblas_set_batch_alpha_stride
-    function rocblas_set_batch_alpha_stride_(handle,alpha_stride) &
-        bind(c, name="rocblas_set_batch_alpha_stride")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_set_batch_alpha_stride_
-      type(c_ptr),value :: handle
-      integer(c_int64_t),value :: alpha_stride
-    end function
-  end interface
-
-  !>  \brief Get batch alpha stride from the handle.
-  interface rocblas_get_batch_alpha_stride
-    function rocblas_get_batch_alpha_stride_(handle,alpha_stride) &
-        bind(c, name="rocblas_get_batch_alpha_stride")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_get_batch_alpha_stride_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: alpha_stride
-    end function
-
-    module procedure rocblas_get_batch_alpha_stride_typed
-  end interface
-
-  !>  \brief Set beta stride for limited set of batched and strided_batched functions to specify the
-  !>  stride for beta between successive batch elements.
-  !> Only applies to rocblas_pointer_mode_device and thus device side allocations.
-  !> It enables interpretation of the beta pointer for both batched and strided_batched functions as
-  !> a pointer to a vector of values.
-  !> Default value is 0 which treats it as a pointer to a single scalar. Support is denoted with
-  !> specific function documentation.
-  !> Warning this is a modal like state in the handle. Restore to value 0 if no longer applicable to
-  !> later function calls.
-  interface rocblas_set_batch_beta_stride
-    function rocblas_set_batch_beta_stride_(handle,beta_stride) &
-        bind(c, name="rocblas_set_batch_beta_stride")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_set_batch_beta_stride_
-      type(c_ptr),value :: handle
-      integer(c_int64_t),value :: beta_stride
-    end function
-  end interface
-
-  !>  \brief Get batch beta stride from the handle.
-  interface rocblas_get_batch_beta_stride
-    function rocblas_get_batch_beta_stride_(handle,beta_stride) &
-        bind(c, name="rocblas_get_batch_beta_stride")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_get_batch_beta_stride_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: beta_stride
-    end function
-
-    module procedure rocblas_get_batch_beta_stride_typed
-  end interface
-
   !>  \brief Set ``rocblas_math_mode``.
   interface rocblas_set_math_mode
     function rocblas_set_math_mode_(handle,math_mode) bind(c, name="rocblas_set_math_mode")
@@ -35199,8 +35127,6 @@ module hipfort_rocblas
   !>     and is no larger than 10 of these blocks, the API takes advantage of utilizing preallocated
   !>     memory found in the handle to increase overall performance (where ``k`` is ``m``
   !>     when ``rocblas_side_left`` and ``n`` when ``rocblas_side_right``).
-  !>     Unless the problem is small, trsm also uses temporary device memory from the handle;
-  !>     see Device Memory Allocation in the API Reference Guide.
   !>
   !>     Although not widespread, some gemm kernels used by trsm might use atomic operations.
   !>     See Atomic Operations in the API Reference Guide for more information.
@@ -35553,9 +35479,6 @@ module hipfort_rocblas
   !>     and is no larger than 10 of these blocks, the API takes advantage of utilizing preallocated
   !>     memory found in the handle to increase overall performance (where ``k`` is ``m``
   !>     when ``rocblas_side_left`` and ``n`` when ``rocblas_side_right``).
-  !>     Unless the problem is small, trsm also uses temporary device memory from the handle
-  !>     that grows linearly with ``batch_count``; see Device Memory Allocation in the API
-  !>     Reference Guide.
   !>
   !>     @param[in] handle - [rocblas_handle]
   !>               handle to the rocBLAS library context queue.
@@ -35821,11 +35744,8 @@ module hipfort_rocblas
   !>     Note about memory allocation:
   !>     When trsm is launched with a ``k`` evenly divisible by the internal block size of 128,
   !>     and is no larger than 10 of these blocks, the API takes advantage of utilizing preallocated
-  !>     memory found in the handle to increase overall performance (where ``k`` is ``m``
-  !>     when ``rocblas_side_left`` and ``n`` when ``rocblas_side_right``).
-  !>     Unless the problem is small, trsm also uses temporary device memory from the handle
-  !>     that grows linearly with ``batch_count``; see Device Memory Allocation in the API
-  !>     Reference Guide.
+  !>     memory found in the handle to increase overall performance (where ``k`` is ``m`` when
+  !>     ``HIPBLAS_SIDE_LEFT`` and ``n`` when ``HIPBLAS_SIDE_RIGHT``).
   !>
   !>     @param[in] handle - [rocblas_handle]
   !>               handle to the rocBLAS library context queue.
@@ -37345,171 +37265,6 @@ module hipfort_rocblas
       rocblas_zgemm_strided_batched_64_full_rank
 #endif
 #endif
-  end interface
-
-  !>     \brief  BLAS Level 3 API
-  !>
-  !>     \details
-  !>     The gemm_grouped_batched functions perform grouped batched matrix-matrix operations.
-  !>     There are ``group_count`` groups. Within group ``i``, all problems share the same
-  !>     ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``, ``ldc``, ``alpha``, and
-  !>     ``beta``.
-  !>     Each group ``i`` contains group_size[i] problems. The total number of problems is
-  !>     problem_count = sum(group_size[i]).
-  !>
-  !>     For each problem ``j`` in group ``i``:
-  !>
-  !>         C_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
-  !>
-  !>     where ``op( X )`` is one of
-  !>
-  !>         op( X ) = X      or
-  !>         op( X ) = X**T   or
-  !>         op( X ) = X**H.
-  !>
-  !>     ``Aarray``, ``Barray``, and ``Carray`` are device arrays of device pointers with length
-  !>     ``problem_count``. The caller is responsible for ensuring that output matrices do not
-  !>     overlap.
-  !>
-  !>     @param[in] handle - [rocblas_handle]
-  !>               handle to the rocBLAS library context queue.
-  !>     @param[in] transa_array - [const rocblas_operation*]
-  !>               host array of length ``group_count`` specifying ``op( A )`` for each group.
-  !>     @param[in] transb_array - [const rocblas_operation*]
-  !>               host array of length ``group_count`` specifying ``op( B )`` for each group.
-  !>     @param[in] m_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] n_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] k_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
-  !>     ``group_count``.
-  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
-  !>     @param[in] lda_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
-  !>     @param[in] ldb_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] beta_array - device pointer or host pointer to an array of length
-  !>     ``group_count``.
-  !>     @param[in, out] Carray - device array of device pointers storing each matrix ``C_j``.
-  !>     @param[in] ldc_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] group_count - [rocblas_int]
-  !>               number of groups.
-  !>     @param[in] group_size - [const rocblas_int*]
-  !>               host array of length ``group_count`` with the number of problems in each group.
-  interface rocblas_sgemm_grouped_batched
-    function rocblas_sgemm_grouped_batched_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
-        group_count,group_size) &
-        bind(c, name="rocblas_sgemm_grouped_batched")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_sgemm_grouped_batched_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      type(c_ptr),value :: ldc_array
-      integer(c_int),value :: group_count
-      type(c_ptr),value :: group_size
-    end function
-  end interface
-
-  interface rocblas_dgemm_grouped_batched
-    function rocblas_dgemm_grouped_batched_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
-        group_count,group_size) &
-        bind(c, name="rocblas_dgemm_grouped_batched")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_dgemm_grouped_batched_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      type(c_ptr),value :: ldc_array
-      integer(c_int),value :: group_count
-      type(c_ptr),value :: group_size
-    end function
-  end interface
-
-  interface rocblas_sgemm_grouped_batched_64
-    function rocblas_sgemm_grouped_batched_64_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
-        group_count,group_size) &
-        bind(c, name="rocblas_sgemm_grouped_batched_64")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_sgemm_grouped_batched_64_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      type(c_ptr),value :: ldc_array
-      integer(c_int64_t),value :: group_count
-      type(c_ptr),value :: group_size
-    end function
-  end interface
-
-  interface rocblas_dgemm_grouped_batched_64
-    function rocblas_dgemm_grouped_batched_64_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,lda_array,Barray,ldb_array,beta_array,Carray,ldc_array, &
-        group_count,group_size) &
-        bind(c, name="rocblas_dgemm_grouped_batched_64")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_dgemm_grouped_batched_64_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      type(c_ptr),value :: ldc_array
-      integer(c_int64_t),value :: group_count
-      type(c_ptr),value :: group_size
-    end function
   end interface
 
   !>     \brief  BLAS Level 3 API
@@ -39826,156 +39581,6 @@ module hipfort_rocblas
       integer(c_int),value :: compute_type
       integer(c_int),value :: algo
       integer(c_int32_t),value :: solution_index
-      integer(c_int32_t),value :: flags
-    end function
-  end interface
-
-  !>     \brief  BLAS Level 3 API
-  !>
-  !>     \details
-  !>     The gemm_grouped_batched_ex functions perform grouped batched matrix-matrix operations
-  !>     with mixed precision types. There are ``group_count`` groups. Within group ``i``, all
-  !>     problems share the same ``transA``, ``transB``, ``m``, ``n``, ``k``, ``lda``, ``ldb``,
-  !>     ``ldc``, ``ldd``, ``alpha``, and ``beta``. Each group ``i`` contains group_size[i]
-  !>     problems.
-  !>
-  !>     For each problem ``j`` in group ``i``:
-  !>
-  !>         D_j = alpha_i*op( A_j )*op( B_j ) + beta_i*C_j,
-  !>
-  !>     Supported types are as follows:
-  !>         - rocblas_datatype_f64_r = a_type = b_type = c_type = d_type = compute_type
-  !>         - rocblas_datatype_f32_r = a_type = b_type = c_type = d_type = compute_type
-  !>         - rocblas_datatype_f16_r = a_type = b_type = c_type = d_type = compute_type
-  !>         - rocblas_datatype_f16_r = a_type = b_type = c_type = d_type; rocblas_datatype_f32_r =
-  !>    compute_type
-  !>         - rocblas_datatype_f16_r = a_type = b_type; rocblas_datatype_f32_r = c_type = d_type =
-  !>    compute_type
-  !>         - rocblas_datatype_bf16_r = a_type = b_type = c_type = d_type; rocblas_datatype_f32_r =
-  !>    compute_type
-  !>         - rocblas_datatype_bf16_r = a_type = b_type; rocblas_datatype_f32_r = c_type = d_type =
-  !>    compute_type
-  !>         - rocblas_datatype_i8_r = a_type = b_type; rocblas_datatype_i32_r = c_type = d_type =
-  !>    compute_type
-  !>         - rocblas_datatype_f32_c  = a_type = b_type = c_type = d_type = compute_type
-  !>         - rocblas_datatype_f64_c  = a_type = b_type = c_type = d_type = compute_type
-  !>
-  !>     @param[in] handle - [rocblas_handle]
-  !>               handle to the rocBLAS library context queue.
-  !>     @param[in] transa_array - [const rocblas_operation*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] transb_array - [const rocblas_operation*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] m_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] n_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] k_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] alpha_array - device pointer or host pointer to an array of length
-  !>     ``group_count``.
-  !>     @param[in] Aarray - device array of device pointers storing each matrix ``A_j``.
-  !>     @param[in] a_type - [rocblas_datatype]
-  !>               datatype of each matrix ``A_j``.
-  !>     @param[in] lda_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] Barray - device array of device pointers storing each matrix ``B_j``.
-  !>     @param[in] b_type - [rocblas_datatype]
-  !>               datatype of each matrix ``B_j``.
-  !>     @param[in] ldb_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] beta_array - device pointer or host pointer to an array of length
-  !>     ``group_count``.
-  !>     @param[in] Carray - device array of device pointers storing each matrix ``C_j``.
-  !>     @param[in] c_type - [rocblas_datatype]
-  !>               datatype of each matrix ``C_j``.
-  !>     @param[in] ldc_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in, out] Darray - device array of device pointers storing each matrix ``D_j``.
-  !>     @param[in] d_type - [rocblas_datatype]
-  !>               datatype of each matrix ``D_j``.
-  !>     @param[in] ldd_array - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] group_count - [rocblas_int]
-  !>               number of groups.
-  !>     @param[in] group_size - [const rocblas_int*]
-  !>               host array of length ``group_count``.
-  !>     @param[in] compute_type - [rocblas_datatype]
-  !>               datatype of computation.
-  !>     @param[in] algo - [rocblas_gemm_algo]
-  !>               enumerant specifying the algorithm type.
-  !>     @param[in] flags - [uint32_t]
-  !>               optional gemm flags.
-  interface rocblas_gemm_grouped_batched_ex
-    function rocblas_gemm_grouped_batched_ex_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,a_type,lda_array,Barray,b_type,ldb_array,beta_array,Carray, &
-        c_type,ldc_array,Darray,d_type,ldd_array,group_count,group_size,compute_type,algo,flags) &
-        bind(c, name="rocblas_gemm_grouped_batched_ex")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_gemm_grouped_batched_ex_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      integer(c_int),value :: a_type
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      integer(c_int),value :: b_type
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      integer(c_int),value :: c_type
-      type(c_ptr),value :: ldc_array
-      type(c_ptr),value :: Darray
-      integer(c_int),value :: d_type
-      type(c_ptr),value :: ldd_array
-      integer(c_int),value :: group_count
-      type(c_ptr),value :: group_size
-      integer(c_int),value :: compute_type
-      integer(c_int),value :: algo
-      integer(c_int32_t),value :: flags
-    end function
-  end interface
-
-  interface rocblas_gemm_grouped_batched_ex_64
-    function rocblas_gemm_grouped_batched_ex_64_(handle,transa_array,transb_array,m_array,n_array, &
-        k_array,alpha_array,Aarray,a_type,lda_array,Barray,b_type,ldb_array,beta_array,Carray, &
-        c_type,ldc_array,Darray,d_type,ldd_array,group_count,group_size,compute_type,algo,flags) &
-        bind(c, name="rocblas_gemm_grouped_batched_ex_64")
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(c_int) :: rocblas_gemm_grouped_batched_ex_64_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: transa_array
-      type(c_ptr),value :: transb_array
-      type(c_ptr),value :: m_array
-      type(c_ptr),value :: n_array
-      type(c_ptr),value :: k_array
-      type(c_ptr),value :: alpha_array
-      type(c_ptr),value :: Aarray
-      integer(c_int),value :: a_type
-      type(c_ptr),value :: lda_array
-      type(c_ptr),value :: Barray
-      integer(c_int),value :: b_type
-      type(c_ptr),value :: ldb_array
-      type(c_ptr),value :: beta_array
-      type(c_ptr),value :: Carray
-      integer(c_int),value :: c_type
-      type(c_ptr),value :: ldc_array
-      type(c_ptr),value :: Darray
-      integer(c_int),value :: d_type
-      type(c_ptr),value :: ldd_array
-      integer(c_int64_t),value :: group_count
-      type(c_ptr),value :: group_size
-      integer(c_int),value :: compute_type
-      integer(c_int),value :: algo
       integer(c_int32_t),value :: flags
     end function
   end interface
@@ -43505,30 +43110,6 @@ module hipfort_rocblas
       integer(kind(rocblas_atomics_not_allowed)),target :: atomics_mode
       !
       rocblas_get_atomics_mode_typed = rocblas_get_atomics_mode_(handle,c_loc(atomics_mode))
-    end function
-
-    function rocblas_get_batch_alpha_stride_typed(handle,alpha_stride)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_get_batch_alpha_stride_typed
-      type(c_ptr), value :: handle
-      integer(c_int64_t),target :: alpha_stride
-      !
-      rocblas_get_batch_alpha_stride_typed = rocblas_get_batch_alpha_stride_(handle, &
-        c_loc(alpha_stride))
-    end function
-
-    function rocblas_get_batch_beta_stride_typed(handle,beta_stride)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocblas_get_batch_beta_stride_typed
-      type(c_ptr), value :: handle
-      integer(c_int64_t),target :: beta_stride
-      !
-      rocblas_get_batch_beta_stride_typed = rocblas_get_batch_beta_stride_(handle, &
-        c_loc(beta_stride))
     end function
 
     function rocblas_get_math_mode_typed(handle,math_mode)

@@ -167,13 +167,6 @@ definite matrix.
 .. literalinclude:: ../../test/f2008/rocsparse/rocsparse_dcsric0.f08
    :language: fortran
 
-``spildlt0`` computes an incomplete LDL\ :sup:`H` factorization through the
-generic descriptor API, with descriptor-create, set-input, analysis and compute
-stages, and a get-output query for the singularity status.
-
-.. literalinclude:: ../../test/f2008/rocsparse/rocsparse_spildlt0.f08
-   :language: fortran
-
 Tridiagonal and pentadiagonal solvers
 =====================================
 

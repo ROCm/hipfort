@@ -13,6 +13,13 @@ an open and portable set of standard Fortran module interfaces.
 
 The hipFORT public repository is located at `<https://github.com/ROCm/hipfort>`_.
 
+.. important::
+
+   hipFORT 0.7.2 is a backport to ROCm 7.13: its interfaces are generated from
+   the ROCm 7.13 headers. If possible, upgrade directly to ROCm 10.2 and the
+   `hipFORT release for it <https://rocm.docs.amd.com/projects/hipfort/en/latest/index.html>`_
+   instead, to limit the disruption.
+
 
 .. grid:: 2
   :gutter: 3

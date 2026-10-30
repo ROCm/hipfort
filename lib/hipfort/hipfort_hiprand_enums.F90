@@ -123,7 +123,7 @@ module hipfort_hiprand_enums
     enumerator :: HIPRAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 = 104
   end enum
 
-  integer(c_int), parameter :: HIPRAND_VERSION = 300400
+  integer(c_int), parameter :: HIPRAND_VERSION = 300300
   integer(c_int), parameter :: HIPRAND_DEFAULT_MAX_BLOCK_SIZE = 256
   integer(c_int), parameter :: HIPRAND_DEFAULT_MIN_WARPS_PER_EU = 1
 

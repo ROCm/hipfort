@@ -530,12 +530,12 @@ module hipfort_hipmemcpy
   !>   @warning  Calling hipMemcpy2D with dst and src pointers that do not match the hipMemcpyKind
   !>  results in undefined behavior.
   !>
-  !>   @param[out]  dest Destination memory address
+  !>   @param[in]   dest    Destination memory address
   !>   @param[in]   dpitch Pitch size in bytes of destination memory
   !>   @param[in]   src    Source memory address
   !>   @param[in]   spitch Pitch size in bytes of source memory
   !>   @param[in]   width  Width size in bytes of matrix transfer (columns)
-  !>   @param[in]   height Height of matrix transfer (rows)
+  !>   @param[in]   height Height size in bytes of matrix transfer (rows)
   !>   @param[in]   myKind   Type of transfer
   !>   @returns     `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidPitchValue`,
   !>  `hipErrorInvalidDevicePointer`, `hipErrorInvalidMemcpyDirection`
@@ -723,7 +723,7 @@ module hipfort_hipmemcpy
   !>  best performance, use hipHostMalloc to allocate host memory that is transferred
   !>  asynchronously.
   !>
-  !>   @param[out]  dest Pointer to destination memory address
+  !>   @param[in]   dest    Pointer to destination memory address
   !>   @param[in]   dpitch Pitch size in bytes of destination memory
   !>   @param[in]   src    Pointer to source memory address
   !>   @param[in]   spitch Pitch size in bytes of source memory

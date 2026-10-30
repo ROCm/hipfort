@@ -25,35 +25,33 @@
 21 | [hipfftGetSize](interfacehipfort__hipfft_1_1hipfftgetsize.html "Interface documentation") | C binding, typed
 22 | [hipfftSetAutoAllocation](interfacehipfort__hipfft_1_1hipfftsetautoallocation.html "Interface documentation") | C binding
 23 | [hipfftSetWorkArea](interfacehipfort__hipfft_1_1hipfftsetworkarea.html "Interface documentation") | C binding
-24 | [hipfftXtSetWorkArea](interfacehipfort__hipfft_1_1hipfftxtsetworkarea.html "Interface documentation") | C binding
-25 | [hipfftExecC2C](interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-26 | [hipfftExecR2C](interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-27 | [hipfftExecC2R](interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-28 | [hipfftExecZ2Z](interfacehipfort__hipfft_1_1hipfftexecz2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-29 | [hipfftExecD2Z](interfacehipfort__hipfft_1_1hipfftexecd2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-30 | [hipfftExecZ2D](interfacehipfort__hipfft_1_1hipfftexecz2d.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
-31 | [hipfftSetStream](interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | C binding
-32 | [hipfftDestroy](interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | C binding
-33 | [hipfftGetVersion](interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | C binding, typed
-34 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding, typed
-35 | [hipfftXtSetCallback](interfacehipfort__hipfft_1_1hipfftxtsetcallback.html "Interface documentation") | C binding
-36 | [hipfftXtClearCallback](interfacehipfort__hipfft_1_1hipfftxtclearcallback.html "Interface documentation") | C binding
-37 | [hipfftXtSetCallbackSharedSize](interfacehipfort__hipfft_1_1hipfftxtsetcallbacksharedsize.html "Interface documentation") | C binding
-38 | [hipfftXtSetJITCallback](interfacehipfort__hipfft_1_1hipfftxtsetjitcallback.html "Interface documentation") | C binding
-39 | [hipfftXtMakePlanMany](interfacehipfort__hipfft_1_1hipfftxtmakeplanmany.html "Interface documentation") | C binding, typed
-40 | [hipfftXtGetSizeMany](interfacehipfort__hipfft_1_1hipfftxtgetsizemany.html "Interface documentation") | C binding, typed
-41 | [hipfftXtExec](interfacehipfort__hipfft_1_1hipfftxtexec.html "Interface documentation") | C binding
-42 | [hipfftXtSetGPUs](interfacehipfort__hipfft_1_1hipfftxtsetgpus.html "Interface documentation") | C binding
-43 | [hipfftXtMalloc](interfacehipfort__hipfft_1_1hipfftxtmalloc.html "Interface documentation") | C binding
-44 | [hipfftXtMemcpy](interfacehipfort__hipfft_1_1hipfftxtmemcpy.html "Interface documentation") | C binding
-45 | [hipfftXtFree](interfacehipfort__hipfft_1_1hipfftxtfree.html "Interface documentation") | C binding
-46 | [hipfftXtExecDescriptorC2C](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorc2c.html "Interface documentation") | C binding
-47 | [hipfftXtExecDescriptorR2C](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorr2c.html "Interface documentation") | C binding
-48 | [hipfftXtExecDescriptorC2R](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorc2r.html "Interface documentation") | C binding
-49 | [hipfftXtExecDescriptorZ2Z](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorz2z.html "Interface documentation") | C binding
-50 | [hipfftXtExecDescriptorD2Z](interfacehipfort__hipfft_1_1hipfftxtexecdescriptord2z.html "Interface documentation") | C binding
-51 | [hipfftXtExecDescriptorZ2D](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorz2d.html "Interface documentation") | C binding
-52 | [hipfftXtExecDescriptor](interfacehipfort__hipfft_1_1hipfftxtexecdescriptor.html "Interface documentation") | C binding
-53 | [hipfftMpAttachComm](interfacehipfort__hipfft_1_1hipfftmpattachcomm.html "Interface documentation") | C binding
-54 | [hipfftXtSetDistribution](interfacehipfort__hipfft_1_1hipfftxtsetdistribution.html "Interface documentation") | C binding
-55 | [hipfftXtSetSubformatDefault](interfacehipfort__hipfft_1_1hipfftxtsetsubformatdefault.html "Interface documentation") | C binding
+24 | [hipfftExecC2C](interfacehipfort__hipfft_1_1hipfftexecc2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+25 | [hipfftExecR2C](interfacehipfort__hipfft_1_1hipfftexecr2c.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+26 | [hipfftExecC2R](interfacehipfort__hipfft_1_1hipfftexecc2r.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+27 | [hipfftExecZ2Z](interfacehipfort__hipfft_1_1hipfftexecz2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+28 | [hipfftExecD2Z](interfacehipfort__hipfft_1_1hipfftexecd2z.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+29 | [hipfftExecZ2D](interfacehipfort__hipfft_1_1hipfftexecz2d.html "Interface documentation") | C binding, rank_0, rank_1, rank_2, rank_3, assumed_rank
+30 | [hipfftSetStream](interfacehipfort__hipfft_1_1hipfftsetstream.html "Interface documentation") | C binding
+31 | [hipfftDestroy](interfacehipfort__hipfft_1_1hipfftdestroy.html "Interface documentation") | C binding
+32 | [hipfftGetVersion](interfacehipfort__hipfft_1_1hipfftgetversion.html "Interface documentation") | C binding, typed
+33 | [hipfftGetProperty](interfacehipfort__hipfft_1_1hipfftgetproperty.html "Interface documentation") | C binding, typed
+34 | [hipfftXtSetCallback](interfacehipfort__hipfft_1_1hipfftxtsetcallback.html "Interface documentation") | C binding
+35 | [hipfftXtClearCallback](interfacehipfort__hipfft_1_1hipfftxtclearcallback.html "Interface documentation") | C binding
+36 | [hipfftXtSetCallbackSharedSize](interfacehipfort__hipfft_1_1hipfftxtsetcallbacksharedsize.html "Interface documentation") | C binding
+37 | [hipfftXtMakePlanMany](interfacehipfort__hipfft_1_1hipfftxtmakeplanmany.html "Interface documentation") | C binding, typed
+38 | [hipfftXtGetSizeMany](interfacehipfort__hipfft_1_1hipfftxtgetsizemany.html "Interface documentation") | C binding, typed
+39 | [hipfftXtExec](interfacehipfort__hipfft_1_1hipfftxtexec.html "Interface documentation") | C binding
+40 | [hipfftXtSetGPUs](interfacehipfort__hipfft_1_1hipfftxtsetgpus.html "Interface documentation") | C binding
+41 | [hipfftXtMalloc](interfacehipfort__hipfft_1_1hipfftxtmalloc.html "Interface documentation") | C binding
+42 | [hipfftXtMemcpy](interfacehipfort__hipfft_1_1hipfftxtmemcpy.html "Interface documentation") | C binding
+43 | [hipfftXtFree](interfacehipfort__hipfft_1_1hipfftxtfree.html "Interface documentation") | C binding
+44 | [hipfftXtExecDescriptorC2C](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorc2c.html "Interface documentation") | C binding
+45 | [hipfftXtExecDescriptorR2C](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorr2c.html "Interface documentation") | C binding
+46 | [hipfftXtExecDescriptorC2R](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorc2r.html "Interface documentation") | C binding
+47 | [hipfftXtExecDescriptorZ2Z](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorz2z.html "Interface documentation") | C binding
+48 | [hipfftXtExecDescriptorD2Z](interfacehipfort__hipfft_1_1hipfftxtexecdescriptord2z.html "Interface documentation") | C binding
+49 | [hipfftXtExecDescriptorZ2D](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorz2d.html "Interface documentation") | C binding
+50 | [hipfftXtExecDescriptor](interfacehipfort__hipfft_1_1hipfftxtexecdescriptor.html "Interface documentation") | C binding
+51 | [hipfftMpAttachComm](interfacehipfort__hipfft_1_1hipfftmpattachcomm.html "Interface documentation") | C binding
+52 | [hipfftXtSetDistribution](interfacehipfort__hipfft_1_1hipfftxtsetdistribution.html "Interface documentation") | C binding
+53 | [hipfftXtSetSubformatDefault](interfacehipfort__hipfft_1_1hipfftxtsetsubformatdefault.html "Interface documentation") | C binding

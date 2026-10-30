@@ -27,8 +27,8 @@ module hipfort_rocfft
   use hipfort_rocfft_enums
   implicit none
 
-  !>  @brief Library setup function, called at least once in program before
-  !>  start of library use
+  !>  @brief Library setup function, called once in program before start of
+  !>  library use
   interface rocfft_setup
     function rocfft_setup_() bind(c, name="rocfft_setup")
       use iso_c_binding
@@ -38,8 +38,8 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Library cleanup function, called exactly as many times as rocfft_setup
-  !>  in program after end of library use
+  !>  @brief Library cleanup function, called once in program after end of library
+  !>  use
   interface rocfft_cleanup
     function rocfft_cleanup_() bind(c, name="rocfft_cleanup")
       use iso_c_binding
@@ -335,126 +335,6 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Set a JIT-compiled load callback function on a plan description.
-  !>
-  !>   @details Set a Just-In-Time (JIT) compiled load callback on a
-  !>   plan description.  The callback function is provided as a named
-  !>   symbol in SPIR-V bitcode.
-  !>
-  !>   Load callbacks have the following signature:
-  !>
-  !>   @code
-  !>   Tdata load_cb(Tdata* data, size_t offset, void* cbdata, void* sharedMem);
-  !>   @endcode
-  !>
-  !>   `Tdata` is the type of a single element of the input buffer.  It is
-  !>   the caller's responsibility to ensure that the function type is
-  !>   appropriate for the plan (for example, a single-precision
-  !>   real-to-complex transform would load single-precision real
-  !>   elements).
-  !>
-  !>   If either of `symbol_name` or `bitcode_data` is null, or if
-  !>   `bitcode_len_bytes` is 0, any previously registered load callback
-  !>   is cleared.
-  !>
-  !>   Symbol names must only contain alphabetic characters (A-Z, a-z),
-  !>   underscores, and digits (0-9).  Additionally, they may not begin
-  !>   with digits.
-  !>
-  !>   `rocfft_execution_info_set_load_callback_data` can optionally be
-  !>   used to set the `cbdata` value received by the callback function.
-  !>   rocFFT will pass nullptr for `cbdata` by default.
-  !>
-  !>   Currently, `shared_mem_bytes` must be 0.  Callbacks are not
-  !>   supported on transforms that use planar formats for either input
-  !>   or output.
-  !>
-  !>   In a multi-process transform, each rank must provide bitcode that
-  !>   performs the same load operation as the bitcode on other ranks
-  !>   (or none at all).
-  !>
-  !>   @param[in] description - description handle
-  !>   @param[in] symbol_name - name of the symbol in the bitcode
-  !>   @param[in] bitcode_data - pointer to bitcode data
-  !>   @param[in] bitcode_len_bytes - length of bitcode data, in bytes
-  !>   @param[in] shared_mem_bytes - amount of shared memory to allocate for the callback function
-  !>   to use
-  interface rocfft_plan_description_set_load_callback
-    function rocfft_plan_description_set_load_callback_(description,symbol_name,bitcode_data, &
-        bitcode_len_bytes,shared_mem_bytes) &
-        bind(c, name="rocfft_plan_description_set_load_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(c_int) :: rocfft_plan_description_set_load_callback_
-      type(c_ptr),value :: description
-      type(c_ptr),value :: symbol_name
-      type(c_ptr),value :: bitcode_data
-      integer(c_size_t),value :: bitcode_len_bytes
-      integer(c_size_t),value :: shared_mem_bytes
-    end function
-  end interface
-
-  !>  @brief Set a JIT store callback function on a plan description.
-  !>
-  !>   @details Set a Just-In-Time (JIT) store callback on a plan
-  !>   description.  The callback function is provided as a named symbol
-  !>   in SPIR-V bitcode.
-  !>
-  !>   Store callbacks have the following signature:
-  !>
-  !>   @code
-  !>   void store_cb(Tdata* data, size_t offset, Tdata element, void* cbdata, void* sharedMem);
-  !>   @endcode
-  !>
-  !>   `Tdata` is the type of a single element of the output buffer.  It is
-  !>   the caller's responsibility to ensure that the function type is
-  !>   appropriate for the plan (for example, a single-precision
-  !>   real-to-complex transform would store single-precision complex
-  !>   elements).
-  !>
-  !>   If either of `symbol_name` or `bitcode_data` is null, or if
-  !>   `bitcode_len_bytes` is 0, any previously registered store callback
-  !>   is cleared.
-  !>
-  !>   Symbol names must only contain alphabetic characters (A-Z, a-z),
-  !>   underscores, and digits (0-9).  Additionally, they may not begin
-  !>   with digits.
-  !>
-  !>   `rocfft_execution_info_set_store_callback_data` can optionally be
-  !>   used to set the `cbdata` value received by the callback function.
-  !>   rocFFT will pass nullptr for `cbdata` by default.
-  !>
-  !>   Currently, `shared_mem_bytes` must be 0.  Callbacks are not
-  !>   supported on transforms that use planar formats for either input
-  !>   or output.
-  !>
-  !>   In a multi-process transform, each rank must provide bitcode that
-  !>   performs the same store operation as the bitcode on other ranks
-  !>   (or none at all).
-  !>
-  !>   @param[in] description - description handle
-  !>   @param[in] symbol_name - name of the symbol in the bitcode
-  !>   @param[in] bitcode_data - pointer to bitcode data
-  !>   @param[in] bitcode_len_bytes - length of bitcode data, in bytes
-  !>   @param[in] shared_mem_bytes - amount of shared memory to allocate for the callback function
-  !>   to use
-  interface rocfft_plan_description_set_store_callback
-    function rocfft_plan_description_set_store_callback_(description,symbol_name,bitcode_data, &
-        bitcode_len_bytes,shared_mem_bytes) &
-        bind(c, name="rocfft_plan_description_set_store_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(c_int) :: rocfft_plan_description_set_store_callback_
-      type(c_ptr),value :: description
-      type(c_ptr),value :: symbol_name
-      type(c_ptr),value :: bitcode_data
-      integer(c_size_t),value :: bitcode_len_bytes
-      integer(c_size_t),value :: shared_mem_bytes
-    end function
-  end interface
-
   !>  @brief Define a brick as part of a decomposition of a field.
   !>
   !>  Fields can contain a full-dimensional data distribution.  The
@@ -728,14 +608,10 @@ module hipfort_rocfft
 
   !>  @brief Set stream in execution info
   !>   @details Associates an existing compute stream to a plan.  This
-  !>   must be called before the call to `rocfft_execute`.
+  !>  must be called before the call to `rocfft_execute`.
   !>
   !>   Once the association is made, execution of the FFT will run the
   !>   computation through the specified stream.
-  !>
-  !>   The device for the stream is determined from the stream itself.
-  !>   If the FFT plan uses multiple devices then this function can be
-  !>   called repeatedly with streams for each of those devices.
   !>
   !>   The stream must be of type hipStream_t. It is an error to pass
   !>   the address of a hipStream_t object.
@@ -754,17 +630,22 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Set a function pointer load callback for a plan execution (deprecated)
+  !>  @brief Set a load callback for a plan execution (experimental)
   !>   @details This function specifies a user-defined callback function
   !>   that is run to load input from global memory at the start of the
-  !>   transform.  Function pointer callbacks are a deprecated feature
-  !>   in rocFFT, and users should use JIT callbacks instead.
+  !>   transform.  Callbacks are an experimental feature in rocFFT.
   !>
-  !>   Callback function pointers/data are given as arrays with exactly
-  !>   one entry.  Function pointer callbacks cannot be used on transforms
-  !>   that have fields specified on the plan description:
-  !>   `rocfft_execute` returns `rocfft_status_invalid_arg_value` in that
-  !>   case.
+  !>   Callback function pointers/data are given as arrays, with one
+  !>   function/data pointer per brick in the input field of the plan.
+  !>   Load callbacks require at least one brick in the input field to
+  !>   be assigned to the current device used at plan creation. A plan
+  !>   with no input field specified is considered to have one brick on
+  !>   the current device used at plan creation.
+  !>
+  !>   All functions in the array must perform the same logical
+  !>   operation.  That is, any function in the array must be
+  !>   substitutable for any other function in the array if the data
+  !>   being loaded were moved to another brick.
   !>
   !>   The provided function pointers replace any previously-specified
   !>   load callback for this execution info handle.
@@ -809,50 +690,22 @@ module hipfort_rocfft
     end function
   end interface
 
-  !>  @brief Set data to be passed to a JIT-compiled load callback function
-  !>
-  !>   @details This function sets the `cbdata` pointer that the
-  !>   JIT-compiled load callback function receives when it is called.
-  !>
-  !>   Callback data is given as an array with one data pointer per
-  !>   brick in the input field of the plan, provided in the order that
-  !>   the bricks were added to the field.  A plan with no input field
-  !>   specified is considered to have one brick on the current device
-  !>   used at plan creation.
-  !>
-  !>   The provided data pointers replace any previously-specified
-  !>   load callback data for this execution info handle.  `cb_data` may
-  !>   be nullptr along with a count of zero, to indicate that all load
-  !>   callbacks should receive nullptr for their `cbdata` parameters.
-  !>
-  !>   @param[in] myInfo - execution info handle
-  !>   @param[in] cb_data - callback function data, passed to the JIT-compiled load callback when it
-  !>   is called
-  !>   @param[in] count - length of cb_data array
-  interface rocfft_execution_info_set_load_callback_data
-    function rocfft_execution_info_set_load_callback_data_(myInfo,cb_data,count) &
-        bind(c, name="rocfft_execution_info_set_load_callback_data")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(c_int) :: rocfft_execution_info_set_load_callback_data_
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: cb_data
-      integer(c_size_t),value :: count
-    end function
-  end interface
-
-  !>  @brief Set a function pointer store callback for a plan execution (deprecated)
+  !>  @brief Set a store callback for a plan execution (experimental)
   !>   @details This function specifies a user-defined callback function
   !>   that is run to store output to global memory at the end of the
-  !>   transform.  Function pointer callbacks are a deprecated feature
-  !>   in rocFFT, and users should use JIT callbacks instead.
+  !>   transform.  Callbacks are an experimental feature in rocFFT.
   !>
-  !>   Callback function pointers/data are given as arrays with exactly
-  !>   one entry.  Function pointer callbacks cannot be used on transforms
-  !>   that have fields specified on the plan description:
-  !>   `rocfft_execute` returns `rocfft_status_invalid_arg_value` in that
-  !>   case.
+  !>   Callback function pointers/data are given as arrays, with one
+  !>   function/data pointer per brick in the output field of the plan.
+  !>   Store callbacks require at least one brick in the output field to
+  !>   be assigned to the current device used at plan creation. A plan
+  !>   with no output field specified is considered to have one brick on
+  !>   the current device used at plan creation.
+  !>
+  !>   All functions in the array must perform the same logical
+  !>   operation.  That is, any function in the array must be
+  !>   substitutable for any other function in the array if the data
+  !>   being stored were moved to another brick.
   !>
   !>   The provided function pointers replace any previously-specified
   !>   store callback for this execution info handle.
@@ -894,39 +747,6 @@ module hipfort_rocfft
       type(c_ptr),value :: cb_functions
       type(c_ptr),value :: cb_data
       integer(c_size_t),value :: shared_mem_bytes
-    end function
-  end interface
-
-  !>  @brief Set data to be passed to a JIT-compiled store callback function
-  !>
-  !>   @details This function sets the `cbdata` pointer that the
-  !>   JIT-compiled store callback function receives when it is called.
-  !>
-  !>   Callback data is given as an array with one data pointer per
-  !>   brick in the output field of the plan, provided in the order that
-  !>   the bricks were added to the field.  A plan with no output field
-  !>   specified is considered to have one brick on the current device
-  !>   used at plan creation.
-  !>
-  !>   The provided data pointers replace any previously-specified
-  !>   store callback data for this execution info handle.  `cb_data` may
-  !>   be nullptr along with a count of zero, to indicate that all store
-  !>   callbacks should receive nullptr for their `cbdata` parameters.
-  !>
-  !>   @param[in] myInfo - execution info handle
-  !>   @param[in] cb_data - callback function data, passed to the JIT-compiled store callback when
-  !>   it is called
-  !>   @param[in] count - length of cb_data array
-  interface rocfft_execution_info_set_store_callback_data
-    function rocfft_execution_info_set_store_callback_data_(myInfo,cb_data,count) &
-        bind(c, name="rocfft_execution_info_set_store_callback_data")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(c_int) :: rocfft_execution_info_set_store_callback_data_
-      type(c_ptr),value :: myInfo
-      type(c_ptr),value :: cb_data
-      integer(c_size_t),value :: count
     end function
   end interface
 

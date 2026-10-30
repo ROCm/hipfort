@@ -3,6 +3,11 @@
 This repository contains the source and testing for hipfort.
 This is a Fortran interface library for accessing GPU kernels.
 
+> [!IMPORTANT]
+> hipfort 0.7.2 is a backport to ROCm 7.13: its interfaces are generated from the
+> ROCm 7.13 headers. If possible, upgrade directly to ROCm 10.2 and the hipfort
+> release for it instead, to limit the disruption.
+
 ## Documentation
 
 > [!NOTE]
@@ -126,7 +131,7 @@ In addition to `source`, there is also `dsource` in case the source is a device 
 
 ### Supported HIP and ROCm API
 
-The current batch of hipfort interfaces is derived from ROCm 10.2.0.
+The current batch of hipfort interfaces is derived from ROCm 7.13.0.
 With an older ROCm, link with `-Wl,--gc-sections` (see [Linking against hipfort](#linking-against-hipfort))
 so that routines missing from the installed libraries do not break the link.
 The following tables list the supported API:
