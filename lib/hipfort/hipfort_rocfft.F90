@@ -341,10 +341,6 @@ module hipfort_rocfft
   !>   plan description.  The callback function is provided as a named
   !>   symbol in SPIR-V bitcode.
   !>
-  !>   Note: JIT callbacks cannot currently be used on transforms that
-  !>   have fields or bricks also specified on the same plan description.
-  !>   This support will be added in a future release of rocFFT.
-  !>
   !>   Load callbacks have the following signature:
   !>
   !>   @code
@@ -372,6 +368,10 @@ module hipfort_rocfft
   !>   Currently, `shared_mem_bytes` must be 0.  Callbacks are not
   !>   supported on transforms that use planar formats for either input
   !>   or output.
+  !>
+  !>   In a multi-process transform, each rank must provide bitcode that
+  !>   performs the same load operation as the bitcode on other ranks
+  !>   (or none at all).
   !>
   !>   @param[in] description - description handle
   !>   @param[in] symbol_name - name of the symbol in the bitcode
@@ -401,10 +401,6 @@ module hipfort_rocfft
   !>   description.  The callback function is provided as a named symbol
   !>   in SPIR-V bitcode.
   !>
-  !>   Note: JIT callbacks cannot currently be used on transforms that
-  !>   have fields or bricks also specified on the same plan description.
-  !>   This support will be added in a future release of rocFFT.
-  !>
   !>   Store callbacks have the following signature:
   !>
   !>   @code
@@ -432,6 +428,10 @@ module hipfort_rocfft
   !>   Currently, `shared_mem_bytes` must be 0.  Callbacks are not
   !>   supported on transforms that use planar formats for either input
   !>   or output.
+  !>
+  !>   In a multi-process transform, each rank must provide bitcode that
+  !>   performs the same store operation as the bitcode on other ranks
+  !>   (or none at all).
   !>
   !>   @param[in] description - description handle
   !>   @param[in] symbol_name - name of the symbol in the bitcode
@@ -760,17 +760,11 @@ module hipfort_rocfft
   !>   transform.  Function pointer callbacks are a deprecated feature
   !>   in rocFFT, and users should use JIT callbacks instead.
   !>
-  !>   Callback function pointers/data are given as arrays, with one
-  !>   function/data pointer per brick in the input field of the plan.
-  !>   Load callbacks require at least one brick in the input field to
-  !>   be assigned to the current device used at plan creation. A plan
-  !>   with no input field specified is considered to have one brick on
-  !>   the current device used at plan creation.
-  !>
-  !>   All functions in the array must perform the same logical
-  !>   operation.  That is, any function in the array must be
-  !>   substitutable for any other function in the array if the data
-  !>   being loaded were moved to another brick.
+  !>   Callback function pointers/data are given as arrays with exactly
+  !>   one entry.  Function pointer callbacks cannot be used on transforms
+  !>   that have fields specified on the plan description:
+  !>   `rocfft_execute` returns `rocfft_status_invalid_arg_value` in that
+  !>   case.
   !>
   !>   The provided function pointers replace any previously-specified
   !>   load callback for this execution info handle.
@@ -854,17 +848,11 @@ module hipfort_rocfft
   !>   transform.  Function pointer callbacks are a deprecated feature
   !>   in rocFFT, and users should use JIT callbacks instead.
   !>
-  !>   Callback function pointers/data are given as arrays, with one
-  !>   function/data pointer per brick in the output field of the plan.
-  !>   Store callbacks require at least one brick in the output field to
-  !>   be assigned to the current device used at plan creation. A plan
-  !>   with no output field specified is considered to have one brick on
-  !>   the current device used at plan creation.
-  !>
-  !>   All functions in the array must perform the same logical
-  !>   operation.  That is, any function in the array must be
-  !>   substitutable for any other function in the array if the data
-  !>   being stored were moved to another brick.
+  !>   Callback function pointers/data are given as arrays with exactly
+  !>   one entry.  Function pointer callbacks cannot be used on transforms
+  !>   that have fields specified on the plan description:
+  !>   `rocfft_execute` returns `rocfft_status_invalid_arg_value` in that
+  !>   case.
   !>
   !>   The provided function pointers replace any previously-specified
   !>   store callback for this execution info handle.

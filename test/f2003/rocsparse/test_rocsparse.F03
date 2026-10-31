@@ -42,6 +42,8 @@ program test_rocsparse
   ! call is compiled and linked yet never run (no null-pointer segfaults).
   never = command_argument_count() > 1000000
 
+    if (never) v1 = rocsparse_dnmat_copy_data_(v0, v0, v0, v0, v0)
+    if (never) v1 = rocsparse_dnmat_transpose_(v0, v0, v0, v0, v0)
     if (never) v1 = rocsparse_create_handle_(v0)
     if (never) v1 = rocsparse_handle_create_(v0, v0, v0)
     if (never) v1 = rocsparse_destroy_handle_(v0)
@@ -107,6 +109,9 @@ program test_rocsparse
     if (never) v1 = rocsparse_destroy_sparse_to_sparse_descr_(v0)
     if (never) v1 = rocsparse_create_extract_descr_(v0, v0, v0, v1)
     if (never) v1 = rocsparse_destroy_extract_descr_(v0)
+    if (never) v1 = rocsparse_spsort_descr_create_(v0, v0, v0)
+    if (never) v1 = rocsparse_spsort_descr_destroy_(v0, v0, v0)
+    if (never) v1 = rocsparse_spsort_set_input_(v0, v0, v1, v0, v3, v0)
     if (never) v1 = rocsparse_create_spgeam_descr_(v0)
     if (never) v1 = rocsparse_destroy_spgeam_descr_(v0)
     if (never) v1 = rocsparse_spgeam_set_input_(v0, v0, v1, v0, v3, v0)
@@ -448,6 +453,8 @@ program test_rocsparse
     if (never) v1 = rocsparse_spmm_(v0, v1, v1, v0, v0, v0, v0, v0, v1, v1, v1, v0, v0)
     if (never) v1 = rocsparse_spmv_(v0, v1, v0, v0, v0, v0, v0, v1, v1, v1, v0, v0)
     if (never) v1 = rocsparse_spsm_(v0, v1, v1, v0, v0, v0, v0, v1, v1, v1, v0, v0)
+    if (never) v1 = rocsparse_spsort_buffer_size_(v0, v0, v0, v0, v1, v0, v0)
+    if (never) v1 = rocsparse_spsort_(v0, v0, v0, v0, v1, v3, v0, v0)
     if (never) v1 = rocsparse_spsv_(v0, v1, v0, v0, v0, v0, v1, v1, v1, v0, v0)
     if (never) v1 = rocsparse_sptrsm_buffer_size_(v0, v0, v0, v0, v0, v1, v0, v0)
     if (never) v1 = rocsparse_sptrsm_(v0, v0, v0, v0, v0, v1, v3, v0, v0)

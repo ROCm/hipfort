@@ -212,6 +212,12 @@ module hipfort_hipblas
   end interface
 
   !>  \brief Set hipblas workspace to user-owned device buffer
+  !>
+  !>     With the rocBLAS backend, a non-null workspace with a nonzero size is used as-is and is
+  !>     never
+  !>     resized. A call that needs more, such as trsmBatched with a large ``batchCount``, returns
+  !>     ``HIPBLAS_STATUS_ALLOC_FAILED``. Passing nullptr or a size of 0 returns the handle to
+  !>     rocBLAS-managed memory, which grows as needed.
   interface hipblasSetWorkspace
 #ifdef USE_CUDA_NAMES
     function hipblasSetWorkspace_(handle,workspace,workspaceSizeInBytes) &

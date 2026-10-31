@@ -4,6 +4,13 @@
 
 ### Added
 
+* Regenerated all Fortran bindings against the ROCm 10.2 API, adding 77
+  routines: four in the HIP runtime (`hipDeviceFlushGPUDirectRDMAWrites`,
+  `hipKernelSetAttributeForDevice`, `hipLibraryGetModule`,
+  `hipModuleEnumerateFunctions`), the batched `gels`, `geqrf`, `getrf`, `getri`
+  and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
+  `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
+  `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
 * The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
   forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
   routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
@@ -47,6 +54,13 @@
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
   those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
   no longer has them: pass a `type(c_ptr)` and a byte count.
+* **Breaking.** The array overloads of the hipSOLVER batched routines
+  (`hipsolver[SDCZ]{potrf,potrs,getrf,getri,gels,gesvdj,syevj,heevj}Batched`)
+  take `devInfo` as an `integer(c_int)` array of `batch_count` entries, which is
+  what hipSOLVER writes, instead of a single integer. Their `_devptr` forms, which
+  took it as a `type(c_ptr)`, are gone: pass the device array itself, or call the
+  `bind(C)` specific with `type(c_ptr)` arguments. The `gels` batched routines
+  gain array overloads.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
   compiles with a Fortran 2003 compiler. Both kinds are equal on every

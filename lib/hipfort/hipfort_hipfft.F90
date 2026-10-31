@@ -1136,10 +1136,14 @@ module hipfort_hipfft
     module procedure hipfftGetProperty_typed
   end interface
 
-#ifndef USE_CUDA_NAMES
   interface hipfftXtSetCallback
+#ifdef USE_CUDA_NAMES
+    function hipfftXtSetCallback_(plan,callbacks,cbtype,callbackData) &
+        bind(c, name="cufftXtSetCallback")
+#else
     function hipfftXtSetCallback_(plan,callbacks,cbtype,callbackData) &
         bind(c, name="hipfftXtSetCallback")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1150,11 +1154,13 @@ module hipfort_hipfft
       type(c_ptr) :: callbackData
     end function
   end interface
-#endif
 
-#ifndef USE_CUDA_NAMES
   interface hipfftXtClearCallback
+#ifdef USE_CUDA_NAMES
+    function hipfftXtClearCallback_(plan,cbtype) bind(c, name="cufftXtClearCallback")
+#else
     function hipfftXtClearCallback_(plan,cbtype) bind(c, name="hipfftXtClearCallback")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1163,7 +1169,6 @@ module hipfort_hipfft
       integer(c_int),value :: cbtype
     end function
   end interface
-#endif
 
   !>  @brief Set shared memory size for callback.
   !>
@@ -1174,10 +1179,14 @@ module hipfort_hipfft
   !>  @param[in] plan - The FFT plan.
   !>  @param[in] cbtype - Type of callback being modified.
   !>  @param[in] sharedSize - Amount of shared memory required, in bytes.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtSetCallbackSharedSize
+#ifdef USE_CUDA_NAMES
+    function hipfftXtSetCallbackSharedSize_(plan,cbtype,sharedSize) &
+        bind(c, name="cufftXtSetCallbackSharedSize")
+#else
     function hipfftXtSetCallbackSharedSize_(plan,cbtype,sharedSize) &
         bind(c, name="hipfftXtSetCallbackSharedSize")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1187,7 +1196,6 @@ module hipfort_hipfft
       integer(c_size_t),value :: sharedSize
     end function
   end interface
-#endif
 
   !>  @brief Set a JIT callback on a plan
   !>
@@ -1225,11 +1233,16 @@ module hipfort_hipfft
   !>  @param[in] bitcode_len_bytes - Number of bytes in the bitcode data.
   !>  @param[in] cbtype - Type of callback function.
   !>  @param[in] cbdata - Array of callback function data pointers.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtSetJITCallback
+#ifdef USE_CUDA_NAMES
+    function hipfftXtSetJITCallback_(plan,symbol_name,bitcode_data,bitcode_len_bytes,cbtype, &
+        cbdata) &
+        bind(c, name="cufftXtSetJITCallback")
+#else
     function hipfftXtSetJITCallback_(plan,symbol_name,bitcode_data,bitcode_len_bytes,cbtype, &
         cbdata) &
         bind(c, name="hipfftXtSetJITCallback")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1242,7 +1255,6 @@ module hipfort_hipfft
       type(c_ptr) :: cbdata
     end function
   end interface
-#endif
 
   !>  @brief Initialize a batched rank-dimensional FFT plan with
   !>     advanced data layout and specified input, output, execution data
@@ -1293,11 +1305,16 @@ module hipfort_hipfft
   !>   @param[in] batch - Number of batched transforms to perform.
   !>   @param[out] workSize - Pointer to work area size (returned value).
   !>   @param[in] executionType - Internal data format used by the library during computation.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtMakePlanMany
+#ifdef USE_CUDA_NAMES
+    function hipfftXtMakePlanMany_(plan,rank,n,inembed,istride,idist,inputType,onembed,ostride, &
+        odist,outputType,batch,workSize,executionType) &
+        bind(c, name="cufftXtMakePlanMany")
+#else
     function hipfftXtMakePlanMany_(plan,rank,n,inembed,istride,idist,inputType,onembed,ostride, &
         odist,outputType,batch,workSize,executionType) &
         bind(c, name="hipfftXtMakePlanMany")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1320,7 +1337,6 @@ module hipfort_hipfft
 
     module procedure hipfftXtMakePlanMany_typed
   end interface
-#endif
 
   !>  @brief Return size of the work area size required for a
   !>     rank-dimensional plan, with specified input, output, execution
@@ -1343,11 +1359,16 @@ module hipfort_hipfft
   !>   @param[in] batch - Number of batched transforms to perform.
   !>   @param[out] workSize - Pointer to work area size (returned value).
   !>   @param[in] executionType - Internal data format used by the library during computation.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtGetSizeMany
+#ifdef USE_CUDA_NAMES
+    function hipfftXtGetSizeMany_(plan,rank,n,inembed,istride,idist,inputType,onembed,ostride, &
+        odist,outputType,batch,workSize,executionType) &
+        bind(c, name="cufftXtGetSizeMany")
+#else
     function hipfftXtGetSizeMany_(plan,rank,n,inembed,istride,idist,inputType,onembed,ostride, &
         odist,outputType,batch,workSize,executionType) &
         bind(c, name="hipfftXtGetSizeMany")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1370,7 +1391,6 @@ module hipfort_hipfft
 
     module procedure hipfftXtGetSizeMany_typed
   end interface
-#endif
 
   !>  @brief Execute an FFT plan for any precision and type.
   !>
@@ -1385,9 +1405,12 @@ module hipfort_hipfft
   !>   @param[in] input - Pointer to input data for the transform.
   !>   @param[in] output - Pointer to output data for the transform.
   !>   @param[in] direction - Either `HIPFFT_FORWARD` or `HIPFFT_BACKWARD`.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExec
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExec_(plan,input,output,direction) bind(c, name="cufftXtExec")
+#else
     function hipfftXtExec_(plan,input,output,direction) bind(c, name="hipfftXtExec")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1398,7 +1421,6 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
   end interface
-#endif
 
   !>  @brief Instructs hipFFT to use multiple GPUs for a plan.
   !>
@@ -1416,9 +1438,12 @@ module hipfort_hipfft
   !>  @param[in] gpus - Array of device IDs.
   !>
   !>  @warning Experimental
-#ifndef USE_CUDA_NAMES
   interface hipfftXtSetGPUs
+#ifdef USE_CUDA_NAMES
+    function hipfftXtSetGPUs_(plan,count,gpus) bind(c, name="cufftXtSetGPUs")
+#else
     function hipfftXtSetGPUs_(plan,count,gpus) bind(c, name="hipfftXtSetGPUs")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1428,7 +1453,6 @@ module hipfort_hipfft
       type(c_ptr),value :: gpus
     end function
   end interface
-#endif
 
   !>  @brief Allocates a multi-device descriptor (i.e., a `hipLibXtDesc` instance),
   !>   tailored to a specific multi-device plan's needs. The allocated descriptor
@@ -1455,9 +1479,12 @@ module hipfort_hipfft
   !>  I/O data set of interest (see `hipfftXtSubFormat` for more details).
   !>
   !>  @warning Experimental
-#ifndef USE_CUDA_NAMES
   interface hipfftXtMalloc
+#ifdef USE_CUDA_NAMES
+    function hipfftXtMalloc_(plan,desc,myFormat) bind(c, name="cufftXtMalloc")
+#else
     function hipfftXtMalloc_(plan,desc,myFormat) bind(c, name="hipfftXtMalloc")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1467,7 +1494,6 @@ module hipfort_hipfft
       integer(c_int),value :: myFormat
     end function
   end interface
-#endif
 
   !>  @brief Copy data to/from `hipLibXtDesc` descriptors.
   !>
@@ -1491,9 +1517,12 @@ module hipfort_hipfft
   !>  @param[in] myType - Type of copy operation to perform.
   !>
   !>  @warning Experimental
-#ifndef USE_CUDA_NAMES
   interface hipfftXtMemcpy
+#ifdef USE_CUDA_NAMES
+    function hipfftXtMemcpy_(plan,dest,src,myType) bind(c, name="cufftXtMemcpy")
+#else
     function hipfftXtMemcpy_(plan,dest,src,myType) bind(c, name="hipfftXtMemcpy")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       implicit none
@@ -1504,16 +1533,18 @@ module hipfort_hipfft
       integer(c_int),value :: myType
     end function
   end interface
-#endif
 
   !>  @brief Free memory allocated by `hipfftXtMalloc`.
   !>
   !>  @param[in] desc - Descriptor whose memory will be freed.
   !>
   !>  @warning Experimental
-#ifndef USE_CUDA_NAMES
   interface hipfftXtFree
+#ifdef USE_CUDA_NAMES
+    function hipfftXtFree_(desc) bind(c, name="cufftXtFree")
+#else
     function hipfftXtFree_(desc) bind(c, name="hipfftXtFree")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1522,7 +1553,6 @@ module hipfort_hipfft
       type(hipLibXtDesc) :: desc
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1532,10 +1562,14 @@ module hipfort_hipfft
   !>  @param[in] direction - Either `HIPFFT_FORWARD` or `HIPFFT_BACKWARD`.
   !>
   !>  @brief Execute single-precision complex-to-complex transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorC2C
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorC2C_(plan,input,output,direction) &
+        bind(c, name="cufftXtExecDescriptorC2C")
+#else
     function hipfftXtExecDescriptorC2C_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptorC2C")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1547,7 +1581,6 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1556,9 +1589,12 @@ module hipfort_hipfft
   !>  @param[out] output - Output data.
   !>
   !>  @brief Execute single-precision real forward transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorR2C
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorR2C_(plan,input,output) bind(c, name="cufftXtExecDescriptorR2C")
+#else
     function hipfftXtExecDescriptorR2C_(plan,input,output) bind(c, name="hipfftXtExecDescriptorR2C")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1569,7 +1605,6 @@ module hipfort_hipfft
       type(hipLibXtDesc) :: output
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1578,9 +1613,12 @@ module hipfort_hipfft
   !>  @param[out] output - Output data.
   !>
   !>  @brief Execute single-precision real backward transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorC2R
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorC2R_(plan,input,output) bind(c, name="cufftXtExecDescriptorC2R")
+#else
     function hipfftXtExecDescriptorC2R_(plan,input,output) bind(c, name="hipfftXtExecDescriptorC2R")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1591,7 +1629,6 @@ module hipfort_hipfft
       type(hipLibXtDesc) :: output
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1601,10 +1638,14 @@ module hipfort_hipfft
   !>  @param[in] direction - Either `HIPFFT_FORWARD` or `HIPFFT_BACKWARD`.
   !>
   !>  @brief Execute double-precision complex-to-complex transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorZ2Z
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorZ2Z_(plan,input,output,direction) &
+        bind(c, name="cufftXtExecDescriptorZ2Z")
+#else
     function hipfftXtExecDescriptorZ2Z_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptorZ2Z")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1616,7 +1657,6 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1625,9 +1665,12 @@ module hipfort_hipfft
   !>  @param[out] output - Output data.
   !>
   !>  @brief Execute double-precision real forward transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorD2Z
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorD2Z_(plan,input,output) bind(c, name="cufftXtExecDescriptorD2Z")
+#else
     function hipfftXtExecDescriptorD2Z_(plan,input,output) bind(c, name="hipfftXtExecDescriptorD2Z")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1638,7 +1681,6 @@ module hipfort_hipfft
       type(hipLibXtDesc) :: output
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1647,9 +1689,12 @@ module hipfort_hipfft
   !>  @param[out] output - Output data.
   !>
   !>  @brief Execute double-precision real backward transform.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptorZ2D
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptorZ2D_(plan,input,output) bind(c, name="cufftXtExecDescriptorZ2D")
+#else
     function hipfftXtExecDescriptorZ2D_(plan,input,output) bind(c, name="hipfftXtExecDescriptorZ2D")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1660,7 +1705,6 @@ module hipfort_hipfft
       type(hipLibXtDesc) :: output
     end function
   end interface
-#endif
 
   !>  @ingroup hipfftXtExecDescriptor
   !>
@@ -1670,10 +1714,14 @@ module hipfort_hipfft
   !>  @param[in] direction - Either `HIPFFT_FORWARD` or `HIPFFT_BACKWARD`.
   !>
   !>  @brief Execute general transform - types of the descriptors must match the plan.
-#ifndef USE_CUDA_NAMES
   interface hipfftXtExecDescriptor
+#ifdef USE_CUDA_NAMES
+    function hipfftXtExecDescriptor_(plan,input,output,direction) &
+        bind(c, name="cufftXtExecDescriptor")
+#else
     function hipfftXtExecDescriptor_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptor")
+#endif
       use iso_c_binding
       use hipfort_hipfft_enums
       use hipfort_hipfft_types
@@ -1685,7 +1733,6 @@ module hipfort_hipfft
       integer(c_int),value :: direction
     end function
   end interface
-#endif
 
   !>  @brief Set a multi-processing communicator on a plan.
   !>
@@ -2084,7 +2131,6 @@ module hipfort_hipfft
       hipfftGetProperty_typed = hipfftGetProperty_(myType,c_loc(myValue))
     end function
 
-#ifndef USE_CUDA_NAMES
     function hipfftXtMakePlanMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
         ostride,odist,outputType,batch,workSize,executionType)
       use iso_c_binding
@@ -2110,8 +2156,6 @@ module hipfort_hipfft
         inputType,onembed,ostride,odist,outputType,batch,c_loc(workSize),executionType)
     end function
 
-#endif
-#ifndef USE_CUDA_NAMES
     function hipfftXtGetSizeMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
         ostride,odist,outputType,batch,workSize,executionType)
       use iso_c_binding
@@ -2137,7 +2181,6 @@ module hipfort_hipfft
         inputType,onembed,ostride,odist,outputType,batch,c_loc(workSize),executionType)
     end function
 
-#endif
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 

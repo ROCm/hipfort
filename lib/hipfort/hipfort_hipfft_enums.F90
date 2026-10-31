@@ -113,7 +113,7 @@ module hipfort_hipfft_enums
 
   integer(c_int), parameter :: hipfftVersionMajor = 1
   integer(c_int), parameter :: hipfftVersionMinor = 0
-  integer(c_int), parameter :: hipfftVersionPatch = 26
+  integer(c_int), parameter :: hipfftVersionPatch = 27
   integer(c_int), parameter :: HIPFFT_FORWARD = -1
   integer(c_int), parameter :: HIPFFT_BACKWARD = 1
   integer(c_int), parameter :: MAX_HIP_DESCRIPTOR_GPUS = 64
