@@ -186,6 +186,13 @@ if(BUILD_TESTING)
     # hipFFT Xt API: no cufftXt twin mapped yet, so not bound under USE_CUDA_NAMES.
     f2003/hipfft/hipfft_xt_descriptor_z
     f2003/hipfft/hipfft_xt_makeplanmany_c
+    # hipBLAS routines cuBLAS lacks: rotStridedBatched with c and s per the pointer
+    # mode, a non-batched geqrf, getrfStridedBatched; and hipSPARSE size queries
+    # without a cuSPARSE 12 twin (csrsm2, prune).
+    f2008/hipblas/srot_strided_batched_cs
+    f2008/hipblas/sgeqrf_info_host
+    f2008/hipblas/sgetrf_strided_batched_info
+    f2008/hipsparse/hipsparse_size_query_scalars
     # HIP runtime
     f2003/hip/device_management              # hipDeviceTotalMem typed form (driver API: c_ptr form only)
     f2003/hip/device_properties              # hipDeviceProp_t%clockRate (gone from CUDA 13)
@@ -196,6 +203,7 @@ if(BUILD_TESTING)
     f2003/hip/memcpy_async                   # hipMemcpyWithStream
     f2003/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
     f2003/hip/stream_capture_info            # hipStreamGetCaptureInfo (CUDA 13 takes 6 arguments)
+    f2003/hip/stream_capture_info_spt_opt    # hipStreamGetCaptureInfo_v2_spt: driver API only (cuStreamGetCaptureInfo_v2_ptsz)
     f2003/hip/virtual_memory                 # typed hipMemGetAllocationGranularity (driver API)
     f2008/hip/mem_advise                     # hipMemAdvise, hipMemPrefetchAsync (CUDA 13 takes a location)
     f2008/hip/pointer_attributes             # hipPointerAttribute_t%isManaged
@@ -495,6 +503,10 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas hipblas_pointer_mode f2008)
     hipfort_add_test(hipblas hipblas_handle_state f2003)
     hipfort_add_test(hipblas hipblas_handle_state f2008)
+    # rot's c and s per the pointer mode, geqrf's host info, getrf's info per batch entry
+    hipfort_add_test(hipblas srot_strided_batched_cs f2008)
+    hipfort_add_test(hipblas sgeqrf_info_host f2008)
+    hipfort_add_test(hipblas sgetrf_strided_batched_info f2008)
     # every transa/transb (gemm) and trans (gemv) value, on rectangular padded data
     foreach(std IN ITEMS f2003 f2008)
       foreach(prec IN ITEMS s d c z)
@@ -702,6 +714,8 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_syevj_info f2008)
     hipfort_add_test(hipsolver hipsolver_rf_params f2003)
     hipfort_add_test(hipsolver hipsolver_rf_params f2008)
+    # The 64-bit API's devInfo on the device
+    hipfort_add_test(hipsolver hipsolver_dnxpotrf_info f2008)
     # Added in ROCm 10.2
     hipfort_add_test(hipsolver hipsolver_dgetrfbatched f2003)
     hipfort_add_test(hipsolver hipsolver_dgeqrfbatched f2003)
@@ -851,6 +865,9 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsparse hipsparse_pointer_mode f2008)
     hipfort_add_test(hipsparse hipsparse_descr_get f2003)
     hipfort_add_test(hipsparse hipsparse_descr_get f2008)
+    # csrcolor's host fraction; the scalars of the csrsm2 and prune size queries
+    hipfort_add_test(hipsparse hipsparse_scsrcolor_fraction_host f2008)
+    hipfort_add_test(hipsparse hipsparse_size_query_scalars f2008)
   endif()
 
   if(TARGET hipfort::rocblas)
@@ -1085,6 +1102,11 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas rocblas_handle_modes f2008)
     hipfort_add_test(rocblas rocblas_handle_query f2003)
     hipfort_add_test(rocblas rocblas_handle_query f2008)
+    # _full_rank and _strided_rank of a strided-batched routine; per-batch results
+    # and rotm's param in host and device pointer mode, as arrays and as pointers.
+    hipfort_add_test(rocblas dgemm_strided_batched_ranks f2008)
+    hipfort_add_test(rocblas ddot_strided_batched_result f2008)
+    hipfort_add_test(rocblas drotm_param f2008)
     # every transa/transb (gemm) and trans (gemv) value, on rectangular padded data
     foreach(std IN ITEMS f2003 f2008)
       foreach(prec IN ITEMS s d c z)
@@ -1433,6 +1455,13 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsolver rocsolver_version f2008)
     hipfort_add_test(rocsolver rocsolver_alg_mode f2003)
     hipfort_add_test(rocsolver rocsolver_alg_mode f2008)
+    # The values rocSOLVER writes on the GPU, one or one per batch entry, through
+    # the array overloads and their _devptr twins; _full_rank and _strided_rank.
+    hipfort_add_test(rocsolver rocsolver_dgetrf_info f2008)
+    hipfort_add_test(rocsolver rocsolver_dgetrf_strided_batched_info f2008)
+    hipfort_add_test(rocsolver rocsolver_dsyevj_sweeps f2008)
+    hipfort_add_test(rocsolver rocsolver_dgecon_lange f2008)
+    hipfort_add_test(rocsolver rocsolver_zhegvdx_nev f2008)
     # Added in ROCm 10.2
     hipfort_add_test(rocsolver rocsolver_dgehrd f2003)
     hipfort_add_test(rocsolver rocsolver_zgehrd f2003)
@@ -1629,6 +1658,9 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_pointer_mode f2008)
     hipfort_add_test(rocsparse rocsparse_descr_get f2003)
     hipfort_add_test(rocsparse rocsparse_descr_get f2008)
+    # A size query's host size_t output; getters' host outputs
+    hipfort_add_test(rocsparse rocsparse_dgebsr2gebsc_buffer_size_host f2008)
+    hipfort_add_test(rocsparse rocsparse_spmat_get_size_getter f2008)
     # Added in ROCm 10.2
     hipfort_add_test(rocsparse rocsparse_spsort f2003)
     hipfort_add_test(rocsparse rocsparse_dnmat_copy_transpose f2003)
@@ -1691,6 +1723,8 @@ if(BUILD_TESTING)
     hipfort_add_test(hip cache_config f2003)
     hipfort_add_test(hip mem_pool f2003)
     hipfort_add_test(hip stream_capture_info f2003)
+    # The _spt forms take their base routine's optional arguments
+    hipfort_add_test(hip stream_capture_info_spt_opt f2003)
     hipfort_add_test(hip rdma_flush f2003)
     hipfort_add_test(hip pointer_attributes f2008)
     hipfort_add_test(hip mem_advise f2008)
