@@ -35,7 +35,8 @@
   overloads are unchanged.
 * Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
   compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`). A program linked with `-Wl,--gc-sections` keeps only the
+  -fdata-sections`) when the Fortran compiler accepts these flags, which the
+  amdflang of ROCm 7.13 does not. A program linked with `-Wl,--gc-sections` keeps only the
   wrappers it calls, instead of all of a library's wrappers, and still links
   when another wrapper names a C function that the installed library does not
   export. The tests link that way. A shared library that links an archive also
@@ -289,6 +290,14 @@
 * `use hipfort` now re-exports the host-register helpers (`hipHostRegister`,
   `hipHostGetDevicePointer`, `hipHostUnregister`); they previously required an
   explicit `use hipfort_hiphostregister`.
+
+## hipfort 0.7.2 for ROCm 7.13.0
+
+### Added
+
+* Regenerated all Fortran bindings against the ROCm 7.13 API.
+* This release is a backport to ROCm 7.13. If possible, upgrade directly to
+  ROCm 10.2 and the hipfort release for it instead, to limit the disruption.
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 
