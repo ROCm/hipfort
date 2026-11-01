@@ -99,8 +99,7 @@
   Cray compiler accepts.
 * The `find_package` test looks for the installed `hipfort-config.cmake` under
   the platform's libdir (`lib64` on SUSE, RHEL and Fedora), where it is
-  installed, rather than under `lib`. The rocBLAS `caxpy_typed` test compares
-  with a relative tolerance, which a fused multiply-add on the GPU meets.
+  installed, rather than under `lib`.
 
 ## hipfort 0.10.0 for ROCm 10.1.0
 
