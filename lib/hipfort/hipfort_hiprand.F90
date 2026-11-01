@@ -63,8 +63,7 @@ module hipfort_hiprand
 #else
     function hiprandCreateGenerator_(generator,rng_type) bind(c, name="hiprandCreateGenerator")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandCreateGenerator_
       type(c_ptr) :: generator
@@ -109,8 +108,7 @@ module hipfort_hiprand
     function hiprandCreateGeneratorHost_(generator,rng_type) &
         bind(c, name="hiprandCreateGeneratorHost")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandCreateGeneratorHost_
       type(c_ptr) :: generator
@@ -133,8 +131,7 @@ module hipfort_hiprand
 #else
     function hiprandDestroyGenerator_(generator) bind(c, name="hiprandDestroyGenerator")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandDestroyGenerator_
       type(c_ptr),value :: generator
@@ -166,8 +163,7 @@ module hipfort_hiprand
 #else
     function hiprandGenerate_(generator,output_data,n) bind(c, name="hiprandGenerate")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerate_
       type(c_ptr),value :: generator
@@ -205,8 +201,7 @@ module hipfort_hiprand
 #ifndef USE_CUDA_NAMES
   interface hiprandGenerateChar
     function hiprandGenerateChar_(generator,output_data,n) bind(c, name="hiprandGenerateChar")
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateChar_
       type(c_ptr),value :: generator
@@ -235,8 +230,7 @@ module hipfort_hiprand
 #ifndef USE_CUDA_NAMES
   interface hiprandGenerateShort
     function hiprandGenerateShort_(generator,output_data,n) bind(c, name="hiprandGenerateShort")
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateShort_
       type(c_ptr),value :: generator
@@ -273,8 +267,7 @@ module hipfort_hiprand
     function hiprandGenerateLongLong_(generator,output_data,n) &
         bind(c, name="hiprandGenerateLongLong")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateLongLong_
       type(c_ptr),value :: generator
@@ -317,8 +310,7 @@ module hipfort_hiprand
 #else
     function hiprandGenerateUniform_(generator,output_data,n) bind(c, name="hiprandGenerateUniform")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateUniform_
       type(c_ptr),value :: generator
@@ -369,8 +361,7 @@ module hipfort_hiprand
     function hiprandGenerateUniformDouble_(generator,output_data,n) &
         bind(c, name="hiprandGenerateUniformDouble")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateUniformDouble_
       type(c_ptr),value :: generator
@@ -411,8 +402,7 @@ module hipfort_hiprand
   interface hiprandGenerateUniformHalf
     function hiprandGenerateUniformHalf_(generator,output_data,n) &
         bind(c, name="hiprandGenerateUniformHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateUniformHalf_
       type(c_ptr),value :: generator
@@ -448,8 +438,7 @@ module hipfort_hiprand
     function hiprandGenerateNormal_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateNormal")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateNormal_
       type(c_ptr),value :: generator
@@ -496,8 +485,7 @@ module hipfort_hiprand
     function hiprandGenerateNormalDouble_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateNormalDouble")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateNormalDouble_
       type(c_ptr),value :: generator
@@ -540,8 +528,7 @@ module hipfort_hiprand
   interface hiprandGenerateNormalHalf
     function hiprandGenerateNormalHalf_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateNormalHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateNormalHalf_
       type(c_ptr),value :: generator
@@ -579,8 +566,7 @@ module hipfort_hiprand
     function hiprandGenerateLogNormal_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateLogNormal")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateLogNormal_
       type(c_ptr),value :: generator
@@ -627,8 +613,7 @@ module hipfort_hiprand
     function hiprandGenerateLogNormalDouble_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateLogNormalDouble")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateLogNormalDouble_
       type(c_ptr),value :: generator
@@ -671,8 +656,7 @@ module hipfort_hiprand
   interface hiprandGenerateLogNormalHalf
     function hiprandGenerateLogNormalHalf_(generator,output_data,n,mean,stddev) &
         bind(c, name="hiprandGenerateLogNormalHalf")
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateLogNormalHalf_
       type(c_ptr),value :: generator
@@ -709,8 +693,7 @@ module hipfort_hiprand
     function hiprandGeneratePoisson_(generator,output_data,n,lambda) &
         bind(c, name="hiprandGeneratePoisson")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGeneratePoisson_
       type(c_ptr),value :: generator
@@ -752,8 +735,7 @@ module hipfort_hiprand
 #else
     function hiprandGenerateSeeds_(generator) bind(c, name="hiprandGenerateSeeds")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGenerateSeeds_
       type(c_ptr),value :: generator
@@ -777,8 +759,7 @@ module hipfort_hiprand
 #else
     function hiprandSetStream_(generator,stream) bind(c, name="hiprandSetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandSetStream_
       type(c_ptr),value :: generator
@@ -808,8 +789,7 @@ module hipfort_hiprand
     function hiprandSetPseudoRandomGeneratorSeed_(generator,seed) &
         bind(c, name="hiprandSetPseudoRandomGeneratorSeed")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandSetPseudoRandomGeneratorSeed_
       type(c_ptr),value :: generator
@@ -841,8 +821,7 @@ module hipfort_hiprand
 #else
     function hiprandSetGeneratorOffset_(generator,offset) bind(c, name="hiprandSetGeneratorOffset")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandSetGeneratorOffset_
       type(c_ptr),value :: generator
@@ -881,8 +860,7 @@ module hipfort_hiprand
     function hiprandSetGeneratorOrdering_(generator,order) &
         bind(c, name="hiprandSetGeneratorOrdering")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandSetGeneratorOrdering_
       type(c_ptr),value :: generator
@@ -914,8 +892,7 @@ module hipfort_hiprand
     function hiprandSetQuasiRandomGeneratorDimensions_(generator,dimensions) &
         bind(c, name="hiprandSetQuasiRandomGeneratorDimensions")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandSetQuasiRandomGeneratorDimensions_
       type(c_ptr),value :: generator
@@ -939,8 +916,7 @@ module hipfort_hiprand
 #else
     function hiprandGetVersion_(version) bind(c, name="hiprandGetVersion")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGetVersion_
       type(c_ptr),value :: version
@@ -969,8 +945,7 @@ module hipfort_hiprand
     function hiprandCreatePoissonDistribution_(lambda,discrete_distribution) &
         bind(c, name="hiprandCreatePoissonDistribution")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandCreatePoissonDistribution_
       real(c_double),value :: lambda
@@ -996,8 +971,7 @@ module hipfort_hiprand
     function hiprandDestroyDistribution_(discrete_distribution) &
         bind(c, name="hiprandDestroyDistribution")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandDestroyDistribution_
       type(c_ptr),value :: discrete_distribution
@@ -1018,8 +992,7 @@ module hipfort_hiprand
 #else
     function hiprandGetDirectionVectors32_(vectors,set) bind(c, name="hiprandGetDirectionVectors32")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGetDirectionVectors32_
       type(c_ptr) :: vectors
@@ -1041,8 +1014,7 @@ module hipfort_hiprand
 #else
     function hiprandGetDirectionVectors64_(vectors,set) bind(c, name="hiprandGetDirectionVectors64")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGetDirectionVectors64_
       type(c_ptr) :: vectors
@@ -1062,8 +1034,7 @@ module hipfort_hiprand
 #else
     function hiprandGetScrambleConstants32_(constants) bind(c, name="hiprandGetScrambleConstants32")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGetScrambleConstants32_
       type(c_ptr) :: constants
@@ -1082,8 +1053,7 @@ module hipfort_hiprand
 #else
     function hiprandGetScrambleConstants64_(constants) bind(c, name="hiprandGetScrambleConstants64")
 #endif
-      use iso_c_binding
-      use hipfort_hiprand_enums
+      import
       implicit none
       integer(c_int) :: hiprandGetScrambleConstants64_
       type(c_ptr) :: constants
@@ -1094,8 +1064,6 @@ module hipfort_hiprand
   contains
 
     function hiprandGetVersion_typed(version)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGetVersion_typed
       integer(c_int),target :: version
@@ -1108,8 +1076,6 @@ module hipfort_hiprand
 
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerate_assumed_rank(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_assumed_rank
       type(c_ptr), value :: generator
@@ -1121,8 +1087,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerate_rank_0(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_0
       type(c_ptr), value :: generator
@@ -1133,8 +1097,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerate_rank_1(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerate_rank_1
       type(c_ptr), value :: generator
@@ -1147,8 +1109,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateLongLong_assumed_rank(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_assumed_rank
       type(c_ptr), value :: generator
@@ -1161,8 +1121,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateLongLong_rank_0(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_0
       type(c_ptr), value :: generator
@@ -1173,8 +1131,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateLongLong_rank_1(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLongLong_rank_1
       type(c_ptr), value :: generator
@@ -1187,8 +1143,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateUniform_assumed_rank(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_assumed_rank
       type(c_ptr), value :: generator
@@ -1200,8 +1154,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateUniform_rank_0(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_0
       type(c_ptr), value :: generator
@@ -1212,8 +1164,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateUniform_rank_1(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniform_rank_1
       type(c_ptr), value :: generator
@@ -1226,8 +1176,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateUniformDouble_assumed_rank(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_assumed_rank
       type(c_ptr), value :: generator
@@ -1240,8 +1188,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateUniformDouble_rank_0(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_0
       type(c_ptr), value :: generator
@@ -1253,8 +1199,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateUniformDouble_rank_1(generator,output_data,n)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateUniformDouble_rank_1
       type(c_ptr), value :: generator
@@ -1268,8 +1212,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateNormal_assumed_rank(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_assumed_rank
       type(c_ptr), value :: generator
@@ -1284,8 +1226,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateNormal_rank_0(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_0
       type(c_ptr), value :: generator
@@ -1299,8 +1239,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateNormal_rank_1(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormal_rank_1
       type(c_ptr), value :: generator
@@ -1316,8 +1254,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_assumed_rank
       type(c_ptr), value :: generator
@@ -1332,8 +1268,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateNormalDouble_rank_0(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_0
       type(c_ptr), value :: generator
@@ -1347,8 +1281,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateNormalDouble_rank_1(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateNormalDouble_rank_1
       type(c_ptr), value :: generator
@@ -1364,8 +1296,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateLogNormal_assumed_rank(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_assumed_rank
       type(c_ptr), value :: generator
@@ -1380,8 +1310,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateLogNormal_rank_0(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_0
       type(c_ptr), value :: generator
@@ -1395,8 +1323,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateLogNormal_rank_1(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormal_rank_1
       type(c_ptr), value :: generator
@@ -1412,8 +1338,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGenerateLogNormalDouble_assumed_rank(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_assumed_rank
       type(c_ptr), value :: generator
@@ -1428,8 +1352,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGenerateLogNormalDouble_rank_0(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_0
       type(c_ptr), value :: generator
@@ -1443,8 +1365,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGenerateLogNormalDouble_rank_1(generator,output_data,n,mean,stddev)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGenerateLogNormalDouble_rank_1
       type(c_ptr), value :: generator
@@ -1460,8 +1380,6 @@ module hipfort_hiprand
 #endif
 #ifdef USE_ASSUMED_RANK
     function hiprandGeneratePoisson_assumed_rank(generator,output_data,n,lambda)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_assumed_rank
       type(c_ptr), value :: generator
@@ -1475,8 +1393,6 @@ module hipfort_hiprand
 
 #else
     function hiprandGeneratePoisson_rank_0(generator,output_data,n,lambda)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_0
       type(c_ptr), value :: generator
@@ -1488,8 +1404,6 @@ module hipfort_hiprand
     end function
 
     function hiprandGeneratePoisson_rank_1(generator,output_data,n,lambda)
-      use iso_c_binding
-      use hipfort_hiprand_enums
       implicit none
       integer(kind(HIPRAND_STATUS_SUCCESS)) :: hiprandGeneratePoisson_rank_1
       type(c_ptr), value :: generator

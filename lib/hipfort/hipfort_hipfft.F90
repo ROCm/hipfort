@@ -42,8 +42,7 @@ module hipfort_hipfft
 #else
     function hipfftPlan1d_(plan,nx,myType,batch) bind(c, name="hipfftPlan1d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftPlan1d_
       type(c_ptr) :: plan
@@ -70,8 +69,7 @@ module hipfort_hipfft
 #else
     function hipfftPlan2d_(plan,nx,ny,myType) bind(c, name="hipfftPlan2d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftPlan2d_
       type(c_ptr) :: plan
@@ -99,8 +97,7 @@ module hipfort_hipfft
 #else
     function hipfftPlan3d_(plan,nx,ny,nz,myType) bind(c, name="hipfftPlan3d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftPlan3d_
       type(c_ptr) :: plan
@@ -153,8 +150,7 @@ module hipfort_hipfft
     function hipfftPlanMany_(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType,batch) &
         bind(c, name="hipfftPlanMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftPlanMany_
       type(c_ptr) :: plan
@@ -190,8 +186,7 @@ module hipfort_hipfft
 #else
     function hipfftCreate_(plan) bind(c, name="hipfftCreate")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftCreate_
       type(c_ptr) :: plan
@@ -216,8 +211,7 @@ module hipfort_hipfft
 #ifndef USE_CUDA_NAMES
   interface hipfftExtPlanScaleFactor
     function hipfftExtPlanScaleFactor_(plan,scalefactor) bind(c, name="hipfftExtPlanScaleFactor")
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExtPlanScaleFactor_
       type(c_ptr),value :: plan
@@ -246,8 +240,7 @@ module hipfort_hipfft
 #else
     function hipfftMakePlan1d_(plan,nx,myType,batch,workSize) bind(c, name="hipfftMakePlan1d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMakePlan1d_
       type(c_ptr),value :: plan
@@ -279,8 +272,7 @@ module hipfort_hipfft
 #else
     function hipfftMakePlan2d_(plan,nx,ny,myType,workSize) bind(c, name="hipfftMakePlan2d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMakePlan2d_
       type(c_ptr),value :: plan
@@ -313,8 +305,7 @@ module hipfort_hipfft
 #else
     function hipfftMakePlan3d_(plan,nx,ny,nz,myType,workSize) bind(c, name="hipfftMakePlan3d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMakePlan3d_
       type(c_ptr),value :: plan
@@ -374,8 +365,7 @@ module hipfort_hipfft
         batch,workSize) &
         bind(c, name="hipfftMakePlanMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMakePlanMany_
       type(c_ptr),value :: plan
@@ -415,8 +405,7 @@ module hipfort_hipfft
         batch,workSize) &
         bind(c, name="hipfftMakePlanMany64")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMakePlanMany64_
       type(c_ptr),value :: plan
@@ -458,8 +447,7 @@ module hipfort_hipfft
 #else
     function hipfftEstimate1d_(nx,myType,batch,workSize) bind(c, name="hipfftEstimate1d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftEstimate1d_
       integer(c_int),value :: nx
@@ -483,8 +471,7 @@ module hipfort_hipfft
 #else
     function hipfftEstimate2d_(nx,ny,myType,workSize) bind(c, name="hipfftEstimate2d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftEstimate2d_
       integer(c_int),value :: nx
@@ -509,8 +496,7 @@ module hipfort_hipfft
 #else
     function hipfftEstimate3d_(nx,ny,nz,myType,workSize) bind(c, name="hipfftEstimate3d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftEstimate3d_
       integer(c_int),value :: nx
@@ -546,8 +532,7 @@ module hipfort_hipfft
         workSize) &
         bind(c, name="hipfftEstimateMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftEstimateMany_
       integer(c_int),value :: rank
@@ -589,8 +574,7 @@ module hipfort_hipfft
 #else
     function hipfftGetSize1d_(plan,nx,myType,batch,workSize) bind(c, name="hipfftGetSize1d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSize1d_
       type(c_ptr),value :: plan
@@ -616,8 +600,7 @@ module hipfort_hipfft
 #else
     function hipfftGetSize2d_(plan,nx,ny,myType,workSize) bind(c, name="hipfftGetSize2d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSize2d_
       type(c_ptr),value :: plan
@@ -644,8 +627,7 @@ module hipfort_hipfft
 #else
     function hipfftGetSize3d_(plan,nx,ny,nz,myType,workSize) bind(c, name="hipfftGetSize3d")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSize3d_
       type(c_ptr),value :: plan
@@ -683,8 +665,7 @@ module hipfort_hipfft
         batch,workSize) &
         bind(c, name="hipfftGetSizeMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSizeMany_
       type(c_ptr),value :: plan
@@ -724,8 +705,7 @@ module hipfort_hipfft
         batch,workSize) &
         bind(c, name="hipfftGetSizeMany64")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSizeMany64_
       type(c_ptr),value :: plan
@@ -767,8 +747,7 @@ module hipfort_hipfft
 #else
     function hipfftGetSize_(plan,workSize) bind(c, name="hipfftGetSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetSize_
       type(c_ptr),value :: plan
@@ -788,8 +767,7 @@ module hipfort_hipfft
 #else
     function hipfftSetAutoAllocation_(plan,autoAllocate) bind(c, name="hipfftSetAutoAllocation")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftSetAutoAllocation_
       type(c_ptr),value :: plan
@@ -807,8 +785,7 @@ module hipfort_hipfft
 #else
     function hipfftSetWorkArea_(plan,workArea) bind(c, name="hipfftSetWorkArea")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftSetWorkArea_
       type(c_ptr),value :: plan
@@ -828,8 +805,7 @@ module hipfort_hipfft
 #else
     function hipfftXtSetWorkArea_(plan,workArea) bind(c, name="hipfftXtSetWorkArea")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetWorkArea_
       type(c_ptr),value :: plan
@@ -852,8 +828,7 @@ module hipfort_hipfft
 #else
     function hipfftExecC2C_(plan,idata,odata,direction) bind(c, name="hipfftExecC2C")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecC2C_
       type(c_ptr),value :: plan
@@ -889,8 +864,7 @@ module hipfort_hipfft
 #else
     function hipfftExecR2C_(plan,idata,odata) bind(c, name="hipfftExecR2C")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecR2C_
       type(c_ptr),value :: plan
@@ -925,8 +899,7 @@ module hipfort_hipfft
 #else
     function hipfftExecC2R_(plan,idata,odata) bind(c, name="hipfftExecC2R")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecC2R_
       type(c_ptr),value :: plan
@@ -962,8 +935,7 @@ module hipfort_hipfft
 #else
     function hipfftExecZ2Z_(plan,idata,odata,direction) bind(c, name="hipfftExecZ2Z")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecZ2Z_
       type(c_ptr),value :: plan
@@ -999,8 +971,7 @@ module hipfort_hipfft
 #else
     function hipfftExecD2Z_(plan,idata,odata) bind(c, name="hipfftExecD2Z")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecD2Z_
       type(c_ptr),value :: plan
@@ -1035,8 +1006,7 @@ module hipfort_hipfft
 #else
     function hipfftExecZ2D_(plan,idata,odata) bind(c, name="hipfftExecZ2D")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftExecZ2D_
       type(c_ptr),value :: plan
@@ -1070,8 +1040,7 @@ module hipfort_hipfft
 #else
     function hipfftSetStream_(plan,stream) bind(c, name="hipfftSetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftSetStream_
       type(c_ptr),value :: plan
@@ -1088,8 +1057,7 @@ module hipfort_hipfft
 #else
     function hipfftDestroy_(plan) bind(c, name="hipfftDestroy")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftDestroy_
       type(c_ptr),value :: plan
@@ -1105,8 +1073,7 @@ module hipfort_hipfft
 #else
     function hipfftGetVersion_(version) bind(c, name="hipfftGetVersion")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetVersion_
       type(c_ptr),value :: version
@@ -1125,8 +1092,7 @@ module hipfort_hipfft
 #else
     function hipfftGetProperty_(myType,myValue) bind(c, name="hipfftGetProperty")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftGetProperty_
       integer(c_int),value :: myType
@@ -1144,8 +1110,7 @@ module hipfort_hipfft
     function hipfftXtSetCallback_(plan,callbacks,cbtype,callbackData) &
         bind(c, name="hipfftXtSetCallback")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetCallback_
       type(c_ptr),value :: plan
@@ -1161,8 +1126,7 @@ module hipfort_hipfft
 #else
     function hipfftXtClearCallback_(plan,cbtype) bind(c, name="hipfftXtClearCallback")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtClearCallback_
       type(c_ptr),value :: plan
@@ -1187,8 +1151,7 @@ module hipfort_hipfft
     function hipfftXtSetCallbackSharedSize_(plan,cbtype,sharedSize) &
         bind(c, name="hipfftXtSetCallbackSharedSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetCallbackSharedSize_
       type(c_ptr),value :: plan
@@ -1243,8 +1206,7 @@ module hipfort_hipfft
         cbdata) &
         bind(c, name="hipfftXtSetJITCallback")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetJITCallback_
       type(c_ptr),value :: plan
@@ -1315,8 +1277,7 @@ module hipfort_hipfft
         odist,outputType,batch,workSize,executionType) &
         bind(c, name="hipfftXtMakePlanMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtMakePlanMany_
       type(c_ptr),value :: plan
@@ -1369,8 +1330,7 @@ module hipfort_hipfft
         odist,outputType,batch,workSize,executionType) &
         bind(c, name="hipfftXtGetSizeMany")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtGetSizeMany_
       type(c_ptr),value :: plan
@@ -1411,8 +1371,7 @@ module hipfort_hipfft
 #else
     function hipfftXtExec_(plan,input,output,direction) bind(c, name="hipfftXtExec")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtExec_
       type(c_ptr),value :: plan
@@ -1444,8 +1403,7 @@ module hipfort_hipfft
 #else
     function hipfftXtSetGPUs_(plan,count,gpus) bind(c, name="hipfftXtSetGPUs")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetGPUs_
       type(c_ptr),value :: plan
@@ -1485,8 +1443,7 @@ module hipfort_hipfft
 #else
     function hipfftXtMalloc_(plan,desc,myFormat) bind(c, name="hipfftXtMalloc")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtMalloc_
       type(c_ptr),value :: plan
@@ -1523,8 +1480,7 @@ module hipfort_hipfft
 #else
     function hipfftXtMemcpy_(plan,dest,src,myType) bind(c, name="hipfftXtMemcpy")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtMemcpy_
       type(c_ptr),value :: plan
@@ -1545,9 +1501,7 @@ module hipfort_hipfft
 #else
     function hipfftXtFree_(desc) bind(c, name="hipfftXtFree")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtFree_
       type(hipLibXtDesc) :: desc
@@ -1570,9 +1524,7 @@ module hipfort_hipfft
     function hipfftXtExecDescriptorC2C_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptorC2C")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorC2C_
       type(c_ptr),value :: plan
@@ -1595,9 +1547,7 @@ module hipfort_hipfft
 #else
     function hipfftXtExecDescriptorR2C_(plan,input,output) bind(c, name="hipfftXtExecDescriptorR2C")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorR2C_
       type(c_ptr),value :: plan
@@ -1619,9 +1569,7 @@ module hipfort_hipfft
 #else
     function hipfftXtExecDescriptorC2R_(plan,input,output) bind(c, name="hipfftXtExecDescriptorC2R")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorC2R_
       type(c_ptr),value :: plan
@@ -1646,9 +1594,7 @@ module hipfort_hipfft
     function hipfftXtExecDescriptorZ2Z_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptorZ2Z")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorZ2Z_
       type(c_ptr),value :: plan
@@ -1671,9 +1617,7 @@ module hipfort_hipfft
 #else
     function hipfftXtExecDescriptorD2Z_(plan,input,output) bind(c, name="hipfftXtExecDescriptorD2Z")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorD2Z_
       type(c_ptr),value :: plan
@@ -1695,9 +1639,7 @@ module hipfort_hipfft
 #else
     function hipfftXtExecDescriptorZ2D_(plan,input,output) bind(c, name="hipfftXtExecDescriptorZ2D")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptorZ2D_
       type(c_ptr),value :: plan
@@ -1722,9 +1664,7 @@ module hipfort_hipfft
     function hipfftXtExecDescriptor_(plan,input,output,direction) &
         bind(c, name="hipfftXtExecDescriptor")
 #endif
-      use iso_c_binding
-      use hipfort_hipfft_enums
-      use hipfort_hipfft_types
+      import
       implicit none
       integer(c_int) :: hipfftXtExecDescriptor_
       type(c_ptr),value :: plan
@@ -1754,8 +1694,7 @@ module hipfort_hipfft
 #ifndef USE_CUDA_NAMES
   interface hipfftMpAttachComm
     function hipfftMpAttachComm_(plan,comm_type,comm_handle) bind(c, name="hipfftMpAttachComm")
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftMpAttachComm_
       type(c_ptr),value :: plan
@@ -1802,8 +1741,7 @@ module hipfort_hipfft
     function hipfftXtSetDistribution_(plan,rank,input_lower,input_upper,output_lower,output_upper, &
         input_stride,output_stride) &
         bind(c, name="hipfftXtSetDistribution")
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetDistribution_
       type(c_ptr),value :: plan
@@ -1845,8 +1783,7 @@ module hipfort_hipfft
   interface hipfftXtSetSubformatDefault
     function hipfftXtSetSubformatDefault_(plan,subformat_forward,subformat_inverse) &
         bind(c, name="hipfftXtSetSubformatDefault")
-      use iso_c_binding
-      use hipfort_hipfft_enums
+      import
       implicit none
       integer(c_int) :: hipfftXtSetSubformatDefault_
       type(c_ptr),value :: plan
@@ -1860,8 +1797,6 @@ module hipfort_hipfft
   contains
 
     function hipfftMakePlan1d_typed(plan,nx,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan1d_typed
       type(c_ptr), value :: plan
@@ -1874,8 +1809,6 @@ module hipfort_hipfft
     end function
 
     function hipfftMakePlan2d_typed(plan,nx,ny,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan2d_typed
       type(c_ptr), value :: plan
@@ -1888,8 +1821,6 @@ module hipfort_hipfft
     end function
 
     function hipfftMakePlan3d_typed(plan,nx,ny,nz,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlan3d_typed
       type(c_ptr), value :: plan
@@ -1904,8 +1835,6 @@ module hipfort_hipfft
 
     function hipfftMakePlanMany_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_typed
       type(c_ptr), value :: plan
@@ -1927,8 +1856,6 @@ module hipfort_hipfft
 
     function hipfftMakePlanMany64_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_typed
       type(c_ptr), value :: plan
@@ -1949,8 +1876,6 @@ module hipfort_hipfft
     end function
 
     function hipfftEstimate1d_typed(nx,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate1d_typed
       integer(c_int) :: nx
@@ -1962,8 +1887,6 @@ module hipfort_hipfft
     end function
 
     function hipfftEstimate2d_typed(nx,ny,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate2d_typed
       integer(c_int) :: nx
@@ -1975,8 +1898,6 @@ module hipfort_hipfft
     end function
 
     function hipfftEstimate3d_typed(nx,ny,nz,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimate3d_typed
       integer(c_int) :: nx
@@ -1990,8 +1911,6 @@ module hipfort_hipfft
 
     function hipfftEstimateMany_typed(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_typed
       integer(c_int) :: rank
@@ -2011,8 +1930,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetSize1d_typed(plan,nx,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize1d_typed
       type(c_ptr), value :: plan
@@ -2025,8 +1942,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetSize2d_typed(plan,nx,ny,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize2d_typed
       type(c_ptr), value :: plan
@@ -2039,8 +1954,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetSize3d_typed(plan,nx,ny,nz,myType,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize3d_typed
       type(c_ptr), value :: plan
@@ -2055,8 +1968,6 @@ module hipfort_hipfft
 
     function hipfftGetSizeMany_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_typed
       type(c_ptr), value :: plan
@@ -2078,8 +1989,6 @@ module hipfort_hipfft
 
     function hipfftGetSizeMany64_typed(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_typed
       type(c_ptr), value :: plan
@@ -2100,8 +2009,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetSize_typed(plan,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSize_typed
       type(c_ptr), value :: plan
@@ -2111,8 +2018,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetVersion_typed(version)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetVersion_typed
       integer(c_int),target :: version
@@ -2121,8 +2026,6 @@ module hipfort_hipfft
     end function
 
     function hipfftGetProperty_typed(myType,myValue)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetProperty_typed
       integer(kind(HIPFFT_MAJOR_VERSION)) :: myType
@@ -2133,8 +2036,6 @@ module hipfort_hipfft
 
     function hipfftXtMakePlanMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
         ostride,odist,outputType,batch,workSize,executionType)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftXtMakePlanMany_typed
       type(c_ptr), value :: plan
@@ -2158,8 +2059,6 @@ module hipfort_hipfft
 
     function hipfftXtGetSizeMany_typed(plan,rank,n,inembed,istride,idist,inputType,onembed, &
         ostride,odist,outputType,batch,workSize,executionType)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftXtGetSizeMany_typed
       type(c_ptr), value :: plan
@@ -2187,8 +2086,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftPlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_assumed_rank
       type(c_ptr) :: plan
@@ -2210,8 +2107,6 @@ module hipfort_hipfft
 #else
     function hipfftPlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_rank_0
       type(c_ptr) :: plan
@@ -2232,8 +2127,6 @@ module hipfort_hipfft
 
     function hipfftPlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftPlanMany_rank_1
       type(c_ptr) :: plan
@@ -2256,8 +2149,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftMakePlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_assumed_rank
       type(c_ptr), value :: plan
@@ -2280,8 +2171,6 @@ module hipfort_hipfft
 #else
     function hipfftMakePlanMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_0
       type(c_ptr), value :: plan
@@ -2303,8 +2192,6 @@ module hipfort_hipfft
 
     function hipfftMakePlanMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany_rank_1
       type(c_ptr), value :: plan
@@ -2328,8 +2215,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftMakePlanMany64_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_assumed_rank
       type(c_ptr), value :: plan
@@ -2352,8 +2237,6 @@ module hipfort_hipfft
 #else
     function hipfftMakePlanMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_0
       type(c_ptr), value :: plan
@@ -2375,8 +2258,6 @@ module hipfort_hipfft
 
     function hipfftMakePlanMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftMakePlanMany64_rank_1
       type(c_ptr), value :: plan
@@ -2400,8 +2281,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftEstimateMany_assumed_rank(rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_assumed_rank
       integer(c_int) :: rank
@@ -2423,8 +2302,6 @@ module hipfort_hipfft
 #else
     function hipfftEstimateMany_rank_0(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_rank_0
       integer(c_int) :: rank
@@ -2445,8 +2322,6 @@ module hipfort_hipfft
 
     function hipfftEstimateMany_rank_1(rank,n,inembed,istride,idist,onembed,ostride,odist,myType, &
         batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftEstimateMany_rank_1
       integer(c_int) :: rank
@@ -2469,8 +2344,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftGetSizeMany_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_assumed_rank
       type(c_ptr), value :: plan
@@ -2493,8 +2366,6 @@ module hipfort_hipfft
 #else
     function hipfftGetSizeMany_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_0
       type(c_ptr), value :: plan
@@ -2516,8 +2387,6 @@ module hipfort_hipfft
 
     function hipfftGetSizeMany_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany_rank_1
       type(c_ptr), value :: plan
@@ -2541,8 +2410,6 @@ module hipfort_hipfft
 #ifdef USE_ASSUMED_RANK
     function hipfftGetSizeMany64_assumed_rank(plan,rank,n,inembed,istride,idist,onembed,ostride, &
         odist,myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_assumed_rank
       type(c_ptr), value :: plan
@@ -2565,8 +2432,6 @@ module hipfort_hipfft
 #else
     function hipfftGetSizeMany64_rank_0(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_0
       type(c_ptr), value :: plan
@@ -2588,8 +2453,6 @@ module hipfort_hipfft
 
     function hipfftGetSizeMany64_rank_1(plan,rank,n,inembed,istride,idist,onembed,ostride,odist, &
         myType,batch,workSize)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftGetSizeMany64_rank_1
       type(c_ptr), value :: plan
@@ -2612,8 +2475,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecC2C_assumed_rank(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_assumed_rank
       type(c_ptr), value :: plan
@@ -2626,8 +2487,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecC2C_rank_0(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_0
       type(c_ptr), value :: plan
@@ -2639,8 +2498,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2C_rank_1(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_1
       type(c_ptr), value :: plan
@@ -2652,8 +2509,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2C_rank_2(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_2
       type(c_ptr), value :: plan
@@ -2665,8 +2520,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2C_rank_3(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2C_rank_3
       type(c_ptr), value :: plan
@@ -2680,8 +2533,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecR2C_assumed_rank(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_assumed_rank
       type(c_ptr), value :: plan
@@ -2693,8 +2544,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecR2C_rank_0(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_0
       type(c_ptr), value :: plan
@@ -2705,8 +2554,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecR2C_rank_1(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_1
       type(c_ptr), value :: plan
@@ -2717,8 +2564,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecR2C_rank_2(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_2
       type(c_ptr), value :: plan
@@ -2729,8 +2574,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecR2C_rank_3(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecR2C_rank_3
       type(c_ptr), value :: plan
@@ -2743,8 +2586,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecC2R_assumed_rank(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_assumed_rank
       type(c_ptr), value :: plan
@@ -2756,8 +2597,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecC2R_rank_0(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_0
       type(c_ptr), value :: plan
@@ -2768,8 +2607,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2R_rank_1(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_1
       type(c_ptr), value :: plan
@@ -2780,8 +2617,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2R_rank_2(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_2
       type(c_ptr), value :: plan
@@ -2792,8 +2627,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecC2R_rank_3(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecC2R_rank_3
       type(c_ptr), value :: plan
@@ -2806,8 +2639,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecZ2Z_assumed_rank(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_assumed_rank
       type(c_ptr), value :: plan
@@ -2820,8 +2651,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecZ2Z_rank_0(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_0
       type(c_ptr), value :: plan
@@ -2833,8 +2662,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2Z_rank_1(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_1
       type(c_ptr), value :: plan
@@ -2846,8 +2673,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2Z_rank_2(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_2
       type(c_ptr), value :: plan
@@ -2859,8 +2684,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2Z_rank_3(plan,idata,odata,direction)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2Z_rank_3
       type(c_ptr), value :: plan
@@ -2874,8 +2697,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecD2Z_assumed_rank(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_assumed_rank
       type(c_ptr), value :: plan
@@ -2887,8 +2708,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecD2Z_rank_0(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_0
       type(c_ptr), value :: plan
@@ -2899,8 +2718,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecD2Z_rank_1(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_1
       type(c_ptr), value :: plan
@@ -2911,8 +2728,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecD2Z_rank_2(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_2
       type(c_ptr), value :: plan
@@ -2923,8 +2738,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecD2Z_rank_3(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecD2Z_rank_3
       type(c_ptr), value :: plan
@@ -2937,8 +2750,6 @@ module hipfort_hipfft
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipfftExecZ2D_assumed_rank(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_assumed_rank
       type(c_ptr), value :: plan
@@ -2950,8 +2761,6 @@ module hipfort_hipfft
 
 #else
     function hipfftExecZ2D_rank_0(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_0
       type(c_ptr), value :: plan
@@ -2962,8 +2771,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2D_rank_1(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_1
       type(c_ptr), value :: plan
@@ -2974,8 +2781,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2D_rank_2(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_2
       type(c_ptr), value :: plan
@@ -2986,8 +2791,6 @@ module hipfort_hipfft
     end function
 
     function hipfftExecZ2D_rank_3(plan,idata,odata)
-      use iso_c_binding
-      use hipfort_hipfft_enums
       implicit none
       integer(kind(HIPFFT_SUCCESS)) :: hipfftExecZ2D_rank_3
       type(c_ptr), value :: plan

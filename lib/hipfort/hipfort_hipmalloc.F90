@@ -45,7 +45,7 @@ module hipfort_hipmalloc
 #else
     function hipMalloc_(ptr, sizeBytes) bind(c, name="hipMalloc")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMalloc_
       type(c_ptr) :: ptr
@@ -239,7 +239,7 @@ module hipfort_hipmalloc
 #else
     function hipMallocManaged_(ptr, sizeBytes, flags) bind(c, name="hipMallocManaged")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMallocManaged_
       type(c_ptr) :: ptr
@@ -443,7 +443,7 @@ module hipfort_hipmalloc
 #else
     function hipHostMalloc_(ptr, sizeBytes, flags) bind(c, name="hipHostMalloc")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostMalloc_
       type(c_ptr) :: ptr
@@ -626,7 +626,7 @@ module hipfort_hipmalloc
 #else
     function hipFree_(ptr) bind(c, name="hipFree")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipFree_
       type(c_ptr), value :: ptr
@@ -711,7 +711,7 @@ module hipfort_hipmalloc
 #else
     function hipHostFree_(ptr) bind(c, name="hipHostFree")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostFree_
       type(c_ptr), value :: ptr
@@ -780,7 +780,6 @@ module hipfort_hipmalloc
 contains
 
   function hipMalloc_i4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -799,7 +798,6 @@ contains
   end function hipMalloc_i4_1
 
   function hipMalloc_i4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -818,7 +816,6 @@ contains
   end function hipMalloc_i4_1_c_size_t
 
   function hipMalloc_i4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -838,7 +835,6 @@ contains
   end function hipMalloc_i4_2
 
   function hipMalloc_i4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -858,7 +854,6 @@ contains
   end function hipMalloc_i4_2_c_size_t
 
   function hipMalloc_i4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -879,7 +874,6 @@ contains
   end function hipMalloc_i4_3
 
   function hipMalloc_i4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -900,7 +894,6 @@ contains
   end function hipMalloc_i4_3_c_size_t
 
   function hipMalloc_i4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -922,7 +915,6 @@ contains
   end function hipMalloc_i4_4
 
   function hipMalloc_i4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -944,7 +936,6 @@ contains
   end function hipMalloc_i4_4_c_size_t
 
   function hipMalloc_i4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -967,7 +958,6 @@ contains
   end function hipMalloc_i4_5
 
   function hipMalloc_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -990,7 +980,6 @@ contains
   end function hipMalloc_i4_5_c_size_t
 
   function hipMalloc_i4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1014,7 +1003,6 @@ contains
   end function hipMalloc_i4_6
 
   function hipMalloc_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1038,7 +1026,6 @@ contains
   end function hipMalloc_i4_6_c_size_t
 
   function hipMalloc_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1063,7 +1050,6 @@ contains
   end function hipMalloc_i4_7
 
   function hipMalloc_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1088,7 +1074,6 @@ contains
   end function hipMalloc_i4_7_c_size_t
 
   function hipMalloc_i8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -1107,7 +1092,6 @@ contains
   end function hipMalloc_i8_1
 
   function hipMalloc_i8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -1126,7 +1110,6 @@ contains
   end function hipMalloc_i8_1_c_size_t
 
   function hipMalloc_i8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -1146,7 +1129,6 @@ contains
   end function hipMalloc_i8_2
 
   function hipMalloc_i8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1166,7 +1148,6 @@ contains
   end function hipMalloc_i8_2_c_size_t
 
   function hipMalloc_i8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1187,7 +1168,6 @@ contains
   end function hipMalloc_i8_3
 
   function hipMalloc_i8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1208,7 +1188,6 @@ contains
   end function hipMalloc_i8_3_c_size_t
 
   function hipMalloc_i8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1230,7 +1209,6 @@ contains
   end function hipMalloc_i8_4
 
   function hipMalloc_i8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1252,7 +1230,6 @@ contains
   end function hipMalloc_i8_4_c_size_t
 
   function hipMalloc_i8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1275,7 +1252,6 @@ contains
   end function hipMalloc_i8_5
 
   function hipMalloc_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1298,7 +1274,6 @@ contains
   end function hipMalloc_i8_5_c_size_t
 
   function hipMalloc_i8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1322,7 +1297,6 @@ contains
   end function hipMalloc_i8_6
 
   function hipMalloc_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1346,7 +1320,6 @@ contains
   end function hipMalloc_i8_6_c_size_t
 
   function hipMalloc_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1371,7 +1344,6 @@ contains
   end function hipMalloc_i8_7
 
   function hipMalloc_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1396,7 +1368,6 @@ contains
   end function hipMalloc_i8_7_c_size_t
 
   function hipMalloc_r4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -1415,7 +1386,6 @@ contains
   end function hipMalloc_r4_1
 
   function hipMalloc_r4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -1434,7 +1404,6 @@ contains
   end function hipMalloc_r4_1_c_size_t
 
   function hipMalloc_r4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -1454,7 +1423,6 @@ contains
   end function hipMalloc_r4_2
 
   function hipMalloc_r4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1474,7 +1442,6 @@ contains
   end function hipMalloc_r4_2_c_size_t
 
   function hipMalloc_r4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1495,7 +1462,6 @@ contains
   end function hipMalloc_r4_3
 
   function hipMalloc_r4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1516,7 +1482,6 @@ contains
   end function hipMalloc_r4_3_c_size_t
 
   function hipMalloc_r4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1538,7 +1503,6 @@ contains
   end function hipMalloc_r4_4
 
   function hipMalloc_r4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1560,7 +1524,6 @@ contains
   end function hipMalloc_r4_4_c_size_t
 
   function hipMalloc_r4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1583,7 +1546,6 @@ contains
   end function hipMalloc_r4_5
 
   function hipMalloc_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1606,7 +1568,6 @@ contains
   end function hipMalloc_r4_5_c_size_t
 
   function hipMalloc_r4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1630,7 +1591,6 @@ contains
   end function hipMalloc_r4_6
 
   function hipMalloc_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1654,7 +1614,6 @@ contains
   end function hipMalloc_r4_6_c_size_t
 
   function hipMalloc_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1679,7 +1638,6 @@ contains
   end function hipMalloc_r4_7
 
   function hipMalloc_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1704,7 +1662,6 @@ contains
   end function hipMalloc_r4_7_c_size_t
 
   function hipMalloc_r8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -1723,7 +1680,6 @@ contains
   end function hipMalloc_r8_1
 
   function hipMalloc_r8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -1742,7 +1698,6 @@ contains
   end function hipMalloc_r8_1_c_size_t
 
   function hipMalloc_r8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -1762,7 +1717,6 @@ contains
   end function hipMalloc_r8_2
 
   function hipMalloc_r8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1782,7 +1736,6 @@ contains
   end function hipMalloc_r8_2_c_size_t
 
   function hipMalloc_r8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1803,7 +1756,6 @@ contains
   end function hipMalloc_r8_3
 
   function hipMalloc_r8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1824,7 +1776,6 @@ contains
   end function hipMalloc_r8_3_c_size_t
 
   function hipMalloc_r8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1846,7 +1797,6 @@ contains
   end function hipMalloc_r8_4
 
   function hipMalloc_r8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1868,7 +1818,6 @@ contains
   end function hipMalloc_r8_4_c_size_t
 
   function hipMalloc_r8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1891,7 +1840,6 @@ contains
   end function hipMalloc_r8_5
 
   function hipMalloc_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1914,7 +1862,6 @@ contains
   end function hipMalloc_r8_5_c_size_t
 
   function hipMalloc_r8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1938,7 +1885,6 @@ contains
   end function hipMalloc_r8_6
 
   function hipMalloc_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1962,7 +1908,6 @@ contains
   end function hipMalloc_r8_6_c_size_t
 
   function hipMalloc_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1987,7 +1932,6 @@ contains
   end function hipMalloc_r8_7
 
   function hipMalloc_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2012,7 +1956,6 @@ contains
   end function hipMalloc_r8_7_c_size_t
 
   function hipMalloc_c4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -2031,7 +1974,6 @@ contains
   end function hipMalloc_c4_1
 
   function hipMalloc_c4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -2050,7 +1992,6 @@ contains
   end function hipMalloc_c4_1_c_size_t
 
   function hipMalloc_c4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -2070,7 +2011,6 @@ contains
   end function hipMalloc_c4_2
 
   function hipMalloc_c4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -2090,7 +2030,6 @@ contains
   end function hipMalloc_c4_2_c_size_t
 
   function hipMalloc_c4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -2111,7 +2050,6 @@ contains
   end function hipMalloc_c4_3
 
   function hipMalloc_c4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -2132,7 +2070,6 @@ contains
   end function hipMalloc_c4_3_c_size_t
 
   function hipMalloc_c4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -2154,7 +2091,6 @@ contains
   end function hipMalloc_c4_4
 
   function hipMalloc_c4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -2176,7 +2112,6 @@ contains
   end function hipMalloc_c4_4_c_size_t
 
   function hipMalloc_c4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -2199,7 +2134,6 @@ contains
   end function hipMalloc_c4_5
 
   function hipMalloc_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -2222,7 +2156,6 @@ contains
   end function hipMalloc_c4_5_c_size_t
 
   function hipMalloc_c4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2246,7 +2179,6 @@ contains
   end function hipMalloc_c4_6
 
   function hipMalloc_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2270,7 +2202,6 @@ contains
   end function hipMalloc_c4_6_c_size_t
 
   function hipMalloc_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2295,7 +2226,6 @@ contains
   end function hipMalloc_c4_7
 
   function hipMalloc_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2320,7 +2250,6 @@ contains
   end function hipMalloc_c4_7_c_size_t
 
   function hipMalloc_c8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -2339,7 +2268,6 @@ contains
   end function hipMalloc_c8_1
 
   function hipMalloc_c8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -2358,7 +2286,6 @@ contains
   end function hipMalloc_c8_1_c_size_t
 
   function hipMalloc_c8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -2378,7 +2305,6 @@ contains
   end function hipMalloc_c8_2
 
   function hipMalloc_c8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -2398,7 +2324,6 @@ contains
   end function hipMalloc_c8_2_c_size_t
 
   function hipMalloc_c8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -2419,7 +2344,6 @@ contains
   end function hipMalloc_c8_3
 
   function hipMalloc_c8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -2440,7 +2364,6 @@ contains
   end function hipMalloc_c8_3_c_size_t
 
   function hipMalloc_c8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -2462,7 +2385,6 @@ contains
   end function hipMalloc_c8_4
 
   function hipMalloc_c8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -2484,7 +2406,6 @@ contains
   end function hipMalloc_c8_4_c_size_t
 
   function hipMalloc_c8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -2507,7 +2428,6 @@ contains
   end function hipMalloc_c8_5
 
   function hipMalloc_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -2530,7 +2450,6 @@ contains
   end function hipMalloc_c8_5_c_size_t
 
   function hipMalloc_c8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2554,7 +2473,6 @@ contains
   end function hipMalloc_c8_6
 
   function hipMalloc_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2578,7 +2496,6 @@ contains
   end function hipMalloc_c8_6_c_size_t
 
   function hipMalloc_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2603,7 +2520,6 @@ contains
   end function hipMalloc_c8_7
 
   function hipMalloc_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2628,7 +2544,6 @@ contains
   end function hipMalloc_c8_7_c_size_t
 
   function hipMalloc_l_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -2647,7 +2562,6 @@ contains
   end function hipMalloc_l_1
 
   function hipMalloc_l_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -2666,7 +2580,6 @@ contains
   end function hipMalloc_l_1_c_size_t
 
   function hipMalloc_l_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -2686,7 +2599,6 @@ contains
   end function hipMalloc_l_2
 
   function hipMalloc_l_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -2706,7 +2618,6 @@ contains
   end function hipMalloc_l_2_c_size_t
 
   function hipMalloc_l_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -2727,7 +2638,6 @@ contains
   end function hipMalloc_l_3
 
   function hipMalloc_l_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -2748,7 +2658,6 @@ contains
   end function hipMalloc_l_3_c_size_t
 
   function hipMalloc_l_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -2770,7 +2679,6 @@ contains
   end function hipMalloc_l_4
 
   function hipMalloc_l_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -2792,7 +2700,6 @@ contains
   end function hipMalloc_l_4_c_size_t
 
   function hipMalloc_l_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -2815,7 +2722,6 @@ contains
   end function hipMalloc_l_5
 
   function hipMalloc_l_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -2838,7 +2744,6 @@ contains
   end function hipMalloc_l_5_c_size_t
 
   function hipMalloc_l_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2862,7 +2767,6 @@ contains
   end function hipMalloc_l_6
 
   function hipMalloc_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2886,7 +2790,6 @@ contains
   end function hipMalloc_l_6_c_size_t
 
   function hipMalloc_l_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2911,7 +2814,6 @@ contains
   end function hipMalloc_l_7
 
   function hipMalloc_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2936,7 +2838,6 @@ contains
   end function hipMalloc_l_7_c_size_t
 
   function hipMalloc_i4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -2977,7 +2878,6 @@ contains
   end function hipMalloc_i4_0_source
 
   function hipMalloc_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3054,7 +2954,6 @@ contains
   end function hipMalloc_i4_1_source
 
   function hipMalloc_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3131,7 +3030,6 @@ contains
   end function hipMalloc_i4_2_source
 
   function hipMalloc_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3208,7 +3106,6 @@ contains
   end function hipMalloc_i4_3_source
 
   function hipMalloc_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3285,7 +3182,6 @@ contains
   end function hipMalloc_i4_4_source
 
   function hipMalloc_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3362,7 +3258,6 @@ contains
   end function hipMalloc_i4_5_source
 
   function hipMalloc_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3444,7 +3339,6 @@ contains
   end function hipMalloc_i4_6_source
 
   function hipMalloc_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3539,7 +3433,6 @@ contains
   end function hipMalloc_i4_7_source
 
   function hipMalloc_i8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3580,7 +3473,6 @@ contains
   end function hipMalloc_i8_0_source
 
   function hipMalloc_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3657,7 +3549,6 @@ contains
   end function hipMalloc_i8_1_source
 
   function hipMalloc_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3734,7 +3625,6 @@ contains
   end function hipMalloc_i8_2_source
 
   function hipMalloc_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3811,7 +3701,6 @@ contains
   end function hipMalloc_i8_3_source
 
   function hipMalloc_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3888,7 +3777,6 @@ contains
   end function hipMalloc_i8_4_source
 
   function hipMalloc_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -3965,7 +3853,6 @@ contains
   end function hipMalloc_i8_5_source
 
   function hipMalloc_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4047,7 +3934,6 @@ contains
   end function hipMalloc_i8_6_source
 
   function hipMalloc_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4142,7 +4028,6 @@ contains
   end function hipMalloc_i8_7_source
 
   function hipMalloc_r4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4183,7 +4068,6 @@ contains
   end function hipMalloc_r4_0_source
 
   function hipMalloc_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4260,7 +4144,6 @@ contains
   end function hipMalloc_r4_1_source
 
   function hipMalloc_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4337,7 +4220,6 @@ contains
   end function hipMalloc_r4_2_source
 
   function hipMalloc_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4414,7 +4296,6 @@ contains
   end function hipMalloc_r4_3_source
 
   function hipMalloc_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4491,7 +4372,6 @@ contains
   end function hipMalloc_r4_4_source
 
   function hipMalloc_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4568,7 +4448,6 @@ contains
   end function hipMalloc_r4_5_source
 
   function hipMalloc_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4650,7 +4529,6 @@ contains
   end function hipMalloc_r4_6_source
 
   function hipMalloc_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4745,7 +4623,6 @@ contains
   end function hipMalloc_r4_7_source
 
   function hipMalloc_r8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4786,7 +4663,6 @@ contains
   end function hipMalloc_r8_0_source
 
   function hipMalloc_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4863,7 +4739,6 @@ contains
   end function hipMalloc_r8_1_source
 
   function hipMalloc_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -4940,7 +4815,6 @@ contains
   end function hipMalloc_r8_2_source
 
   function hipMalloc_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5017,7 +4891,6 @@ contains
   end function hipMalloc_r8_3_source
 
   function hipMalloc_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5094,7 +4967,6 @@ contains
   end function hipMalloc_r8_4_source
 
   function hipMalloc_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5171,7 +5043,6 @@ contains
   end function hipMalloc_r8_5_source
 
   function hipMalloc_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5253,7 +5124,6 @@ contains
   end function hipMalloc_r8_6_source
 
   function hipMalloc_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5348,7 +5218,6 @@ contains
   end function hipMalloc_r8_7_source
 
   function hipMalloc_c4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5389,7 +5258,6 @@ contains
   end function hipMalloc_c4_0_source
 
   function hipMalloc_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5466,7 +5334,6 @@ contains
   end function hipMalloc_c4_1_source
 
   function hipMalloc_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5543,7 +5410,6 @@ contains
   end function hipMalloc_c4_2_source
 
   function hipMalloc_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5620,7 +5486,6 @@ contains
   end function hipMalloc_c4_3_source
 
   function hipMalloc_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5697,7 +5562,6 @@ contains
   end function hipMalloc_c4_4_source
 
   function hipMalloc_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5774,7 +5638,6 @@ contains
   end function hipMalloc_c4_5_source
 
   function hipMalloc_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5856,7 +5719,6 @@ contains
   end function hipMalloc_c4_6_source
 
   function hipMalloc_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5951,7 +5813,6 @@ contains
   end function hipMalloc_c4_7_source
 
   function hipMalloc_c8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -5992,7 +5853,6 @@ contains
   end function hipMalloc_c8_0_source
 
   function hipMalloc_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6069,7 +5929,6 @@ contains
   end function hipMalloc_c8_1_source
 
   function hipMalloc_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6146,7 +6005,6 @@ contains
   end function hipMalloc_c8_2_source
 
   function hipMalloc_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6223,7 +6081,6 @@ contains
   end function hipMalloc_c8_3_source
 
   function hipMalloc_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6300,7 +6157,6 @@ contains
   end function hipMalloc_c8_4_source
 
   function hipMalloc_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6377,7 +6233,6 @@ contains
   end function hipMalloc_c8_5_source
 
   function hipMalloc_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6459,7 +6314,6 @@ contains
   end function hipMalloc_c8_6_source
 
   function hipMalloc_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6554,7 +6408,6 @@ contains
   end function hipMalloc_c8_7_source
 
   function hipMalloc_l_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6595,7 +6448,6 @@ contains
   end function hipMalloc_l_0_source
 
   function hipMalloc_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6672,7 +6524,6 @@ contains
   end function hipMalloc_l_1_source
 
   function hipMalloc_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6749,7 +6600,6 @@ contains
   end function hipMalloc_l_2_source
 
   function hipMalloc_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6826,7 +6676,6 @@ contains
   end function hipMalloc_l_3_source
 
   function hipMalloc_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6903,7 +6752,6 @@ contains
   end function hipMalloc_l_4_source
 
   function hipMalloc_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -6980,7 +6828,6 @@ contains
   end function hipMalloc_l_5_source
 
   function hipMalloc_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -7062,7 +6909,6 @@ contains
   end function hipMalloc_l_6_source
 
   function hipMalloc_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -7157,7 +7003,6 @@ contains
   end function hipMalloc_l_7_source
 
   function hipMallocManaged_i4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
@@ -7181,7 +7026,6 @@ contains
   end function hipMallocManaged_i4_1
 
   function hipMallocManaged_i4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
@@ -7205,7 +7049,6 @@ contains
   end function hipMallocManaged_i4_1_c_size_t
 
   function hipMallocManaged_i4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
@@ -7230,7 +7073,6 @@ contains
   end function hipMallocManaged_i4_2
 
   function hipMallocManaged_i4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
@@ -7255,7 +7097,6 @@ contains
   end function hipMallocManaged_i4_2_c_size_t
 
   function hipMallocManaged_i4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -7281,7 +7122,6 @@ contains
   end function hipMallocManaged_i4_3
 
   function hipMallocManaged_i4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -7307,7 +7147,6 @@ contains
   end function hipMallocManaged_i4_3_c_size_t
 
   function hipMallocManaged_i4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -7334,7 +7173,6 @@ contains
   end function hipMallocManaged_i4_4
 
   function hipMallocManaged_i4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -7361,7 +7199,6 @@ contains
   end function hipMallocManaged_i4_4_c_size_t
 
   function hipMallocManaged_i4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -7389,7 +7226,6 @@ contains
   end function hipMallocManaged_i4_5
 
   function hipMallocManaged_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -7417,7 +7253,6 @@ contains
   end function hipMallocManaged_i4_5_c_size_t
 
   function hipMallocManaged_i4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -7446,7 +7281,6 @@ contains
   end function hipMallocManaged_i4_6
 
   function hipMallocManaged_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -7475,7 +7309,6 @@ contains
   end function hipMallocManaged_i4_6_c_size_t
 
   function hipMallocManaged_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -7505,7 +7338,6 @@ contains
   end function hipMallocManaged_i4_7
 
   function hipMallocManaged_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -7535,7 +7367,6 @@ contains
   end function hipMallocManaged_i4_7_c_size_t
 
   function hipMallocManaged_i8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
@@ -7559,7 +7390,6 @@ contains
   end function hipMallocManaged_i8_1
 
   function hipMallocManaged_i8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
@@ -7583,7 +7413,6 @@ contains
   end function hipMallocManaged_i8_1_c_size_t
 
   function hipMallocManaged_i8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
@@ -7608,7 +7437,6 @@ contains
   end function hipMallocManaged_i8_2
 
   function hipMallocManaged_i8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
@@ -7633,7 +7461,6 @@ contains
   end function hipMallocManaged_i8_2_c_size_t
 
   function hipMallocManaged_i8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -7659,7 +7486,6 @@ contains
   end function hipMallocManaged_i8_3
 
   function hipMallocManaged_i8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -7685,7 +7511,6 @@ contains
   end function hipMallocManaged_i8_3_c_size_t
 
   function hipMallocManaged_i8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -7712,7 +7537,6 @@ contains
   end function hipMallocManaged_i8_4
 
   function hipMallocManaged_i8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -7739,7 +7563,6 @@ contains
   end function hipMallocManaged_i8_4_c_size_t
 
   function hipMallocManaged_i8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -7767,7 +7590,6 @@ contains
   end function hipMallocManaged_i8_5
 
   function hipMallocManaged_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -7795,7 +7617,6 @@ contains
   end function hipMallocManaged_i8_5_c_size_t
 
   function hipMallocManaged_i8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -7824,7 +7645,6 @@ contains
   end function hipMallocManaged_i8_6
 
   function hipMallocManaged_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -7853,7 +7673,6 @@ contains
   end function hipMallocManaged_i8_6_c_size_t
 
   function hipMallocManaged_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -7883,7 +7702,6 @@ contains
   end function hipMallocManaged_i8_7
 
   function hipMallocManaged_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -7913,7 +7731,6 @@ contains
   end function hipMallocManaged_i8_7_c_size_t
 
   function hipMallocManaged_r4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
@@ -7937,7 +7754,6 @@ contains
   end function hipMallocManaged_r4_1
 
   function hipMallocManaged_r4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
@@ -7961,7 +7777,6 @@ contains
   end function hipMallocManaged_r4_1_c_size_t
 
   function hipMallocManaged_r4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
@@ -7986,7 +7801,6 @@ contains
   end function hipMallocManaged_r4_2
 
   function hipMallocManaged_r4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
@@ -8011,7 +7825,6 @@ contains
   end function hipMallocManaged_r4_2_c_size_t
 
   function hipMallocManaged_r4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8037,7 +7850,6 @@ contains
   end function hipMallocManaged_r4_3
 
   function hipMallocManaged_r4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8063,7 +7875,6 @@ contains
   end function hipMallocManaged_r4_3_c_size_t
 
   function hipMallocManaged_r4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8090,7 +7901,6 @@ contains
   end function hipMallocManaged_r4_4
 
   function hipMallocManaged_r4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8117,7 +7927,6 @@ contains
   end function hipMallocManaged_r4_4_c_size_t
 
   function hipMallocManaged_r4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8145,7 +7954,6 @@ contains
   end function hipMallocManaged_r4_5
 
   function hipMallocManaged_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8173,7 +7981,6 @@ contains
   end function hipMallocManaged_r4_5_c_size_t
 
   function hipMallocManaged_r4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8202,7 +8009,6 @@ contains
   end function hipMallocManaged_r4_6
 
   function hipMallocManaged_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8231,7 +8037,6 @@ contains
   end function hipMallocManaged_r4_6_c_size_t
 
   function hipMallocManaged_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -8261,7 +8066,6 @@ contains
   end function hipMallocManaged_r4_7
 
   function hipMallocManaged_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -8291,7 +8095,6 @@ contains
   end function hipMallocManaged_r4_7_c_size_t
 
   function hipMallocManaged_r8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
@@ -8315,7 +8118,6 @@ contains
   end function hipMallocManaged_r8_1
 
   function hipMallocManaged_r8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
@@ -8339,7 +8141,6 @@ contains
   end function hipMallocManaged_r8_1_c_size_t
 
   function hipMallocManaged_r8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
@@ -8364,7 +8165,6 @@ contains
   end function hipMallocManaged_r8_2
 
   function hipMallocManaged_r8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
@@ -8389,7 +8189,6 @@ contains
   end function hipMallocManaged_r8_2_c_size_t
 
   function hipMallocManaged_r8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8415,7 +8214,6 @@ contains
   end function hipMallocManaged_r8_3
 
   function hipMallocManaged_r8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8441,7 +8239,6 @@ contains
   end function hipMallocManaged_r8_3_c_size_t
 
   function hipMallocManaged_r8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8468,7 +8265,6 @@ contains
   end function hipMallocManaged_r8_4
 
   function hipMallocManaged_r8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8495,7 +8291,6 @@ contains
   end function hipMallocManaged_r8_4_c_size_t
 
   function hipMallocManaged_r8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8523,7 +8318,6 @@ contains
   end function hipMallocManaged_r8_5
 
   function hipMallocManaged_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8551,7 +8345,6 @@ contains
   end function hipMallocManaged_r8_5_c_size_t
 
   function hipMallocManaged_r8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8580,7 +8373,6 @@ contains
   end function hipMallocManaged_r8_6
 
   function hipMallocManaged_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8609,7 +8401,6 @@ contains
   end function hipMallocManaged_r8_6_c_size_t
 
   function hipMallocManaged_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -8639,7 +8430,6 @@ contains
   end function hipMallocManaged_r8_7
 
   function hipMallocManaged_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -8669,7 +8459,6 @@ contains
   end function hipMallocManaged_r8_7_c_size_t
 
   function hipMallocManaged_c4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -8693,7 +8482,6 @@ contains
   end function hipMallocManaged_c4_1
 
   function hipMallocManaged_c4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -8717,7 +8505,6 @@ contains
   end function hipMallocManaged_c4_1_c_size_t
 
   function hipMallocManaged_c4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -8742,7 +8529,6 @@ contains
   end function hipMallocManaged_c4_2
 
   function hipMallocManaged_c4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -8767,7 +8553,6 @@ contains
   end function hipMallocManaged_c4_2_c_size_t
 
   function hipMallocManaged_c4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8793,7 +8578,6 @@ contains
   end function hipMallocManaged_c4_3
 
   function hipMallocManaged_c4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -8819,7 +8603,6 @@ contains
   end function hipMallocManaged_c4_3_c_size_t
 
   function hipMallocManaged_c4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8846,7 +8629,6 @@ contains
   end function hipMallocManaged_c4_4
 
   function hipMallocManaged_c4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -8873,7 +8655,6 @@ contains
   end function hipMallocManaged_c4_4_c_size_t
 
   function hipMallocManaged_c4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8901,7 +8682,6 @@ contains
   end function hipMallocManaged_c4_5
 
   function hipMallocManaged_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -8929,7 +8709,6 @@ contains
   end function hipMallocManaged_c4_5_c_size_t
 
   function hipMallocManaged_c4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8958,7 +8737,6 @@ contains
   end function hipMallocManaged_c4_6
 
   function hipMallocManaged_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -8987,7 +8765,6 @@ contains
   end function hipMallocManaged_c4_6_c_size_t
 
   function hipMallocManaged_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9017,7 +8794,6 @@ contains
   end function hipMallocManaged_c4_7
 
   function hipMallocManaged_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9047,7 +8823,6 @@ contains
   end function hipMallocManaged_c4_7_c_size_t
 
   function hipMallocManaged_c8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -9071,7 +8846,6 @@ contains
   end function hipMallocManaged_c8_1
 
   function hipMallocManaged_c8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -9095,7 +8869,6 @@ contains
   end function hipMallocManaged_c8_1_c_size_t
 
   function hipMallocManaged_c8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -9120,7 +8893,6 @@ contains
   end function hipMallocManaged_c8_2
 
   function hipMallocManaged_c8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -9145,7 +8917,6 @@ contains
   end function hipMallocManaged_c8_2_c_size_t
 
   function hipMallocManaged_c8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -9171,7 +8942,6 @@ contains
   end function hipMallocManaged_c8_3
 
   function hipMallocManaged_c8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -9197,7 +8967,6 @@ contains
   end function hipMallocManaged_c8_3_c_size_t
 
   function hipMallocManaged_c8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -9224,7 +8993,6 @@ contains
   end function hipMallocManaged_c8_4
 
   function hipMallocManaged_c8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -9251,7 +9019,6 @@ contains
   end function hipMallocManaged_c8_4_c_size_t
 
   function hipMallocManaged_c8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -9279,7 +9046,6 @@ contains
   end function hipMallocManaged_c8_5
 
   function hipMallocManaged_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -9307,7 +9073,6 @@ contains
   end function hipMallocManaged_c8_5_c_size_t
 
   function hipMallocManaged_c8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -9336,7 +9101,6 @@ contains
   end function hipMallocManaged_c8_6
 
   function hipMallocManaged_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -9365,7 +9129,6 @@ contains
   end function hipMallocManaged_c8_6_c_size_t
 
   function hipMallocManaged_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9395,7 +9158,6 @@ contains
   end function hipMallocManaged_c8_7
 
   function hipMallocManaged_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9425,7 +9187,6 @@ contains
   end function hipMallocManaged_c8_7_c_size_t
 
   function hipMallocManaged_l_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
@@ -9449,7 +9210,6 @@ contains
   end function hipMallocManaged_l_1
 
   function hipMallocManaged_l_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
@@ -9473,7 +9233,6 @@ contains
   end function hipMallocManaged_l_1_c_size_t
 
   function hipMallocManaged_l_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
@@ -9498,7 +9257,6 @@ contains
   end function hipMallocManaged_l_2
 
   function hipMallocManaged_l_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
@@ -9523,7 +9281,6 @@ contains
   end function hipMallocManaged_l_2_c_size_t
 
   function hipMallocManaged_l_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -9549,7 +9306,6 @@ contains
   end function hipMallocManaged_l_3
 
   function hipMallocManaged_l_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -9575,7 +9331,6 @@ contains
   end function hipMallocManaged_l_3_c_size_t
 
   function hipMallocManaged_l_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -9602,7 +9357,6 @@ contains
   end function hipMallocManaged_l_4
 
   function hipMallocManaged_l_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -9629,7 +9383,6 @@ contains
   end function hipMallocManaged_l_4_c_size_t
 
   function hipMallocManaged_l_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -9657,7 +9410,6 @@ contains
   end function hipMallocManaged_l_5
 
   function hipMallocManaged_l_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -9685,7 +9437,6 @@ contains
   end function hipMallocManaged_l_5_c_size_t
 
   function hipMallocManaged_l_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -9714,7 +9465,6 @@ contains
   end function hipMallocManaged_l_6
 
   function hipMallocManaged_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -9743,7 +9493,6 @@ contains
   end function hipMallocManaged_l_6_c_size_t
 
   function hipMallocManaged_l_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9773,7 +9522,6 @@ contains
   end function hipMallocManaged_l_7
 
   function hipMallocManaged_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemAttachGlobal
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -9803,7 +9551,6 @@ contains
   end function hipMallocManaged_l_7_c_size_t
 
   function hipMallocManaged_i4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -9845,7 +9592,6 @@ contains
   end function hipMallocManaged_i4_0_source
 
   function hipMallocManaged_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -9923,7 +9669,6 @@ contains
   end function hipMallocManaged_i4_1_source
 
   function hipMallocManaged_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10001,7 +9746,6 @@ contains
   end function hipMallocManaged_i4_2_source
 
   function hipMallocManaged_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10079,7 +9823,6 @@ contains
   end function hipMallocManaged_i4_3_source
 
   function hipMallocManaged_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10157,7 +9900,6 @@ contains
   end function hipMallocManaged_i4_4_source
 
   function hipMallocManaged_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10235,7 +9977,6 @@ contains
   end function hipMallocManaged_i4_5_source
 
   function hipMallocManaged_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10318,7 +10059,6 @@ contains
   end function hipMallocManaged_i4_6_source
 
   function hipMallocManaged_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10414,7 +10154,6 @@ contains
   end function hipMallocManaged_i4_7_source
 
   function hipMallocManaged_i8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10456,7 +10195,6 @@ contains
   end function hipMallocManaged_i8_0_source
 
   function hipMallocManaged_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10534,7 +10272,6 @@ contains
   end function hipMallocManaged_i8_1_source
 
   function hipMallocManaged_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10612,7 +10349,6 @@ contains
   end function hipMallocManaged_i8_2_source
 
   function hipMallocManaged_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10690,7 +10426,6 @@ contains
   end function hipMallocManaged_i8_3_source
 
   function hipMallocManaged_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10768,7 +10503,6 @@ contains
   end function hipMallocManaged_i8_4_source
 
   function hipMallocManaged_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10846,7 +10580,6 @@ contains
   end function hipMallocManaged_i8_5_source
 
   function hipMallocManaged_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -10929,7 +10662,6 @@ contains
   end function hipMallocManaged_i8_6_source
 
   function hipMallocManaged_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11025,7 +10757,6 @@ contains
   end function hipMallocManaged_i8_7_source
 
   function hipMallocManaged_r4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11067,7 +10798,6 @@ contains
   end function hipMallocManaged_r4_0_source
 
   function hipMallocManaged_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11145,7 +10875,6 @@ contains
   end function hipMallocManaged_r4_1_source
 
   function hipMallocManaged_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11223,7 +10952,6 @@ contains
   end function hipMallocManaged_r4_2_source
 
   function hipMallocManaged_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11301,7 +11029,6 @@ contains
   end function hipMallocManaged_r4_3_source
 
   function hipMallocManaged_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11379,7 +11106,6 @@ contains
   end function hipMallocManaged_r4_4_source
 
   function hipMallocManaged_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11457,7 +11183,6 @@ contains
   end function hipMallocManaged_r4_5_source
 
   function hipMallocManaged_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11540,7 +11265,6 @@ contains
   end function hipMallocManaged_r4_6_source
 
   function hipMallocManaged_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11636,7 +11360,6 @@ contains
   end function hipMallocManaged_r4_7_source
 
   function hipMallocManaged_r8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11678,7 +11401,6 @@ contains
   end function hipMallocManaged_r8_0_source
 
   function hipMallocManaged_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11756,7 +11478,6 @@ contains
   end function hipMallocManaged_r8_1_source
 
   function hipMallocManaged_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11834,7 +11555,6 @@ contains
   end function hipMallocManaged_r8_2_source
 
   function hipMallocManaged_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11912,7 +11632,6 @@ contains
   end function hipMallocManaged_r8_3_source
 
   function hipMallocManaged_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -11990,7 +11709,6 @@ contains
   end function hipMallocManaged_r8_4_source
 
   function hipMallocManaged_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12068,7 +11786,6 @@ contains
   end function hipMallocManaged_r8_5_source
 
   function hipMallocManaged_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12151,7 +11868,6 @@ contains
   end function hipMallocManaged_r8_6_source
 
   function hipMallocManaged_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12247,7 +11963,6 @@ contains
   end function hipMallocManaged_r8_7_source
 
   function hipMallocManaged_c4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12289,7 +12004,6 @@ contains
   end function hipMallocManaged_c4_0_source
 
   function hipMallocManaged_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12367,7 +12081,6 @@ contains
   end function hipMallocManaged_c4_1_source
 
   function hipMallocManaged_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12445,7 +12158,6 @@ contains
   end function hipMallocManaged_c4_2_source
 
   function hipMallocManaged_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12523,7 +12235,6 @@ contains
   end function hipMallocManaged_c4_3_source
 
   function hipMallocManaged_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12601,7 +12312,6 @@ contains
   end function hipMallocManaged_c4_4_source
 
   function hipMallocManaged_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12679,7 +12389,6 @@ contains
   end function hipMallocManaged_c4_5_source
 
   function hipMallocManaged_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12762,7 +12471,6 @@ contains
   end function hipMallocManaged_c4_6_source
 
   function hipMallocManaged_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12858,7 +12566,6 @@ contains
   end function hipMallocManaged_c4_7_source
 
   function hipMallocManaged_c8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12900,7 +12607,6 @@ contains
   end function hipMallocManaged_c8_0_source
 
   function hipMallocManaged_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -12978,7 +12684,6 @@ contains
   end function hipMallocManaged_c8_1_source
 
   function hipMallocManaged_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13056,7 +12761,6 @@ contains
   end function hipMallocManaged_c8_2_source
 
   function hipMallocManaged_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13134,7 +12838,6 @@ contains
   end function hipMallocManaged_c8_3_source
 
   function hipMallocManaged_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13212,7 +12915,6 @@ contains
   end function hipMallocManaged_c8_4_source
 
   function hipMallocManaged_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13290,7 +12992,6 @@ contains
   end function hipMallocManaged_c8_5_source
 
   function hipMallocManaged_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13373,7 +13074,6 @@ contains
   end function hipMallocManaged_c8_6_source
 
   function hipMallocManaged_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13469,7 +13169,6 @@ contains
   end function hipMallocManaged_c8_7_source
 
   function hipMallocManaged_l_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13511,7 +13210,6 @@ contains
   end function hipMallocManaged_l_0_source
 
   function hipMallocManaged_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13589,7 +13287,6 @@ contains
   end function hipMallocManaged_l_1_source
 
   function hipMallocManaged_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13667,7 +13364,6 @@ contains
   end function hipMallocManaged_l_2_source
 
   function hipMallocManaged_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13745,7 +13441,6 @@ contains
   end function hipMallocManaged_l_3_source
 
   function hipMallocManaged_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13823,7 +13518,6 @@ contains
   end function hipMallocManaged_l_4_source
 
   function hipMallocManaged_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13901,7 +13595,6 @@ contains
   end function hipMallocManaged_l_5_source
 
   function hipMallocManaged_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -13984,7 +13677,6 @@ contains
   end function hipMallocManaged_l_6_source
 
   function hipMallocManaged_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -14080,7 +13772,6 @@ contains
   end function hipMallocManaged_l_7_source
 
   function hipHostMalloc_i4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
@@ -14104,7 +13795,6 @@ contains
   end function hipHostMalloc_i4_1
 
   function hipHostMalloc_i4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
@@ -14128,7 +13818,6 @@ contains
   end function hipHostMalloc_i4_1_c_size_t
 
   function hipHostMalloc_i4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14153,7 +13842,6 @@ contains
   end function hipHostMalloc_i4_2
 
   function hipHostMalloc_i4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14178,7 +13866,6 @@ contains
   end function hipHostMalloc_i4_2_c_size_t
 
   function hipHostMalloc_i4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14204,7 +13891,6 @@ contains
   end function hipHostMalloc_i4_3
 
   function hipHostMalloc_i4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14230,7 +13916,6 @@ contains
   end function hipHostMalloc_i4_3_c_size_t
 
   function hipHostMalloc_i4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -14257,7 +13942,6 @@ contains
   end function hipHostMalloc_i4_4
 
   function hipHostMalloc_i4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -14284,7 +13968,6 @@ contains
   end function hipHostMalloc_i4_4_c_size_t
 
   function hipHostMalloc_i4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -14312,7 +13995,6 @@ contains
   end function hipHostMalloc_i4_5
 
   function hipHostMalloc_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -14340,7 +14022,6 @@ contains
   end function hipHostMalloc_i4_5_c_size_t
 
   function hipHostMalloc_i4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -14369,7 +14050,6 @@ contains
   end function hipHostMalloc_i4_6
 
   function hipHostMalloc_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -14398,7 +14078,6 @@ contains
   end function hipHostMalloc_i4_6_c_size_t
 
   function hipHostMalloc_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -14428,7 +14107,6 @@ contains
   end function hipHostMalloc_i4_7
 
   function hipHostMalloc_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -14458,7 +14136,6 @@ contains
   end function hipHostMalloc_i4_7_c_size_t
 
   function hipHostMalloc_i8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
@@ -14482,7 +14159,6 @@ contains
   end function hipHostMalloc_i8_1
 
   function hipHostMalloc_i8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
@@ -14506,7 +14182,6 @@ contains
   end function hipHostMalloc_i8_1_c_size_t
 
   function hipHostMalloc_i8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14531,7 +14206,6 @@ contains
   end function hipHostMalloc_i8_2
 
   function hipHostMalloc_i8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14556,7 +14230,6 @@ contains
   end function hipHostMalloc_i8_2_c_size_t
 
   function hipHostMalloc_i8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14582,7 +14255,6 @@ contains
   end function hipHostMalloc_i8_3
 
   function hipHostMalloc_i8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14608,7 +14280,6 @@ contains
   end function hipHostMalloc_i8_3_c_size_t
 
   function hipHostMalloc_i8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -14635,7 +14306,6 @@ contains
   end function hipHostMalloc_i8_4
 
   function hipHostMalloc_i8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -14662,7 +14332,6 @@ contains
   end function hipHostMalloc_i8_4_c_size_t
 
   function hipHostMalloc_i8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -14690,7 +14359,6 @@ contains
   end function hipHostMalloc_i8_5
 
   function hipHostMalloc_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -14718,7 +14386,6 @@ contains
   end function hipHostMalloc_i8_5_c_size_t
 
   function hipHostMalloc_i8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -14747,7 +14414,6 @@ contains
   end function hipHostMalloc_i8_6
 
   function hipHostMalloc_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -14776,7 +14442,6 @@ contains
   end function hipHostMalloc_i8_6_c_size_t
 
   function hipHostMalloc_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -14806,7 +14471,6 @@ contains
   end function hipHostMalloc_i8_7
 
   function hipHostMalloc_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -14836,7 +14500,6 @@ contains
   end function hipHostMalloc_i8_7_c_size_t
 
   function hipHostMalloc_r4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
@@ -14860,7 +14523,6 @@ contains
   end function hipHostMalloc_r4_1
 
   function hipHostMalloc_r4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
@@ -14884,7 +14546,6 @@ contains
   end function hipHostMalloc_r4_1_c_size_t
 
   function hipHostMalloc_r4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14909,7 +14570,6 @@ contains
   end function hipHostMalloc_r4_2
 
   function hipHostMalloc_r4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
@@ -14934,7 +14594,6 @@ contains
   end function hipHostMalloc_r4_2_c_size_t
 
   function hipHostMalloc_r4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14960,7 +14619,6 @@ contains
   end function hipHostMalloc_r4_3
 
   function hipHostMalloc_r4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -14986,7 +14644,6 @@ contains
   end function hipHostMalloc_r4_3_c_size_t
 
   function hipHostMalloc_r4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15013,7 +14670,6 @@ contains
   end function hipHostMalloc_r4_4
 
   function hipHostMalloc_r4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15040,7 +14696,6 @@ contains
   end function hipHostMalloc_r4_4_c_size_t
 
   function hipHostMalloc_r4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15068,7 +14723,6 @@ contains
   end function hipHostMalloc_r4_5
 
   function hipHostMalloc_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15096,7 +14750,6 @@ contains
   end function hipHostMalloc_r4_5_c_size_t
 
   function hipHostMalloc_r4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15125,7 +14778,6 @@ contains
   end function hipHostMalloc_r4_6
 
   function hipHostMalloc_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15154,7 +14806,6 @@ contains
   end function hipHostMalloc_r4_6_c_size_t
 
   function hipHostMalloc_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15184,7 +14835,6 @@ contains
   end function hipHostMalloc_r4_7
 
   function hipHostMalloc_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15214,7 +14864,6 @@ contains
   end function hipHostMalloc_r4_7_c_size_t
 
   function hipHostMalloc_r8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
@@ -15238,7 +14887,6 @@ contains
   end function hipHostMalloc_r8_1
 
   function hipHostMalloc_r8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
@@ -15262,7 +14910,6 @@ contains
   end function hipHostMalloc_r8_1_c_size_t
 
   function hipHostMalloc_r8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
@@ -15287,7 +14934,6 @@ contains
   end function hipHostMalloc_r8_2
 
   function hipHostMalloc_r8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
@@ -15312,7 +14958,6 @@ contains
   end function hipHostMalloc_r8_2_c_size_t
 
   function hipHostMalloc_r8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -15338,7 +14983,6 @@ contains
   end function hipHostMalloc_r8_3
 
   function hipHostMalloc_r8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -15364,7 +15008,6 @@ contains
   end function hipHostMalloc_r8_3_c_size_t
 
   function hipHostMalloc_r8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15391,7 +15034,6 @@ contains
   end function hipHostMalloc_r8_4
 
   function hipHostMalloc_r8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15418,7 +15060,6 @@ contains
   end function hipHostMalloc_r8_4_c_size_t
 
   function hipHostMalloc_r8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15446,7 +15087,6 @@ contains
   end function hipHostMalloc_r8_5
 
   function hipHostMalloc_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15474,7 +15114,6 @@ contains
   end function hipHostMalloc_r8_5_c_size_t
 
   function hipHostMalloc_r8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15503,7 +15142,6 @@ contains
   end function hipHostMalloc_r8_6
 
   function hipHostMalloc_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15532,7 +15170,6 @@ contains
   end function hipHostMalloc_r8_6_c_size_t
 
   function hipHostMalloc_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15562,7 +15199,6 @@ contains
   end function hipHostMalloc_r8_7
 
   function hipHostMalloc_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15592,7 +15228,6 @@ contains
   end function hipHostMalloc_r8_7_c_size_t
 
   function hipHostMalloc_c4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -15616,7 +15251,6 @@ contains
   end function hipHostMalloc_c4_1
 
   function hipHostMalloc_c4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -15640,7 +15274,6 @@ contains
   end function hipHostMalloc_c4_1_c_size_t
 
   function hipHostMalloc_c4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -15665,7 +15298,6 @@ contains
   end function hipHostMalloc_c4_2
 
   function hipHostMalloc_c4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -15690,7 +15322,6 @@ contains
   end function hipHostMalloc_c4_2_c_size_t
 
   function hipHostMalloc_c4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -15716,7 +15347,6 @@ contains
   end function hipHostMalloc_c4_3
 
   function hipHostMalloc_c4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -15742,7 +15372,6 @@ contains
   end function hipHostMalloc_c4_3_c_size_t
 
   function hipHostMalloc_c4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15769,7 +15398,6 @@ contains
   end function hipHostMalloc_c4_4
 
   function hipHostMalloc_c4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -15796,7 +15424,6 @@ contains
   end function hipHostMalloc_c4_4_c_size_t
 
   function hipHostMalloc_c4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15824,7 +15451,6 @@ contains
   end function hipHostMalloc_c4_5
 
   function hipHostMalloc_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -15852,7 +15478,6 @@ contains
   end function hipHostMalloc_c4_5_c_size_t
 
   function hipHostMalloc_c4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15881,7 +15506,6 @@ contains
   end function hipHostMalloc_c4_6
 
   function hipHostMalloc_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -15910,7 +15534,6 @@ contains
   end function hipHostMalloc_c4_6_c_size_t
 
   function hipHostMalloc_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15940,7 +15563,6 @@ contains
   end function hipHostMalloc_c4_7
 
   function hipHostMalloc_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -15970,7 +15592,6 @@ contains
   end function hipHostMalloc_c4_7_c_size_t
 
   function hipHostMalloc_c8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -15994,7 +15615,6 @@ contains
   end function hipHostMalloc_c8_1
 
   function hipHostMalloc_c8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
@@ -16018,7 +15638,6 @@ contains
   end function hipHostMalloc_c8_1_c_size_t
 
   function hipHostMalloc_c8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -16043,7 +15662,6 @@ contains
   end function hipHostMalloc_c8_2
 
   function hipHostMalloc_c8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
@@ -16068,7 +15686,6 @@ contains
   end function hipHostMalloc_c8_2_c_size_t
 
   function hipHostMalloc_c8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -16094,7 +15711,6 @@ contains
   end function hipHostMalloc_c8_3
 
   function hipHostMalloc_c8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -16120,7 +15736,6 @@ contains
   end function hipHostMalloc_c8_3_c_size_t
 
   function hipHostMalloc_c8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -16147,7 +15762,6 @@ contains
   end function hipHostMalloc_c8_4
 
   function hipHostMalloc_c8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -16174,7 +15788,6 @@ contains
   end function hipHostMalloc_c8_4_c_size_t
 
   function hipHostMalloc_c8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -16202,7 +15815,6 @@ contains
   end function hipHostMalloc_c8_5
 
   function hipHostMalloc_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -16230,7 +15842,6 @@ contains
   end function hipHostMalloc_c8_5_c_size_t
 
   function hipHostMalloc_c8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -16259,7 +15870,6 @@ contains
   end function hipHostMalloc_c8_6
 
   function hipHostMalloc_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -16288,7 +15898,6 @@ contains
   end function hipHostMalloc_c8_6_c_size_t
 
   function hipHostMalloc_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -16318,7 +15927,6 @@ contains
   end function hipHostMalloc_c8_7
 
   function hipHostMalloc_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -16348,7 +15956,6 @@ contains
   end function hipHostMalloc_c8_7_c_size_t
 
   function hipHostMalloc_l_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
@@ -16372,7 +15979,6 @@ contains
   end function hipHostMalloc_l_1
 
   function hipHostMalloc_l_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
@@ -16396,7 +16002,6 @@ contains
   end function hipHostMalloc_l_1_c_size_t
 
   function hipHostMalloc_l_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
@@ -16421,7 +16026,6 @@ contains
   end function hipHostMalloc_l_2
 
   function hipHostMalloc_l_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
@@ -16446,7 +16050,6 @@ contains
   end function hipHostMalloc_l_2_c_size_t
 
   function hipHostMalloc_l_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -16472,7 +16075,6 @@ contains
   end function hipHostMalloc_l_3
 
   function hipHostMalloc_l_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
@@ -16498,7 +16100,6 @@ contains
   end function hipHostMalloc_l_3_c_size_t
 
   function hipHostMalloc_l_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -16525,7 +16126,6 @@ contains
   end function hipHostMalloc_l_4
 
   function hipHostMalloc_l_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
@@ -16552,7 +16152,6 @@ contains
   end function hipHostMalloc_l_4_c_size_t
 
   function hipHostMalloc_l_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -16580,7 +16179,6 @@ contains
   end function hipHostMalloc_l_5
 
   function hipHostMalloc_l_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
@@ -16608,7 +16206,6 @@ contains
   end function hipHostMalloc_l_5_c_size_t
 
   function hipHostMalloc_l_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -16637,7 +16234,6 @@ contains
   end function hipHostMalloc_l_6
 
   function hipHostMalloc_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
@@ -16666,7 +16262,6 @@ contains
   end function hipHostMalloc_l_6_c_size_t
 
   function hipHostMalloc_l_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -16696,7 +16291,6 @@ contains
   end function hipHostMalloc_l_7
 
   function hipHostMalloc_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipHostMallocDefault
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
@@ -16726,7 +16320,6 @@ contains
   end function hipHostMalloc_l_7_c_size_t
 
   function hipHostMalloc_i4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -16768,7 +16361,6 @@ contains
   end function hipHostMalloc_i4_0_source
 
   function hipHostMalloc_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -16846,7 +16438,6 @@ contains
   end function hipHostMalloc_i4_1_source
 
   function hipHostMalloc_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -16924,7 +16515,6 @@ contains
   end function hipHostMalloc_i4_2_source
 
   function hipHostMalloc_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17002,7 +16592,6 @@ contains
   end function hipHostMalloc_i4_3_source
 
   function hipHostMalloc_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17080,7 +16669,6 @@ contains
   end function hipHostMalloc_i4_4_source
 
   function hipHostMalloc_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17158,7 +16746,6 @@ contains
   end function hipHostMalloc_i4_5_source
 
   function hipHostMalloc_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17241,7 +16828,6 @@ contains
   end function hipHostMalloc_i4_6_source
 
   function hipHostMalloc_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17337,7 +16923,6 @@ contains
   end function hipHostMalloc_i4_7_source
 
   function hipHostMalloc_i8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17379,7 +16964,6 @@ contains
   end function hipHostMalloc_i8_0_source
 
   function hipHostMalloc_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17457,7 +17041,6 @@ contains
   end function hipHostMalloc_i8_1_source
 
   function hipHostMalloc_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17535,7 +17118,6 @@ contains
   end function hipHostMalloc_i8_2_source
 
   function hipHostMalloc_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17613,7 +17195,6 @@ contains
   end function hipHostMalloc_i8_3_source
 
   function hipHostMalloc_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17691,7 +17272,6 @@ contains
   end function hipHostMalloc_i8_4_source
 
   function hipHostMalloc_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17769,7 +17349,6 @@ contains
   end function hipHostMalloc_i8_5_source
 
   function hipHostMalloc_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17852,7 +17431,6 @@ contains
   end function hipHostMalloc_i8_6_source
 
   function hipHostMalloc_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17948,7 +17526,6 @@ contains
   end function hipHostMalloc_i8_7_source
 
   function hipHostMalloc_r4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -17990,7 +17567,6 @@ contains
   end function hipHostMalloc_r4_0_source
 
   function hipHostMalloc_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18068,7 +17644,6 @@ contains
   end function hipHostMalloc_r4_1_source
 
   function hipHostMalloc_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18146,7 +17721,6 @@ contains
   end function hipHostMalloc_r4_2_source
 
   function hipHostMalloc_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18224,7 +17798,6 @@ contains
   end function hipHostMalloc_r4_3_source
 
   function hipHostMalloc_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18302,7 +17875,6 @@ contains
   end function hipHostMalloc_r4_4_source
 
   function hipHostMalloc_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18380,7 +17952,6 @@ contains
   end function hipHostMalloc_r4_5_source
 
   function hipHostMalloc_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18463,7 +18034,6 @@ contains
   end function hipHostMalloc_r4_6_source
 
   function hipHostMalloc_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18559,7 +18129,6 @@ contains
   end function hipHostMalloc_r4_7_source
 
   function hipHostMalloc_r8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18601,7 +18170,6 @@ contains
   end function hipHostMalloc_r8_0_source
 
   function hipHostMalloc_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18679,7 +18247,6 @@ contains
   end function hipHostMalloc_r8_1_source
 
   function hipHostMalloc_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18757,7 +18324,6 @@ contains
   end function hipHostMalloc_r8_2_source
 
   function hipHostMalloc_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18835,7 +18401,6 @@ contains
   end function hipHostMalloc_r8_3_source
 
   function hipHostMalloc_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18913,7 +18478,6 @@ contains
   end function hipHostMalloc_r8_4_source
 
   function hipHostMalloc_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -18991,7 +18555,6 @@ contains
   end function hipHostMalloc_r8_5_source
 
   function hipHostMalloc_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19074,7 +18637,6 @@ contains
   end function hipHostMalloc_r8_6_source
 
   function hipHostMalloc_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19170,7 +18732,6 @@ contains
   end function hipHostMalloc_r8_7_source
 
   function hipHostMalloc_c4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19212,7 +18773,6 @@ contains
   end function hipHostMalloc_c4_0_source
 
   function hipHostMalloc_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19290,7 +18850,6 @@ contains
   end function hipHostMalloc_c4_1_source
 
   function hipHostMalloc_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19368,7 +18927,6 @@ contains
   end function hipHostMalloc_c4_2_source
 
   function hipHostMalloc_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19446,7 +19004,6 @@ contains
   end function hipHostMalloc_c4_3_source
 
   function hipHostMalloc_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19524,7 +19081,6 @@ contains
   end function hipHostMalloc_c4_4_source
 
   function hipHostMalloc_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19602,7 +19158,6 @@ contains
   end function hipHostMalloc_c4_5_source
 
   function hipHostMalloc_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19685,7 +19240,6 @@ contains
   end function hipHostMalloc_c4_6_source
 
   function hipHostMalloc_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19781,7 +19335,6 @@ contains
   end function hipHostMalloc_c4_7_source
 
   function hipHostMalloc_c8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19823,7 +19376,6 @@ contains
   end function hipHostMalloc_c8_0_source
 
   function hipHostMalloc_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19901,7 +19453,6 @@ contains
   end function hipHostMalloc_c8_1_source
 
   function hipHostMalloc_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -19979,7 +19530,6 @@ contains
   end function hipHostMalloc_c8_2_source
 
   function hipHostMalloc_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20057,7 +19607,6 @@ contains
   end function hipHostMalloc_c8_3_source
 
   function hipHostMalloc_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20135,7 +19684,6 @@ contains
   end function hipHostMalloc_c8_4_source
 
   function hipHostMalloc_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20213,7 +19761,6 @@ contains
   end function hipHostMalloc_c8_5_source
 
   function hipHostMalloc_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20296,7 +19843,6 @@ contains
   end function hipHostMalloc_c8_6_source
 
   function hipHostMalloc_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20392,7 +19938,6 @@ contains
   end function hipHostMalloc_c8_7_source
 
   function hipHostMalloc_l_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20434,7 +19979,6 @@ contains
   end function hipHostMalloc_l_0_source
 
   function hipHostMalloc_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20512,7 +20056,6 @@ contains
   end function hipHostMalloc_l_1_source
 
   function hipHostMalloc_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20590,7 +20133,6 @@ contains
   end function hipHostMalloc_l_2_source
 
   function hipHostMalloc_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20668,7 +20210,6 @@ contains
   end function hipHostMalloc_l_3_source
 
   function hipHostMalloc_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20746,7 +20287,6 @@ contains
   end function hipHostMalloc_l_4_source
 
   function hipHostMalloc_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20824,7 +20364,6 @@ contains
   end function hipHostMalloc_l_5_source
 
   function hipHostMalloc_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -20907,7 +20446,6 @@ contains
   end function hipHostMalloc_l_6_source
 
   function hipHostMalloc_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToHost, hipMemcpyDeviceToHost
     use hipfort_hipmemcpy, only: hipMemcpy
     implicit none
@@ -21003,7 +20541,6 @@ contains
   end function hipHostMalloc_l_7_source
 
   function hipFree_i4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21021,7 +20558,6 @@ contains
   end function hipFree_i4_0
 
   function hipFree_i4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21039,7 +20575,6 @@ contains
   end function hipFree_i4_1
 
   function hipFree_i4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21057,7 +20592,6 @@ contains
   end function hipFree_i4_2
 
   function hipFree_i4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21075,7 +20609,6 @@ contains
   end function hipFree_i4_3
 
   function hipFree_i4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21093,7 +20626,6 @@ contains
   end function hipFree_i4_4
 
   function hipFree_i4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21111,7 +20643,6 @@ contains
   end function hipFree_i4_5
 
   function hipFree_i4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21129,7 +20660,6 @@ contains
   end function hipFree_i4_6
 
   function hipFree_i4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21147,7 +20677,6 @@ contains
   end function hipFree_i4_7
 
   function hipFree_i8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21165,7 +20694,6 @@ contains
   end function hipFree_i8_0
 
   function hipFree_i8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21183,7 +20711,6 @@ contains
   end function hipFree_i8_1
 
   function hipFree_i8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21201,7 +20728,6 @@ contains
   end function hipFree_i8_2
 
   function hipFree_i8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21219,7 +20745,6 @@ contains
   end function hipFree_i8_3
 
   function hipFree_i8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21237,7 +20762,6 @@ contains
   end function hipFree_i8_4
 
   function hipFree_i8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21255,7 +20779,6 @@ contains
   end function hipFree_i8_5
 
   function hipFree_i8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21273,7 +20796,6 @@ contains
   end function hipFree_i8_6
 
   function hipFree_i8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21291,7 +20813,6 @@ contains
   end function hipFree_i8_7
 
   function hipFree_r4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21309,7 +20830,6 @@ contains
   end function hipFree_r4_0
 
   function hipFree_r4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21327,7 +20847,6 @@ contains
   end function hipFree_r4_1
 
   function hipFree_r4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21345,7 +20864,6 @@ contains
   end function hipFree_r4_2
 
   function hipFree_r4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21363,7 +20881,6 @@ contains
   end function hipFree_r4_3
 
   function hipFree_r4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21381,7 +20898,6 @@ contains
   end function hipFree_r4_4
 
   function hipFree_r4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21399,7 +20915,6 @@ contains
   end function hipFree_r4_5
 
   function hipFree_r4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21417,7 +20932,6 @@ contains
   end function hipFree_r4_6
 
   function hipFree_r4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21435,7 +20949,6 @@ contains
   end function hipFree_r4_7
 
   function hipFree_r8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21453,7 +20966,6 @@ contains
   end function hipFree_r8_0
 
   function hipFree_r8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21471,7 +20983,6 @@ contains
   end function hipFree_r8_1
 
   function hipFree_r8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21489,7 +21000,6 @@ contains
   end function hipFree_r8_2
 
   function hipFree_r8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21507,7 +21017,6 @@ contains
   end function hipFree_r8_3
 
   function hipFree_r8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21525,7 +21034,6 @@ contains
   end function hipFree_r8_4
 
   function hipFree_r8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21543,7 +21051,6 @@ contains
   end function hipFree_r8_5
 
   function hipFree_r8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21561,7 +21068,6 @@ contains
   end function hipFree_r8_6
 
   function hipFree_r8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21579,7 +21085,6 @@ contains
   end function hipFree_r8_7
 
   function hipFree_c4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21597,7 +21102,6 @@ contains
   end function hipFree_c4_0
 
   function hipFree_c4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21615,7 +21119,6 @@ contains
   end function hipFree_c4_1
 
   function hipFree_c4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21633,7 +21136,6 @@ contains
   end function hipFree_c4_2
 
   function hipFree_c4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21651,7 +21153,6 @@ contains
   end function hipFree_c4_3
 
   function hipFree_c4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21669,7 +21170,6 @@ contains
   end function hipFree_c4_4
 
   function hipFree_c4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21687,7 +21187,6 @@ contains
   end function hipFree_c4_5
 
   function hipFree_c4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21705,7 +21204,6 @@ contains
   end function hipFree_c4_6
 
   function hipFree_c4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21723,7 +21221,6 @@ contains
   end function hipFree_c4_7
 
   function hipFree_c8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21741,7 +21238,6 @@ contains
   end function hipFree_c8_0
 
   function hipFree_c8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21759,7 +21255,6 @@ contains
   end function hipFree_c8_1
 
   function hipFree_c8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21777,7 +21272,6 @@ contains
   end function hipFree_c8_2
 
   function hipFree_c8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21795,7 +21289,6 @@ contains
   end function hipFree_c8_3
 
   function hipFree_c8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21813,7 +21306,6 @@ contains
   end function hipFree_c8_4
 
   function hipFree_c8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21831,7 +21323,6 @@ contains
   end function hipFree_c8_5
 
   function hipFree_c8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21849,7 +21340,6 @@ contains
   end function hipFree_c8_6
 
   function hipFree_c8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21867,7 +21357,6 @@ contains
   end function hipFree_c8_7
 
   function hipFree_l_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21885,7 +21374,6 @@ contains
   end function hipFree_l_0
 
   function hipFree_l_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21903,7 +21391,6 @@ contains
   end function hipFree_l_1
 
   function hipFree_l_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21921,7 +21408,6 @@ contains
   end function hipFree_l_2
 
   function hipFree_l_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21939,7 +21425,6 @@ contains
   end function hipFree_l_3
 
   function hipFree_l_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21957,7 +21442,6 @@ contains
   end function hipFree_l_4
 
   function hipFree_l_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21975,7 +21459,6 @@ contains
   end function hipFree_l_5
 
   function hipFree_l_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -21993,7 +21476,6 @@ contains
   end function hipFree_l_6
 
   function hipFree_l_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22011,7 +21493,6 @@ contains
   end function hipFree_l_7
 
   function hipHostFree_i4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22029,7 +21510,6 @@ contains
   end function hipHostFree_i4_0
 
   function hipHostFree_i4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22047,7 +21527,6 @@ contains
   end function hipHostFree_i4_1
 
   function hipHostFree_i4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22065,7 +21544,6 @@ contains
   end function hipHostFree_i4_2
 
   function hipHostFree_i4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22083,7 +21561,6 @@ contains
   end function hipHostFree_i4_3
 
   function hipHostFree_i4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22101,7 +21578,6 @@ contains
   end function hipHostFree_i4_4
 
   function hipHostFree_i4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22119,7 +21595,6 @@ contains
   end function hipHostFree_i4_5
 
   function hipHostFree_i4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22137,7 +21612,6 @@ contains
   end function hipHostFree_i4_6
 
   function hipHostFree_i4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22155,7 +21629,6 @@ contains
   end function hipHostFree_i4_7
 
   function hipHostFree_i8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22173,7 +21646,6 @@ contains
   end function hipHostFree_i8_0
 
   function hipHostFree_i8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22191,7 +21663,6 @@ contains
   end function hipHostFree_i8_1
 
   function hipHostFree_i8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22209,7 +21680,6 @@ contains
   end function hipHostFree_i8_2
 
   function hipHostFree_i8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22227,7 +21697,6 @@ contains
   end function hipHostFree_i8_3
 
   function hipHostFree_i8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22245,7 +21714,6 @@ contains
   end function hipHostFree_i8_4
 
   function hipHostFree_i8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22263,7 +21731,6 @@ contains
   end function hipHostFree_i8_5
 
   function hipHostFree_i8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22281,7 +21748,6 @@ contains
   end function hipHostFree_i8_6
 
   function hipHostFree_i8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22299,7 +21765,6 @@ contains
   end function hipHostFree_i8_7
 
   function hipHostFree_r4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22317,7 +21782,6 @@ contains
   end function hipHostFree_r4_0
 
   function hipHostFree_r4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22335,7 +21799,6 @@ contains
   end function hipHostFree_r4_1
 
   function hipHostFree_r4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22353,7 +21816,6 @@ contains
   end function hipHostFree_r4_2
 
   function hipHostFree_r4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22371,7 +21833,6 @@ contains
   end function hipHostFree_r4_3
 
   function hipHostFree_r4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22389,7 +21850,6 @@ contains
   end function hipHostFree_r4_4
 
   function hipHostFree_r4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22407,7 +21867,6 @@ contains
   end function hipHostFree_r4_5
 
   function hipHostFree_r4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22425,7 +21884,6 @@ contains
   end function hipHostFree_r4_6
 
   function hipHostFree_r4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22443,7 +21901,6 @@ contains
   end function hipHostFree_r4_7
 
   function hipHostFree_r8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22461,7 +21918,6 @@ contains
   end function hipHostFree_r8_0
 
   function hipHostFree_r8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22479,7 +21935,6 @@ contains
   end function hipHostFree_r8_1
 
   function hipHostFree_r8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22497,7 +21952,6 @@ contains
   end function hipHostFree_r8_2
 
   function hipHostFree_r8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22515,7 +21969,6 @@ contains
   end function hipHostFree_r8_3
 
   function hipHostFree_r8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22533,7 +21986,6 @@ contains
   end function hipHostFree_r8_4
 
   function hipHostFree_r8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22551,7 +22003,6 @@ contains
   end function hipHostFree_r8_5
 
   function hipHostFree_r8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22569,7 +22020,6 @@ contains
   end function hipHostFree_r8_6
 
   function hipHostFree_r8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22587,7 +22037,6 @@ contains
   end function hipHostFree_r8_7
 
   function hipHostFree_c4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22605,7 +22054,6 @@ contains
   end function hipHostFree_c4_0
 
   function hipHostFree_c4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22623,7 +22071,6 @@ contains
   end function hipHostFree_c4_1
 
   function hipHostFree_c4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22641,7 +22088,6 @@ contains
   end function hipHostFree_c4_2
 
   function hipHostFree_c4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22659,7 +22105,6 @@ contains
   end function hipHostFree_c4_3
 
   function hipHostFree_c4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22677,7 +22122,6 @@ contains
   end function hipHostFree_c4_4
 
   function hipHostFree_c4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22695,7 +22139,6 @@ contains
   end function hipHostFree_c4_5
 
   function hipHostFree_c4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22713,7 +22156,6 @@ contains
   end function hipHostFree_c4_6
 
   function hipHostFree_c4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22731,7 +22173,6 @@ contains
   end function hipHostFree_c4_7
 
   function hipHostFree_c8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22749,7 +22190,6 @@ contains
   end function hipHostFree_c8_0
 
   function hipHostFree_c8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22767,7 +22207,6 @@ contains
   end function hipHostFree_c8_1
 
   function hipHostFree_c8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22785,7 +22224,6 @@ contains
   end function hipHostFree_c8_2
 
   function hipHostFree_c8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22803,7 +22241,6 @@ contains
   end function hipHostFree_c8_3
 
   function hipHostFree_c8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22821,7 +22258,6 @@ contains
   end function hipHostFree_c8_4
 
   function hipHostFree_c8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22839,7 +22275,6 @@ contains
   end function hipHostFree_c8_5
 
   function hipHostFree_c8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22857,7 +22292,6 @@ contains
   end function hipHostFree_c8_6
 
   function hipHostFree_c8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22875,7 +22309,6 @@ contains
   end function hipHostFree_c8_7
 
   function hipHostFree_l_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22893,7 +22326,6 @@ contains
   end function hipHostFree_l_0
 
   function hipHostFree_l_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22911,7 +22343,6 @@ contains
   end function hipHostFree_l_1
 
   function hipHostFree_l_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22929,7 +22360,6 @@ contains
   end function hipHostFree_l_2
 
   function hipHostFree_l_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22947,7 +22377,6 @@ contains
   end function hipHostFree_l_3
 
   function hipHostFree_l_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22965,7 +22394,6 @@ contains
   end function hipHostFree_l_4
 
   function hipHostFree_l_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -22983,7 +22411,6 @@ contains
   end function hipHostFree_l_5
 
   function hipHostFree_l_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -23001,7 +22428,6 @@ contains
   end function hipHostFree_l_6
 
   function hipHostFree_l_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
