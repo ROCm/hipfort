@@ -32,13 +32,16 @@ project(hipfort_find_package_consumer Fortran)
 
 find_package(hipfort REQUIRED)
 
-# The config must be found at the standard <prefix>/lib/cmake/hipfort — either the
-# real config (flat layout) or the shim that forwards to the toolchain-specific
-# one (multitoolchain layout). This is exactly what find_package resolves from a
-# plain -DCMAKE_PREFIX_PATH=<prefix>.
-if(NOT hipfort_CONFIG MATCHES "/lib/cmake/hipfort/hipfort-config.cmake$")
+# The config must be found at <prefix>/<libdir>/cmake/hipfort, <libdir> being the
+# platform's (lib, or lib64 on SUSE, RHEL and Fedora) — either the real config
+# (flat layout) or the shim that forwards to the toolchain-specific one
+# (multitoolchain layout). This is exactly what find_package resolves from a
+# plain -DCMAKE_PREFIX_PATH=<prefix>. HIPFORT_EXPECTED_CONFIG is that path.
+get_filename_component(_found "${hipfort_CONFIG}" REALPATH)
+get_filename_component(_expected "${HIPFORT_EXPECTED_CONFIG}" REALPATH)
+if(NOT _found STREQUAL _expected)
   message(FATAL_ERROR
-    "hipfort was found via '${hipfort_CONFIG}', but expected the standard "
-    "lib/cmake/hipfort location reachable from the install prefix.")
+    "hipfort was found via '${hipfort_CONFIG}', but expected "
+    "'${HIPFORT_EXPECTED_CONFIG}', reachable from the install prefix.")
 endif()
 message(STATUS "hipfort found from the install prefix: ${hipfort_CONFIG}")
