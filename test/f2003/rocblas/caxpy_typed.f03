@@ -93,7 +93,9 @@ program rocblas_caxpy_test_typed
     ! Verification
     do i = 1, N
         result = alpha * hx(i) + hz(i)
-        error = abs(hy(i) - result)
+        ! Relative: the GPU's fused multiply-add and the host's separate
+        ! multiply and add may round differently, by one ulp of y.
+        error = abs(hy(i) - result) / abs(result)
         if(error .gt. error_max) then
             write(*,*) "FAILED! Error bigger than max! Error = ", error, " hy(", i, ") = ", hy(i)
             call exit(1)

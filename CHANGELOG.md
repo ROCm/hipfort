@@ -97,6 +97,10 @@
   uses a module twice (ftn-878, which the standard allows: the modules re-export
   their enums). The `pointer_attributes` tests compare addresses in a way the
   Cray compiler accepts.
+* The `find_package` test looks for the installed `hipfort-config.cmake` under
+  the platform's libdir (`lib64` on SUSE, RHEL and Fedora), where it is
+  installed, rather than under `lib`. The rocBLAS `caxpy_typed` test compares
+  with a relative tolerance, which a fused multiply-add on the GPU meets.
 
 ## hipfort 0.10.0 for ROCm 10.1.0
 
