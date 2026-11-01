@@ -92,6 +92,11 @@
   and 2 instead of only compiling it, so nvfortran falls back to the per-rank
   interfaces with a warning.
 
+* The Cray compiler no longer warns that `hipfort_check` may use its status name
+  unallocated (ftn-7206), nor, when building hipfort and its tests, that a scope
+  uses a module twice (ftn-878, which the standard allows: the modules re-export
+  their enums).
+
 ## hipfort 0.10.0 for ROCm 10.1.0
 
 ### Added
