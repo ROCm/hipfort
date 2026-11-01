@@ -63,7 +63,7 @@ contains
       hipErrorRuntimeMemory, hipErrorRuntimeOther, hipErrorInvalidClusterSize, hipErrorTbd
     implicit none
     integer(kind(hipSuccess)) :: status
-    character(len=:), allocatable :: name
+    character(len=36) :: name
     if (status /= hipSuccess) then
       name = "unknown status"
       select case (status)
@@ -228,7 +228,7 @@ contains
       case (hipErrorTbd)
         name = "hipErrorTbd"
       end select
-      write (*, "(a,i0,a)") "HIP ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIP ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -248,7 +248,7 @@ contains
       HIPBLAS_STATUS_HANDLE_IS_NULLPTR, HIPBLAS_STATUS_INVALID_ENUM, HIPBLAS_STATUS_UNKNOWN
     implicit none
     integer(kind(HIPBLAS_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=32) :: name
     if (status /= HIPBLAS_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -275,7 +275,7 @@ contains
       case (HIPBLAS_STATUS_UNKNOWN)
         name = "HIPBLAS_STATUS_UNKNOWN"
       end select
-      write (*, "(a,i0,a)") "HIPBLAS ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIPBLAS ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -295,7 +295,7 @@ contains
       HIPFFT_NO_WORKSPACE, HIPFFT_NOT_IMPLEMENTED, HIPFFT_NOT_SUPPORTED
     implicit none
     integer(kind(HIPFFT_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=32) :: name
     if (status /= HIPFFT_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -330,7 +330,7 @@ contains
       case (HIPFFT_NOT_SUPPORTED)
         name = "HIPFFT_NOT_SUPPORTED"
       end select
-      write (*, "(a,i0,a)") "HIPFFT ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIPFFT ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -351,7 +351,7 @@ contains
       HIPRAND_STATUS_ARCH_MISMATCH, HIPRAND_STATUS_INTERNAL_ERROR, HIPRAND_STATUS_NOT_IMPLEMENTED
     implicit none
     integer(kind(HIPRAND_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=40) :: name
     if (status /= HIPRAND_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -382,7 +382,7 @@ contains
       case (HIPRAND_STATUS_NOT_IMPLEMENTED)
         name = "HIPRAND_STATUS_NOT_IMPLEMENTED"
       end select
-      write (*, "(a,i0,a)") "HIPRAND ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIPRAND ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -404,7 +404,7 @@ contains
       HIPSOLVER_STATUS_MATRIX_TYPE_NOT_SUPPORTED
     implicit none
     integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=42) :: name
     if (status /= HIPSOLVER_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -435,7 +435,7 @@ contains
       case (HIPSOLVER_STATUS_MATRIX_TYPE_NOT_SUPPORTED)
         name = "HIPSOLVER_STATUS_MATRIX_TYPE_NOT_SUPPORTED"
       end select
-      write (*, "(a,i0,a)") "HIPSOLVER ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIPSOLVER ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -456,7 +456,7 @@ contains
       HIPSPARSE_STATUS_NOT_SUPPORTED, HIPSPARSE_STATUS_INSUFFICIENT_RESOURCES
     implicit none
     integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=42) :: name
     if (status /= HIPSPARSE_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -483,7 +483,7 @@ contains
       case (HIPSPARSE_STATUS_INSUFFICIENT_RESOURCES)
         name = "HIPSPARSE_STATUS_INSUFFICIENT_RESOURCES"
       end select
-      write (*, "(a,i0,a)") "HIPSPARSE ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "HIPSPARSE ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -505,7 +505,7 @@ contains
       rocblas_status_arch_mismatch
     implicit none
     integer(kind(rocblas_status_success)) :: status
-    character(len=:), allocatable :: name
+    character(len=34) :: name
     if (status /= rocblas_status_success) then
       name = "unknown status"
       select case (status)
@@ -540,7 +540,7 @@ contains
       case (rocblas_status_arch_mismatch)
         name = "rocblas_status_arch_mismatch"
       end select
-      write (*, "(a,i0,a)") "ROCBLAS ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "ROCBLAS ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -560,7 +560,7 @@ contains
       rocfft_status_invalid_work_buffer
     implicit none
     integer(kind(rocfft_status_success)) :: status
-    character(len=:), allocatable :: name
+    character(len=33) :: name
     if (status /= rocfft_status_success) then
       name = "unknown status"
       select case (status)
@@ -581,7 +581,7 @@ contains
       case (rocfft_status_invalid_work_buffer)
         name = "rocfft_status_invalid_work_buffer"
       end select
-      write (*, "(a,i0,a)") "ROCFFT ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "ROCFFT ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -601,7 +601,7 @@ contains
       ROCRAND_STATUS_INTERNAL_ERROR
     implicit none
     integer(kind(ROCRAND_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=40) :: name
     if (status /= ROCRAND_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -624,7 +624,7 @@ contains
       case (ROCRAND_STATUS_INTERNAL_ERROR)
         name = "ROCRAND_STATUS_INTERNAL_ERROR"
       end select
-      write (*, "(a,i0,a)") "ROCRAND ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "ROCRAND ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -646,7 +646,7 @@ contains
       rocblas_status_arch_mismatch
     implicit none
     integer(kind(ROCBLAS_STATUS_SUCCESS)) :: status
-    character(len=:), allocatable :: name
+    character(len=34) :: name
     if (status /= ROCBLAS_STATUS_SUCCESS) then
       name = "unknown status"
       select case (status)
@@ -681,7 +681,7 @@ contains
       case (rocblas_status_arch_mismatch)
         name = "rocblas_status_arch_mismatch"
       end select
-      write (*, "(a,i0,a)") "ROCSOLVER ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "ROCSOLVER ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
@@ -704,7 +704,7 @@ contains
       rocsparse_status_continue
     implicit none
     integer(kind(rocsparse_status_success)) :: status
-    character(len=:), allocatable :: name
+    character(len=40) :: name
     if (status /= rocsparse_status_success) then
       name = "unknown status"
       select case (status)
@@ -737,7 +737,7 @@ contains
       case (rocsparse_status_continue)
         name = "rocsparse_status_continue"
       end select
-      write (*, "(a,i0,a)") "ROCSPARSE ERROR: " // name // " (code ", status, ")"
+      write (*, "(a,i0,a)") "ROCSPARSE ERROR: " // trim(name) // " (code ", status, ")"
 #endif
       stop 1
     end if
