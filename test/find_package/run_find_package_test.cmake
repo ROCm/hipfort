@@ -65,6 +65,7 @@ execute_process(
           -S "${CONSUMER_SRC}" -B "${WORK_DIR}/consumer"
           -DCMAKE_Fortran_COMPILER=${FORTRAN_COMPILER}
           -DCMAKE_PREFIX_PATH=${_prefix}
+          -DHIPFORT_EXPECTED_CONFIG=${_prefix}/${PLATFORM_LIBDIR}/cmake/hipfort/hipfort-config.cmake
   RESULT_VARIABLE _rc OUTPUT_VARIABLE _log ERROR_VARIABLE _log)
 message(STATUS "${_log}")
 if(NOT _rc EQUAL 0)
