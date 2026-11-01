@@ -1713,9 +1713,11 @@ if(BUILD_TESTING)
   if(CMAKE_HIP_COMPILER)
     enable_language(HIP)
     foreach(std IN ITEMS f2003 f2008)
-      # The f2008 interfaces are disabled on the Intel compilers, so skip the
-      # f2008 vecadd test there (see HIPFORT_USE_FPOINTER_INTERFACES in lib/CMakeLists.txt).
-      if(std STREQUAL "f2008" AND CMAKE_Fortran_COMPILER_ID MATCHES "Intel")
+      # The f2008 vecadd test needs the f2008 interfaces, which a C-binding
+      # build and the Intel compilers do not have (see
+      # HIPFORT_USE_FPOINTER_INTERFACES in lib/CMakeLists.txt).
+      if(std STREQUAL "f2008" AND (NOT HIPFORT_USE_FPOINTER_INTERFACES OR
+                                   CMAKE_Fortran_COMPILER_ID MATCHES "Intel"))
         continue()
       endif()
       # f2003 tests use .f03, f2008 tests use .f08 to match the target standard.
