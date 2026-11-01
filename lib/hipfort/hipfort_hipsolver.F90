@@ -33,8 +33,7 @@ module hipfort_hipsolver
 #else
     function hipsolverCreate_(handle) bind(c, name="hipsolverCreate")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCreate_
       type(c_ptr) :: handle
@@ -47,8 +46,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDestroy_(handle) bind(c, name="hipsolverDestroy")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDestroy_
       type(c_ptr),value :: handle
@@ -61,8 +59,7 @@ module hipfort_hipsolver
 #else
     function hipsolverSetStream_(handle,streamId) bind(c, name="hipsolverSetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSetStream_
       type(c_ptr),value :: handle
@@ -76,8 +73,7 @@ module hipfort_hipsolver
 #else
     function hipsolverGetStream_(handle,streamId) bind(c, name="hipsolverGetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverGetStream_
       type(c_ptr),value :: handle
@@ -93,8 +89,7 @@ module hipfort_hipsolver
     function hipsolverSetDeterministicMode_(handle,mode) &
         bind(c, name="hipsolverSetDeterministicMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSetDeterministicMode_
       type(c_ptr),value :: handle
@@ -110,8 +105,7 @@ module hipfort_hipsolver
     function hipsolverGetDeterministicMode_(handle,mode) &
         bind(c, name="hipsolverGetDeterministicMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverGetDeterministicMode_
       type(c_ptr),value :: handle
@@ -127,8 +121,7 @@ module hipfort_hipsolver
 #else
     function hipsolverCreateGesvdjInfo_(myInfo) bind(c, name="hipsolverCreateGesvdjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCreateGesvdjInfo_
       type(c_ptr) :: myInfo
@@ -141,8 +134,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDestroyGesvdjInfo_(myInfo) bind(c, name="hipsolverDestroyGesvdjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDestroyGesvdjInfo_
       type(c_ptr),value :: myInfo
@@ -157,8 +149,7 @@ module hipfort_hipsolver
     function hipsolverXgesvdjSetMaxSweeps_(myInfo,max_sweeps) &
         bind(c, name="hipsolverXgesvdjSetMaxSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXgesvdjSetMaxSweeps_
       type(c_ptr),value :: myInfo
@@ -173,8 +164,7 @@ module hipfort_hipsolver
 #else
     function hipsolverXgesvdjSetSortEig_(myInfo,sort_eig) bind(c, name="hipsolverXgesvdjSetSortEig")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXgesvdjSetSortEig_
       type(c_ptr),value :: myInfo
@@ -190,8 +180,7 @@ module hipfort_hipsolver
     function hipsolverXgesvdjSetTolerance_(myInfo,tolerance) &
         bind(c, name="hipsolverXgesvdjSetTolerance")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXgesvdjSetTolerance_
       type(c_ptr),value :: myInfo
@@ -207,8 +196,7 @@ module hipfort_hipsolver
     function hipsolverXgesvdjGetResidual_(handle,myInfo,residual) &
         bind(c, name="hipsolverXgesvdjGetResidual")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXgesvdjGetResidual_
       type(c_ptr),value :: handle
@@ -227,8 +215,7 @@ module hipfort_hipsolver
     function hipsolverXgesvdjGetSweeps_(handle,myInfo,executed_sweeps) &
         bind(c, name="hipsolverXgesvdjGetSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXgesvdjGetSweeps_
       type(c_ptr),value :: handle
@@ -245,8 +232,7 @@ module hipfort_hipsolver
 #else
     function hipsolverCreateSyevjInfo_(myInfo) bind(c, name="hipsolverCreateSyevjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCreateSyevjInfo_
       type(c_ptr) :: myInfo
@@ -259,8 +245,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDestroySyevjInfo_(myInfo) bind(c, name="hipsolverDestroySyevjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDestroySyevjInfo_
       type(c_ptr),value :: myInfo
@@ -275,8 +260,7 @@ module hipfort_hipsolver
     function hipsolverXsyevjSetMaxSweeps_(myInfo,max_sweeps) &
         bind(c, name="hipsolverXsyevjSetMaxSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXsyevjSetMaxSweeps_
       type(c_ptr),value :: myInfo
@@ -290,8 +274,7 @@ module hipfort_hipsolver
 #else
     function hipsolverXsyevjSetSortEig_(myInfo,sort_eig) bind(c, name="hipsolverXsyevjSetSortEig")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXsyevjSetSortEig_
       type(c_ptr),value :: myInfo
@@ -307,8 +290,7 @@ module hipfort_hipsolver
     function hipsolverXsyevjSetTolerance_(myInfo,tolerance) &
         bind(c, name="hipsolverXsyevjSetTolerance")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXsyevjSetTolerance_
       type(c_ptr),value :: myInfo
@@ -324,8 +306,7 @@ module hipfort_hipsolver
     function hipsolverXsyevjGetResidual_(handle,myInfo,residual) &
         bind(c, name="hipsolverXsyevjGetResidual")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXsyevjGetResidual_
       type(c_ptr),value :: handle
@@ -344,8 +325,7 @@ module hipfort_hipsolver
     function hipsolverXsyevjGetSweeps_(handle,myInfo,executed_sweeps) &
         bind(c, name="hipsolverXsyevjGetSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverXsyevjGetSweeps_
       type(c_ptr),value :: handle
@@ -364,8 +344,7 @@ module hipfort_hipsolver
     function hipsolverSorgbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverSorgbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgbr_bufferSize_
       type(c_ptr),value :: handle
@@ -401,8 +380,7 @@ module hipfort_hipsolver
     function hipsolverDorgbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDorgbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgbr_bufferSize_
       type(c_ptr),value :: handle
@@ -438,8 +416,7 @@ module hipfort_hipsolver
     function hipsolverCungbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverCungbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungbr_bufferSize_
       type(c_ptr),value :: handle
@@ -475,8 +452,7 @@ module hipfort_hipsolver
     function hipsolverZungbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverZungbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungbr_bufferSize_
       type(c_ptr),value :: handle
@@ -512,8 +488,7 @@ module hipfort_hipsolver
     function hipsolverSorgbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverSorgbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgbr_
       type(c_ptr),value :: handle
@@ -554,8 +529,7 @@ module hipfort_hipsolver
     function hipsolverDorgbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDorgbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgbr_
       type(c_ptr),value :: handle
@@ -596,8 +570,7 @@ module hipfort_hipsolver
     function hipsolverCungbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverCungbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungbr_
       type(c_ptr),value :: handle
@@ -638,8 +611,7 @@ module hipfort_hipsolver
     function hipsolverZungbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverZungbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungbr_
       type(c_ptr),value :: handle
@@ -680,8 +652,7 @@ module hipfort_hipsolver
     function hipsolverSorgqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverSorgqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgqr_bufferSize_
       type(c_ptr),value :: handle
@@ -716,8 +687,7 @@ module hipfort_hipsolver
     function hipsolverDorgqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDorgqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgqr_bufferSize_
       type(c_ptr),value :: handle
@@ -752,8 +722,7 @@ module hipfort_hipsolver
     function hipsolverCungqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverCungqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungqr_bufferSize_
       type(c_ptr),value :: handle
@@ -788,8 +757,7 @@ module hipfort_hipsolver
     function hipsolverZungqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverZungqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungqr_bufferSize_
       type(c_ptr),value :: handle
@@ -824,8 +792,7 @@ module hipfort_hipsolver
     function hipsolverSorgqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverSorgqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgqr_
       type(c_ptr),value :: handle
@@ -865,8 +832,7 @@ module hipfort_hipsolver
     function hipsolverDorgqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDorgqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgqr_
       type(c_ptr),value :: handle
@@ -906,8 +872,7 @@ module hipfort_hipsolver
     function hipsolverCungqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverCungqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungqr_
       type(c_ptr),value :: handle
@@ -947,8 +912,7 @@ module hipfort_hipsolver
     function hipsolverZungqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverZungqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungqr_
       type(c_ptr),value :: handle
@@ -988,8 +952,7 @@ module hipfort_hipsolver
     function hipsolverSorgtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverSorgtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1023,8 +986,7 @@ module hipfort_hipsolver
     function hipsolverDorgtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverDorgtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1058,8 +1020,7 @@ module hipfort_hipsolver
     function hipsolverCungtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverCungtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1093,8 +1054,7 @@ module hipfort_hipsolver
     function hipsolverZungtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverZungtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1128,8 +1088,7 @@ module hipfort_hipsolver
     function hipsolverSorgtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverSorgtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSorgtr_
       type(c_ptr),value :: handle
@@ -1168,8 +1127,7 @@ module hipfort_hipsolver
     function hipsolverDorgtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDorgtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDorgtr_
       type(c_ptr),value :: handle
@@ -1208,8 +1166,7 @@ module hipfort_hipsolver
     function hipsolverCungtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverCungtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCungtr_
       type(c_ptr),value :: handle
@@ -1248,8 +1205,7 @@ module hipfort_hipsolver
     function hipsolverZungtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverZungtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZungtr_
       type(c_ptr),value :: handle
@@ -1288,8 +1244,7 @@ module hipfort_hipsolver
     function hipsolverSormqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverSormqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSormqr_bufferSize_
       type(c_ptr),value :: handle
@@ -1328,8 +1283,7 @@ module hipfort_hipsolver
     function hipsolverDormqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDormqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDormqr_bufferSize_
       type(c_ptr),value :: handle
@@ -1368,8 +1322,7 @@ module hipfort_hipsolver
     function hipsolverCunmqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverCunmqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCunmqr_bufferSize_
       type(c_ptr),value :: handle
@@ -1408,8 +1361,7 @@ module hipfort_hipsolver
     function hipsolverZunmqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverZunmqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZunmqr_bufferSize_
       type(c_ptr),value :: handle
@@ -1448,8 +1400,7 @@ module hipfort_hipsolver
     function hipsolverSormqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverSormqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSormqr_
       type(c_ptr),value :: handle
@@ -1493,8 +1444,7 @@ module hipfort_hipsolver
     function hipsolverDormqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDormqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDormqr_
       type(c_ptr),value :: handle
@@ -1538,8 +1488,7 @@ module hipfort_hipsolver
     function hipsolverCunmqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverCunmqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCunmqr_
       type(c_ptr),value :: handle
@@ -1583,8 +1532,7 @@ module hipfort_hipsolver
     function hipsolverZunmqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverZunmqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZunmqr_
       type(c_ptr),value :: handle
@@ -1628,8 +1576,7 @@ module hipfort_hipsolver
     function hipsolverSormtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverSormtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSormtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1668,8 +1615,7 @@ module hipfort_hipsolver
     function hipsolverDormtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDormtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDormtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1708,8 +1654,7 @@ module hipfort_hipsolver
     function hipsolverCunmtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverCunmtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCunmtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1748,8 +1693,7 @@ module hipfort_hipsolver
     function hipsolverZunmtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverZunmtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZunmtr_bufferSize_
       type(c_ptr),value :: handle
@@ -1788,8 +1732,7 @@ module hipfort_hipsolver
     function hipsolverSormtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverSormtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSormtr_
       type(c_ptr),value :: handle
@@ -1833,8 +1776,7 @@ module hipfort_hipsolver
     function hipsolverDormtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDormtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDormtr_
       type(c_ptr),value :: handle
@@ -1878,8 +1820,7 @@ module hipfort_hipsolver
     function hipsolverCunmtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverCunmtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCunmtr_
       type(c_ptr),value :: handle
@@ -1923,8 +1864,7 @@ module hipfort_hipsolver
     function hipsolverZunmtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverZunmtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZunmtr_
       type(c_ptr),value :: handle
@@ -1968,8 +1908,7 @@ module hipfort_hipsolver
     function hipsolverSgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverSgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -1989,8 +1928,7 @@ module hipfort_hipsolver
     function hipsolverDgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -2010,8 +1948,7 @@ module hipfort_hipsolver
     function hipsolverCgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverCgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -2031,8 +1968,7 @@ module hipfort_hipsolver
     function hipsolverZgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverZgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -2052,8 +1988,7 @@ module hipfort_hipsolver
     function hipsolverSgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverSgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgebrd_
       type(c_ptr),value :: handle
@@ -2095,8 +2030,7 @@ module hipfort_hipsolver
     function hipsolverDgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverDgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgebrd_
       type(c_ptr),value :: handle
@@ -2138,8 +2072,7 @@ module hipfort_hipsolver
     function hipsolverCgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverCgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgebrd_
       type(c_ptr),value :: handle
@@ -2181,8 +2114,7 @@ module hipfort_hipsolver
     function hipsolverZgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverZgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgebrd_
       type(c_ptr),value :: handle
@@ -2220,8 +2152,7 @@ module hipfort_hipsolver
   interface hipsolverSSgels_bufferSize
     function hipsolverSSgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverSSgels_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSSgels_bufferSize_
       type(c_ptr),value :: handle
@@ -2245,8 +2176,7 @@ module hipfort_hipsolver
   interface hipsolverDDgels_bufferSize
     function hipsolverDDgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverDDgels_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDDgels_bufferSize_
       type(c_ptr),value :: handle
@@ -2270,8 +2200,7 @@ module hipfort_hipsolver
   interface hipsolverCCgels_bufferSize
     function hipsolverCCgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverCCgels_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCCgels_bufferSize_
       type(c_ptr),value :: handle
@@ -2295,8 +2224,7 @@ module hipfort_hipsolver
   interface hipsolverZZgels_bufferSize
     function hipsolverZZgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverZZgels_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZZgels_bufferSize_
       type(c_ptr),value :: handle
@@ -2324,8 +2252,7 @@ module hipfort_hipsolver
     function hipsolverSSgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverSSgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSSgels_
       type(c_ptr),value :: handle
@@ -2355,8 +2282,7 @@ module hipfort_hipsolver
     function hipsolverDDgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDDgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDDgels_
       type(c_ptr),value :: handle
@@ -2386,8 +2312,7 @@ module hipfort_hipsolver
     function hipsolverCCgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverCCgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCCgels_
       type(c_ptr),value :: handle
@@ -2417,8 +2342,7 @@ module hipfort_hipsolver
     function hipsolverZZgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverZZgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZZgels_
       type(c_ptr),value :: handle
@@ -2448,8 +2372,7 @@ module hipfort_hipsolver
     function hipsolverSgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverSgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -2482,8 +2405,7 @@ module hipfort_hipsolver
     function hipsolverDgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -2516,8 +2438,7 @@ module hipfort_hipsolver
     function hipsolverCgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverCgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -2550,8 +2471,7 @@ module hipfort_hipsolver
     function hipsolverZgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverZgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -2584,8 +2504,7 @@ module hipfort_hipsolver
     function hipsolverSgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverSgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgeqrf_
       type(c_ptr),value :: handle
@@ -2624,8 +2543,7 @@ module hipfort_hipsolver
     function hipsolverDgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgeqrf_
       type(c_ptr),value :: handle
@@ -2664,8 +2582,7 @@ module hipfort_hipsolver
     function hipsolverCgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverCgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgeqrf_
       type(c_ptr),value :: handle
@@ -2704,8 +2621,7 @@ module hipfort_hipsolver
     function hipsolverZgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverZgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgeqrf_
       type(c_ptr),value :: handle
@@ -2740,8 +2656,7 @@ module hipfort_hipsolver
   interface hipsolverSSgesv_bufferSize
     function hipsolverSSgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverSSgesv_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSSgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -2776,8 +2691,7 @@ module hipfort_hipsolver
   interface hipsolverDDgesv_bufferSize
     function hipsolverDDgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverDDgesv_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDDgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -2812,8 +2726,7 @@ module hipfort_hipsolver
   interface hipsolverCCgesv_bufferSize
     function hipsolverCCgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverCCgesv_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCCgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -2848,8 +2761,7 @@ module hipfort_hipsolver
   interface hipsolverZZgesv_bufferSize
     function hipsolverZZgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork) &
         bind(c, name="hipsolverZZgesv_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZZgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -2888,8 +2800,7 @@ module hipfort_hipsolver
     function hipsolverSSgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverSSgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSSgesv_
       type(c_ptr),value :: handle
@@ -2935,8 +2846,7 @@ module hipfort_hipsolver
     function hipsolverDDgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDDgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDDgesv_
       type(c_ptr),value :: handle
@@ -2982,8 +2892,7 @@ module hipfort_hipsolver
     function hipsolverCCgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverCCgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCCgesv_
       type(c_ptr),value :: handle
@@ -3029,8 +2938,7 @@ module hipfort_hipsolver
     function hipsolverZZgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverZZgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZZgesv_
       type(c_ptr),value :: handle
@@ -3072,8 +2980,7 @@ module hipfort_hipsolver
   interface hipsolverSgesvd_bufferSize
     function hipsolverSgesvd_bufferSize_(handle,jobu,jobv,m,n,lwork) &
         bind(c, name="hipsolverSgesvd_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -3092,8 +2999,7 @@ module hipfort_hipsolver
   interface hipsolverDgesvd_bufferSize
     function hipsolverDgesvd_bufferSize_(handle,jobu,jobv,m,n,lwork) &
         bind(c, name="hipsolverDgesvd_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -3112,8 +3018,7 @@ module hipfort_hipsolver
   interface hipsolverCgesvd_bufferSize
     function hipsolverCgesvd_bufferSize_(handle,jobu,jobv,m,n,lwork) &
         bind(c, name="hipsolverCgesvd_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -3132,8 +3037,7 @@ module hipfort_hipsolver
   interface hipsolverZgesvd_bufferSize
     function hipsolverZgesvd_bufferSize_(handle,jobu,jobv,m,n,lwork) &
         bind(c, name="hipsolverZgesvd_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -3156,8 +3060,7 @@ module hipfort_hipsolver
     function hipsolverSgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverSgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvd_
       type(c_ptr),value :: handle
@@ -3187,8 +3090,7 @@ module hipfort_hipsolver
     function hipsolverDgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverDgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvd_
       type(c_ptr),value :: handle
@@ -3218,8 +3120,7 @@ module hipfort_hipsolver
     function hipsolverCgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverCgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvd_
       type(c_ptr),value :: handle
@@ -3249,8 +3150,7 @@ module hipfort_hipsolver
     function hipsolverZgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverZgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvd_
       type(c_ptr),value :: handle
@@ -3280,8 +3180,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverSgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -3311,8 +3210,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverDgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -3342,8 +3240,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverCgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -3373,8 +3270,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverZgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -3404,8 +3300,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) &
         bind(c, name="hipsolverSgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvdj_
       type(c_ptr),value :: handle
@@ -3435,8 +3330,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvdj_
       type(c_ptr),value :: handle
@@ -3466,8 +3360,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) &
         bind(c, name="hipsolverCgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvdj_
       type(c_ptr),value :: handle
@@ -3497,8 +3390,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdj_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,devInfo,params) &
         bind(c, name="hipsolverZgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvdj_
       type(c_ptr),value :: handle
@@ -3530,8 +3422,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverSgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -3563,8 +3454,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -3596,8 +3486,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverCgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -3629,8 +3518,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverZgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -3662,8 +3550,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverSgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgesvdjBatched_
       type(c_ptr),value :: handle
@@ -3695,8 +3582,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgesvdjBatched_
       type(c_ptr),value :: handle
@@ -3728,8 +3614,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverCgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgesvdjBatched_
       type(c_ptr),value :: handle
@@ -3761,8 +3646,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverZgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgesvdjBatched_
       type(c_ptr),value :: handle
@@ -3788,8 +3672,7 @@ module hipfort_hipsolver
   interface hipsolverSgetrf_bufferSize
     function hipsolverSgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverSgetrf_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -3819,8 +3702,7 @@ module hipfort_hipsolver
   interface hipsolverDgetrf_bufferSize
     function hipsolverDgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDgetrf_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -3850,8 +3732,7 @@ module hipfort_hipsolver
   interface hipsolverCgetrf_bufferSize
     function hipsolverCgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverCgetrf_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -3881,8 +3762,7 @@ module hipfort_hipsolver
   interface hipsolverZgetrf_bufferSize
     function hipsolverZgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverZgetrf_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -3912,8 +3792,7 @@ module hipfort_hipsolver
   interface hipsolverSgetrf
     function hipsolverSgetrf_(handle,m,n,A,lda,work,lwork,devIpiv,devInfo) &
         bind(c, name="hipsolverSgetrf")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgetrf_
       type(c_ptr),value :: handle
@@ -3949,8 +3828,7 @@ module hipfort_hipsolver
   interface hipsolverDgetrf
     function hipsolverDgetrf_(handle,m,n,A,lda,work,lwork,devIpiv,devInfo) &
         bind(c, name="hipsolverDgetrf")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgetrf_
       type(c_ptr),value :: handle
@@ -3986,8 +3864,7 @@ module hipfort_hipsolver
   interface hipsolverCgetrf
     function hipsolverCgetrf_(handle,m,n,A,lda,work,lwork,devIpiv,devInfo) &
         bind(c, name="hipsolverCgetrf")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgetrf_
       type(c_ptr),value :: handle
@@ -4023,8 +3900,7 @@ module hipfort_hipsolver
   interface hipsolverZgetrf
     function hipsolverZgetrf_(handle,m,n,A,lda,work,lwork,devIpiv,devInfo) &
         bind(c, name="hipsolverZgetrf")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgetrf_
       type(c_ptr),value :: handle
@@ -4060,8 +3936,7 @@ module hipfort_hipsolver
   interface hipsolverSgetrs_bufferSize
     function hipsolverSgetrs_bufferSize_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork) &
         bind(c, name="hipsolverSgetrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgetrs_bufferSize_
       type(c_ptr),value :: handle
@@ -4095,8 +3970,7 @@ module hipfort_hipsolver
   interface hipsolverDgetrs_bufferSize
     function hipsolverDgetrs_bufferSize_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork) &
         bind(c, name="hipsolverDgetrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgetrs_bufferSize_
       type(c_ptr),value :: handle
@@ -4130,8 +4004,7 @@ module hipfort_hipsolver
   interface hipsolverCgetrs_bufferSize
     function hipsolverCgetrs_bufferSize_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork) &
         bind(c, name="hipsolverCgetrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgetrs_bufferSize_
       type(c_ptr),value :: handle
@@ -4165,8 +4038,7 @@ module hipfort_hipsolver
   interface hipsolverZgetrs_bufferSize
     function hipsolverZgetrs_bufferSize_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork) &
         bind(c, name="hipsolverZgetrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgetrs_bufferSize_
       type(c_ptr),value :: handle
@@ -4200,8 +4072,7 @@ module hipfort_hipsolver
   interface hipsolverSgetrs
     function hipsolverSgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverSgetrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSgetrs_
       type(c_ptr),value :: handle
@@ -4240,8 +4111,7 @@ module hipfort_hipsolver
   interface hipsolverDgetrs
     function hipsolverDgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverDgetrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDgetrs_
       type(c_ptr),value :: handle
@@ -4280,8 +4150,7 @@ module hipfort_hipsolver
   interface hipsolverCgetrs
     function hipsolverCgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverCgetrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCgetrs_
       type(c_ptr),value :: handle
@@ -4320,8 +4189,7 @@ module hipfort_hipsolver
   interface hipsolverZgetrs
     function hipsolverZgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverZgetrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZgetrs_
       type(c_ptr),value :: handle
@@ -4364,8 +4232,7 @@ module hipfort_hipsolver
     function hipsolverSpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverSpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -4398,8 +4265,7 @@ module hipfort_hipsolver
     function hipsolverDpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -4432,8 +4298,7 @@ module hipfort_hipsolver
     function hipsolverCpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverCpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -4466,8 +4331,7 @@ module hipfort_hipsolver
     function hipsolverZpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverZpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -4500,8 +4364,7 @@ module hipfort_hipsolver
     function hipsolverSpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverSpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrf_
       type(c_ptr),value :: handle
@@ -4539,8 +4402,7 @@ module hipfort_hipsolver
     function hipsolverDpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrf_
       type(c_ptr),value :: handle
@@ -4578,8 +4440,7 @@ module hipfort_hipsolver
     function hipsolverCpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverCpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrf_
       type(c_ptr),value :: handle
@@ -4617,8 +4478,7 @@ module hipfort_hipsolver
     function hipsolverZpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverZpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrf_
       type(c_ptr),value :: handle
@@ -4652,8 +4512,7 @@ module hipfort_hipsolver
   interface hipsolverSpotrfBatched_bufferSize
     function hipsolverSpotrfBatched_bufferSize_(handle,uplo,n,A,lda,lwork,batch_count) &
         bind(c, name="hipsolverSpotrfBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -4673,8 +4532,7 @@ module hipfort_hipsolver
   interface hipsolverDpotrfBatched_bufferSize
     function hipsolverDpotrfBatched_bufferSize_(handle,uplo,n,A,lda,lwork,batch_count) &
         bind(c, name="hipsolverDpotrfBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -4694,8 +4552,7 @@ module hipfort_hipsolver
   interface hipsolverCpotrfBatched_bufferSize
     function hipsolverCpotrfBatched_bufferSize_(handle,uplo,n,A,lda,lwork,batch_count) &
         bind(c, name="hipsolverCpotrfBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -4715,8 +4572,7 @@ module hipfort_hipsolver
   interface hipsolverZpotrfBatched_bufferSize
     function hipsolverZpotrfBatched_bufferSize_(handle,uplo,n,A,lda,lwork,batch_count) &
         bind(c, name="hipsolverZpotrfBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrfBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -4736,8 +4592,7 @@ module hipfort_hipsolver
   interface hipsolverSpotrfBatched
     function hipsolverSpotrfBatched_(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count) &
         bind(c, name="hipsolverSpotrfBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrfBatched_
       type(c_ptr),value :: handle
@@ -4767,8 +4622,7 @@ module hipfort_hipsolver
   interface hipsolverDpotrfBatched
     function hipsolverDpotrfBatched_(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count) &
         bind(c, name="hipsolverDpotrfBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrfBatched_
       type(c_ptr),value :: handle
@@ -4798,8 +4652,7 @@ module hipfort_hipsolver
   interface hipsolverCpotrfBatched
     function hipsolverCpotrfBatched_(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count) &
         bind(c, name="hipsolverCpotrfBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrfBatched_
       type(c_ptr),value :: handle
@@ -4829,8 +4682,7 @@ module hipfort_hipsolver
   interface hipsolverZpotrfBatched
     function hipsolverZpotrfBatched_(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count) &
         bind(c, name="hipsolverZpotrfBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrfBatched_
       type(c_ptr),value :: handle
@@ -4864,8 +4716,7 @@ module hipfort_hipsolver
     function hipsolverSpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverSpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -4898,8 +4749,7 @@ module hipfort_hipsolver
     function hipsolverDpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -4932,8 +4782,7 @@ module hipfort_hipsolver
     function hipsolverCpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverCpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -4966,8 +4815,7 @@ module hipfort_hipsolver
     function hipsolverZpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverZpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -5000,8 +4848,7 @@ module hipfort_hipsolver
     function hipsolverSpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverSpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotri_
       type(c_ptr),value :: handle
@@ -5039,8 +4886,7 @@ module hipfort_hipsolver
     function hipsolverDpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotri_
       type(c_ptr),value :: handle
@@ -5078,8 +4924,7 @@ module hipfort_hipsolver
     function hipsolverCpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverCpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotri_
       type(c_ptr),value :: handle
@@ -5117,8 +4962,7 @@ module hipfort_hipsolver
     function hipsolverZpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverZpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotri_
       type(c_ptr),value :: handle
@@ -5152,8 +4996,7 @@ module hipfort_hipsolver
   interface hipsolverSpotrs_bufferSize
     function hipsolverSpotrs_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork) &
         bind(c, name="hipsolverSpotrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrs_bufferSize_
       type(c_ptr),value :: handle
@@ -5186,8 +5029,7 @@ module hipfort_hipsolver
   interface hipsolverDpotrs_bufferSize
     function hipsolverDpotrs_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork) &
         bind(c, name="hipsolverDpotrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrs_bufferSize_
       type(c_ptr),value :: handle
@@ -5220,8 +5062,7 @@ module hipfort_hipsolver
   interface hipsolverCpotrs_bufferSize
     function hipsolverCpotrs_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork) &
         bind(c, name="hipsolverCpotrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrs_bufferSize_
       type(c_ptr),value :: handle
@@ -5254,8 +5095,7 @@ module hipfort_hipsolver
   interface hipsolverZpotrs_bufferSize
     function hipsolverZpotrs_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork) &
         bind(c, name="hipsolverZpotrs_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrs_bufferSize_
       type(c_ptr),value :: handle
@@ -5288,8 +5128,7 @@ module hipfort_hipsolver
   interface hipsolverSpotrs
     function hipsolverSpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverSpotrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrs_
       type(c_ptr),value :: handle
@@ -5327,8 +5166,7 @@ module hipfort_hipsolver
   interface hipsolverDpotrs
     function hipsolverDpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverDpotrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrs_
       type(c_ptr),value :: handle
@@ -5366,8 +5204,7 @@ module hipfort_hipsolver
   interface hipsolverCpotrs
     function hipsolverCpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverCpotrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrs_
       type(c_ptr),value :: handle
@@ -5405,8 +5242,7 @@ module hipfort_hipsolver
   interface hipsolverZpotrs
     function hipsolverZpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo) &
         bind(c, name="hipsolverZpotrs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrs_
       type(c_ptr),value :: handle
@@ -5444,8 +5280,7 @@ module hipfort_hipsolver
   interface hipsolverSpotrsBatched_bufferSize
     function hipsolverSpotrsBatched_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork,batch_count) &
         bind(c, name="hipsolverSpotrsBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -5468,8 +5303,7 @@ module hipfort_hipsolver
   interface hipsolverDpotrsBatched_bufferSize
     function hipsolverDpotrsBatched_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork,batch_count) &
         bind(c, name="hipsolverDpotrsBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -5492,8 +5326,7 @@ module hipfort_hipsolver
   interface hipsolverCpotrsBatched_bufferSize
     function hipsolverCpotrsBatched_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork,batch_count) &
         bind(c, name="hipsolverCpotrsBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -5516,8 +5349,7 @@ module hipfort_hipsolver
   interface hipsolverZpotrsBatched_bufferSize
     function hipsolverZpotrsBatched_bufferSize_(handle,uplo,n,nrhs,A,lda,B,ldb,lwork,batch_count) &
         bind(c, name="hipsolverZpotrsBatched_bufferSize")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrsBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -5541,8 +5373,7 @@ module hipfort_hipsolver
     function hipsolverSpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count) &
         bind(c, name="hipsolverSpotrsBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpotrsBatched_
       type(c_ptr),value :: handle
@@ -5576,8 +5407,7 @@ module hipfort_hipsolver
     function hipsolverDpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count) &
         bind(c, name="hipsolverDpotrsBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDpotrsBatched_
       type(c_ptr),value :: handle
@@ -5611,8 +5441,7 @@ module hipfort_hipsolver
     function hipsolverCpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count) &
         bind(c, name="hipsolverCpotrsBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCpotrsBatched_
       type(c_ptr),value :: handle
@@ -5646,8 +5475,7 @@ module hipfort_hipsolver
     function hipsolverZpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count) &
         bind(c, name="hipsolverZpotrsBatched")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZpotrsBatched_
       type(c_ptr),value :: handle
@@ -5684,8 +5512,7 @@ module hipfort_hipsolver
     function hipsolverSsyevd_bufferSize_(handle,jobz,uplo,n,A,lda,D,lwork) &
         bind(c, name="hipsolverSsyevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevd_bufferSize_
       type(c_ptr),value :: handle
@@ -5720,8 +5547,7 @@ module hipfort_hipsolver
     function hipsolverDsyevd_bufferSize_(handle,jobz,uplo,n,A,lda,D,lwork) &
         bind(c, name="hipsolverDsyevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevd_bufferSize_
       type(c_ptr),value :: handle
@@ -5756,8 +5582,7 @@ module hipfort_hipsolver
     function hipsolverCheevd_bufferSize_(handle,jobz,uplo,n,A,lda,D,lwork) &
         bind(c, name="hipsolverCheevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevd_bufferSize_
       type(c_ptr),value :: handle
@@ -5792,8 +5617,7 @@ module hipfort_hipsolver
     function hipsolverZheevd_bufferSize_(handle,jobz,uplo,n,A,lda,D,lwork) &
         bind(c, name="hipsolverZheevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevd_bufferSize_
       type(c_ptr),value :: handle
@@ -5828,8 +5652,7 @@ module hipfort_hipsolver
     function hipsolverSsyevd_(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo) &
         bind(c, name="hipsolverSsyevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevd_
       type(c_ptr),value :: handle
@@ -5869,8 +5692,7 @@ module hipfort_hipsolver
     function hipsolverDsyevd_(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo) &
         bind(c, name="hipsolverDsyevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevd_
       type(c_ptr),value :: handle
@@ -5910,8 +5732,7 @@ module hipfort_hipsolver
     function hipsolverCheevd_(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo) &
         bind(c, name="hipsolverCheevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevd_
       type(c_ptr),value :: handle
@@ -5951,8 +5772,7 @@ module hipfort_hipsolver
     function hipsolverZheevd_(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo) &
         bind(c, name="hipsolverZheevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevd_
       type(c_ptr),value :: handle
@@ -5992,8 +5812,7 @@ module hipfort_hipsolver
     function hipsolverSsyevdx_bufferSize_(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) &
         bind(c, name="hipsolverSsyevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -6023,8 +5842,7 @@ module hipfort_hipsolver
     function hipsolverDsyevdx_bufferSize_(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) &
         bind(c, name="hipsolverDsyevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -6054,8 +5872,7 @@ module hipfort_hipsolver
     function hipsolverCheevdx_bufferSize_(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) &
         bind(c, name="hipsolverCheevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -6085,8 +5902,7 @@ module hipfort_hipsolver
     function hipsolverZheevdx_bufferSize_(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,lwork) &
         bind(c, name="hipsolverZheevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -6118,8 +5934,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverSsyevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevdx_
       type(c_ptr),value :: handle
@@ -6153,8 +5968,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDsyevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevdx_
       type(c_ptr),value :: handle
@@ -6188,8 +6002,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverCheevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevdx_
       type(c_ptr),value :: handle
@@ -6223,8 +6036,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverZheevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevdx_
       type(c_ptr),value :: handle
@@ -6256,8 +6068,7 @@ module hipfort_hipsolver
     function hipsolverSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverSsyevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevj_bufferSize_
       type(c_ptr),value :: handle
@@ -6282,8 +6093,7 @@ module hipfort_hipsolver
     function hipsolverDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverDsyevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevj_bufferSize_
       type(c_ptr),value :: handle
@@ -6308,8 +6118,7 @@ module hipfort_hipsolver
     function hipsolverCheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverCheevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevj_bufferSize_
       type(c_ptr),value :: handle
@@ -6334,8 +6143,7 @@ module hipfort_hipsolver
     function hipsolverZheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverZheevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevj_bufferSize_
       type(c_ptr),value :: handle
@@ -6360,8 +6168,7 @@ module hipfort_hipsolver
     function hipsolverSsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverSsyevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevj_
       type(c_ptr),value :: handle
@@ -6386,8 +6193,7 @@ module hipfort_hipsolver
     function hipsolverDsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDsyevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevj_
       type(c_ptr),value :: handle
@@ -6412,8 +6218,7 @@ module hipfort_hipsolver
     function hipsolverCheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverCheevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevj_
       type(c_ptr),value :: handle
@@ -6438,8 +6243,7 @@ module hipfort_hipsolver
     function hipsolverZheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverZheevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevj_
       type(c_ptr),value :: handle
@@ -6466,8 +6270,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverSsyevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -6495,8 +6298,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDsyevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -6524,8 +6326,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverCheevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -6553,8 +6354,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverZheevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -6582,8 +6382,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverSsyevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsyevjBatched_
       type(c_ptr),value :: handle
@@ -6611,8 +6410,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDsyevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsyevjBatched_
       type(c_ptr),value :: handle
@@ -6640,8 +6438,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverCheevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCheevjBatched_
       type(c_ptr),value :: handle
@@ -6669,8 +6466,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverZheevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZheevjBatched_
       type(c_ptr),value :: handle
@@ -6696,8 +6492,7 @@ module hipfort_hipsolver
     function hipsolverSsygvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverSsygvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvd_bufferSize_
       type(c_ptr),value :: handle
@@ -6735,8 +6530,7 @@ module hipfort_hipsolver
     function hipsolverDsygvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverDsygvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvd_bufferSize_
       type(c_ptr),value :: handle
@@ -6774,8 +6568,7 @@ module hipfort_hipsolver
     function hipsolverChegvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverChegvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvd_bufferSize_
       type(c_ptr),value :: handle
@@ -6813,8 +6606,7 @@ module hipfort_hipsolver
     function hipsolverZhegvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverZhegvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvd_bufferSize_
       type(c_ptr),value :: handle
@@ -6852,8 +6644,7 @@ module hipfort_hipsolver
     function hipsolverSsygvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverSsygvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvd_
       type(c_ptr),value :: handle
@@ -6896,8 +6687,7 @@ module hipfort_hipsolver
     function hipsolverDsygvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDsygvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvd_
       type(c_ptr),value :: handle
@@ -6940,8 +6730,7 @@ module hipfort_hipsolver
     function hipsolverChegvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverChegvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvd_
       type(c_ptr),value :: handle
@@ -6984,8 +6773,7 @@ module hipfort_hipsolver
     function hipsolverZhegvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverZhegvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvd_
       type(c_ptr),value :: handle
@@ -7030,8 +6818,7 @@ module hipfort_hipsolver
         nev,W,lwork) &
         bind(c, name="hipsolverSsygvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -7066,8 +6853,7 @@ module hipfort_hipsolver
         nev,W,lwork) &
         bind(c, name="hipsolverDsygvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -7102,8 +6888,7 @@ module hipfort_hipsolver
         nev,W,lwork) &
         bind(c, name="hipsolverChegvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -7138,8 +6923,7 @@ module hipfort_hipsolver
         nev,W,lwork) &
         bind(c, name="hipsolverZhegvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -7174,8 +6958,7 @@ module hipfort_hipsolver
         lwork,devInfo) &
         bind(c, name="hipsolverSsygvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvdx_
       type(c_ptr),value :: handle
@@ -7212,8 +6995,7 @@ module hipfort_hipsolver
         lwork,devInfo) &
         bind(c, name="hipsolverDsygvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvdx_
       type(c_ptr),value :: handle
@@ -7250,8 +7032,7 @@ module hipfort_hipsolver
         lwork,devInfo) &
         bind(c, name="hipsolverChegvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvdx_
       type(c_ptr),value :: handle
@@ -7288,8 +7069,7 @@ module hipfort_hipsolver
         lwork,devInfo) &
         bind(c, name="hipsolverZhegvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvdx_
       type(c_ptr),value :: handle
@@ -7324,8 +7104,7 @@ module hipfort_hipsolver
     function hipsolverSsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverSsygvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvj_bufferSize_
       type(c_ptr),value :: handle
@@ -7353,8 +7132,7 @@ module hipfort_hipsolver
     function hipsolverDsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverDsygvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvj_bufferSize_
       type(c_ptr),value :: handle
@@ -7382,8 +7160,7 @@ module hipfort_hipsolver
     function hipsolverChegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverChegvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvj_bufferSize_
       type(c_ptr),value :: handle
@@ -7411,8 +7188,7 @@ module hipfort_hipsolver
     function hipsolverZhegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverZhegvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvj_bufferSize_
       type(c_ptr),value :: handle
@@ -7440,8 +7216,7 @@ module hipfort_hipsolver
     function hipsolverSsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverSsygvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsygvj_
       type(c_ptr),value :: handle
@@ -7469,8 +7244,7 @@ module hipfort_hipsolver
     function hipsolverDsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDsygvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsygvj_
       type(c_ptr),value :: handle
@@ -7498,8 +7272,7 @@ module hipfort_hipsolver
     function hipsolverChegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverChegvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChegvj_
       type(c_ptr),value :: handle
@@ -7527,8 +7300,7 @@ module hipfort_hipsolver
     function hipsolverZhegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverZhegvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhegvj_
       type(c_ptr),value :: handle
@@ -7556,8 +7328,7 @@ module hipfort_hipsolver
     function hipsolverSsytrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverSsytrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsytrd_bufferSize_
       type(c_ptr),value :: handle
@@ -7593,8 +7364,7 @@ module hipfort_hipsolver
     function hipsolverDsytrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverDsytrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsytrd_bufferSize_
       type(c_ptr),value :: handle
@@ -7630,8 +7400,7 @@ module hipfort_hipsolver
     function hipsolverChetrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverChetrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChetrd_bufferSize_
       type(c_ptr),value :: handle
@@ -7667,8 +7436,7 @@ module hipfort_hipsolver
     function hipsolverZhetrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverZhetrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhetrd_bufferSize_
       type(c_ptr),value :: handle
@@ -7704,8 +7472,7 @@ module hipfort_hipsolver
     function hipsolverSsytrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverSsytrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsytrd_
       type(c_ptr),value :: handle
@@ -7746,8 +7513,7 @@ module hipfort_hipsolver
     function hipsolverDsytrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDsytrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsytrd_
       type(c_ptr),value :: handle
@@ -7788,8 +7554,7 @@ module hipfort_hipsolver
     function hipsolverChetrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverChetrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverChetrd_
       type(c_ptr),value :: handle
@@ -7830,8 +7595,7 @@ module hipfort_hipsolver
     function hipsolverZhetrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverZhetrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZhetrd_
       type(c_ptr),value :: handle
@@ -7872,8 +7636,7 @@ module hipfort_hipsolver
     function hipsolverSsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverSsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -7905,8 +7668,7 @@ module hipfort_hipsolver
     function hipsolverDsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverDsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -7938,8 +7700,7 @@ module hipfort_hipsolver
     function hipsolverCsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverCsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -7971,8 +7732,7 @@ module hipfort_hipsolver
     function hipsolverZsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverZsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -8004,8 +7764,7 @@ module hipfort_hipsolver
     function hipsolverSsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverSsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSsytrf_
       type(c_ptr),value :: handle
@@ -8044,8 +7803,7 @@ module hipfort_hipsolver
     function hipsolverDsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverDsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDsytrf_
       type(c_ptr),value :: handle
@@ -8084,8 +7842,7 @@ module hipfort_hipsolver
     function hipsolverCsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverCsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverCsytrf_
       type(c_ptr),value :: handle
@@ -8124,8 +7881,7 @@ module hipfort_hipsolver
     function hipsolverZsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverZsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverZsytrf_
       type(c_ptr),value :: handle
@@ -8163,8 +7919,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnCreate_(handle) bind(c, name="hipsolverDnCreate")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCreate_
       type(c_ptr) :: handle
@@ -8178,8 +7933,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnDestroy_(handle) bind(c, name="hipsolverDnDestroy")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDestroy_
       type(c_ptr),value :: handle
@@ -8193,8 +7947,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnSetStream_(handle,streamId) bind(c, name="hipsolverDnSetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSetStream_
       type(c_ptr),value :: handle
@@ -8209,8 +7962,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnGetStream_(handle,streamId) bind(c, name="hipsolverDnGetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnGetStream_
       type(c_ptr),value :: handle
@@ -8227,8 +7979,7 @@ module hipfort_hipsolver
     function hipsolverDnSetDeterministicMode_(handle,mode) &
         bind(c, name="hipsolverDnSetDeterministicMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSetDeterministicMode_
       type(c_ptr),value :: handle
@@ -8245,8 +7996,7 @@ module hipfort_hipsolver
     function hipsolverDnGetDeterministicMode_(handle,mode) &
         bind(c, name="hipsolverDnGetDeterministicMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnGetDeterministicMode_
       type(c_ptr),value :: handle
@@ -8262,8 +8012,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnCreateGesvdjInfo_(myInfo) bind(c, name="hipsolverDnCreateGesvdjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCreateGesvdjInfo_
       type(c_ptr) :: myInfo
@@ -8276,8 +8025,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnDestroyGesvdjInfo_(myInfo) bind(c, name="hipsolverDnDestroyGesvdjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDestroyGesvdjInfo_
       type(c_ptr),value :: myInfo
@@ -8292,8 +8040,7 @@ module hipfort_hipsolver
     function hipsolverDnXgesvdjSetMaxSweeps_(myInfo,max_sweeps) &
         bind(c, name="hipsolverDnXgesvdjSetMaxSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgesvdjSetMaxSweeps_
       type(c_ptr),value :: myInfo
@@ -8309,8 +8056,7 @@ module hipfort_hipsolver
     function hipsolverDnXgesvdjSetSortEig_(myInfo,sort_eig) &
         bind(c, name="hipsolverDnXgesvdjSetSortEig")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgesvdjSetSortEig_
       type(c_ptr),value :: myInfo
@@ -8326,8 +8072,7 @@ module hipfort_hipsolver
     function hipsolverDnXgesvdjSetTolerance_(myInfo,tolerance) &
         bind(c, name="hipsolverDnXgesvdjSetTolerance")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgesvdjSetTolerance_
       type(c_ptr),value :: myInfo
@@ -8343,8 +8088,7 @@ module hipfort_hipsolver
     function hipsolverDnXgesvdjGetResidual_(handle,myInfo,residual) &
         bind(c, name="hipsolverDnXgesvdjGetResidual")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgesvdjGetResidual_
       type(c_ptr),value :: handle
@@ -8363,8 +8107,7 @@ module hipfort_hipsolver
     function hipsolverDnXgesvdjGetSweeps_(handle,myInfo,executed_sweeps) &
         bind(c, name="hipsolverDnXgesvdjGetSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgesvdjGetSweeps_
       type(c_ptr),value :: handle
@@ -8381,8 +8124,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnCreateSyevjInfo_(myInfo) bind(c, name="hipsolverDnCreateSyevjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCreateSyevjInfo_
       type(c_ptr) :: myInfo
@@ -8395,8 +8137,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnDestroySyevjInfo_(myInfo) bind(c, name="hipsolverDnDestroySyevjInfo")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDestroySyevjInfo_
       type(c_ptr),value :: myInfo
@@ -8411,8 +8152,7 @@ module hipfort_hipsolver
     function hipsolverDnXsyevjSetMaxSweeps_(myInfo,max_sweeps) &
         bind(c, name="hipsolverDnXsyevjSetMaxSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevjSetMaxSweeps_
       type(c_ptr),value :: myInfo
@@ -8428,8 +8168,7 @@ module hipfort_hipsolver
     function hipsolverDnXsyevjSetSortEig_(myInfo,sort_eig) &
         bind(c, name="hipsolverDnXsyevjSetSortEig")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevjSetSortEig_
       type(c_ptr),value :: myInfo
@@ -8445,8 +8184,7 @@ module hipfort_hipsolver
     function hipsolverDnXsyevjSetTolerance_(myInfo,tolerance) &
         bind(c, name="hipsolverDnXsyevjSetTolerance")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevjSetTolerance_
       type(c_ptr),value :: myInfo
@@ -8462,8 +8200,7 @@ module hipfort_hipsolver
     function hipsolverDnXsyevjGetResidual_(handle,myInfo,residual) &
         bind(c, name="hipsolverDnXsyevjGetResidual")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevjGetResidual_
       type(c_ptr),value :: handle
@@ -8482,8 +8219,7 @@ module hipfort_hipsolver
     function hipsolverDnXsyevjGetSweeps_(handle,myInfo,executed_sweeps) &
         bind(c, name="hipsolverDnXsyevjGetSweeps")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevjGetSweeps_
       type(c_ptr),value :: handle
@@ -8502,8 +8238,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnSorgbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgbr_bufferSize_
       type(c_ptr),value :: handle
@@ -8528,8 +8263,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnDorgbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgbr_bufferSize_
       type(c_ptr),value :: handle
@@ -8554,8 +8288,7 @@ module hipfort_hipsolver
     function hipsolverDnCungbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnCungbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungbr_bufferSize_
       type(c_ptr),value :: handle
@@ -8580,8 +8313,7 @@ module hipfort_hipsolver
     function hipsolverDnZungbr_bufferSize_(handle,side,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnZungbr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungbr_bufferSize_
       type(c_ptr),value :: handle
@@ -8606,8 +8338,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSorgbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgbr_
       type(c_ptr),value :: handle
@@ -8632,8 +8363,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDorgbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgbr_
       type(c_ptr),value :: handle
@@ -8658,8 +8388,7 @@ module hipfort_hipsolver
     function hipsolverDnCungbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCungbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungbr_
       type(c_ptr),value :: handle
@@ -8684,8 +8413,7 @@ module hipfort_hipsolver
     function hipsolverDnZungbr_(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZungbr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungbr_
       type(c_ptr),value :: handle
@@ -8710,8 +8438,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnSorgqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgqr_bufferSize_
       type(c_ptr),value :: handle
@@ -8735,8 +8462,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnDorgqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgqr_bufferSize_
       type(c_ptr),value :: handle
@@ -8760,8 +8486,7 @@ module hipfort_hipsolver
     function hipsolverDnCungqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnCungqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungqr_bufferSize_
       type(c_ptr),value :: handle
@@ -8785,8 +8510,7 @@ module hipfort_hipsolver
     function hipsolverDnZungqr_bufferSize_(handle,m,n,k,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnZungqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungqr_bufferSize_
       type(c_ptr),value :: handle
@@ -8810,8 +8534,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSorgqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgqr_
       type(c_ptr),value :: handle
@@ -8835,8 +8558,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDorgqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgqr_
       type(c_ptr),value :: handle
@@ -8860,8 +8582,7 @@ module hipfort_hipsolver
     function hipsolverDnCungqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCungqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungqr_
       type(c_ptr),value :: handle
@@ -8885,8 +8606,7 @@ module hipfort_hipsolver
     function hipsolverDnZungqr_(handle,m,n,k,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZungqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungqr_
       type(c_ptr),value :: handle
@@ -8910,8 +8630,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnSorgtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgtr_bufferSize_
       type(c_ptr),value :: handle
@@ -8934,8 +8653,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnDorgtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgtr_bufferSize_
       type(c_ptr),value :: handle
@@ -8958,8 +8676,7 @@ module hipfort_hipsolver
     function hipsolverDnCungtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnCungtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungtr_bufferSize_
       type(c_ptr),value :: handle
@@ -8982,8 +8699,7 @@ module hipfort_hipsolver
     function hipsolverDnZungtr_bufferSize_(handle,uplo,n,A,lda,tau,lwork) &
         bind(c, name="hipsolverDnZungtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungtr_bufferSize_
       type(c_ptr),value :: handle
@@ -9006,8 +8722,7 @@ module hipfort_hipsolver
     function hipsolverDnSorgtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSorgtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSorgtr_
       type(c_ptr),value :: handle
@@ -9030,8 +8745,7 @@ module hipfort_hipsolver
     function hipsolverDnDorgtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDorgtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDorgtr_
       type(c_ptr),value :: handle
@@ -9054,8 +8768,7 @@ module hipfort_hipsolver
     function hipsolverDnCungtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCungtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCungtr_
       type(c_ptr),value :: handle
@@ -9078,8 +8791,7 @@ module hipfort_hipsolver
     function hipsolverDnZungtr_(handle,uplo,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZungtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZungtr_
       type(c_ptr),value :: handle
@@ -9102,8 +8814,7 @@ module hipfort_hipsolver
     function hipsolverDnSormqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnSormqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSormqr_bufferSize_
       type(c_ptr),value :: handle
@@ -9131,8 +8842,7 @@ module hipfort_hipsolver
     function hipsolverDnDormqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnDormqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDormqr_bufferSize_
       type(c_ptr),value :: handle
@@ -9160,8 +8870,7 @@ module hipfort_hipsolver
     function hipsolverDnCunmqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnCunmqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCunmqr_bufferSize_
       type(c_ptr),value :: handle
@@ -9189,8 +8898,7 @@ module hipfort_hipsolver
     function hipsolverDnZunmqr_bufferSize_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnZunmqr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZunmqr_bufferSize_
       type(c_ptr),value :: handle
@@ -9218,8 +8926,7 @@ module hipfort_hipsolver
     function hipsolverDnSormqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSormqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSormqr_
       type(c_ptr),value :: handle
@@ -9247,8 +8954,7 @@ module hipfort_hipsolver
     function hipsolverDnDormqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDormqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDormqr_
       type(c_ptr),value :: handle
@@ -9276,8 +8982,7 @@ module hipfort_hipsolver
     function hipsolverDnCunmqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCunmqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCunmqr_
       type(c_ptr),value :: handle
@@ -9305,8 +9010,7 @@ module hipfort_hipsolver
     function hipsolverDnZunmqr_(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZunmqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZunmqr_
       type(c_ptr),value :: handle
@@ -9334,8 +9038,7 @@ module hipfort_hipsolver
     function hipsolverDnSormtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnSormtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSormtr_bufferSize_
       type(c_ptr),value :: handle
@@ -9363,8 +9066,7 @@ module hipfort_hipsolver
     function hipsolverDnDormtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnDormtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDormtr_bufferSize_
       type(c_ptr),value :: handle
@@ -9392,8 +9094,7 @@ module hipfort_hipsolver
     function hipsolverDnCunmtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnCunmtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCunmtr_bufferSize_
       type(c_ptr),value :: handle
@@ -9421,8 +9122,7 @@ module hipfort_hipsolver
     function hipsolverDnZunmtr_bufferSize_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork) &
         bind(c, name="hipsolverDnZunmtr_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZunmtr_bufferSize_
       type(c_ptr),value :: handle
@@ -9450,8 +9150,7 @@ module hipfort_hipsolver
     function hipsolverDnSormtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSormtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSormtr_
       type(c_ptr),value :: handle
@@ -9479,8 +9178,7 @@ module hipfort_hipsolver
     function hipsolverDnDormtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDormtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDormtr_
       type(c_ptr),value :: handle
@@ -9508,8 +9206,7 @@ module hipfort_hipsolver
     function hipsolverDnCunmtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCunmtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCunmtr_
       type(c_ptr),value :: handle
@@ -9537,8 +9234,7 @@ module hipfort_hipsolver
     function hipsolverDnZunmtr_(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZunmtr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZunmtr_
       type(c_ptr),value :: handle
@@ -9566,8 +9262,7 @@ module hipfort_hipsolver
     function hipsolverDnSgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnSgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -9587,8 +9282,7 @@ module hipfort_hipsolver
     function hipsolverDnDgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnDgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -9608,8 +9302,7 @@ module hipfort_hipsolver
     function hipsolverDnCgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnCgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -9629,8 +9322,7 @@ module hipfort_hipsolver
     function hipsolverDnZgebrd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnZgebrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgebrd_bufferSize_
       type(c_ptr),value :: handle
@@ -9650,8 +9342,7 @@ module hipfort_hipsolver
     function hipsolverDnSgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgebrd_
       type(c_ptr),value :: handle
@@ -9677,8 +9368,7 @@ module hipfort_hipsolver
     function hipsolverDnDgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgebrd_
       type(c_ptr),value :: handle
@@ -9704,8 +9394,7 @@ module hipfort_hipsolver
     function hipsolverDnCgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgebrd_
       type(c_ptr),value :: handle
@@ -9731,8 +9420,7 @@ module hipfort_hipsolver
     function hipsolverDnZgebrd_(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZgebrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgebrd_
       type(c_ptr),value :: handle
@@ -9758,8 +9446,7 @@ module hipfort_hipsolver
     function hipsolverDnSSgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnSSgels_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSSgels_bufferSize_
       type(c_ptr),value :: handle
@@ -9787,8 +9474,7 @@ module hipfort_hipsolver
     function hipsolverDnDDgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnDDgels_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDDgels_bufferSize_
       type(c_ptr),value :: handle
@@ -9816,8 +9502,7 @@ module hipfort_hipsolver
     function hipsolverDnCCgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnCCgels_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCCgels_bufferSize_
       type(c_ptr),value :: handle
@@ -9845,8 +9530,7 @@ module hipfort_hipsolver
     function hipsolverDnZZgels_bufferSize_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnZZgels_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZZgels_bufferSize_
       type(c_ptr),value :: handle
@@ -9874,8 +9558,7 @@ module hipfort_hipsolver
     function hipsolverDnSSgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnSSgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSSgels_
       type(c_ptr),value :: handle
@@ -9905,8 +9588,7 @@ module hipfort_hipsolver
     function hipsolverDnDDgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnDDgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDDgels_
       type(c_ptr),value :: handle
@@ -9936,8 +9618,7 @@ module hipfort_hipsolver
     function hipsolverDnCCgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnCCgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCCgels_
       type(c_ptr),value :: handle
@@ -9967,8 +9648,7 @@ module hipfort_hipsolver
     function hipsolverDnZZgels_(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnZZgels")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZZgels_
       type(c_ptr),value :: handle
@@ -9998,8 +9678,7 @@ module hipfort_hipsolver
     function hipsolverDnSgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnSgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -10021,8 +9700,7 @@ module hipfort_hipsolver
     function hipsolverDnDgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnDgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -10044,8 +9722,7 @@ module hipfort_hipsolver
     function hipsolverDnCgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnCgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -10067,8 +9744,7 @@ module hipfort_hipsolver
     function hipsolverDnZgeqrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnZgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -10090,8 +9766,7 @@ module hipfort_hipsolver
     function hipsolverDnSgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgeqrf_
       type(c_ptr),value :: handle
@@ -10114,8 +9789,7 @@ module hipfort_hipsolver
     function hipsolverDnDgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgeqrf_
       type(c_ptr),value :: handle
@@ -10138,8 +9812,7 @@ module hipfort_hipsolver
     function hipsolverDnCgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgeqrf_
       type(c_ptr),value :: handle
@@ -10162,8 +9835,7 @@ module hipfort_hipsolver
     function hipsolverDnZgeqrf_(handle,m,n,A,lda,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgeqrf_
       type(c_ptr),value :: handle
@@ -10186,8 +9858,7 @@ module hipfort_hipsolver
     function hipsolverDnSSgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnSSgesv_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSSgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -10215,8 +9886,7 @@ module hipfort_hipsolver
     function hipsolverDnDDgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnDDgesv_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDDgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -10244,8 +9914,7 @@ module hipfort_hipsolver
     function hipsolverDnCCgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnCCgesv_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCCgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -10273,8 +9942,7 @@ module hipfort_hipsolver
     function hipsolverDnZZgesv_bufferSize_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork) &
         bind(c, name="hipsolverDnZZgesv_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZZgesv_bufferSize_
       type(c_ptr),value :: handle
@@ -10302,8 +9970,7 @@ module hipfort_hipsolver
     function hipsolverDnSSgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnSSgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSSgesv_
       type(c_ptr),value :: handle
@@ -10333,8 +10000,7 @@ module hipfort_hipsolver
     function hipsolverDnDDgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnDDgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDDgesv_
       type(c_ptr),value :: handle
@@ -10364,8 +10030,7 @@ module hipfort_hipsolver
     function hipsolverDnCCgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnCCgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCCgesv_
       type(c_ptr),value :: handle
@@ -10395,8 +10060,7 @@ module hipfort_hipsolver
     function hipsolverDnZZgesv_(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters,devInfo) &
         bind(c, name="hipsolverDnZZgesv")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZZgesv_
       type(c_ptr),value :: handle
@@ -10426,8 +10090,7 @@ module hipfort_hipsolver
     function hipsolverDnSgesvd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnSgesvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -10447,8 +10110,7 @@ module hipfort_hipsolver
     function hipsolverDnDgesvd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnDgesvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -10468,8 +10130,7 @@ module hipfort_hipsolver
     function hipsolverDnCgesvd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnCgesvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -10489,8 +10150,7 @@ module hipfort_hipsolver
     function hipsolverDnZgesvd_bufferSize_(handle,m,n,lwork) &
         bind(c, name="hipsolverDnZgesvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvd_bufferSize_
       type(c_ptr),value :: handle
@@ -10510,8 +10170,7 @@ module hipfort_hipsolver
     function hipsolverDnSgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverDnSgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvd_
       type(c_ptr),value :: handle
@@ -10541,8 +10200,7 @@ module hipfort_hipsolver
     function hipsolverDnDgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverDnDgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvd_
       type(c_ptr),value :: handle
@@ -10572,8 +10230,7 @@ module hipfort_hipsolver
     function hipsolverDnCgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverDnCgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvd_
       type(c_ptr),value :: handle
@@ -10603,8 +10260,7 @@ module hipfort_hipsolver
     function hipsolverDnZgesvd_(handle,jobu,jobv,m,n,A,lda,S,U,ldu,V,ldv,work,lwork,rwork,devInfo) &
         bind(c, name="hipsolverDnZgesvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvd_
       type(c_ptr),value :: handle
@@ -10634,8 +10290,7 @@ module hipfort_hipsolver
     function hipsolverDnSgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverDnSgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -10665,8 +10320,7 @@ module hipfort_hipsolver
     function hipsolverDnDgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverDnDgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -10696,8 +10350,7 @@ module hipfort_hipsolver
     function hipsolverDnCgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverDnCgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -10727,8 +10380,7 @@ module hipfort_hipsolver
     function hipsolverDnZgesvdj_bufferSize_(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork,params) &
         bind(c, name="hipsolverDnZgesvdj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdj_bufferSize_
       type(c_ptr),value :: handle
@@ -10760,8 +10412,7 @@ module hipfort_hipsolver
         params) &
         bind(c, name="hipsolverDnSgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdj_
       type(c_ptr),value :: handle
@@ -10793,8 +10444,7 @@ module hipfort_hipsolver
         params) &
         bind(c, name="hipsolverDnDgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdj_
       type(c_ptr),value :: handle
@@ -10826,8 +10476,7 @@ module hipfort_hipsolver
         params) &
         bind(c, name="hipsolverDnCgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdj_
       type(c_ptr),value :: handle
@@ -10859,8 +10508,7 @@ module hipfort_hipsolver
         params) &
         bind(c, name="hipsolverDnZgesvdj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdj_
       type(c_ptr),value :: handle
@@ -10892,8 +10540,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnSgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -10925,8 +10572,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnDgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -10958,8 +10604,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnCgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -10991,8 +10636,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnZgesvdjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -11024,8 +10668,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnSgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdjBatched_
       type(c_ptr),value :: handle
@@ -11057,8 +10700,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnDgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdjBatched_
       type(c_ptr),value :: handle
@@ -11090,8 +10732,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnCgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdjBatched_
       type(c_ptr),value :: handle
@@ -11123,8 +10764,7 @@ module hipfort_hipsolver
         params,batch_count) &
         bind(c, name="hipsolverDnZgesvdjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdjBatched_
       type(c_ptr),value :: handle
@@ -11156,8 +10796,7 @@ module hipfort_hipsolver
         strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count) &
         bind(c, name="hipsolverDnSgesvdaStridedBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -11193,8 +10832,7 @@ module hipfort_hipsolver
         strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count) &
         bind(c, name="hipsolverDnDgesvdaStridedBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -11230,8 +10868,7 @@ module hipfort_hipsolver
         strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count) &
         bind(c, name="hipsolverDnCgesvdaStridedBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -11267,8 +10904,7 @@ module hipfort_hipsolver
         strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count) &
         bind(c, name="hipsolverDnZgesvdaStridedBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdaStridedBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -11304,8 +10940,7 @@ module hipfort_hipsolver
         strideU,V,ldv,strideV,work,lwork,devInfo,hRnrmF,batch_count) &
         bind(c, name="hipsolverDnSgesvdaStridedBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgesvdaStridedBatched_
       type(c_ptr),value :: handle
@@ -11342,8 +10977,7 @@ module hipfort_hipsolver
         strideU,V,ldv,strideV,work,lwork,devInfo,hRnrmF,batch_count) &
         bind(c, name="hipsolverDnDgesvdaStridedBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgesvdaStridedBatched_
       type(c_ptr),value :: handle
@@ -11380,8 +11014,7 @@ module hipfort_hipsolver
         strideU,V,ldv,strideV,work,lwork,devInfo,hRnrmF,batch_count) &
         bind(c, name="hipsolverDnCgesvdaStridedBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgesvdaStridedBatched_
       type(c_ptr),value :: handle
@@ -11418,8 +11051,7 @@ module hipfort_hipsolver
         strideU,V,ldv,strideV,work,lwork,devInfo,hRnrmF,batch_count) &
         bind(c, name="hipsolverDnZgesvdaStridedBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgesvdaStridedBatched_
       type(c_ptr),value :: handle
@@ -11454,8 +11086,7 @@ module hipfort_hipsolver
     function hipsolverDnSgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnSgetrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11477,8 +11108,7 @@ module hipfort_hipsolver
     function hipsolverDnDgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnDgetrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11500,8 +11130,7 @@ module hipfort_hipsolver
     function hipsolverDnCgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnCgetrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11523,8 +11152,7 @@ module hipfort_hipsolver
     function hipsolverDnZgetrf_bufferSize_(handle,m,n,A,lda,lwork) &
         bind(c, name="hipsolverDnZgetrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11546,8 +11174,7 @@ module hipfort_hipsolver
     function hipsolverDnSgetrf_(handle,m,n,A,lda,work,devIpiv,devInfo) &
         bind(c, name="hipsolverDnSgetrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgetrf_
       type(c_ptr),value :: handle
@@ -11569,8 +11196,7 @@ module hipfort_hipsolver
     function hipsolverDnDgetrf_(handle,m,n,A,lda,work,devIpiv,devInfo) &
         bind(c, name="hipsolverDnDgetrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgetrf_
       type(c_ptr),value :: handle
@@ -11592,8 +11218,7 @@ module hipfort_hipsolver
     function hipsolverDnCgetrf_(handle,m,n,A,lda,work,devIpiv,devInfo) &
         bind(c, name="hipsolverDnCgetrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgetrf_
       type(c_ptr),value :: handle
@@ -11615,8 +11240,7 @@ module hipfort_hipsolver
     function hipsolverDnZgetrf_(handle,m,n,A,lda,work,devIpiv,devInfo) &
         bind(c, name="hipsolverDnZgetrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgetrf_
       type(c_ptr),value :: handle
@@ -11638,8 +11262,7 @@ module hipfort_hipsolver
     function hipsolverDnSgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,devInfo) &
         bind(c, name="hipsolverDnSgetrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSgetrs_
       type(c_ptr),value :: handle
@@ -11663,8 +11286,7 @@ module hipfort_hipsolver
     function hipsolverDnDgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,devInfo) &
         bind(c, name="hipsolverDnDgetrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDgetrs_
       type(c_ptr),value :: handle
@@ -11688,8 +11310,7 @@ module hipfort_hipsolver
     function hipsolverDnCgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,devInfo) &
         bind(c, name="hipsolverDnCgetrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCgetrs_
       type(c_ptr),value :: handle
@@ -11713,8 +11334,7 @@ module hipfort_hipsolver
     function hipsolverDnZgetrs_(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,devInfo) &
         bind(c, name="hipsolverDnZgetrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZgetrs_
       type(c_ptr),value :: handle
@@ -11738,8 +11358,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnSpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11761,8 +11380,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnDpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11784,8 +11402,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnCpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11807,8 +11424,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotrf_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnZpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -11830,8 +11446,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotrf_
       type(c_ptr),value :: handle
@@ -11853,8 +11468,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotrf_
       type(c_ptr),value :: handle
@@ -11876,8 +11490,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotrf_
       type(c_ptr),value :: handle
@@ -11899,8 +11512,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotrf_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotrf_
       type(c_ptr),value :: handle
@@ -11922,8 +11534,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotrfBatched_(handle,uplo,n,A,lda,devInfo,batch_count) &
         bind(c, name="hipsolverDnSpotrfBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotrfBatched_
       type(c_ptr),value :: handle
@@ -11944,8 +11555,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotrfBatched_(handle,uplo,n,A,lda,devInfo,batch_count) &
         bind(c, name="hipsolverDnDpotrfBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotrfBatched_
       type(c_ptr),value :: handle
@@ -11966,8 +11576,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotrfBatched_(handle,uplo,n,A,lda,devInfo,batch_count) &
         bind(c, name="hipsolverDnCpotrfBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotrfBatched_
       type(c_ptr),value :: handle
@@ -11988,8 +11597,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotrfBatched_(handle,uplo,n,A,lda,devInfo,batch_count) &
         bind(c, name="hipsolverDnZpotrfBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotrfBatched_
       type(c_ptr),value :: handle
@@ -12010,8 +11618,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnSpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -12033,8 +11640,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnDpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -12056,8 +11662,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnCpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -12079,8 +11684,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotri_bufferSize_(handle,uplo,n,A,lda,lwork) &
         bind(c, name="hipsolverDnZpotri_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotri_bufferSize_
       type(c_ptr),value :: handle
@@ -12102,8 +11706,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotri_
       type(c_ptr),value :: handle
@@ -12125,8 +11728,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotri_
       type(c_ptr),value :: handle
@@ -12148,8 +11750,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotri_
       type(c_ptr),value :: handle
@@ -12171,8 +11772,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotri_(handle,uplo,n,A,lda,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZpotri")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotri_
       type(c_ptr),value :: handle
@@ -12194,8 +11794,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo) &
         bind(c, name="hipsolverDnSpotrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotrs_
       type(c_ptr),value :: handle
@@ -12218,8 +11817,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo) &
         bind(c, name="hipsolverDnDpotrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotrs_
       type(c_ptr),value :: handle
@@ -12242,8 +11840,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo) &
         bind(c, name="hipsolverDnCpotrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotrs_
       type(c_ptr),value :: handle
@@ -12266,8 +11863,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotrs_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo) &
         bind(c, name="hipsolverDnZpotrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotrs_
       type(c_ptr),value :: handle
@@ -12290,8 +11886,7 @@ module hipfort_hipsolver
     function hipsolverDnSpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo,batch_count) &
         bind(c, name="hipsolverDnSpotrsBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSpotrsBatched_
       type(c_ptr),value :: handle
@@ -12315,8 +11910,7 @@ module hipfort_hipsolver
     function hipsolverDnDpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo,batch_count) &
         bind(c, name="hipsolverDnDpotrsBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDpotrsBatched_
       type(c_ptr),value :: handle
@@ -12340,8 +11934,7 @@ module hipfort_hipsolver
     function hipsolverDnCpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo,batch_count) &
         bind(c, name="hipsolverDnCpotrsBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCpotrsBatched_
       type(c_ptr),value :: handle
@@ -12365,8 +11958,7 @@ module hipfort_hipsolver
     function hipsolverDnZpotrsBatched_(handle,uplo,n,nrhs,A,lda,B,ldb,devInfo,batch_count) &
         bind(c, name="hipsolverDnZpotrsBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZpotrsBatched_
       type(c_ptr),value :: handle
@@ -12390,8 +11982,7 @@ module hipfort_hipsolver
     function hipsolverDnSsyevd_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork) &
         bind(c, name="hipsolverDnSsyevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevd_bufferSize_
       type(c_ptr),value :: handle
@@ -12415,8 +12006,7 @@ module hipfort_hipsolver
     function hipsolverDnDsyevd_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork) &
         bind(c, name="hipsolverDnDsyevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevd_bufferSize_
       type(c_ptr),value :: handle
@@ -12440,8 +12030,7 @@ module hipfort_hipsolver
     function hipsolverDnCheevd_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork) &
         bind(c, name="hipsolverDnCheevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevd_bufferSize_
       type(c_ptr),value :: handle
@@ -12465,8 +12054,7 @@ module hipfort_hipsolver
     function hipsolverDnZheevd_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork) &
         bind(c, name="hipsolverDnZheevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevd_bufferSize_
       type(c_ptr),value :: handle
@@ -12490,8 +12078,7 @@ module hipfort_hipsolver
     function hipsolverDnSsyevd_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSsyevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevd_
       type(c_ptr),value :: handle
@@ -12515,8 +12102,7 @@ module hipfort_hipsolver
     function hipsolverDnDsyevd_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDsyevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevd_
       type(c_ptr),value :: handle
@@ -12540,8 +12126,7 @@ module hipfort_hipsolver
     function hipsolverDnCheevd_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCheevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevd_
       type(c_ptr),value :: handle
@@ -12565,8 +12150,7 @@ module hipfort_hipsolver
     function hipsolverDnZheevd_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZheevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevd_
       type(c_ptr),value :: handle
@@ -12592,8 +12176,7 @@ module hipfort_hipsolver
         lwork) &
         bind(c, name="hipsolverDnSsyevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -12625,8 +12208,7 @@ module hipfort_hipsolver
         lwork) &
         bind(c, name="hipsolverDnDsyevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -12658,8 +12240,7 @@ module hipfort_hipsolver
         lwork) &
         bind(c, name="hipsolverDnCheevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -12691,8 +12272,7 @@ module hipfort_hipsolver
         lwork) &
         bind(c, name="hipsolverDnZheevdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevdx_bufferSize_
       type(c_ptr),value :: handle
@@ -12724,8 +12304,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDnSsyevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevdx_
       type(c_ptr),value :: handle
@@ -12759,8 +12338,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDnDsyevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevdx_
       type(c_ptr),value :: handle
@@ -12794,8 +12372,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDnCheevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevdx_
       type(c_ptr),value :: handle
@@ -12829,8 +12406,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDnZheevdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevdx_
       type(c_ptr),value :: handle
@@ -12862,8 +12438,7 @@ module hipfort_hipsolver
     function hipsolverDnSsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverDnSsyevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevj_bufferSize_
       type(c_ptr),value :: handle
@@ -12888,8 +12463,7 @@ module hipfort_hipsolver
     function hipsolverDnDsyevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverDnDsyevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevj_bufferSize_
       type(c_ptr),value :: handle
@@ -12914,8 +12488,7 @@ module hipfort_hipsolver
     function hipsolverDnCheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverDnCheevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevj_bufferSize_
       type(c_ptr),value :: handle
@@ -12940,8 +12513,7 @@ module hipfort_hipsolver
     function hipsolverDnZheevj_bufferSize_(handle,jobz,uplo,n,A,lda,W,lwork,params) &
         bind(c, name="hipsolverDnZheevj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevj_bufferSize_
       type(c_ptr),value :: handle
@@ -12966,8 +12538,7 @@ module hipfort_hipsolver
     function hipsolverDnSsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnSsyevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevj_
       type(c_ptr),value :: handle
@@ -12992,8 +12563,7 @@ module hipfort_hipsolver
     function hipsolverDnDsyevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnDsyevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevj_
       type(c_ptr),value :: handle
@@ -13018,8 +12588,7 @@ module hipfort_hipsolver
     function hipsolverDnCheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnCheevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevj_
       type(c_ptr),value :: handle
@@ -13044,8 +12613,7 @@ module hipfort_hipsolver
     function hipsolverDnZheevj_(handle,jobz,uplo,n,A,lda,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnZheevj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevj_
       type(c_ptr),value :: handle
@@ -13072,8 +12640,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnSsyevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -13101,8 +12668,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnDsyevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -13130,8 +12696,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnCheevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -13159,8 +12724,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnZheevjBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevjBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -13188,8 +12752,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnSsyevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsyevjBatched_
       type(c_ptr),value :: handle
@@ -13217,8 +12780,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnDsyevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsyevjBatched_
       type(c_ptr),value :: handle
@@ -13246,8 +12808,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnCheevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCheevjBatched_
       type(c_ptr),value :: handle
@@ -13275,8 +12836,7 @@ module hipfort_hipsolver
         batch_count) &
         bind(c, name="hipsolverDnZheevjBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZheevjBatched_
       type(c_ptr),value :: handle
@@ -13302,8 +12862,7 @@ module hipfort_hipsolver
     function hipsolverDnSsygvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverDnSsygvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvd_bufferSize_
       type(c_ptr),value :: handle
@@ -13330,8 +12889,7 @@ module hipfort_hipsolver
     function hipsolverDnDsygvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverDnDsygvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvd_bufferSize_
       type(c_ptr),value :: handle
@@ -13358,8 +12916,7 @@ module hipfort_hipsolver
     function hipsolverDnChegvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverDnChegvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvd_bufferSize_
       type(c_ptr),value :: handle
@@ -13386,8 +12943,7 @@ module hipfort_hipsolver
     function hipsolverDnZhegvd_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork) &
         bind(c, name="hipsolverDnZhegvd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvd_bufferSize_
       type(c_ptr),value :: handle
@@ -13414,8 +12970,7 @@ module hipfort_hipsolver
     function hipsolverDnSsygvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSsygvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvd_
       type(c_ptr),value :: handle
@@ -13442,8 +12997,7 @@ module hipfort_hipsolver
     function hipsolverDnDsygvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDsygvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvd_
       type(c_ptr),value :: handle
@@ -13470,8 +13024,7 @@ module hipfort_hipsolver
     function hipsolverDnChegvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnChegvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvd_
       type(c_ptr),value :: handle
@@ -13498,8 +13051,7 @@ module hipfort_hipsolver
     function hipsolverDnZhegvd_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZhegvd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvd_
       type(c_ptr),value :: handle
@@ -13528,8 +13080,7 @@ module hipfort_hipsolver
         iu,nev,W,lwork) &
         bind(c, name="hipsolverDnSsygvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -13564,8 +13115,7 @@ module hipfort_hipsolver
         iu,nev,W,lwork) &
         bind(c, name="hipsolverDnDsygvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -13600,8 +13150,7 @@ module hipfort_hipsolver
         iu,nev,W,lwork) &
         bind(c, name="hipsolverDnChegvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -13636,8 +13185,7 @@ module hipfort_hipsolver
         iu,nev,W,lwork) &
         bind(c, name="hipsolverDnZhegvdx_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvdx_bufferSize_
       type(c_ptr),value :: handle
@@ -13672,8 +13220,7 @@ module hipfort_hipsolver
         work,lwork,devInfo) &
         bind(c, name="hipsolverDnSsygvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvdx_
       type(c_ptr),value :: handle
@@ -13710,8 +13257,7 @@ module hipfort_hipsolver
         work,lwork,devInfo) &
         bind(c, name="hipsolverDnDsygvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvdx_
       type(c_ptr),value :: handle
@@ -13748,8 +13294,7 @@ module hipfort_hipsolver
         work,lwork,devInfo) &
         bind(c, name="hipsolverDnChegvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvdx_
       type(c_ptr),value :: handle
@@ -13786,8 +13331,7 @@ module hipfort_hipsolver
         work,lwork,devInfo) &
         bind(c, name="hipsolverDnZhegvdx")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvdx_
       type(c_ptr),value :: handle
@@ -13822,8 +13366,7 @@ module hipfort_hipsolver
     function hipsolverDnSsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverDnSsygvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvj_bufferSize_
       type(c_ptr),value :: handle
@@ -13851,8 +13394,7 @@ module hipfort_hipsolver
     function hipsolverDnDsygvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverDnDsygvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvj_bufferSize_
       type(c_ptr),value :: handle
@@ -13880,8 +13422,7 @@ module hipfort_hipsolver
     function hipsolverDnChegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverDnChegvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvj_bufferSize_
       type(c_ptr),value :: handle
@@ -13909,8 +13450,7 @@ module hipfort_hipsolver
     function hipsolverDnZhegvj_bufferSize_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params) &
         bind(c, name="hipsolverDnZhegvj_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvj_bufferSize_
       type(c_ptr),value :: handle
@@ -13938,8 +13478,7 @@ module hipfort_hipsolver
     function hipsolverDnSsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnSsygvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsygvj_
       type(c_ptr),value :: handle
@@ -13967,8 +13506,7 @@ module hipfort_hipsolver
     function hipsolverDnDsygvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnDsygvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsygvj_
       type(c_ptr),value :: handle
@@ -13996,8 +13534,7 @@ module hipfort_hipsolver
     function hipsolverDnChegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnChegvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChegvj_
       type(c_ptr),value :: handle
@@ -14025,8 +13562,7 @@ module hipfort_hipsolver
     function hipsolverDnZhegvj_(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo,params) &
         bind(c, name="hipsolverDnZhegvj")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhegvj_
       type(c_ptr),value :: handle
@@ -14054,8 +13590,7 @@ module hipfort_hipsolver
     function hipsolverDnSsytrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverDnSsytrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsytrd_bufferSize_
       type(c_ptr),value :: handle
@@ -14080,8 +13615,7 @@ module hipfort_hipsolver
     function hipsolverDnDsytrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverDnDsytrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsytrd_bufferSize_
       type(c_ptr),value :: handle
@@ -14106,8 +13640,7 @@ module hipfort_hipsolver
     function hipsolverDnChetrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverDnChetrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChetrd_bufferSize_
       type(c_ptr),value :: handle
@@ -14132,8 +13665,7 @@ module hipfort_hipsolver
     function hipsolverDnZhetrd_bufferSize_(handle,uplo,n,A,lda,D,E,tau,lwork) &
         bind(c, name="hipsolverDnZhetrd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhetrd_bufferSize_
       type(c_ptr),value :: handle
@@ -14158,8 +13690,7 @@ module hipfort_hipsolver
     function hipsolverDnSsytrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSsytrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsytrd_
       type(c_ptr),value :: handle
@@ -14184,8 +13715,7 @@ module hipfort_hipsolver
     function hipsolverDnDsytrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDsytrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsytrd_
       type(c_ptr),value :: handle
@@ -14210,8 +13740,7 @@ module hipfort_hipsolver
     function hipsolverDnChetrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnChetrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnChetrd_
       type(c_ptr),value :: handle
@@ -14236,8 +13765,7 @@ module hipfort_hipsolver
     function hipsolverDnZhetrd_(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZhetrd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZhetrd_
       type(c_ptr),value :: handle
@@ -14262,8 +13790,7 @@ module hipfort_hipsolver
     function hipsolverDnSsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverDnSsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14284,8 +13811,7 @@ module hipfort_hipsolver
     function hipsolverDnDsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverDnDsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14306,8 +13832,7 @@ module hipfort_hipsolver
     function hipsolverDnCsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverDnCsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14328,8 +13853,7 @@ module hipfort_hipsolver
     function hipsolverDnZsytrf_bufferSize_(handle,n,A,lda,lwork) &
         bind(c, name="hipsolverDnZsytrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZsytrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14350,8 +13874,7 @@ module hipfort_hipsolver
     function hipsolverDnSsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverDnSsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSsytrf_
       type(c_ptr),value :: handle
@@ -14374,8 +13897,7 @@ module hipfort_hipsolver
     function hipsolverDnDsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverDnDsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDsytrf_
       type(c_ptr),value :: handle
@@ -14398,8 +13920,7 @@ module hipfort_hipsolver
     function hipsolverDnCsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverDnCsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCsytrf_
       type(c_ptr),value :: handle
@@ -14422,8 +13943,7 @@ module hipfort_hipsolver
     function hipsolverDnZsytrf_(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo) &
         bind(c, name="hipsolverDnZsytrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnZsytrf_
       type(c_ptr),value :: handle
@@ -14444,8 +13964,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnCreateParams_(params) bind(c, name="hipsolverDnCreateParams")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnCreateParams_
       type(c_ptr) :: params
@@ -14458,8 +13977,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnDestroyParams_(params) bind(c, name="hipsolverDnDestroyParams")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnDestroyParams_
       type(c_ptr),value :: params
@@ -14472,8 +13990,7 @@ module hipfort_hipsolver
 #else
     function hipsolverDnSetAdvOptions_(params,func,alg) bind(c, name="hipsolverDnSetAdvOptions")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnSetAdvOptions_
       type(c_ptr),value :: params
@@ -14492,8 +14009,7 @@ module hipfort_hipsolver
         dataTypeVL,VL,ldvl,dataTypeVR,VR,ldvr,computeType,lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXgeev_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgeev_bufferSize_
       type(c_ptr),value :: handle
@@ -14532,8 +14048,7 @@ module hipfort_hipsolver
         devInfo) &
         bind(c, name="hipsolverDnXgeev")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgeev_
       type(c_ptr),value :: handle
@@ -14571,8 +14086,7 @@ module hipfort_hipsolver
         computeType,lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXgeqrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgeqrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14602,8 +14116,7 @@ module hipfort_hipsolver
         workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) &
         bind(c, name="hipsolverDnXgeqrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgeqrf_
       type(c_ptr),value :: handle
@@ -14634,8 +14147,7 @@ module hipfort_hipsolver
         lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXgetrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgetrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14663,8 +14175,7 @@ module hipfort_hipsolver
         workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) &
         bind(c, name="hipsolverDnXgetrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgetrf_
       type(c_ptr),value :: handle
@@ -14694,8 +14205,7 @@ module hipfort_hipsolver
         ldb,devInfo) &
         bind(c, name="hipsolverDnXgetrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXgetrs_
       type(c_ptr),value :: handle
@@ -14724,8 +14234,7 @@ module hipfort_hipsolver
         lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXpotrf_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXpotrf_bufferSize_
       type(c_ptr),value :: handle
@@ -14753,8 +14262,7 @@ module hipfort_hipsolver
         lworkOnDevice,workOnHost,lworkOnHost,myInfo) &
         bind(c, name="hipsolverDnXpotrf")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXpotrf_
       type(c_ptr),value :: handle
@@ -14781,8 +14289,7 @@ module hipfort_hipsolver
     function hipsolverDnXpotrs_(handle,params,uplo,n,nrhs,dataTypeA,A,lda,dataTypeB,B,ldb,myInfo) &
         bind(c, name="hipsolverDnXpotrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXpotrs_
       type(c_ptr),value :: handle
@@ -14810,8 +14317,7 @@ module hipfort_hipsolver
         computeType,lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXsyevd_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevd_bufferSize_
       type(c_ptr),value :: handle
@@ -14842,8 +14348,7 @@ module hipfort_hipsolver
         workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) &
         bind(c, name="hipsolverDnXsyevd")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevd_
       type(c_ptr),value :: handle
@@ -14875,8 +14380,7 @@ module hipfort_hipsolver
         dataTypeW,W,computeType,lworkOnDevice,lworkOnHost,batchSize) &
         bind(c, name="hipsolverDnXsyevBatched_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevBatched_bufferSize_
       type(c_ptr),value :: handle
@@ -14908,8 +14412,7 @@ module hipfort_hipsolver
         computeType,workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo,batchSize) &
         bind(c, name="hipsolverDnXsyevBatched")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsyevBatched_
       type(c_ptr),value :: handle
@@ -14942,8 +14445,7 @@ module hipfort_hipsolver
         ldb,lworkOnDevice,lworkOnHost) &
         bind(c, name="hipsolverDnXsytrs_bufferSize")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsytrs_bufferSize_
       type(c_ptr),value :: handle
@@ -14974,8 +14476,7 @@ module hipfort_hipsolver
         workOnDevice,lworkOnDevice,workOnHost,lworkOnHost,devInfo) &
         bind(c, name="hipsolverDnXsytrs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverDnXsytrs_
       type(c_ptr),value :: handle
@@ -15003,8 +14504,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfCreate_(handle) bind(c, name="hipsolverRfCreate")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfCreate_
       type(c_ptr) :: handle
@@ -15017,8 +14517,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfDestroy_(handle) bind(c, name="hipsolverRfDestroy")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfDestroy_
       type(c_ptr),value :: handle
@@ -15035,8 +14534,7 @@ module hipfort_hipsolver
         csrColIndL,csrValL,nnzU,csrRowPtrU,csrColIndU,csrValU,P,Q,handle) &
         bind(c, name="hipsolverRfSetupDevice")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetupDevice_
       integer(c_int),value :: n
@@ -15068,8 +14566,7 @@ module hipfort_hipsolver
         h_csrColIndL,h_csrValL,nnzU,h_csrRowPtrU,h_csrColIndU,h_csrValU,h_P,h_Q,handle) &
         bind(c, name="hipsolverRfSetupHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetupHost_
       integer(c_int),value :: n
@@ -15099,8 +14596,7 @@ module hipfort_hipsolver
     function hipsolverRfAccessBundledFactorsDevice_(handle,nnzM,Mp,Mi,Mx) &
         bind(c, name="hipsolverRfAccessBundledFactorsDevice")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfAccessBundledFactorsDevice_
       type(c_ptr),value :: handle
@@ -15119,8 +14615,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfAnalyze_(handle) bind(c, name="hipsolverRfAnalyze")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfAnalyze_
       type(c_ptr),value :: handle
@@ -15135,8 +14630,7 @@ module hipfort_hipsolver
     function hipsolverRfExtractBundledFactorsHost_(handle,h_nnzM,h_Mp,h_Mi,h_Mx) &
         bind(c, name="hipsolverRfExtractBundledFactorsHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfExtractBundledFactorsHost_
       type(c_ptr),value :: handle
@@ -15159,8 +14653,7 @@ module hipfort_hipsolver
         h_Ux) &
         bind(c, name="hipsolverRfExtractSplitFactorsHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfExtractSplitFactorsHost_
       type(c_ptr),value :: handle
@@ -15180,8 +14673,7 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
   interface hipsolverRfGet_Algs
     function hipsolverRfGet_Algs_(handle,fact_alg,solve_alg) bind(c, name="hipsolverRfGet_Algs")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfGet_Algs_
       type(c_ptr),value :: handle
@@ -15201,8 +14693,7 @@ module hipfort_hipsolver
     function hipsolverRfGetMatrixFormat_(handle,myFormat,diag) &
         bind(c, name="hipsolverRfGetMatrixFormat")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfGetMatrixFormat_
       type(c_ptr),value :: handle
@@ -15221,8 +14712,7 @@ module hipfort_hipsolver
     function hipsolverRfGetNumericBoostReport_(handle,report) &
         bind(c, name="hipsolverRfGetNumericBoostReport")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfGetNumericBoostReport_
       type(c_ptr),value :: handle
@@ -15240,8 +14730,7 @@ module hipfort_hipsolver
     function hipsolverRfGetNumericProperties_(handle,zero,boost) &
         bind(c, name="hipsolverRfGetNumericProperties")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfGetNumericProperties_
       type(c_ptr),value :: handle
@@ -15260,8 +14749,7 @@ module hipfort_hipsolver
     function hipsolverRfGetResetValuesFastMode_(handle,fastMode) &
         bind(c, name="hipsolverRfGetResetValuesFastMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfGetResetValuesFastMode_
       type(c_ptr),value :: handle
@@ -15277,8 +14765,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfRefactor_(handle) bind(c, name="hipsolverRfRefactor")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfRefactor_
       type(c_ptr),value :: handle
@@ -15293,8 +14780,7 @@ module hipfort_hipsolver
     function hipsolverRfResetValues_(n,nnzA,csrRowPtrA,csrColIndA,csrValA,P,Q,handle) &
         bind(c, name="hipsolverRfResetValues")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfResetValues_
       integer(c_int),value :: n
@@ -15314,8 +14800,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfSetAlgs_(handle,fact_alg,solve_alg) bind(c, name="hipsolverRfSetAlgs")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetAlgs_
       type(c_ptr),value :: handle
@@ -15332,8 +14817,7 @@ module hipfort_hipsolver
     function hipsolverRfSetMatrixFormat_(handle,myFormat,diag) &
         bind(c, name="hipsolverRfSetMatrixFormat")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetMatrixFormat_
       type(c_ptr),value :: handle
@@ -15350,8 +14834,7 @@ module hipfort_hipsolver
     function hipsolverRfSetNumericProperties_(handle,effective_zero,boost_val) &
         bind(c, name="hipsolverRfSetNumericProperties")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetNumericProperties_
       type(c_ptr),value :: handle
@@ -15368,8 +14851,7 @@ module hipfort_hipsolver
     function hipsolverRfSetResetValuesFastMode_(handle,fastMode) &
         bind(c, name="hipsolverRfSetResetValuesFastMode")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSetResetValuesFastMode_
       type(c_ptr),value :: handle
@@ -15383,8 +14865,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfSolve_(handle,P,Q,nrhs,Temp,ldt,XF,ldxf) bind(c, name="hipsolverRfSolve")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfSolve_
       type(c_ptr),value :: handle
@@ -15410,8 +14891,7 @@ module hipfort_hipsolver
         h_csrValU,h_P,h_Q,handle) &
         bind(c, name="hipsolverRfBatchSetupHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchSetupHost_
       integer(c_int),value :: batchSize
@@ -15440,8 +14920,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfBatchAnalyze_(handle) bind(c, name="hipsolverRfBatchAnalyze")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchAnalyze_
       type(c_ptr),value :: handle
@@ -15454,8 +14933,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfBatchRefactor_(handle) bind(c, name="hipsolverRfBatchRefactor")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchRefactor_
       type(c_ptr),value :: handle
@@ -15472,8 +14950,7 @@ module hipfort_hipsolver
         Q,handle) &
         bind(c, name="hipsolverRfBatchResetValues")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchResetValues_
       integer(c_int),value :: batchSize
@@ -15496,8 +14973,7 @@ module hipfort_hipsolver
     function hipsolverRfBatchSolve_(handle,P,Q,nrhs,Temp,ldt,XF_array,ldxf) &
         bind(c, name="hipsolverRfBatchSolve")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchSolve_
       type(c_ptr),value :: handle
@@ -15517,8 +14993,7 @@ module hipfort_hipsolver
 #else
     function hipsolverRfBatchZeroPivot_(handle,position) bind(c, name="hipsolverRfBatchZeroPivot")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverRfBatchZeroPivot_
       type(c_ptr),value :: handle
@@ -15532,8 +15007,7 @@ module hipfort_hipsolver
 #else
     function hipsolverSpCreate_(handle) bind(c, name="hipsolverSpCreate")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpCreate_
       type(c_ptr) :: handle
@@ -15546,8 +15020,7 @@ module hipfort_hipsolver
 #else
     function hipsolverSpDestroy_(handle) bind(c, name="hipsolverSpDestroy")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpDestroy_
       type(c_ptr),value :: handle
@@ -15560,8 +15033,7 @@ module hipfort_hipsolver
 #else
     function hipsolverSpSetStream_(handle,streamId) bind(c, name="hipsolverSpSetStream")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpSetStream_
       type(c_ptr),value :: handle
@@ -15579,8 +15051,7 @@ module hipfort_hipsolver
         reorder,x,singularity) &
         bind(c, name="hipsolverSpScsrlsvchol")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpScsrlsvchol_
       type(c_ptr),value :: handle
@@ -15610,8 +15081,7 @@ module hipfort_hipsolver
         reorder,x,singularity) &
         bind(c, name="hipsolverSpDcsrlsvchol")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpDcsrlsvchol_
       type(c_ptr),value :: handle
@@ -15641,8 +15111,7 @@ module hipfort_hipsolver
         tolerance,reorder,x,singularity) &
         bind(c, name="hipsolverSpScsrlsvcholHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpScsrlsvcholHost_
       type(c_ptr),value :: handle
@@ -15672,8 +15141,7 @@ module hipfort_hipsolver
         tolerance,reorder,x,singularity) &
         bind(c, name="hipsolverSpDcsrlsvcholHost")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpDcsrlsvcholHost_
       type(c_ptr),value :: handle
@@ -15698,8 +15166,7 @@ module hipfort_hipsolver
     function hipsolverSpScsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
         reorder,x,singularity) &
         bind(c, name="hipsolverSpScsrlsvqr")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpScsrlsvqr_
       type(c_ptr),value :: handle
@@ -15730,8 +15197,7 @@ module hipfort_hipsolver
         reorder,x,singularity) &
         bind(c, name="hipsolverSpDcsrlsvqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpDcsrlsvqr_
       type(c_ptr),value :: handle
@@ -15756,8 +15222,7 @@ module hipfort_hipsolver
     function hipsolverSpCcsrlsvqr_(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b,tolerance, &
         reorder,x,singularity) &
         bind(c, name="hipsolverSpCcsrlsvqr")
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpCcsrlsvqr_
       type(c_ptr),value :: handle
@@ -15788,8 +15253,7 @@ module hipfort_hipsolver
         reorder,x,singularity) &
         bind(c, name="hipsolverSpZcsrlsvqr")
 #endif
-      use iso_c_binding
-      use hipfort_hipsolver_enums
+      import
       implicit none
       integer(c_int) :: hipsolverSpZcsrlsvqr_
       type(c_ptr),value :: handle
@@ -15813,8 +15277,6 @@ module hipfort_hipsolver
   contains
 
     function hipsolverGetDeterministicMode_typed(handle,mode)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverGetDeterministicMode_typed
       type(c_ptr), value :: handle
@@ -15824,8 +15286,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverXgesvdjGetResidual_typed(handle,myInfo,residual)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetResidual_typed
       type(c_ptr), value :: handle
@@ -15837,8 +15297,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverXgesvdjGetSweeps_typed(handle,myInfo,executed_sweeps)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXgesvdjGetSweeps_typed
       type(c_ptr), value :: handle
@@ -15850,8 +15308,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverXsyevjGetResidual_typed(handle,myInfo,residual)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetResidual_typed
       type(c_ptr), value :: handle
@@ -15862,8 +15318,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverXsyevjGetSweeps_typed(handle,myInfo,executed_sweeps)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverXsyevjGetSweeps_typed
       type(c_ptr), value :: handle
@@ -15875,8 +15329,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15894,8 +15346,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15913,8 +15363,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15932,8 +15380,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15951,8 +15397,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15969,8 +15413,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -15987,8 +15429,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16005,8 +15445,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16023,8 +15461,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16040,8 +15476,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16057,8 +15491,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16074,8 +15506,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16091,8 +15521,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16113,8 +15541,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16135,8 +15561,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16157,8 +15581,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16179,8 +15601,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16201,8 +15621,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16223,8 +15641,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16245,8 +15661,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16267,8 +15681,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16280,8 +15692,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16293,8 +15703,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16306,8 +15714,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16320,8 +15726,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSSgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16343,8 +15747,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDDgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16366,8 +15768,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCCgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16389,8 +15789,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZZgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16411,8 +15809,6 @@ module hipfort_hipsolver
 
 #endif
     function hipsolverSSgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgels_typed
       type(c_ptr), value :: handle
@@ -16435,8 +15831,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDDgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgels_typed
       type(c_ptr), value :: handle
@@ -16459,8 +15853,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCCgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgels_typed
       type(c_ptr), value :: handle
@@ -16483,8 +15875,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZZgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgels_typed
       type(c_ptr), value :: handle
@@ -16507,8 +15897,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16522,8 +15910,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16537,8 +15923,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16552,8 +15936,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16568,8 +15950,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSSgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16591,8 +15971,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDDgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16614,8 +15992,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCCgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16637,8 +16013,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZZgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16660,8 +16034,6 @@ module hipfort_hipsolver
 #endif
     function hipsolverSSgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_typed
       type(c_ptr), value :: handle
@@ -16685,8 +16057,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_typed
       type(c_ptr), value :: handle
@@ -16710,8 +16080,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_typed
       type(c_ptr), value :: handle
@@ -16735,8 +16103,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_typed
       type(c_ptr), value :: handle
@@ -16760,8 +16126,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSgesvd_bufferSize_typed(handle,jobu,jobv,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16778,8 +16142,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDgesvd_bufferSize_typed(handle,jobu,jobv,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16796,8 +16158,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCgesvd_bufferSize_typed(handle,jobu,jobv,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16814,8 +16174,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZgesvd_bufferSize_typed(handle,jobu,jobv,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16832,8 +16190,6 @@ module hipfort_hipsolver
 #endif
     function hipsolverSgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16857,8 +16213,6 @@ module hipfort_hipsolver
 
     function hipsolverDgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16882,8 +16236,6 @@ module hipfort_hipsolver
 
     function hipsolverCgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16907,8 +16259,6 @@ module hipfort_hipsolver
 
     function hipsolverZgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16932,8 +16282,6 @@ module hipfort_hipsolver
 
     function hipsolverSgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16957,8 +16305,6 @@ module hipfort_hipsolver
 
     function hipsolverDgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -16982,8 +16328,6 @@ module hipfort_hipsolver
 
     function hipsolverCgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17007,8 +16351,6 @@ module hipfort_hipsolver
 
     function hipsolverZgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17032,8 +16374,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17049,8 +16389,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17066,8 +16404,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17083,8 +16419,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17100,8 +16434,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverSgetrs_bufferSize_typed(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17122,8 +16454,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDgetrs_bufferSize_typed(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17144,8 +16474,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCgetrs_bufferSize_typed(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17166,8 +16494,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZgetrs_bufferSize_typed(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17187,8 +16513,6 @@ module hipfort_hipsolver
 
 #endif
     function hipsolverSpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17203,8 +16527,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17219,8 +16541,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17235,8 +16555,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17252,8 +16570,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSpotrfBatched_bufferSize_typed(handle,uplo,n,A,lda,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17271,8 +16587,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDpotrfBatched_bufferSize_typed(handle,uplo,n,A,lda,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17290,8 +16604,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCpotrfBatched_bufferSize_typed(handle,uplo,n,A,lda,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17309,8 +16621,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZpotrfBatched_bufferSize_typed(handle,uplo,n,A,lda,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17327,8 +16637,6 @@ module hipfort_hipsolver
 
 #endif
     function hipsolverSpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17343,8 +16651,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17359,8 +16665,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17375,8 +16679,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17392,8 +16694,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverSpotrs_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17413,8 +16713,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverDpotrs_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17434,8 +16732,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverCpotrs_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17455,8 +16751,6 @@ module hipfort_hipsolver
 #endif
 #ifndef USE_CUDA_NAMES
     function hipsolverZpotrs_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17477,8 +16771,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverSpotrsBatched_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17500,8 +16792,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverDpotrsBatched_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17523,8 +16813,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverCpotrsBatched_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17546,8 +16834,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverZpotrsBatched_bufferSize_typed(handle,uplo,n,nrhs,A,lda,B,ldb,lwork, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17567,8 +16853,6 @@ module hipfort_hipsolver
 
 #endif
     function hipsolverSsyevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17585,8 +16869,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17603,8 +16885,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17621,8 +16901,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17640,8 +16918,6 @@ module hipfort_hipsolver
 
     function hipsolverSsyevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17665,8 +16941,6 @@ module hipfort_hipsolver
 
     function hipsolverDsyevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17690,8 +16964,6 @@ module hipfort_hipsolver
 
     function hipsolverCheevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17715,8 +16987,6 @@ module hipfort_hipsolver
 
     function hipsolverZheevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17740,8 +17010,6 @@ module hipfort_hipsolver
 
     function hipsolverSsyevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevdx_typed
       type(c_ptr), value :: handle
@@ -17767,8 +17035,6 @@ module hipfort_hipsolver
 
     function hipsolverDsyevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevdx_typed
       type(c_ptr), value :: handle
@@ -17794,8 +17060,6 @@ module hipfort_hipsolver
 
     function hipsolverCheevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevdx_typed
       type(c_ptr), value :: handle
@@ -17821,8 +17085,6 @@ module hipfort_hipsolver
 
     function hipsolverZheevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevdx_typed
       type(c_ptr), value :: handle
@@ -17847,8 +17109,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17866,8 +17126,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17885,8 +17143,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17904,8 +17160,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17924,8 +17178,6 @@ module hipfort_hipsolver
 
     function hipsolverSsyevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17945,8 +17197,6 @@ module hipfort_hipsolver
 
     function hipsolverDsyevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17966,8 +17216,6 @@ module hipfort_hipsolver
 
     function hipsolverCheevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -17987,8 +17235,6 @@ module hipfort_hipsolver
 
     function hipsolverZheevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18007,8 +17253,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18028,8 +17272,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18049,8 +17291,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18070,8 +17310,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18092,8 +17330,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18120,8 +17356,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18148,8 +17382,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18176,8 +17408,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18204,8 +17434,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W, &
         work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvdx_typed
       type(c_ptr), value :: handle
@@ -18234,8 +17462,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W, &
         work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvdx_typed
       type(c_ptr), value :: handle
@@ -18264,8 +17490,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W, &
         work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvdx_typed
       type(c_ptr), value :: handle
@@ -18294,8 +17518,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev,W, &
         work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvdx_typed
       type(c_ptr), value :: handle
@@ -18323,8 +17545,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18345,8 +17565,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18367,8 +17585,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18389,8 +17605,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18411,8 +17625,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18430,8 +17642,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18449,8 +17659,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18468,8 +17676,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18487,8 +17693,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18501,8 +17705,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18515,8 +17717,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18529,8 +17729,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18543,8 +17741,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnGetDeterministicMode_typed(handle,mode)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnGetDeterministicMode_typed
       type(c_ptr), value :: handle
@@ -18554,8 +17750,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnXgesvdjGetResidual_typed(handle,myInfo,residual)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetResidual_typed
       type(c_ptr), value :: handle
@@ -18567,8 +17761,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnXgesvdjGetSweeps_typed(handle,myInfo,executed_sweeps)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgesvdjGetSweeps_typed
       type(c_ptr), value :: handle
@@ -18580,8 +17772,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnXsyevjGetResidual_typed(handle,myInfo,residual)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetResidual_typed
       type(c_ptr), value :: handle
@@ -18593,8 +17783,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnXsyevjGetSweeps_typed(handle,myInfo,executed_sweeps)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevjGetSweeps_typed
       type(c_ptr), value :: handle
@@ -18606,8 +17794,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSorgbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18625,8 +17811,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDorgbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18644,8 +17828,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCungbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18663,8 +17845,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZungbr_bufferSize_typed(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungbr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18682,8 +17862,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSorgqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18700,8 +17878,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDorgqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18718,8 +17894,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCungqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18736,8 +17910,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZungqr_bufferSize_typed(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18754,8 +17926,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSorgtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSorgtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18771,8 +17941,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDorgtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDorgtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18788,8 +17956,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCungtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCungtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18805,8 +17971,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZungtr_bufferSize_typed(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZungtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18822,8 +17986,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSormqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18844,8 +18006,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDormqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18866,8 +18026,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCunmqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18888,8 +18046,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZunmqr_bufferSize_typed(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmqr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18910,8 +18066,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSormtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSormtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18932,8 +18086,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDormtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDormtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18954,8 +18106,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCunmtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCunmtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18976,8 +18126,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZunmtr_bufferSize_typed(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZunmtr_bufferSize_typed
       type(c_ptr), value :: handle
@@ -18998,8 +18146,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19011,8 +18157,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19024,8 +18168,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19037,8 +18179,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZgebrd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgebrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19050,8 +18190,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSSgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19072,8 +18210,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDDgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19094,8 +18230,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCCgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19116,8 +18250,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZZgels_bufferSize_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19138,8 +18270,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSSgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgels_typed
       type(c_ptr), value :: handle
@@ -19162,8 +18292,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDDgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgels_typed
       type(c_ptr), value :: handle
@@ -19186,8 +18314,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCCgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgels_typed
       type(c_ptr), value :: handle
@@ -19210,8 +18336,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZZgels_typed(handle,m,n,nrhs,A,lda,B,ldb,X,ldx,work,lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgels_typed
       type(c_ptr), value :: handle
@@ -19234,8 +18358,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19250,8 +18372,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19266,8 +18386,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19282,8 +18400,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZgeqrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19298,8 +18414,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSSgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19320,8 +18434,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDDgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19342,8 +18454,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCCgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19364,8 +18474,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZZgesv_bufferSize_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19387,8 +18495,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSSgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSSgesv_typed
       type(c_ptr), value :: handle
@@ -19412,8 +18518,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDDgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDDgesv_typed
       type(c_ptr), value :: handle
@@ -19437,8 +18541,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCCgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCCgesv_typed
       type(c_ptr), value :: handle
@@ -19462,8 +18564,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZZgesv_typed(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZZgesv_typed
       type(c_ptr), value :: handle
@@ -19486,8 +18586,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSgesvd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19499,8 +18597,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDgesvd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19512,8 +18608,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCgesvd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19525,8 +18619,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZgesvd_bufferSize_typed(handle,m,n,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19539,8 +18631,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19564,8 +18654,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19589,8 +18677,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19614,8 +18700,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZgesvdj_bufferSize_typed(handle,jobz,econ,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19639,8 +18723,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19664,8 +18746,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19689,8 +18769,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19714,8 +18792,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZgesvdjBatched_bufferSize_typed(handle,jobz,m,n,A,lda,S,U,ldu,V,ldv,lwork, &
         params,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19739,8 +18815,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSgesvdaStridedBatched_bufferSize_typed(handle,jobz,rank,m,n,A,lda,strideA, &
         S,strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgesvdaStridedBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19769,8 +18843,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDgesvdaStridedBatched_bufferSize_typed(handle,jobz,rank,m,n,A,lda,strideA, &
         S,strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgesvdaStridedBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19799,8 +18871,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCgesvdaStridedBatched_bufferSize_typed(handle,jobz,rank,m,n,A,lda,strideA, &
         S,strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgesvdaStridedBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19829,8 +18899,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZgesvdaStridedBatched_bufferSize_typed(handle,jobz,rank,m,n,A,lda,strideA, &
         S,strideS,U,ldu,strideU,V,ldv,strideV,lwork,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgesvdaStridedBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19858,8 +18926,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19874,8 +18940,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19890,8 +18954,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19906,8 +18968,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZgetrf_bufferSize_typed(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19922,8 +18982,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19938,8 +18996,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19954,8 +19010,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19970,8 +19024,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZpotrf_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -19986,8 +19038,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20002,8 +19052,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20018,8 +19066,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20034,8 +19080,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZpotri_bufferSize_typed(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZpotri_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20050,8 +19094,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsyevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20068,8 +19110,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsyevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20086,8 +19126,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCheevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20104,8 +19142,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZheevd_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20123,8 +19159,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSsyevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20148,8 +19182,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDsyevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20173,8 +19205,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCheevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20198,8 +19228,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZheevdx_bufferSize_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20223,8 +19251,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSsyevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevdx_typed
       type(c_ptr), value :: handle
@@ -20250,8 +19276,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDsyevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevdx_typed
       type(c_ptr), value :: handle
@@ -20277,8 +19301,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCheevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevdx_typed
       type(c_ptr), value :: handle
@@ -20304,8 +19326,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZheevdx_typed(handle,jobz,range,uplo,n,A,lda,vl,vu,il,iu,nev,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevdx_typed
       type(c_ptr), value :: handle
@@ -20330,8 +19350,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsyevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20349,8 +19367,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsyevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20368,8 +19384,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCheevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20387,8 +19401,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZheevj_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20407,8 +19419,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSsyevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsyevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20428,8 +19438,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDsyevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsyevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20449,8 +19457,6 @@ module hipfort_hipsolver
 
     function hipsolverDnCheevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCheevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20470,8 +19476,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZheevjBatched_bufferSize_typed(handle,jobz,uplo,n,A,lda,W,lwork,params, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZheevjBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20490,8 +19494,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsygvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20511,8 +19513,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsygvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20532,8 +19532,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnChegvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20553,8 +19551,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZhegvd_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20575,8 +19571,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSsygvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20603,8 +19597,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDsygvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20631,8 +19623,6 @@ module hipfort_hipsolver
 
     function hipsolverDnChegvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20659,8 +19649,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZhegvdx_bufferSize_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu, &
         il,iu,nev,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20687,8 +19675,6 @@ module hipfort_hipsolver
 
     function hipsolverDnSsygvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev, &
         W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvdx_typed
       type(c_ptr), value :: handle
@@ -20717,8 +19703,6 @@ module hipfort_hipsolver
 
     function hipsolverDnDsygvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev, &
         W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvdx_typed
       type(c_ptr), value :: handle
@@ -20747,8 +19731,6 @@ module hipfort_hipsolver
 
     function hipsolverDnChegvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev, &
         W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvdx_typed
       type(c_ptr), value :: handle
@@ -20777,8 +19759,6 @@ module hipfort_hipsolver
 
     function hipsolverDnZhegvdx_typed(handle,itype,jobz,range,uplo,n,A,lda,B,ldb,vl,vu,il,iu,nev, &
         W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvdx_typed
       type(c_ptr), value :: handle
@@ -20806,8 +19786,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsygvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsygvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20828,8 +19806,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsygvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsygvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20850,8 +19826,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnChegvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChegvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20872,8 +19846,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZhegvj_bufferSize_typed(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork,params)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhegvj_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20894,8 +19866,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsytrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20913,8 +19883,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsytrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20932,8 +19900,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnChetrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnChetrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20951,8 +19917,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZhetrd_bufferSize_typed(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZhetrd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20970,8 +19934,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnSsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnSsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -20985,8 +19947,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnDsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnDsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21000,8 +19960,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnCsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnCsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21015,8 +19973,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDnZsytrf_bufferSize_typed(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnZsytrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21031,8 +19987,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXgeev_bufferSize_typed(handle,params,jobvl,jobvr,n,dataTypeA,A,lda, &
         dataTypeW,W,dataTypeVL,VL,ldvl,dataTypeVR,VR,ldvr,computeType,lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeev_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21062,8 +20016,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXgeqrf_bufferSize_typed(handle,params,m,n,dataTypeA,A,lda,dataTypeTau,tau, &
         computeType,lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgeqrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21085,8 +20037,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXgetrf_bufferSize_typed(handle,params,m,n,dataTypeA,A,lda,computeType, &
         lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXgetrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21106,8 +20056,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXpotrf_bufferSize_typed(handle,params,uplo,n,dataTypeA,A,lda,computeType, &
         lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXpotrf_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21127,8 +20075,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXsyevd_bufferSize_typed(handle,params,jobz,uplo,n,dataTypeA,A,lda, &
         dataTypeW,W,computeType,lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevd_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21151,8 +20097,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXsyevBatched_bufferSize_typed(handle,params,jobz,uplo,n,dataTypeA,A,lda, &
         dataTypeW,W,computeType,lworkOnDevice,lworkOnHost,batchSize)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsyevBatched_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21177,8 +20121,6 @@ module hipfort_hipsolver
 
     function hipsolverDnXsytrs_bufferSize_typed(handle,uplo,n,nrhs,dataTypeA,A,lda,devIpiv, &
         dataTypeB,B,ldb,lworkOnDevice,lworkOnHost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDnXsytrs_bufferSize_typed
       type(c_ptr), value :: handle
@@ -21200,8 +20142,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverRfAccessBundledFactorsDevice_typed(handle,nnzM,Mp,Mi,Mx)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfAccessBundledFactorsDevice_typed
       type(c_ptr), value :: handle
@@ -21215,8 +20155,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverRfExtractBundledFactorsHost_typed(handle,h_nnzM,h_Mp,h_Mi,h_Mx)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractBundledFactorsHost_typed
       type(c_ptr), value :: handle
@@ -21231,8 +20169,6 @@ module hipfort_hipsolver
 
     function hipsolverRfExtractSplitFactorsHost_typed(handle,h_nnzL,h_Lp,h_Li,h_Lx,h_nnzU,h_Up, &
         h_Ui,h_Ux)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfExtractSplitFactorsHost_typed
       type(c_ptr), value :: handle
@@ -21251,8 +20187,6 @@ module hipfort_hipsolver
 
 #ifndef USE_CUDA_NAMES
     function hipsolverRfGet_Algs_typed(handle,fact_alg,solve_alg)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGet_Algs_typed
       type(c_ptr), value :: handle
@@ -21264,8 +20198,6 @@ module hipfort_hipsolver
 
 #endif
     function hipsolverRfGetMatrixFormat_typed(handle,myFormat,diag)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetMatrixFormat_typed
       type(c_ptr), value :: handle
@@ -21277,8 +20209,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverRfGetNumericBoostReport_typed(handle,report)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericBoostReport_typed
       type(c_ptr), value :: handle
@@ -21289,8 +20219,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverRfGetNumericProperties_typed(handle,zero,boost)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetNumericProperties_typed
       type(c_ptr), value :: handle
@@ -21302,8 +20230,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverRfGetResetValuesFastMode_typed(handle,fastMode)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverRfGetResetValuesFastMode_typed
       type(c_ptr), value :: handle
@@ -21315,8 +20241,6 @@ module hipfort_hipsolver
 
     function hipsolverSpScsrlsvchol_typed(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvchol_typed
       type(c_ptr), value :: handle
@@ -21338,8 +20262,6 @@ module hipfort_hipsolver
 
     function hipsolverSpDcsrlsvchol_typed(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvchol_typed
       type(c_ptr), value :: handle
@@ -21361,8 +20283,6 @@ module hipfort_hipsolver
 
     function hipsolverSpScsrlsvcholHost_typed(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvcholHost_typed
       type(c_ptr), value :: handle
@@ -21384,8 +20304,6 @@ module hipfort_hipsolver
 
     function hipsolverSpDcsrlsvcholHost_typed(handle,n,nnzA,descrA,csrVal,csrRowPtr,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvcholHost_typed
       type(c_ptr), value :: handle
@@ -21408,8 +20326,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverSpScsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpScsrlsvqr_typed
       type(c_ptr), value :: handle
@@ -21432,8 +20348,6 @@ module hipfort_hipsolver
 #endif
     function hipsolverSpDcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpDcsrlsvqr_typed
       type(c_ptr), value :: handle
@@ -21456,8 +20370,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
     function hipsolverSpCcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpCcsrlsvqr_typed
       type(c_ptr), value :: handle
@@ -21480,8 +20392,6 @@ module hipfort_hipsolver
 #endif
     function hipsolverSpZcsrlsvqr_typed(handle,n,nnz,descrA,csrVal,csrRowPts,csrColInd,b, &
         tolerance,reorder,x,singularity)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpZcsrlsvqr_typed
       type(c_ptr), value :: handle
@@ -21506,8 +20416,6 @@ module hipfort_hipsolver
 
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -21526,8 +20434,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgbr_bufferSize_rank_0(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -21545,8 +20451,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_bufferSize_rank_1(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -21564,8 +20468,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_bufferSize_full_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -21585,8 +20487,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -21605,8 +20505,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgbr_bufferSize_rank_0(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -21624,8 +20522,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_bufferSize_rank_1(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -21643,8 +20539,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_bufferSize_full_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -21664,8 +20558,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -21684,8 +20576,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungbr_bufferSize_rank_0(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -21703,8 +20593,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_bufferSize_rank_1(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -21722,8 +20610,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_bufferSize_full_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -21743,8 +20629,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungbr_bufferSize_assumed_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -21763,8 +20647,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungbr_bufferSize_rank_0(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -21782,8 +20664,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_bufferSize_rank_1(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -21801,8 +20681,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_bufferSize_full_rank(handle,side,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -21822,8 +20700,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_assumed_rank
       type(c_ptr), value :: handle
@@ -21843,8 +20719,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_assumed_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -21865,8 +20739,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgbr_rank_0(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_0
       type(c_ptr), value :: handle
@@ -21886,8 +20758,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_rank_0_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -21907,8 +20777,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_rank_1(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_1
       type(c_ptr), value :: handle
@@ -21928,8 +20796,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_rank_1_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -21949,8 +20815,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_full_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_full_rank
       type(c_ptr), value :: handle
@@ -21970,8 +20834,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgbr_full_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgbr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -21993,8 +20855,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_assumed_rank
       type(c_ptr), value :: handle
@@ -22014,8 +20874,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_assumed_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -22036,8 +20894,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgbr_rank_0(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_0
       type(c_ptr), value :: handle
@@ -22057,8 +20913,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_rank_0_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -22078,8 +20932,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_rank_1(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_1
       type(c_ptr), value :: handle
@@ -22099,8 +20951,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_rank_1_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -22120,8 +20970,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_full_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_full_rank
       type(c_ptr), value :: handle
@@ -22141,8 +20989,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgbr_full_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgbr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -22164,8 +21010,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_assumed_rank
       type(c_ptr), value :: handle
@@ -22185,8 +21029,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_assumed_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -22207,8 +21049,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungbr_rank_0(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_0
       type(c_ptr), value :: handle
@@ -22228,8 +21068,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_rank_0_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -22249,8 +21087,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_rank_1(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_1
       type(c_ptr), value :: handle
@@ -22270,8 +21106,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_rank_1_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -22291,8 +21125,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_full_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_full_rank
       type(c_ptr), value :: handle
@@ -22312,8 +21144,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungbr_full_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungbr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -22335,8 +21165,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungbr_assumed_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_assumed_rank
       type(c_ptr), value :: handle
@@ -22356,8 +21184,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_assumed_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -22378,8 +21204,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungbr_rank_0(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_0
       type(c_ptr), value :: handle
@@ -22399,8 +21223,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_rank_0_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -22420,8 +21242,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_rank_1(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_1
       type(c_ptr), value :: handle
@@ -22441,8 +21261,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_rank_1_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -22462,8 +21280,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_full_rank(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_full_rank
       type(c_ptr), value :: handle
@@ -22483,8 +21299,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungbr_full_rank_devptr(handle,side,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungbr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -22506,8 +21320,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -22525,8 +21337,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgqr_bufferSize_rank_0(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -22543,8 +21353,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_bufferSize_rank_1(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -22561,8 +21369,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_bufferSize_full_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -22581,8 +21387,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -22600,8 +21404,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgqr_bufferSize_rank_0(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -22618,8 +21420,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_bufferSize_rank_1(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -22636,8 +21436,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_bufferSize_full_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -22656,8 +21454,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -22675,8 +21471,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungqr_bufferSize_rank_0(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -22693,8 +21487,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_bufferSize_rank_1(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -22711,8 +21503,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_bufferSize_full_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -22731,8 +21521,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungqr_bufferSize_assumed_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -22750,8 +21538,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungqr_bufferSize_rank_0(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -22768,8 +21554,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_bufferSize_rank_1(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -22786,8 +21570,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_bufferSize_full_rank(handle,m,n,k,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -22806,8 +21588,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_assumed_rank
       type(c_ptr), value :: handle
@@ -22826,8 +21606,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_assumed_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -22847,8 +21625,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgqr_rank_0(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_0
       type(c_ptr), value :: handle
@@ -22867,8 +21643,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_rank_0_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -22887,8 +21661,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_rank_1(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_1
       type(c_ptr), value :: handle
@@ -22907,8 +21679,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_rank_1_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -22927,8 +21697,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_full_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_full_rank
       type(c_ptr), value :: handle
@@ -22947,8 +21715,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgqr_full_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -22969,8 +21735,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_assumed_rank
       type(c_ptr), value :: handle
@@ -22989,8 +21753,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_assumed_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -23010,8 +21772,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgqr_rank_0(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_0
       type(c_ptr), value :: handle
@@ -23030,8 +21790,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_rank_0_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -23050,8 +21808,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_rank_1(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_1
       type(c_ptr), value :: handle
@@ -23070,8 +21826,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_rank_1_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -23090,8 +21844,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_full_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_full_rank
       type(c_ptr), value :: handle
@@ -23110,8 +21862,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgqr_full_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -23132,8 +21882,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_assumed_rank
       type(c_ptr), value :: handle
@@ -23152,8 +21900,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_assumed_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -23173,8 +21919,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungqr_rank_0(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_0
       type(c_ptr), value :: handle
@@ -23193,8 +21937,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_rank_0_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -23213,8 +21955,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_rank_1(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_1
       type(c_ptr), value :: handle
@@ -23233,8 +21973,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_rank_1_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -23253,8 +21991,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_full_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_full_rank
       type(c_ptr), value :: handle
@@ -23273,8 +22009,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungqr_full_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -23295,8 +22029,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungqr_assumed_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_assumed_rank
       type(c_ptr), value :: handle
@@ -23315,8 +22047,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_assumed_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -23336,8 +22066,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungqr_rank_0(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_0
       type(c_ptr), value :: handle
@@ -23356,8 +22084,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_rank_0_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -23376,8 +22102,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_rank_1(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_1
       type(c_ptr), value :: handle
@@ -23396,8 +22120,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_rank_1_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -23416,8 +22138,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_full_rank(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_full_rank
       type(c_ptr), value :: handle
@@ -23436,8 +22156,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungqr_full_rank_devptr(handle,m,n,k,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -23458,8 +22176,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -23476,8 +22192,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgtr_bufferSize_rank_0(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -23493,8 +22207,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_bufferSize_rank_1(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -23510,8 +22222,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_bufferSize_full_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -23529,8 +22239,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -23547,8 +22255,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgtr_bufferSize_rank_0(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -23564,8 +22270,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_bufferSize_rank_1(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -23581,8 +22285,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_bufferSize_full_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -23600,8 +22302,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -23618,8 +22318,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungtr_bufferSize_rank_0(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -23635,8 +22333,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_bufferSize_rank_1(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -23652,8 +22348,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_bufferSize_full_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -23671,8 +22365,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungtr_bufferSize_assumed_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -23689,8 +22381,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungtr_bufferSize_rank_0(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -23706,8 +22396,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_bufferSize_rank_1(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -23723,8 +22411,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_bufferSize_full_rank(handle,uplo,n,A,lda,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -23742,8 +22428,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_assumed_rank
       type(c_ptr), value :: handle
@@ -23761,8 +22445,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_assumed_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -23781,8 +22463,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSorgtr_rank_0(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_0
       type(c_ptr), value :: handle
@@ -23800,8 +22480,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_rank_0_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -23819,8 +22497,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_rank_1(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_1
       type(c_ptr), value :: handle
@@ -23838,8 +22514,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_rank_1_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -23857,8 +22531,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_full_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_full_rank
       type(c_ptr), value :: handle
@@ -23876,8 +22548,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSorgtr_full_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSorgtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -23897,8 +22567,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDorgtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_assumed_rank
       type(c_ptr), value :: handle
@@ -23916,8 +22584,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_assumed_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -23936,8 +22602,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDorgtr_rank_0(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_0
       type(c_ptr), value :: handle
@@ -23955,8 +22619,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_rank_0_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -23974,8 +22636,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_rank_1(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_1
       type(c_ptr), value :: handle
@@ -23993,8 +22653,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_rank_1_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -24012,8 +22670,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_full_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_full_rank
       type(c_ptr), value :: handle
@@ -24031,8 +22687,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDorgtr_full_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDorgtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -24052,8 +22706,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_assumed_rank
       type(c_ptr), value :: handle
@@ -24071,8 +22723,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_assumed_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -24091,8 +22741,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCungtr_rank_0(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_0
       type(c_ptr), value :: handle
@@ -24110,8 +22758,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_rank_0_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -24129,8 +22775,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_rank_1(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_1
       type(c_ptr), value :: handle
@@ -24148,8 +22792,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_rank_1_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -24167,8 +22809,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_full_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_full_rank
       type(c_ptr), value :: handle
@@ -24186,8 +22826,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCungtr_full_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCungtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -24207,8 +22845,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZungtr_assumed_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_assumed_rank
       type(c_ptr), value :: handle
@@ -24226,8 +22862,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_assumed_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -24246,8 +22880,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZungtr_rank_0(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_0
       type(c_ptr), value :: handle
@@ -24265,8 +22897,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_rank_0_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -24284,8 +22914,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_rank_1(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_1
       type(c_ptr), value :: handle
@@ -24303,8 +22931,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_rank_1_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -24322,8 +22948,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_full_rank(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_full_rank
       type(c_ptr), value :: handle
@@ -24341,8 +22965,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZungtr_full_rank_devptr(handle,uplo,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZungtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -24362,8 +22984,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -24385,8 +23005,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSormqr_bufferSize_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -24407,8 +23025,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormqr_bufferSize_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -24429,8 +23045,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormqr_bufferSize_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -24453,8 +23067,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDormqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -24476,8 +23088,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDormqr_bufferSize_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -24498,8 +23108,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormqr_bufferSize_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -24520,8 +23128,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormqr_bufferSize_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -24544,8 +23150,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -24567,8 +23171,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCunmqr_bufferSize_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -24589,8 +23191,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmqr_bufferSize_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -24611,8 +23211,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmqr_bufferSize_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -24635,8 +23233,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZunmqr_bufferSize_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -24658,8 +23254,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZunmqr_bufferSize_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -24680,8 +23274,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmqr_bufferSize_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -24702,8 +23294,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmqr_bufferSize_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -24727,8 +23317,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_assumed_rank
       type(c_ptr), value :: handle
@@ -24752,8 +23340,6 @@ module hipfort_hipsolver
 
     function hipsolverSormqr_assumed_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -24777,8 +23363,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSormqr_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_0
       type(c_ptr), value :: handle
@@ -24802,8 +23386,6 @@ module hipfort_hipsolver
 
     function hipsolverSormqr_rank_0_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -24826,8 +23408,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormqr_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_1
       type(c_ptr), value :: handle
@@ -24851,8 +23431,6 @@ module hipfort_hipsolver
 
     function hipsolverSormqr_rank_1_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -24875,8 +23453,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormqr_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_full_rank
       type(c_ptr), value :: handle
@@ -24900,8 +23476,6 @@ module hipfort_hipsolver
 
     function hipsolverSormqr_full_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -24927,8 +23501,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDormqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_assumed_rank
       type(c_ptr), value :: handle
@@ -24952,8 +23524,6 @@ module hipfort_hipsolver
 
     function hipsolverDormqr_assumed_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -24977,8 +23547,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDormqr_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_0
       type(c_ptr), value :: handle
@@ -25002,8 +23570,6 @@ module hipfort_hipsolver
 
     function hipsolverDormqr_rank_0_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -25026,8 +23592,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormqr_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_1
       type(c_ptr), value :: handle
@@ -25051,8 +23615,6 @@ module hipfort_hipsolver
 
     function hipsolverDormqr_rank_1_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -25075,8 +23637,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormqr_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_full_rank
       type(c_ptr), value :: handle
@@ -25100,8 +23660,6 @@ module hipfort_hipsolver
 
     function hipsolverDormqr_full_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -25127,8 +23685,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_assumed_rank
       type(c_ptr), value :: handle
@@ -25152,8 +23708,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmqr_assumed_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -25177,8 +23731,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCunmqr_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_0
       type(c_ptr), value :: handle
@@ -25202,8 +23754,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmqr_rank_0_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -25226,8 +23776,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmqr_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_1
       type(c_ptr), value :: handle
@@ -25251,8 +23799,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmqr_rank_1_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -25275,8 +23821,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmqr_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_full_rank
       type(c_ptr), value :: handle
@@ -25300,8 +23844,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmqr_full_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -25327,8 +23869,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZunmqr_assumed_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_assumed_rank
       type(c_ptr), value :: handle
@@ -25352,8 +23892,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmqr_assumed_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -25377,8 +23915,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZunmqr_rank_0(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_0
       type(c_ptr), value :: handle
@@ -25402,8 +23938,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmqr_rank_0_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -25426,8 +23960,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmqr_rank_1(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_1
       type(c_ptr), value :: handle
@@ -25451,8 +23983,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmqr_rank_1_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -25475,8 +24005,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmqr_full_rank(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_full_rank
       type(c_ptr), value :: handle
@@ -25500,8 +24028,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmqr_full_rank_devptr(handle,side,trans,m,n,k,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmqr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -25527,8 +24053,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -25550,8 +24074,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSormtr_bufferSize_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -25572,8 +24094,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormtr_bufferSize_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -25594,8 +24114,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormtr_bufferSize_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -25619,8 +24137,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDormtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -25642,8 +24158,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDormtr_bufferSize_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -25664,8 +24178,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormtr_bufferSize_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -25686,8 +24198,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormtr_bufferSize_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -25711,8 +24221,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -25734,8 +24242,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCunmtr_bufferSize_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -25756,8 +24262,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmtr_bufferSize_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -25778,8 +24282,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmtr_bufferSize_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -25803,8 +24305,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZunmtr_bufferSize_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc, &
         lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -25826,8 +24326,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZunmtr_bufferSize_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -25848,8 +24346,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmtr_bufferSize_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -25870,8 +24366,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmtr_bufferSize_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -25895,8 +24389,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_assumed_rank
       type(c_ptr), value :: handle
@@ -25920,8 +24412,6 @@ module hipfort_hipsolver
 
     function hipsolverSormtr_assumed_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -25945,8 +24435,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSormtr_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_0
       type(c_ptr), value :: handle
@@ -25970,8 +24458,6 @@ module hipfort_hipsolver
 
     function hipsolverSormtr_rank_0_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -25994,8 +24480,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSormtr_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_1
       type(c_ptr), value :: handle
@@ -26019,8 +24503,6 @@ module hipfort_hipsolver
 
     function hipsolverSormtr_rank_1_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -26044,8 +24526,6 @@ module hipfort_hipsolver
 
     function hipsolverSormtr_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_full_rank
       type(c_ptr), value :: handle
@@ -26069,8 +24549,6 @@ module hipfort_hipsolver
 
     function hipsolverSormtr_full_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSormtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -26096,8 +24574,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDormtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_assumed_rank
       type(c_ptr), value :: handle
@@ -26121,8 +24597,6 @@ module hipfort_hipsolver
 
     function hipsolverDormtr_assumed_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -26146,8 +24620,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDormtr_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_0
       type(c_ptr), value :: handle
@@ -26171,8 +24643,6 @@ module hipfort_hipsolver
 
     function hipsolverDormtr_rank_0_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -26195,8 +24665,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDormtr_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_1
       type(c_ptr), value :: handle
@@ -26220,8 +24688,6 @@ module hipfort_hipsolver
 
     function hipsolverDormtr_rank_1_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -26245,8 +24711,6 @@ module hipfort_hipsolver
 
     function hipsolverDormtr_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_full_rank
       type(c_ptr), value :: handle
@@ -26270,8 +24734,6 @@ module hipfort_hipsolver
 
     function hipsolverDormtr_full_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDormtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -26297,8 +24759,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_assumed_rank
       type(c_ptr), value :: handle
@@ -26322,8 +24782,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmtr_assumed_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -26347,8 +24805,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCunmtr_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_0
       type(c_ptr), value :: handle
@@ -26372,8 +24828,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmtr_rank_0_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -26396,8 +24850,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCunmtr_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_1
       type(c_ptr), value :: handle
@@ -26421,8 +24873,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmtr_rank_1_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -26446,8 +24896,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmtr_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_full_rank
       type(c_ptr), value :: handle
@@ -26471,8 +24919,6 @@ module hipfort_hipsolver
 
     function hipsolverCunmtr_full_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCunmtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -26498,8 +24944,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZunmtr_assumed_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_assumed_rank
       type(c_ptr), value :: handle
@@ -26523,8 +24967,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmtr_assumed_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -26548,8 +24990,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZunmtr_rank_0(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_0
       type(c_ptr), value :: handle
@@ -26573,8 +25013,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmtr_rank_0_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_0_devptr
       type(c_ptr), value :: handle
@@ -26597,8 +25035,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZunmtr_rank_1(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_1
       type(c_ptr), value :: handle
@@ -26622,8 +25058,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmtr_rank_1_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_rank_1_devptr
       type(c_ptr), value :: handle
@@ -26647,8 +25081,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmtr_full_rank(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_full_rank
       type(c_ptr), value :: handle
@@ -26672,8 +25104,6 @@ module hipfort_hipsolver
 
     function hipsolverZunmtr_full_rank_devptr(handle,side,uplo,trans,m,n,A,lda,tau,C,ldc,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZunmtr_full_rank_devptr
       type(c_ptr), value :: handle
@@ -26698,8 +25128,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_assumed_rank
       type(c_ptr), value :: handle
@@ -26720,8 +25148,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_assumed_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -26743,8 +25169,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgebrd_rank_0(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_0
       type(c_ptr), value :: handle
@@ -26765,8 +25189,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_rank_0_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -26787,8 +25209,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_rank_1(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_1
       type(c_ptr), value :: handle
@@ -26809,8 +25229,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_rank_1_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -26831,8 +25249,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_full_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_full_rank
       type(c_ptr), value :: handle
@@ -26853,8 +25269,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgebrd_full_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgebrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -26877,8 +25291,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_assumed_rank
       type(c_ptr), value :: handle
@@ -26899,8 +25311,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_assumed_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -26922,8 +25332,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgebrd_rank_0(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_0
       type(c_ptr), value :: handle
@@ -26944,8 +25352,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_rank_0_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -26966,8 +25372,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_rank_1(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_1
       type(c_ptr), value :: handle
@@ -26988,8 +25392,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_rank_1_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -27010,8 +25412,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_full_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_full_rank
       type(c_ptr), value :: handle
@@ -27032,8 +25432,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgebrd_full_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgebrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -27056,8 +25454,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_assumed_rank
       type(c_ptr), value :: handle
@@ -27078,8 +25474,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_assumed_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -27101,8 +25495,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgebrd_rank_0(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_0
       type(c_ptr), value :: handle
@@ -27123,8 +25515,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_rank_0_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -27145,8 +25535,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_rank_1(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_1
       type(c_ptr), value :: handle
@@ -27167,8 +25555,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_rank_1_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -27189,8 +25575,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_full_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_full_rank
       type(c_ptr), value :: handle
@@ -27211,8 +25595,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgebrd_full_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgebrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -27235,8 +25617,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgebrd_assumed_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_assumed_rank
       type(c_ptr), value :: handle
@@ -27257,8 +25637,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_assumed_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -27280,8 +25658,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgebrd_rank_0(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_0
       type(c_ptr), value :: handle
@@ -27302,8 +25678,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_rank_0_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -27324,8 +25698,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_rank_1(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_1
       type(c_ptr), value :: handle
@@ -27346,8 +25718,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_rank_1_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -27368,8 +25738,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_full_rank(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_full_rank
       type(c_ptr), value :: handle
@@ -27390,8 +25758,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgebrd_full_rank_devptr(handle,m,n,A,lda,D,E,tauq,taup,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgebrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -27414,8 +25780,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -27431,8 +25795,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgeqrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -27447,8 +25809,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -27463,8 +25823,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -27481,8 +25839,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -27498,8 +25854,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgeqrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -27514,8 +25868,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -27530,8 +25882,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -27548,8 +25898,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -27565,8 +25913,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgeqrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -27581,8 +25927,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -27597,8 +25941,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -27615,8 +25957,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgeqrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -27632,8 +25972,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgeqrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -27648,8 +25986,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -27664,8 +26000,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -27682,8 +26016,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_assumed_rank
       type(c_ptr), value :: handle
@@ -27701,8 +26033,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_assumed_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -27721,8 +26051,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgeqrf_rank_0(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_0
       type(c_ptr), value :: handle
@@ -27740,8 +26068,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_rank_0_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -27759,8 +26085,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_rank_1(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_1
       type(c_ptr), value :: handle
@@ -27778,8 +26102,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_rank_1_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -27797,8 +26119,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_full_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_full_rank
       type(c_ptr), value :: handle
@@ -27816,8 +26136,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgeqrf_full_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgeqrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -27837,8 +26155,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_assumed_rank
       type(c_ptr), value :: handle
@@ -27856,8 +26172,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_assumed_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -27876,8 +26190,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgeqrf_rank_0(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_0
       type(c_ptr), value :: handle
@@ -27895,8 +26207,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_rank_0_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -27914,8 +26224,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_rank_1(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_1
       type(c_ptr), value :: handle
@@ -27933,8 +26241,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_rank_1_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -27952,8 +26258,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_full_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_full_rank
       type(c_ptr), value :: handle
@@ -27971,8 +26275,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgeqrf_full_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgeqrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -27992,8 +26294,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_assumed_rank
       type(c_ptr), value :: handle
@@ -28011,8 +26311,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_assumed_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -28031,8 +26329,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgeqrf_rank_0(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_0
       type(c_ptr), value :: handle
@@ -28050,8 +26346,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_rank_0_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -28069,8 +26363,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_rank_1(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_1
       type(c_ptr), value :: handle
@@ -28088,8 +26380,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_rank_1_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -28107,8 +26397,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_full_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_full_rank
       type(c_ptr), value :: handle
@@ -28126,8 +26414,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgeqrf_full_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgeqrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -28147,8 +26433,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgeqrf_assumed_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_assumed_rank
       type(c_ptr), value :: handle
@@ -28166,8 +26450,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_assumed_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -28186,8 +26468,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgeqrf_rank_0(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_0
       type(c_ptr), value :: handle
@@ -28205,8 +26485,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_rank_0_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -28224,8 +26502,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_rank_1(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_1
       type(c_ptr), value :: handle
@@ -28243,8 +26519,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_rank_1_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -28262,8 +26536,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_full_rank(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_full_rank
       type(c_ptr), value :: handle
@@ -28281,8 +26553,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgeqrf_full_rank_devptr(handle,m,n,A,lda,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgeqrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -28303,8 +26573,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSSgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -28325,8 +26593,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSSgesv_bufferSize_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -28346,8 +26612,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSSgesv_bufferSize_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -28367,8 +26631,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSSgesv_bufferSize_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -28392,8 +26654,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDDgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -28414,8 +26674,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDDgesv_bufferSize_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -28435,8 +26693,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDDgesv_bufferSize_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -28456,8 +26712,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDDgesv_bufferSize_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -28481,8 +26735,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCCgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -28503,8 +26755,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCCgesv_bufferSize_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -28524,8 +26774,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCCgesv_bufferSize_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -28545,8 +26793,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCCgesv_bufferSize_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -28570,8 +26816,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZZgesv_bufferSize_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -28592,8 +26836,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZZgesv_bufferSize_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -28613,8 +26855,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZZgesv_bufferSize_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -28634,8 +26874,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZZgesv_bufferSize_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -28659,8 +26897,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSSgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_assumed_rank
       type(c_ptr), value :: handle
@@ -28684,8 +26920,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_assumed_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work, &
         lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -28710,8 +26944,6 @@ module hipfort_hipsolver
 #else
     function hipsolverSSgesv_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_0
       type(c_ptr), value :: handle
@@ -28735,8 +26967,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_rank_0_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_0_devptr
       type(c_ptr), value :: handle
@@ -28760,8 +26990,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_1
       type(c_ptr), value :: handle
@@ -28785,8 +27013,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_rank_1_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_rank_1_devptr
       type(c_ptr), value :: handle
@@ -28810,8 +27036,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_full_rank
       type(c_ptr), value :: handle
@@ -28835,8 +27059,6 @@ module hipfort_hipsolver
 
     function hipsolverSSgesv_full_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSSgesv_full_rank_devptr
       type(c_ptr), value :: handle
@@ -28862,8 +27084,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDDgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_assumed_rank
       type(c_ptr), value :: handle
@@ -28887,8 +27107,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_assumed_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work, &
         lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -28913,8 +27131,6 @@ module hipfort_hipsolver
 #else
     function hipsolverDDgesv_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_0
       type(c_ptr), value :: handle
@@ -28938,8 +27154,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_rank_0_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_0_devptr
       type(c_ptr), value :: handle
@@ -28963,8 +27177,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_1
       type(c_ptr), value :: handle
@@ -28988,8 +27200,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_rank_1_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_rank_1_devptr
       type(c_ptr), value :: handle
@@ -29013,8 +27223,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_full_rank
       type(c_ptr), value :: handle
@@ -29038,8 +27246,6 @@ module hipfort_hipsolver
 
     function hipsolverDDgesv_full_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDDgesv_full_rank_devptr
       type(c_ptr), value :: handle
@@ -29065,8 +27271,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCCgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_assumed_rank
       type(c_ptr), value :: handle
@@ -29090,8 +27294,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_assumed_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work, &
         lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -29116,8 +27318,6 @@ module hipfort_hipsolver
 #else
     function hipsolverCCgesv_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_0
       type(c_ptr), value :: handle
@@ -29141,8 +27341,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_rank_0_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_0_devptr
       type(c_ptr), value :: handle
@@ -29166,8 +27364,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_1
       type(c_ptr), value :: handle
@@ -29191,8 +27387,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_rank_1_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_rank_1_devptr
       type(c_ptr), value :: handle
@@ -29216,8 +27410,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_full_rank
       type(c_ptr), value :: handle
@@ -29241,8 +27433,6 @@ module hipfort_hipsolver
 
     function hipsolverCCgesv_full_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCCgesv_full_rank_devptr
       type(c_ptr), value :: handle
@@ -29268,8 +27458,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZZgesv_assumed_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_assumed_rank
       type(c_ptr), value :: handle
@@ -29293,8 +27481,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_assumed_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work, &
         lwork,niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -29319,8 +27505,6 @@ module hipfort_hipsolver
 #else
     function hipsolverZZgesv_rank_0(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_0
       type(c_ptr), value :: handle
@@ -29344,8 +27528,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_rank_0_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_0_devptr
       type(c_ptr), value :: handle
@@ -29369,8 +27551,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_rank_1(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_1
       type(c_ptr), value :: handle
@@ -29394,8 +27574,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_rank_1_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_rank_1_devptr
       type(c_ptr), value :: handle
@@ -29419,8 +27597,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_full_rank(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork,niters, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_full_rank
       type(c_ptr), value :: handle
@@ -29444,8 +27620,6 @@ module hipfort_hipsolver
 
     function hipsolverZZgesv_full_rank_devptr(handle,n,nrhs,A,lda,devIpiv,B,ldb,X,ldx,work,lwork, &
         niters,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZZgesv_full_rank_devptr
       type(c_ptr), value :: handle
@@ -29471,8 +27645,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -29488,8 +27660,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgetrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -29504,8 +27674,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -29520,8 +27688,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -29540,8 +27706,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -29557,8 +27721,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgetrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -29573,8 +27735,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -29589,8 +27749,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -29609,8 +27767,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -29626,8 +27782,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgetrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -29642,8 +27796,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -29658,8 +27810,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -29678,8 +27828,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgetrf_bufferSize_assumed_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -29695,8 +27843,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgetrf_bufferSize_rank_0(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -29711,8 +27857,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_bufferSize_rank_1(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -29727,8 +27871,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_bufferSize_full_rank(handle,m,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -29747,8 +27889,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_assumed_rank
       type(c_ptr), value :: handle
@@ -29766,8 +27906,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -29786,8 +27924,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgetrf_rank_0(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_0
       type(c_ptr), value :: handle
@@ -29805,8 +27941,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -29824,8 +27958,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_1
       type(c_ptr), value :: handle
@@ -29843,8 +27975,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -29862,8 +27992,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_full_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_full_rank
       type(c_ptr), value :: handle
@@ -29881,8 +28009,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrf_full_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -29904,8 +28030,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_assumed_rank
       type(c_ptr), value :: handle
@@ -29923,8 +28047,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -29943,8 +28065,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgetrf_rank_0(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_0
       type(c_ptr), value :: handle
@@ -29962,8 +28082,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -29981,8 +28099,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_1
       type(c_ptr), value :: handle
@@ -30000,8 +28116,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -30019,8 +28133,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_full_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_full_rank
       type(c_ptr), value :: handle
@@ -30038,8 +28150,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrf_full_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -30061,8 +28171,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_assumed_rank
       type(c_ptr), value :: handle
@@ -30080,8 +28188,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -30100,8 +28206,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgetrf_rank_0(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_0
       type(c_ptr), value :: handle
@@ -30119,8 +28223,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -30138,8 +28240,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_1
       type(c_ptr), value :: handle
@@ -30157,8 +28257,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -30176,8 +28274,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_full_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_full_rank
       type(c_ptr), value :: handle
@@ -30195,8 +28291,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrf_full_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -30218,8 +28312,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgetrf_assumed_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_assumed_rank
       type(c_ptr), value :: handle
@@ -30237,8 +28329,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_assumed_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -30257,8 +28347,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgetrf_rank_0(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_0
       type(c_ptr), value :: handle
@@ -30276,8 +28364,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_rank_0_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -30295,8 +28381,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_rank_1(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_1
       type(c_ptr), value :: handle
@@ -30314,8 +28398,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_rank_1_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -30333,8 +28415,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_full_rank(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_full_rank
       type(c_ptr), value :: handle
@@ -30352,8 +28432,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrf_full_rank_devptr(handle,m,n,A,lda,work,lwork,devIpiv,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -30375,8 +28453,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -30396,8 +28472,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgetrs_bufferSize_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -30416,8 +28490,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrs_bufferSize_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -30436,8 +28508,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrs_bufferSize_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -30460,8 +28530,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -30481,8 +28549,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgetrs_bufferSize_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -30501,8 +28567,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrs_bufferSize_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -30521,8 +28585,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrs_bufferSize_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -30545,8 +28607,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -30566,8 +28626,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgetrs_bufferSize_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -30586,8 +28644,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrs_bufferSize_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -30606,8 +28662,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrs_bufferSize_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -30630,8 +28684,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgetrs_bufferSize_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -30651,8 +28703,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgetrs_bufferSize_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -30671,8 +28721,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrs_bufferSize_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -30691,8 +28739,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrs_bufferSize_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -30716,8 +28762,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_assumed_rank
       type(c_ptr), value :: handle
@@ -30739,8 +28783,6 @@ module hipfort_hipsolver
 
     function hipsolverSgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -30762,8 +28804,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSgetrs_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_0
       type(c_ptr), value :: handle
@@ -30785,8 +28825,6 @@ module hipfort_hipsolver
 
     function hipsolverSgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -30807,8 +28845,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrs_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_1
       type(c_ptr), value :: handle
@@ -30830,8 +28866,6 @@ module hipfort_hipsolver
 
     function hipsolverSgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -30852,8 +28886,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSgetrs_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_full_rank
       type(c_ptr), value :: handle
@@ -30875,8 +28907,6 @@ module hipfort_hipsolver
 
     function hipsolverSgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSgetrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -30902,8 +28932,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_assumed_rank
       type(c_ptr), value :: handle
@@ -30925,8 +28953,6 @@ module hipfort_hipsolver
 
     function hipsolverDgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -30948,8 +28974,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDgetrs_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_0
       type(c_ptr), value :: handle
@@ -30971,8 +28995,6 @@ module hipfort_hipsolver
 
     function hipsolverDgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -30993,8 +29015,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrs_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_1
       type(c_ptr), value :: handle
@@ -31016,8 +29036,6 @@ module hipfort_hipsolver
 
     function hipsolverDgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -31038,8 +29056,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDgetrs_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_full_rank
       type(c_ptr), value :: handle
@@ -31061,8 +29077,6 @@ module hipfort_hipsolver
 
     function hipsolverDgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDgetrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -31088,8 +29102,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_assumed_rank
       type(c_ptr), value :: handle
@@ -31111,8 +29123,6 @@ module hipfort_hipsolver
 
     function hipsolverCgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -31134,8 +29144,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCgetrs_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_0
       type(c_ptr), value :: handle
@@ -31157,8 +29165,6 @@ module hipfort_hipsolver
 
     function hipsolverCgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -31179,8 +29185,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrs_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_1
       type(c_ptr), value :: handle
@@ -31202,8 +29206,6 @@ module hipfort_hipsolver
 
     function hipsolverCgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -31224,8 +29226,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCgetrs_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_full_rank
       type(c_ptr), value :: handle
@@ -31247,8 +29247,6 @@ module hipfort_hipsolver
 
     function hipsolverCgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCgetrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -31274,8 +29272,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZgetrs_assumed_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_assumed_rank
       type(c_ptr), value :: handle
@@ -31297,8 +29293,6 @@ module hipfort_hipsolver
 
     function hipsolverZgetrs_assumed_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -31320,8 +29314,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZgetrs_rank_0(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_0
       type(c_ptr), value :: handle
@@ -31343,8 +29335,6 @@ module hipfort_hipsolver
 
     function hipsolverZgetrs_rank_0_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -31365,8 +29355,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrs_rank_1(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_1
       type(c_ptr), value :: handle
@@ -31388,8 +29376,6 @@ module hipfort_hipsolver
 
     function hipsolverZgetrs_rank_1_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -31410,8 +29396,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZgetrs_full_rank(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_full_rank
       type(c_ptr), value :: handle
@@ -31433,8 +29417,6 @@ module hipfort_hipsolver
 
     function hipsolverZgetrs_full_rank_devptr(handle,trans,n,nrhs,A,lda,devIpiv,B,ldb,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZgetrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -31458,8 +29440,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -31475,8 +29455,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotrf_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -31491,8 +29469,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -31507,8 +29483,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -31525,8 +29499,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -31542,8 +29514,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotrf_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -31558,8 +29528,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -31574,8 +29542,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -31592,8 +29558,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -31609,8 +29573,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotrf_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -31625,8 +29587,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -31641,8 +29601,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -31659,8 +29617,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrf_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -31676,8 +29632,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotrf_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -31692,8 +29646,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -31708,8 +29660,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -31726,8 +29676,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_assumed_rank
       type(c_ptr), value :: handle
@@ -31744,8 +29692,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -31763,8 +29709,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotrf_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_0
       type(c_ptr), value :: handle
@@ -31781,8 +29725,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -31799,8 +29741,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_1
       type(c_ptr), value :: handle
@@ -31817,8 +29757,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -31835,8 +29773,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_full_rank
       type(c_ptr), value :: handle
@@ -31853,8 +29789,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrf_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -31873,8 +29807,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_assumed_rank
       type(c_ptr), value :: handle
@@ -31891,8 +29823,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -31910,8 +29840,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotrf_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_0
       type(c_ptr), value :: handle
@@ -31928,8 +29856,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -31946,8 +29872,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_1
       type(c_ptr), value :: handle
@@ -31964,8 +29888,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -31982,8 +29904,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_full_rank
       type(c_ptr), value :: handle
@@ -32000,8 +29920,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrf_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -32020,8 +29938,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_assumed_rank
       type(c_ptr), value :: handle
@@ -32038,8 +29954,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -32057,8 +29971,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotrf_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_0
       type(c_ptr), value :: handle
@@ -32075,8 +29987,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -32093,8 +30003,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_1
       type(c_ptr), value :: handle
@@ -32111,8 +30019,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -32129,8 +30035,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_full_rank
       type(c_ptr), value :: handle
@@ -32147,8 +30051,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrf_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -32167,8 +30069,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrf_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_assumed_rank
       type(c_ptr), value :: handle
@@ -32185,8 +30085,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -32204,8 +30102,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotrf_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_0
       type(c_ptr), value :: handle
@@ -32222,8 +30118,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -32240,8 +30134,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_1
       type(c_ptr), value :: handle
@@ -32258,8 +30150,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -32276,8 +30166,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_full_rank
       type(c_ptr), value :: handle
@@ -32294,8 +30182,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrf_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -32315,8 +30201,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -32335,8 +30219,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_rank_0
       type(c_ptr), value :: handle
@@ -32354,8 +30236,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrfBatched_rank_1
       type(c_ptr), value :: handle
@@ -32377,8 +30257,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -32397,8 +30275,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_rank_0
       type(c_ptr), value :: handle
@@ -32416,8 +30292,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrfBatched_rank_1
       type(c_ptr), value :: handle
@@ -32439,8 +30313,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -32459,8 +30331,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_rank_0
       type(c_ptr), value :: handle
@@ -32478,8 +30348,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrfBatched_rank_1
       type(c_ptr), value :: handle
@@ -32501,8 +30369,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrfBatched_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -32521,8 +30387,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotrfBatched_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_rank_0
       type(c_ptr), value :: handle
@@ -32540,8 +30404,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrfBatched_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrfBatched_rank_1
       type(c_ptr), value :: handle
@@ -32562,8 +30424,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -32579,8 +30439,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotri_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -32595,8 +30453,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -32611,8 +30467,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -32629,8 +30483,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -32646,8 +30498,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotri_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -32662,8 +30512,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -32678,8 +30526,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -32696,8 +30542,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -32713,8 +30557,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotri_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -32729,8 +30571,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -32745,8 +30585,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -32763,8 +30601,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotri_bufferSize_assumed_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -32780,8 +30616,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotri_bufferSize_rank_0(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -32796,8 +30630,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_bufferSize_rank_1(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -32812,8 +30644,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_bufferSize_full_rank(handle,uplo,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -32830,8 +30660,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_assumed_rank
       type(c_ptr), value :: handle
@@ -32848,8 +30676,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -32867,8 +30693,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotri_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_0
       type(c_ptr), value :: handle
@@ -32885,8 +30709,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_0_devptr
       type(c_ptr), value :: handle
@@ -32903,8 +30725,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_1
       type(c_ptr), value :: handle
@@ -32921,8 +30741,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_rank_1_devptr
       type(c_ptr), value :: handle
@@ -32939,8 +30757,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_full_rank
       type(c_ptr), value :: handle
@@ -32957,8 +30773,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotri_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotri_full_rank_devptr
       type(c_ptr), value :: handle
@@ -32977,8 +30791,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_assumed_rank
       type(c_ptr), value :: handle
@@ -32995,8 +30807,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -33014,8 +30824,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotri_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_0
       type(c_ptr), value :: handle
@@ -33032,8 +30840,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_0_devptr
       type(c_ptr), value :: handle
@@ -33050,8 +30856,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_1
       type(c_ptr), value :: handle
@@ -33068,8 +30872,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_rank_1_devptr
       type(c_ptr), value :: handle
@@ -33086,8 +30888,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_full_rank
       type(c_ptr), value :: handle
@@ -33104,8 +30904,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotri_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotri_full_rank_devptr
       type(c_ptr), value :: handle
@@ -33124,8 +30922,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_assumed_rank
       type(c_ptr), value :: handle
@@ -33142,8 +30938,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -33161,8 +30955,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotri_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_0
       type(c_ptr), value :: handle
@@ -33179,8 +30971,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_0_devptr
       type(c_ptr), value :: handle
@@ -33197,8 +30987,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_1
       type(c_ptr), value :: handle
@@ -33215,8 +31003,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_rank_1_devptr
       type(c_ptr), value :: handle
@@ -33233,8 +31019,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_full_rank
       type(c_ptr), value :: handle
@@ -33251,8 +31035,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotri_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotri_full_rank_devptr
       type(c_ptr), value :: handle
@@ -33271,8 +31053,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotri_assumed_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_assumed_rank
       type(c_ptr), value :: handle
@@ -33289,8 +31069,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_assumed_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -33308,8 +31086,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotri_rank_0(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_0
       type(c_ptr), value :: handle
@@ -33326,8 +31102,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_rank_0_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_0_devptr
       type(c_ptr), value :: handle
@@ -33344,8 +31118,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_rank_1(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_1
       type(c_ptr), value :: handle
@@ -33362,8 +31134,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_rank_1_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_rank_1_devptr
       type(c_ptr), value :: handle
@@ -33380,8 +31150,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_full_rank(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_full_rank
       type(c_ptr), value :: handle
@@ -33398,8 +31166,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotri_full_rank_devptr(handle,uplo,n,A,lda,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotri_full_rank_devptr
       type(c_ptr), value :: handle
@@ -33419,8 +31185,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -33439,8 +31203,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotrs_bufferSize_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -33458,8 +31220,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_bufferSize_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -33477,8 +31237,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_bufferSize_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -33500,8 +31258,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -33520,8 +31276,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotrs_bufferSize_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -33539,8 +31293,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_bufferSize_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -33558,8 +31310,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_bufferSize_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -33581,8 +31331,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -33601,8 +31349,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotrs_bufferSize_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -33620,8 +31366,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_bufferSize_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -33639,8 +31383,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_bufferSize_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -33662,8 +31404,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrs_bufferSize_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -33682,8 +31422,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotrs_bufferSize_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -33701,8 +31439,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_bufferSize_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -33720,8 +31456,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_bufferSize_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -33743,8 +31477,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_assumed_rank
       type(c_ptr), value :: handle
@@ -33764,8 +31496,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_assumed_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -33786,8 +31516,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSpotrs_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_0
       type(c_ptr), value :: handle
@@ -33807,8 +31535,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_rank_0_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -33828,8 +31554,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_1
       type(c_ptr), value :: handle
@@ -33849,8 +31573,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_rank_1_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -33870,8 +31592,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_full_rank
       type(c_ptr), value :: handle
@@ -33891,8 +31611,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSpotrs_full_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -33916,8 +31634,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_assumed_rank
       type(c_ptr), value :: handle
@@ -33937,8 +31653,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_assumed_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -33959,8 +31673,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDpotrs_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_0
       type(c_ptr), value :: handle
@@ -33980,8 +31692,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_rank_0_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -34001,8 +31711,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_1
       type(c_ptr), value :: handle
@@ -34022,8 +31730,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_rank_1_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -34043,8 +31749,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_full_rank
       type(c_ptr), value :: handle
@@ -34064,8 +31768,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDpotrs_full_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -34089,8 +31791,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_assumed_rank
       type(c_ptr), value :: handle
@@ -34110,8 +31810,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_assumed_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -34132,8 +31830,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCpotrs_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_0
       type(c_ptr), value :: handle
@@ -34153,8 +31849,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_rank_0_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -34174,8 +31868,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_1
       type(c_ptr), value :: handle
@@ -34195,8 +31887,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_rank_1_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -34216,8 +31906,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_full_rank
       type(c_ptr), value :: handle
@@ -34237,8 +31925,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCpotrs_full_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -34262,8 +31948,6 @@ module hipfort_hipsolver
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrs_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_assumed_rank
       type(c_ptr), value :: handle
@@ -34283,8 +31967,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_assumed_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -34305,8 +31987,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZpotrs_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_0
       type(c_ptr), value :: handle
@@ -34326,8 +32006,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_rank_0_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_0_devptr
       type(c_ptr), value :: handle
@@ -34347,8 +32025,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_1
       type(c_ptr), value :: handle
@@ -34368,8 +32044,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_rank_1_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_rank_1_devptr
       type(c_ptr), value :: handle
@@ -34389,8 +32063,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_full_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_full_rank
       type(c_ptr), value :: handle
@@ -34410,8 +32082,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZpotrs_full_rank_devptr(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrs_full_rank_devptr
       type(c_ptr), value :: handle
@@ -34436,8 +32106,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverSpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
         devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -34460,8 +32128,6 @@ module hipfort_hipsolver
 #else
     function hipsolverSpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_rank_0
       type(c_ptr), value :: handle
@@ -34483,8 +32149,6 @@ module hipfort_hipsolver
 
     function hipsolverSpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSpotrsBatched_rank_1
       type(c_ptr), value :: handle
@@ -34510,8 +32174,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverDpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
         devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -34534,8 +32196,6 @@ module hipfort_hipsolver
 #else
     function hipsolverDpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_rank_0
       type(c_ptr), value :: handle
@@ -34557,8 +32217,6 @@ module hipfort_hipsolver
 
     function hipsolverDpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDpotrsBatched_rank_1
       type(c_ptr), value :: handle
@@ -34584,8 +32242,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverCpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
         devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -34608,8 +32264,6 @@ module hipfort_hipsolver
 #else
     function hipsolverCpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_rank_0
       type(c_ptr), value :: handle
@@ -34631,8 +32285,6 @@ module hipfort_hipsolver
 
     function hipsolverCpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCpotrsBatched_rank_1
       type(c_ptr), value :: handle
@@ -34658,8 +32310,6 @@ module hipfort_hipsolver
 #ifdef USE_ASSUMED_RANK
     function hipsolverZpotrsBatched_assumed_rank(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork, &
         devInfo,batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_assumed_rank
       type(c_ptr), value :: handle
@@ -34682,8 +32332,6 @@ module hipfort_hipsolver
 #else
     function hipsolverZpotrsBatched_rank_0(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_rank_0
       type(c_ptr), value :: handle
@@ -34705,8 +32353,6 @@ module hipfort_hipsolver
 
     function hipsolverZpotrsBatched_rank_1(handle,uplo,n,nrhs,A,lda,B,ldb,work,lwork,devInfo, &
         batch_count)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZpotrsBatched_rank_1
       type(c_ptr), value :: handle
@@ -34730,8 +32376,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -34749,8 +32393,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsyevd_bufferSize_rank_0(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -34767,8 +32409,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_bufferSize_rank_1(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -34785,8 +32425,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_bufferSize_full_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -34805,8 +32443,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsyevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -34824,8 +32460,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsyevd_bufferSize_rank_0(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -34842,8 +32476,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_bufferSize_rank_1(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -34860,8 +32492,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_bufferSize_full_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -34880,8 +32510,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -34899,8 +32527,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCheevd_bufferSize_rank_0(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -34917,8 +32543,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_bufferSize_rank_1(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -34935,8 +32559,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_bufferSize_full_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -34955,8 +32577,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZheevd_bufferSize_assumed_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -34974,8 +32594,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZheevd_bufferSize_rank_0(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -34992,8 +32610,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_bufferSize_rank_1(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -35010,8 +32626,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_bufferSize_full_rank(handle,jobz,uplo,n,A,lda,D,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -35030,8 +32644,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_assumed_rank
       type(c_ptr), value :: handle
@@ -35050,8 +32662,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_assumed_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -35071,8 +32681,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsyevd_rank_0(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_0
       type(c_ptr), value :: handle
@@ -35091,8 +32699,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_rank_0_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -35111,8 +32717,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_rank_1(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_1
       type(c_ptr), value :: handle
@@ -35131,8 +32735,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_rank_1_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -35151,8 +32753,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_full_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_full_rank
       type(c_ptr), value :: handle
@@ -35171,8 +32771,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsyevd_full_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsyevd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -35193,8 +32791,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsyevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_assumed_rank
       type(c_ptr), value :: handle
@@ -35213,8 +32809,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_assumed_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -35234,8 +32828,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsyevd_rank_0(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_0
       type(c_ptr), value :: handle
@@ -35254,8 +32846,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_rank_0_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -35274,8 +32864,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_rank_1(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_1
       type(c_ptr), value :: handle
@@ -35294,8 +32882,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_rank_1_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -35314,8 +32900,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_full_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_full_rank
       type(c_ptr), value :: handle
@@ -35334,8 +32918,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsyevd_full_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsyevd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -35356,8 +32938,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_assumed_rank
       type(c_ptr), value :: handle
@@ -35376,8 +32956,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_assumed_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -35397,8 +32975,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCheevd_rank_0(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_0
       type(c_ptr), value :: handle
@@ -35417,8 +32993,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_rank_0_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -35437,8 +33011,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_rank_1(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_1
       type(c_ptr), value :: handle
@@ -35457,8 +33029,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_rank_1_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -35477,8 +33047,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_full_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_full_rank
       type(c_ptr), value :: handle
@@ -35497,8 +33065,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCheevd_full_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCheevd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -35519,8 +33085,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZheevd_assumed_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_assumed_rank
       type(c_ptr), value :: handle
@@ -35539,8 +33103,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_assumed_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -35560,8 +33122,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZheevd_rank_0(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_0
       type(c_ptr), value :: handle
@@ -35580,8 +33140,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_rank_0_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -35600,8 +33158,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_rank_1(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_1
       type(c_ptr), value :: handle
@@ -35620,8 +33176,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_rank_1_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -35640,8 +33194,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_full_rank(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_full_rank
       type(c_ptr), value :: handle
@@ -35660,8 +33212,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZheevd_full_rank_devptr(handle,jobz,uplo,n,A,lda,D,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZheevd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -35682,8 +33232,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -35704,8 +33252,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsygvd_bufferSize_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -35725,8 +33271,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvd_bufferSize_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -35746,8 +33290,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvd_bufferSize_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -35769,8 +33311,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsygvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -35791,8 +33331,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsygvd_bufferSize_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -35812,8 +33350,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvd_bufferSize_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -35833,8 +33369,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvd_bufferSize_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -35856,8 +33390,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverChegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -35878,8 +33410,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverChegvd_bufferSize_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -35899,8 +33429,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvd_bufferSize_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -35920,8 +33448,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvd_bufferSize_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -35943,8 +33469,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZhegvd_bufferSize_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -35965,8 +33489,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZhegvd_bufferSize_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -35986,8 +33508,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvd_bufferSize_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -36007,8 +33527,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvd_bufferSize_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -36030,8 +33548,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_assumed_rank
       type(c_ptr), value :: handle
@@ -36054,8 +33570,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvd_assumed_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -36078,8 +33592,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsygvd_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_0
       type(c_ptr), value :: handle
@@ -36102,8 +33614,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvd_rank_0_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -36125,8 +33635,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvd_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_1
       type(c_ptr), value :: handle
@@ -36149,8 +33657,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvd_rank_1_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -36172,8 +33678,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsygvd_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_full_rank
       type(c_ptr), value :: handle
@@ -36196,8 +33700,6 @@ module hipfort_hipsolver
 
     function hipsolverSsygvd_full_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsygvd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -36221,8 +33723,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsygvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_assumed_rank
       type(c_ptr), value :: handle
@@ -36245,8 +33745,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvd_assumed_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -36269,8 +33767,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsygvd_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_0
       type(c_ptr), value :: handle
@@ -36293,8 +33789,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvd_rank_0_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -36316,8 +33810,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvd_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_1
       type(c_ptr), value :: handle
@@ -36340,8 +33832,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvd_rank_1_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -36363,8 +33853,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsygvd_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_full_rank
       type(c_ptr), value :: handle
@@ -36387,8 +33875,6 @@ module hipfort_hipsolver
 
     function hipsolverDsygvd_full_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsygvd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -36412,8 +33898,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverChegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_assumed_rank
       type(c_ptr), value :: handle
@@ -36436,8 +33920,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvd_assumed_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -36460,8 +33942,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverChegvd_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_0
       type(c_ptr), value :: handle
@@ -36484,8 +33964,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvd_rank_0_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -36507,8 +33985,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvd_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_1
       type(c_ptr), value :: handle
@@ -36531,8 +34007,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvd_rank_1_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -36554,8 +34028,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChegvd_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_full_rank
       type(c_ptr), value :: handle
@@ -36578,8 +34050,6 @@ module hipfort_hipsolver
 
     function hipsolverChegvd_full_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChegvd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -36603,8 +34073,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZhegvd_assumed_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_assumed_rank
       type(c_ptr), value :: handle
@@ -36627,8 +34095,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvd_assumed_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work, &
         lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -36651,8 +34117,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZhegvd_rank_0(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_0
       type(c_ptr), value :: handle
@@ -36675,8 +34139,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvd_rank_0_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -36698,8 +34160,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvd_rank_1(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_1
       type(c_ptr), value :: handle
@@ -36722,8 +34182,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvd_rank_1_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -36745,8 +34203,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhegvd_full_rank(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_full_rank
       type(c_ptr), value :: handle
@@ -36769,8 +34225,6 @@ module hipfort_hipsolver
 
     function hipsolverZhegvd_full_rank_devptr(handle,itype,jobz,uplo,n,A,lda,B,ldb,W,work,lwork, &
         devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhegvd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -36794,8 +34248,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -36814,8 +34266,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsytrd_bufferSize_rank_0(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -36833,8 +34283,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_bufferSize_rank_1(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -36852,8 +34300,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_bufferSize_full_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -36873,8 +34319,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsytrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -36893,8 +34337,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsytrd_bufferSize_rank_0(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -36912,8 +34354,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_bufferSize_rank_1(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -36931,8 +34371,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_bufferSize_full_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -36952,8 +34390,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverChetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -36972,8 +34408,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverChetrd_bufferSize_rank_0(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -36991,8 +34425,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_bufferSize_rank_1(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -37010,8 +34442,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_bufferSize_full_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -37031,8 +34461,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZhetrd_bufferSize_assumed_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -37051,8 +34479,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZhetrd_bufferSize_rank_0(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -37070,8 +34496,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_bufferSize_rank_1(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -37089,8 +34513,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_bufferSize_full_rank(handle,uplo,n,A,lda,D,E,tau,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -37110,8 +34532,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_assumed_rank
       type(c_ptr), value :: handle
@@ -37131,8 +34551,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_assumed_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -37153,8 +34571,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsytrd_rank_0(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_0
       type(c_ptr), value :: handle
@@ -37174,8 +34590,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_rank_0_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -37195,8 +34609,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_rank_1(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_1
       type(c_ptr), value :: handle
@@ -37216,8 +34628,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_rank_1_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -37237,8 +34647,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_full_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_full_rank
       type(c_ptr), value :: handle
@@ -37258,8 +34666,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrd_full_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -37281,8 +34687,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsytrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_assumed_rank
       type(c_ptr), value :: handle
@@ -37302,8 +34706,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_assumed_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -37324,8 +34726,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsytrd_rank_0(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_0
       type(c_ptr), value :: handle
@@ -37345,8 +34745,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_rank_0_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -37366,8 +34764,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_rank_1(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_1
       type(c_ptr), value :: handle
@@ -37387,8 +34783,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_rank_1_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -37408,8 +34802,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_full_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_full_rank
       type(c_ptr), value :: handle
@@ -37429,8 +34821,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrd_full_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -37452,8 +34842,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverChetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_assumed_rank
       type(c_ptr), value :: handle
@@ -37473,8 +34861,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_assumed_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -37495,8 +34881,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverChetrd_rank_0(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_0
       type(c_ptr), value :: handle
@@ -37516,8 +34900,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_rank_0_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -37537,8 +34919,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_rank_1(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_1
       type(c_ptr), value :: handle
@@ -37558,8 +34938,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_rank_1_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -37579,8 +34957,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_full_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_full_rank
       type(c_ptr), value :: handle
@@ -37600,8 +34976,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverChetrd_full_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverChetrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -37623,8 +34997,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZhetrd_assumed_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_assumed_rank
       type(c_ptr), value :: handle
@@ -37644,8 +35016,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_assumed_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -37666,8 +35036,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZhetrd_rank_0(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_0
       type(c_ptr), value :: handle
@@ -37687,8 +35055,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_rank_0_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_0_devptr
       type(c_ptr), value :: handle
@@ -37708,8 +35074,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_rank_1(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_1
       type(c_ptr), value :: handle
@@ -37729,8 +35093,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_rank_1_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_rank_1_devptr
       type(c_ptr), value :: handle
@@ -37750,8 +35112,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_full_rank(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_full_rank
       type(c_ptr), value :: handle
@@ -37771,8 +35131,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZhetrd_full_rank_devptr(handle,uplo,n,A,lda,D,E,tau,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZhetrd_full_rank_devptr
       type(c_ptr), value :: handle
@@ -37794,8 +35152,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -37810,8 +35166,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsytrf_bufferSize_rank_0(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -37825,8 +35179,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_bufferSize_rank_1(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -37840,8 +35192,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_bufferSize_full_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -37857,8 +35207,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -37873,8 +35221,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsytrf_bufferSize_rank_0(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -37888,8 +35234,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_bufferSize_rank_1(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -37903,8 +35247,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_bufferSize_full_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -37920,8 +35262,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -37936,8 +35276,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCsytrf_bufferSize_rank_0(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -37951,8 +35289,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_bufferSize_rank_1(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -37966,8 +35302,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_bufferSize_full_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -37983,8 +35317,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZsytrf_bufferSize_assumed_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_assumed_rank
       type(c_ptr), value :: handle
@@ -37999,8 +35331,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZsytrf_bufferSize_rank_0(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_rank_0
       type(c_ptr), value :: handle
@@ -38014,8 +35344,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_bufferSize_rank_1(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_rank_1
       type(c_ptr), value :: handle
@@ -38029,8 +35357,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_bufferSize_full_rank(handle,n,A,lda,lwork)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_bufferSize_full_rank
       type(c_ptr), value :: handle
@@ -38046,8 +35372,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverSsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_assumed_rank
       type(c_ptr), value :: handle
@@ -38065,8 +35389,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_assumed_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -38085,8 +35407,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverSsytrf_rank_0(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_0
       type(c_ptr), value :: handle
@@ -38104,8 +35424,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_rank_0_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -38123,8 +35441,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_1
       type(c_ptr), value :: handle
@@ -38142,8 +35458,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_rank_1_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -38161,8 +35475,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_full_rank
       type(c_ptr), value :: handle
@@ -38180,8 +35492,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverSsytrf_full_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverSsytrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -38201,8 +35511,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverDsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_assumed_rank
       type(c_ptr), value :: handle
@@ -38220,8 +35528,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_assumed_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -38240,8 +35546,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverDsytrf_rank_0(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_0
       type(c_ptr), value :: handle
@@ -38259,8 +35563,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_rank_0_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -38278,8 +35580,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_1
       type(c_ptr), value :: handle
@@ -38297,8 +35597,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_rank_1_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -38316,8 +35614,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_full_rank
       type(c_ptr), value :: handle
@@ -38335,8 +35631,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverDsytrf_full_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverDsytrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -38356,8 +35650,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverCsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_assumed_rank
       type(c_ptr), value :: handle
@@ -38375,8 +35667,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_assumed_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -38395,8 +35685,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverCsytrf_rank_0(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_0
       type(c_ptr), value :: handle
@@ -38414,8 +35702,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_rank_0_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -38433,8 +35719,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_1
       type(c_ptr), value :: handle
@@ -38452,8 +35736,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_rank_1_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -38471,8 +35753,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_full_rank
       type(c_ptr), value :: handle
@@ -38490,8 +35770,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverCsytrf_full_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverCsytrf_full_rank_devptr
       type(c_ptr), value :: handle
@@ -38511,8 +35789,6 @@ module hipfort_hipsolver
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsolverZsytrf_assumed_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_assumed_rank
       type(c_ptr), value :: handle
@@ -38530,8 +35806,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_assumed_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_assumed_rank_devptr
       type(c_ptr), value :: handle
@@ -38550,8 +35824,6 @@ module hipfort_hipsolver
 
 #else
     function hipsolverZsytrf_rank_0(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_0
       type(c_ptr), value :: handle
@@ -38569,8 +35841,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_rank_0_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_0_devptr
       type(c_ptr), value :: handle
@@ -38588,8 +35858,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_rank_1(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_1
       type(c_ptr), value :: handle
@@ -38607,8 +35875,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_rank_1_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_rank_1_devptr
       type(c_ptr), value :: handle
@@ -38626,8 +35892,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_full_rank(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_full_rank
       type(c_ptr), value :: handle
@@ -38645,8 +35909,6 @@ module hipfort_hipsolver
     end function
 
     function hipsolverZsytrf_full_rank_devptr(handle,uplo,n,A,lda,ipiv,work,lwork,devInfo)
-      use iso_c_binding
-      use hipfort_hipsolver_enums
       implicit none
       integer(kind(HIPSOLVER_STATUS_SUCCESS)) :: hipsolverZsytrf_full_rank_devptr
       type(c_ptr), value :: handle

@@ -72,7 +72,7 @@ module hipfort_hiphostregister
 #else
     function hipHostRegister_(hostPtr, sizeBytes, flags) bind(c, name="hipHostRegister")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostRegister_
       type(c_ptr), value :: hostPtr
@@ -249,7 +249,7 @@ module hipfort_hiphostregister
 #else
     function hipHostUnregister_(hostPtr) bind(c, name="hipHostUnregister")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostUnregister_
       type(c_ptr), value :: hostPtr
@@ -330,7 +330,7 @@ module hipfort_hiphostregister
 #else
     function hipHostGetDevicePointer_(devPtr, hstPtr, flags) bind(c, name="hipHostGetDevicePointer")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostGetDevicePointer_
       type(c_ptr) :: devPtr
@@ -410,7 +410,7 @@ module hipfort_hiphostregister
 #else
     function hipHostGetFlags_(flagsPtr, hostPtr) bind(c, name="hipHostGetFlags")
 #endif
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostGetFlags_
       integer(c_int) :: flagsPtr
@@ -480,7 +480,6 @@ module hipfort_hiphostregister
 contains
 
   function hipHostRegister_i4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -489,7 +488,6 @@ contains
   end function hipHostRegister_i4_0_nosize
 
   function hipHostRegister_i4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -498,7 +496,6 @@ contains
   end function hipHostRegister_i4_1_nosize
 
   function hipHostRegister_i4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -511,7 +508,6 @@ contains
   end function hipHostRegister_i4_1
 
   function hipHostRegister_i4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -524,7 +520,6 @@ contains
   end function hipHostRegister_i4_1_c_size_t
 
   function hipHostRegister_i4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -533,7 +528,6 @@ contains
   end function hipHostRegister_i4_2_nosize
 
   function hipHostRegister_i4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -547,7 +541,6 @@ contains
   end function hipHostRegister_i4_2
 
   function hipHostRegister_i4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -561,7 +554,6 @@ contains
   end function hipHostRegister_i4_2_c_size_t
 
   function hipHostRegister_i4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -570,7 +562,6 @@ contains
   end function hipHostRegister_i4_3_nosize
 
   function hipHostRegister_i4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -585,7 +576,6 @@ contains
   end function hipHostRegister_i4_3
 
   function hipHostRegister_i4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -600,7 +590,6 @@ contains
   end function hipHostRegister_i4_3_c_size_t
 
   function hipHostRegister_i4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -609,7 +598,6 @@ contains
   end function hipHostRegister_i4_4_nosize
 
   function hipHostRegister_i4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -625,7 +613,6 @@ contains
   end function hipHostRegister_i4_4
 
   function hipHostRegister_i4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -641,7 +628,6 @@ contains
   end function hipHostRegister_i4_4_c_size_t
 
   function hipHostRegister_i4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -650,7 +636,6 @@ contains
   end function hipHostRegister_i4_5_nosize
 
   function hipHostRegister_i4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -667,7 +652,6 @@ contains
   end function hipHostRegister_i4_5
 
   function hipHostRegister_i4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -684,7 +668,6 @@ contains
   end function hipHostRegister_i4_5_c_size_t
 
   function hipHostRegister_i4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -693,7 +676,6 @@ contains
   end function hipHostRegister_i4_6_nosize
 
   function hipHostRegister_i4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -711,7 +693,6 @@ contains
   end function hipHostRegister_i4_6
 
   function hipHostRegister_i4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -729,7 +710,6 @@ contains
   end function hipHostRegister_i4_6_c_size_t
 
   function hipHostRegister_i4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -738,7 +718,6 @@ contains
   end function hipHostRegister_i4_7_nosize
 
   function hipHostRegister_i4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -757,7 +736,6 @@ contains
   end function hipHostRegister_i4_7
 
   function hipHostRegister_i4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -776,7 +754,6 @@ contains
   end function hipHostRegister_i4_7_c_size_t
 
   function hipHostRegister_i8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -785,7 +762,6 @@ contains
   end function hipHostRegister_i8_0_nosize
 
   function hipHostRegister_i8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -794,7 +770,6 @@ contains
   end function hipHostRegister_i8_1_nosize
 
   function hipHostRegister_i8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -807,7 +782,6 @@ contains
   end function hipHostRegister_i8_1
 
   function hipHostRegister_i8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -820,7 +794,6 @@ contains
   end function hipHostRegister_i8_1_c_size_t
 
   function hipHostRegister_i8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -829,7 +802,6 @@ contains
   end function hipHostRegister_i8_2_nosize
 
   function hipHostRegister_i8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -843,7 +815,6 @@ contains
   end function hipHostRegister_i8_2
 
   function hipHostRegister_i8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -857,7 +828,6 @@ contains
   end function hipHostRegister_i8_2_c_size_t
 
   function hipHostRegister_i8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -866,7 +836,6 @@ contains
   end function hipHostRegister_i8_3_nosize
 
   function hipHostRegister_i8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -881,7 +850,6 @@ contains
   end function hipHostRegister_i8_3
 
   function hipHostRegister_i8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -896,7 +864,6 @@ contains
   end function hipHostRegister_i8_3_c_size_t
 
   function hipHostRegister_i8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -905,7 +872,6 @@ contains
   end function hipHostRegister_i8_4_nosize
 
   function hipHostRegister_i8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -921,7 +887,6 @@ contains
   end function hipHostRegister_i8_4
 
   function hipHostRegister_i8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -937,7 +902,6 @@ contains
   end function hipHostRegister_i8_4_c_size_t
 
   function hipHostRegister_i8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -946,7 +910,6 @@ contains
   end function hipHostRegister_i8_5_nosize
 
   function hipHostRegister_i8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -963,7 +926,6 @@ contains
   end function hipHostRegister_i8_5
 
   function hipHostRegister_i8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -980,7 +942,6 @@ contains
   end function hipHostRegister_i8_5_c_size_t
 
   function hipHostRegister_i8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -989,7 +950,6 @@ contains
   end function hipHostRegister_i8_6_nosize
 
   function hipHostRegister_i8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1007,7 +967,6 @@ contains
   end function hipHostRegister_i8_6
 
   function hipHostRegister_i8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1025,7 +984,6 @@ contains
   end function hipHostRegister_i8_6_c_size_t
 
   function hipHostRegister_i8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1034,7 +992,6 @@ contains
   end function hipHostRegister_i8_7_nosize
 
   function hipHostRegister_i8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1053,7 +1010,6 @@ contains
   end function hipHostRegister_i8_7
 
   function hipHostRegister_i8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1072,7 +1028,6 @@ contains
   end function hipHostRegister_i8_7_c_size_t
 
   function hipHostRegister_r4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1081,7 +1036,6 @@ contains
   end function hipHostRegister_r4_0_nosize
 
   function hipHostRegister_r4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1090,7 +1044,6 @@ contains
   end function hipHostRegister_r4_1_nosize
 
   function hipHostRegister_r4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -1103,7 +1056,6 @@ contains
   end function hipHostRegister_r4_1
 
   function hipHostRegister_r4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -1116,7 +1068,6 @@ contains
   end function hipHostRegister_r4_1_c_size_t
 
   function hipHostRegister_r4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1125,7 +1076,6 @@ contains
   end function hipHostRegister_r4_2_nosize
 
   function hipHostRegister_r4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -1139,7 +1089,6 @@ contains
   end function hipHostRegister_r4_2
 
   function hipHostRegister_r4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1153,7 +1102,6 @@ contains
   end function hipHostRegister_r4_2_c_size_t
 
   function hipHostRegister_r4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1162,7 +1110,6 @@ contains
   end function hipHostRegister_r4_3_nosize
 
   function hipHostRegister_r4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1177,7 +1124,6 @@ contains
   end function hipHostRegister_r4_3
 
   function hipHostRegister_r4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1192,7 +1138,6 @@ contains
   end function hipHostRegister_r4_3_c_size_t
 
   function hipHostRegister_r4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1201,7 +1146,6 @@ contains
   end function hipHostRegister_r4_4_nosize
 
   function hipHostRegister_r4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1217,7 +1161,6 @@ contains
   end function hipHostRegister_r4_4
 
   function hipHostRegister_r4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1233,7 +1176,6 @@ contains
   end function hipHostRegister_r4_4_c_size_t
 
   function hipHostRegister_r4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1242,7 +1184,6 @@ contains
   end function hipHostRegister_r4_5_nosize
 
   function hipHostRegister_r4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1259,7 +1200,6 @@ contains
   end function hipHostRegister_r4_5
 
   function hipHostRegister_r4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1276,7 +1216,6 @@ contains
   end function hipHostRegister_r4_5_c_size_t
 
   function hipHostRegister_r4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1285,7 +1224,6 @@ contains
   end function hipHostRegister_r4_6_nosize
 
   function hipHostRegister_r4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1303,7 +1241,6 @@ contains
   end function hipHostRegister_r4_6
 
   function hipHostRegister_r4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1321,7 +1258,6 @@ contains
   end function hipHostRegister_r4_6_c_size_t
 
   function hipHostRegister_r4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1330,7 +1266,6 @@ contains
   end function hipHostRegister_r4_7_nosize
 
   function hipHostRegister_r4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1349,7 +1284,6 @@ contains
   end function hipHostRegister_r4_7
 
   function hipHostRegister_r4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1368,7 +1302,6 @@ contains
   end function hipHostRegister_r4_7_c_size_t
 
   function hipHostRegister_r8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1377,7 +1310,6 @@ contains
   end function hipHostRegister_r8_0_nosize
 
   function hipHostRegister_r8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1386,7 +1318,6 @@ contains
   end function hipHostRegister_r8_1_nosize
 
   function hipHostRegister_r8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -1399,7 +1330,6 @@ contains
   end function hipHostRegister_r8_1
 
   function hipHostRegister_r8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -1412,7 +1342,6 @@ contains
   end function hipHostRegister_r8_1_c_size_t
 
   function hipHostRegister_r8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1421,7 +1350,6 @@ contains
   end function hipHostRegister_r8_2_nosize
 
   function hipHostRegister_r8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -1435,7 +1363,6 @@ contains
   end function hipHostRegister_r8_2
 
   function hipHostRegister_r8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1449,7 +1376,6 @@ contains
   end function hipHostRegister_r8_2_c_size_t
 
   function hipHostRegister_r8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1458,7 +1384,6 @@ contains
   end function hipHostRegister_r8_3_nosize
 
   function hipHostRegister_r8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1473,7 +1398,6 @@ contains
   end function hipHostRegister_r8_3
 
   function hipHostRegister_r8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1488,7 +1412,6 @@ contains
   end function hipHostRegister_r8_3_c_size_t
 
   function hipHostRegister_r8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1497,7 +1420,6 @@ contains
   end function hipHostRegister_r8_4_nosize
 
   function hipHostRegister_r8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1513,7 +1435,6 @@ contains
   end function hipHostRegister_r8_4
 
   function hipHostRegister_r8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1529,7 +1450,6 @@ contains
   end function hipHostRegister_r8_4_c_size_t
 
   function hipHostRegister_r8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1538,7 +1458,6 @@ contains
   end function hipHostRegister_r8_5_nosize
 
   function hipHostRegister_r8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1555,7 +1474,6 @@ contains
   end function hipHostRegister_r8_5
 
   function hipHostRegister_r8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1572,7 +1490,6 @@ contains
   end function hipHostRegister_r8_5_c_size_t
 
   function hipHostRegister_r8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1581,7 +1498,6 @@ contains
   end function hipHostRegister_r8_6_nosize
 
   function hipHostRegister_r8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1599,7 +1515,6 @@ contains
   end function hipHostRegister_r8_6
 
   function hipHostRegister_r8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1617,7 +1532,6 @@ contains
   end function hipHostRegister_r8_6_c_size_t
 
   function hipHostRegister_r8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1626,7 +1540,6 @@ contains
   end function hipHostRegister_r8_7_nosize
 
   function hipHostRegister_r8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1645,7 +1558,6 @@ contains
   end function hipHostRegister_r8_7
 
   function hipHostRegister_r8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1664,7 +1576,6 @@ contains
   end function hipHostRegister_r8_7_c_size_t
 
   function hipHostRegister_c4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1673,7 +1584,6 @@ contains
   end function hipHostRegister_c4_0_nosize
 
   function hipHostRegister_c4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1682,7 +1592,6 @@ contains
   end function hipHostRegister_c4_1_nosize
 
   function hipHostRegister_c4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -1695,7 +1604,6 @@ contains
   end function hipHostRegister_c4_1
 
   function hipHostRegister_c4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -1708,7 +1616,6 @@ contains
   end function hipHostRegister_c4_1_c_size_t
 
   function hipHostRegister_c4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1717,7 +1624,6 @@ contains
   end function hipHostRegister_c4_2_nosize
 
   function hipHostRegister_c4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -1731,7 +1637,6 @@ contains
   end function hipHostRegister_c4_2
 
   function hipHostRegister_c4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -1745,7 +1650,6 @@ contains
   end function hipHostRegister_c4_2_c_size_t
 
   function hipHostRegister_c4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1754,7 +1658,6 @@ contains
   end function hipHostRegister_c4_3_nosize
 
   function hipHostRegister_c4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -1769,7 +1672,6 @@ contains
   end function hipHostRegister_c4_3
 
   function hipHostRegister_c4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -1784,7 +1686,6 @@ contains
   end function hipHostRegister_c4_3_c_size_t
 
   function hipHostRegister_c4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1793,7 +1694,6 @@ contains
   end function hipHostRegister_c4_4_nosize
 
   function hipHostRegister_c4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -1809,7 +1709,6 @@ contains
   end function hipHostRegister_c4_4
 
   function hipHostRegister_c4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -1825,7 +1724,6 @@ contains
   end function hipHostRegister_c4_4_c_size_t
 
   function hipHostRegister_c4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1834,7 +1732,6 @@ contains
   end function hipHostRegister_c4_5_nosize
 
   function hipHostRegister_c4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -1851,7 +1748,6 @@ contains
   end function hipHostRegister_c4_5
 
   function hipHostRegister_c4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -1868,7 +1764,6 @@ contains
   end function hipHostRegister_c4_5_c_size_t
 
   function hipHostRegister_c4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1877,7 +1772,6 @@ contains
   end function hipHostRegister_c4_6_nosize
 
   function hipHostRegister_c4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1895,7 +1789,6 @@ contains
   end function hipHostRegister_c4_6
 
   function hipHostRegister_c4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -1913,7 +1806,6 @@ contains
   end function hipHostRegister_c4_6_c_size_t
 
   function hipHostRegister_c4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1922,7 +1814,6 @@ contains
   end function hipHostRegister_c4_7_nosize
 
   function hipHostRegister_c4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1941,7 +1832,6 @@ contains
   end function hipHostRegister_c4_7
 
   function hipHostRegister_c4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -1960,7 +1850,6 @@ contains
   end function hipHostRegister_c4_7_c_size_t
 
   function hipHostRegister_c8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1969,7 +1858,6 @@ contains
   end function hipHostRegister_c8_0_nosize
 
   function hipHostRegister_c8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -1978,7 +1866,6 @@ contains
   end function hipHostRegister_c8_1_nosize
 
   function hipHostRegister_c8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -1991,7 +1878,6 @@ contains
   end function hipHostRegister_c8_1
 
   function hipHostRegister_c8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -2004,7 +1890,6 @@ contains
   end function hipHostRegister_c8_1_c_size_t
 
   function hipHostRegister_c8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2013,7 +1898,6 @@ contains
   end function hipHostRegister_c8_2_nosize
 
   function hipHostRegister_c8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -2027,7 +1911,6 @@ contains
   end function hipHostRegister_c8_2
 
   function hipHostRegister_c8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -2041,7 +1924,6 @@ contains
   end function hipHostRegister_c8_2_c_size_t
 
   function hipHostRegister_c8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2050,7 +1932,6 @@ contains
   end function hipHostRegister_c8_3_nosize
 
   function hipHostRegister_c8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -2065,7 +1946,6 @@ contains
   end function hipHostRegister_c8_3
 
   function hipHostRegister_c8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -2080,7 +1960,6 @@ contains
   end function hipHostRegister_c8_3_c_size_t
 
   function hipHostRegister_c8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2089,7 +1968,6 @@ contains
   end function hipHostRegister_c8_4_nosize
 
   function hipHostRegister_c8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -2105,7 +1983,6 @@ contains
   end function hipHostRegister_c8_4
 
   function hipHostRegister_c8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -2121,7 +1998,6 @@ contains
   end function hipHostRegister_c8_4_c_size_t
 
   function hipHostRegister_c8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2130,7 +2006,6 @@ contains
   end function hipHostRegister_c8_5_nosize
 
   function hipHostRegister_c8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -2147,7 +2022,6 @@ contains
   end function hipHostRegister_c8_5
 
   function hipHostRegister_c8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -2164,7 +2038,6 @@ contains
   end function hipHostRegister_c8_5_c_size_t
 
   function hipHostRegister_c8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2173,7 +2046,6 @@ contains
   end function hipHostRegister_c8_6_nosize
 
   function hipHostRegister_c8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2191,7 +2063,6 @@ contains
   end function hipHostRegister_c8_6
 
   function hipHostRegister_c8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2209,7 +2080,6 @@ contains
   end function hipHostRegister_c8_6_c_size_t
 
   function hipHostRegister_c8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2218,7 +2088,6 @@ contains
   end function hipHostRegister_c8_7_nosize
 
   function hipHostRegister_c8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2237,7 +2106,6 @@ contains
   end function hipHostRegister_c8_7
 
   function hipHostRegister_c8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2256,7 +2124,6 @@ contains
   end function hipHostRegister_c8_7_c_size_t
 
   function hipHostRegister_l_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2265,7 +2132,6 @@ contains
   end function hipHostRegister_l_0_nosize
 
   function hipHostRegister_l_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2274,7 +2140,6 @@ contains
   end function hipHostRegister_l_1_nosize
 
   function hipHostRegister_l_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -2287,7 +2152,6 @@ contains
   end function hipHostRegister_l_1
 
   function hipHostRegister_l_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -2300,7 +2164,6 @@ contains
   end function hipHostRegister_l_1_c_size_t
 
   function hipHostRegister_l_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2309,7 +2172,6 @@ contains
   end function hipHostRegister_l_2_nosize
 
   function hipHostRegister_l_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -2323,7 +2185,6 @@ contains
   end function hipHostRegister_l_2
 
   function hipHostRegister_l_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -2337,7 +2198,6 @@ contains
   end function hipHostRegister_l_2_c_size_t
 
   function hipHostRegister_l_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2346,7 +2206,6 @@ contains
   end function hipHostRegister_l_3_nosize
 
   function hipHostRegister_l_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -2361,7 +2220,6 @@ contains
   end function hipHostRegister_l_3
 
   function hipHostRegister_l_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -2376,7 +2234,6 @@ contains
   end function hipHostRegister_l_3_c_size_t
 
   function hipHostRegister_l_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2385,7 +2242,6 @@ contains
   end function hipHostRegister_l_4_nosize
 
   function hipHostRegister_l_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -2401,7 +2257,6 @@ contains
   end function hipHostRegister_l_4
 
   function hipHostRegister_l_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -2417,7 +2272,6 @@ contains
   end function hipHostRegister_l_4_c_size_t
 
   function hipHostRegister_l_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2426,7 +2280,6 @@ contains
   end function hipHostRegister_l_5_nosize
 
   function hipHostRegister_l_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -2443,7 +2296,6 @@ contains
   end function hipHostRegister_l_5
 
   function hipHostRegister_l_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -2460,7 +2312,6 @@ contains
   end function hipHostRegister_l_5_c_size_t
 
   function hipHostRegister_l_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2469,7 +2320,6 @@ contains
   end function hipHostRegister_l_6_nosize
 
   function hipHostRegister_l_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2487,7 +2337,6 @@ contains
   end function hipHostRegister_l_6
 
   function hipHostRegister_l_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -2505,7 +2354,6 @@ contains
   end function hipHostRegister_l_6_c_size_t
 
   function hipHostRegister_l_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -2514,7 +2362,6 @@ contains
   end function hipHostRegister_l_7_nosize
 
   function hipHostRegister_l_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2533,7 +2380,6 @@ contains
   end function hipHostRegister_l_7
 
   function hipHostRegister_l_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -2552,7 +2398,6 @@ contains
   end function hipHostRegister_l_7_c_size_t
 
   function hipHostUnregister_i4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2560,7 +2405,6 @@ contains
   end function hipHostUnregister_i4_0
 
   function hipHostUnregister_i4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2568,7 +2412,6 @@ contains
   end function hipHostUnregister_i4_1
 
   function hipHostUnregister_i4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2576,7 +2419,6 @@ contains
   end function hipHostUnregister_i4_2
 
   function hipHostUnregister_i4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2584,7 +2426,6 @@ contains
   end function hipHostUnregister_i4_3
 
   function hipHostUnregister_i4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2592,7 +2433,6 @@ contains
   end function hipHostUnregister_i4_4
 
   function hipHostUnregister_i4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2600,7 +2440,6 @@ contains
   end function hipHostUnregister_i4_5
 
   function hipHostUnregister_i4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2608,7 +2447,6 @@ contains
   end function hipHostUnregister_i4_6
 
   function hipHostUnregister_i4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2616,7 +2454,6 @@ contains
   end function hipHostUnregister_i4_7
 
   function hipHostUnregister_i8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2624,7 +2461,6 @@ contains
   end function hipHostUnregister_i8_0
 
   function hipHostUnregister_i8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2632,7 +2468,6 @@ contains
   end function hipHostUnregister_i8_1
 
   function hipHostUnregister_i8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2640,7 +2475,6 @@ contains
   end function hipHostUnregister_i8_2
 
   function hipHostUnregister_i8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2648,7 +2482,6 @@ contains
   end function hipHostUnregister_i8_3
 
   function hipHostUnregister_i8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2656,7 +2489,6 @@ contains
   end function hipHostUnregister_i8_4
 
   function hipHostUnregister_i8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2664,7 +2496,6 @@ contains
   end function hipHostUnregister_i8_5
 
   function hipHostUnregister_i8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2672,7 +2503,6 @@ contains
   end function hipHostUnregister_i8_6
 
   function hipHostUnregister_i8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2680,7 +2510,6 @@ contains
   end function hipHostUnregister_i8_7
 
   function hipHostUnregister_r4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2688,7 +2517,6 @@ contains
   end function hipHostUnregister_r4_0
 
   function hipHostUnregister_r4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2696,7 +2524,6 @@ contains
   end function hipHostUnregister_r4_1
 
   function hipHostUnregister_r4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2704,7 +2531,6 @@ contains
   end function hipHostUnregister_r4_2
 
   function hipHostUnregister_r4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2712,7 +2538,6 @@ contains
   end function hipHostUnregister_r4_3
 
   function hipHostUnregister_r4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2720,7 +2545,6 @@ contains
   end function hipHostUnregister_r4_4
 
   function hipHostUnregister_r4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2728,7 +2552,6 @@ contains
   end function hipHostUnregister_r4_5
 
   function hipHostUnregister_r4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2736,7 +2559,6 @@ contains
   end function hipHostUnregister_r4_6
 
   function hipHostUnregister_r4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2744,7 +2566,6 @@ contains
   end function hipHostUnregister_r4_7
 
   function hipHostUnregister_r8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2752,7 +2573,6 @@ contains
   end function hipHostUnregister_r8_0
 
   function hipHostUnregister_r8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2760,7 +2580,6 @@ contains
   end function hipHostUnregister_r8_1
 
   function hipHostUnregister_r8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2768,7 +2587,6 @@ contains
   end function hipHostUnregister_r8_2
 
   function hipHostUnregister_r8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2776,7 +2594,6 @@ contains
   end function hipHostUnregister_r8_3
 
   function hipHostUnregister_r8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2784,7 +2601,6 @@ contains
   end function hipHostUnregister_r8_4
 
   function hipHostUnregister_r8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2792,7 +2608,6 @@ contains
   end function hipHostUnregister_r8_5
 
   function hipHostUnregister_r8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2800,7 +2615,6 @@ contains
   end function hipHostUnregister_r8_6
 
   function hipHostUnregister_r8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2808,7 +2622,6 @@ contains
   end function hipHostUnregister_r8_7
 
   function hipHostUnregister_c4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2816,7 +2629,6 @@ contains
   end function hipHostUnregister_c4_0
 
   function hipHostUnregister_c4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2824,7 +2636,6 @@ contains
   end function hipHostUnregister_c4_1
 
   function hipHostUnregister_c4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2832,7 +2643,6 @@ contains
   end function hipHostUnregister_c4_2
 
   function hipHostUnregister_c4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2840,7 +2650,6 @@ contains
   end function hipHostUnregister_c4_3
 
   function hipHostUnregister_c4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2848,7 +2657,6 @@ contains
   end function hipHostUnregister_c4_4
 
   function hipHostUnregister_c4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2856,7 +2664,6 @@ contains
   end function hipHostUnregister_c4_5
 
   function hipHostUnregister_c4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2864,7 +2671,6 @@ contains
   end function hipHostUnregister_c4_6
 
   function hipHostUnregister_c4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2872,7 +2678,6 @@ contains
   end function hipHostUnregister_c4_7
 
   function hipHostUnregister_c8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2880,7 +2685,6 @@ contains
   end function hipHostUnregister_c8_0
 
   function hipHostUnregister_c8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2888,7 +2692,6 @@ contains
   end function hipHostUnregister_c8_1
 
   function hipHostUnregister_c8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2896,7 +2699,6 @@ contains
   end function hipHostUnregister_c8_2
 
   function hipHostUnregister_c8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2904,7 +2706,6 @@ contains
   end function hipHostUnregister_c8_3
 
   function hipHostUnregister_c8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2912,7 +2713,6 @@ contains
   end function hipHostUnregister_c8_4
 
   function hipHostUnregister_c8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2920,7 +2720,6 @@ contains
   end function hipHostUnregister_c8_5
 
   function hipHostUnregister_c8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2928,7 +2727,6 @@ contains
   end function hipHostUnregister_c8_6
 
   function hipHostUnregister_c8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2936,7 +2734,6 @@ contains
   end function hipHostUnregister_c8_7
 
   function hipHostUnregister_l_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2944,7 +2741,6 @@ contains
   end function hipHostUnregister_l_0
 
   function hipHostUnregister_l_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2952,7 +2748,6 @@ contains
   end function hipHostUnregister_l_1
 
   function hipHostUnregister_l_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2960,7 +2755,6 @@ contains
   end function hipHostUnregister_l_2
 
   function hipHostUnregister_l_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2968,7 +2762,6 @@ contains
   end function hipHostUnregister_l_3
 
   function hipHostUnregister_l_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2976,7 +2769,6 @@ contains
   end function hipHostUnregister_l_4
 
   function hipHostUnregister_l_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2984,7 +2776,6 @@ contains
   end function hipHostUnregister_l_5
 
   function hipHostUnregister_l_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -2992,7 +2783,6 @@ contains
   end function hipHostUnregister_l_6
 
   function hipHostUnregister_l_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -3000,7 +2790,6 @@ contains
   end function hipHostUnregister_l_7
 
   function hipHostGetDevicePointer_i4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, intent(inout) :: hstPtr
@@ -3010,7 +2799,6 @@ contains
   end function hipHostGetDevicePointer_i4_0
 
   function hipHostGetDevicePointer_i4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:), intent(inout) :: hstPtr
@@ -3020,7 +2808,6 @@ contains
   end function hipHostGetDevicePointer_i4_1
 
   function hipHostGetDevicePointer_i4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3030,7 +2817,6 @@ contains
   end function hipHostGetDevicePointer_i4_2
 
   function hipHostGetDevicePointer_i4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3040,7 +2826,6 @@ contains
   end function hipHostGetDevicePointer_i4_3
 
   function hipHostGetDevicePointer_i4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3050,7 +2835,6 @@ contains
   end function hipHostGetDevicePointer_i4_4
 
   function hipHostGetDevicePointer_i4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3060,7 +2844,6 @@ contains
   end function hipHostGetDevicePointer_i4_5
 
   function hipHostGetDevicePointer_i4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3070,7 +2853,6 @@ contains
   end function hipHostGetDevicePointer_i4_6
 
   function hipHostGetDevicePointer_i4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3080,7 +2862,6 @@ contains
   end function hipHostGetDevicePointer_i4_7
 
   function hipHostGetDevicePointer_i8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, intent(inout) :: hstPtr
@@ -3090,7 +2871,6 @@ contains
   end function hipHostGetDevicePointer_i8_0
 
   function hipHostGetDevicePointer_i8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:), intent(inout) :: hstPtr
@@ -3100,7 +2880,6 @@ contains
   end function hipHostGetDevicePointer_i8_1
 
   function hipHostGetDevicePointer_i8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3110,7 +2889,6 @@ contains
   end function hipHostGetDevicePointer_i8_2
 
   function hipHostGetDevicePointer_i8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3120,7 +2898,6 @@ contains
   end function hipHostGetDevicePointer_i8_3
 
   function hipHostGetDevicePointer_i8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3130,7 +2907,6 @@ contains
   end function hipHostGetDevicePointer_i8_4
 
   function hipHostGetDevicePointer_i8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3140,7 +2916,6 @@ contains
   end function hipHostGetDevicePointer_i8_5
 
   function hipHostGetDevicePointer_i8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3150,7 +2925,6 @@ contains
   end function hipHostGetDevicePointer_i8_6
 
   function hipHostGetDevicePointer_i8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3160,7 +2934,6 @@ contains
   end function hipHostGetDevicePointer_i8_7
 
   function hipHostGetDevicePointer_r4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, intent(inout) :: hstPtr
@@ -3170,7 +2943,6 @@ contains
   end function hipHostGetDevicePointer_r4_0
 
   function hipHostGetDevicePointer_r4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:), intent(inout) :: hstPtr
@@ -3180,7 +2952,6 @@ contains
   end function hipHostGetDevicePointer_r4_1
 
   function hipHostGetDevicePointer_r4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3190,7 +2961,6 @@ contains
   end function hipHostGetDevicePointer_r4_2
 
   function hipHostGetDevicePointer_r4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3200,7 +2970,6 @@ contains
   end function hipHostGetDevicePointer_r4_3
 
   function hipHostGetDevicePointer_r4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3210,7 +2979,6 @@ contains
   end function hipHostGetDevicePointer_r4_4
 
   function hipHostGetDevicePointer_r4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3220,7 +2988,6 @@ contains
   end function hipHostGetDevicePointer_r4_5
 
   function hipHostGetDevicePointer_r4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3230,7 +2997,6 @@ contains
   end function hipHostGetDevicePointer_r4_6
 
   function hipHostGetDevicePointer_r4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3240,7 +3006,6 @@ contains
   end function hipHostGetDevicePointer_r4_7
 
   function hipHostGetDevicePointer_r8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, intent(inout) :: hstPtr
@@ -3250,7 +3015,6 @@ contains
   end function hipHostGetDevicePointer_r8_0
 
   function hipHostGetDevicePointer_r8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:), intent(inout) :: hstPtr
@@ -3260,7 +3024,6 @@ contains
   end function hipHostGetDevicePointer_r8_1
 
   function hipHostGetDevicePointer_r8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3270,7 +3033,6 @@ contains
   end function hipHostGetDevicePointer_r8_2
 
   function hipHostGetDevicePointer_r8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3280,7 +3042,6 @@ contains
   end function hipHostGetDevicePointer_r8_3
 
   function hipHostGetDevicePointer_r8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3290,7 +3051,6 @@ contains
   end function hipHostGetDevicePointer_r8_4
 
   function hipHostGetDevicePointer_r8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3300,7 +3060,6 @@ contains
   end function hipHostGetDevicePointer_r8_5
 
   function hipHostGetDevicePointer_r8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3310,7 +3069,6 @@ contains
   end function hipHostGetDevicePointer_r8_6
 
   function hipHostGetDevicePointer_r8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3320,7 +3078,6 @@ contains
   end function hipHostGetDevicePointer_r8_7
 
   function hipHostGetDevicePointer_c4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, intent(inout) :: hstPtr
@@ -3330,7 +3087,6 @@ contains
   end function hipHostGetDevicePointer_c4_0
 
   function hipHostGetDevicePointer_c4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:), intent(inout) :: hstPtr
@@ -3340,7 +3096,6 @@ contains
   end function hipHostGetDevicePointer_c4_1
 
   function hipHostGetDevicePointer_c4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3350,7 +3105,6 @@ contains
   end function hipHostGetDevicePointer_c4_2
 
   function hipHostGetDevicePointer_c4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3360,7 +3114,6 @@ contains
   end function hipHostGetDevicePointer_c4_3
 
   function hipHostGetDevicePointer_c4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3370,7 +3123,6 @@ contains
   end function hipHostGetDevicePointer_c4_4
 
   function hipHostGetDevicePointer_c4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3380,7 +3132,6 @@ contains
   end function hipHostGetDevicePointer_c4_5
 
   function hipHostGetDevicePointer_c4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3390,7 +3141,6 @@ contains
   end function hipHostGetDevicePointer_c4_6
 
   function hipHostGetDevicePointer_c4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3400,7 +3150,6 @@ contains
   end function hipHostGetDevicePointer_c4_7
 
   function hipHostGetDevicePointer_c8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, intent(inout) :: hstPtr
@@ -3410,7 +3159,6 @@ contains
   end function hipHostGetDevicePointer_c8_0
 
   function hipHostGetDevicePointer_c8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:), intent(inout) :: hstPtr
@@ -3420,7 +3168,6 @@ contains
   end function hipHostGetDevicePointer_c8_1
 
   function hipHostGetDevicePointer_c8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3430,7 +3177,6 @@ contains
   end function hipHostGetDevicePointer_c8_2
 
   function hipHostGetDevicePointer_c8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3440,7 +3186,6 @@ contains
   end function hipHostGetDevicePointer_c8_3
 
   function hipHostGetDevicePointer_c8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3450,7 +3195,6 @@ contains
   end function hipHostGetDevicePointer_c8_4
 
   function hipHostGetDevicePointer_c8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3460,7 +3204,6 @@ contains
   end function hipHostGetDevicePointer_c8_5
 
   function hipHostGetDevicePointer_c8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3470,7 +3213,6 @@ contains
   end function hipHostGetDevicePointer_c8_6
 
   function hipHostGetDevicePointer_c8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3480,7 +3222,6 @@ contains
   end function hipHostGetDevicePointer_c8_7
 
   function hipHostGetDevicePointer_l_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, intent(inout) :: hstPtr
@@ -3490,7 +3231,6 @@ contains
   end function hipHostGetDevicePointer_l_0
 
   function hipHostGetDevicePointer_l_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:), intent(inout) :: hstPtr
@@ -3500,7 +3240,6 @@ contains
   end function hipHostGetDevicePointer_l_1
 
   function hipHostGetDevicePointer_l_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:), intent(inout) :: hstPtr
@@ -3510,7 +3249,6 @@ contains
   end function hipHostGetDevicePointer_l_2
 
   function hipHostGetDevicePointer_l_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -3520,7 +3258,6 @@ contains
   end function hipHostGetDevicePointer_l_3
 
   function hipHostGetDevicePointer_l_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -3530,7 +3267,6 @@ contains
   end function hipHostGetDevicePointer_l_4
 
   function hipHostGetDevicePointer_l_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -3540,7 +3276,6 @@ contains
   end function hipHostGetDevicePointer_l_5
 
   function hipHostGetDevicePointer_l_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3550,7 +3285,6 @@ contains
   end function hipHostGetDevicePointer_l_6
 
   function hipHostGetDevicePointer_l_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -3560,7 +3294,6 @@ contains
   end function hipHostGetDevicePointer_l_7
 
   function hipHostGetFlags_i4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, intent(inout) :: hostPtr
@@ -3569,7 +3302,6 @@ contains
   end function hipHostGetFlags_i4_0
 
   function hipHostGetFlags_i4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:), intent(inout) :: hostPtr
@@ -3578,7 +3310,6 @@ contains
   end function hipHostGetFlags_i4_1
 
   function hipHostGetFlags_i4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3587,7 +3318,6 @@ contains
   end function hipHostGetFlags_i4_2
 
   function hipHostGetFlags_i4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3596,7 +3326,6 @@ contains
   end function hipHostGetFlags_i4_3
 
   function hipHostGetFlags_i4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3605,7 +3334,6 @@ contains
   end function hipHostGetFlags_i4_4
 
   function hipHostGetFlags_i4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3614,7 +3342,6 @@ contains
   end function hipHostGetFlags_i4_5
 
   function hipHostGetFlags_i4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3623,7 +3350,6 @@ contains
   end function hipHostGetFlags_i4_6
 
   function hipHostGetFlags_i4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3632,7 +3358,6 @@ contains
   end function hipHostGetFlags_i4_7
 
   function hipHostGetFlags_i8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, intent(inout) :: hostPtr
@@ -3641,7 +3366,6 @@ contains
   end function hipHostGetFlags_i8_0
 
   function hipHostGetFlags_i8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
@@ -3650,7 +3374,6 @@ contains
   end function hipHostGetFlags_i8_1
 
   function hipHostGetFlags_i8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3659,7 +3382,6 @@ contains
   end function hipHostGetFlags_i8_2
 
   function hipHostGetFlags_i8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3668,7 +3390,6 @@ contains
   end function hipHostGetFlags_i8_3
 
   function hipHostGetFlags_i8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3677,7 +3398,6 @@ contains
   end function hipHostGetFlags_i8_4
 
   function hipHostGetFlags_i8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3686,7 +3406,6 @@ contains
   end function hipHostGetFlags_i8_5
 
   function hipHostGetFlags_i8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3695,7 +3414,6 @@ contains
   end function hipHostGetFlags_i8_6
 
   function hipHostGetFlags_i8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3704,7 +3422,6 @@ contains
   end function hipHostGetFlags_i8_7
 
   function hipHostGetFlags_r4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, intent(inout) :: hostPtr
@@ -3713,7 +3430,6 @@ contains
   end function hipHostGetFlags_r4_0
 
   function hipHostGetFlags_r4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:), intent(inout) :: hostPtr
@@ -3722,7 +3438,6 @@ contains
   end function hipHostGetFlags_r4_1
 
   function hipHostGetFlags_r4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3731,7 +3446,6 @@ contains
   end function hipHostGetFlags_r4_2
 
   function hipHostGetFlags_r4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3740,7 +3454,6 @@ contains
   end function hipHostGetFlags_r4_3
 
   function hipHostGetFlags_r4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3749,7 +3462,6 @@ contains
   end function hipHostGetFlags_r4_4
 
   function hipHostGetFlags_r4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3758,7 +3470,6 @@ contains
   end function hipHostGetFlags_r4_5
 
   function hipHostGetFlags_r4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3767,7 +3478,6 @@ contains
   end function hipHostGetFlags_r4_6
 
   function hipHostGetFlags_r4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3776,7 +3486,6 @@ contains
   end function hipHostGetFlags_r4_7
 
   function hipHostGetFlags_r8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, intent(inout) :: hostPtr
@@ -3785,7 +3494,6 @@ contains
   end function hipHostGetFlags_r8_0
 
   function hipHostGetFlags_r8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:), intent(inout) :: hostPtr
@@ -3794,7 +3502,6 @@ contains
   end function hipHostGetFlags_r8_1
 
   function hipHostGetFlags_r8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3803,7 +3510,6 @@ contains
   end function hipHostGetFlags_r8_2
 
   function hipHostGetFlags_r8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3812,7 +3518,6 @@ contains
   end function hipHostGetFlags_r8_3
 
   function hipHostGetFlags_r8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3821,7 +3526,6 @@ contains
   end function hipHostGetFlags_r8_4
 
   function hipHostGetFlags_r8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3830,7 +3534,6 @@ contains
   end function hipHostGetFlags_r8_5
 
   function hipHostGetFlags_r8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3839,7 +3542,6 @@ contains
   end function hipHostGetFlags_r8_6
 
   function hipHostGetFlags_r8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3848,7 +3550,6 @@ contains
   end function hipHostGetFlags_r8_7
 
   function hipHostGetFlags_c4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, intent(inout) :: hostPtr
@@ -3857,7 +3558,6 @@ contains
   end function hipHostGetFlags_c4_0
 
   function hipHostGetFlags_c4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
@@ -3866,7 +3566,6 @@ contains
   end function hipHostGetFlags_c4_1
 
   function hipHostGetFlags_c4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3875,7 +3574,6 @@ contains
   end function hipHostGetFlags_c4_2
 
   function hipHostGetFlags_c4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3884,7 +3582,6 @@ contains
   end function hipHostGetFlags_c4_3
 
   function hipHostGetFlags_c4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3893,7 +3590,6 @@ contains
   end function hipHostGetFlags_c4_4
 
   function hipHostGetFlags_c4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3902,7 +3598,6 @@ contains
   end function hipHostGetFlags_c4_5
 
   function hipHostGetFlags_c4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3911,7 +3606,6 @@ contains
   end function hipHostGetFlags_c4_6
 
   function hipHostGetFlags_c4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3920,7 +3614,6 @@ contains
   end function hipHostGetFlags_c4_7
 
   function hipHostGetFlags_c8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, intent(inout) :: hostPtr
@@ -3929,7 +3622,6 @@ contains
   end function hipHostGetFlags_c8_0
 
   function hipHostGetFlags_c8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
@@ -3938,7 +3630,6 @@ contains
   end function hipHostGetFlags_c8_1
 
   function hipHostGetFlags_c8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
@@ -3947,7 +3638,6 @@ contains
   end function hipHostGetFlags_c8_2
 
   function hipHostGetFlags_c8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -3956,7 +3646,6 @@ contains
   end function hipHostGetFlags_c8_3
 
   function hipHostGetFlags_c8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -3965,7 +3654,6 @@ contains
   end function hipHostGetFlags_c8_4
 
   function hipHostGetFlags_c8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -3974,7 +3662,6 @@ contains
   end function hipHostGetFlags_c8_5
 
   function hipHostGetFlags_c8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3983,7 +3670,6 @@ contains
   end function hipHostGetFlags_c8_6
 
   function hipHostGetFlags_c8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -3992,7 +3678,6 @@ contains
   end function hipHostGetFlags_c8_7
 
   function hipHostGetFlags_l_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, intent(inout) :: hostPtr
@@ -4001,7 +3686,6 @@ contains
   end function hipHostGetFlags_l_0
 
   function hipHostGetFlags_l_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:), intent(inout) :: hostPtr
@@ -4010,7 +3694,6 @@ contains
   end function hipHostGetFlags_l_1
 
   function hipHostGetFlags_l_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:), intent(inout) :: hostPtr
@@ -4019,7 +3702,6 @@ contains
   end function hipHostGetFlags_l_2
 
   function hipHostGetFlags_l_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -4028,7 +3710,6 @@ contains
   end function hipHostGetFlags_l_3
 
   function hipHostGetFlags_l_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -4037,7 +3718,6 @@ contains
   end function hipHostGetFlags_l_4
 
   function hipHostGetFlags_l_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -4046,7 +3726,6 @@ contains
   end function hipHostGetFlags_l_5
 
   function hipHostGetFlags_l_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -4055,7 +3734,6 @@ contains
   end function hipHostGetFlags_l_6
 
   function hipHostGetFlags_l_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr

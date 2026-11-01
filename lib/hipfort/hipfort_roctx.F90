@@ -32,7 +32,7 @@ module hipfort_roctx
   !>  @param[in] message - The message associated with the event.
   interface roctxMark
     subroutine roctxMark_(message) bind(c, name="roctxMarkA")
-      use iso_c_binding
+      import
       implicit none
       type(c_ptr),value :: message
     end subroutine
@@ -50,7 +50,7 @@ module hipfort_roctx
   !>  levels are 0 based.
   interface roctxRangePush
     function roctxRangePush_(message) bind(c, name="roctxRangePushA")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxRangePush_
       type(c_ptr),value :: message
@@ -69,7 +69,7 @@ module hipfort_roctx
   !>  negative value if there was no nested range active.
   interface roctxRangePop
     function roctxRangePop_() bind(c, name="roctxRangePop")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxRangePop_
     end function
@@ -85,7 +85,7 @@ module hipfort_roctx
   !>  @return Returns the ID of the new range.
   interface roctxRangeStart
     function roctxRangeStart_(message) bind(c, name="roctxRangeStartA")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int64_t) :: roctxRangeStart_
       type(c_ptr),value :: message
@@ -99,7 +99,7 @@ module hipfort_roctx
   !>  @param [in] id `roctx_range_id_t` returned from `roctxRangeStartA` to stop
   interface roctxRangeStop
     subroutine roctxRangeStop_(id) bind(c, name="roctxRangeStop")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int64_t),value :: id
     end subroutine
@@ -121,7 +121,7 @@ module hipfort_roctx
   !>  but is already paused, the tool should ignore the request and return zero.
   interface roctxProfilerPause
     function roctxProfilerPause_(tid) bind(c, name="roctxProfilerPause")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxProfilerPause_
       integer(c_int64_t),value :: tid
@@ -145,7 +145,7 @@ module hipfort_roctx
   !>  resuming but is already active, the tool should ignore the request and return zero.
   interface roctxProfilerResume
     function roctxProfilerResume_(tid) bind(c, name="roctxProfilerResume")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxProfilerResume_
       integer(c_int64_t),value :: tid
@@ -165,7 +165,7 @@ module hipfort_roctx
   !>  failure while executing the request or lack of support
   interface roctxNameOsThread
     function roctxNameOsThread_(name) bind(c, name="roctxNameOsThread")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxNameOsThread_
       type(c_ptr),value :: name
@@ -187,7 +187,7 @@ module hipfort_roctx
   !>  failure while executing the request or lack of support
   interface roctxNameHsaAgent
     function roctxNameHsaAgent_(name,agent) bind(c, name="roctxNameHsaAgent")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxNameHsaAgent_
       type(c_ptr),value :: name
@@ -211,7 +211,7 @@ module hipfort_roctx
   !>  failure while executing the request or lack of support
   interface roctxNameHipDevice
     function roctxNameHipDevice_(name,device_id) bind(c, name="roctxNameHipDevice")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxNameHipDevice_
       type(c_ptr),value :: name
@@ -234,7 +234,7 @@ module hipfort_roctx
   !>  failure while executing the request or lack of support
   interface roctxNameHipStream
     function roctxNameHipStream_(name,stream) bind(c, name="roctxNameHipStream")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxNameHipStream_
       type(c_ptr),value :: name
@@ -253,7 +253,7 @@ module hipfort_roctx
   !>  failure while executing the request or lack of support
   interface roctxGetThreadId
     function roctxGetThreadId_(tid) bind(c, name="roctxGetThreadId")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: roctxGetThreadId_
       type(c_ptr),value :: tid
@@ -264,7 +264,6 @@ module hipfort_roctx
   contains
 
     subroutine roctxMark_typed(message)
-      use iso_c_binding
       implicit none
       character(kind=c_char,len=*),intent(in),target :: message
       !
@@ -272,7 +271,6 @@ module hipfort_roctx
     end subroutine
 
     function roctxRangePush_typed(message)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxRangePush_typed
       character(kind=c_char,len=*),intent(in),target :: message
@@ -281,7 +279,6 @@ module hipfort_roctx
     end function
 
     function roctxRangeStart_typed(message)
-      use iso_c_binding
       implicit none
       integer(c_int64_t) :: roctxRangeStart_typed
       character(kind=c_char,len=*),intent(in),target :: message
@@ -290,7 +287,6 @@ module hipfort_roctx
     end function
 
     function roctxNameOsThread_typed(name)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameOsThread_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -299,7 +295,6 @@ module hipfort_roctx
     end function
 
     function roctxNameHsaAgent_typed(name,agent)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHsaAgent_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -309,7 +304,6 @@ module hipfort_roctx
     end function
 
     function roctxNameHipDevice_typed(name,device_id)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHipDevice_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -319,7 +313,6 @@ module hipfort_roctx
     end function
 
     function roctxNameHipStream_typed(name,stream)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHipStream_typed
       character(kind=c_char,len=*),intent(in),target :: name
