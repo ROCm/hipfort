@@ -25,14 +25,15 @@
 
 module hipfort_rocfft
   use hipfort_rocfft_enums
+  use, intrinsic :: iso_c_binding, only: c_double, c_int, c_loc, c_ptr, c_size_t
   implicit none
+  private :: c_double, c_int, c_loc, c_ptr, c_size_t
 
   !>  @brief Library setup function, called at least once in program before
   !>  start of library use
   interface rocfft_setup
     function rocfft_setup_() bind(c, name="rocfft_setup")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_setup_
     end function
@@ -42,8 +43,7 @@ module hipfort_rocfft
   !>  in program after end of library use
   interface rocfft_cleanup
     function rocfft_cleanup_() bind(c, name="rocfft_cleanup")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_cleanup_
     end function
@@ -85,8 +85,7 @@ module hipfort_rocfft
     function rocfft_plan_create_(plan,placement,transform_type,myPrecision,dimensions,lengths, &
         number_of_transforms,description) &
         bind(c, name="rocfft_plan_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_create_
       type(c_ptr) :: plan
@@ -145,8 +144,7 @@ module hipfort_rocfft
   !>  rocfft_execution_info_create
   interface rocfft_execute
     function rocfft_execute_(plan,in_buffer,out_buffer,myInfo) bind(c, name="rocfft_execute")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execute_
       type(c_ptr),value :: plan
@@ -161,8 +159,7 @@ module hipfort_rocfft
   !>   @param[in] plan - plan handle
   interface rocfft_plan_destroy
     function rocfft_plan_destroy_(plan) bind(c, name="rocfft_plan_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_destroy_
       type(c_ptr),value :: plan
@@ -180,8 +177,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_set_scale_factor
     function rocfft_plan_description_set_scale_factor_(description,scale_factor) &
         bind(c, name="rocfft_plan_description_set_scale_factor")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_set_scale_factor_
       type(c_ptr),value :: description
@@ -238,8 +234,7 @@ module hipfort_rocfft
         in_offsets,out_offsets,in_strides_size,in_strides,in_distance,out_strides_size, &
         out_strides,out_distance) &
         bind(c, name="rocfft_plan_description_set_data_layout")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_set_data_layout_
       type(c_ptr),value :: description
@@ -271,8 +266,7 @@ module hipfort_rocfft
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_field_create
     function rocfft_field_create_(field) bind(c, name="rocfft_field_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_field_create_
       type(c_ptr) :: field
@@ -288,8 +282,7 @@ module hipfort_rocfft
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_field_destroy
     function rocfft_field_destroy_(field) bind(c, name="rocfft_field_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_field_destroy_
       type(c_ptr),value :: field
@@ -302,8 +295,7 @@ module hipfort_rocfft
   !>  @param[in] len - length of buf, minimum 30 characters
   interface rocfft_get_version_string
     function rocfft_get_version_string_(buf,len) bind(c, name="rocfft_get_version_string")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_get_version_string_
       type(c_ptr),value :: buf
@@ -325,8 +317,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_set_comm
     function rocfft_plan_description_set_comm_(description,comm_type,comm_handle) &
         bind(c, name="rocfft_plan_description_set_comm")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_set_comm_
       type(c_ptr),value :: description
@@ -383,8 +374,7 @@ module hipfort_rocfft
     function rocfft_plan_description_set_load_callback_(description,symbol_name,bitcode_data, &
         bitcode_len_bytes,shared_mem_bytes) &
         bind(c, name="rocfft_plan_description_set_load_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_set_load_callback_
       type(c_ptr),value :: description
@@ -443,8 +433,7 @@ module hipfort_rocfft
     function rocfft_plan_description_set_store_callback_(description,symbol_name,bitcode_data, &
         bitcode_len_bytes,shared_mem_bytes) &
         bind(c, name="rocfft_plan_description_set_store_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_set_store_callback_
       type(c_ptr),value :: description
@@ -490,8 +479,7 @@ module hipfort_rocfft
     function rocfft_brick_create_(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
         deviceID) &
         bind(c, name="rocfft_brick_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_brick_create_
       type(c_ptr) :: brick
@@ -508,8 +496,7 @@ module hipfort_rocfft
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_brick_destroy
     function rocfft_brick_destroy_(brick) bind(c, name="rocfft_brick_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_brick_destroy_
       type(c_ptr),value :: brick
@@ -531,8 +518,7 @@ module hipfort_rocfft
   !>   @warning Experimental!  This feature is part of an experimental API preview.
   interface rocfft_field_add_brick
     function rocfft_field_add_brick_(field,brick) bind(c, name="rocfft_field_add_brick")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_field_add_brick_
       type(c_ptr),value :: field
@@ -552,8 +538,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_add_infield
     function rocfft_plan_description_add_infield_(description,field) &
         bind(c, name="rocfft_plan_description_add_infield")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_add_infield_
       type(c_ptr),value :: description
@@ -573,8 +558,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_add_outfield
     function rocfft_plan_description_add_outfield_(description,field) &
         bind(c, name="rocfft_plan_description_add_outfield")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_add_outfield_
       type(c_ptr),value :: description
@@ -597,8 +581,7 @@ module hipfort_rocfft
   interface rocfft_plan_get_work_buffer_size
     function rocfft_plan_get_work_buffer_size_(plan,size_in_bytes) &
         bind(c, name="rocfft_plan_get_work_buffer_size")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_get_work_buffer_size_
       type(c_ptr),value :: plan
@@ -613,8 +596,7 @@ module hipfort_rocfft
   !>   @param[in] plan - plan handle
   interface rocfft_plan_get_print
     function rocfft_plan_get_print_(plan) bind(c, name="rocfft_plan_get_print")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_get_print_
       type(c_ptr),value :: plan
@@ -629,8 +611,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_create
     function rocfft_plan_description_create_(description) &
         bind(c, name="rocfft_plan_description_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_create_
       type(c_ptr) :: description
@@ -644,8 +625,7 @@ module hipfort_rocfft
   interface rocfft_plan_description_destroy
     function rocfft_plan_description_destroy_(description) &
         bind(c, name="rocfft_plan_description_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_plan_description_destroy_
       type(c_ptr),value :: description
@@ -659,8 +639,7 @@ module hipfort_rocfft
   !>   @param[out] myInfo - execution info handle
   interface rocfft_execution_info_create
     function rocfft_execution_info_create_(myInfo) bind(c, name="rocfft_execution_info_create")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_create_
       type(c_ptr) :: myInfo
@@ -674,8 +653,7 @@ module hipfort_rocfft
   !>   @param[in] myInfo - execution info handle
   interface rocfft_execution_info_destroy
     function rocfft_execution_info_destroy_(myInfo) bind(c, name="rocfft_execution_info_destroy")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_destroy_
       type(c_ptr),value :: myInfo
@@ -716,8 +694,7 @@ module hipfort_rocfft
   interface rocfft_execution_info_set_work_buffer
     function rocfft_execution_info_set_work_buffer_(myInfo,work_buffer,size_in_bytes) &
         bind(c, name="rocfft_execution_info_set_work_buffer")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_work_buffer_
       type(c_ptr),value :: myInfo
@@ -745,8 +722,7 @@ module hipfort_rocfft
   interface rocfft_execution_info_set_stream
     function rocfft_execution_info_set_stream_(myInfo,stream) &
         bind(c, name="rocfft_execution_info_set_stream")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_stream_
       type(c_ptr),value :: myInfo
@@ -798,8 +774,7 @@ module hipfort_rocfft
     function rocfft_execution_info_set_load_callback_(myInfo,cb_functions,cb_data, &
         shared_mem_bytes) &
         bind(c, name="rocfft_execution_info_set_load_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_load_callback_
       type(c_ptr),value :: myInfo
@@ -832,8 +807,7 @@ module hipfort_rocfft
   interface rocfft_execution_info_set_load_callback_data
     function rocfft_execution_info_set_load_callback_data_(myInfo,cb_data,count) &
         bind(c, name="rocfft_execution_info_set_load_callback_data")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_load_callback_data_
       type(c_ptr),value :: myInfo
@@ -886,8 +860,7 @@ module hipfort_rocfft
     function rocfft_execution_info_set_store_callback_(myInfo,cb_functions,cb_data, &
         shared_mem_bytes) &
         bind(c, name="rocfft_execution_info_set_store_callback")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_store_callback_
       type(c_ptr),value :: myInfo
@@ -920,8 +893,7 @@ module hipfort_rocfft
   interface rocfft_execution_info_set_store_callback_data
     function rocfft_execution_info_set_store_callback_data_(myInfo,cb_data,count) &
         bind(c, name="rocfft_execution_info_set_store_callback_data")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_execution_info_set_store_callback_data_
       type(c_ptr),value :: myInfo
@@ -938,8 +910,7 @@ module hipfort_rocfft
   !>   buffer in bytes is written to 'buffer_len_bytes'.
   interface rocfft_cache_serialize
     function rocfft_cache_serialize_(buffer,buffer_len_bytes) bind(c, name="rocfft_cache_serialize")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_cache_serialize_
       type(c_ptr) :: buffer
@@ -954,8 +925,7 @@ module hipfort_rocfft
   !>   @details Deallocate a buffer allocated by `rocfft_cache_serialize`.
   interface rocfft_cache_buffer_free
     function rocfft_cache_buffer_free_(buffer) bind(c, name="rocfft_cache_buffer_free")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_cache_buffer_free_
       type(c_ptr),value :: buffer
@@ -972,8 +942,7 @@ module hipfort_rocfft
   interface rocfft_cache_deserialize
     function rocfft_cache_deserialize_(buffer,buffer_len_bytes) &
         bind(c, name="rocfft_cache_deserialize")
-      use iso_c_binding
-      use hipfort_rocfft_enums
+      import
       implicit none
       integer(c_int) :: rocfft_cache_deserialize_
       type(c_ptr),value :: buffer
@@ -985,8 +954,6 @@ module hipfort_rocfft
   contains
 
     function rocfft_plan_get_work_buffer_size_typed(plan,size_in_bytes)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_get_work_buffer_size_typed
       type(c_ptr), value :: plan
@@ -997,8 +964,6 @@ module hipfort_rocfft
     end function
 
     function rocfft_cache_serialize_typed(buffer,buffer_len_bytes)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_cache_serialize_typed
       type(c_ptr) :: buffer
@@ -1013,8 +978,6 @@ module hipfort_rocfft
 #ifdef USE_ASSUMED_RANK
     function rocfft_plan_create_assumed_rank(plan,placement,transform_type,myPrecision,dimensions, &
         lengths,number_of_transforms,description)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_create_assumed_rank
       type(c_ptr) :: plan
@@ -1033,8 +996,6 @@ module hipfort_rocfft
 #else
     function rocfft_plan_create_rank_0(plan,placement,transform_type,myPrecision,dimensions, &
         lengths,number_of_transforms,description)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_0
       type(c_ptr) :: plan
@@ -1052,8 +1013,6 @@ module hipfort_rocfft
 
     function rocfft_plan_create_rank_1(plan,placement,transform_type,myPrecision,dimensions, &
         lengths,number_of_transforms,description)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_create_rank_1
       type(c_ptr) :: plan
@@ -1074,8 +1033,6 @@ module hipfort_rocfft
     function rocfft_plan_description_set_data_layout_assumed_rank(description,in_array_type, &
         out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
         out_strides_size,out_strides,out_distance)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_assumed_rank
       type(c_ptr), value :: description
@@ -1100,8 +1057,6 @@ module hipfort_rocfft
     function rocfft_plan_description_set_data_layout_rank_0(description,in_array_type, &
         out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
         out_strides_size,out_strides,out_distance)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_0
       type(c_ptr), value :: description
@@ -1125,8 +1080,6 @@ module hipfort_rocfft
     function rocfft_plan_description_set_data_layout_rank_1(description,in_array_type, &
         out_array_type,in_offsets,out_offsets,in_strides_size,in_strides,in_distance, &
         out_strides_size,out_strides,out_distance)
-      use iso_c_binding
-      use hipfort_rocfft_enums
       implicit none
       integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_data_layout_rank_1
       type(c_ptr), value :: description

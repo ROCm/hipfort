@@ -76,6 +76,13 @@
   call returns while an asynchronous routine is still reading it. Both forms
   now take the address of the array as it is, so pass contiguous arrays.
 
+* The modules compile 2 to 3 times faster with gfortran and amdflang, and the
+  Cray compiler no longer takes an hour on the assumed-shape rocSOLVER module
+  (8 s now). Each module `use`s `iso_c_binding` and its enums once, and its
+  interfaces `import` them, instead of a `use` in each of its thousands of
+  interfaces and wrappers, which `ftn` read again every time. The modules export
+  the same names as before.
+
 ### Fixed
 
 * An array overload of `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that
