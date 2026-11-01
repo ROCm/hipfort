@@ -34,6 +34,7 @@
 #   -DCONSUMER_SRC=<test/find_package>
 #   -DWORK_DIR=<scratch dir>
 #   -DFORTRAN_COMPILER=<Fortran compiler>
+#   -DPLATFORM_LIBDIR=<the platform's libdir: lib, lib64, lib/<triplet>>
 #
 # It installs hipfort from the build tree into WORK_DIR/install, then configures
 # the consumer against that prefix. Any nonzero exit fails the test.
@@ -48,11 +49,15 @@ if(NOT _rc EQUAL 0)
   message(FATAL_ERROR "cmake --install failed (${_rc}):\n${_log}")
 endif()
 
-# The config must be reachable from the prefix at the standard lib/cmake/hipfort.
-if(NOT EXISTS "${_prefix}/lib/cmake/hipfort/hipfort-config.cmake")
+# The config must be reachable from the prefix at the platform's
+# <libdir>/cmake/hipfort: lib64 on SUSE (HPE Cray), RHEL and Fedora.
+if(NOT PLATFORM_LIBDIR)
+  set(PLATFORM_LIBDIR lib)
+endif()
+if(NOT EXISTS "${_prefix}/${PLATFORM_LIBDIR}/cmake/hipfort/hipfort-config.cmake")
   message(FATAL_ERROR
-    "no hipfort-config.cmake at ${_prefix}/lib/cmake/hipfort (find_package would "
-    "not discover hipfort from the install prefix).")
+    "no hipfort-config.cmake at ${_prefix}/${PLATFORM_LIBDIR}/cmake/hipfort "
+    "(find_package would not discover hipfort from the install prefix).")
 endif()
 
 execute_process(

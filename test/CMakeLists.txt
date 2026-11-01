@@ -1790,6 +1790,7 @@ if(BUILD_TESTING)
       -DCONSUMER_SRC=${CMAKE_CURRENT_SOURCE_DIR}/find_package
       -DWORK_DIR=${CMAKE_CURRENT_BINARY_DIR}/find_package_work
       -DFORTRAN_COMPILER=${CMAKE_Fortran_COMPILER}
+      -DPLATFORM_LIBDIR=${HIPFORT_PLATFORM_LIBDIR}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/find_package/run_find_package_test.cmake)
 
   # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference.

@@ -56,7 +56,7 @@ program pointer_attributes
      write(*,*) "FAILED! hipMalloc device = ", attr%device, " (expected 0)"
      call exit(1)
   end if
-  if (.not. c_associated(attr%devicePointer, c_loc(dp(1)))) then
+  if (.not. same_address(attr%devicePointer, c_loc(dp(1)))) then
      write(*,*) "FAILED! hipMalloc devicePointer does not match the allocation"
      call exit(1)
   end if
@@ -94,5 +94,13 @@ contains
        call exit(1)
     end if
   end subroutine expect_type
+
+  ! Whether p and q hold the same address. The Cray compiler rejects
+  ! c_associated(attr%devicePointer, p) as if the component were not a c_ptr;
+  ! passed as dummy arguments, both are.
+  logical function same_address(p, q)
+    type(c_ptr), intent(in) :: p, q
+    same_address = c_associated(p, q)
+  end function same_address
 
 end program pointer_attributes

@@ -281,6 +281,12 @@ endif()
 # Defines HIPFORT_CODE_COVERAGE and returns immediately when it is OFF.
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/CodeCoverage.cmake)
 
+# The Cray compiler warns (ftn-878) when a scope uses a module that another `use`
+# already brought in. The standard allows it, and the modules re-export their
+# enums: `use hipfort_hipblas` followed by `use hipfort_hipblas_enums`, as in the
+# tests, is valid Fortran.
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Cray>:SHELL:-M 878>")
+
 # Subdirectories and packaging
 # NOTE: rocm-cmake must be included before
 # adding subdirectories.

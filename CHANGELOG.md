@@ -1,5 +1,20 @@
 # Changelog for hipfort
 
+## Unreleased
+
+### Resolved issues
+
+* Fixed the build of the tests with the HPE Cray Fortran compiler: the
+  `pointer_attributes` tests compare addresses in a way it accepts.
+* The Cray compiler no longer warns that `hipfort_check` may use its status name
+  unallocated (ftn-7206), nor, when building hipfort and its tests, that a scope
+  uses a module twice (ftn-878, which the standard allows: the modules re-export
+  their enums).
+* The `find_package` test looks for the installed `hipfort-config.cmake` under
+  the platform's libdir (`lib64` on SUSE, RHEL and Fedora), where it is
+  installed, rather than under `lib`. The rocBLAS `caxpy_typed` test compares
+  with a relative tolerance, which a fused multiply-add on the GPU meets.
+
 ## hipfort 0.7.2 for ROCm 7.13.0
 
 ### Added
