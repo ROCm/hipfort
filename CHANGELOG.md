@@ -4,6 +4,27 @@
 
 ### Added
 
+* `X_strided_rank` array overloads for the strided-batched routines of
+  rocBLAS, hipBLAS, rocSOLVER and hipSOLVER, which take each operand with the
+  batch as one more dimension: `A(lda, n, batch_count)`, and a vector of each
+  batch entry as a column of a 2-D array. `X_full_rank` keeps taking the batch
+  packed in the last dimension, as before.
+* Array overloads for the routines that had none, derived from the C
+  signature: every routine with a data buffer now has them (in rocSOLVER 1002
+  routines instead of 680, hipSOLVER 461 instead of 164, rocSPARSE 470 instead
+  of 347, hipBLAS 846 instead of 752, rocBLAS 838 instead of 700, HIP 20,
+  hipFFTW 32), with `_devptr` twins wherever an argument may be a device pointer.
+* `_devptr` twins of the array overloads for an array of one value per batch
+  entry that is also passed as a `type(c_ptr)`, in routines that take another
+  array: the `info` of rocSOLVER's batched routines, of
+  `hipsolverXgetrfBatched`, `hipsolverXgetriBatched` and
+  `hipblasXgetrfStridedBatched`, the results of the strided-batched reductions
+  of rocBLAS and hipBLAS (`dot`, `dotc`, `dotu`, `asum`, `nrm2`, `iamax`,
+  `iamin`), and `rotm`'s `param`. The array overloads take them as Fortran
+  arrays, in host or device memory.
+* `hipStreamGetCaptureInfo_spt` and `hipStreamGetCaptureInfo_v2_spt` get the
+  optional arguments of their base routine: `pId` is optional in the `_typed`
+  form of the first, and the second gains an `_opt` form.
 * Regenerated all Fortran bindings against the ROCm 10.2 API, adding 77
   routines: four in the HIP runtime (`hipDeviceFlushGPUDirectRDMAWrites`,
   `hipKernelSetAttributeForDevice`, `hipLibraryGetModule`,
@@ -34,6 +55,33 @@
 
 ### Changed
 
+* The single values rocSOLVER writes on the GPU are taken as one value: `info`
+  (every non-batched routine), `n_sweeps` and `residual` (`gesvdj`, `syevj`,
+  `heevj`, `sygvj`, `hegvj`), `nev` (`syevx`, `heevx`, `syevdx`, `heevdx`,
+  `sygvx`, `hegvx`, `sygvdx`, `stein`, `stebz`), `nsplit` (`stebz`), `nsv`
+  (`gesvdx`, `bdsvdx`), `nr` and `sigma` (`cholqr`), `anorm` and `rcond`
+  (`gecon`), `norm` (`lange`), and the `info` of `hipsolverDnXpotrf` and
+  `hipsolverDnXpotrs`. The array overloads take an integer or real variable on
+  the device (an `integer(c_int), pointer` allocated with `hipMalloc`), and
+  their `_devptr` twins a `type(c_ptr)`, which the array overloads took before.
+  A call through the generic name with a `type(c_ptr)` compiles as before.
+* `hipblasXrotBatched` and `hipblasXrotStridedBatched` take `c` and `s` as
+  scalars read per the pointer mode, as rocBLAS does: the `_typed` form takes
+  them as variables, the `_devptr` form as `type(c_ptr)`.
+* **Breaking.** Arguments the bindings classified against the C documentation:
+  * `info` of `hipblasXgeqrf`, `hipblasXgetrs` and their `StridedBatched` forms,
+    `p_buffer_size` of `rocsparse_Xgebsr2gebsc_buffer_size` and `fractionToColor`
+    of `hipsparseXcsrcolor` are host values, which the library writes or reads
+    on the host: their `_devptr` forms, which took them as device pointers, are
+    gone (88 procedures). Pass a Fortran variable.
+  * `nev` and `info` of `rocsolver_chegvdx` and `rocsolver_zhegvdx`, the `alpha`
+    of `hipsparseXcsrsm2_bufferSizeExt` and the `threshold` of the hipSPARSE
+    `prune` size queries are single values, not one-element arrays (38
+    procedures).
+* A specific procedure whose argument moves from `type(c_ptr)` to a Fortran
+  variable or array keeps its name; its `type(c_ptr)` form is the `_devptr`
+  specific of the same overload. Calls through the generic names resolve as
+  before; a call to the specific by name may need the `_devptr` one.
 * **Breaking for calls by keyword.** The `bind(C)` specifics of
   `hipblasSetVector`, `hipblasGetVector`,
   `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
@@ -57,10 +105,10 @@
 * **Breaking.** The array overloads of the hipSOLVER batched routines
   (`hipsolver[SDCZ]{potrf,potrs,getrf,getri,gels,gesvdj,syevj,heevj}Batched`)
   take `devInfo` as an `integer(c_int)` array of `batch_count` entries, which is
-  what hipSOLVER writes, instead of a single integer. Their `_devptr` forms, which
-  took it as a `type(c_ptr)`, are gone: pass the device array itself, or call the
-  `bind(C)` specific with `type(c_ptr)` arguments. The `gels` batched routines
-  gain array overloads.
+  what hipSOLVER writes, instead of a single integer. Pass the device array
+  itself, or call the `bind(C)` specific with `type(c_ptr)` arguments;
+  `getrfBatched` and `getriBatched` also have `_devptr` forms that take it as a
+  `type(c_ptr)`. The `gels` batched routines gain array overloads.
 * `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
   `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
   compiles with a Fortran 2003 compiler. Both kinds are equal on every

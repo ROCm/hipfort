@@ -998,12 +998,16 @@ module hipfort_hipsparse
     module procedure hipsparseSaxpyi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSaxpyi_assumed_rank
+    module procedure &
+      hipsparseSaxpyi_assumed_rank,&
+      hipsparseSaxpyi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSaxpyi_rank_0,&
-      hipsparseSaxpyi_rank_1
+      hipsparseSaxpyi_rank_0_devptr,&
+      hipsparseSaxpyi_rank_1,&
+      hipsparseSaxpyi_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1027,12 +1031,16 @@ module hipfort_hipsparse
     module procedure hipsparseDaxpyi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDaxpyi_assumed_rank
+    module procedure &
+      hipsparseDaxpyi_assumed_rank,&
+      hipsparseDaxpyi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDaxpyi_rank_0,&
-      hipsparseDaxpyi_rank_1
+      hipsparseDaxpyi_rank_0_devptr,&
+      hipsparseDaxpyi_rank_1,&
+      hipsparseDaxpyi_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1056,12 +1064,16 @@ module hipfort_hipsparse
     module procedure hipsparseCaxpyi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCaxpyi_assumed_rank
+    module procedure &
+      hipsparseCaxpyi_assumed_rank,&
+      hipsparseCaxpyi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCaxpyi_rank_0,&
-      hipsparseCaxpyi_rank_1
+      hipsparseCaxpyi_rank_0_devptr,&
+      hipsparseCaxpyi_rank_1,&
+      hipsparseCaxpyi_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1085,12 +1097,16 @@ module hipfort_hipsparse
     module procedure hipsparseZaxpyi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZaxpyi_assumed_rank
+    module procedure &
+      hipsparseZaxpyi_assumed_rank,&
+      hipsparseZaxpyi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZaxpyi_rank_0,&
-      hipsparseZaxpyi_rank_1
+      hipsparseZaxpyi_rank_0_devptr,&
+      hipsparseZaxpyi_rank_1,&
+      hipsparseZaxpyi_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1164,12 +1180,16 @@ module hipfort_hipsparse
     module procedure hipsparseCdotci_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCdotci_assumed_rank
+    module procedure &
+      hipsparseCdotci_assumed_rank,&
+      hipsparseCdotci_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdotci_rank_0,&
-      hipsparseCdotci_rank_1
+      hipsparseCdotci_rank_0_devptr,&
+      hipsparseCdotci_rank_1,&
+      hipsparseCdotci_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1194,12 +1214,16 @@ module hipfort_hipsparse
     module procedure hipsparseZdotci_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZdotci_assumed_rank
+    module procedure &
+      hipsparseZdotci_assumed_rank,&
+      hipsparseZdotci_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdotci_rank_0,&
-      hipsparseZdotci_rank_1
+      hipsparseZdotci_rank_0_devptr,&
+      hipsparseZdotci_rank_1,&
+      hipsparseZdotci_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1271,12 +1295,16 @@ module hipfort_hipsparse
     module procedure hipsparseSdoti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSdoti_assumed_rank
+    module procedure &
+      hipsparseSdoti_assumed_rank,&
+      hipsparseSdoti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSdoti_rank_0,&
-      hipsparseSdoti_rank_1
+      hipsparseSdoti_rank_0_devptr,&
+      hipsparseSdoti_rank_1,&
+      hipsparseSdoti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1300,12 +1328,16 @@ module hipfort_hipsparse
     module procedure hipsparseDdoti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDdoti_assumed_rank
+    module procedure &
+      hipsparseDdoti_assumed_rank,&
+      hipsparseDdoti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDdoti_rank_0,&
-      hipsparseDdoti_rank_1
+      hipsparseDdoti_rank_0_devptr,&
+      hipsparseDdoti_rank_1,&
+      hipsparseDdoti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1329,12 +1361,16 @@ module hipfort_hipsparse
     module procedure hipsparseCdoti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCdoti_assumed_rank
+    module procedure &
+      hipsparseCdoti_assumed_rank,&
+      hipsparseCdoti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCdoti_rank_0,&
-      hipsparseCdoti_rank_1
+      hipsparseCdoti_rank_0_devptr,&
+      hipsparseCdoti_rank_1,&
+      hipsparseCdoti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1358,12 +1394,16 @@ module hipfort_hipsparse
     module procedure hipsparseZdoti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZdoti_assumed_rank
+    module procedure &
+      hipsparseZdoti_assumed_rank,&
+      hipsparseZdoti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZdoti_rank_0,&
-      hipsparseZdoti_rank_1
+      hipsparseZdoti_rank_0_devptr,&
+      hipsparseZdoti_rank_1,&
+      hipsparseZdoti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1730,12 +1770,16 @@ module hipfort_hipsparse
     module procedure hipsparseSroti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSroti_assumed_rank
+    module procedure &
+      hipsparseSroti_assumed_rank,&
+      hipsparseSroti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSroti_rank_0,&
-      hipsparseSroti_rank_1
+      hipsparseSroti_rank_0_devptr,&
+      hipsparseSroti_rank_1,&
+      hipsparseSroti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -1760,12 +1804,16 @@ module hipfort_hipsparse
     module procedure hipsparseDroti_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDroti_assumed_rank
+    module procedure &
+      hipsparseDroti_assumed_rank,&
+      hipsparseDroti_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDroti_rank_0,&
-      hipsparseDroti_rank_1
+      hipsparseDroti_rank_0_devptr,&
+      hipsparseDroti_rank_1,&
+      hipsparseDroti_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2009,12 +2057,16 @@ module hipfort_hipsparse
     module procedure hipsparseSbsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSbsrmv_assumed_rank
+    module procedure &
+      hipsparseSbsrmv_assumed_rank,&
+      hipsparseSbsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrmv_rank_0,&
-      hipsparseSbsrmv_rank_1
+      hipsparseSbsrmv_rank_0_devptr,&
+      hipsparseSbsrmv_rank_1,&
+      hipsparseSbsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2052,12 +2104,16 @@ module hipfort_hipsparse
     module procedure hipsparseDbsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDbsrmv_assumed_rank
+    module procedure &
+      hipsparseDbsrmv_assumed_rank,&
+      hipsparseDbsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrmv_rank_0,&
-      hipsparseDbsrmv_rank_1
+      hipsparseDbsrmv_rank_0_devptr,&
+      hipsparseDbsrmv_rank_1,&
+      hipsparseDbsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2095,12 +2151,16 @@ module hipfort_hipsparse
     module procedure hipsparseCbsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCbsrmv_assumed_rank
+    module procedure &
+      hipsparseCbsrmv_assumed_rank,&
+      hipsparseCbsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrmv_rank_0,&
-      hipsparseCbsrmv_rank_1
+      hipsparseCbsrmv_rank_0_devptr,&
+      hipsparseCbsrmv_rank_1,&
+      hipsparseCbsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2138,12 +2198,16 @@ module hipfort_hipsparse
     module procedure hipsparseZbsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZbsrmv_assumed_rank
+    module procedure &
+      hipsparseZbsrmv_assumed_rank,&
+      hipsparseZbsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrmv_rank_0,&
-      hipsparseZbsrmv_rank_1
+      hipsparseZbsrmv_rank_0_devptr,&
+      hipsparseZbsrmv_rank_1,&
+      hipsparseZbsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2901,12 +2965,16 @@ module hipfort_hipsparse
     module procedure hipsparseSbsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSbsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseSbsrsv2_solve_assumed_rank,&
+      hipsparseSbsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsv2_solve_rank_0,&
-      hipsparseSbsrsv2_solve_rank_1
+      hipsparseSbsrsv2_solve_rank_0_devptr,&
+      hipsparseSbsrsv2_solve_rank_1,&
+      hipsparseSbsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2945,12 +3013,16 @@ module hipfort_hipsparse
     module procedure hipsparseDbsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDbsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseDbsrsv2_solve_assumed_rank,&
+      hipsparseDbsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsv2_solve_rank_0,&
-      hipsparseDbsrsv2_solve_rank_1
+      hipsparseDbsrsv2_solve_rank_0_devptr,&
+      hipsparseDbsrsv2_solve_rank_1,&
+      hipsparseDbsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -2989,12 +3061,16 @@ module hipfort_hipsparse
     module procedure hipsparseCbsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCbsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseCbsrsv2_solve_assumed_rank,&
+      hipsparseCbsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsv2_solve_rank_0,&
-      hipsparseCbsrsv2_solve_rank_1
+      hipsparseCbsrsv2_solve_rank_0_devptr,&
+      hipsparseCbsrsv2_solve_rank_1,&
+      hipsparseCbsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3033,12 +3109,16 @@ module hipfort_hipsparse
     module procedure hipsparseZbsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZbsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseZbsrsv2_solve_assumed_rank,&
+      hipsparseZbsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsv2_solve_rank_0,&
-      hipsparseZbsrsv2_solve_rank_1
+      hipsparseZbsrsv2_solve_rank_0_devptr,&
+      hipsparseZbsrsv2_solve_rank_1,&
+      hipsparseZbsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3159,12 +3239,16 @@ module hipfort_hipsparse
     module procedure hipsparseSbsrxmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSbsrxmv_assumed_rank
+    module procedure &
+      hipsparseSbsrxmv_assumed_rank,&
+      hipsparseSbsrxmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrxmv_rank_0,&
-      hipsparseSbsrxmv_rank_1
+      hipsparseSbsrxmv_rank_0_devptr,&
+      hipsparseSbsrxmv_rank_1,&
+      hipsparseSbsrxmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3205,12 +3289,16 @@ module hipfort_hipsparse
     module procedure hipsparseDbsrxmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDbsrxmv_assumed_rank
+    module procedure &
+      hipsparseDbsrxmv_assumed_rank,&
+      hipsparseDbsrxmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrxmv_rank_0,&
-      hipsparseDbsrxmv_rank_1
+      hipsparseDbsrxmv_rank_0_devptr,&
+      hipsparseDbsrxmv_rank_1,&
+      hipsparseDbsrxmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3251,12 +3339,16 @@ module hipfort_hipsparse
     module procedure hipsparseCbsrxmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCbsrxmv_assumed_rank
+    module procedure &
+      hipsparseCbsrxmv_assumed_rank,&
+      hipsparseCbsrxmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrxmv_rank_0,&
-      hipsparseCbsrxmv_rank_1
+      hipsparseCbsrxmv_rank_0_devptr,&
+      hipsparseCbsrxmv_rank_1,&
+      hipsparseCbsrxmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3297,12 +3389,16 @@ module hipfort_hipsparse
     module procedure hipsparseZbsrxmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZbsrxmv_assumed_rank
+    module procedure &
+      hipsparseZbsrxmv_assumed_rank,&
+      hipsparseZbsrxmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrxmv_rank_0,&
-      hipsparseZbsrxmv_rank_1
+      hipsparseZbsrxmv_rank_0_devptr,&
+      hipsparseZbsrxmv_rank_1,&
+      hipsparseZbsrxmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3406,12 +3502,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrmv_assumed_rank
+    module procedure &
+      hipsparseScsrmv_assumed_rank,&
+      hipsparseScsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmv_rank_0,&
-      hipsparseScsrmv_rank_1
+      hipsparseScsrmv_rank_0_devptr,&
+      hipsparseScsrmv_rank_1,&
+      hipsparseScsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3443,12 +3543,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrmv_assumed_rank
+    module procedure &
+      hipsparseDcsrmv_assumed_rank,&
+      hipsparseDcsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmv_rank_0,&
-      hipsparseDcsrmv_rank_1
+      hipsparseDcsrmv_rank_0_devptr,&
+      hipsparseDcsrmv_rank_1,&
+      hipsparseDcsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3480,12 +3584,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrmv_assumed_rank
+    module procedure &
+      hipsparseCcsrmv_assumed_rank,&
+      hipsparseCcsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmv_rank_0,&
-      hipsparseCcsrmv_rank_1
+      hipsparseCcsrmv_rank_0_devptr,&
+      hipsparseCcsrmv_rank_1,&
+      hipsparseCcsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -3517,12 +3625,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrmv_assumed_rank
+    module procedure &
+      hipsparseZcsrmv_assumed_rank,&
+      hipsparseZcsrmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmv_rank_0,&
-      hipsparseZcsrmv_rank_1
+      hipsparseZcsrmv_rank_0_devptr,&
+      hipsparseZcsrmv_rank_1,&
+      hipsparseZcsrmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4207,12 +4319,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseScsrsv2_solve_assumed_rank,&
+      hipsparseScsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsv2_solve_rank_0,&
-      hipsparseScsrsv2_solve_rank_1
+      hipsparseScsrsv2_solve_rank_0_devptr,&
+      hipsparseScsrsv2_solve_rank_1,&
+      hipsparseScsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4245,12 +4361,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseDcsrsv2_solve_assumed_rank,&
+      hipsparseDcsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsv2_solve_rank_0,&
-      hipsparseDcsrsv2_solve_rank_1
+      hipsparseDcsrsv2_solve_rank_0_devptr,&
+      hipsparseDcsrsv2_solve_rank_1,&
+      hipsparseDcsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4283,12 +4403,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseCcsrsv2_solve_assumed_rank,&
+      hipsparseCcsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsv2_solve_rank_0,&
-      hipsparseCcsrsv2_solve_rank_1
+      hipsparseCcsrsv2_solve_rank_0_devptr,&
+      hipsparseCcsrsv2_solve_rank_1,&
+      hipsparseCcsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4321,12 +4445,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrsv2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrsv2_solve_assumed_rank
+    module procedure &
+      hipsparseZcsrsv2_solve_assumed_rank,&
+      hipsparseZcsrsv2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsv2_solve_rank_0,&
-      hipsparseZcsrsv2_solve_rank_1
+      hipsparseZcsrsv2_solve_rank_0_devptr,&
+      hipsparseZcsrsv2_solve_rank_1,&
+      hipsparseZcsrsv2_solve_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4524,13 +4652,18 @@ module hipfort_hipsparse
     module procedure hipsparseSgemvi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSgemvi_assumed_rank
+    module procedure &
+      hipsparseSgemvi_assumed_rank,&
+      hipsparseSgemvi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgemvi_rank_0,&
+      hipsparseSgemvi_rank_0_devptr,&
       hipsparseSgemvi_rank_1,&
-      hipsparseSgemvi_full_rank
+      hipsparseSgemvi_rank_1_devptr,&
+      hipsparseSgemvi_full_rank,&
+      hipsparseSgemvi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -4565,13 +4698,18 @@ module hipfort_hipsparse
     module procedure hipsparseDgemvi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDgemvi_assumed_rank
+    module procedure &
+      hipsparseDgemvi_assumed_rank,&
+      hipsparseDgemvi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgemvi_rank_0,&
+      hipsparseDgemvi_rank_0_devptr,&
       hipsparseDgemvi_rank_1,&
-      hipsparseDgemvi_full_rank
+      hipsparseDgemvi_rank_1_devptr,&
+      hipsparseDgemvi_full_rank,&
+      hipsparseDgemvi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -4606,13 +4744,18 @@ module hipfort_hipsparse
     module procedure hipsparseCgemvi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCgemvi_assumed_rank
+    module procedure &
+      hipsparseCgemvi_assumed_rank,&
+      hipsparseCgemvi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgemvi_rank_0,&
+      hipsparseCgemvi_rank_0_devptr,&
       hipsparseCgemvi_rank_1,&
-      hipsparseCgemvi_full_rank
+      hipsparseCgemvi_rank_1_devptr,&
+      hipsparseCgemvi_full_rank,&
+      hipsparseCgemvi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -4647,13 +4790,18 @@ module hipfort_hipsparse
     module procedure hipsparseZgemvi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZgemvi_assumed_rank
+    module procedure &
+      hipsparseZgemvi_assumed_rank,&
+      hipsparseZgemvi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgemvi_rank_0,&
+      hipsparseZgemvi_rank_0_devptr,&
       hipsparseZgemvi_rank_1,&
-      hipsparseZgemvi_full_rank
+      hipsparseZgemvi_rank_1_devptr,&
+      hipsparseZgemvi_full_rank,&
+      hipsparseZgemvi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -4731,12 +4879,16 @@ module hipfort_hipsparse
     module procedure hipsparseShybmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseShybmv_assumed_rank
+    module procedure &
+      hipsparseShybmv_assumed_rank,&
+      hipsparseShybmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseShybmv_rank_0,&
-      hipsparseShybmv_rank_1
+      hipsparseShybmv_rank_0_devptr,&
+      hipsparseShybmv_rank_1,&
+      hipsparseShybmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4762,12 +4914,16 @@ module hipfort_hipsparse
     module procedure hipsparseDhybmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDhybmv_assumed_rank
+    module procedure &
+      hipsparseDhybmv_assumed_rank,&
+      hipsparseDhybmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDhybmv_rank_0,&
-      hipsparseDhybmv_rank_1
+      hipsparseDhybmv_rank_0_devptr,&
+      hipsparseDhybmv_rank_1,&
+      hipsparseDhybmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4793,12 +4949,16 @@ module hipfort_hipsparse
     module procedure hipsparseChybmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseChybmv_assumed_rank
+    module procedure &
+      hipsparseChybmv_assumed_rank,&
+      hipsparseChybmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseChybmv_rank_0,&
-      hipsparseChybmv_rank_1
+      hipsparseChybmv_rank_0_devptr,&
+      hipsparseChybmv_rank_1,&
+      hipsparseChybmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4824,12 +4984,16 @@ module hipfort_hipsparse
     module procedure hipsparseZhybmv_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZhybmv_assumed_rank
+    module procedure &
+      hipsparseZhybmv_assumed_rank,&
+      hipsparseZhybmv_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZhybmv_rank_0,&
-      hipsparseZhybmv_rank_1
+      hipsparseZhybmv_rank_0_devptr,&
+      hipsparseZhybmv_rank_1,&
+      hipsparseZhybmv_rank_1_devptr
 #endif
 #endif
   end interface
@@ -4959,13 +5123,18 @@ module hipfort_hipsparse
     module procedure hipsparseSbsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSbsrmm_assumed_rank
+    module procedure &
+      hipsparseSbsrmm_assumed_rank,&
+      hipsparseSbsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrmm_rank_0,&
+      hipsparseSbsrmm_rank_0_devptr,&
       hipsparseSbsrmm_rank_1,&
-      hipsparseSbsrmm_full_rank
+      hipsparseSbsrmm_rank_1_devptr,&
+      hipsparseSbsrmm_full_rank,&
+      hipsparseSbsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5007,13 +5176,18 @@ module hipfort_hipsparse
     module procedure hipsparseDbsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDbsrmm_assumed_rank
+    module procedure &
+      hipsparseDbsrmm_assumed_rank,&
+      hipsparseDbsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrmm_rank_0,&
+      hipsparseDbsrmm_rank_0_devptr,&
       hipsparseDbsrmm_rank_1,&
-      hipsparseDbsrmm_full_rank
+      hipsparseDbsrmm_rank_1_devptr,&
+      hipsparseDbsrmm_full_rank,&
+      hipsparseDbsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5055,13 +5229,18 @@ module hipfort_hipsparse
     module procedure hipsparseCbsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCbsrmm_assumed_rank
+    module procedure &
+      hipsparseCbsrmm_assumed_rank,&
+      hipsparseCbsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrmm_rank_0,&
+      hipsparseCbsrmm_rank_0_devptr,&
       hipsparseCbsrmm_rank_1,&
-      hipsparseCbsrmm_full_rank
+      hipsparseCbsrmm_rank_1_devptr,&
+      hipsparseCbsrmm_full_rank,&
+      hipsparseCbsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5103,13 +5282,18 @@ module hipfort_hipsparse
     module procedure hipsparseZbsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZbsrmm_assumed_rank
+    module procedure &
+      hipsparseZbsrmm_assumed_rank,&
+      hipsparseZbsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrmm_rank_0,&
+      hipsparseZbsrmm_rank_0_devptr,&
       hipsparseZbsrmm_rank_1,&
-      hipsparseZbsrmm_full_rank
+      hipsparseZbsrmm_rank_1_devptr,&
+      hipsparseZbsrmm_full_rank,&
+      hipsparseZbsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5868,13 +6052,18 @@ module hipfort_hipsparse
     module procedure hipsparseSbsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSbsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseSbsrsm2_solve_assumed_rank,&
+      hipsparseSbsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSbsrsm2_solve_rank_0,&
+      hipsparseSbsrsm2_solve_rank_0_devptr,&
       hipsparseSbsrsm2_solve_rank_1,&
-      hipsparseSbsrsm2_solve_full_rank
+      hipsparseSbsrsm2_solve_rank_1_devptr,&
+      hipsparseSbsrsm2_solve_full_rank,&
+      hipsparseSbsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5919,13 +6108,18 @@ module hipfort_hipsparse
     module procedure hipsparseDbsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDbsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseDbsrsm2_solve_assumed_rank,&
+      hipsparseDbsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDbsrsm2_solve_rank_0,&
+      hipsparseDbsrsm2_solve_rank_0_devptr,&
       hipsparseDbsrsm2_solve_rank_1,&
-      hipsparseDbsrsm2_solve_full_rank
+      hipsparseDbsrsm2_solve_rank_1_devptr,&
+      hipsparseDbsrsm2_solve_full_rank,&
+      hipsparseDbsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -5970,13 +6164,18 @@ module hipfort_hipsparse
     module procedure hipsparseCbsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCbsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseCbsrsm2_solve_assumed_rank,&
+      hipsparseCbsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCbsrsm2_solve_rank_0,&
+      hipsparseCbsrsm2_solve_rank_0_devptr,&
       hipsparseCbsrsm2_solve_rank_1,&
-      hipsparseCbsrsm2_solve_full_rank
+      hipsparseCbsrsm2_solve_rank_1_devptr,&
+      hipsparseCbsrsm2_solve_full_rank,&
+      hipsparseCbsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6021,13 +6220,18 @@ module hipfort_hipsparse
     module procedure hipsparseZbsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZbsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseZbsrsm2_solve_assumed_rank,&
+      hipsparseZbsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZbsrsm2_solve_rank_0,&
+      hipsparseZbsrsm2_solve_rank_0_devptr,&
       hipsparseZbsrsm2_solve_rank_1,&
-      hipsparseZbsrsm2_solve_full_rank
+      hipsparseZbsrsm2_solve_rank_1_devptr,&
+      hipsparseZbsrsm2_solve_full_rank,&
+      hipsparseZbsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6142,13 +6346,18 @@ module hipfort_hipsparse
     module procedure hipsparseScsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrmm_assumed_rank
+    module procedure &
+      hipsparseScsrmm_assumed_rank,&
+      hipsparseScsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmm_rank_0,&
+      hipsparseScsrmm_rank_0_devptr,&
       hipsparseScsrmm_rank_1,&
-      hipsparseScsrmm_full_rank
+      hipsparseScsrmm_rank_1_devptr,&
+      hipsparseScsrmm_full_rank,&
+      hipsparseScsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6183,13 +6392,18 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrmm_assumed_rank
+    module procedure &
+      hipsparseDcsrmm_assumed_rank,&
+      hipsparseDcsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmm_rank_0,&
+      hipsparseDcsrmm_rank_0_devptr,&
       hipsparseDcsrmm_rank_1,&
-      hipsparseDcsrmm_full_rank
+      hipsparseDcsrmm_rank_1_devptr,&
+      hipsparseDcsrmm_full_rank,&
+      hipsparseDcsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6224,13 +6438,18 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrmm_assumed_rank
+    module procedure &
+      hipsparseCcsrmm_assumed_rank,&
+      hipsparseCcsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmm_rank_0,&
+      hipsparseCcsrmm_rank_0_devptr,&
       hipsparseCcsrmm_rank_1,&
-      hipsparseCcsrmm_full_rank
+      hipsparseCcsrmm_rank_1_devptr,&
+      hipsparseCcsrmm_full_rank,&
+      hipsparseCcsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6265,13 +6484,18 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrmm_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrmm_assumed_rank
+    module procedure &
+      hipsparseZcsrmm_assumed_rank,&
+      hipsparseZcsrmm_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmm_rank_0,&
+      hipsparseZcsrmm_rank_0_devptr,&
       hipsparseZcsrmm_rank_1,&
-      hipsparseZcsrmm_full_rank
+      hipsparseZcsrmm_rank_1_devptr,&
+      hipsparseZcsrmm_full_rank,&
+      hipsparseZcsrmm_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6392,13 +6616,18 @@ module hipfort_hipsparse
     module procedure hipsparseScsrmm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrmm2_assumed_rank
+    module procedure &
+      hipsparseScsrmm2_assumed_rank,&
+      hipsparseScsrmm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrmm2_rank_0,&
+      hipsparseScsrmm2_rank_0_devptr,&
       hipsparseScsrmm2_rank_1,&
-      hipsparseScsrmm2_full_rank
+      hipsparseScsrmm2_rank_1_devptr,&
+      hipsparseScsrmm2_full_rank,&
+      hipsparseScsrmm2_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6434,13 +6663,18 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrmm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrmm2_assumed_rank
+    module procedure &
+      hipsparseDcsrmm2_assumed_rank,&
+      hipsparseDcsrmm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrmm2_rank_0,&
+      hipsparseDcsrmm2_rank_0_devptr,&
       hipsparseDcsrmm2_rank_1,&
-      hipsparseDcsrmm2_full_rank
+      hipsparseDcsrmm2_rank_1_devptr,&
+      hipsparseDcsrmm2_full_rank,&
+      hipsparseDcsrmm2_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6476,13 +6710,18 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrmm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrmm2_assumed_rank
+    module procedure &
+      hipsparseCcsrmm2_assumed_rank,&
+      hipsparseCcsrmm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrmm2_rank_0,&
+      hipsparseCcsrmm2_rank_0_devptr,&
       hipsparseCcsrmm2_rank_1,&
-      hipsparseCcsrmm2_full_rank
+      hipsparseCcsrmm2_rank_1_devptr,&
+      hipsparseCcsrmm2_full_rank,&
+      hipsparseCcsrmm2_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6518,13 +6757,18 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrmm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrmm2_assumed_rank
+    module procedure &
+      hipsparseZcsrmm2_assumed_rank,&
+      hipsparseZcsrmm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrmm2_rank_0,&
+      hipsparseZcsrmm2_rank_0_devptr,&
       hipsparseZcsrmm2_rank_1,&
-      hipsparseZcsrmm2_full_rank
+      hipsparseZcsrmm2_rank_1_devptr,&
+      hipsparseZcsrmm2_full_rank,&
+      hipsparseZcsrmm2_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6642,16 +6886,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseScsrsm2_bufferSizeExt_typed
+    module procedure &
+      hipsparseScsrsm2_bufferSizeExt_typed,&
+      hipsparseScsrsm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrsm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseScsrsm2_bufferSizeExt_assumed_rank,&
+      hipsparseScsrsm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_bufferSizeExt_rank_0,&
+      hipsparseScsrsm2_bufferSizeExt_rank_0_devptr,&
       hipsparseScsrsm2_bufferSizeExt_rank_1,&
-      hipsparseScsrsm2_bufferSizeExt_full_rank
+      hipsparseScsrsm2_bufferSizeExt_rank_1_devptr,&
+      hipsparseScsrsm2_bufferSizeExt_full_rank,&
+      hipsparseScsrsm2_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6684,16 +6935,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseDcsrsm2_bufferSizeExt_typed
+    module procedure &
+      hipsparseDcsrsm2_bufferSizeExt_typed,&
+      hipsparseDcsrsm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrsm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseDcsrsm2_bufferSizeExt_assumed_rank,&
+      hipsparseDcsrsm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_bufferSizeExt_rank_0,&
+      hipsparseDcsrsm2_bufferSizeExt_rank_0_devptr,&
       hipsparseDcsrsm2_bufferSizeExt_rank_1,&
-      hipsparseDcsrsm2_bufferSizeExt_full_rank
+      hipsparseDcsrsm2_bufferSizeExt_rank_1_devptr,&
+      hipsparseDcsrsm2_bufferSizeExt_full_rank,&
+      hipsparseDcsrsm2_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6726,16 +6984,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseCcsrsm2_bufferSizeExt_typed
+    module procedure &
+      hipsparseCcsrsm2_bufferSizeExt_typed,&
+      hipsparseCcsrsm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrsm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseCcsrsm2_bufferSizeExt_assumed_rank,&
+      hipsparseCcsrsm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_bufferSizeExt_rank_0,&
+      hipsparseCcsrsm2_bufferSizeExt_rank_0_devptr,&
       hipsparseCcsrsm2_bufferSizeExt_rank_1,&
-      hipsparseCcsrsm2_bufferSizeExt_full_rank
+      hipsparseCcsrsm2_bufferSizeExt_rank_1_devptr,&
+      hipsparseCcsrsm2_bufferSizeExt_full_rank,&
+      hipsparseCcsrsm2_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6768,16 +7033,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseZcsrsm2_bufferSizeExt_typed
+    module procedure &
+      hipsparseZcsrsm2_bufferSizeExt_typed,&
+      hipsparseZcsrsm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrsm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseZcsrsm2_bufferSizeExt_assumed_rank,&
+      hipsparseZcsrsm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_bufferSizeExt_rank_0,&
+      hipsparseZcsrsm2_bufferSizeExt_rank_0_devptr,&
       hipsparseZcsrsm2_bufferSizeExt_rank_1,&
-      hipsparseZcsrsm2_bufferSizeExt_full_rank
+      hipsparseZcsrsm2_bufferSizeExt_rank_1_devptr,&
+      hipsparseZcsrsm2_bufferSizeExt_full_rank,&
+      hipsparseZcsrsm2_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6858,13 +7130,18 @@ module hipfort_hipsparse
     module procedure hipsparseScsrsm2_analysis_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrsm2_analysis_assumed_rank
+    module procedure &
+      hipsparseScsrsm2_analysis_assumed_rank,&
+      hipsparseScsrsm2_analysis_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_analysis_rank_0,&
+      hipsparseScsrsm2_analysis_rank_0_devptr,&
       hipsparseScsrsm2_analysis_rank_1,&
-      hipsparseScsrsm2_analysis_full_rank
+      hipsparseScsrsm2_analysis_rank_1_devptr,&
+      hipsparseScsrsm2_analysis_full_rank,&
+      hipsparseScsrsm2_analysis_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6900,13 +7177,18 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrsm2_analysis_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrsm2_analysis_assumed_rank
+    module procedure &
+      hipsparseDcsrsm2_analysis_assumed_rank,&
+      hipsparseDcsrsm2_analysis_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_analysis_rank_0,&
+      hipsparseDcsrsm2_analysis_rank_0_devptr,&
       hipsparseDcsrsm2_analysis_rank_1,&
-      hipsparseDcsrsm2_analysis_full_rank
+      hipsparseDcsrsm2_analysis_rank_1_devptr,&
+      hipsparseDcsrsm2_analysis_full_rank,&
+      hipsparseDcsrsm2_analysis_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6942,13 +7224,18 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrsm2_analysis_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrsm2_analysis_assumed_rank
+    module procedure &
+      hipsparseCcsrsm2_analysis_assumed_rank,&
+      hipsparseCcsrsm2_analysis_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_analysis_rank_0,&
+      hipsparseCcsrsm2_analysis_rank_0_devptr,&
       hipsparseCcsrsm2_analysis_rank_1,&
-      hipsparseCcsrsm2_analysis_full_rank
+      hipsparseCcsrsm2_analysis_rank_1_devptr,&
+      hipsparseCcsrsm2_analysis_full_rank,&
+      hipsparseCcsrsm2_analysis_full_rank_devptr
 #endif
 #endif
   end interface
@@ -6984,13 +7271,18 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrsm2_analysis_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrsm2_analysis_assumed_rank
+    module procedure &
+      hipsparseZcsrsm2_analysis_assumed_rank,&
+      hipsparseZcsrsm2_analysis_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_analysis_rank_0,&
+      hipsparseZcsrsm2_analysis_rank_0_devptr,&
       hipsparseZcsrsm2_analysis_rank_1,&
-      hipsparseZcsrsm2_analysis_full_rank
+      hipsparseZcsrsm2_analysis_rank_1_devptr,&
+      hipsparseZcsrsm2_analysis_full_rank,&
+      hipsparseZcsrsm2_analysis_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7219,13 +7511,18 @@ module hipfort_hipsparse
     module procedure hipsparseScsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseScsrsm2_solve_assumed_rank,&
+      hipsparseScsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrsm2_solve_rank_0,&
+      hipsparseScsrsm2_solve_rank_0_devptr,&
       hipsparseScsrsm2_solve_rank_1,&
-      hipsparseScsrsm2_solve_full_rank
+      hipsparseScsrsm2_solve_rank_1_devptr,&
+      hipsparseScsrsm2_solve_full_rank,&
+      hipsparseScsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7261,13 +7558,18 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseDcsrsm2_solve_assumed_rank,&
+      hipsparseDcsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrsm2_solve_rank_0,&
+      hipsparseDcsrsm2_solve_rank_0_devptr,&
       hipsparseDcsrsm2_solve_rank_1,&
-      hipsparseDcsrsm2_solve_full_rank
+      hipsparseDcsrsm2_solve_rank_1_devptr,&
+      hipsparseDcsrsm2_solve_full_rank,&
+      hipsparseDcsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7303,13 +7605,18 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseCcsrsm2_solve_assumed_rank,&
+      hipsparseCcsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrsm2_solve_rank_0,&
+      hipsparseCcsrsm2_solve_rank_0_devptr,&
       hipsparseCcsrsm2_solve_rank_1,&
-      hipsparseCcsrsm2_solve_full_rank
+      hipsparseCcsrsm2_solve_rank_1_devptr,&
+      hipsparseCcsrsm2_solve_full_rank,&
+      hipsparseCcsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7345,13 +7652,18 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrsm2_solve_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrsm2_solve_assumed_rank
+    module procedure &
+      hipsparseZcsrsm2_solve_assumed_rank,&
+      hipsparseZcsrsm2_solve_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrsm2_solve_rank_0,&
+      hipsparseZcsrsm2_solve_rank_0_devptr,&
       hipsparseZcsrsm2_solve_rank_1,&
-      hipsparseZcsrsm2_solve_full_rank
+      hipsparseZcsrsm2_solve_rank_1_devptr,&
+      hipsparseZcsrsm2_solve_full_rank,&
+      hipsparseZcsrsm2_solve_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7435,13 +7747,18 @@ module hipfort_hipsparse
     module procedure hipsparseSgemmi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSgemmi_assumed_rank
+    module procedure &
+      hipsparseSgemmi_assumed_rank,&
+      hipsparseSgemmi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSgemmi_rank_0,&
+      hipsparseSgemmi_rank_0_devptr,&
       hipsparseSgemmi_rank_1,&
-      hipsparseSgemmi_full_rank
+      hipsparseSgemmi_rank_1_devptr,&
+      hipsparseSgemmi_full_rank,&
+      hipsparseSgemmi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7474,13 +7791,18 @@ module hipfort_hipsparse
     module procedure hipsparseDgemmi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDgemmi_assumed_rank
+    module procedure &
+      hipsparseDgemmi_assumed_rank,&
+      hipsparseDgemmi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDgemmi_rank_0,&
+      hipsparseDgemmi_rank_0_devptr,&
       hipsparseDgemmi_rank_1,&
-      hipsparseDgemmi_full_rank
+      hipsparseDgemmi_rank_1_devptr,&
+      hipsparseDgemmi_full_rank,&
+      hipsparseDgemmi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7513,13 +7835,18 @@ module hipfort_hipsparse
     module procedure hipsparseCgemmi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCgemmi_assumed_rank
+    module procedure &
+      hipsparseCgemmi_assumed_rank,&
+      hipsparseCgemmi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCgemmi_rank_0,&
+      hipsparseCgemmi_rank_0_devptr,&
       hipsparseCgemmi_rank_1,&
-      hipsparseCgemmi_full_rank
+      hipsparseCgemmi_rank_1_devptr,&
+      hipsparseCgemmi_full_rank,&
+      hipsparseCgemmi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7552,13 +7879,18 @@ module hipfort_hipsparse
     module procedure hipsparseZgemmi_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZgemmi_assumed_rank
+    module procedure &
+      hipsparseZgemmi_assumed_rank,&
+      hipsparseZgemmi_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZgemmi_rank_0,&
+      hipsparseZgemmi_rank_0_devptr,&
       hipsparseZgemmi_rank_1,&
-      hipsparseZgemmi_full_rank
+      hipsparseZgemmi_rank_1_devptr,&
+      hipsparseZgemmi_full_rank,&
+      hipsparseZgemmi_full_rank_devptr
 #endif
 #endif
   end interface
@@ -7653,12 +7985,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsrgeamNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsrgeamNnz_assumed_rank
+    module procedure &
+      hipsparseXcsrgeamNnz_assumed_rank,&
+      hipsparseXcsrgeamNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgeamNnz_rank_0,&
-      hipsparseXcsrgeamNnz_rank_1
+      hipsparseXcsrgeamNnz_rank_0_devptr,&
+      hipsparseXcsrgeamNnz_rank_1,&
+      hipsparseXcsrgeamNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7763,12 +8099,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrgeam_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrgeam_assumed_rank
+    module procedure &
+      hipsparseScsrgeam_assumed_rank,&
+      hipsparseScsrgeam_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam_rank_0,&
-      hipsparseScsrgeam_rank_1
+      hipsparseScsrgeam_rank_0_devptr,&
+      hipsparseScsrgeam_rank_1,&
+      hipsparseScsrgeam_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7806,12 +8146,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrgeam_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrgeam_assumed_rank
+    module procedure &
+      hipsparseDcsrgeam_assumed_rank,&
+      hipsparseDcsrgeam_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam_rank_0,&
-      hipsparseDcsrgeam_rank_1
+      hipsparseDcsrgeam_rank_0_devptr,&
+      hipsparseDcsrgeam_rank_1,&
+      hipsparseDcsrgeam_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7849,12 +8193,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrgeam_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrgeam_assumed_rank
+    module procedure &
+      hipsparseCcsrgeam_assumed_rank,&
+      hipsparseCcsrgeam_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam_rank_0,&
-      hipsparseCcsrgeam_rank_1
+      hipsparseCcsrgeam_rank_0_devptr,&
+      hipsparseCcsrgeam_rank_1,&
+      hipsparseCcsrgeam_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7892,12 +8240,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrgeam_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrgeam_assumed_rank
+    module procedure &
+      hipsparseZcsrgeam_assumed_rank,&
+      hipsparseZcsrgeam_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam_rank_0,&
-      hipsparseZcsrgeam_rank_1
+      hipsparseZcsrgeam_rank_0_devptr,&
+      hipsparseZcsrgeam_rank_1,&
+      hipsparseZcsrgeam_rank_1_devptr
 #endif
 #endif
   end interface
@@ -7998,12 +8350,16 @@ module hipfort_hipsparse
       hipsparseScsrgeam2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrgeam2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseScsrgeam2_bufferSizeExt_assumed_rank,&
+      hipsparseScsrgeam2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam2_bufferSizeExt_rank_0,&
-      hipsparseScsrgeam2_bufferSizeExt_rank_1
+      hipsparseScsrgeam2_bufferSizeExt_rank_0_devptr,&
+      hipsparseScsrgeam2_bufferSizeExt_rank_1,&
+      hipsparseScsrgeam2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8052,12 +8408,16 @@ module hipfort_hipsparse
       hipsparseDcsrgeam2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrgeam2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseDcsrgeam2_bufferSizeExt_assumed_rank,&
+      hipsparseDcsrgeam2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam2_bufferSizeExt_rank_0,&
-      hipsparseDcsrgeam2_bufferSizeExt_rank_1
+      hipsparseDcsrgeam2_bufferSizeExt_rank_0_devptr,&
+      hipsparseDcsrgeam2_bufferSizeExt_rank_1,&
+      hipsparseDcsrgeam2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8106,12 +8466,16 @@ module hipfort_hipsparse
       hipsparseCcsrgeam2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrgeam2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseCcsrgeam2_bufferSizeExt_assumed_rank,&
+      hipsparseCcsrgeam2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam2_bufferSizeExt_rank_0,&
-      hipsparseCcsrgeam2_bufferSizeExt_rank_1
+      hipsparseCcsrgeam2_bufferSizeExt_rank_0_devptr,&
+      hipsparseCcsrgeam2_bufferSizeExt_rank_1,&
+      hipsparseCcsrgeam2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8160,12 +8524,16 @@ module hipfort_hipsparse
       hipsparseZcsrgeam2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrgeam2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseZcsrgeam2_bufferSizeExt_assumed_rank,&
+      hipsparseZcsrgeam2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam2_bufferSizeExt_rank_0,&
-      hipsparseZcsrgeam2_bufferSizeExt_rank_1
+      hipsparseZcsrgeam2_bufferSizeExt_rank_0_devptr,&
+      hipsparseZcsrgeam2_bufferSizeExt_rank_1,&
+      hipsparseZcsrgeam2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8260,12 +8628,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsrgeam2Nnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsrgeam2Nnz_assumed_rank
+    module procedure &
+      hipsparseXcsrgeam2Nnz_assumed_rank,&
+      hipsparseXcsrgeam2Nnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgeam2Nnz_rank_0,&
-      hipsparseXcsrgeam2Nnz_rank_1
+      hipsparseXcsrgeam2Nnz_rank_0_devptr,&
+      hipsparseXcsrgeam2Nnz_rank_1,&
+      hipsparseXcsrgeam2Nnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8385,12 +8757,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrgeam2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrgeam2_assumed_rank
+    module procedure &
+      hipsparseScsrgeam2_assumed_rank,&
+      hipsparseScsrgeam2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgeam2_rank_0,&
-      hipsparseScsrgeam2_rank_1
+      hipsparseScsrgeam2_rank_0_devptr,&
+      hipsparseScsrgeam2_rank_1,&
+      hipsparseScsrgeam2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8435,12 +8811,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrgeam2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrgeam2_assumed_rank
+    module procedure &
+      hipsparseDcsrgeam2_assumed_rank,&
+      hipsparseDcsrgeam2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgeam2_rank_0,&
-      hipsparseDcsrgeam2_rank_1
+      hipsparseDcsrgeam2_rank_0_devptr,&
+      hipsparseDcsrgeam2_rank_1,&
+      hipsparseDcsrgeam2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8485,12 +8865,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrgeam2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrgeam2_assumed_rank
+    module procedure &
+      hipsparseCcsrgeam2_assumed_rank,&
+      hipsparseCcsrgeam2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgeam2_rank_0,&
-      hipsparseCcsrgeam2_rank_1
+      hipsparseCcsrgeam2_rank_0_devptr,&
+      hipsparseCcsrgeam2_rank_1,&
+      hipsparseCcsrgeam2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8535,12 +8919,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrgeam2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrgeam2_assumed_rank
+    module procedure &
+      hipsparseZcsrgeam2_assumed_rank,&
+      hipsparseZcsrgeam2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgeam2_rank_0,&
-      hipsparseZcsrgeam2_rank_1
+      hipsparseZcsrgeam2_rank_0_devptr,&
+      hipsparseZcsrgeam2_rank_1,&
+      hipsparseZcsrgeam2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -8650,12 +9038,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsrgemmNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsrgemmNnz_assumed_rank
+    module procedure &
+      hipsparseXcsrgemmNnz_assumed_rank,&
+      hipsparseXcsrgemmNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgemmNnz_rank_0,&
-      hipsparseXcsrgemmNnz_rank_1
+      hipsparseXcsrgemmNnz_rank_0_devptr,&
+      hipsparseXcsrgemmNnz_rank_1,&
+      hipsparseXcsrgemmNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9021,12 +9413,16 @@ module hipfort_hipsparse
       hipsparseScsrgemm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrgemm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseScsrgemm2_bufferSizeExt_assumed_rank,&
+      hipsparseScsrgemm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgemm2_bufferSizeExt_rank_0,&
-      hipsparseScsrgemm2_bufferSizeExt_rank_1
+      hipsparseScsrgemm2_bufferSizeExt_rank_0_devptr,&
+      hipsparseScsrgemm2_bufferSizeExt_rank_1,&
+      hipsparseScsrgemm2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9068,12 +9464,16 @@ module hipfort_hipsparse
       hipsparseDcsrgemm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrgemm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseDcsrgemm2_bufferSizeExt_assumed_rank,&
+      hipsparseDcsrgemm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgemm2_bufferSizeExt_rank_0,&
-      hipsparseDcsrgemm2_bufferSizeExt_rank_1
+      hipsparseDcsrgemm2_bufferSizeExt_rank_0_devptr,&
+      hipsparseDcsrgemm2_bufferSizeExt_rank_1,&
+      hipsparseDcsrgemm2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9115,12 +9515,16 @@ module hipfort_hipsparse
       hipsparseCcsrgemm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrgemm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseCcsrgemm2_bufferSizeExt_assumed_rank,&
+      hipsparseCcsrgemm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgemm2_bufferSizeExt_rank_0,&
-      hipsparseCcsrgemm2_bufferSizeExt_rank_1
+      hipsparseCcsrgemm2_bufferSizeExt_rank_0_devptr,&
+      hipsparseCcsrgemm2_bufferSizeExt_rank_1,&
+      hipsparseCcsrgemm2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9162,12 +9566,16 @@ module hipfort_hipsparse
       hipsparseZcsrgemm2_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrgemm2_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseZcsrgemm2_bufferSizeExt_assumed_rank,&
+      hipsparseZcsrgemm2_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgemm2_bufferSizeExt_rank_0,&
-      hipsparseZcsrgemm2_bufferSizeExt_rank_1
+      hipsparseZcsrgemm2_bufferSizeExt_rank_0_devptr,&
+      hipsparseZcsrgemm2_bufferSizeExt_rank_1,&
+      hipsparseZcsrgemm2_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9285,12 +9693,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsrgemm2Nnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsrgemm2Nnz_assumed_rank
+    module procedure &
+      hipsparseXcsrgemm2Nnz_assumed_rank,&
+      hipsparseXcsrgemm2Nnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsrgemm2Nnz_rank_0,&
-      hipsparseXcsrgemm2Nnz_rank_1
+      hipsparseXcsrgemm2Nnz_rank_0_devptr,&
+      hipsparseXcsrgemm2Nnz_rank_1,&
+      hipsparseXcsrgemm2Nnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9428,12 +9840,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrgemm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrgemm2_assumed_rank
+    module procedure &
+      hipsparseScsrgemm2_assumed_rank,&
+      hipsparseScsrgemm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrgemm2_rank_0,&
-      hipsparseScsrgemm2_rank_1
+      hipsparseScsrgemm2_rank_0_devptr,&
+      hipsparseScsrgemm2_rank_1,&
+      hipsparseScsrgemm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9480,12 +9896,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrgemm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrgemm2_assumed_rank
+    module procedure &
+      hipsparseDcsrgemm2_assumed_rank,&
+      hipsparseDcsrgemm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrgemm2_rank_0,&
-      hipsparseDcsrgemm2_rank_1
+      hipsparseDcsrgemm2_rank_0_devptr,&
+      hipsparseDcsrgemm2_rank_1,&
+      hipsparseDcsrgemm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9532,12 +9952,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrgemm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrgemm2_assumed_rank
+    module procedure &
+      hipsparseCcsrgemm2_assumed_rank,&
+      hipsparseCcsrgemm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrgemm2_rank_0,&
-      hipsparseCcsrgemm2_rank_1
+      hipsparseCcsrgemm2_rank_0_devptr,&
+      hipsparseCcsrgemm2_rank_1,&
+      hipsparseCcsrgemm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -9584,12 +10008,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrgemm2_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrgemm2_assumed_rank
+    module procedure &
+      hipsparseZcsrgemm2_assumed_rank,&
+      hipsparseZcsrgemm2_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrgemm2_rank_0,&
-      hipsparseZcsrgemm2_rank_1
+      hipsparseZcsrgemm2_rank_0_devptr,&
+      hipsparseZcsrgemm2_rank_1,&
+      hipsparseZcsrgemm2_rank_1_devptr
 #endif
 #endif
   end interface
@@ -13669,6 +14097,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseSgtsvInterleavedBatch_bufferSizeExt_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseDgtsvInterleavedBatch_bufferSizeExt
@@ -13696,6 +14134,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseDgtsvInterleavedBatch_bufferSizeExt_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseCgtsvInterleavedBatch_bufferSizeExt
@@ -13723,6 +14171,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseCgtsvInterleavedBatch_bufferSizeExt_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseZgtsvInterleavedBatch_bufferSizeExt
@@ -13750,6 +14208,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseZgtsvInterleavedBatch_bufferSizeExt_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+#endif
   end interface
 
   !>  \ingroup precond_module
@@ -13869,6 +14337,16 @@ module hipfort_hipsparse
       integer(c_int),value :: batchCount
       type(c_ptr),value :: pBuffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgtsvInterleavedBatch_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseSgtsvInterleavedBatch_rank_0,&
+      hipsparseSgtsvInterleavedBatch_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseDgtsvInterleavedBatch
@@ -13892,6 +14370,16 @@ module hipfort_hipsparse
       integer(c_int),value :: batchCount
       type(c_ptr),value :: pBuffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgtsvInterleavedBatch_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseDgtsvInterleavedBatch_rank_0,&
+      hipsparseDgtsvInterleavedBatch_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseCgtsvInterleavedBatch
@@ -13915,6 +14403,16 @@ module hipfort_hipsparse
       integer(c_int),value :: batchCount
       type(c_ptr),value :: pBuffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgtsvInterleavedBatch_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCgtsvInterleavedBatch_rank_0,&
+      hipsparseCgtsvInterleavedBatch_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseZgtsvInterleavedBatch
@@ -13938,6 +14436,16 @@ module hipfort_hipsparse
       integer(c_int),value :: batchCount
       type(c_ptr),value :: pBuffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgtsvInterleavedBatch_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseZgtsvInterleavedBatch_rank_0,&
+      hipsparseZgtsvInterleavedBatch_rank_1
+#endif
+#endif
   end interface
 
   !>  \ingroup precond_module
@@ -15730,12 +16238,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsr2bsrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsr2bsrNnz_assumed_rank
+    module procedure &
+      hipsparseXcsr2bsrNnz_assumed_rank,&
+      hipsparseXcsr2bsrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsr2bsrNnz_rank_0,&
-      hipsparseXcsr2bsrNnz_rank_1
+      hipsparseXcsr2bsrNnz_rank_0_devptr,&
+      hipsparseXcsr2bsrNnz_rank_1,&
+      hipsparseXcsr2bsrNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -16390,6 +16902,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseCsr2cscEx2_bufferSize_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCsr2cscEx2_bufferSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCsr2cscEx2_bufferSize_rank_0,&
+      hipsparseCsr2cscEx2_bufferSize_rank_1
+#endif
+#endif
   end interface
 
   !>  \ingroup conv_module
@@ -16467,6 +16989,16 @@ module hipfort_hipsparse
       integer(c_int),value :: alg
       type(c_ptr),value :: buffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCsr2cscEx2_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCsr2cscEx2_rank_0,&
+      hipsparseCsr2cscEx2_rank_1
+#endif
+#endif
   end interface
 
   !>  \ingroup conv_module
@@ -17350,12 +17882,16 @@ module hipfort_hipsparse
     module procedure hipsparseXcsr2gebsrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXcsr2gebsrNnz_assumed_rank
+    module procedure &
+      hipsparseXcsr2gebsrNnz_assumed_rank,&
+      hipsparseXcsr2gebsrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXcsr2gebsrNnz_rank_0,&
-      hipsparseXcsr2gebsrNnz_rank_1
+      hipsparseXcsr2gebsrNnz_rank_0_devptr,&
+      hipsparseXcsr2gebsrNnz_rank_1,&
+      hipsparseXcsr2gebsrNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -18990,6 +19526,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseSgebsr2gebsc_bufferSize_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgebsr2gebsc_bufferSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseSgebsr2gebsc_bufferSize_rank_0,&
+      hipsparseSgebsr2gebsc_bufferSize_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -19014,6 +19560,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseDgebsr2gebsc_bufferSize_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgebsr2gebsc_bufferSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseDgebsr2gebsc_bufferSize_rank_0,&
+      hipsparseDgebsr2gebsc_bufferSize_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -19038,6 +19594,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseCgebsr2gebsc_bufferSize_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgebsr2gebsc_bufferSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCgebsr2gebsc_bufferSize_rank_0,&
+      hipsparseCgebsr2gebsc_bufferSize_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -19062,6 +19628,16 @@ module hipfort_hipsparse
     end function
 
     module procedure hipsparseZgebsr2gebsc_bufferSize_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgebsr2gebsc_bufferSize_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseZgebsr2gebsc_bufferSize_rank_0,&
+      hipsparseZgebsr2gebsc_bufferSize_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -19200,6 +19776,16 @@ module hipfort_hipsparse
       integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseSgebsr2gebsc_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseSgebsr2gebsc_rank_0,&
+      hipsparseSgebsr2gebsc_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseDgebsr2gebsc
@@ -19231,6 +19817,16 @@ module hipfort_hipsparse
       integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseDgebsr2gebsc_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseDgebsr2gebsc_rank_0,&
+      hipsparseDgebsr2gebsc_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseCgebsr2gebsc
@@ -19262,6 +19858,16 @@ module hipfort_hipsparse
       integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseCgebsr2gebsc_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseCgebsr2gebsc_rank_0,&
+      hipsparseCgebsr2gebsc_rank_1
+#endif
+#endif
   end interface
 
   interface hipsparseZgebsr2gebsc
@@ -19293,6 +19899,16 @@ module hipfort_hipsparse
       integer(c_int),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipsparseZgebsr2gebsc_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipsparseZgebsr2gebsc_rank_0,&
+      hipsparseZgebsr2gebsc_rank_1
+#endif
+#endif
   end interface
 
   !>  \ingroup conv_module
@@ -19593,12 +20209,16 @@ module hipfort_hipsparse
     module procedure hipsparseXgebsr2gebsrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseXgebsr2gebsrNnz_assumed_rank
+    module procedure &
+      hipsparseXgebsr2gebsrNnz_assumed_rank,&
+      hipsparseXgebsr2gebsrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseXgebsr2gebsrNnz_rank_0,&
-      hipsparseXgebsr2gebsrNnz_rank_1
+      hipsparseXgebsr2gebsrNnz_rank_0_devptr,&
+      hipsparseXgebsr2gebsrNnz_rank_1,&
+      hipsparseXgebsr2gebsrNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20159,13 +20779,18 @@ module hipfort_hipsparse
     module procedure hipsparseSnnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSnnz_assumed_rank
+    module procedure &
+      hipsparseSnnz_assumed_rank,&
+      hipsparseSnnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSnnz_rank_0,&
+      hipsparseSnnz_rank_0_devptr,&
       hipsparseSnnz_rank_1,&
-      hipsparseSnnz_full_rank
+      hipsparseSnnz_rank_1_devptr,&
+      hipsparseSnnz_full_rank,&
+      hipsparseSnnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -20195,13 +20820,18 @@ module hipfort_hipsparse
     module procedure hipsparseDnnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDnnz_assumed_rank
+    module procedure &
+      hipsparseDnnz_assumed_rank,&
+      hipsparseDnnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDnnz_rank_0,&
+      hipsparseDnnz_rank_0_devptr,&
       hipsparseDnnz_rank_1,&
-      hipsparseDnnz_full_rank
+      hipsparseDnnz_rank_1_devptr,&
+      hipsparseDnnz_full_rank,&
+      hipsparseDnnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -20231,13 +20861,18 @@ module hipfort_hipsparse
     module procedure hipsparseCnnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCnnz_assumed_rank
+    module procedure &
+      hipsparseCnnz_assumed_rank,&
+      hipsparseCnnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCnnz_rank_0,&
+      hipsparseCnnz_rank_0_devptr,&
       hipsparseCnnz_rank_1,&
-      hipsparseCnnz_full_rank
+      hipsparseCnnz_rank_1_devptr,&
+      hipsparseCnnz_full_rank,&
+      hipsparseCnnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -20267,13 +20902,18 @@ module hipfort_hipsparse
     module procedure hipsparseZnnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZnnz_assumed_rank
+    module procedure &
+      hipsparseZnnz_assumed_rank,&
+      hipsparseZnnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZnnz_rank_0,&
+      hipsparseZnnz_rank_0_devptr,&
       hipsparseZnnz_rank_1,&
-      hipsparseZnnz_full_rank
+      hipsparseZnnz_rank_1_devptr,&
+      hipsparseZnnz_full_rank,&
+      hipsparseZnnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -20352,12 +20992,16 @@ module hipfort_hipsparse
     module procedure hipsparseSnnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSnnz_compress_assumed_rank
+    module procedure &
+      hipsparseSnnz_compress_assumed_rank,&
+      hipsparseSnnz_compress_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSnnz_compress_rank_0,&
-      hipsparseSnnz_compress_rank_1
+      hipsparseSnnz_compress_rank_0_devptr,&
+      hipsparseSnnz_compress_rank_1,&
+      hipsparseSnnz_compress_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20386,12 +21030,16 @@ module hipfort_hipsparse
     module procedure hipsparseDnnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDnnz_compress_assumed_rank
+    module procedure &
+      hipsparseDnnz_compress_assumed_rank,&
+      hipsparseDnnz_compress_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDnnz_compress_rank_0,&
-      hipsparseDnnz_compress_rank_1
+      hipsparseDnnz_compress_rank_0_devptr,&
+      hipsparseDnnz_compress_rank_1,&
+      hipsparseDnnz_compress_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20420,12 +21068,16 @@ module hipfort_hipsparse
     module procedure hipsparseCnnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCnnz_compress_assumed_rank
+    module procedure &
+      hipsparseCnnz_compress_assumed_rank,&
+      hipsparseCnnz_compress_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCnnz_compress_rank_0,&
-      hipsparseCnnz_compress_rank_1
+      hipsparseCnnz_compress_rank_0_devptr,&
+      hipsparseCnnz_compress_rank_1,&
+      hipsparseCnnz_compress_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20454,12 +21106,16 @@ module hipfort_hipsparse
     module procedure hipsparseZnnz_compress_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZnnz_compress_assumed_rank
+    module procedure &
+      hipsparseZnnz_compress_assumed_rank,&
+      hipsparseZnnz_compress_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZnnz_compress_rank_0,&
-      hipsparseZnnz_compress_rank_1
+      hipsparseZnnz_compress_rank_0_devptr,&
+      hipsparseZnnz_compress_rank_1,&
+      hipsparseZnnz_compress_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20526,15 +21182,21 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseSpruneCsr2csr_bufferSize_typed
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSize_typed,&
+      hipsparseSpruneCsr2csr_bufferSize_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneCsr2csr_bufferSize_assumed_rank
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSize_assumed_rank,&
+      hipsparseSpruneCsr2csr_bufferSize_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_bufferSize_rank_0,&
-      hipsparseSpruneCsr2csr_bufferSize_rank_1
+      hipsparseSpruneCsr2csr_bufferSize_rank_0_devptr,&
+      hipsparseSpruneCsr2csr_bufferSize_rank_1,&
+      hipsparseSpruneCsr2csr_bufferSize_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20564,15 +21226,21 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseDpruneCsr2csr_bufferSize_typed
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSize_typed,&
+      hipsparseDpruneCsr2csr_bufferSize_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneCsr2csr_bufferSize_assumed_rank
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSize_assumed_rank,&
+      hipsparseDpruneCsr2csr_bufferSize_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_bufferSize_rank_0,&
-      hipsparseDpruneCsr2csr_bufferSize_rank_1
+      hipsparseDpruneCsr2csr_bufferSize_rank_0_devptr,&
+      hipsparseDpruneCsr2csr_bufferSize_rank_1,&
+      hipsparseDpruneCsr2csr_bufferSize_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20646,15 +21314,21 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseSpruneCsr2csr_bufferSizeExt_typed
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSizeExt_typed,&
+      hipsparseSpruneCsr2csr_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank,&
+      hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_0,&
-      hipsparseSpruneCsr2csr_bufferSizeExt_rank_1
+      hipsparseSpruneCsr2csr_bufferSizeExt_rank_0_devptr,&
+      hipsparseSpruneCsr2csr_bufferSizeExt_rank_1,&
+      hipsparseSpruneCsr2csr_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20688,15 +21362,21 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseDpruneCsr2csr_bufferSizeExt_typed
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSizeExt_typed,&
+      hipsparseDpruneCsr2csr_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank,&
+      hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_0,&
-      hipsparseDpruneCsr2csr_bufferSizeExt_rank_1
+      hipsparseDpruneCsr2csr_bufferSizeExt_rank_0_devptr,&
+      hipsparseDpruneCsr2csr_bufferSizeExt_rank_1,&
+      hipsparseDpruneCsr2csr_bufferSizeExt_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20771,12 +21451,16 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneCsr2csrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneCsr2csrNnz_assumed_rank
+    module procedure &
+      hipsparseSpruneCsr2csrNnz_assumed_rank,&
+      hipsparseSpruneCsr2csrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrNnz_rank_0,&
-      hipsparseSpruneCsr2csrNnz_rank_1
+      hipsparseSpruneCsr2csrNnz_rank_0_devptr,&
+      hipsparseSpruneCsr2csrNnz_rank_1,&
+      hipsparseSpruneCsr2csrNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20812,12 +21496,16 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneCsr2csrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneCsr2csrNnz_assumed_rank
+    module procedure &
+      hipsparseDpruneCsr2csrNnz_assumed_rank,&
+      hipsparseDpruneCsr2csrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrNnz_rank_0,&
-      hipsparseDpruneCsr2csrNnz_rank_1
+      hipsparseDpruneCsr2csrNnz_rank_0_devptr,&
+      hipsparseDpruneCsr2csrNnz_rank_1,&
+      hipsparseDpruneCsr2csrNnz_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20908,12 +21596,16 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneCsr2csr_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneCsr2csr_assumed_rank
+    module procedure &
+      hipsparseSpruneCsr2csr_assumed_rank,&
+      hipsparseSpruneCsr2csr_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csr_rank_0,&
-      hipsparseSpruneCsr2csr_rank_1
+      hipsparseSpruneCsr2csr_rank_0_devptr,&
+      hipsparseSpruneCsr2csr_rank_1,&
+      hipsparseSpruneCsr2csr_rank_1_devptr
 #endif
 #endif
   end interface
@@ -20950,12 +21642,16 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneCsr2csr_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneCsr2csr_assumed_rank
+    module procedure &
+      hipsparseDpruneCsr2csr_assumed_rank,&
+      hipsparseDpruneCsr2csr_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csr_rank_0,&
-      hipsparseDpruneCsr2csr_rank_1
+      hipsparseDpruneCsr2csr_rank_0_devptr,&
+      hipsparseDpruneCsr2csr_rank_1,&
+      hipsparseDpruneCsr2csr_rank_1_devptr
 #endif
 #endif
   end interface
@@ -21279,12 +21975,16 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneCsr2csrNnzByPercentage_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank
+    module procedure &
+      hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank,&
+      hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneCsr2csrNnzByPercentage_rank_0,&
-      hipsparseSpruneCsr2csrNnzByPercentage_rank_1
+      hipsparseSpruneCsr2csrNnzByPercentage_rank_0_devptr,&
+      hipsparseSpruneCsr2csrNnzByPercentage_rank_1,&
+      hipsparseSpruneCsr2csrNnzByPercentage_rank_1_devptr
 #endif
 #endif
   end interface
@@ -21316,12 +22016,16 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneCsr2csrNnzByPercentage_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank
+    module procedure &
+      hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank,&
+      hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneCsr2csrNnzByPercentage_rank_0,&
-      hipsparseDpruneCsr2csrNnzByPercentage_rank_1
+      hipsparseDpruneCsr2csrNnzByPercentage_rank_0_devptr,&
+      hipsparseDpruneCsr2csrNnzByPercentage_rank_1,&
+      hipsparseDpruneCsr2csrNnzByPercentage_rank_1_devptr
 #endif
 #endif
   end interface
@@ -21538,16 +22242,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseSpruneDense2csr_bufferSize_typed
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSize_typed,&
+      hipsparseSpruneDense2csr_bufferSize_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneDense2csr_bufferSize_assumed_rank
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSize_assumed_rank,&
+      hipsparseSpruneDense2csr_bufferSize_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_bufferSize_rank_0,&
+      hipsparseSpruneDense2csr_bufferSize_rank_0_devptr,&
       hipsparseSpruneDense2csr_bufferSize_rank_1,&
-      hipsparseSpruneDense2csr_bufferSize_full_rank
+      hipsparseSpruneDense2csr_bufferSize_rank_1_devptr,&
+      hipsparseSpruneDense2csr_bufferSize_full_rank,&
+      hipsparseSpruneDense2csr_bufferSize_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21574,16 +22285,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseDpruneDense2csr_bufferSize_typed
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSize_typed,&
+      hipsparseDpruneDense2csr_bufferSize_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneDense2csr_bufferSize_assumed_rank
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSize_assumed_rank,&
+      hipsparseDpruneDense2csr_bufferSize_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_bufferSize_rank_0,&
+      hipsparseDpruneDense2csr_bufferSize_rank_0_devptr,&
       hipsparseDpruneDense2csr_bufferSize_rank_1,&
-      hipsparseDpruneDense2csr_bufferSize_full_rank
+      hipsparseDpruneDense2csr_bufferSize_rank_1_devptr,&
+      hipsparseDpruneDense2csr_bufferSize_full_rank,&
+      hipsparseDpruneDense2csr_bufferSize_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21615,16 +22333,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseSpruneDense2csr_bufferSizeExt_typed
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSizeExt_typed,&
+      hipsparseSpruneDense2csr_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank,&
+      hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_bufferSizeExt_rank_0,&
+      hipsparseSpruneDense2csr_bufferSizeExt_rank_0_devptr,&
       hipsparseSpruneDense2csr_bufferSizeExt_rank_1,&
-      hipsparseSpruneDense2csr_bufferSizeExt_full_rank
+      hipsparseSpruneDense2csr_bufferSizeExt_rank_1_devptr,&
+      hipsparseSpruneDense2csr_bufferSizeExt_full_rank,&
+      hipsparseSpruneDense2csr_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21655,16 +22380,23 @@ module hipfort_hipsparse
       type(c_ptr),value :: pBufferSizeInBytes
     end function
 
-    module procedure hipsparseDpruneDense2csr_bufferSizeExt_typed
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSizeExt_typed,&
+      hipsparseDpruneDense2csr_bufferSizeExt_devptr
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank
+    module procedure &
+      hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank,&
+      hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_bufferSizeExt_rank_0,&
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_0_devptr,&
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1,&
-      hipsparseDpruneDense2csr_bufferSizeExt_full_rank
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_1_devptr,&
+      hipsparseDpruneDense2csr_bufferSizeExt_full_rank,&
+      hipsparseDpruneDense2csr_bufferSizeExt_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21783,13 +22515,18 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneDense2csrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneDense2csrNnz_assumed_rank
+    module procedure &
+      hipsparseSpruneDense2csrNnz_assumed_rank,&
+      hipsparseSpruneDense2csrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrNnz_rank_0,&
+      hipsparseSpruneDense2csrNnz_rank_0_devptr,&
       hipsparseSpruneDense2csrNnz_rank_1,&
-      hipsparseSpruneDense2csrNnz_full_rank
+      hipsparseSpruneDense2csrNnz_rank_1_devptr,&
+      hipsparseSpruneDense2csrNnz_full_rank,&
+      hipsparseSpruneDense2csrNnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21822,13 +22559,18 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneDense2csrNnz_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneDense2csrNnz_assumed_rank
+    module procedure &
+      hipsparseDpruneDense2csrNnz_assumed_rank,&
+      hipsparseDpruneDense2csrNnz_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrNnz_rank_0,&
+      hipsparseDpruneDense2csrNnz_rank_0_devptr,&
       hipsparseDpruneDense2csrNnz_rank_1,&
-      hipsparseDpruneDense2csrNnz_full_rank
+      hipsparseDpruneDense2csrNnz_rank_1_devptr,&
+      hipsparseDpruneDense2csrNnz_full_rank,&
+      hipsparseDpruneDense2csrNnz_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21951,13 +22693,18 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneDense2csr_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneDense2csr_assumed_rank
+    module procedure &
+      hipsparseSpruneDense2csr_assumed_rank,&
+      hipsparseSpruneDense2csr_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csr_rank_0,&
+      hipsparseSpruneDense2csr_rank_0_devptr,&
       hipsparseSpruneDense2csr_rank_1,&
-      hipsparseSpruneDense2csr_full_rank
+      hipsparseSpruneDense2csr_rank_1_devptr,&
+      hipsparseSpruneDense2csr_full_rank,&
+      hipsparseSpruneDense2csr_full_rank_devptr
 #endif
 #endif
   end interface
@@ -21991,13 +22738,18 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneDense2csr_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneDense2csr_assumed_rank
+    module procedure &
+      hipsparseDpruneDense2csr_assumed_rank,&
+      hipsparseDpruneDense2csr_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csr_rank_0,&
+      hipsparseDpruneDense2csr_rank_0_devptr,&
       hipsparseDpruneDense2csr_rank_1,&
-      hipsparseDpruneDense2csr_full_rank
+      hipsparseDpruneDense2csr_rank_1_devptr,&
+      hipsparseDpruneDense2csr_full_rank,&
+      hipsparseDpruneDense2csr_full_rank_devptr
 #endif
 #endif
   end interface
@@ -22359,13 +23111,18 @@ module hipfort_hipsparse
     module procedure hipsparseSpruneDense2csrNnzByPercentage_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseSpruneDense2csrNnzByPercentage_assumed_rank
+    module procedure &
+      hipsparseSpruneDense2csrNnzByPercentage_assumed_rank,&
+      hipsparseSpruneDense2csrNnzByPercentage_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseSpruneDense2csrNnzByPercentage_rank_0,&
+      hipsparseSpruneDense2csrNnzByPercentage_rank_0_devptr,&
       hipsparseSpruneDense2csrNnzByPercentage_rank_1,&
-      hipsparseSpruneDense2csrNnzByPercentage_full_rank
+      hipsparseSpruneDense2csrNnzByPercentage_rank_1_devptr,&
+      hipsparseSpruneDense2csrNnzByPercentage_full_rank,&
+      hipsparseSpruneDense2csrNnzByPercentage_full_rank_devptr
 #endif
 #endif
   end interface
@@ -22394,13 +23151,18 @@ module hipfort_hipsparse
     module procedure hipsparseDpruneDense2csrNnzByPercentage_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDpruneDense2csrNnzByPercentage_assumed_rank
+    module procedure &
+      hipsparseDpruneDense2csrNnzByPercentage_assumed_rank,&
+      hipsparseDpruneDense2csrNnzByPercentage_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDpruneDense2csrNnzByPercentage_rank_0,&
+      hipsparseDpruneDense2csrNnzByPercentage_rank_0_devptr,&
       hipsparseDpruneDense2csrNnzByPercentage_rank_1,&
-      hipsparseDpruneDense2csrNnzByPercentage_full_rank
+      hipsparseDpruneDense2csrNnzByPercentage_rank_1_devptr,&
+      hipsparseDpruneDense2csrNnzByPercentage_full_rank,&
+      hipsparseDpruneDense2csrNnzByPercentage_full_rank_devptr
 #endif
 #endif
   end interface
@@ -22619,16 +23381,12 @@ module hipfort_hipsparse
     module procedure hipsparseScsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsparseScsrcolor_assumed_rank,&
-      hipsparseScsrcolor_assumed_rank_devptr
+    module procedure hipsparseScsrcolor_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrcolor_rank_0,&
-      hipsparseScsrcolor_rank_0_devptr,&
-      hipsparseScsrcolor_rank_1,&
-      hipsparseScsrcolor_rank_1_devptr
+      hipsparseScsrcolor_rank_1
 #endif
 #endif
   end interface
@@ -22663,16 +23421,12 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsparseDcsrcolor_assumed_rank,&
-      hipsparseDcsrcolor_assumed_rank_devptr
+    module procedure hipsparseDcsrcolor_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrcolor_rank_0,&
-      hipsparseDcsrcolor_rank_0_devptr,&
-      hipsparseDcsrcolor_rank_1,&
-      hipsparseDcsrcolor_rank_1_devptr
+      hipsparseDcsrcolor_rank_1
 #endif
 #endif
   end interface
@@ -22707,16 +23461,12 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsparseCcsrcolor_assumed_rank,&
-      hipsparseCcsrcolor_assumed_rank_devptr
+    module procedure hipsparseCcsrcolor_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrcolor_rank_0,&
-      hipsparseCcsrcolor_rank_0_devptr,&
-      hipsparseCcsrcolor_rank_1,&
-      hipsparseCcsrcolor_rank_1_devptr
+      hipsparseCcsrcolor_rank_1
 #endif
 #endif
   end interface
@@ -22751,16 +23501,12 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure &
-      hipsparseZcsrcolor_assumed_rank,&
-      hipsparseZcsrcolor_assumed_rank_devptr
+    module procedure hipsparseZcsrcolor_assumed_rank
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrcolor_rank_0,&
-      hipsparseZcsrcolor_rank_0_devptr,&
-      hipsparseZcsrcolor_rank_1,&
-      hipsparseZcsrcolor_rank_1_devptr
+      hipsparseZcsrcolor_rank_1
 #endif
 #endif
   end interface
@@ -27055,7 +27801,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      type(c_ptr) :: alpha
+      real(c_float),target :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr) :: csrSortedValA
       type(c_ptr) :: csrSortedRowPtrA
@@ -27067,6 +27813,34 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseScsrsm2_bufferSizeExt_typed = hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B, &
+        ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseScsrsm2_bufferSizeExt_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrSortedValA
+      type(c_ptr) :: csrSortedRowPtrA
+      type(c_ptr) :: csrSortedColIndA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_devptr = hipsparseScsrsm2_bufferSizeExt_(handle,algo,transA, &
         transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb, &
         myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
@@ -27085,7 +27859,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      type(c_ptr) :: alpha
+      real(c_double),target :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr) :: csrSortedValA
       type(c_ptr) :: csrSortedRowPtrA
@@ -27097,6 +27871,34 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseDcsrsm2_bufferSizeExt_typed = hipsparseDcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B, &
+        ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDcsrsm2_bufferSizeExt_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrSortedValA
+      type(c_ptr) :: csrSortedRowPtrA
+      type(c_ptr) :: csrSortedColIndA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_devptr = hipsparseDcsrsm2_bufferSizeExt_(handle,algo,transA, &
         transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb, &
         myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
@@ -27115,7 +27917,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      type(c_ptr) :: alpha
+      complex(c_float_complex),target :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr) :: csrSortedValA
       type(c_ptr) :: csrSortedRowPtrA
@@ -27127,6 +27929,34 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseCcsrsm2_bufferSizeExt_typed = hipsparseCcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B, &
+        ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCcsrsm2_bufferSizeExt_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrSortedValA
+      type(c_ptr) :: csrSortedRowPtrA
+      type(c_ptr) :: csrSortedColIndA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_devptr = hipsparseCcsrsm2_bufferSizeExt_(handle,algo,transA, &
         transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb, &
         myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
@@ -27145,7 +27975,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      type(c_ptr) :: alpha
+      complex(c_double_complex),target :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr) :: csrSortedValA
       type(c_ptr) :: csrSortedRowPtrA
@@ -27157,6 +27987,34 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseZcsrsm2_bufferSizeExt_typed = hipsparseZcsrsm2_bufferSizeExt_(handle,algo,transA, &
+        transB,m,nrhs,nnz,c_loc(alpha),descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B, &
+        ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZcsrsm2_bufferSizeExt_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrSortedValA
+      type(c_ptr) :: csrSortedRowPtrA
+      type(c_ptr) :: csrSortedColIndA
+      type(c_ptr) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_devptr = hipsparseZcsrsm2_bufferSizeExt_(handle,algo,transA, &
         transB,m,nrhs,nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb, &
         myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
@@ -30159,7 +31017,7 @@ module hipfort_hipsparse
       type(c_ptr) :: csrValA
       type(c_ptr) :: csrRowPtrA
       type(c_ptr) :: csrColIndA
-      type(c_ptr) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       type(c_ptr) :: csrValC
       type(c_ptr) :: csrRowPtrC
@@ -30167,6 +31025,30 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSize_typed = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
+        nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,c_loc(threshold),descrC,csrValC,csrRowPtrC, &
+        csrColIndC,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSize_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrValA
+      type(c_ptr) :: csrRowPtrA
+      type(c_ptr) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      type(c_ptr) :: csrValC
+      type(c_ptr) :: csrRowPtrC
+      type(c_ptr) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSize_devptr = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
         nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC, &
         c_loc(pBufferSizeInBytes))
     end function
@@ -30185,7 +31067,7 @@ module hipfort_hipsparse
       type(c_ptr) :: csrValA
       type(c_ptr) :: csrRowPtrA
       type(c_ptr) :: csrColIndA
-      type(c_ptr) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       type(c_ptr) :: csrValC
       type(c_ptr) :: csrRowPtrC
@@ -30193,6 +31075,30 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSize_typed = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
+        nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,c_loc(threshold),descrC,csrValC,csrRowPtrC, &
+        csrColIndC,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSize_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrValA
+      type(c_ptr) :: csrRowPtrA
+      type(c_ptr) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      type(c_ptr) :: csrValC
+      type(c_ptr) :: csrRowPtrC
+      type(c_ptr) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSize_devptr = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
         nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC, &
         c_loc(pBufferSizeInBytes))
     end function
@@ -30210,7 +31116,7 @@ module hipfort_hipsparse
       type(c_ptr) :: csrValA
       type(c_ptr) :: csrRowPtrA
       type(c_ptr) :: csrColIndA
-      type(c_ptr) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       type(c_ptr) :: csrValC
       type(c_ptr) :: csrRowPtrC
@@ -30218,7 +31124,31 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseSpruneCsr2csr_bufferSizeExt_typed = hipsparseSpruneCsr2csr_bufferSizeExt_(handle,m, &
-        n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC, &
+        n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,c_loc(threshold),descrC,csrValC,csrRowPtrC, &
+        csrColIndC,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSizeExt_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrValA
+      type(c_ptr) :: csrRowPtrA
+      type(c_ptr) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      type(c_ptr) :: csrValC
+      type(c_ptr) :: csrRowPtrC
+      type(c_ptr) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSizeExt_devptr = hipsparseSpruneCsr2csr_bufferSizeExt_(handle, &
+        m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC, &
         csrColIndC,c_loc(pBufferSizeInBytes))
     end function
 
@@ -30234,7 +31164,7 @@ module hipfort_hipsparse
       type(c_ptr) :: csrValA
       type(c_ptr) :: csrRowPtrA
       type(c_ptr) :: csrColIndA
-      type(c_ptr) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       type(c_ptr) :: csrValC
       type(c_ptr) :: csrRowPtrC
@@ -30242,7 +31172,31 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseDpruneCsr2csr_bufferSizeExt_typed = hipsparseDpruneCsr2csr_bufferSizeExt_(handle,m, &
-        n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC, &
+        n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,c_loc(threshold),descrC,csrValC,csrRowPtrC, &
+        csrColIndC,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSizeExt_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      type(c_ptr) :: csrValA
+      type(c_ptr) :: csrRowPtrA
+      type(c_ptr) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      type(c_ptr) :: csrValC
+      type(c_ptr) :: csrRowPtrC
+      type(c_ptr) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSizeExt_devptr = hipsparseDpruneCsr2csr_bufferSizeExt_(handle, &
+        m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC, &
         csrColIndC,c_loc(pBufferSizeInBytes))
     end function
 
@@ -30508,7 +31462,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
@@ -30516,7 +31470,27 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSize_typed = hipsparseSpruneDense2csr_bufferSize_(handle,m,n, &
-        A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
+        A,lda,c_loc(threshold),descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSize_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      type(c_ptr) :: csrVal
+      type(c_ptr) :: csrRowPtr
+      type(c_ptr) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_devptr = hipsparseSpruneDense2csr_bufferSize_(handle,m, &
+        n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -30530,7 +31504,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
@@ -30538,7 +31512,27 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSize_typed = hipsparseDpruneDense2csr_bufferSize_(handle,m,n, &
-        A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
+        A,lda,c_loc(threshold),descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSize_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      type(c_ptr) :: csrVal
+      type(c_ptr) :: csrRowPtr
+      type(c_ptr) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_devptr = hipsparseDpruneDense2csr_bufferSize_(handle,m, &
+        n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -30551,7 +31545,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
@@ -30559,6 +31553,27 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseSpruneDense2csr_bufferSizeExt_typed = hipsparseSpruneDense2csr_bufferSizeExt_( &
+        handle,m,n,A,lda,c_loc(threshold),descr,csrVal,csrRowPtr,csrColInd, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSizeExt_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      type(c_ptr) :: csrVal
+      type(c_ptr) :: csrRowPtr
+      type(c_ptr) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_devptr = hipsparseSpruneDense2csr_bufferSizeExt_( &
         handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
     end function
 
@@ -30571,7 +31586,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       type(c_ptr) :: A
       integer(c_int) :: lda
-      type(c_ptr) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       type(c_ptr) :: csrVal
       type(c_ptr) :: csrRowPtr
@@ -30579,6 +31594,27 @@ module hipfort_hipsparse
       integer(c_size_t),target :: pBufferSizeInBytes
       !
       hipsparseDpruneDense2csr_bufferSizeExt_typed = hipsparseDpruneDense2csr_bufferSizeExt_( &
+        handle,m,n,A,lda,c_loc(threshold),descr,csrVal,csrRowPtr,csrColInd, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSizeExt_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      type(c_ptr) :: csrVal
+      type(c_ptr) :: csrRowPtr
+      type(c_ptr) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_devptr = hipsparseDpruneDense2csr_bufferSizeExt_( &
         handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,c_loc(pBufferSizeInBytes))
     end function
 
@@ -31495,6 +32531,21 @@ module hipfort_hipsparse
         c_loc(xInd),c_loc(y),idxBase)
     end function
 
+    function hipsparseSaxpyi_assumed_rank_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_float),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSaxpyi_assumed_rank_devptr = hipsparseSaxpyi_(handle,nnz,alpha,c_loc(xVal), &
+        c_loc(xInd),c_loc(y),idxBase)
+    end function
+
 #else
     function hipsparseSaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
@@ -31511,6 +32562,21 @@ module hipfort_hipsparse
         c_loc(y),idxBase)
     end function
 
+    function hipsparseSaxpyi_rank_0_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_float),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSaxpyi_rank_0_devptr = hipsparseSaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
     function hipsparseSaxpyi_rank_1(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_rank_1
@@ -31523,6 +32589,21 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseSaxpyi_rank_1 = hipsparseSaxpyi_(handle,nnz,c_loc(alpha),c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
+    function hipsparseSaxpyi_rank_1_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSaxpyi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_float),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSaxpyi_rank_1_devptr = hipsparseSaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
         c_loc(y),idxBase)
     end function
 
@@ -31545,6 +32626,21 @@ module hipfort_hipsparse
         c_loc(xInd),c_loc(y),idxBase)
     end function
 
+    function hipsparseDaxpyi_assumed_rank_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_double),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDaxpyi_assumed_rank_devptr = hipsparseDaxpyi_(handle,nnz,alpha,c_loc(xVal), &
+        c_loc(xInd),c_loc(y),idxBase)
+    end function
+
 #else
     function hipsparseDaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
@@ -31561,6 +32657,21 @@ module hipfort_hipsparse
         c_loc(y),idxBase)
     end function
 
+    function hipsparseDaxpyi_rank_0_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_double),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDaxpyi_rank_0_devptr = hipsparseDaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
     function hipsparseDaxpyi_rank_1(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_rank_1
@@ -31573,6 +32684,21 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseDaxpyi_rank_1 = hipsparseDaxpyi_(handle,nnz,c_loc(alpha),c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
+    function hipsparseDaxpyi_rank_1_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDaxpyi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_double),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDaxpyi_rank_1_devptr = hipsparseDaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
         c_loc(y),idxBase)
     end function
 
@@ -31595,6 +32721,21 @@ module hipfort_hipsparse
         c_loc(xInd),c_loc(y),idxBase)
     end function
 
+    function hipsparseCaxpyi_assumed_rank_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_float_complex),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCaxpyi_assumed_rank_devptr = hipsparseCaxpyi_(handle,nnz,alpha,c_loc(xVal), &
+        c_loc(xInd),c_loc(y),idxBase)
+    end function
+
 #else
     function hipsparseCaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
@@ -31611,6 +32752,21 @@ module hipfort_hipsparse
         c_loc(y),idxBase)
     end function
 
+    function hipsparseCaxpyi_rank_0_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_float_complex),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCaxpyi_rank_0_devptr = hipsparseCaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
     function hipsparseCaxpyi_rank_1(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_rank_1
@@ -31623,6 +32779,21 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseCaxpyi_rank_1 = hipsparseCaxpyi_(handle,nnz,c_loc(alpha),c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
+    function hipsparseCaxpyi_rank_1_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCaxpyi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCaxpyi_rank_1_devptr = hipsparseCaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
         c_loc(y),idxBase)
     end function
 
@@ -31645,6 +32816,21 @@ module hipfort_hipsparse
         c_loc(xInd),c_loc(y),idxBase)
     end function
 
+    function hipsparseZaxpyi_assumed_rank_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_double_complex),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZaxpyi_assumed_rank_devptr = hipsparseZaxpyi_(handle,nnz,alpha,c_loc(xVal), &
+        c_loc(xInd),c_loc(y),idxBase)
+    end function
+
 #else
     function hipsparseZaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
@@ -31661,6 +32847,21 @@ module hipfort_hipsparse
         c_loc(y),idxBase)
     end function
 
+    function hipsparseZaxpyi_rank_0_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_double_complex),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZaxpyi_rank_0_devptr = hipsparseZaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
     function hipsparseZaxpyi_rank_1(handle,nnz,alpha,xVal,xInd,y,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_rank_1
@@ -31673,6 +32874,21 @@ module hipfort_hipsparse
       integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
       !
       hipsparseZaxpyi_rank_1 = hipsparseZaxpyi_(handle,nnz,c_loc(alpha),c_loc(xVal),c_loc(xInd), &
+        c_loc(y),idxBase)
+    end function
+
+    function hipsparseZaxpyi_rank_1_devptr(handle,nnz,alpha,xVal,xInd,y,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZaxpyi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZaxpyi_rank_1_devptr = hipsparseZaxpyi_(handle,nnz,alpha,c_loc(xVal),c_loc(xInd), &
         c_loc(y),idxBase)
     end function
 
@@ -31695,6 +32911,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseCdotci_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_float_complex),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdotci_assumed_rank_devptr = hipsparseCdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseCdotci_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31711,6 +32942,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseCdotci_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_float_complex),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdotci_rank_0_devptr = hipsparseCdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
     function hipsparseCdotci_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_rank_1
@@ -31724,6 +32970,21 @@ module hipfort_hipsparse
       !
       hipsparseCdotci_rank_1 = hipsparseCdotci_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseCdotci_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdotci_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_float_complex),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdotci_rank_1_devptr = hipsparseCdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
     end function
 
 #endif
@@ -31745,6 +33006,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseZdotci_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_double_complex),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdotci_assumed_rank_devptr = hipsparseZdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseZdotci_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31761,6 +33037,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseZdotci_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_double_complex),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdotci_rank_0_devptr = hipsparseZdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
     function hipsparseZdotci_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_rank_1
@@ -31774,6 +33065,21 @@ module hipfort_hipsparse
       !
       hipsparseZdotci_rank_1 = hipsparseZdotci_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseZdotci_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdotci_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_double_complex),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdotci_rank_1_devptr = hipsparseZdotci_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
     end function
 
 #endif
@@ -31795,6 +33101,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseSdoti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_float),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSdoti_assumed_rank_devptr = hipsparseSdoti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseSdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31811,6 +33132,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseSdoti_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_float),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSdoti_rank_0_devptr = hipsparseSdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
+    end function
+
     function hipsparseSdoti_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_rank_1
@@ -31824,6 +33160,21 @@ module hipfort_hipsparse
       !
       hipsparseSdoti_rank_1 = hipsparseSdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseSdoti_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdoti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_float),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSdoti_rank_1_devptr = hipsparseSdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
     end function
 
 #endif
@@ -31845,6 +33196,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseDdoti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_double),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDdoti_assumed_rank_devptr = hipsparseDdoti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseDdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31861,6 +33227,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseDdoti_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_double),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDdoti_rank_0_devptr = hipsparseDdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
+    end function
+
     function hipsparseDdoti_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_rank_1
@@ -31874,6 +33255,21 @@ module hipfort_hipsparse
       !
       hipsparseDdoti_rank_1 = hipsparseDdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseDdoti_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdoti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_double),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDdoti_rank_1_devptr = hipsparseDdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
     end function
 
 #endif
@@ -31895,6 +33291,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseCdoti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_float_complex),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdoti_assumed_rank_devptr = hipsparseCdoti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseCdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31911,6 +33322,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseCdoti_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_float_complex),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdoti_rank_0_devptr = hipsparseCdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
+    end function
+
     function hipsparseCdoti_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_rank_1
@@ -31924,6 +33350,21 @@ module hipfort_hipsparse
       !
       hipsparseCdoti_rank_1 = hipsparseCdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseCdoti_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdoti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_float_complex),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseCdoti_rank_1_devptr = hipsparseCdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
     end function
 
 #endif
@@ -31945,6 +33386,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseZdoti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      complex(c_double_complex),target,dimension(..) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdoti_assumed_rank_devptr = hipsparseZdoti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),myResult,idxBase)
+    end function
+
 #else
     function hipsparseZdoti_rank_0(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
@@ -31961,6 +33417,21 @@ module hipfort_hipsparse
         c_loc(myResult),idxBase)
     end function
 
+    function hipsparseZdoti_rank_0_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target :: xVal
+      integer(c_int),target :: xInd
+      complex(c_double_complex),target :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdoti_rank_0_devptr = hipsparseZdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
+    end function
+
     function hipsparseZdoti_rank_1(handle,nnz,xVal,xInd,y,myResult,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_rank_1
@@ -31974,6 +33445,21 @@ module hipfort_hipsparse
       !
       hipsparseZdoti_rank_1 = hipsparseZdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(myResult),idxBase)
+    end function
+
+    function hipsparseZdoti_rank_1_devptr(handle,nnz,xVal,xInd,y,myResult,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdoti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      complex(c_double_complex),target,dimension(:) :: y
+      type(c_ptr),value :: myResult
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseZdoti_rank_1_devptr = hipsparseZdoti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        myResult,idxBase)
     end function
 
 #endif
@@ -32356,6 +33842,22 @@ module hipfort_hipsparse
         c_loc(c),c_loc(s),idxBase)
     end function
 
+    function hipsparseSroti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_float),target,dimension(..) :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSroti_assumed_rank_devptr = hipsparseSroti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),c,s,idxBase)
+    end function
+
 #else
     function hipsparseSroti_rank_0(handle,nnz,xVal,xInd,y,c,s,idxBase)
       implicit none
@@ -32373,6 +33875,22 @@ module hipfort_hipsparse
         c_loc(c),c_loc(s),idxBase)
     end function
 
+    function hipsparseSroti_rank_0_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_float),target :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSroti_rank_0_devptr = hipsparseSroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c,s,idxBase)
+    end function
+
     function hipsparseSroti_rank_1(handle,nnz,xVal,xInd,y,c,s,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_rank_1
@@ -32387,6 +33905,22 @@ module hipfort_hipsparse
       !
       hipsparseSroti_rank_1 = hipsparseSroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(c),c_loc(s),idxBase)
+    end function
+
+    function hipsparseSroti_rank_1_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSroti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_float),target,dimension(:) :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseSroti_rank_1_devptr = hipsparseSroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c,s,idxBase)
     end function
 
 #endif
@@ -32409,6 +33943,22 @@ module hipfort_hipsparse
         c_loc(c),c_loc(s),idxBase)
     end function
 
+    function hipsparseDroti_assumed_rank_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(..) :: xVal
+      integer(c_int),target,dimension(..) :: xInd
+      real(c_double),target,dimension(..) :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDroti_assumed_rank_devptr = hipsparseDroti_(handle,nnz,c_loc(xVal),c_loc(xInd), &
+        c_loc(y),c,s,idxBase)
+    end function
+
 #else
     function hipsparseDroti_rank_0(handle,nnz,xVal,xInd,y,c,s,idxBase)
       implicit none
@@ -32426,6 +33976,22 @@ module hipfort_hipsparse
         c_loc(c),c_loc(s),idxBase)
     end function
 
+    function hipsparseDroti_rank_0_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target :: xVal
+      integer(c_int),target :: xInd
+      real(c_double),target :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDroti_rank_0_devptr = hipsparseDroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c,s,idxBase)
+    end function
+
     function hipsparseDroti_rank_1(handle,nnz,xVal,xInd,y,c,s,idxBase)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_rank_1
@@ -32440,6 +34006,22 @@ module hipfort_hipsparse
       !
       hipsparseDroti_rank_1 = hipsparseDroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
         c_loc(c),c_loc(s),idxBase)
+    end function
+
+    function hipsparseDroti_rank_1_devptr(handle,nnz,xVal,xInd,y,c,s,idxBase)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDroti_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(:) :: xVal
+      integer(c_int),target,dimension(:) :: xInd
+      real(c_double),target,dimension(:) :: y
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      !
+      hipsparseDroti_rank_1_devptr = hipsparseDroti_(handle,nnz,c_loc(xVal),c_loc(xInd),c_loc(y), &
+        c,s,idxBase)
     end function
 
 #endif
@@ -32650,6 +34232,31 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseSbsrmv_assumed_rank_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: y
+      !
+      hipsparseSbsrmv_assumed_rank_devptr = hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseSbsrmv_rank_0(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
@@ -32676,6 +34283,31 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseSbsrmv_rank_0_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target :: x
+      type(c_ptr),value :: beta
+      real(c_float),target :: y
+      !
+      hipsparseSbsrmv_rank_0_devptr = hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseSbsrmv_rank_1(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       implicit none
@@ -32699,6 +34331,31 @@ module hipfort_hipsparse
       hipsparseSbsrmv_rank_1 = hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,c_loc(alpha),descrA, &
         c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseSbsrmv_rank_1_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      !
+      hipsparseSbsrmv_rank_1_devptr = hipsparseSbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -32728,6 +34385,31 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDbsrmv_assumed_rank_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: y
+      !
+      hipsparseDbsrmv_assumed_rank_devptr = hipsparseDbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseDbsrmv_rank_0(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
@@ -32754,6 +34436,31 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDbsrmv_rank_0_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target :: x
+      type(c_ptr),value :: beta
+      real(c_double),target :: y
+      !
+      hipsparseDbsrmv_rank_0_devptr = hipsparseDbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseDbsrmv_rank_1(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       implicit none
@@ -32777,6 +34484,31 @@ module hipfort_hipsparse
       hipsparseDbsrmv_rank_1 = hipsparseDbsrmv_(handle,dirA,transA,mb,nb,nnzb,c_loc(alpha),descrA, &
         c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseDbsrmv_rank_1_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      !
+      hipsparseDbsrmv_rank_1_devptr = hipsparseDbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -32806,6 +34538,31 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseCbsrmv_assumed_rank_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: y
+      !
+      hipsparseCbsrmv_assumed_rank_devptr = hipsparseCbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseCbsrmv_rank_0(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
@@ -32832,6 +34589,31 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseCbsrmv_rank_0_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: y
+      !
+      hipsparseCbsrmv_rank_0_devptr = hipsparseCbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseCbsrmv_rank_1(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       implicit none
@@ -32855,6 +34637,31 @@ module hipfort_hipsparse
       hipsparseCbsrmv_rank_1 = hipsparseCbsrmv_(handle,dirA,transA,mb,nb,nnzb,c_loc(alpha),descrA, &
         c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseCbsrmv_rank_1_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      !
+      hipsparseCbsrmv_rank_1_devptr = hipsparseCbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -32884,6 +34691,31 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZbsrmv_assumed_rank_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: y
+      !
+      hipsparseZbsrmv_assumed_rank_devptr = hipsparseZbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha, &
+        descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseZbsrmv_rank_0(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
@@ -32910,6 +34742,31 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZbsrmv_rank_0_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: y
+      !
+      hipsparseZbsrmv_rank_0_devptr = hipsparseZbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseZbsrmv_rank_1(handle,dirA,transA,mb,nb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
       implicit none
@@ -32933,6 +34790,31 @@ module hipfort_hipsparse
       hipsparseZbsrmv_rank_1 = hipsparseZbsrmv_(handle,dirA,transA,mb,nb,nnzb,c_loc(alpha),descrA, &
         c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseZbsrmv_rank_1_devptr(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      !
+      hipsparseZbsrmv_rank_1_devptr = hipsparseZbsrmv_(handle,dirA,transA,mb,nb,nnzb,alpha,descrA, &
+        c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA),blockDim,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -33811,6 +35693,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseSbsrsv2_solve_assumed_rank_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(..) :: f
+      real(c_float),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsv2_solve_assumed_rank_devptr = hipsparseSbsrsv2_solve_(handle,dirA,transA,mb, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseSbsrsv2_solve_rank_0(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
@@ -33838,6 +35746,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseSbsrsv2_solve_rank_0_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target :: f
+      real(c_float),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsv2_solve_rank_0_devptr = hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseSbsrsv2_solve_rank_1(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -33861,6 +35795,32 @@ module hipfort_hipsparse
       !
       hipsparseSbsrsv2_solve_rank_1 = hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseSbsrsv2_solve_rank_1_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(:) :: f
+      real(c_float),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsv2_solve_rank_1_devptr = hipsparseSbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
@@ -33892,6 +35852,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseDbsrsv2_solve_assumed_rank_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(..) :: f
+      real(c_double),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsv2_solve_assumed_rank_devptr = hipsparseDbsrsv2_solve_(handle,dirA,transA,mb, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseDbsrsv2_solve_rank_0(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
@@ -33919,6 +35905,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseDbsrsv2_solve_rank_0_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target :: f
+      real(c_double),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsv2_solve_rank_0_devptr = hipsparseDbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseDbsrsv2_solve_rank_1(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -33942,6 +35954,32 @@ module hipfort_hipsparse
       !
       hipsparseDbsrsv2_solve_rank_1 = hipsparseDbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsv2_solve_rank_1_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(:) :: f
+      real(c_double),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsv2_solve_rank_1_devptr = hipsparseDbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
@@ -33973,6 +36011,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseCbsrsv2_solve_assumed_rank_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(..) :: f
+      complex(c_float_complex),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsv2_solve_assumed_rank_devptr = hipsparseCbsrsv2_solve_(handle,dirA,transA,mb, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseCbsrsv2_solve_rank_0(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
@@ -34000,6 +36064,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseCbsrsv2_solve_rank_0_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target :: f
+      complex(c_float_complex),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsv2_solve_rank_0_devptr = hipsparseCbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseCbsrsv2_solve_rank_1(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -34023,6 +36113,32 @@ module hipfort_hipsparse
       !
       hipsparseCbsrsv2_solve_rank_1 = hipsparseCbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsv2_solve_rank_1_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(:) :: f
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsv2_solve_rank_1_devptr = hipsparseCbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
@@ -34054,6 +36170,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseZbsrsv2_solve_assumed_rank_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(..) :: f
+      complex(c_double_complex),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsv2_solve_assumed_rank_devptr = hipsparseZbsrsv2_solve_(handle,dirA,transA,mb, &
+        nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseZbsrsv2_solve_rank_0(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
@@ -34081,6 +36223,32 @@ module hipfort_hipsparse
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseZbsrsv2_solve_rank_0_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target :: f
+      complex(c_double_complex),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsv2_solve_rank_0_devptr = hipsparseZbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseZbsrsv2_solve_rank_1(handle,dirA,transA,mb,nnzb,alpha,descrA,bsrSortedValA, &
         bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -34104,6 +36272,32 @@ module hipfort_hipsparse
       !
       hipsparseZbsrsv2_solve_rank_1 = hipsparseZbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
+        blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsv2_solve_rank_1_devptr(handle,dirA,transA,mb,nnzb,alpha,descrA, &
+        bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: mb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(:) :: f
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsv2_solve_rank_1_devptr = hipsparseZbsrsv2_solve_(handle,dirA,transA,mb,nnzb, &
+        alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA),c_loc(bsrSortedColIndA), &
         blockDim,myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
@@ -34137,6 +36331,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseSbsrxmv_assumed_rank_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrEndPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: y
+      !
+      hipsparseSbsrxmv_assumed_rank_devptr = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb, &
+        nnzb,alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseSbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
@@ -34166,6 +36388,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseSbsrxmv_rank_0_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_float),target :: bsrVal
+      integer(c_int),target :: bsrMaskPtr
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrEndPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_float),target :: x
+      type(c_ptr),value :: beta
+      real(c_float),target :: y
+      !
+      hipsparseSbsrxmv_rank_0_devptr = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseSbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       implicit none
@@ -34192,6 +36442,34 @@ module hipfort_hipsparse
       hipsparseSbsrxmv_rank_1 = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
         c_loc(alpha),descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseSbsrxmv_rank_1_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrxmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrMaskPtr
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrEndPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      !
+      hipsparseSbsrxmv_rank_1_devptr = hipsparseSbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34224,6 +36502,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDbsrxmv_assumed_rank_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrEndPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: y
+      !
+      hipsparseDbsrxmv_assumed_rank_devptr = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb, &
+        nnzb,alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseDbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
@@ -34253,6 +36559,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDbsrxmv_rank_0_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_double),target :: bsrVal
+      integer(c_int),target :: bsrMaskPtr
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrEndPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_double),target :: x
+      type(c_ptr),value :: beta
+      real(c_double),target :: y
+      !
+      hipsparseDbsrxmv_rank_0_devptr = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseDbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       implicit none
@@ -34279,6 +36613,34 @@ module hipfort_hipsparse
       hipsparseDbsrxmv_rank_1 = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
         c_loc(alpha),descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseDbsrxmv_rank_1_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrxmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrMaskPtr
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrEndPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      !
+      hipsparseDbsrxmv_rank_1_devptr = hipsparseDbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34311,6 +36673,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseCbsrxmv_assumed_rank_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrEndPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: y
+      !
+      hipsparseCbsrxmv_assumed_rank_devptr = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb, &
+        nnzb,alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseCbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
@@ -34340,6 +36730,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseCbsrxmv_rank_0_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target :: bsrVal
+      integer(c_int),target :: bsrMaskPtr
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrEndPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: y
+      !
+      hipsparseCbsrxmv_rank_0_devptr = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseCbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
       implicit none
@@ -34366,6 +36784,34 @@ module hipfort_hipsparse
       hipsparseCbsrxmv_rank_1 = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
         c_loc(alpha),descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseCbsrxmv_rank_1_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrxmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrMaskPtr
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrEndPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      !
+      hipsparseCbsrxmv_rank_1_devptr = hipsparseCbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34398,6 +36844,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZbsrxmv_assumed_rank_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha, &
+        descr,bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrMaskPtr
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrEndPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: y
+      !
+      hipsparseZbsrxmv_assumed_rank_devptr = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb, &
+        nnzb,alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseZbsrxmv_rank_0(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
         bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
@@ -34425,6 +36899,34 @@ module hipfort_hipsparse
       hipsparseZbsrxmv_rank_0 = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
         c_loc(alpha),descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseZbsrxmv_rank_0_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target :: bsrVal
+      integer(c_int),target :: bsrMaskPtr
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrEndPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: y
+      !
+      hipsparseZbsrxmv_rank_0_devptr = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
     end function
 
     function hipsparseZbsrxmv_rank_1(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr,bsrVal, &
@@ -34455,6 +36957,34 @@ module hipfort_hipsparse
         c_loc(bsrColInd),blockDim,c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZbsrxmv_rank_1_devptr(handle,dir,trans,sizeOfMask,mb,nb,nnzb,alpha,descr, &
+        bsrVal,bsrMaskPtr,bsrRowPtr,bsrEndPtr,bsrColInd,blockDim,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrxmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: trans
+      integer(c_int) :: sizeOfMask
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrMaskPtr
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrEndPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      !
+      hipsparseZbsrxmv_rank_1_devptr = hipsparseZbsrxmv_(handle,dir,trans,sizeOfMask,mb,nb,nnzb, &
+        alpha,descr,c_loc(bsrVal),c_loc(bsrMaskPtr),c_loc(bsrRowPtr),c_loc(bsrEndPtr), &
+        c_loc(bsrColInd),blockDim,c_loc(x),beta,c_loc(y))
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -34481,6 +37011,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseScsrmv_assumed_rank_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: y
+      !
+      hipsparseScsrmv_assumed_rank_devptr = hipsparseScsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseScsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
@@ -34505,6 +37057,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseScsrmv_rank_0_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: x
+      type(c_ptr),value :: beta
+      real(c_float),target :: y
+      !
+      hipsparseScsrmv_rank_0_devptr = hipsparseScsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseScsrmv_rank_1(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       implicit none
@@ -34526,6 +37100,28 @@ module hipfort_hipsparse
       hipsparseScsrmv_rank_1 = hipsparseScsrmv_(handle,transA,m,n,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),c_loc(beta), &
         c_loc(y))
+    end function
+
+    function hipsparseScsrmv_rank_1_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      !
+      hipsparseScsrmv_rank_1_devptr = hipsparseScsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34555,6 +37151,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseDcsrmv_assumed_rank_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: y
+      !
+      hipsparseDcsrmv_assumed_rank_devptr = hipsparseDcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseDcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
@@ -34579,6 +37197,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseDcsrmv_rank_0_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: x
+      type(c_ptr),value :: beta
+      real(c_double),target :: y
+      !
+      hipsparseDcsrmv_rank_0_devptr = hipsparseDcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseDcsrmv_rank_1(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       implicit none
@@ -34600,6 +37240,28 @@ module hipfort_hipsparse
       hipsparseDcsrmv_rank_1 = hipsparseDcsrmv_(handle,transA,m,n,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),c_loc(beta), &
         c_loc(y))
+    end function
+
+    function hipsparseDcsrmv_rank_1_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      !
+      hipsparseDcsrmv_rank_1_devptr = hipsparseDcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34629,6 +37291,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseCcsrmv_assumed_rank_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: y
+      !
+      hipsparseCcsrmv_assumed_rank_devptr = hipsparseCcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseCcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
@@ -34653,6 +37337,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseCcsrmv_rank_0_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: y
+      !
+      hipsparseCcsrmv_rank_0_devptr = hipsparseCcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseCcsrmv_rank_1(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       implicit none
@@ -34674,6 +37380,28 @@ module hipfort_hipsparse
       hipsparseCcsrmv_rank_1 = hipsparseCcsrmv_(handle,transA,m,n,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),c_loc(beta), &
         c_loc(y))
+    end function
+
+    function hipsparseCcsrmv_rank_1_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      !
+      hipsparseCcsrmv_rank_1_devptr = hipsparseCcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -34703,6 +37431,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseZcsrmv_assumed_rank_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: y
+      !
+      hipsparseZcsrmv_assumed_rank_devptr = hipsparseZcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseZcsrmv_rank_0(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
@@ -34727,6 +37477,28 @@ module hipfort_hipsparse
         c_loc(y))
     end function
 
+    function hipsparseZcsrmv_rank_0_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: y
+      !
+      hipsparseZcsrmv_rank_0_devptr = hipsparseZcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
+    end function
+
     function hipsparseZcsrmv_rank_1(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
       implicit none
@@ -34748,6 +37520,28 @@ module hipfort_hipsparse
       hipsparseZcsrmv_rank_1 = hipsparseZcsrmv_(handle,transA,m,n,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),c_loc(beta), &
         c_loc(y))
+    end function
+
+    function hipsparseZcsrmv_rank_1_devptr(handle,transA,m,n,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      !
+      hipsparseZcsrmv_rank_1_devptr = hipsparseZcsrmv_(handle,transA,m,n,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(x),beta,c_loc(y))
     end function
 
 #endif
@@ -35562,6 +38356,30 @@ module hipfort_hipsparse
         myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseScsrsv2_solve_assumed_rank_devptr(handle,transA,m,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(..) :: f
+      real(c_float),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsv2_solve_assumed_rank_devptr = hipsparseScsrsv2_solve_(handle,transA,m,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseScsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
@@ -35587,6 +38405,30 @@ module hipfort_hipsparse
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseScsrsv2_solve_rank_0_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_float),target :: f
+      real(c_float),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsv2_solve_rank_0_devptr = hipsparseScsrsv2_solve_(handle,transA,m,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseScsrsv2_solve_rank_1(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -35607,6 +38449,30 @@ module hipfort_hipsparse
       type(c_ptr), value :: pBuffer
       !
       hipsparseScsrsv2_solve_rank_1 = hipsparseScsrsv2_solve_(handle,transA,m,nnz,c_loc(alpha), &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseScsrsv2_solve_rank_1_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(:) :: f
+      real(c_float),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsv2_solve_rank_1_devptr = hipsparseScsrsv2_solve_(handle,transA,m,nnz,alpha, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -35639,6 +38505,30 @@ module hipfort_hipsparse
         myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseDcsrsv2_solve_assumed_rank_devptr(handle,transA,m,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(..) :: f
+      real(c_double),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsv2_solve_assumed_rank_devptr = hipsparseDcsrsv2_solve_(handle,transA,m,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseDcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
@@ -35664,6 +38554,30 @@ module hipfort_hipsparse
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseDcsrsv2_solve_rank_0_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_double),target :: f
+      real(c_double),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsv2_solve_rank_0_devptr = hipsparseDcsrsv2_solve_(handle,transA,m,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseDcsrsv2_solve_rank_1(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -35684,6 +38598,30 @@ module hipfort_hipsparse
       type(c_ptr), value :: pBuffer
       !
       hipsparseDcsrsv2_solve_rank_1 = hipsparseDcsrsv2_solve_(handle,transA,m,nnz,c_loc(alpha), &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsv2_solve_rank_1_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(:) :: f
+      real(c_double),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsv2_solve_rank_1_devptr = hipsparseDcsrsv2_solve_(handle,transA,m,nnz,alpha, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -35716,6 +38654,30 @@ module hipfort_hipsparse
         myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseCcsrsv2_solve_assumed_rank_devptr(handle,transA,m,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(..) :: f
+      complex(c_float_complex),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsv2_solve_assumed_rank_devptr = hipsparseCcsrsv2_solve_(handle,transA,m,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseCcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
@@ -35741,6 +38703,30 @@ module hipfort_hipsparse
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseCcsrsv2_solve_rank_0_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target :: f
+      complex(c_float_complex),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsv2_solve_rank_0_devptr = hipsparseCcsrsv2_solve_(handle,transA,m,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseCcsrsv2_solve_rank_1(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -35761,6 +38747,30 @@ module hipfort_hipsparse
       type(c_ptr), value :: pBuffer
       !
       hipsparseCcsrsv2_solve_rank_1 = hipsparseCcsrsv2_solve_(handle,transA,m,nnz,c_loc(alpha), &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsv2_solve_rank_1_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(:) :: f
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsv2_solve_rank_1_devptr = hipsparseCcsrsv2_solve_(handle,transA,m,nnz,alpha, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -35793,6 +38803,30 @@ module hipfort_hipsparse
         myInfo,c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseZcsrsv2_solve_assumed_rank_devptr(handle,transA,m,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(..) :: f
+      complex(c_double_complex),target,dimension(..) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsv2_solve_assumed_rank_devptr = hipsparseZcsrsv2_solve_(handle,transA,m,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
 #else
     function hipsparseZcsrsv2_solve_rank_0(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
@@ -35818,6 +38852,30 @@ module hipfort_hipsparse
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
 
+    function hipsparseZcsrsv2_solve_rank_0_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target :: f
+      complex(c_double_complex),target :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsv2_solve_rank_0_devptr = hipsparseZcsrsv2_solve_(handle,transA,m,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
     function hipsparseZcsrsv2_solve_rank_1(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
       implicit none
@@ -35838,6 +38896,30 @@ module hipfort_hipsparse
       type(c_ptr), value :: pBuffer
       !
       hipsparseZcsrsv2_solve_rank_1 = hipsparseZcsrsv2_solve_(handle,transA,m,nnz,c_loc(alpha), &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
+        c_loc(f),c_loc(x),policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsv2_solve_rank_1_devptr(handle,transA,m,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,myInfo,f,x,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsv2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(:) :: f
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsv2_solve_rank_1_devptr = hipsparseZcsrsv2_solve_(handle,transA,m,nnz,alpha, &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),myInfo, &
         c_loc(f),c_loc(x),policy,pBuffer)
     end function
@@ -35868,6 +38950,29 @@ module hipfort_hipsparse
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseSgemvi_assumed_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: xInd
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgemvi_assumed_rank_devptr = hipsparseSgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
 #else
     function hipsparseSgemvi_rank_0(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       implicit none
@@ -35889,6 +38994,29 @@ module hipfort_hipsparse
       !
       hipsparseSgemvi_rank_0 = hipsparseSgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda,nnz, &
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseSgemvi_rank_0_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_float),target :: x
+      integer(c_int),target :: xInd
+      type(c_ptr),value :: beta
+      real(c_float),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgemvi_rank_0_devptr = hipsparseSgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
     function hipsparseSgemvi_rank_1(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
@@ -35913,6 +39041,29 @@ module hipfort_hipsparse
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseSgemvi_rank_1_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgemvi_rank_1_devptr = hipsparseSgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
     function hipsparseSgemvi_full_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       implicit none
@@ -35934,6 +39085,29 @@ module hipfort_hipsparse
       !
       hipsparseSgemvi_full_rank = hipsparseSgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda, &
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseSgemvi_full_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemvi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_float),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgemvi_full_rank_devptr = hipsparseSgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
 #endif
@@ -35961,6 +39135,29 @@ module hipfort_hipsparse
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseDgemvi_assumed_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: xInd
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgemvi_assumed_rank_devptr = hipsparseDgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
 #else
     function hipsparseDgemvi_rank_0(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       implicit none
@@ -35982,6 +39179,29 @@ module hipfort_hipsparse
       !
       hipsparseDgemvi_rank_0 = hipsparseDgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda,nnz, &
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseDgemvi_rank_0_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_double),target :: x
+      integer(c_int),target :: xInd
+      type(c_ptr),value :: beta
+      real(c_double),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgemvi_rank_0_devptr = hipsparseDgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
     function hipsparseDgemvi_rank_1(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
@@ -36006,6 +39226,29 @@ module hipfort_hipsparse
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseDgemvi_rank_1_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgemvi_rank_1_devptr = hipsparseDgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
     function hipsparseDgemvi_full_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       implicit none
@@ -36027,6 +39270,29 @@ module hipfort_hipsparse
       !
       hipsparseDgemvi_full_rank = hipsparseDgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda, &
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseDgemvi_full_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemvi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      real(c_double),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgemvi_full_rank_devptr = hipsparseDgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
 #endif
@@ -36054,6 +39320,29 @@ module hipfort_hipsparse
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseCgemvi_assumed_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgemvi_assumed_rank_devptr = hipsparseCgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
 #else
     function hipsparseCgemvi_rank_0(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       implicit none
@@ -36075,6 +39364,29 @@ module hipfort_hipsparse
       !
       hipsparseCgemvi_rank_0 = hipsparseCgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda,nnz, &
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseCgemvi_rank_0_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_float_complex),target :: x
+      integer(c_int),target :: xInd
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgemvi_rank_0_devptr = hipsparseCgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
     function hipsparseCgemvi_rank_1(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
@@ -36099,6 +39411,29 @@ module hipfort_hipsparse
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseCgemvi_rank_1_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgemvi_rank_1_devptr = hipsparseCgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
     function hipsparseCgemvi_full_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
         pBuffer)
       implicit none
@@ -36120,6 +39455,29 @@ module hipfort_hipsparse
       !
       hipsparseCgemvi_full_rank = hipsparseCgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda, &
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseCgemvi_full_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemvi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgemvi_full_rank_devptr = hipsparseCgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
 #endif
@@ -36147,6 +39505,29 @@ module hipfort_hipsparse
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseZgemvi_assumed_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(..) :: x
+      integer(c_int),target,dimension(..) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgemvi_assumed_rank_devptr = hipsparseZgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
 #else
     function hipsparseZgemvi_rank_0(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       implicit none
@@ -36170,6 +39551,29 @@ module hipfort_hipsparse
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseZgemvi_rank_0_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_double_complex),target :: x
+      integer(c_int),target :: xInd
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgemvi_rank_0_devptr = hipsparseZgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
     function hipsparseZgemvi_rank_1(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase,pBuffer)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_rank_1
@@ -36190,6 +39594,29 @@ module hipfort_hipsparse
       !
       hipsparseZgemvi_rank_1 = hipsparseZgemvi_(handle,transA,m,n,c_loc(alpha),c_loc(A),lda,nnz, &
         c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
+    end function
+
+    function hipsparseZgemvi_rank_1_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgemvi_rank_1_devptr = hipsparseZgemvi_(handle,transA,m,n,alpha,c_loc(A),lda,nnz, &
+        c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
     end function
 
     function hipsparseZgemvi_full_rank(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y,idxBase, &
@@ -36215,6 +39642,29 @@ module hipfort_hipsparse
         nnz,c_loc(x),c_loc(xInd),c_loc(beta),c_loc(y),idxBase,pBuffer)
     end function
 
+    function hipsparseZgemvi_full_rank_devptr(handle,transA,m,n,alpha,A,lda,nnz,x,xInd,beta,y, &
+        idxBase,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemvi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: nnz
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int),target,dimension(:) :: xInd
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgemvi_full_rank_devptr = hipsparseZgemvi_(handle,transA,m,n,alpha,c_loc(A),lda, &
+        nnz,c_loc(x),c_loc(xInd),beta,c_loc(y),idxBase,pBuffer)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -36234,6 +39684,22 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseShybmv_assumed_rank_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_float),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: y
+      !
+      hipsparseShybmv_assumed_rank_devptr = hipsparseShybmv_(handle,transA,alpha,descrA,hybA, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseShybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
@@ -36251,6 +39717,22 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseShybmv_rank_0_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_float),target :: x
+      type(c_ptr),value :: beta
+      real(c_float),target :: y
+      !
+      hipsparseShybmv_rank_0_devptr = hipsparseShybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseShybmv_rank_1(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_rank_1
@@ -36265,6 +39747,22 @@ module hipfort_hipsparse
       !
       hipsparseShybmv_rank_1 = hipsparseShybmv_(handle,transA,c_loc(alpha),descrA,hybA,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseShybmv_rank_1_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseShybmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_float),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: y
+      !
+      hipsparseShybmv_rank_1_devptr = hipsparseShybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -36287,6 +39785,22 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDhybmv_assumed_rank_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_double),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: y
+      !
+      hipsparseDhybmv_assumed_rank_devptr = hipsparseDhybmv_(handle,transA,alpha,descrA,hybA, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseDhybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
@@ -36304,6 +39818,22 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseDhybmv_rank_0_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_double),target :: x
+      type(c_ptr),value :: beta
+      real(c_double),target :: y
+      !
+      hipsparseDhybmv_rank_0_devptr = hipsparseDhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseDhybmv_rank_1(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_rank_1
@@ -36318,6 +39848,22 @@ module hipfort_hipsparse
       !
       hipsparseDhybmv_rank_1 = hipsparseDhybmv_(handle,transA,c_loc(alpha),descrA,hybA,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseDhybmv_rank_1_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDhybmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      real(c_double),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: y
+      !
+      hipsparseDhybmv_rank_1_devptr = hipsparseDhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -36340,6 +39886,22 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseChybmv_assumed_rank_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_float_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: y
+      !
+      hipsparseChybmv_assumed_rank_devptr = hipsparseChybmv_(handle,transA,alpha,descrA,hybA, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseChybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
@@ -36357,6 +39919,22 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseChybmv_rank_0_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_float_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: y
+      !
+      hipsparseChybmv_rank_0_devptr = hipsparseChybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseChybmv_rank_1(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_rank_1
@@ -36371,6 +39949,22 @@ module hipfort_hipsparse
       !
       hipsparseChybmv_rank_1 = hipsparseChybmv_(handle,transA,c_loc(alpha),descrA,hybA,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseChybmv_rank_1_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseChybmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_float_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: y
+      !
+      hipsparseChybmv_rank_1_devptr = hipsparseChybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -36393,6 +39987,22 @@ module hipfort_hipsparse
         c_loc(x),c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZhybmv_assumed_rank_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_double_complex),target,dimension(..) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: y
+      !
+      hipsparseZhybmv_assumed_rank_devptr = hipsparseZhybmv_(handle,transA,alpha,descrA,hybA, &
+        c_loc(x),beta,c_loc(y))
+    end function
+
 #else
     function hipsparseZhybmv_rank_0(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
@@ -36410,6 +40020,22 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(y))
     end function
 
+    function hipsparseZhybmv_rank_0_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_double_complex),target :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: y
+      !
+      hipsparseZhybmv_rank_0_devptr = hipsparseZhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
+    end function
+
     function hipsparseZhybmv_rank_1(handle,transA,alpha,descrA,hybA,x,beta,y)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_rank_1
@@ -36424,6 +40050,22 @@ module hipfort_hipsparse
       !
       hipsparseZhybmv_rank_1 = hipsparseZhybmv_(handle,transA,c_loc(alpha),descrA,hybA,c_loc(x), &
         c_loc(beta),c_loc(y))
+    end function
+
+    function hipsparseZhybmv_rank_1_devptr(handle,transA,alpha,descrA,hybA,x,beta,y)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZhybmv_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      type(c_ptr), value :: hybA
+      complex(c_double_complex),target,dimension(:) :: x
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: y
+      !
+      hipsparseZhybmv_rank_1_devptr = hipsparseZhybmv_(handle,transA,alpha,descrA,hybA,c_loc(x), &
+        beta,c_loc(y))
     end function
 
 #endif
@@ -36458,6 +40100,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseSbsrmm_assumed_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: bsrValA
+      integer(c_int),target,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSbsrmm_assumed_rank_devptr = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb, &
+        nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseSbsrmm_rank_0(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
@@ -36486,6 +40157,35 @@ module hipfort_hipsparse
       hipsparseSbsrmm_rank_0 = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseSbsrmm_rank_0_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: bsrValA
+      integer(c_int),target :: bsrRowPtrA
+      integer(c_int),target :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSbsrmm_rank_0_devptr = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseSbsrmm_rank_1(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
@@ -36517,6 +40217,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseSbsrmm_rank_1_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSbsrmm_rank_1_devptr = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseSbsrmm_full_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       implicit none
@@ -36544,6 +40273,35 @@ module hipfort_hipsparse
       hipsparseSbsrmm_full_rank = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseSbsrmm_full_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSbsrmm_full_rank_devptr = hipsparseSbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -36577,6 +40335,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDbsrmm_assumed_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: bsrValA
+      integer(c_int),target,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDbsrmm_assumed_rank_devptr = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb, &
+        nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseDbsrmm_rank_0(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
@@ -36605,6 +40392,35 @@ module hipfort_hipsparse
       hipsparseDbsrmm_rank_0 = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDbsrmm_rank_0_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: bsrValA
+      integer(c_int),target :: bsrRowPtrA
+      integer(c_int),target :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDbsrmm_rank_0_devptr = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseDbsrmm_rank_1(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
@@ -36636,6 +40452,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDbsrmm_rank_1_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDbsrmm_rank_1_devptr = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseDbsrmm_full_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       implicit none
@@ -36663,6 +40508,35 @@ module hipfort_hipsparse
       hipsparseDbsrmm_full_rank = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDbsrmm_full_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDbsrmm_full_rank_devptr = hipsparseDbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -36696,6 +40570,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCbsrmm_assumed_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: bsrValA
+      integer(c_int),target,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCbsrmm_assumed_rank_devptr = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb, &
+        nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseCbsrmm_rank_0(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
@@ -36724,6 +40627,35 @@ module hipfort_hipsparse
       hipsparseCbsrmm_rank_0 = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCbsrmm_rank_0_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: bsrValA
+      integer(c_int),target :: bsrRowPtrA
+      integer(c_int),target :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCbsrmm_rank_0_devptr = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseCbsrmm_rank_1(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
@@ -36755,6 +40687,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCbsrmm_rank_1_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCbsrmm_rank_1_devptr = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseCbsrmm_full_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       implicit none
@@ -36782,6 +40743,35 @@ module hipfort_hipsparse
       hipsparseCbsrmm_full_rank = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCbsrmm_full_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCbsrmm_full_rank_devptr = hipsparseCbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -36815,6 +40805,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZbsrmm_assumed_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha, &
+        descrA,bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: bsrValA
+      integer(c_int),target,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,dimension(..) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZbsrmm_assumed_rank_devptr = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb, &
+        nnzb,alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
+        ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseZbsrmm_rank_0(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
@@ -36843,6 +40862,35 @@ module hipfort_hipsparse
       hipsparseZbsrmm_rank_0 = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZbsrmm_rank_0_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: bsrValA
+      integer(c_int),target :: bsrRowPtrA
+      integer(c_int),target :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZbsrmm_rank_0_devptr = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseZbsrmm_rank_1(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA,bsrValA, &
@@ -36874,6 +40922,35 @@ module hipfort_hipsparse
         ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZbsrmm_rank_1_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZbsrmm_rank_1_devptr = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseZbsrmm_full_rank(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
         bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
       implicit none
@@ -36901,6 +40978,35 @@ module hipfort_hipsparse
       hipsparseZbsrmm_full_rank = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
         c_loc(alpha),descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B), &
         ldb,c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZbsrmm_full_rank_devptr(handle,dirA,transA,transB,mb,n,kb,nnzb,alpha,descrA, &
+        bsrValA,bsrRowPtrA,bsrColIndA,blockDim,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: mb
+      integer(c_int) :: n
+      integer(c_int) :: kb
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrValA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: blockDim
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZbsrmm_full_rank_devptr = hipsparseZbsrmm_(handle,dirA,transA,transB,mb,n,kb,nnzb, &
+        alpha,descrA,c_loc(bsrValA),c_loc(bsrRowPtrA),c_loc(bsrColIndA),blockDim,c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -37548,6 +41654,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseSbsrsm2_solve_assumed_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb, &
+        alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx, &
+        policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsm2_solve_assumed_rank_devptr = hipsparseSbsrsm2_solve_(handle,dirA,transA, &
+        transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
 #else
     function hipsparseSbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
@@ -37576,6 +41713,37 @@ module hipfort_hipsparse
       !
       hipsparseSbsrsm2_solve_rank_0 = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrsm2_solve_rank_0_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      real(c_float),target :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsm2_solve_rank_0_devptr = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37609,6 +41777,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseSbsrsm2_solve_rank_1_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,dimension(:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsm2_solve_rank_1_devptr = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
     function hipsparseSbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
       implicit none
@@ -37636,6 +41835,37 @@ module hipfort_hipsparse
       !
       hipsparseSbsrsm2_solve_full_rank = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseSbsrsm2_solve_full_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSbsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      real(c_float),target,dimension(:,:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSbsrsm2_solve_full_rank_devptr = hipsparseSbsrsm2_solve_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37672,6 +41902,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseDbsrsm2_solve_assumed_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb, &
+        alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx, &
+        policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsm2_solve_assumed_rank_devptr = hipsparseDbsrsm2_solve_(handle,dirA,transA, &
+        transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
 #else
     function hipsparseDbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
@@ -37700,6 +41961,37 @@ module hipfort_hipsparse
       !
       hipsparseDbsrsm2_solve_rank_0 = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsm2_solve_rank_0_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      real(c_double),target :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsm2_solve_rank_0_devptr = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37733,6 +42025,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseDbsrsm2_solve_rank_1_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,dimension(:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsm2_solve_rank_1_devptr = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
     function hipsparseDbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
       implicit none
@@ -37760,6 +42083,37 @@ module hipfort_hipsparse
       !
       hipsparseDbsrsm2_solve_full_rank = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseDbsrsm2_solve_full_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDbsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      real(c_double),target,dimension(:,:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDbsrsm2_solve_full_rank_devptr = hipsparseDbsrsm2_solve_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37796,6 +42150,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseCbsrsm2_solve_assumed_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb, &
+        alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx, &
+        policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsm2_solve_assumed_rank_devptr = hipsparseCbsrsm2_solve_(handle,dirA,transA, &
+        transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
 #else
     function hipsparseCbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
@@ -37824,6 +42209,37 @@ module hipfort_hipsparse
       !
       hipsparseCbsrsm2_solve_rank_0 = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsm2_solve_rank_0_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsm2_solve_rank_0_devptr = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37857,6 +42273,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseCbsrsm2_solve_rank_1_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsm2_solve_rank_1_devptr = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
     function hipsparseCbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
       implicit none
@@ -37884,6 +42331,37 @@ module hipfort_hipsparse
       !
       hipsparseCbsrsm2_solve_full_rank = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseCbsrsm2_solve_full_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCbsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCbsrsm2_solve_full_rank_devptr = hipsparseCbsrsm2_solve_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37920,6 +42398,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseZbsrsm2_solve_assumed_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb, &
+        alpha,descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx, &
+        policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: bsrSortedValA
+      integer(c_int),target,dimension(..) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(..) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsm2_solve_assumed_rank_devptr = hipsparseZbsrsm2_solve_(handle,dirA,transA, &
+        transX,mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
 #else
     function hipsparseZbsrsm2_solve_rank_0(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
@@ -37948,6 +42457,37 @@ module hipfort_hipsparse
       !
       hipsparseZbsrsm2_solve_rank_0 = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb,nrhs, &
         nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsm2_solve_rank_0_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: bsrSortedValA
+      integer(c_int),target :: bsrSortedRowPtrA
+      integer(c_int),target :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsm2_solve_rank_0_devptr = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -37981,6 +42521,37 @@ module hipfort_hipsparse
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
+    function hipsparseZbsrsm2_solve_rank_1_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsm2_solve_rank_1_devptr = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb, &
+        nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
     function hipsparseZbsrsm2_solve_full_rank(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha,descrA, &
         bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy,pBuffer)
       implicit none
@@ -38008,6 +42579,37 @@ module hipfort_hipsparse
       !
       hipsparseZbsrsm2_solve_full_rank = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX,mb, &
         nrhs,nnzb,c_loc(alpha),descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
+        c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
+    end function
+
+    function hipsparseZbsrsm2_solve_full_rank_devptr(handle,dirA,transA,transX,mb,nrhs,nnzb,alpha, &
+        descrA,bsrSortedValA,bsrSortedRowPtrA,bsrSortedColIndA,blockDim,myInfo,B,ldb,X,ldx,policy, &
+        pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZbsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transX
+      integer(c_int) :: mb
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnzb
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: bsrSortedValA
+      integer(c_int),target,dimension(:) :: bsrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: bsrSortedColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: myInfo
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: X
+      integer(c_int) :: ldx
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZbsrsm2_solve_full_rank_devptr = hipsparseZbsrsm2_solve_(handle,dirA,transA,transX, &
+        mb,nrhs,nnzb,alpha,descrA,c_loc(bsrSortedValA),c_loc(bsrSortedRowPtrA), &
         c_loc(bsrSortedColIndA),blockDim,myInfo,c_loc(B),ldb,c_loc(X),ldx,policy,pBuffer)
     end function
 
@@ -38040,6 +42642,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseScsrmm_assumed_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm_assumed_rank_devptr = hipsparseScsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseScsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38065,6 +42693,32 @@ module hipfort_hipsparse
       hipsparseScsrmm_rank_0 = hipsparseScsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrmm_rank_0_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm_rank_0_devptr = hipsparseScsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
     function hipsparseScsrmm_rank_1(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38093,6 +42747,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseScsrmm_rank_1_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm_rank_1_devptr = hipsparseScsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
     function hipsparseScsrmm_full_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38117,6 +42797,32 @@ module hipfort_hipsparse
       hipsparseScsrmm_full_rank = hipsparseScsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrmm_full_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm_full_rank_devptr = hipsparseScsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
 #endif
@@ -38149,6 +42855,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDcsrmm_assumed_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm_assumed_rank_devptr = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseDcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38174,6 +42906,32 @@ module hipfort_hipsparse
       hipsparseDcsrmm_rank_0 = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm_rank_0_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm_rank_0_devptr = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
     function hipsparseDcsrmm_rank_1(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38202,6 +42960,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDcsrmm_rank_1_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm_rank_1_devptr = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
     function hipsparseDcsrmm_full_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38226,6 +43010,32 @@ module hipfort_hipsparse
       hipsparseDcsrmm_full_rank = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm_full_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm_full_rank_devptr = hipsparseDcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
 #endif
@@ -38258,6 +43068,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCcsrmm_assumed_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm_assumed_rank_devptr = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseCcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38283,6 +43119,32 @@ module hipfort_hipsparse
       hipsparseCcsrmm_rank_0 = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm_rank_0_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm_rank_0_devptr = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
     function hipsparseCcsrmm_rank_1(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38311,6 +43173,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCcsrmm_rank_1_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm_rank_1_devptr = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
     function hipsparseCcsrmm_full_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38335,6 +43223,32 @@ module hipfort_hipsparse
       hipsparseCcsrmm_full_rank = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm_full_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm_full_rank_devptr = hipsparseCcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
 #endif
@@ -38367,6 +43281,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZcsrmm_assumed_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm_assumed_rank_devptr = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseZcsrmm_rank_0(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38392,6 +43332,32 @@ module hipfort_hipsparse
       hipsparseZcsrmm_rank_0 = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZcsrmm_rank_0_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm_rank_0_devptr = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
     function hipsparseZcsrmm_rank_1(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38420,6 +43386,32 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZcsrmm_rank_1_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm_rank_1_devptr = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
+    end function
+
     function hipsparseZcsrmm_full_rank(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38444,6 +43436,32 @@ module hipfort_hipsparse
       hipsparseZcsrmm_full_rank = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,c_loc(alpha),descrA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZcsrmm_full_rank_devptr(handle,transA,m,n,k,nnz,alpha,descrA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm_full_rank_devptr = hipsparseZcsrmm_(handle,transA,m,n,k,nnz,alpha,descrA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb,beta, &
+        c_loc(C),ldc)
     end function
 
 #endif
@@ -38477,6 +43495,33 @@ module hipfort_hipsparse
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseScsrmm2_assumed_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm2_assumed_rank_devptr = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseScsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38503,6 +43548,33 @@ module hipfort_hipsparse
       hipsparseScsrmm2_rank_0 = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrmm2_rank_0_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm2_rank_0_devptr = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseScsrmm2_rank_1(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38532,6 +43604,33 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseScsrmm2_rank_1_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm2_rank_1_devptr = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseScsrmm2_full_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38557,6 +43656,33 @@ module hipfort_hipsparse
       hipsparseScsrmm2_full_rank = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseScsrmm2_full_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrmm2_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseScsrmm2_full_rank_devptr = hipsparseScsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -38590,6 +43716,33 @@ module hipfort_hipsparse
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDcsrmm2_assumed_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm2_assumed_rank_devptr = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseDcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38616,6 +43769,33 @@ module hipfort_hipsparse
       hipsparseDcsrmm2_rank_0 = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm2_rank_0_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm2_rank_0_devptr = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseDcsrmm2_rank_1(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38645,6 +43825,33 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDcsrmm2_rank_1_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm2_rank_1_devptr = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseDcsrmm2_full_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38670,6 +43877,33 @@ module hipfort_hipsparse
       hipsparseDcsrmm2_full_rank = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDcsrmm2_full_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrmm2_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDcsrmm2_full_rank_devptr = hipsparseDcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -38703,6 +43937,33 @@ module hipfort_hipsparse
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCcsrmm2_assumed_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm2_assumed_rank_devptr = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseCcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38729,6 +43990,33 @@ module hipfort_hipsparse
       hipsparseCcsrmm2_rank_0 = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm2_rank_0_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm2_rank_0_devptr = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseCcsrmm2_rank_1(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38758,6 +44046,33 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCcsrmm2_rank_1_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm2_rank_1_devptr = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseCcsrmm2_full_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38783,6 +44098,33 @@ module hipfort_hipsparse
       hipsparseCcsrmm2_full_rank = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCcsrmm2_full_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrmm2_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCcsrmm2_full_rank_devptr = hipsparseCcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -38816,6 +44158,33 @@ module hipfort_hipsparse
         c_loc(B),ldb,c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZcsrmm2_assumed_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm2_assumed_rank_devptr = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz, &
+        alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        c_loc(B),ldb,beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseZcsrmm2_rank_0(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
@@ -38842,6 +44211,33 @@ module hipfort_hipsparse
       hipsparseZcsrmm2_rank_0 = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz,c_loc(alpha), &
         descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
         c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZcsrmm2_rank_0_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm2_rank_0_devptr = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
     end function
 
     function hipsparseZcsrmm2_rank_1(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
@@ -38871,6 +44267,33 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZcsrmm2_rank_1_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm2_rank_1_devptr = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
     function hipsparseZcsrmm2_full_rank(handle,transA,transB,m,n,k,nnz,alpha,descrA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
       implicit none
@@ -38898,6 +44321,33 @@ module hipfort_hipsparse
         c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZcsrmm2_full_rank_devptr(handle,transA,transB,m,n,k,nnz,alpha,descrA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrmm2_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZcsrmm2_full_rank_devptr = hipsparseZcsrmm2_(handle,transA,transB,m,n,k,nnz,alpha, &
+        descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(B),ldb, &
+        beta,c_loc(C),ldc)
+    end function
+
 #endif
 #endif
 #ifndef USE_CUDA_NAMES
@@ -38914,7 +44364,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float),target,dimension(..) :: alpha
+      real(c_float),target :: alpha
       type(c_ptr), value :: descrA
       real(c_float),target,dimension(..) :: csrSortedValA
       integer(c_int),target,dimension(..) :: csrSortedRowPtrA
@@ -38927,6 +44377,34 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_bufferSizeExt_assumed_rank = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseScsrsm2_bufferSizeExt_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_assumed_rank_devptr = hipsparseScsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -38959,6 +44437,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrsm2_bufferSizeExt_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_rank_0_devptr = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseScsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -38971,7 +44477,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float),target,dimension(:) :: alpha
+      real(c_float),target :: alpha
       type(c_ptr), value :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -38987,6 +44493,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrsm2_bufferSizeExt_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_rank_1_devptr = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseScsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -38999,7 +44533,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_float),target,dimension(:) :: alpha
+      real(c_float),target :: alpha
       type(c_ptr), value :: descrA
       real(c_float),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39012,6 +44546,34 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_bufferSizeExt_full_rank = hipsparseScsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseScsrsm2_bufferSizeExt_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrsm2_bufferSizeExt_full_rank_devptr = hipsparseScsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39031,7 +44593,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double),target,dimension(..) :: alpha
+      real(c_double),target :: alpha
       type(c_ptr), value :: descrA
       real(c_double),target,dimension(..) :: csrSortedValA
       integer(c_int),target,dimension(..) :: csrSortedRowPtrA
@@ -39044,6 +44606,34 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_bufferSizeExt_assumed_rank = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDcsrsm2_bufferSizeExt_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_assumed_rank_devptr = hipsparseDcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39076,6 +44666,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrsm2_bufferSizeExt_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_rank_0_devptr = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39088,7 +44706,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double),target,dimension(:) :: alpha
+      real(c_double),target :: alpha
       type(c_ptr), value :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39104,6 +44722,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrsm2_bufferSizeExt_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_rank_1_devptr = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39116,7 +44762,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      real(c_double),target,dimension(:) :: alpha
+      real(c_double),target :: alpha
       type(c_ptr), value :: descrA
       real(c_double),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39129,6 +44775,34 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_bufferSizeExt_full_rank = hipsparseDcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDcsrsm2_bufferSizeExt_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrsm2_bufferSizeExt_full_rank_devptr = hipsparseDcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39148,7 +44822,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex),target,dimension(..) :: alpha
+      complex(c_float_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_float_complex),target,dimension(..) :: csrSortedValA
       integer(c_int),target,dimension(..) :: csrSortedRowPtrA
@@ -39161,6 +44835,34 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_bufferSizeExt_assumed_rank = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCcsrsm2_bufferSizeExt_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_assumed_rank_devptr = hipsparseCcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39193,6 +44895,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrsm2_bufferSizeExt_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_rank_0_devptr = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseCcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39205,7 +44935,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex),target,dimension(:) :: alpha
+      complex(c_float_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39221,6 +44951,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrsm2_bufferSizeExt_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_rank_1_devptr = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseCcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39233,7 +44991,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_float_complex),target,dimension(:) :: alpha
+      complex(c_float_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_float_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39246,6 +45004,34 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_bufferSizeExt_full_rank = hipsparseCcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCcsrsm2_bufferSizeExt_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrsm2_bufferSizeExt_full_rank_devptr = hipsparseCcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39265,7 +45051,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex),target,dimension(..) :: alpha
+      complex(c_double_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_double_complex),target,dimension(..) :: csrSortedValA
       integer(c_int),target,dimension(..) :: csrSortedRowPtrA
@@ -39278,6 +45064,34 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_bufferSizeExt_assumed_rank = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZcsrsm2_bufferSizeExt_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs, &
+        nnz,alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_assumed_rank_devptr = hipsparseZcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39310,6 +45124,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrsm2_bufferSizeExt_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_rank_0_devptr = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseZcsrsm2_bufferSizeExt_rank_1(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39322,7 +45164,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex),target,dimension(:) :: alpha
+      complex(c_double_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39338,6 +45180,34 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrsm2_bufferSizeExt_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_rank_1_devptr = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseZcsrsm2_bufferSizeExt_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
         pBufferSizeInBytes)
@@ -39350,7 +45220,7 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: nrhs
       integer(c_int) :: nnz
-      complex(c_double_complex),target,dimension(:) :: alpha
+      complex(c_double_complex),target :: alpha
       type(c_ptr), value :: descrA
       complex(c_double_complex),target,dimension(:) :: csrSortedValA
       integer(c_int),target,dimension(:) :: csrSortedRowPtrA
@@ -39363,6 +45233,34 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_bufferSizeExt_full_rank = hipsparseZcsrsm2_bufferSizeExt_(handle,algo, &
         transA,transB,m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZcsrsm2_bufferSizeExt_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrsm2_bufferSizeExt_full_rank_devptr = hipsparseZcsrsm2_bufferSizeExt_(handle, &
+        algo,transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,c_loc(pBufferSizeInBytes))
     end function
 
@@ -39397,6 +45295,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseScsrsm2_analysis_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_analysis_assumed_rank_devptr = hipsparseScsrsm2_analysis_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseScsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39422,6 +45347,33 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_analysis_rank_0 = hipsparseScsrsm2_analysis_(handle,algo,transA,transB,m, &
         nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsm2_analysis_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_analysis_rank_0_devptr = hipsparseScsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39452,6 +45404,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseScsrsm2_analysis_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_analysis_rank_1_devptr = hipsparseScsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseScsrsm2_analysis_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -39476,6 +45455,33 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_analysis_full_rank = hipsparseScsrsm2_analysis_(handle,algo,transA,transB, &
         m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsm2_analysis_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_analysis_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_analysis_full_rank_devptr = hipsparseScsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39510,6 +45516,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseDcsrsm2_analysis_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_analysis_assumed_rank_devptr = hipsparseDcsrsm2_analysis_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseDcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39535,6 +45568,33 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_analysis_rank_0 = hipsparseDcsrsm2_analysis_(handle,algo,transA,transB,m, &
         nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_analysis_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_analysis_rank_0_devptr = hipsparseDcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39565,6 +45625,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseDcsrsm2_analysis_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_analysis_rank_1_devptr = hipsparseDcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseDcsrsm2_analysis_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -39589,6 +45676,33 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_analysis_full_rank = hipsparseDcsrsm2_analysis_(handle,algo,transA,transB, &
         m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_analysis_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_analysis_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_analysis_full_rank_devptr = hipsparseDcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39623,6 +45737,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseCcsrsm2_analysis_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_analysis_assumed_rank_devptr = hipsparseCcsrsm2_analysis_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseCcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39648,6 +45789,33 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_analysis_rank_0 = hipsparseCcsrsm2_analysis_(handle,algo,transA,transB,m, &
         nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_analysis_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_analysis_rank_0_devptr = hipsparseCcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39678,6 +45846,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseCcsrsm2_analysis_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_analysis_rank_1_devptr = hipsparseCcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseCcsrsm2_analysis_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -39702,6 +45897,33 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_analysis_full_rank = hipsparseCcsrsm2_analysis_(handle,algo,transA,transB, &
         m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_analysis_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_analysis_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_analysis_full_rank_devptr = hipsparseCcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39736,6 +45958,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseZcsrsm2_analysis_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_analysis_assumed_rank_devptr = hipsparseZcsrsm2_analysis_(handle,algo, &
+        transA,transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseZcsrsm2_analysis_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39761,6 +46010,33 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_analysis_rank_0 = hipsparseZcsrsm2_analysis_(handle,algo,transA,transB,m, &
         nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_analysis_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_analysis_rank_0_devptr = hipsparseZcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39791,6 +46067,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseZcsrsm2_analysis_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_analysis_rank_1_devptr = hipsparseZcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseZcsrsm2_analysis_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
         descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -39815,6 +46118,33 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_analysis_full_rank = hipsparseZcsrsm2_analysis_(handle,algo,transA,transB, &
         m,nrhs,nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_analysis_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_analysis_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_analysis_full_rank_devptr = hipsparseZcsrsm2_analysis_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39849,6 +46179,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseScsrsm2_solve_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_float),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_solve_assumed_rank_devptr = hipsparseScsrsm2_solve_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseScsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39874,6 +46231,33 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_solve_rank_0 = hipsparseScsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsm2_solve_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_float),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_solve_rank_0_devptr = hipsparseScsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39904,6 +46288,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseScsrsm2_solve_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_solve_rank_1_devptr = hipsparseScsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseScsrsm2_solve_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -39928,6 +46339,33 @@ module hipfort_hipsparse
       !
       hipsparseScsrsm2_solve_full_rank = hipsparseScsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseScsrsm2_solve_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_float),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrsm2_solve_full_rank_devptr = hipsparseScsrsm2_solve_(handle,algo,transA,transB, &
+        m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -39962,6 +46400,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseDcsrsm2_solve_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      real(c_double),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_solve_assumed_rank_devptr = hipsparseDcsrsm2_solve_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseDcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -39987,6 +46452,33 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_solve_rank_0 = hipsparseDcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_solve_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      real(c_double),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_solve_rank_0_devptr = hipsparseDcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40017,6 +46509,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseDcsrsm2_solve_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_solve_rank_1_devptr = hipsparseDcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseDcsrsm2_solve_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -40041,6 +46560,33 @@ module hipfort_hipsparse
       !
       hipsparseDcsrsm2_solve_full_rank = hipsparseDcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseDcsrsm2_solve_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      real(c_double),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrsm2_solve_full_rank_devptr = hipsparseDcsrsm2_solve_(handle,algo,transA,transB, &
+        m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40075,6 +46621,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseCcsrsm2_solve_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_solve_assumed_rank_devptr = hipsparseCcsrsm2_solve_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseCcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -40100,6 +46673,33 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_solve_rank_0 = hipsparseCcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_solve_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_float_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_solve_rank_0_devptr = hipsparseCcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40130,6 +46730,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseCcsrsm2_solve_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_solve_rank_1_devptr = hipsparseCcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseCcsrsm2_solve_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -40154,6 +46781,33 @@ module hipfort_hipsparse
       !
       hipsparseCcsrsm2_solve_full_rank = hipsparseCcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseCcsrsm2_solve_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_float_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrsm2_solve_full_rank_devptr = hipsparseCcsrsm2_solve_(handle,algo,transA,transB, &
+        m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40188,6 +46842,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseZcsrsm2_solve_assumed_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz, &
+        alpha,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(..) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_solve_assumed_rank_devptr = hipsparseZcsrsm2_solve_(handle,algo,transA, &
+        transB,m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
 #else
     function hipsparseZcsrsm2_solve_rank_0(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
@@ -40213,6 +46894,33 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_solve_rank_0 = hipsparseZcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_solve_rank_0_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      complex(c_double_complex),target :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_solve_rank_0_devptr = hipsparseZcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40243,6 +46951,33 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
+    function hipsparseZcsrsm2_solve_rank_1_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_solve_rank_1_devptr = hipsparseZcsrsm2_solve_(handle,algo,transA,transB,m, &
+        nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
     function hipsparseZcsrsm2_solve_full_rank(handle,algo,transA,transB,m,nrhs,nnz,alpha,descrA, &
         csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
       implicit none
@@ -40267,6 +47002,33 @@ module hipfort_hipsparse
       !
       hipsparseZcsrsm2_solve_full_rank = hipsparseZcsrsm2_solve_(handle,algo,transA,transB,m,nrhs, &
         nnz,c_loc(alpha),descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
+    end function
+
+    function hipsparseZcsrsm2_solve_full_rank_devptr(handle,algo,transA,transB,m,nrhs,nnz,alpha, &
+        descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,B,ldb,myInfo,policy,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrsm2_solve_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: nrhs
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      complex(c_double_complex),target,dimension(:,:) :: B
+      integer(c_int) :: ldb
+      type(c_ptr), value :: myInfo
+      integer(kind(HIPSPARSE_SOLVE_POLICY_NO_LEVEL)) :: policy
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrsm2_solve_full_rank_devptr = hipsparseZcsrsm2_solve_(handle,algo,transA,transB, &
+        m,nrhs,nnz,alpha,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
         c_loc(csrSortedColIndA),c_loc(B),ldb,myInfo,policy,pBuffer)
     end function
 
@@ -40297,6 +47059,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseSgemmi_assumed_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float),target,dimension(..) :: cscValB
+      integer(c_int),target,dimension(..) :: cscColPtrB
+      integer(c_int),target,dimension(..) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSgemmi_assumed_rank_devptr = hipsparseSgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseSgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
@@ -40319,6 +47104,29 @@ module hipfort_hipsparse
       !
       hipsparseSgemmi_rank_0 = hipsparseSgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseSgemmi_rank_0_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      real(c_float),target :: cscValB
+      integer(c_int),target :: cscColPtrB
+      integer(c_int),target :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_float),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSgemmi_rank_0_devptr = hipsparseSgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
     function hipsparseSgemmi_rank_1(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
@@ -40344,6 +47152,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseSgemmi_rank_1_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_float),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSgemmi_rank_1_devptr = hipsparseSgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
     function hipsparseSgemmi_full_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       implicit none
@@ -40365,6 +47196,29 @@ module hipfort_hipsparse
       !
       hipsparseSgemmi_full_rank = hipsparseSgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseSgemmi_full_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgemmi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_float),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseSgemmi_full_rank_devptr = hipsparseSgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -40394,6 +47248,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDgemmi_assumed_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double),target,dimension(..) :: cscValB
+      integer(c_int),target,dimension(..) :: cscColPtrB
+      integer(c_int),target,dimension(..) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDgemmi_assumed_rank_devptr = hipsparseDgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseDgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
@@ -40416,6 +47293,29 @@ module hipfort_hipsparse
       !
       hipsparseDgemmi_rank_0 = hipsparseDgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDgemmi_rank_0_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      real(c_double),target :: cscValB
+      integer(c_int),target :: cscColPtrB
+      integer(c_int),target :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_double),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDgemmi_rank_0_devptr = hipsparseDgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
     function hipsparseDgemmi_rank_1(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
@@ -40441,6 +47341,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseDgemmi_rank_1_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_double),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDgemmi_rank_1_devptr = hipsparseDgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
     function hipsparseDgemmi_full_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       implicit none
@@ -40462,6 +47385,29 @@ module hipfort_hipsparse
       !
       hipsparseDgemmi_full_rank = hipsparseDgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseDgemmi_full_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgemmi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_double),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseDgemmi_full_rank_devptr = hipsparseDgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -40491,6 +47437,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCgemmi_assumed_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,dimension(..) :: cscValB
+      integer(c_int),target,dimension(..) :: cscColPtrB
+      integer(c_int),target,dimension(..) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCgemmi_assumed_rank_devptr = hipsparseCgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseCgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
@@ -40513,6 +47482,29 @@ module hipfort_hipsparse
       !
       hipsparseCgemmi_rank_0 = hipsparseCgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCgemmi_rank_0_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target :: cscValB
+      integer(c_int),target :: cscColPtrB
+      integer(c_int),target :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCgemmi_rank_0_devptr = hipsparseCgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
     function hipsparseCgemmi_rank_1(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
@@ -40538,6 +47530,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseCgemmi_rank_1_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCgemmi_rank_1_devptr = hipsparseCgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
     function hipsparseCgemmi_full_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       implicit none
@@ -40559,6 +47574,29 @@ module hipfort_hipsparse
       !
       hipsparseCgemmi_full_rank = hipsparseCgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseCgemmi_full_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgemmi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      complex(c_float_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseCgemmi_full_rank_devptr = hipsparseCgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -40588,6 +47626,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZgemmi_assumed_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(..) :: cscValB
+      integer(c_int),target,dimension(..) :: cscColPtrB
+      integer(c_int),target,dimension(..) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(..) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZgemmi_assumed_rank_devptr = hipsparseZgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
 #else
     function hipsparseZgemmi_rank_0(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
@@ -40610,6 +47671,29 @@ module hipfort_hipsparse
       !
       hipsparseZgemmi_rank_0 = hipsparseZgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZgemmi_rank_0_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target :: cscValB
+      integer(c_int),target :: cscColPtrB
+      integer(c_int),target :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZgemmi_rank_0_devptr = hipsparseZgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
     function hipsparseZgemmi_rank_1(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
@@ -40635,6 +47719,29 @@ module hipfort_hipsparse
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
     end function
 
+    function hipsparseZgemmi_rank_1_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZgemmi_rank_1_devptr = hipsparseZgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
+    end function
+
     function hipsparseZgemmi_full_rank(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB,cscRowIndB, &
         beta,C,ldc)
       implicit none
@@ -40656,6 +47763,29 @@ module hipfort_hipsparse
       !
       hipsparseZgemmi_full_rank = hipsparseZgemmi_(handle,m,n,k,nnz,c_loc(alpha),c_loc(A),lda, &
         c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),c_loc(beta),c_loc(C),ldc)
+    end function
+
+    function hipsparseZgemmi_full_rank_devptr(handle,m,n,k,nnz,alpha,A,lda,cscValB,cscColPtrB, &
+        cscRowIndB,beta,C,ldc)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgemmi_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      integer(c_int) :: nnz
+      type(c_ptr),value :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(:) :: cscValB
+      integer(c_int),target,dimension(:) :: cscColPtrB
+      integer(c_int),target,dimension(:) :: cscRowIndB
+      type(c_ptr),value :: beta
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      hipsparseZgemmi_full_rank_devptr = hipsparseZgemmi_(handle,m,n,k,nnz,alpha,c_loc(A),lda, &
+        c_loc(cscValB),c_loc(cscColPtrB),c_loc(cscRowIndB),beta,c_loc(C),ldc)
     end function
 
 #endif
@@ -40686,6 +47816,30 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseXcsrgeamNnz_assumed_rank_devptr(handle,m,n,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgeamNnz_assumed_rank_devptr = hipsparseXcsrgeamNnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseXcsrgeamNnz_rank_0(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB, &
         csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
@@ -40711,6 +47865,30 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseXcsrgeamNnz_rank_0_devptr(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA, &
+        descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgeamNnz_rank_0_devptr = hipsparseXcsrgeamNnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseXcsrgeamNnz_rank_1(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA,descrB,nnzB, &
         csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       implicit none
@@ -40733,6 +47911,30 @@ module hipfort_hipsparse
       hipsparseXcsrgeamNnz_rank_1 = hipsparseXcsrgeamNnz_(handle,m,n,descrA,nnzA, &
         c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseXcsrgeamNnz_rank_1_devptr(handle,m,n,descrA,nnzA,csrRowPtrA,csrColIndA, &
+        descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeamNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgeamNnz_rank_1_devptr = hipsparseXcsrgeamNnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -40770,6 +47972,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseScsrgeam_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC, &
+        csrRowPtrC,csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      !
+      hipsparseScsrgeam_assumed_rank_devptr = hipsparseScsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
 #else
     function hipsparseScsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
@@ -40801,6 +48034,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseScsrgeam_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      !
+      hipsparseScsrgeam_rank_0_devptr = hipsparseScsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
     function hipsparseScsrgeam_rank_1(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       implicit none
@@ -40827,6 +48091,37 @@ module hipfort_hipsparse
       !
       hipsparseScsrgeam_rank_1 = hipsparseScsrgeam_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(beta),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseScsrgeam_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      !
+      hipsparseScsrgeam_rank_1_devptr = hipsparseScsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
         c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
     end function
@@ -40866,6 +48161,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseDcsrgeam_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC, &
+        csrRowPtrC,csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      !
+      hipsparseDcsrgeam_assumed_rank_devptr = hipsparseDcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
 #else
     function hipsparseDcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
@@ -40897,6 +48223,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseDcsrgeam_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      !
+      hipsparseDcsrgeam_rank_0_devptr = hipsparseDcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
     function hipsparseDcsrgeam_rank_1(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       implicit none
@@ -40923,6 +48280,37 @@ module hipfort_hipsparse
       !
       hipsparseDcsrgeam_rank_1 = hipsparseDcsrgeam_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(beta),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseDcsrgeam_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      !
+      hipsparseDcsrgeam_rank_1_devptr = hipsparseDcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
         c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
     end function
@@ -40962,6 +48350,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseCcsrgeam_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC, &
+        csrRowPtrC,csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      !
+      hipsparseCcsrgeam_assumed_rank_devptr = hipsparseCcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
 #else
     function hipsparseCcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
@@ -40993,6 +48412,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseCcsrgeam_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      !
+      hipsparseCcsrgeam_rank_0_devptr = hipsparseCcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
     function hipsparseCcsrgeam_rank_1(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       implicit none
@@ -41019,6 +48469,37 @@ module hipfort_hipsparse
       !
       hipsparseCcsrgeam_rank_1 = hipsparseCcsrgeam_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(beta),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseCcsrgeam_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      !
+      hipsparseCcsrgeam_rank_1_devptr = hipsparseCcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
         c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
     end function
@@ -41058,6 +48539,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseZcsrgeam_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC, &
+        csrRowPtrC,csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      !
+      hipsparseZcsrgeam_assumed_rank_devptr = hipsparseZcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
 #else
     function hipsparseZcsrgeam_rank_0(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
@@ -41089,6 +48601,37 @@ module hipfort_hipsparse
         c_loc(csrColIndC))
     end function
 
+    function hipsparseZcsrgeam_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      !
+      hipsparseZcsrgeam_rank_0_devptr = hipsparseZcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
     function hipsparseZcsrgeam_rank_1(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA,csrColIndA, &
         beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC,csrColIndC)
       implicit none
@@ -41115,6 +48658,37 @@ module hipfort_hipsparse
       !
       hipsparseZcsrgeam_rank_1 = hipsparseZcsrgeam_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(beta),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
+    end function
+
+    function hipsparseZcsrgeam_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,beta,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,descrC,csrValC,csrRowPtrC, &
+        csrColIndC)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      !
+      hipsparseZcsrgeam_rank_1_devptr = hipsparseZcsrgeam_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),beta,descrB,nnzB,c_loc(csrValB), &
         c_loc(csrRowPtrB),c_loc(csrColIndB),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
     end function
@@ -41156,6 +48730,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrgeam2_bufferSizeExt_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgeam2_bufferSizeExt_assumed_rank_devptr = hipsparseScsrgeam2_bufferSizeExt_( &
+        handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC), &
+        c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseScsrgeam2_bufferSizeExt_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41190,6 +48798,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrgeam2_bufferSizeExt_rank_0_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgeam2_bufferSizeExt_rank_0_devptr = hipsparseScsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseScsrgeam2_bufferSizeExt_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
@@ -41221,6 +48863,40 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(beta),descrB,nnzB,c_loc(csrSortedValB), &
         c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC), &
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseScsrgeam2_bufferSizeExt_rank_1_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgeam2_bufferSizeExt_rank_1_devptr = hipsparseScsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -41259,6 +48935,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrgeam2_bufferSizeExt_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgeam2_bufferSizeExt_assumed_rank_devptr = hipsparseDcsrgeam2_bufferSizeExt_( &
+        handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC), &
+        c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseDcsrgeam2_bufferSizeExt_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41293,6 +49003,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrgeam2_bufferSizeExt_rank_0_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgeam2_bufferSizeExt_rank_0_devptr = hipsparseDcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDcsrgeam2_bufferSizeExt_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
@@ -41324,6 +49068,40 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(beta),descrB,nnzB,c_loc(csrSortedValB), &
         c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC), &
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDcsrgeam2_bufferSizeExt_rank_1_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgeam2_bufferSizeExt_rank_1_devptr = hipsparseDcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -41362,6 +49140,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrgeam2_bufferSizeExt_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgeam2_bufferSizeExt_assumed_rank_devptr = hipsparseCcsrgeam2_bufferSizeExt_( &
+        handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC), &
+        c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseCcsrgeam2_bufferSizeExt_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41396,6 +49208,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrgeam2_bufferSizeExt_rank_0_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgeam2_bufferSizeExt_rank_0_devptr = hipsparseCcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseCcsrgeam2_bufferSizeExt_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBufferSizeInBytes)
@@ -41427,6 +49273,40 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(beta),descrB,nnzB,c_loc(csrSortedValB), &
         c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC), &
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCcsrgeam2_bufferSizeExt_rank_1_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgeam2_bufferSizeExt_rank_1_devptr = hipsparseCcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -41465,6 +49345,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrgeam2_bufferSizeExt_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgeam2_bufferSizeExt_assumed_rank_devptr = hipsparseZcsrgeam2_bufferSizeExt_( &
+        handle,m,n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA), &
+        c_loc(csrSortedColIndA),beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC), &
+        c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseZcsrgeam2_bufferSizeExt_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41497,6 +49411,40 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndA),c_loc(beta),descrB,nnzB,c_loc(csrSortedValB), &
         c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC,c_loc(csrSortedValC), &
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZcsrgeam2_bufferSizeExt_rank_0_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgeam2_bufferSizeExt_rank_0_devptr = hipsparseZcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
     end function
 
     function hipsparseZcsrgeam2_bufferSizeExt_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
@@ -41532,6 +49480,40 @@ module hipfort_hipsparse
         c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrgeam2_bufferSizeExt_rank_1_devptr(handle,m,n,alpha,descrA,nnzA, &
+        csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB, &
+        csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgeam2_bufferSizeExt_rank_1_devptr = hipsparseZcsrgeam2_bufferSizeExt_(handle,m, &
+        n,alpha,descrA,nnzA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA), &
+        beta,descrB,nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB), &
+        descrC,c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseXcsrgeam2Nnz_assumed_rank(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
@@ -41558,6 +49540,32 @@ module hipfort_hipsparse
       hipsparseXcsrgeam2Nnz_assumed_rank = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
         c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),c_loc(nnzTotalDevHostPtr),workspace)
+    end function
+
+    function hipsparseXcsrgeam2Nnz_assumed_rank_devptr(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
+        csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
+        nnzTotalDevHostPtr,workspace)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: workspace
+      !
+      hipsparseXcsrgeam2Nnz_assumed_rank_devptr = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
     end function
 
 #else
@@ -41587,6 +49595,32 @@ module hipfort_hipsparse
         c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),c_loc(nnzTotalDevHostPtr),workspace)
     end function
 
+    function hipsparseXcsrgeam2Nnz_rank_0_devptr(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
+        csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
+        nnzTotalDevHostPtr,workspace)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrSortedRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: workspace
+      !
+      hipsparseXcsrgeam2Nnz_rank_0_devptr = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
+    end function
+
     function hipsparseXcsrgeam2Nnz_rank_1(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
         csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
         nnzTotalDevHostPtr,workspace)
@@ -41611,6 +49645,32 @@ module hipfort_hipsparse
       hipsparseXcsrgeam2Nnz_rank_1 = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
         c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
         c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),c_loc(nnzTotalDevHostPtr),workspace)
+    end function
+
+    function hipsparseXcsrgeam2Nnz_rank_1_devptr(handle,m,n,descrA,nnzA,csrSortedRowPtrA, &
+        csrSortedColIndA,descrB,nnzB,csrSortedRowPtrB,csrSortedColIndB,descrC,csrSortedRowPtrC, &
+        nnzTotalDevHostPtr,workspace)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgeam2Nnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: workspace
+      !
+      hipsparseXcsrgeam2Nnz_rank_1_devptr = hipsparseXcsrgeam2Nnz_(handle,m,n,descrA,nnzA, &
+        c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),descrB,nnzB,c_loc(csrSortedRowPtrB), &
+        c_loc(csrSortedColIndB),descrC,c_loc(csrSortedRowPtrC),nnzTotalDevHostPtr,workspace)
     end function
 
 #endif
@@ -41647,6 +49707,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseScsrgeam2_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgeam2_assumed_rank_devptr = hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
 #else
     function hipsparseScsrgeam2_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41680,6 +49772,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseScsrgeam2_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgeam2_rank_0_devptr = hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
     function hipsparseScsrgeam2_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -41709,6 +49833,38 @@ module hipfort_hipsparse
       hipsparseScsrgeam2_rank_1 = hipsparseScsrgeam2_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(beta),descrB, &
         nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseScsrgeam2_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgeam2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgeam2_rank_1_devptr = hipsparseScsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
@@ -41746,6 +49902,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseDcsrgeam2_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgeam2_assumed_rank_devptr = hipsparseDcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
 #else
     function hipsparseDcsrgeam2_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41779,6 +49967,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseDcsrgeam2_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgeam2_rank_0_devptr = hipsparseDcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
     function hipsparseDcsrgeam2_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -41808,6 +50028,38 @@ module hipfort_hipsparse
       hipsparseDcsrgeam2_rank_1 = hipsparseDcsrgeam2_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(beta),descrB, &
         nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseDcsrgeam2_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgeam2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgeam2_rank_1_devptr = hipsparseDcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
@@ -41845,6 +50097,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseCcsrgeam2_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgeam2_assumed_rank_devptr = hipsparseCcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
 #else
     function hipsparseCcsrgeam2_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41878,6 +50162,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseCcsrgeam2_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgeam2_rank_0_devptr = hipsparseCcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
     function hipsparseCcsrgeam2_rank_1(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
         csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
@@ -41907,6 +50223,38 @@ module hipfort_hipsparse
       hipsparseCcsrgeam2_rank_1 = hipsparseCcsrgeam2_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(beta),descrB, &
         nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseCcsrgeam2_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgeam2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgeam2_rank_1_devptr = hipsparseCcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
@@ -41944,6 +50292,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseZcsrgeam2_assumed_rank_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(..) :: csrSortedValA
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(..) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(..) :: csrSortedValB
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(..) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(..) :: csrSortedValC
+      integer(c_int),target,dimension(..) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(..) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgeam2_assumed_rank_devptr = hipsparseZcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
 #else
     function hipsparseZcsrgeam2_rank_0(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
         csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
@@ -41974,6 +50354,38 @@ module hipfort_hipsparse
       hipsparseZcsrgeam2_rank_0 = hipsparseZcsrgeam2_(handle,m,n,c_loc(alpha),descrA,nnzA, &
         c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),c_loc(beta),descrB, &
         nnzB,c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
+    function hipsparseZcsrgeam2_rank_0_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target :: csrSortedValA
+      integer(c_int),target :: csrSortedRowPtrA
+      integer(c_int),target :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target :: csrSortedValB
+      integer(c_int),target :: csrSortedRowPtrB
+      integer(c_int),target :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target :: csrSortedValC
+      integer(c_int),target :: csrSortedRowPtrC
+      integer(c_int),target :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgeam2_rank_0_devptr = hipsparseZcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
@@ -42009,6 +50421,38 @@ module hipfort_hipsparse
         c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
     end function
 
+    function hipsparseZcsrgeam2_rank_1_devptr(handle,m,n,alpha,descrA,nnzA,csrSortedValA, &
+        csrSortedRowPtrA,csrSortedColIndA,beta,descrB,nnzB,csrSortedValB,csrSortedRowPtrB, &
+        csrSortedColIndB,descrC,csrSortedValC,csrSortedRowPtrC,csrSortedColIndC,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgeam2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(:) :: csrSortedValA
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrA
+      integer(c_int),target,dimension(:) :: csrSortedColIndA
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(:) :: csrSortedValB
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrB
+      integer(c_int),target,dimension(:) :: csrSortedColIndB
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(:) :: csrSortedValC
+      integer(c_int),target,dimension(:) :: csrSortedRowPtrC
+      integer(c_int),target,dimension(:) :: csrSortedColIndC
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgeam2_rank_1_devptr = hipsparseZcsrgeam2_(handle,m,n,alpha,descrA,nnzA, &
+        c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),beta,descrB,nnzB, &
+        c_loc(csrSortedValB),c_loc(csrSortedRowPtrB),c_loc(csrSortedColIndB),descrC, &
+        c_loc(csrSortedValC),c_loc(csrSortedRowPtrC),c_loc(csrSortedColIndC),pBuffer)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -42039,6 +50483,34 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseXcsrgemmNnz_assumed_rank_devptr(handle,transA,transB,m,n,k,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgemmNnz_assumed_rank_devptr = hipsparseXcsrgemmNnz_(handle,transA,transB,m,n,k, &
+        descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseXcsrgemmNnz_rank_0(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
@@ -42067,6 +50539,33 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseXcsrgemmNnz_rank_0_devptr(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgemmNnz_rank_0_devptr = hipsparseXcsrgemmNnz_(handle,transA,transB,m,n,k, &
+        descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseXcsrgemmNnz_rank_1(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
       implicit none
@@ -42092,6 +50591,33 @@ module hipfort_hipsparse
       hipsparseXcsrgemmNnz_rank_1 = hipsparseXcsrgemmNnz_(handle,transA,transB,m,n,k,descrA,nnzA, &
         c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseXcsrgemmNnz_rank_1_devptr(handle,transA,transB,m,n,k,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrC,csrRowPtrC,nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemmNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)) :: transB
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseXcsrgemmNnz_rank_1_devptr = hipsparseXcsrgemmNnz_(handle,transA,transB,m,n,k, &
+        descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),descrC,c_loc(csrRowPtrC),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -42526,6 +51052,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrgemm2_bufferSizeExt_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgemm2_bufferSizeExt_assumed_rank_devptr = hipsparseScsrgemm2_bufferSizeExt_( &
+        handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD), &
+        myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseScsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
@@ -42559,6 +51117,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseScsrgemm2_bufferSizeExt_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgemm2_bufferSizeExt_rank_0_devptr = hipsparseScsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseScsrgemm2_bufferSizeExt_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -42589,6 +51179,38 @@ module hipfort_hipsparse
         c_loc(alpha),descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrRowPtrD), &
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseScsrgemm2_bufferSizeExt_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseScsrgemm2_bufferSizeExt_rank_1_devptr = hipsparseScsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -42627,6 +51249,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrgemm2_bufferSizeExt_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgemm2_bufferSizeExt_assumed_rank_devptr = hipsparseDcsrgemm2_bufferSizeExt_( &
+        handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD), &
+        myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseDcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
@@ -42660,6 +51314,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDcsrgemm2_bufferSizeExt_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgemm2_bufferSizeExt_rank_0_devptr = hipsparseDcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDcsrgemm2_bufferSizeExt_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -42690,6 +51376,38 @@ module hipfort_hipsparse
         c_loc(alpha),descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrRowPtrD), &
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDcsrgemm2_bufferSizeExt_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDcsrgemm2_bufferSizeExt_rank_1_devptr = hipsparseDcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -42728,6 +51446,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrgemm2_bufferSizeExt_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgemm2_bufferSizeExt_assumed_rank_devptr = hipsparseCcsrgemm2_bufferSizeExt_( &
+        handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD), &
+        myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseCcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
@@ -42761,6 +51511,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseCcsrgemm2_bufferSizeExt_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgemm2_bufferSizeExt_rank_0_devptr = hipsparseCcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseCcsrgemm2_bufferSizeExt_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -42791,6 +51573,38 @@ module hipfort_hipsparse
         c_loc(alpha),descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrRowPtrD), &
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCcsrgemm2_bufferSizeExt_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCcsrgemm2_bufferSizeExt_rank_1_devptr = hipsparseCcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -42829,6 +51643,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrgemm2_bufferSizeExt_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgemm2_bufferSizeExt_assumed_rank_devptr = hipsparseZcsrgemm2_bufferSizeExt_( &
+        handle,m,n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD), &
+        myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
 #else
     function hipsparseZcsrgemm2_bufferSizeExt_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
@@ -42862,6 +51708,38 @@ module hipfort_hipsparse
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseZcsrgemm2_bufferSizeExt_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgemm2_bufferSizeExt_rank_0_devptr = hipsparseZcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseZcsrgemm2_bufferSizeExt_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD,csrColIndD, &
         myInfo,pBufferSizeInBytes)
@@ -42892,6 +51770,38 @@ module hipfort_hipsparse
         c_loc(alpha),descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB, &
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrRowPtrD), &
         c_loc(csrColIndD),myInfo,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZcsrgemm2_bufferSizeExt_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrRowPtrD, &
+        csrColIndD,myInfo,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: myInfo
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZcsrgemm2_bufferSizeExt_rank_1_devptr = hipsparseZcsrgemm2_bufferSizeExt_(handle,m, &
+        n,k,alpha,descrA,nnzA,c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB), &
+        c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),myInfo, &
+        c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -42931,6 +51841,39 @@ module hipfort_hipsparse
         c_loc(nnzTotalDevHostPtr),myInfo,pBuffer)
     end function
 
+    function hipsparseXcsrgemm2Nnz_assumed_rank_devptr(handle,m,n,k,descrA,nnzA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC, &
+        csrRowPtrC,nnzTotalDevHostPtr,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseXcsrgemm2Nnz_assumed_rank_devptr = hipsparseXcsrgemm2Nnz_(handle,m,n,k,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+    end function
+
 #else
     function hipsparseXcsrgemm2Nnz_rank_0(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA,descrB, &
         nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
@@ -42965,6 +51908,39 @@ module hipfort_hipsparse
         c_loc(nnzTotalDevHostPtr),myInfo,pBuffer)
     end function
 
+    function hipsparseXcsrgemm2Nnz_rank_0_devptr(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA, &
+        descrB,nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseXcsrgemm2Nnz_rank_0_devptr = hipsparseXcsrgemm2Nnz_(handle,m,n,k,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+    end function
+
     function hipsparseXcsrgemm2Nnz_rank_1(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA,descrB, &
         nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
         nnzTotalDevHostPtr,myInfo,pBuffer)
@@ -42996,6 +51972,39 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
         descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC), &
         c_loc(nnzTotalDevHostPtr),myInfo,pBuffer)
+    end function
+
+    function hipsparseXcsrgemm2Nnz_rank_1_devptr(handle,m,n,k,descrA,nnzA,csrRowPtrA,csrColIndA, &
+        descrB,nnzB,csrRowPtrB,csrColIndB,descrD,nnzD,csrRowPtrD,csrColIndD,descrC,csrRowPtrC, &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsrgemm2Nnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseXcsrgemm2Nnz_rank_1_devptr = hipsparseXcsrgemm2Nnz_(handle,m,n,k,descrA,nnzA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrRowPtrB),c_loc(csrColIndB), &
+        descrD,nnzD,c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,pBuffer)
     end function
 
 #endif
@@ -43042,6 +52051,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseScsrgemm2_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD, &
+        csrRowPtrD,csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_float),target,dimension(..) :: csrValD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgemm2_assumed_rank_devptr = hipsparseScsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
 #else
     function hipsparseScsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
@@ -43083,6 +52131,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseScsrgemm2_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_float),target :: csrValD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgemm2_rank_0_devptr = hipsparseScsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
     function hipsparseScsrgemm2_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -43121,6 +52208,45 @@ module hipfort_hipsparse
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrValD), &
         c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseScsrgemm2_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrgemm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_float),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_float),target,dimension(:) :: csrValD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseScsrgemm2_rank_1_devptr = hipsparseScsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
 #endif
@@ -43167,6 +52293,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseDcsrgemm2_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD, &
+        csrRowPtrD,csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_double),target,dimension(..) :: csrValD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgemm2_assumed_rank_devptr = hipsparseDcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
 #else
     function hipsparseDcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
@@ -43208,6 +52373,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseDcsrgemm2_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_double),target :: csrValD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgemm2_rank_0_devptr = hipsparseDcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
     function hipsparseDcsrgemm2_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -43246,6 +52450,45 @@ module hipfort_hipsparse
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrValD), &
         c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseDcsrgemm2_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrgemm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      real(c_double),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      real(c_double),target,dimension(:) :: csrValD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDcsrgemm2_rank_1_devptr = hipsparseDcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
 #endif
@@ -43292,6 +52535,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseCcsrgemm2_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD, &
+        csrRowPtrD,csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_float_complex),target,dimension(..) :: csrValD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgemm2_assumed_rank_devptr = hipsparseCcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
 #else
     function hipsparseCcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
@@ -43333,6 +52615,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseCcsrgemm2_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_float_complex),target :: csrValD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgemm2_rank_0_devptr = hipsparseCcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
     function hipsparseCcsrgemm2_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -43371,6 +52692,45 @@ module hipfort_hipsparse
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrValD), &
         c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseCcsrgemm2_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrgemm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_float_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_float_complex),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_float_complex),target,dimension(:) :: csrValD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_float_complex),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCcsrgemm2_rank_1_devptr = hipsparseCcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
 #endif
@@ -43417,6 +52777,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseZcsrgemm2_assumed_rank_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA, &
+        csrRowPtrA,csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD, &
+        csrRowPtrD,csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(..) :: csrValB
+      integer(c_int),target,dimension(..) :: csrRowPtrB
+      integer(c_int),target,dimension(..) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_double_complex),target,dimension(..) :: csrValD
+      integer(c_int),target,dimension(..) :: csrRowPtrD
+      integer(c_int),target,dimension(..) :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgemm2_assumed_rank_devptr = hipsparseZcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
 #else
     function hipsparseZcsrgemm2_rank_0(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
@@ -43458,6 +52857,45 @@ module hipfort_hipsparse
         c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
+    function hipsparseZcsrgemm2_rank_0_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target :: csrValB
+      integer(c_int),target :: csrRowPtrB
+      integer(c_int),target :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_double_complex),target :: csrValD
+      integer(c_int),target :: csrRowPtrD
+      integer(c_int),target :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgemm2_rank_0_devptr = hipsparseZcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
     function hipsparseZcsrgemm2_rank_1(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
         csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
         csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
@@ -43496,6 +52934,45 @@ module hipfort_hipsparse
         c_loc(csrRowPtrB),c_loc(csrColIndB),c_loc(beta),descrD,nnzD,c_loc(csrValD), &
         c_loc(csrRowPtrD),c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
         c_loc(csrColIndC),myInfo,pBuffer)
+    end function
+
+    function hipsparseZcsrgemm2_rank_1_devptr(handle,m,n,k,alpha,descrA,nnzA,csrValA,csrRowPtrA, &
+        csrColIndA,descrB,nnzB,csrValB,csrRowPtrB,csrColIndB,beta,descrD,nnzD,csrValD,csrRowPtrD, &
+        csrColIndD,descrC,csrValC,csrRowPtrC,csrColIndC,myInfo,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrgemm2_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr), value :: descrA
+      integer(c_int) :: nnzA
+      complex(c_double_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr), value :: descrB
+      integer(c_int) :: nnzB
+      complex(c_double_complex),target,dimension(:) :: csrValB
+      integer(c_int),target,dimension(:) :: csrRowPtrB
+      integer(c_int),target,dimension(:) :: csrColIndB
+      type(c_ptr),value :: beta
+      type(c_ptr), value :: descrD
+      integer(c_int) :: nnzD
+      complex(c_double_complex),target,dimension(:) :: csrValD
+      integer(c_int),target,dimension(:) :: csrRowPtrD
+      integer(c_int),target,dimension(:) :: csrColIndD
+      type(c_ptr), value :: descrC
+      complex(c_double_complex),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZcsrgemm2_rank_1_devptr = hipsparseZcsrgemm2_(handle,m,n,k,alpha,descrA,nnzA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),descrB,nnzB,c_loc(csrValB), &
+        c_loc(csrRowPtrB),c_loc(csrColIndB),beta,descrD,nnzD,c_loc(csrValD),c_loc(csrRowPtrD), &
+        c_loc(csrColIndD),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),myInfo,pBuffer)
     end function
 
 #endif
@@ -48137,6 +57614,462 @@ module hipfort_hipsparse
 
 #endif
 #ifdef USE_ASSUMED_RANK
+    function hipsparseSgtsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,dimension(..) :: dl
+      real(c_float),target,dimension(..) :: d
+      real(c_float),target,dimension(..) :: du
+      real(c_float),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgtsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseSgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_0 = &
+        hipsparseSgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgtsvInterleavedBatch_bufferSizeExt_rank_1 = &
+        hipsparseSgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseDgtsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,dimension(..) :: dl
+      real(c_double),target,dimension(..) :: d
+      real(c_double),target,dimension(..) :: du
+      real(c_double),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgtsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseDgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_0 = &
+        hipsparseDgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgtsvInterleavedBatch_bufferSizeExt_rank_1 = &
+        hipsparseDgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCgtsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,dimension(..) :: dl
+      complex(c_float_complex),target,dimension(..) :: d
+      complex(c_float_complex),target,dimension(..) :: du
+      complex(c_float_complex),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgtsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseCgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_0 = &
+        hipsparseCgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgtsvInterleavedBatch_bufferSizeExt_rank_1 = &
+        hipsparseCgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseZgtsvInterleavedBatch_bufferSizeExt_assumed_rank(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,dimension(..) :: dl
+      complex(c_double_complex),target,dimension(..) :: d
+      complex(c_double_complex),target,dimension(..) :: du
+      complex(c_double_complex),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgtsvInterleavedBatch_bufferSizeExt_assumed_rank = &
+        hipsparseZgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_0 = &
+        hipsparseZgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,dl,d,du,x, &
+        batchCount,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgtsvInterleavedBatch_bufferSizeExt_rank_1 = &
+        hipsparseZgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,c_loc(dl),c_loc(d),c_loc(du), &
+        c_loc(x),batchCount,c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseSgtsvInterleavedBatch_assumed_rank(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,dimension(..) :: dl
+      real(c_float),target,dimension(..) :: d
+      real(c_float),target,dimension(..) :: du
+      real(c_float),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgtsvInterleavedBatch_assumed_rank = hipsparseSgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#else
+    function hipsparseSgtsvInterleavedBatch_rank_0(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target :: dl
+      real(c_float),target :: d
+      real(c_float),target :: du
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgtsvInterleavedBatch_rank_0 = hipsparseSgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseSgtsvInterleavedBatch_rank_1(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_float),target,dimension(:) :: dl
+      real(c_float),target,dimension(:) :: d
+      real(c_float),target,dimension(:) :: du
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseSgtsvInterleavedBatch_rank_1 = hipsparseSgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseDgtsvInterleavedBatch_assumed_rank(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,dimension(..) :: dl
+      real(c_double),target,dimension(..) :: d
+      real(c_double),target,dimension(..) :: du
+      real(c_double),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgtsvInterleavedBatch_assumed_rank = hipsparseDgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#else
+    function hipsparseDgtsvInterleavedBatch_rank_0(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target :: dl
+      real(c_double),target :: d
+      real(c_double),target :: du
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgtsvInterleavedBatch_rank_0 = hipsparseDgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseDgtsvInterleavedBatch_rank_1(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      real(c_double),target,dimension(:) :: dl
+      real(c_double),target,dimension(:) :: d
+      real(c_double),target,dimension(:) :: du
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseDgtsvInterleavedBatch_rank_1 = hipsparseDgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCgtsvInterleavedBatch_assumed_rank(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,dimension(..) :: dl
+      complex(c_float_complex),target,dimension(..) :: d
+      complex(c_float_complex),target,dimension(..) :: du
+      complex(c_float_complex),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgtsvInterleavedBatch_assumed_rank = hipsparseCgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#else
+    function hipsparseCgtsvInterleavedBatch_rank_0(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target :: dl
+      complex(c_float_complex),target :: d
+      complex(c_float_complex),target :: du
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgtsvInterleavedBatch_rank_0 = hipsparseCgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseCgtsvInterleavedBatch_rank_1(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_float_complex),target,dimension(:) :: dl
+      complex(c_float_complex),target,dimension(:) :: d
+      complex(c_float_complex),target,dimension(:) :: du
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseCgtsvInterleavedBatch_rank_1 = hipsparseCgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseZgtsvInterleavedBatch_assumed_rank(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,dimension(..) :: dl
+      complex(c_double_complex),target,dimension(..) :: d
+      complex(c_double_complex),target,dimension(..) :: du
+      complex(c_double_complex),target,dimension(..) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgtsvInterleavedBatch_assumed_rank = hipsparseZgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#else
+    function hipsparseZgtsvInterleavedBatch_rank_0(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target :: dl
+      complex(c_double_complex),target :: d
+      complex(c_double_complex),target :: du
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgtsvInterleavedBatch_rank_0 = hipsparseZgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseZgtsvInterleavedBatch_rank_1(handle,algo,m,dl,d,du,x,batchCount,pBuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      complex(c_double_complex),target,dimension(:) :: dl
+      complex(c_double_complex),target,dimension(:) :: d
+      complex(c_double_complex),target,dimension(:) :: du
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr), value :: pBuffer
+      !
+      hipsparseZgtsvInterleavedBatch_rank_1 = hipsparseZgtsvInterleavedBatch_(handle,algo,m, &
+        c_loc(dl),c_loc(d),c_loc(du),c_loc(x),batchCount,pBuffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
     function hipsparseSgtsv2_nopivot_bufferSizeExt_assumed_rank(handle,m,n,dl,d,du,B,ldb, &
         pBufferSizeInBytes)
       implicit none
@@ -50120,6 +60053,26 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),c_loc(bsrNnzb))
     end function
 
+    function hipsparseXcsr2bsrNnz_assumed_rank_devptr(handle,dirA,m,n,descrA,csrRowPtrA, &
+        csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: bsrRowPtrC
+      type(c_ptr),value :: bsrNnzb
+      !
+      hipsparseXcsr2bsrNnz_assumed_rank_devptr = hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),bsrNnzb)
+    end function
+
 #else
     function hipsparseXcsr2bsrNnz_rank_0(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim, &
         descrC,bsrRowPtrC,bsrNnzb)
@@ -50141,6 +60094,26 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),c_loc(bsrNnzb))
     end function
 
+    function hipsparseXcsr2bsrNnz_rank_0_devptr(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrRowPtrC,bsrNnzb)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: bsrRowPtrC
+      type(c_ptr),value :: bsrNnzb
+      !
+      hipsparseXcsr2bsrNnz_rank_0_devptr = hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),bsrNnzb)
+    end function
+
     function hipsparseXcsr2bsrNnz_rank_1(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim, &
         descrC,bsrRowPtrC,bsrNnzb)
       implicit none
@@ -50159,6 +60132,26 @@ module hipfort_hipsparse
       !
       hipsparseXcsr2bsrNnz_rank_1 = hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA, &
         c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),c_loc(bsrNnzb))
+    end function
+
+    function hipsparseXcsr2bsrNnz_rank_1_devptr(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA, &
+        blockDim,descrC,bsrRowPtrC,bsrNnzb)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      integer(c_int) :: blockDim
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: bsrRowPtrC
+      type(c_ptr),value :: bsrNnzb
+      !
+      hipsparseXcsr2bsrNnz_rank_1_devptr = hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA, &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),blockDim,descrC,c_loc(bsrRowPtrC),bsrNnzb)
     end function
 
 #endif
@@ -50778,6 +60771,162 @@ module hipfort_hipsparse
     end function
 
 #endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCsr2cscEx2_bufferSize_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr, &
+        csrColInd,cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target,dimension(..) :: cscColPtr
+      integer(c_int),target,dimension(..) :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCsr2cscEx2_bufferSize_assumed_rank = hipsparseCsr2cscEx2_bufferSize_(handle,m,n, &
+        nnz,csrVal,c_loc(csrRowPtr),c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd), &
+        valType,copyValues,idxBase,alg,c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseCsr2cscEx2_bufferSize_rank_0(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target :: cscColPtr
+      integer(c_int),target :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCsr2cscEx2_bufferSize_rank_0 = hipsparseCsr2cscEx2_bufferSize_(handle,m,n,nnz, &
+        csrVal,c_loc(csrRowPtr),c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd),valType, &
+        copyValues,idxBase,alg,c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCsr2cscEx2_bufferSize_rank_1(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd, &
+        cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target,dimension(:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCsr2cscEx2_bufferSize_rank_1 = hipsparseCsr2cscEx2_bufferSize_(handle,m,n,nnz, &
+        csrVal,c_loc(csrRowPtr),c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd),valType, &
+        copyValues,idxBase,alg,c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCsr2cscEx2_assumed_rank(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal, &
+        cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target,dimension(..) :: cscColPtr
+      integer(c_int),target,dimension(..) :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      type(c_ptr), value :: buffer
+      !
+      hipsparseCsr2cscEx2_assumed_rank = hipsparseCsr2cscEx2_(handle,m,n,nnz,csrVal, &
+        c_loc(csrRowPtr),c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd),valType, &
+        copyValues,idxBase,alg,buffer)
+    end function
+
+#else
+    function hipsparseCsr2cscEx2_rank_0(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal, &
+        cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target :: cscColPtr
+      integer(c_int),target :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      type(c_ptr), value :: buffer
+      !
+      hipsparseCsr2cscEx2_rank_0 = hipsparseCsr2cscEx2_(handle,m,n,nnz,csrVal,c_loc(csrRowPtr), &
+        c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd),valType,copyValues,idxBase,alg, &
+        buffer)
+    end function
+
+    function hipsparseCsr2cscEx2_rank_1(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal, &
+        cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnz
+      type(c_ptr), value :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: cscVal
+      integer(c_int),target,dimension(:) :: cscColPtr
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int) :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)) :: alg
+      type(c_ptr), value :: buffer
+      !
+      hipsparseCsr2cscEx2_rank_1 = hipsparseCsr2cscEx2_(handle,m,n,nnz,csrVal,c_loc(csrRowPtr), &
+        c_loc(csrColInd),cscVal,c_loc(cscColPtr),c_loc(cscRowInd),valType,copyValues,idxBase,alg, &
+        buffer)
+    end function
+
 #endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseScsr2csr_compress_assumed_rank(handle,m,n,descrA,csrValA,csrColIndA, &
@@ -51895,6 +62044,29 @@ module hipfort_hipsparse
         c_loc(bsrNnzDevhost),pbuffer)
     end function
 
+    function hipsparseXcsr2gebsrNnz_assumed_rank_devptr(handle,dir,m,n,csr_descr,csrRowPtr, &
+        csrColInd,bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: csr_descr
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      type(c_ptr), value :: bsr_descr
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr),value :: bsrNnzDevhost
+      type(c_ptr), value :: pbuffer
+      !
+      hipsparseXcsr2gebsrNnz_assumed_rank_devptr = hipsparseXcsr2gebsrNnz_(handle,dir,m,n, &
+        csr_descr,c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim, &
+        colBlockDim,bsrNnzDevhost,pbuffer)
+    end function
+
 #else
     function hipsparseXcsr2gebsrNnz_rank_0(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr, &
         bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
@@ -51919,6 +62091,29 @@ module hipfort_hipsparse
         c_loc(bsrNnzDevhost),pbuffer)
     end function
 
+    function hipsparseXcsr2gebsrNnz_rank_0_devptr(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd, &
+        bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: csr_descr
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      type(c_ptr), value :: bsr_descr
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr),value :: bsrNnzDevhost
+      type(c_ptr), value :: pbuffer
+      !
+      hipsparseXcsr2gebsrNnz_rank_0_devptr = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr, &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim, &
+        bsrNnzDevhost,pbuffer)
+    end function
+
     function hipsparseXcsr2gebsrNnz_rank_1(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr, &
         bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
       implicit none
@@ -51940,6 +62135,29 @@ module hipfort_hipsparse
       hipsparseXcsr2gebsrNnz_rank_1 = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr, &
         c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim, &
         c_loc(bsrNnzDevhost),pbuffer)
+    end function
+
+    function hipsparseXcsr2gebsrNnz_rank_1_devptr(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd, &
+        bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dir
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: csr_descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: bsr_descr
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr),value :: bsrNnzDevhost
+      type(c_ptr), value :: pbuffer
+      !
+      hipsparseXcsr2gebsrNnz_rank_1_devptr = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr, &
+        c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim, &
+        bsrNnzDevhost,pbuffer)
     end function
 
 #endif
@@ -54016,6 +64234,578 @@ module hipfort_hipsparse
     end function
 
 #endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsparseSgebsr2gebsc_bufferSize_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr, &
+        bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_bufferSize_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgebsr2gebsc_bufferSize_assumed_rank = hipsparseSgebsr2gebsc_bufferSize_(handle,mb, &
+        nb,nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseSgebsr2gebsc_bufferSize_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_bufferSize_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgebsr2gebsc_bufferSize_rank_0 = hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSgebsr2gebsc_bufferSize_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_bufferSize_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSgebsr2gebsc_bufferSize_rank_1 = hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsparseDgebsr2gebsc_bufferSize_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr, &
+        bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_bufferSize_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgebsr2gebsc_bufferSize_assumed_rank = hipsparseDgebsr2gebsc_bufferSize_(handle,mb, &
+        nb,nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseDgebsr2gebsc_bufferSize_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_bufferSize_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgebsr2gebsc_bufferSize_rank_0 = hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDgebsr2gebsc_bufferSize_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_bufferSize_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDgebsr2gebsc_bufferSize_rank_1 = hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCgebsr2gebsc_bufferSize_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr, &
+        bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_bufferSize_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgebsr2gebsc_bufferSize_assumed_rank = hipsparseCgebsr2gebsc_bufferSize_(handle,mb, &
+        nb,nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseCgebsr2gebsc_bufferSize_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_bufferSize_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgebsr2gebsc_bufferSize_rank_0 = hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseCgebsr2gebsc_bufferSize_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_bufferSize_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseCgebsr2gebsc_bufferSize_rank_1 = hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipsparseZgebsr2gebsc_bufferSize_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr, &
+        bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_bufferSize_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgebsr2gebsc_bufferSize_assumed_rank = hipsparseZgebsr2gebsc_bufferSize_(handle,mb, &
+        nb,nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#else
+    function hipsparseZgebsr2gebsc_bufferSize_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_bufferSize_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgebsr2gebsc_bufferSize_rank_0 = hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseZgebsr2gebsc_bufferSize_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_bufferSize_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseZgebsr2gebsc_bufferSize_rank_1 = hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb, &
+        nnzb,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim, &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseSgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_float),target,dimension(..) :: bscVal
+      integer(c_int),target,dimension(..) :: bscRowInd
+      integer(c_int),target,dimension(..) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseSgebsr2gebsc_assumed_rank = hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#else
+    function hipsparseSgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_float),target :: bscVal
+      integer(c_int),target :: bscRowInd
+      integer(c_int),target :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseSgebsr2gebsc_rank_0 = hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+    function hipsparseSgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_float),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_float),target,dimension(:) :: bscVal
+      integer(c_int),target,dimension(:) :: bscRowInd
+      integer(c_int),target,dimension(:) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseSgebsr2gebsc_rank_1 = hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseDgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_double),target,dimension(..) :: bscVal
+      integer(c_int),target,dimension(..) :: bscRowInd
+      integer(c_int),target,dimension(..) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseDgebsr2gebsc_assumed_rank = hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#else
+    function hipsparseDgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_double),target :: bscVal
+      integer(c_int),target :: bscRowInd
+      integer(c_int),target :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseDgebsr2gebsc_rank_0 = hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+    function hipsparseDgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      real(c_double),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      real(c_double),target,dimension(:) :: bscVal
+      integer(c_int),target,dimension(:) :: bscRowInd
+      integer(c_int),target,dimension(:) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseDgebsr2gebsc_rank_1 = hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseCgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_float_complex),target,dimension(..) :: bscVal
+      integer(c_int),target,dimension(..) :: bscRowInd
+      integer(c_int),target,dimension(..) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseCgebsr2gebsc_assumed_rank = hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#else
+    function hipsparseCgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_float_complex),target :: bscVal
+      integer(c_int),target :: bscRowInd
+      integer(c_int),target :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseCgebsr2gebsc_rank_0 = hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+    function hipsparseCgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_float_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_float_complex),target,dimension(:) :: bscVal
+      integer(c_int),target,dimension(:) :: bscRowInd
+      integer(c_int),target,dimension(:) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseCgebsr2gebsc_rank_1 = hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipsparseZgebsr2gebsc_assumed_rank(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_assumed_rank
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,dimension(..) :: bsrVal
+      integer(c_int),target,dimension(..) :: bsrRowPtr
+      integer(c_int),target,dimension(..) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_double_complex),target,dimension(..) :: bscVal
+      integer(c_int),target,dimension(..) :: bscRowInd
+      integer(c_int),target,dimension(..) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseZgebsr2gebsc_assumed_rank = hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#else
+    function hipsparseZgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_rank_0
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_double_complex),target :: bscVal
+      integer(c_int),target :: bscRowInd
+      integer(c_int),target :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseZgebsr2gebsc_rank_0 = hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+    function hipsparseZgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd, &
+        rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_rank_1
+      type(c_ptr), value :: handle
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      complex(c_double_complex),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      complex(c_double_complex),target,dimension(:) :: bscVal
+      integer(c_int),target,dimension(:) :: bscRowInd
+      integer(c_int),target,dimension(:) :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)) :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: idxBase
+      type(c_ptr), value :: temp_buffer
+      !
+      hipsparseZgebsr2gebsc_rank_1 = hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsrVal), &
+        c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,c_loc(bscVal),c_loc(bscRowInd), &
+        c_loc(bscColPtr),copyValues,idxBase,temp_buffer)
+    end function
+
+#endif
 #ifdef USE_ASSUMED_RANK
     function hipsparseSgebsr2gebsr_bufferSize_assumed_rank(handle,dirA,mb,nb,nnzb,descrA,bsrValA, &
         bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,rowBlockDimC,colBlockDimC, &
@@ -54356,6 +65146,33 @@ module hipfort_hipsparse
         c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseXgebsr2gebsrNnz_assumed_rank_devptr(handle,dirA,mb,nb,nnzb,descrA, &
+        bsrRowPtrA,bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC, &
+        colBlockDimC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr), value :: descrA
+      integer(c_int),target,dimension(..) :: bsrRowPtrA
+      integer(c_int),target,dimension(..) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: bsrRowPtrC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseXgebsr2gebsrNnz_assumed_rank_devptr = hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb, &
+        nnzb,descrA,c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
+    end function
+
 #else
     function hipsparseXgebsr2gebsrNnz_rank_0(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA, &
         rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr, &
@@ -54384,6 +65201,33 @@ module hipfort_hipsparse
         rowBlockDimC,colBlockDimC,c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseXgebsr2gebsrNnz_rank_0_devptr(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr), value :: descrA
+      integer(c_int),target :: bsrRowPtrA
+      integer(c_int),target :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: bsrRowPtrC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseXgebsr2gebsrNnz_rank_0_devptr = hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb, &
+        descrA,c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
+    end function
+
     function hipsparseXgebsr2gebsrNnz_rank_1(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA,bsrColIndA, &
         rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr, &
         buffer)
@@ -54409,6 +65253,33 @@ module hipfort_hipsparse
       hipsparseXgebsr2gebsrNnz_rank_1 = hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb,descrA, &
         c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC,c_loc(bsrRowPtrC), &
         rowBlockDimC,colBlockDimC,c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseXgebsr2gebsrNnz_rank_1_devptr(handle,dirA,mb,nb,nnzb,descrA,bsrRowPtrA, &
+        bsrColIndA,rowBlockDimA,colBlockDimA,descrC,bsrRowPtrC,rowBlockDimC,colBlockDimC, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXgebsr2gebsrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: mb
+      integer(c_int) :: nb
+      integer(c_int) :: nnzb
+      type(c_ptr), value :: descrA
+      integer(c_int),target,dimension(:) :: bsrRowPtrA
+      integer(c_int),target,dimension(:) :: bsrColIndA
+      integer(c_int) :: rowBlockDimA
+      integer(c_int) :: colBlockDimA
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: bsrRowPtrC
+      integer(c_int) :: rowBlockDimC
+      integer(c_int) :: colBlockDimC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseXgebsr2gebsrNnz_rank_1_devptr = hipsparseXgebsr2gebsrNnz_(handle,dirA,mb,nb,nnzb, &
+        descrA,c_loc(bsrRowPtrA),c_loc(bsrColIndA),rowBlockDimA,colBlockDimA,descrC, &
+        c_loc(bsrRowPtrC),rowBlockDimC,colBlockDimC,nnzTotalDevHostPtr,buffer)
     end function
 
 #endif
@@ -54991,6 +65862,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseSnnz_assumed_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(..) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseSnnz_assumed_rank_devptr = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseSnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       implicit none
@@ -55007,6 +65896,24 @@ module hipfort_hipsparse
       !
       hipsparseSnnz_rank_0 = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseSnnz_rank_0_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseSnnz_rank_0_devptr = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
     function hipsparseSnnz_rank_1(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
@@ -55026,6 +65933,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseSnnz_rank_1_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseSnnz_rank_1_devptr = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseSnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       implicit none
@@ -55042,6 +65967,24 @@ module hipfort_hipsparse
       !
       hipsparseSnnz_full_rank = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseSnnz_full_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseSnnz_full_rank_devptr = hipsparseSnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -55064,6 +66007,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseDnnz_assumed_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(..) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseDnnz_assumed_rank_devptr = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseDnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       implicit none
@@ -55080,6 +66041,24 @@ module hipfort_hipsparse
       !
       hipsparseDnnz_rank_0 = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseDnnz_rank_0_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseDnnz_rank_0_devptr = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
     function hipsparseDnnz_rank_1(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
@@ -55099,6 +66078,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseDnnz_rank_1_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseDnnz_rank_1_devptr = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseDnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       implicit none
@@ -55115,6 +66112,24 @@ module hipfort_hipsparse
       !
       hipsparseDnnz_full_rank = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseDnnz_full_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseDnnz_full_rank_devptr = hipsparseDnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -55137,6 +66152,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseCnnz_assumed_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(..) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseCnnz_assumed_rank_devptr = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseCnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       implicit none
@@ -55153,6 +66186,24 @@ module hipfort_hipsparse
       !
       hipsparseCnnz_rank_0 = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseCnnz_rank_0_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseCnnz_rank_0_devptr = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
     function hipsparseCnnz_rank_1(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
@@ -55172,6 +66223,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseCnnz_rank_1_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseCnnz_rank_1_devptr = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseCnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       implicit none
@@ -55188,6 +66257,24 @@ module hipfort_hipsparse
       !
       hipsparseCnnz_full_rank = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseCnnz_full_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseCnnz_full_rank_devptr = hipsparseCnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -55210,6 +66297,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseZnnz_assumed_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(..) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseZnnz_assumed_rank_devptr = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
 #else
     function hipsparseZnnz_rank_0(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
       implicit none
@@ -55226,6 +66331,24 @@ module hipfort_hipsparse
       !
       hipsparseZnnz_rank_0 = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseZnnz_rank_0_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: A
+      integer(c_int) :: lda
+      integer(c_int),target :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseZnnz_rank_0_devptr = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
     function hipsparseZnnz_rank_1(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
@@ -55245,6 +66368,24 @@ module hipfort_hipsparse
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
     end function
 
+    function hipsparseZnnz_rank_1_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseZnnz_rank_1_devptr = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
+    end function
+
     function hipsparseZnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
         nnzTotalDevHostPtr)
       implicit none
@@ -55261,6 +66402,24 @@ module hipfort_hipsparse
       !
       hipsparseZnnz_full_rank = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
         c_loc(nnzPerRowColumn),c_loc(nnzTotalDevHostPtr))
+    end function
+
+    function hipsparseZnnz_full_rank_devptr(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn, &
+        nnzTotalDevHostPtr)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(kind(HIPSPARSE_DIRECTION_ROW)) :: dirA
+      integer(c_int) :: m
+      integer(c_int) :: n
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int),target,dimension(:) :: nnzPerRowColumn
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      !
+      hipsparseZnnz_full_rank_devptr = hipsparseZnnz_(handle,dirA,m,n,descrA,c_loc(A),lda, &
+        c_loc(nnzPerRowColumn),nnzTotalDevHostPtr)
     end function
 
 #endif
@@ -55282,6 +66441,23 @@ module hipfort_hipsparse
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseSnnz_compress_assumed_rank_devptr(handle,m,descrA,csrValA,csrRowPtrA, &
+        nnzPerRow,nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_float) :: tol
+      !
+      hipsparseSnnz_compress_assumed_rank_devptr = hipsparseSnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
 #else
     function hipsparseSnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
@@ -55299,6 +66475,23 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseSnnz_compress_rank_0_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_float) :: tol
+      !
+      hipsparseSnnz_compress_rank_0_devptr = hipsparseSnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
     function hipsparseSnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_1
@@ -55313,6 +66506,23 @@ module hipfort_hipsparse
       !
       hipsparseSnnz_compress_rank_1 = hipsparseSnnz_compress_(handle,m,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseSnnz_compress_rank_1_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_float) :: tol
+      !
+      hipsparseSnnz_compress_rank_1_devptr = hipsparseSnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
     end function
 
 #endif
@@ -55334,6 +66544,23 @@ module hipfort_hipsparse
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseDnnz_compress_assumed_rank_devptr(handle,m,descrA,csrValA,csrRowPtrA, &
+        nnzPerRow,nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_double) :: tol
+      !
+      hipsparseDnnz_compress_assumed_rank_devptr = hipsparseDnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
 #else
     function hipsparseDnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
@@ -55351,6 +66578,23 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseDnnz_compress_rank_0_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_double) :: tol
+      !
+      hipsparseDnnz_compress_rank_0_devptr = hipsparseDnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
     function hipsparseDnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_1
@@ -55365,6 +66609,23 @@ module hipfort_hipsparse
       !
       hipsparseDnnz_compress_rank_1 = hipsparseDnnz_compress_(handle,m,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseDnnz_compress_rank_1_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      real(c_double) :: tol
+      !
+      hipsparseDnnz_compress_rank_1_devptr = hipsparseDnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
     end function
 
 #endif
@@ -55386,6 +66647,23 @@ module hipfort_hipsparse
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseCnnz_compress_assumed_rank_devptr(handle,m,descrA,csrValA,csrRowPtrA, &
+        nnzPerRow,nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_float_complex) :: tol
+      !
+      hipsparseCnnz_compress_assumed_rank_devptr = hipsparseCnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
 #else
     function hipsparseCnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
@@ -55403,6 +66681,23 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseCnnz_compress_rank_0_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_float_complex) :: tol
+      !
+      hipsparseCnnz_compress_rank_0_devptr = hipsparseCnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
     function hipsparseCnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_1
@@ -55417,6 +66712,23 @@ module hipfort_hipsparse
       !
       hipsparseCnnz_compress_rank_1 = hipsparseCnnz_compress_(handle,m,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseCnnz_compress_rank_1_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_float_complex) :: tol
+      !
+      hipsparseCnnz_compress_rank_1_devptr = hipsparseCnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
     end function
 
 #endif
@@ -55438,6 +66750,23 @@ module hipfort_hipsparse
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseZnnz_compress_assumed_rank_devptr(handle,m,descrA,csrValA,csrRowPtrA, &
+        nnzPerRow,nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_double_complex) :: tol
+      !
+      hipsparseZnnz_compress_assumed_rank_devptr = hipsparseZnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
 #else
     function hipsparseZnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       implicit none
@@ -55453,6 +66782,23 @@ module hipfort_hipsparse
       !
       hipsparseZnnz_compress_rank_0 = hipsparseZnnz_compress_(handle,m,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
+    end function
+
+    function hipsparseZnnz_compress_rank_0_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_double_complex) :: tol
+      !
+      hipsparseZnnz_compress_rank_0_devptr = hipsparseZnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
     end function
 
     function hipsparseZnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
@@ -55471,6 +66817,23 @@ module hipfort_hipsparse
         c_loc(csrRowPtrA),c_loc(nnzPerRow),c_loc(nnzC),tol)
     end function
 
+    function hipsparseZnnz_compress_rank_1_devptr(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow, &
+        nnzC,tol)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: nnzPerRow
+      type(c_ptr),value :: nnzC
+      complex(c_double_complex) :: tol
+      !
+      hipsparseZnnz_compress_rank_1_devptr = hipsparseZnnz_compress_(handle,m,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(nnzPerRow),nnzC,tol)
+    end function
+
 #endif
 #ifndef USE_CUDA_NAMES
 #ifdef USE_ASSUMED_RANK
@@ -55486,7 +66849,7 @@ module hipfort_hipsparse
       real(c_float),target,dimension(..) :: csrValA
       integer(c_int),target,dimension(..) :: csrRowPtrA
       integer(c_int),target,dimension(..) :: csrColIndA
-      real(c_float),target,dimension(..) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       real(c_float),target,dimension(..) :: csrValC
       integer(c_int),target,dimension(..) :: csrRowPtrC
@@ -55495,6 +66858,30 @@ module hipfort_hipsparse
       !
       hipsparseSpruneCsr2csr_bufferSize_assumed_rank = hipsparseSpruneCsr2csr_bufferSize_(handle, &
         m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSize_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSize_assumed_rank_devptr = hipsparseSpruneCsr2csr_bufferSize_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55523,6 +66910,30 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseSpruneCsr2csr_bufferSize_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSize_rank_0_devptr = hipsparseSpruneCsr2csr_bufferSize_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseSpruneCsr2csr_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       implicit none
@@ -55535,7 +66946,7 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
@@ -55544,6 +66955,30 @@ module hipfort_hipsparse
       !
       hipsparseSpruneCsr2csr_bufferSize_rank_1 = hipsparseSpruneCsr2csr_bufferSize_(handle,m,n, &
         nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSize_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSize_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSize_rank_1_devptr = hipsparseSpruneCsr2csr_bufferSize_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55563,7 +66998,7 @@ module hipfort_hipsparse
       real(c_double),target,dimension(..) :: csrValA
       integer(c_int),target,dimension(..) :: csrRowPtrA
       integer(c_int),target,dimension(..) :: csrColIndA
-      real(c_double),target,dimension(..) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       real(c_double),target,dimension(..) :: csrValC
       integer(c_int),target,dimension(..) :: csrRowPtrC
@@ -55572,6 +67007,30 @@ module hipfort_hipsparse
       !
       hipsparseDpruneCsr2csr_bufferSize_assumed_rank = hipsparseDpruneCsr2csr_bufferSize_(handle, &
         m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSize_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSize_assumed_rank_devptr = hipsparseDpruneCsr2csr_bufferSize_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55600,6 +67059,30 @@ module hipfort_hipsparse
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDpruneCsr2csr_bufferSize_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSize_rank_0_devptr = hipsparseDpruneCsr2csr_bufferSize_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDpruneCsr2csr_bufferSize_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       implicit none
@@ -55612,7 +67095,7 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
@@ -55621,6 +67104,30 @@ module hipfort_hipsparse
       !
       hipsparseDpruneCsr2csr_bufferSize_rank_1 = hipsparseDpruneCsr2csr_bufferSize_(handle,m,n, &
         nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
+        c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSize_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSize_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSize_rank_1_devptr = hipsparseDpruneCsr2csr_bufferSize_(handle, &
+        m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
         c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55639,7 +67146,7 @@ module hipfort_hipsparse
       real(c_float),target,dimension(..) :: csrValA
       integer(c_int),target,dimension(..) :: csrRowPtrA
       integer(c_int),target,dimension(..) :: csrColIndA
-      real(c_float),target,dimension(..) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       real(c_float),target,dimension(..) :: csrValC
       integer(c_int),target,dimension(..) :: csrRowPtrC
@@ -55650,6 +67157,32 @@ module hipfort_hipsparse
         handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA), &
         c_loc(threshold),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC), &
         c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank_devptr(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSizeExt_assumed_rank_devptr = &
+        hipsparseSpruneCsr2csr_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
 #else
@@ -55677,6 +67210,30 @@ module hipfort_hipsparse
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseSpruneCsr2csr_bufferSizeExt_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSizeExt_rank_0_devptr = hipsparseSpruneCsr2csr_bufferSizeExt_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseSpruneCsr2csr_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       implicit none
@@ -55689,7 +67246,7 @@ module hipfort_hipsparse
       real(c_float),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descrC
       real(c_float),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
@@ -55698,6 +67255,30 @@ module hipfort_hipsparse
       !
       hipsparseSpruneCsr2csr_bufferSizeExt_rank_1 = hipsparseSpruneCsr2csr_bufferSizeExt_(handle, &
         m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneCsr2csr_bufferSizeExt_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneCsr2csr_bufferSizeExt_rank_1_devptr = hipsparseSpruneCsr2csr_bufferSizeExt_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55715,7 +67296,7 @@ module hipfort_hipsparse
       real(c_double),target,dimension(..) :: csrValA
       integer(c_int),target,dimension(..) :: csrRowPtrA
       integer(c_int),target,dimension(..) :: csrColIndA
-      real(c_double),target,dimension(..) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       real(c_double),target,dimension(..) :: csrValC
       integer(c_int),target,dimension(..) :: csrRowPtrC
@@ -55726,6 +67307,32 @@ module hipfort_hipsparse
         handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA), &
         c_loc(threshold),descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC), &
         c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank_devptr(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC, &
+        pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSizeExt_assumed_rank_devptr = &
+        hipsparseDpruneCsr2csr_bufferSizeExt_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC),c_loc(csrRowPtrC), &
+        c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
 #else
@@ -55753,6 +67360,30 @@ module hipfort_hipsparse
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDpruneCsr2csr_bufferSizeExt_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSizeExt_rank_0_devptr = hipsparseDpruneCsr2csr_bufferSizeExt_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDpruneCsr2csr_bufferSizeExt_rank_1(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
       implicit none
@@ -55765,7 +67396,7 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrValA
       integer(c_int),target,dimension(:) :: csrRowPtrA
       integer(c_int),target,dimension(:) :: csrColIndA
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descrC
       real(c_double),target,dimension(:) :: csrValC
       integer(c_int),target,dimension(:) :: csrRowPtrC
@@ -55774,6 +67405,30 @@ module hipfort_hipsparse
       !
       hipsparseDpruneCsr2csr_bufferSizeExt_rank_1 = hipsparseDpruneCsr2csr_bufferSizeExt_(handle, &
         m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold), &
+        descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneCsr2csr_bufferSizeExt_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneCsr2csr_bufferSizeExt_rank_1_devptr = hipsparseDpruneCsr2csr_bufferSizeExt_( &
+        handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold, &
         descrC,c_loc(csrValC),c_loc(csrRowPtrC),c_loc(csrColIndC),c_loc(pBufferSizeInBytes))
     end function
 
@@ -55802,6 +67457,29 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseSpruneCsr2csrNnz_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnz_assumed_rank_devptr = hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA, &
+        descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
+        c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
+    end function
+
 #else
     function hipsparseSpruneCsr2csrNnz_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
@@ -55826,6 +67504,29 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseSpruneCsr2csrNnz_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnz_rank_0_devptr = hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
+    end function
+
     function hipsparseSpruneCsr2csrNnz_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
       implicit none
@@ -55847,6 +67548,29 @@ module hipfort_hipsparse
       hipsparseSpruneCsr2csrNnz_rank_1 = hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseSpruneCsr2csrNnz_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnz_rank_1_devptr = hipsparseSpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
     end function
 
 #endif
@@ -55874,6 +67598,29 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseDpruneCsr2csrNnz_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnz_assumed_rank_devptr = hipsparseDpruneCsr2csrNnz_(handle,m,n,nnzA, &
+        descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC, &
+        c_loc(csrRowPtrC),nnzTotalDevHostPtr,buffer)
+    end function
+
 #else
     function hipsparseDpruneCsr2csrNnz_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
@@ -55898,6 +67645,29 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseDpruneCsr2csrNnz_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnz_rank_0_devptr = hipsparseDpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
+    end function
+
     function hipsparseDpruneCsr2csrNnz_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
         csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
       implicit none
@@ -55919,6 +67689,29 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnz_rank_1 = hipsparseDpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC, &
         c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseDpruneCsr2csrNnz_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrRowPtrC,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnz_rank_1_devptr = hipsparseDpruneCsr2csrNnz_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,buffer)
     end function
 
 #endif
@@ -55947,6 +67740,30 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
+    function hipsparseSpruneCsr2csr_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csr_assumed_rank_devptr = hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
 #else
     function hipsparseSpruneCsr2csr_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
         threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
@@ -55972,6 +67789,30 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
+    function hipsparseSpruneCsr2csr_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csr_rank_0_devptr = hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
     function hipsparseSpruneCsr2csr_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
         threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
       implicit none
@@ -55993,6 +67834,30 @@ module hipfort_hipsparse
       !
       hipsparseSpruneCsr2csr_rank_1 = hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
+    function hipsparseSpruneCsr2csr_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csr_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_float),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csr_rank_1_devptr = hipsparseSpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
@@ -56022,6 +67887,30 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
+    function hipsparseDpruneCsr2csr_assumed_rank_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(..) :: csrValC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      integer(c_int),target,dimension(..) :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csr_assumed_rank_devptr = hipsparseDpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
 #else
     function hipsparseDpruneCsr2csr_rank_0(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
         threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
@@ -56047,6 +67936,30 @@ module hipfort_hipsparse
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
+    function hipsparseDpruneCsr2csr_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target :: csrValC
+      integer(c_int),target :: csrRowPtrC
+      integer(c_int),target :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csr_rank_0_devptr = hipsparseDpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
     function hipsparseDpruneCsr2csr_rank_1(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA,csrColIndA, &
         threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
       implicit none
@@ -56068,6 +67981,30 @@ module hipfort_hipsparse
       !
       hipsparseDpruneCsr2csr_rank_1 = hipsparseDpruneCsr2csr_(handle,m,n,nnzA,descrA, &
         c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(threshold),descrC,c_loc(csrValC), &
+        c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
+    end function
+
+    function hipsparseDpruneCsr2csr_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,threshold,descrC,csrValC,csrRowPtrC,csrColIndC,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csr_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descrC
+      real(c_double),target,dimension(:) :: csrValC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      integer(c_int),target,dimension(:) :: csrColIndC
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csr_rank_1_devptr = hipsparseDpruneCsr2csr_(handle,m,n,nnzA,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),threshold,descrC,c_loc(csrValC), &
         c_loc(csrRowPtrC),c_loc(csrColIndC),buffer)
     end function
 
@@ -56439,6 +68376,31 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank_devptr(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnzByPercentage_assumed_rank_devptr = &
+        hipsparseSpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
 #else
     function hipsparseSpruneCsr2csrNnzByPercentage_rank_0(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
@@ -56464,6 +68426,31 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseSpruneCsr2csrNnzByPercentage_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnzByPercentage_rank_0_devptr = &
+        hipsparseSpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
     function hipsparseSpruneCsr2csrNnzByPercentage_rank_1(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       implicit none
@@ -56486,6 +68473,31 @@ module hipfort_hipsparse
       hipsparseSpruneCsr2csrNnzByPercentage_rank_1 = hipsparseSpruneCsr2csrNnzByPercentage_( &
         handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage, &
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
+    end function
+
+    function hipsparseSpruneCsr2csrNnzByPercentage_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneCsr2csrNnzByPercentage_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_float) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneCsr2csrNnzByPercentage_rank_1_devptr = &
+        hipsparseSpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
 #endif
@@ -56515,6 +68527,31 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank_devptr(handle,m,n,nnzA,descrA, &
+        csrValA,csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(..) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnzByPercentage_assumed_rank_devptr = &
+        hipsparseDpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
 #else
     function hipsparseDpruneCsr2csrNnzByPercentage_rank_0(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
@@ -56540,6 +68577,31 @@ module hipfort_hipsparse
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseDpruneCsr2csrNnzByPercentage_rank_0_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnzByPercentage_rank_0_devptr = &
+        hipsparseDpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
     function hipsparseDpruneCsr2csrNnzByPercentage_rank_1(handle,m,n,nnzA,descrA,csrValA, &
         csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
       implicit none
@@ -56562,6 +68624,31 @@ module hipfort_hipsparse
       hipsparseDpruneCsr2csrNnzByPercentage_rank_1 = hipsparseDpruneCsr2csrNnzByPercentage_( &
         handle,m,n,nnzA,descrA,c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),percentage, &
         descrC,c_loc(csrRowPtrC),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
+    end function
+
+    function hipsparseDpruneCsr2csrNnzByPercentage_rank_1_devptr(handle,m,n,nnzA,descrA,csrValA, &
+        csrRowPtrA,csrColIndA,percentage,descrC,csrRowPtrC,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneCsr2csrNnzByPercentage_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: nnzA
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_double) :: percentage
+      type(c_ptr), value :: descrC
+      integer(c_int),target,dimension(:) :: csrRowPtrC
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneCsr2csrNnzByPercentage_rank_1_devptr = &
+        hipsparseDpruneCsr2csrNnzByPercentage_(handle,m,n,nnzA,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),percentage,descrC,c_loc(csrRowPtrC), &
+        nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
 #endif
@@ -56735,7 +68822,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(..) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(..) :: csrVal
       integer(c_int),target,dimension(..) :: csrRowPtr
@@ -56745,6 +68832,27 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csr_bufferSize_assumed_rank = hipsparseSpruneDense2csr_bufferSize_( &
         handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSize_assumed_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_assumed_rank_devptr = &
+        hipsparseSpruneDense2csr_bufferSize_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
 #else
@@ -56769,6 +68877,27 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseSpruneDense2csr_bufferSize_rank_0_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_rank_0_devptr = hipsparseSpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseSpruneDense2csr_bufferSize_rank_1(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -56778,7 +68907,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56787,6 +68916,27 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csr_bufferSize_rank_1 = hipsparseSpruneDense2csr_bufferSize_(handle,m, &
         n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSize_rank_1_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_rank_1_devptr = hipsparseSpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
         c_loc(pBufferSizeInBytes))
     end function
 
@@ -56799,7 +68949,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56808,6 +68958,27 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csr_bufferSize_full_rank = hipsparseSpruneDense2csr_bufferSize_(handle, &
         m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSize_full_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSize_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSize_full_rank_devptr = hipsparseSpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
         c_loc(pBufferSizeInBytes))
     end function
 
@@ -56824,7 +68995,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(..) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(..) :: csrVal
       integer(c_int),target,dimension(..) :: csrRowPtr
@@ -56834,6 +69005,27 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_bufferSize_assumed_rank = hipsparseDpruneDense2csr_bufferSize_( &
         handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSize_assumed_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_assumed_rank_devptr = &
+        hipsparseDpruneDense2csr_bufferSize_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
 #else
@@ -56858,6 +69050,27 @@ module hipfort_hipsparse
         c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDpruneDense2csr_bufferSize_rank_0_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_rank_0_devptr = hipsparseDpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDpruneDense2csr_bufferSize_rank_1(handle,m,n,A,lda,threshold,descr,csrVal, &
         csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -56867,7 +69080,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56876,6 +69089,27 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csr_bufferSize_rank_1 = hipsparseDpruneDense2csr_bufferSize_(handle,m, &
         n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSize_rank_1_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_rank_1_devptr = hipsparseDpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
         c_loc(pBufferSizeInBytes))
     end function
 
@@ -56888,7 +69122,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56897,6 +69131,27 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csr_bufferSize_full_rank = hipsparseDpruneDense2csr_bufferSize_(handle, &
         m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
+        c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSize_full_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSize_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSize_full_rank_devptr = hipsparseDpruneDense2csr_bufferSize_( &
+        handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd), &
         c_loc(pBufferSizeInBytes))
     end function
 
@@ -56912,7 +69167,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(..) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(..) :: csrVal
       integer(c_int),target,dimension(..) :: csrRowPtr
@@ -56921,6 +69176,27 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank = &
         hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,c_loc(threshold),descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank_devptr(handle,m,n,A,lda, &
+        threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_assumed_rank_devptr = &
+        hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
         c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
@@ -56946,6 +69222,27 @@ module hipfort_hipsparse
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseSpruneDense2csr_bufferSizeExt_rank_0_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_rank_0_devptr = &
+        hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseSpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -56955,7 +69252,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56967,6 +69264,27 @@ module hipfort_hipsparse
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseSpruneDense2csr_bufferSizeExt_rank_1_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_rank_1_devptr = &
+        hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseSpruneDense2csr_bufferSizeExt_full_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -56976,7 +69294,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: threshold
+      real(c_float),target :: threshold
       type(c_ptr), value :: descr
       real(c_float),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -56986,6 +69304,27 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csr_bufferSizeExt_full_rank = hipsparseSpruneDense2csr_bufferSizeExt_( &
         handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseSpruneDense2csr_bufferSizeExt_full_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseSpruneDense2csr_bufferSizeExt_full_rank_devptr = &
+        hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -56999,7 +69338,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(..) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(..) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(..) :: csrVal
       integer(c_int),target,dimension(..) :: csrRowPtr
@@ -57008,6 +69347,27 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank = &
         hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,c_loc(threshold),descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank_devptr(handle,m,n,A,lda, &
+        threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_assumed_rank_devptr = &
+        hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
         c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
@@ -57033,6 +69393,27 @@ module hipfort_hipsparse
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDpruneDense2csr_bufferSizeExt_rank_0_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_0_devptr = &
+        hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -57042,7 +69423,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -57054,6 +69435,27 @@ module hipfort_hipsparse
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
+    function hipsparseDpruneDense2csr_bufferSizeExt_rank_1_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_1_devptr = &
+        hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
     function hipsparseDpruneDense2csr_bufferSizeExt_full_rank(handle,m,n,A,lda,threshold,descr, &
         csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       implicit none
@@ -57063,7 +69465,7 @@ module hipfort_hipsparse
       integer(c_int) :: n
       real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: threshold
+      real(c_double),target :: threshold
       type(c_ptr), value :: descr
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
@@ -57073,6 +69475,27 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_bufferSizeExt_full_rank = hipsparseDpruneDense2csr_bufferSizeExt_( &
         handle,m,n,c_loc(A),lda,c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr), &
         c_loc(csrColInd),c_loc(pBufferSizeInBytes))
+    end function
+
+    function hipsparseDpruneDense2csr_bufferSizeExt_full_rank_devptr(handle,m,n,A,lda,threshold, &
+        descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_size_t),target :: pBufferSizeInBytes
+      !
+      hipsparseDpruneDense2csr_bufferSizeExt_full_rank_devptr = &
+        hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr, &
+        c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
 #endif
@@ -57096,6 +69519,25 @@ module hipfort_hipsparse
         lda,c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseSpruneDense2csrNnz_assumed_rank_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnz_assumed_rank_devptr = hipsparseSpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
 #else
     function hipsparseSpruneDense2csrNnz_rank_0(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
@@ -57114,6 +69556,25 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csrNnz_rank_0 = hipsparseSpruneDense2csrNnz_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseSpruneDense2csrNnz_rank_0_devptr(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnz_rank_0_devptr = hipsparseSpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
     function hipsparseSpruneDense2csrNnz_rank_1(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
@@ -57135,6 +69596,25 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseSpruneDense2csrNnz_rank_1_devptr(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnz_rank_1_devptr = hipsparseSpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
     function hipsparseSpruneDense2csrNnz_full_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
       implicit none
@@ -57152,6 +69632,25 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csrNnz_full_rank = hipsparseSpruneDense2csrNnz_(handle,m,n,c_loc(A), &
         lda,c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseSpruneDense2csrNnz_full_rank_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnz_full_rank_devptr = hipsparseSpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
 #endif
@@ -57175,6 +69674,25 @@ module hipfort_hipsparse
         lda,c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseDpruneDense2csrNnz_assumed_rank_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnz_assumed_rank_devptr = hipsparseDpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
 #else
     function hipsparseDpruneDense2csrNnz_rank_0(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
@@ -57193,6 +69711,25 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csrNnz_rank_0 = hipsparseDpruneDense2csrNnz_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnz_rank_0_devptr(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnz_rank_0_devptr = hipsparseDpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
     function hipsparseDpruneDense2csrNnz_rank_1(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
@@ -57214,6 +69751,25 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
     end function
 
+    function hipsparseDpruneDense2csrNnz_rank_1_devptr(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
+        nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnz_rank_1_devptr = hipsparseDpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+    end function
+
     function hipsparseDpruneDense2csrNnz_full_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr, &
         nnzTotalDevHostPtr,buffer)
       implicit none
@@ -57231,6 +69787,25 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csrNnz_full_rank = hipsparseDpruneDense2csrNnz_(handle,m,n,c_loc(A), &
         lda,c_loc(threshold),descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnz_full_rank_devptr(handle,m,n,A,lda,threshold,descr, &
+        csrRowPtr,nnzTotalDevHostPtr,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnz_full_rank_devptr = hipsparseDpruneDense2csrNnz_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
 #endif
@@ -57255,6 +69830,26 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
+    function hipsparseSpruneDense2csr_assumed_rank_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csr_assumed_rank_devptr = hipsparseSpruneDense2csr_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
 #else
     function hipsparseSpruneDense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
         csrColInd,buffer)
@@ -57274,6 +69869,26 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csr_rank_0 = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseSpruneDense2csr_rank_0_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csr_rank_0_devptr = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
     function hipsparseSpruneDense2csr_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
@@ -57296,6 +69911,26 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
+    function hipsparseSpruneDense2csr_rank_1_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csr_rank_1_devptr = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
     function hipsparseSpruneDense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
         csrColInd,buffer)
       implicit none
@@ -57314,6 +69949,26 @@ module hipfort_hipsparse
       !
       hipsparseSpruneDense2csr_full_rank = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseSpruneDense2csr_full_rank_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csr_full_rank_devptr = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A), &
+        lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
 #endif
@@ -57338,6 +69993,26 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
+    function hipsparseDpruneDense2csr_assumed_rank_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(..) :: csrVal
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      integer(c_int),target,dimension(..) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csr_assumed_rank_devptr = hipsparseDpruneDense2csr_(handle,m,n, &
+        c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
 #else
     function hipsparseDpruneDense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
         csrColInd,buffer)
@@ -57357,6 +70032,26 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csr_rank_0 = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseDpruneDense2csr_rank_0_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csr_rank_0_devptr = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
     function hipsparseDpruneDense2csr_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
@@ -57379,6 +70074,26 @@ module hipfort_hipsparse
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
+    function hipsparseDpruneDense2csr_rank_1_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csr_rank_1_devptr = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
+        threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
     function hipsparseDpruneDense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr, &
         csrColInd,buffer)
       implicit none
@@ -57397,6 +70112,26 @@ module hipfort_hipsparse
       !
       hipsparseDpruneDense2csr_full_rank = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda, &
         c_loc(threshold),descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
+    end function
+
+    function hipsparseDpruneDense2csr_full_rank_devptr(handle,m,n,A,lda,threshold,descr,csrVal, &
+        csrRowPtr,csrColInd,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      type(c_ptr),value :: threshold
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csr_full_rank_devptr = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A), &
+        lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
 #endif
@@ -57792,6 +70527,27 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseSpruneDense2csrNnzByPercentage_assumed_rank_devptr(handle,m,n,A,lda, &
+        percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnzByPercentage_assumed_rank_devptr = &
+        hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
 #else
     function hipsparseSpruneDense2csrNnzByPercentage_rank_0(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
@@ -57812,6 +70568,27 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csrNnzByPercentage_rank_0 = hipsparseSpruneDense2csrNnzByPercentage_( &
         handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr), &
         myInfo,buffer)
+    end function
+
+    function hipsparseSpruneDense2csrNnzByPercentage_rank_0_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnzByPercentage_rank_0_devptr = &
+        hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
     function hipsparseSpruneDense2csrNnzByPercentage_rank_1(handle,m,n,A,lda,percentage,descr, &
@@ -57835,6 +70612,27 @@ module hipfort_hipsparse
         myInfo,buffer)
     end function
 
+    function hipsparseSpruneDense2csrNnzByPercentage_rank_1_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnzByPercentage_rank_1_devptr = &
+        hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
     function hipsparseSpruneDense2csrNnzByPercentage_full_rank(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       implicit none
@@ -57854,6 +70652,27 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csrNnzByPercentage_full_rank = &
         hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
         c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
+    end function
+
+    function hipsparseSpruneDense2csrNnzByPercentage_full_rank_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_float) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseSpruneDense2csrNnzByPercentage_full_rank_devptr = &
+        hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
 #endif
@@ -57880,6 +70699,27 @@ module hipfort_hipsparse
         c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
     end function
 
+    function hipsparseDpruneDense2csrNnzByPercentage_assumed_rank_devptr(handle,m,n,A,lda, &
+        percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(..) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnzByPercentage_assumed_rank_devptr = &
+        hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
 #else
     function hipsparseDpruneDense2csrNnzByPercentage_rank_0(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
@@ -57900,6 +70740,27 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnzByPercentage_rank_0 = hipsparseDpruneDense2csrNnzByPercentage_( &
         handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr), &
         myInfo,buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnzByPercentage_rank_0_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnzByPercentage_rank_0_devptr = &
+        hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
     function hipsparseDpruneDense2csrNnzByPercentage_rank_1(handle,m,n,A,lda,percentage,descr, &
@@ -57923,6 +70784,27 @@ module hipfort_hipsparse
         myInfo,buffer)
     end function
 
+    function hipsparseDpruneDense2csrNnzByPercentage_rank_1_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnzByPercentage_rank_1_devptr = &
+        hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+    end function
+
     function hipsparseDpruneDense2csrNnzByPercentage_full_rank(handle,m,n,A,lda,percentage,descr, &
         csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       implicit none
@@ -57942,6 +70824,27 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnzByPercentage_full_rank = &
         hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
         c_loc(csrRowPtr),c_loc(nnzTotalDevHostPtr),myInfo,buffer)
+    end function
+
+    function hipsparseDpruneDense2csrNnzByPercentage_full_rank_devptr(handle,m,n,A,lda,percentage, &
+        descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_full_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: n
+      real(c_double),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      real(c_double) :: percentage
+      type(c_ptr), value :: descr
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      type(c_ptr),value :: nnzTotalDevHostPtr
+      type(c_ptr), value :: myInfo
+      type(c_ptr), value :: buffer
+      !
+      hipsparseDpruneDense2csrNnzByPercentage_full_rank_devptr = &
+        hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr, &
+        c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
 #endif
@@ -58153,28 +71056,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseScsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_float),target,dimension(..) :: csrValA
-      integer(c_int),target,dimension(..) :: csrRowPtrA
-      integer(c_int),target,dimension(..) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(..) :: coloring
-      integer(c_int),target,dimension(..) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseScsrcolor_assumed_rank_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA, &
-        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors), &
-        c_loc(coloring),c_loc(reordering),myInfo)
-    end function
-
 #else
     function hipsparseScsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -58198,28 +71079,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseScsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_float),target :: csrValA
-      integer(c_int),target :: csrRowPtrA
-      integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseScsrcolor_rank_0_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
     function hipsparseScsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -58239,28 +71098,6 @@ module hipfort_hipsparse
       !
       hipsparseScsrcolor_rank_1 = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
-    function hipsparseScsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_float),target,dimension(:) :: csrValA
-      integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(:) :: coloring
-      integer(c_int),target,dimension(:) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseScsrcolor_rank_1_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
     end function
 
@@ -58288,28 +71125,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseDcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_double),target,dimension(..) :: csrValA
-      integer(c_int),target,dimension(..) :: csrRowPtrA
-      integer(c_int),target,dimension(..) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(..) :: coloring
-      integer(c_int),target,dimension(..) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseDcsrcolor_assumed_rank_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA, &
-        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors), &
-        c_loc(coloring),c_loc(reordering),myInfo)
-    end function
-
 #else
     function hipsparseDcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -58333,28 +71148,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseDcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_double),target :: csrValA
-      integer(c_int),target :: csrRowPtrA
-      integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseDcsrcolor_rank_0_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
     function hipsparseDcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -58374,28 +71167,6 @@ module hipfort_hipsparse
       !
       hipsparseDcsrcolor_rank_1 = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
-    function hipsparseDcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      real(c_double),target,dimension(:) :: csrValA
-      integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(:) :: coloring
-      integer(c_int),target,dimension(:) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseDcsrcolor_rank_1_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
     end function
 
@@ -58423,28 +71194,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseCcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_float_complex),target,dimension(..) :: csrValA
-      integer(c_int),target,dimension(..) :: csrRowPtrA
-      integer(c_int),target,dimension(..) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(..) :: coloring
-      integer(c_int),target,dimension(..) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseCcsrcolor_assumed_rank_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA, &
-        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors), &
-        c_loc(coloring),c_loc(reordering),myInfo)
-    end function
-
 #else
     function hipsparseCcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -58468,28 +71217,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseCcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_float_complex),target :: csrValA
-      integer(c_int),target :: csrRowPtrA
-      integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseCcsrcolor_rank_0_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
     function hipsparseCcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -58509,28 +71236,6 @@ module hipfort_hipsparse
       !
       hipsparseCcsrcolor_rank_1 = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
-    function hipsparseCcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_float_complex),target,dimension(:) :: csrValA
-      integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(:) :: coloring
-      integer(c_int),target,dimension(:) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseCcsrcolor_rank_1_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
     end function
 
@@ -58558,28 +71263,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseZcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
-        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_assumed_rank_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_double_complex),target,dimension(..) :: csrValA
-      integer(c_int),target,dimension(..) :: csrRowPtrA
-      integer(c_int),target,dimension(..) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(..) :: coloring
-      integer(c_int),target,dimension(..) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseZcsrcolor_assumed_rank_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA, &
-        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors), &
-        c_loc(coloring),c_loc(reordering),myInfo)
-    end function
-
 #else
     function hipsparseZcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -58603,28 +71286,6 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
-    function hipsparseZcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_0_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_double_complex),target :: csrValA
-      integer(c_int),target :: csrRowPtrA
-      integer(c_int),target :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target :: coloring
-      integer(c_int),target :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseZcsrcolor_rank_0_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
     function hipsparseZcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -58644,28 +71305,6 @@ module hipfort_hipsparse
       !
       hipsparseZcsrcolor_rank_1 = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
-        c_loc(reordering),myInfo)
-    end function
-
-    function hipsparseZcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
-        fractionToColor,ncolors,coloring,reordering,myInfo)
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_1_devptr
-      type(c_ptr), value :: handle
-      integer(c_int) :: m
-      integer(c_int) :: nnz
-      type(c_ptr), value :: descrA
-      complex(c_double_complex),target,dimension(:) :: csrValA
-      integer(c_int),target,dimension(:) :: csrRowPtrA
-      integer(c_int),target,dimension(:) :: csrColIndA
-      type(c_ptr),value :: fractionToColor
-      integer(c_int),target :: ncolors
-      integer(c_int),target,dimension(:) :: coloring
-      integer(c_int),target,dimension(:) :: reordering
-      type(c_ptr), value :: myInfo
-      !
-      hipsparseZcsrcolor_rank_1_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
-        c_loc(csrRowPtrA),c_loc(csrColIndA),fractionToColor,c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
     end function
 

@@ -477,6 +477,16 @@ module hipfort
       type(c_ptr),value :: device_arr
       integer(c_int),value :: len
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipSetValidDevices_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipSetValidDevices_rank_0,&
+      hipSetValidDevices_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Return the default device id for the calling host thread.
@@ -1894,6 +1904,16 @@ module hipfort
       integer(c_int32_t),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipExtStreamCreateWithCUMask_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipExtStreamCreateWithCUMask_rank_0,&
+      hipExtStreamCreateWithCUMask_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -1917,6 +1937,16 @@ module hipfort
       integer(c_int32_t),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipExtStreamGetCUMask_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipExtStreamGetCUMask_rank_0,&
+      hipExtStreamGetCUMask_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -2724,6 +2754,16 @@ module hipfort
       type(c_ptr) :: myData
       type(c_ptr),value :: ptr
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvPointerGetAttributes_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvPointerGetAttributes_rank_0,&
+      hipDrvPointerGetAttributes_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -3109,6 +3149,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemPrefetchBatchAsync_rank_0,&
+      hipMemPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Discards a batch of memory ranges asynchronously.
@@ -3150,6 +3200,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemDiscardBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemDiscardBatchAsync_rank_0,&
+      hipMemDiscardBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Discards a batch of memory ranges asynchronously (driver API variant).
@@ -3183,6 +3243,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvMemDiscardBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvMemDiscardBatchAsync_rank_0,&
+      hipDrvMemDiscardBatchAsync_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -3235,6 +3305,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemDiscardAndPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemDiscardAndPrefetchBatchAsync_rank_0,&
+      hipMemDiscardAndPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Discards and prefetches a batch of memory ranges asynchronously (driver API variant).
@@ -3270,6 +3350,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_0,&
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -3402,6 +3492,16 @@ module hipfort
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemRangeGetAttributes_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemRangeGetAttributes_rank_0,&
+      hipMemRangeGetAttributes_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Attach memory to a stream asynchronously in HIP.
@@ -6144,6 +6244,16 @@ module hipfort
     end function
 
     module procedure hipMemcpyBatchAsync_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemcpyBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemcpyBatchAsync_rank_0,&
+      hipMemcpyBatchAsync_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -7572,6 +7682,16 @@ module hipfort
       type(c_ptr) :: libraryOptionValues
       integer(c_int),value :: numLibraryOptions
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLibraryLoadData_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLibraryLoadData_rank_0,&
+      hipLibraryLoadData_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Load hip Library from file
@@ -7607,6 +7727,16 @@ module hipfort
       type(c_ptr) :: libraryOptionValues
       integer(c_int),value :: numLibraryOptions
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLibraryLoadFromFile_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLibraryLoadFromFile_rank_0,&
+      hipLibraryLoadFromFile_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Unload HIP Library
@@ -8042,6 +8172,16 @@ module hipfort
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipModuleLoadDataEx_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipModuleLoadDataEx_rank_0,&
+      hipModuleLoadDataEx_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Adds bitcode data to be linked with options.
@@ -8080,6 +8220,16 @@ module hipfort
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkAddData_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkAddData_rank_0,&
+      hipLinkAddData_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Adds a file with bitcode to be linked with options.
@@ -8114,6 +8264,16 @@ module hipfort
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkAddFile_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkAddFile_rank_0,&
+      hipLinkAddFile_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Completes the linking of the given program.
@@ -8170,6 +8330,16 @@ module hipfort
       type(c_ptr) :: optionValues
       type(c_ptr) :: stateOut
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkCreate_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkCreate_rank_0,&
+      hipLinkCreate_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Deletes the linker instance.
@@ -9488,6 +9658,16 @@ module hipfort
       type(c_ptr),value :: pBorderColor
       type(textureReference) :: texRef
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipTexRefGetBorderColor_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipTexRefGetBorderColor_rank_0,&
+      hipTexRefGetBorderColor_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Gets the array bound to a texture reference [Deprecated]
@@ -10051,6 +10231,16 @@ module hipfort
       type(textureReference) :: texRef
       type(c_ptr),value :: pBorderColor
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipTexRefSetBorderColor_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipTexRefSetBorderColor_rank_0,&
+      hipTexRefSetBorderColor_rank_1
+#endif
+#endif
   end interface
 #endif
 
@@ -13728,6 +13918,8 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
     end function
+
+    module procedure hipStreamGetPriority_spt_typed
   end interface
 
   interface hipStreamWaitEvent_spt
@@ -13757,6 +13949,8 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: flags
     end function
+
+    module procedure hipStreamGetFlags_spt_typed
   end interface
 
   interface hipStreamAddCallback_spt
@@ -13889,6 +14083,8 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: pCaptureStatus
     end function
+
+    module procedure hipStreamIsCapturing_spt_typed
   end interface
 
 #ifndef USE_CUDA_NAMES
@@ -13902,10 +14098,12 @@ module hipfort
       type(c_ptr),value :: pCaptureStatus
       type(c_ptr),value :: pId
     end function
+
+    module procedure hipStreamGetCaptureInfo_spt_typed
   end interface
 #endif
 
-  interface hipStreamGetCaptureInfo_v2_spt
+  interface
 #ifdef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_spt_(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out) &
@@ -13921,10 +14119,21 @@ module hipfort
       type(c_ptr),value :: stream
       type(c_ptr),value :: captureStatus_out
       type(c_ptr),value :: id_out
-      type(c_ptr) :: graph_out
-      type(c_ptr) :: dependencies_out
+      type(c_ptr),value :: graph_out
+      type(c_ptr),value :: dependencies_out
       type(c_ptr),value :: numDependencies_out
     end function
+  end interface
+
+  interface hipStreamGetCaptureInfo_v2_spt
+
+#ifdef USE_CUDA_NAMES
+    procedure hipStreamGetCaptureInfo_v2_spt_
+#else
+    module procedure &
+      hipStreamGetCaptureInfo_v2_spt_opt,&
+      hipStreamGetCaptureInfo_v2_spt_typed
+#endif
   end interface
 
   interface hipLaunchHostFunc_spt
@@ -13958,6 +14167,16 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: status
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipGetDriverEntryPoint_spt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipGetDriverEntryPoint_spt_rank_0,&
+      hipGetDriverEntryPoint_spt_rank_1
+#endif
+#endif
   end interface
 
 #ifndef USE_CUDA_NAMES
@@ -13973,6 +14192,8 @@ module hipfort
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: symbolStatus
     end function
+
+    module procedure hipGetProcAddress_spt_typed
   end interface
 #endif
 
@@ -15257,6 +15478,1007 @@ module hipfort
         c_loc(mySize),resource)
     end function
 
+    function hipStreamGetPriority_spt_typed(stream,priority)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_spt_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: priority
+      !
+      hipStreamGetPriority_spt_typed = hipStreamGetPriority_spt_(stream,c_loc(priority))
+    end function
+
+    function hipStreamGetFlags_spt_typed(stream,flags)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_spt_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: flags
+      !
+      hipStreamGetFlags_spt_typed = hipStreamGetFlags_spt_(stream,c_loc(flags))
+    end function
+
+    function hipStreamIsCapturing_spt_typed(stream,pCaptureStatus)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamIsCapturing_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      !
+      hipStreamIsCapturing_spt_typed = hipStreamIsCapturing_spt_(stream,c_loc(pCaptureStatus))
+    end function
+
+#ifndef USE_CUDA_NAMES
+    function hipStreamGetCaptureInfo_spt_typed(stream,pCaptureStatus,pId)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      integer(c_int64_t),optional,target :: pId
+      type(c_ptr) :: pId__p
+      !
+      pId__p = c_null_ptr
+      if (present(pId)) pId__p = c_loc(pId)
+      hipStreamGetCaptureInfo_spt_typed = hipStreamGetCaptureInfo_spt_(stream, &
+        c_loc(pCaptureStatus),pId__p)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipStreamGetCaptureInfo_v2_spt_opt(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_spt_opt
+      type(c_ptr), value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      !
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      hipStreamGetCaptureInfo_v2_spt_opt = hipStreamGetCaptureInfo_v2_spt_(stream, &
+        captureStatus_out,id_out,graph_out__p,dependencies_out__p,numDependencies_out)
+    end function
+
+    function hipStreamGetCaptureInfo_v2_spt_typed(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: captureStatus_out
+      integer(c_int64_t),optional,target :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      integer(c_size_t),optional,target :: numDependencies_out
+      type(c_ptr) :: id_out__p
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      type(c_ptr) :: numDependencies_out__p
+      !
+      id_out__p = c_null_ptr
+      if (present(id_out)) id_out__p = c_loc(id_out)
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      numDependencies_out__p = c_null_ptr
+      if (present(numDependencies_out)) numDependencies_out__p = c_loc(numDependencies_out)
+      hipStreamGetCaptureInfo_v2_spt_typed = hipStreamGetCaptureInfo_v2_spt_(stream, &
+        c_loc(captureStatus_out),id_out__p,graph_out__p,dependencies_out__p,numDependencies_out__p)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+    function hipGetProcAddress_spt_typed(symbol,pfn,hipVersion,flags,symbolStatus)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetProcAddress_spt_typed
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int) :: hipVersion
+      integer(c_int64_t) :: flags
+      integer(kind(HIP_GET_PROC_ADDRESS_SUCCESS)),optional,target :: symbolStatus
+      type(c_ptr) :: symbolStatus__p
+      !
+      symbolStatus__p = c_null_ptr
+      if (present(symbolStatus)) symbolStatus__p = c_loc(symbolStatus)
+      hipGetProcAddress_spt_typed = hipGetProcAddress_spt_(symbol,pfn,hipVersion,flags, &
+        symbolStatus__p)
+    end function
+
+#endif
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
+
+#ifdef USE_ASSUMED_RANK
+    function hipSetValidDevices_assumed_rank(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_assumed_rank
+      integer(c_int),target,dimension(..) :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_assumed_rank = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+#else
+    function hipSetValidDevices_rank_0(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_rank_0
+      integer(c_int),target :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_rank_0 = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+    function hipSetValidDevices_rank_1(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_rank_1
+      integer(c_int),target,dimension(:) :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_rank_1 = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipExtStreamCreateWithCUMask_assumed_rank(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_assumed_rank
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(..) :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_assumed_rank = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+#else
+    function hipExtStreamCreateWithCUMask_rank_0(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_rank_0
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_rank_0 = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+    function hipExtStreamCreateWithCUMask_rank_1(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_rank_1
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(:) :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_rank_1 = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipExtStreamGetCUMask_assumed_rank(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_assumed_rank
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(..) :: cuMask
+      !
+      hipExtStreamGetCUMask_assumed_rank = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+#else
+    function hipExtStreamGetCUMask_rank_0(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_rank_0
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target :: cuMask
+      !
+      hipExtStreamGetCUMask_rank_0 = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+    function hipExtStreamGetCUMask_rank_1(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_rank_1
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(:) :: cuMask
+      !
+      hipExtStreamGetCUMask_rank_1 = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+#endif
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipDrvPointerGetAttributes_assumed_rank(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_assumed_rank
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target,dimension(..) :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_assumed_rank = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+#else
+    function hipDrvPointerGetAttributes_rank_0(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_rank_0
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_rank_0 = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+    function hipDrvPointerGetAttributes_rank_1(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_rank_1
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target,dimension(:) :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_rank_1 = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemPrefetchBatchAsync_assumed_rank(dev_ptrs,sizes,count,prefetch_locs, &
+        prefetch_loc_idxs,num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target,dimension(..) :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_assumed_rank = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes), &
+        count,prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+#else
+    function hipMemPrefetchBatchAsync_rank_0(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
+        num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_rank_0 = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+    function hipMemPrefetchBatchAsync_rank_1(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
+        num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target,dimension(:) :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_rank_1 = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemDiscardBatchAsync_assumed_rank(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_assumed_rank
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_assumed_rank = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+#else
+    function hipMemDiscardBatchAsync_rank_0(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_rank_0
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_rank_0 = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count,flags, &
+        stream)
+    end function
+
+    function hipMemDiscardBatchAsync_rank_1(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_rank_1
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_rank_1 = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count,flags, &
+        stream)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipDrvMemDiscardBatchAsync_assumed_rank(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_assumed_rank = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes), &
+        count,flags,stream)
+    end function
+
+#else
+    function hipDrvMemDiscardBatchAsync_rank_0(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_rank_0 = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+    function hipDrvMemDiscardBatchAsync_rank_1(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_rank_1 = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemDiscardAndPrefetchBatchAsync_assumed_rank(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(..) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_assumed_rank = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#else
+    function hipMemDiscardAndPrefetchBatchAsync_rank_0(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_rank_0 = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+    function hipMemDiscardAndPrefetchBatchAsync_rank_1(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(:) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_rank_1 = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(..) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank = hipDrvMemDiscardAndPrefetchBatchAsync_( &
+        dptrs,c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#else
+    function hipDrvMemDiscardAndPrefetchBatchAsync_rank_0(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_0 = hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+    function hipDrvMemDiscardAndPrefetchBatchAsync_rank_1(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(:) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_1 = hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemRangeGetAttributes_assumed_rank(myData,data_sizes,attributes,num_attributes, &
+        dev_ptr,count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_assumed_rank
+      type(c_ptr) :: myData
+      integer(c_size_t),target,dimension(..) :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target,dimension(..) :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_assumed_rank = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+#else
+    function hipMemRangeGetAttributes_rank_0(myData,data_sizes,attributes,num_attributes,dev_ptr, &
+        count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_rank_0
+      type(c_ptr) :: myData
+      integer(c_size_t),target :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_rank_0 = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+    function hipMemRangeGetAttributes_rank_1(myData,data_sizes,attributes,num_attributes,dev_ptr, &
+        count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_rank_1
+      type(c_ptr) :: myData
+      integer(c_size_t),target,dimension(:) :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target,dimension(:) :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_rank_1 = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipMemcpyBatchAsync_assumed_rank(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs, &
+        failIdx,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_assumed_rank
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target,dimension(..) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_assumed_rank = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+#else
+    function hipMemcpyBatchAsync_rank_0(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_rank_0
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_rank_0 = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+    function hipMemcpyBatchAsync_rank_1(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_rank_1
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target,dimension(:) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_rank_1 = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLibraryLoadData_assumed_rank(library,code,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_assumed_rank
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(..) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_assumed_rank = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#else
+    function hipLibraryLoadData_rank_0(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_rank_0
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_rank_0 = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+    function hipLibraryLoadData_rank_1(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_rank_1
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(:) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_rank_1 = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLibraryLoadFromFile_assumed_rank(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_assumed_rank
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(..) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_assumed_rank = hipLibraryLoadFromFile_(library,fileName, &
+        c_loc(jitOptions),jitOptionsValues,numJitOptions,c_loc(libraryOptions), &
+        libraryOptionValues,numLibraryOptions)
+    end function
+
+#else
+    function hipLibraryLoadFromFile_rank_0(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_rank_0
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_rank_0 = hipLibraryLoadFromFile_(library,fileName,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+    function hipLibraryLoadFromFile_rank_1(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_rank_1
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(:) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_rank_1 = hipLibraryLoadFromFile_(library,fileName,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipModuleLoadDataEx_assumed_rank(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_assumed_rank
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_assumed_rank = hipModuleLoadDataEx_(myModule,image,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#else
+    function hipModuleLoadDataEx_rank_0(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_rank_0
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_rank_0 = hipModuleLoadDataEx_(myModule,image,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+    function hipModuleLoadDataEx_rank_1(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_rank_1
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_rank_1 = hipModuleLoadDataEx_(myModule,image,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkAddData_assumed_rank(state,myType,myData,mySize,name,numOptions,options, &
+        optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_assumed_rank
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_assumed_rank = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#else
+    function hipLinkAddData_rank_0(state,myType,myData,mySize,name,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_rank_0
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_rank_0 = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+    function hipLinkAddData_rank_1(state,myType,myData,mySize,name,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_rank_1
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_rank_1 = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkAddFile_assumed_rank(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_assumed_rank
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_assumed_rank = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#else
+    function hipLinkAddFile_rank_0(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_rank_0
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_rank_0 = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+    function hipLinkAddFile_rank_1(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_rank_1
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_rank_1 = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkCreate_assumed_rank(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_assumed_rank
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_assumed_rank = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+#else
+    function hipLinkCreate_rank_0(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_rank_0
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_rank_0 = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+    function hipLinkCreate_rank_1(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_rank_1
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_rank_1 = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipTexRefGetBorderColor_assumed_rank(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_assumed_rank
+      real(c_float),target,dimension(..) :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_assumed_rank = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+#else
+    function hipTexRefGetBorderColor_rank_0(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_rank_0
+      real(c_float),target :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_rank_0 = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+    function hipTexRefGetBorderColor_rank_1(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_rank_1
+      real(c_float),target,dimension(:) :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_rank_1 = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+#endif
+#ifndef USE_CUDA_NAMES
+#ifdef USE_ASSUMED_RANK
+    function hipTexRefSetBorderColor_assumed_rank(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_assumed_rank
+      type(textureReference) :: texRef
+      real(c_float),target,dimension(..) :: pBorderColor
+      !
+      hipTexRefSetBorderColor_assumed_rank = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+#else
+    function hipTexRefSetBorderColor_rank_0(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_rank_0
+      type(textureReference) :: texRef
+      real(c_float),target :: pBorderColor
+      !
+      hipTexRefSetBorderColor_rank_0 = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+    function hipTexRefSetBorderColor_rank_1(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_rank_1
+      type(textureReference) :: texRef
+      real(c_float),target,dimension(:) :: pBorderColor
+      !
+      hipTexRefSetBorderColor_rank_1 = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+#endif
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipGetDriverEntryPoint_spt_assumed_rank(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_assumed_rank
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target,dimension(..) :: status
+      !
+      hipGetDriverEntryPoint_spt_assumed_rank = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+#else
+    function hipGetDriverEntryPoint_spt_rank_0(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_rank_0
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target :: status
+      !
+      hipGetDriverEntryPoint_spt_rank_0 = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+    function hipGetDriverEntryPoint_spt_rank_1(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_rank_1
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target,dimension(:) :: status
+      !
+      hipGetDriverEntryPoint_spt_rank_1 = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+#endif
+#endif
 
   !>   @defgroup API HIP API
   !>

@@ -13,4 +13,4 @@
 9 | [roctxNameHsaAgent](interfacehipfort__roctx_1_1roctxnamehsaagent.html "Interface documentation") | C binding, typed
 10 | [roctxNameHipDevice](interfacehipfort__roctx_1_1roctxnamehipdevice.html "Interface documentation") | C binding, typed
 11 | [roctxNameHipStream](interfacehipfort__roctx_1_1roctxnamehipstream.html "Interface documentation") | C binding, typed
-12 | [roctxGetThreadId](interfacehipfort__roctx_1_1roctxgetthreadid.html "Interface documentation") | C binding
+12 | [roctxGetThreadId](interfacehipfort__roctx_1_1roctxgetthreadid.html "Interface documentation") | C binding, typed

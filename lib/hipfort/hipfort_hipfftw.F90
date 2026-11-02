@@ -259,6 +259,16 @@ module hipfort_hipfftw
       integer(c_int),value :: sign
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_rank_0,&
+      fftw_plan_dft_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft.
@@ -274,6 +284,16 @@ module hipfort_hipfftw
       integer(c_int),value :: sign
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_rank_0,&
+      fftwf_plan_dft_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a one-dimensional, double-precision, real forward discrete
@@ -295,6 +315,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_r2c_1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_r2c_1d_rank_0,&
+      fftw_plan_dft_r2c_1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_r2c_1d.
@@ -308,6 +338,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_r2c_1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_r2c_1d_rank_0,&
+      fftwf_plan_dft_r2c_1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a two-dimensional, double-precision, real forward discrete
@@ -330,6 +370,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_r2c_2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_r2c_2d_rank_0,&
+      fftw_plan_dft_r2c_2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_r2c_2d.
@@ -344,6 +394,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_r2c_2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_r2c_2d_rank_0,&
+      fftwf_plan_dft_r2c_2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a three-dimensional, double-precision, real forward discrete
@@ -367,6 +427,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_r2c_3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_r2c_3d_rank_0,&
+      fftw_plan_dft_r2c_3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_r2c_3d.
@@ -382,6 +452,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_r2c_3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_r2c_3d_rank_0,&
+      fftwf_plan_dft_r2c_3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a multidimensional, double-precision, real forward discrete
@@ -405,6 +485,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_r2c_rank_0,&
+      fftw_plan_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_r2c.
@@ -419,6 +509,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_r2c_rank_0,&
+      fftwf_plan_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a one-dimensional, double-precision, real backward (inverse)
@@ -440,6 +540,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_c2r_1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_c2r_1d_rank_0,&
+      fftw_plan_dft_c2r_1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_c2r_1d.
@@ -453,6 +563,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_c2r_1d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_c2r_1d_rank_0,&
+      fftwf_plan_dft_c2r_1d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a two-dimensional, double-precision, real backward (inverse)
@@ -475,6 +595,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_c2r_2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_c2r_2d_rank_0,&
+      fftw_plan_dft_c2r_2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_c2r_2d.
@@ -489,6 +619,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_c2r_2d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_c2r_2d_rank_0,&
+      fftwf_plan_dft_c2r_2d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a three-dimensional, double-precision, real backward (inverse)
@@ -512,6 +652,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_c2r_3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_c2r_3d_rank_0,&
+      fftw_plan_dft_c2r_3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_c2r_3d.
@@ -527,6 +677,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_c2r_3d_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_c2r_3d_rank_0,&
+      fftwf_plan_dft_c2r_3d_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates a basic plan for a multidimensional, double-precision, real backward (inverse)
@@ -550,6 +710,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_dft_c2r_rank_0,&
+      fftw_plan_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_dft_c2r.
@@ -564,6 +734,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_dft_c2r_rank_0,&
+      fftwf_plan_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, complex discrete
@@ -613,6 +793,16 @@ module hipfort_hipfftw
       integer(c_int),value :: sign
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_many_dft_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_many_dft_rank_0,&
+      fftw_plan_many_dft_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft.
@@ -637,6 +827,16 @@ module hipfort_hipfftw
       integer(c_int),value :: sign
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_many_dft_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_many_dft_rank_0,&
+      fftwf_plan_many_dft_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, real forward
@@ -683,6 +883,16 @@ module hipfort_hipfftw
       integer(c_int),value :: odist
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_many_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_many_dft_r2c_rank_0,&
+      fftw_plan_many_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft_r2c.
@@ -706,6 +916,16 @@ module hipfort_hipfftw
       integer(c_int),value :: odist
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_many_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_many_dft_r2c_rank_0,&
+      fftwf_plan_many_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, real backward
@@ -753,6 +973,16 @@ module hipfort_hipfftw
       integer(c_int),value :: odist
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_many_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_many_dft_c2r_rank_0,&
+      fftw_plan_many_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_many_dft_c2r.
@@ -776,6 +1006,16 @@ module hipfort_hipfftw
       integer(c_int),value :: odist
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_many_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_many_dft_c2r_rank_0,&
+      fftwf_plan_many_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, complex
@@ -855,6 +1095,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_guru_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_guru_dft_r2c_rank_0,&
+      fftw_plan_guru_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_guru_dft_r2c.
@@ -872,6 +1122,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_guru_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_guru_dft_r2c_rank_0,&
+      fftwf_plan_guru_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, real backward
@@ -901,6 +1161,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_guru_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_guru_dft_c2r_rank_0,&
+      fftw_plan_guru_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_plan_guru_dft_c2r.
@@ -918,6 +1188,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_guru_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_guru_dft_c2r_rank_0,&
+      fftwf_plan_guru_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Equivalent of \ref fftw_plan_guru_dft using layout-describing values of type
@@ -974,6 +1254,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_guru64_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_guru64_dft_r2c_rank_0,&
+      fftw_plan_guru64_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Equivalent of \ref fftwf_plan_guru_dft_r2c using layout-describing values of type
@@ -992,6 +1282,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_guru64_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_guru64_dft_r2c_rank_0,&
+      fftwf_plan_guru64_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Equivalent of \ref fftw_plan_guru_dft_c2r using layout-describing values of type
@@ -1010,6 +1310,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_plan_guru64_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_plan_guru64_dft_c2r_rank_0,&
+      fftw_plan_guru64_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Equivalent of \ref fftwf_plan_guru_dft_c2r using layout-describing values of type
@@ -1028,6 +1338,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: out
       integer(c_int),value :: flags
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_plan_guru64_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_plan_guru64_dft_c2r_rank_0,&
+      fftwf_plan_guru64_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Computes the discrete Fourier transform that a double-precision plan captures using
@@ -1094,6 +1414,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: in
       type(c_ptr),value :: out
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_execute_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_execute_dft_r2c_rank_0,&
+      fftw_execute_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_execute_dft_r2c.
@@ -1105,6 +1435,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: in
       type(c_ptr),value :: out
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_execute_dft_r2c_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_execute_dft_r2c_rank_0,&
+      fftwf_execute_dft_r2c_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Computes the discrete Fourier transform that a double-precision plan captures using new
@@ -1123,6 +1463,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: in
       type(c_ptr),value :: out
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_execute_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_execute_dft_c2r_rank_0,&
+      fftw_execute_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Single-precision equivalent of \ref fftw_execute_dft_c2r.
@@ -1134,6 +1484,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: in
       type(c_ptr),value :: out
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_execute_dft_c2r_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_execute_dft_c2r_rank_0,&
+      fftwf_execute_dft_c2r_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Deallocates a double-precision plan and frees all its resources.
@@ -1215,6 +1575,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: arg3
       type(c_ptr),value :: arg4
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftw_flops_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftw_flops_rank_0,&
+      fftw_flops_rank_1
+#endif
+#endif
   end interface
 
   interface fftwf_flops
@@ -1226,6 +1596,16 @@ module hipfort_hipfftw
       type(c_ptr),value :: arg3
       type(c_ptr),value :: arg4
     end subroutine
+
+#ifdef USE_ASSUMED_RANK
+    module procedure fftwf_flops_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      fftwf_flops_rank_0,&
+      fftwf_flops_rank_1
+#endif
+#endif
   end interface
 
   interface fftw_cleanup
@@ -1242,4 +1622,1691 @@ module hipfort_hipfftw
     end subroutine
   end interface
 
+
+#if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
+  contains
+
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_assumed_rank(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_assumed_rank = fftw_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+#else
+    function fftw_plan_dft_rank_0(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_rank_0 = fftw_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+    function fftw_plan_dft_rank_1(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_rank_1 = fftw_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_assumed_rank(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_assumed_rank = fftwf_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+#else
+    function fftwf_plan_dft_rank_0(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_rank_0 = fftwf_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+    function fftwf_plan_dft_rank_1(rank,n,in,out,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      type(c_ptr), value :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_rank_1 = fftwf_plan_dft_(rank,c_loc(n),in,out,sign,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_r2c_1d_assumed_rank(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_1d_assumed_rank
+      integer(c_int) :: n
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_1d_assumed_rank = fftw_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_dft_r2c_1d_rank_0(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_1d_rank_0
+      integer(c_int) :: n
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_1d_rank_0 = fftw_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_dft_r2c_1d_rank_1(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_1d_rank_1
+      integer(c_int) :: n
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_1d_rank_1 = fftw_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_r2c_1d_assumed_rank(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_1d_assumed_rank
+      integer(c_int) :: n
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_1d_assumed_rank = fftwf_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_dft_r2c_1d_rank_0(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_1d_rank_0
+      integer(c_int) :: n
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_1d_rank_0 = fftwf_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_dft_r2c_1d_rank_1(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_1d_rank_1
+      integer(c_int) :: n
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_1d_rank_1 = fftwf_plan_dft_r2c_1d_(n,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_r2c_2d_assumed_rank(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_2d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_2d_assumed_rank = fftw_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_dft_r2c_2d_rank_0(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_2d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_2d_rank_0 = fftw_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_dft_r2c_2d_rank_1(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_2d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_2d_rank_1 = fftw_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_r2c_2d_assumed_rank(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_2d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_2d_assumed_rank = fftwf_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_dft_r2c_2d_rank_0(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_2d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_2d_rank_0 = fftwf_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_dft_r2c_2d_rank_1(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_2d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_2d_rank_1 = fftwf_plan_dft_r2c_2d_(n0,n1,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_r2c_3d_assumed_rank(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_3d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_3d_assumed_rank = fftw_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_dft_r2c_3d_rank_0(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_3d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_3d_rank_0 = fftw_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_dft_r2c_3d_rank_1(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_3d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_3d_rank_1 = fftw_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_r2c_3d_assumed_rank(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_3d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_3d_assumed_rank = fftwf_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_dft_r2c_3d_rank_0(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_3d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_3d_rank_0 = fftwf_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_dft_r2c_3d_rank_1(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_3d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_3d_rank_1 = fftwf_plan_dft_r2c_3d_(n0,n1,n2,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_r2c_assumed_rank(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_assumed_rank = fftw_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_dft_r2c_rank_0(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_rank_0 = fftw_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_dft_r2c_rank_1(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_r2c_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_r2c_rank_1 = fftw_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_r2c_assumed_rank(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_assumed_rank = fftwf_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_dft_r2c_rank_0(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_rank_0 = fftwf_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_dft_r2c_rank_1(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_r2c_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_r2c_rank_1 = fftwf_plan_dft_r2c_(rank,c_loc(n),c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_c2r_1d_assumed_rank(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_1d_assumed_rank
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_1d_assumed_rank = fftw_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_dft_c2r_1d_rank_0(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_1d_rank_0
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_1d_rank_0 = fftw_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_dft_c2r_1d_rank_1(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_1d_rank_1
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_1d_rank_1 = fftw_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_c2r_1d_assumed_rank(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_1d_assumed_rank
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_1d_assumed_rank = fftwf_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_dft_c2r_1d_rank_0(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_1d_rank_0
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_1d_rank_0 = fftwf_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_dft_c2r_1d_rank_1(n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_1d_rank_1
+      integer(c_int) :: n
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_1d_rank_1 = fftwf_plan_dft_c2r_1d_(n,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_c2r_2d_assumed_rank(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_2d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_2d_assumed_rank = fftw_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_dft_c2r_2d_rank_0(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_2d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_2d_rank_0 = fftw_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_dft_c2r_2d_rank_1(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_2d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_2d_rank_1 = fftw_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_c2r_2d_assumed_rank(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_2d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_2d_assumed_rank = fftwf_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_dft_c2r_2d_rank_0(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_2d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_2d_rank_0 = fftwf_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_dft_c2r_2d_rank_1(n0,n1,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_2d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_2d_rank_1 = fftwf_plan_dft_c2r_2d_(n0,n1,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_c2r_3d_assumed_rank(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_3d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_3d_assumed_rank = fftw_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_dft_c2r_3d_rank_0(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_3d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_3d_rank_0 = fftw_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_dft_c2r_3d_rank_1(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_3d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_3d_rank_1 = fftw_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_c2r_3d_assumed_rank(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_3d_assumed_rank
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_3d_assumed_rank = fftwf_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_dft_c2r_3d_rank_0(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_3d_rank_0
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_3d_rank_0 = fftwf_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_dft_c2r_3d_rank_1(n0,n1,n2,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_3d_rank_1
+      integer(c_int) :: n0
+      integer(c_int) :: n1
+      integer(c_int) :: n2
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_3d_rank_1 = fftwf_plan_dft_c2r_3d_(n0,n1,n2,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_dft_c2r_assumed_rank(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_assumed_rank = fftw_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_dft_c2r_rank_0(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_rank_0 = fftw_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_dft_c2r_rank_1(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_dft_c2r_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_dft_c2r_rank_1 = fftw_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_dft_c2r_assumed_rank(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_assumed_rank = fftwf_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_dft_c2r_rank_0(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_rank_0 = fftwf_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_dft_c2r_rank_1(rank,n,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_dft_c2r_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_dft_c2r_rank_1 = fftwf_plan_dft_c2r_(rank,c_loc(n),in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_many_dft_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_assumed_rank = fftw_plan_many_dft_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+#else
+    function fftw_plan_many_dft_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_rank_0 = fftw_plan_many_dft_(rank,c_loc(n),howmany,in,c_loc(inembed), &
+        istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+    function fftw_plan_many_dft_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_rank_1 = fftw_plan_many_dft_(rank,c_loc(n),howmany,in,c_loc(inembed), &
+        istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_many_dft_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_assumed_rank = fftwf_plan_many_dft_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+#else
+    function fftwf_plan_many_dft_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_rank_0 = fftwf_plan_many_dft_(rank,c_loc(n),howmany,in,c_loc(inembed), &
+        istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+    function fftwf_plan_many_dft_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,sign,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: sign
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_rank_1 = fftwf_plan_many_dft_(rank,c_loc(n),howmany,in,c_loc(inembed), &
+        istride,idist,out,c_loc(onembed),ostride,odist,sign,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_many_dft_r2c_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out, &
+        onembed,ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      real(c_double),target,dimension(..) :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_r2c_assumed_rank = fftw_plan_many_dft_r2c_(rank,c_loc(n),howmany, &
+        c_loc(in),c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+#else
+    function fftw_plan_many_dft_r2c_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_r2c_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      real(c_double),target :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_r2c_rank_0 = fftw_plan_many_dft_r2c_(rank,c_loc(n),howmany,c_loc(in), &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+    function fftw_plan_many_dft_r2c_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_r2c_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      real(c_double),target,dimension(:) :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_r2c_rank_1 = fftw_plan_many_dft_r2c_(rank,c_loc(n),howmany,c_loc(in), &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_many_dft_r2c_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out, &
+        onembed,ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      real(c_float),target,dimension(..) :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_r2c_assumed_rank = fftwf_plan_many_dft_r2c_(rank,c_loc(n),howmany, &
+        c_loc(in),c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+#else
+    function fftwf_plan_many_dft_r2c_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_r2c_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      real(c_float),target :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_r2c_rank_0 = fftwf_plan_many_dft_r2c_(rank,c_loc(n),howmany,c_loc(in), &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+    function fftwf_plan_many_dft_r2c_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_r2c_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      real(c_float),target,dimension(:) :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      type(c_ptr), value :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_r2c_rank_1 = fftwf_plan_many_dft_r2c_(rank,c_loc(n),howmany,c_loc(in), &
+        c_loc(inembed),istride,idist,out,c_loc(onembed),ostride,odist,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_many_dft_c2r_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out, &
+        onembed,ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_double),target,dimension(..) :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_c2r_assumed_rank = fftw_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+#else
+    function fftw_plan_many_dft_c2r_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_c2r_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_double),target :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_c2r_rank_0 = fftw_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+    function fftw_plan_many_dft_c2r_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_many_dft_c2r_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_double),target,dimension(:) :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftw_plan_many_dft_c2r_rank_1 = fftw_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_many_dft_c2r_assumed_rank(rank,n,howmany,in,inembed,istride,idist,out, &
+        onembed,ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(..) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(..) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_float),target,dimension(..) :: out
+      integer(c_int),target,dimension(..) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_c2r_assumed_rank = fftwf_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+#else
+    function fftwf_plan_many_dft_c2r_rank_0(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_c2r_rank_0
+      integer(c_int) :: rank
+      integer(c_int),target :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_float),target :: out
+      integer(c_int),target :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_c2r_rank_0 = fftwf_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+    function fftwf_plan_many_dft_c2r_rank_1(rank,n,howmany,in,inembed,istride,idist,out,onembed, &
+        ostride,odist,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_many_dft_c2r_rank_1
+      integer(c_int) :: rank
+      integer(c_int),target,dimension(:) :: n
+      integer(c_int) :: howmany
+      type(c_ptr), value :: in
+      integer(c_int),target,dimension(:) :: inembed
+      integer(c_int) :: istride
+      integer(c_int) :: idist
+      real(c_float),target,dimension(:) :: out
+      integer(c_int),target,dimension(:) :: onembed
+      integer(c_int) :: ostride
+      integer(c_int) :: odist
+      integer(c_int) :: flags
+      !
+      fftwf_plan_many_dft_c2r_rank_1 = fftwf_plan_many_dft_c2r_(rank,c_loc(n),howmany,in, &
+        c_loc(inembed),istride,idist,c_loc(out),c_loc(onembed),ostride,odist,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_guru_dft_r2c_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_r2c_assumed_rank = fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_guru_dft_r2c_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_r2c_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_r2c_rank_0 = fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims, &
+        c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_guru_dft_r2c_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_r2c_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_r2c_rank_1 = fftw_plan_guru_dft_r2c_(rank,dims,howmany_rank,howmany_dims, &
+        c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_guru_dft_r2c_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_r2c_assumed_rank = fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_guru_dft_r2c_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_r2c_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_r2c_rank_0 = fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_guru_dft_r2c_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_r2c_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_r2c_rank_1 = fftwf_plan_guru_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_guru_dft_c2r_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_c2r_assumed_rank = fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_guru_dft_c2r_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_c2r_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_c2r_rank_0 = fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims, &
+        in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_guru_dft_c2r_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru_dft_c2r_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru_dft_c2r_rank_1 = fftw_plan_guru_dft_c2r_(rank,dims,howmany_rank,howmany_dims, &
+        in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_guru_dft_c2r_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_c2r_assumed_rank = fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_guru_dft_c2r_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_c2r_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_c2r_rank_0 = fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_guru_dft_c2r_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru_dft_c2r_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru_dft_c2r_rank_1 = fftwf_plan_guru_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_guru64_dft_r2c_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_r2c_assumed_rank = fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftw_plan_guru64_dft_r2c_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_r2c_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_r2c_rank_0 = fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+    function fftw_plan_guru64_dft_r2c_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_r2c_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_r2c_rank_1 = fftw_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_guru64_dft_r2c_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out, &
+        flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_r2c_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_r2c_assumed_rank = fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#else
+    function fftwf_plan_guru64_dft_r2c_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_r2c_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_r2c_rank_0 = fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+    function fftwf_plan_guru64_dft_r2c_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_r2c_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_r2c_rank_1 = fftwf_plan_guru64_dft_r2c_(rank,dims,howmany_rank, &
+        howmany_dims,c_loc(in),out,flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftw_plan_guru64_dft_c2r_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_c2r_assumed_rank = fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftw_plan_guru64_dft_c2r_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_c2r_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_c2r_rank_0 = fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+    function fftw_plan_guru64_dft_c2r_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftw_plan_guru64_dft_c2r_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftw_plan_guru64_dft_c2r_rank_1 = fftw_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function fftwf_plan_guru64_dft_c2r_assumed_rank(rank,dims,howmany_rank,howmany_dims,in,out, &
+        flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_c2r_assumed_rank
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_c2r_assumed_rank = fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#else
+    function fftwf_plan_guru64_dft_c2r_rank_0(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_c2r_rank_0
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_c2r_rank_0 = fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+    function fftwf_plan_guru64_dft_c2r_rank_1(rank,dims,howmany_rank,howmany_dims,in,out,flags)
+      implicit none
+      type(c_ptr) :: fftwf_plan_guru64_dft_c2r_rank_1
+      integer(c_int) :: rank
+      type(fftw_iodim64) :: dims(*)
+      integer(c_int) :: howmany_rank
+      type(fftw_iodim64) :: howmany_dims(*)
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      integer(c_int) :: flags
+      !
+      fftwf_plan_guru64_dft_c2r_rank_1 = fftwf_plan_guru64_dft_c2r_(rank,dims,howmany_rank, &
+        howmany_dims,in,c_loc(out),flags)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftw_execute_dft_r2c_assumed_rank(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_double),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      !
+      call fftw_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+#else
+    subroutine fftw_execute_dft_r2c_rank_0(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_double),target :: in
+      type(c_ptr), value :: out
+      !
+      call fftw_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+    subroutine fftw_execute_dft_r2c_rank_1(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_double),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      !
+      call fftw_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftwf_execute_dft_r2c_assumed_rank(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_float),target,dimension(..) :: in
+      type(c_ptr), value :: out
+      !
+      call fftwf_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+#else
+    subroutine fftwf_execute_dft_r2c_rank_0(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_float),target :: in
+      type(c_ptr), value :: out
+      !
+      call fftwf_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+    subroutine fftwf_execute_dft_r2c_rank_1(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      real(c_float),target,dimension(:) :: in
+      type(c_ptr), value :: out
+      !
+      call fftwf_execute_dft_r2c_(plan,c_loc(in),out)
+    end subroutine
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftw_execute_dft_c2r_assumed_rank(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(..) :: out
+      !
+      call fftw_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+#else
+    subroutine fftw_execute_dft_c2r_rank_0(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_double),target :: out
+      !
+      call fftw_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+    subroutine fftw_execute_dft_c2r_rank_1(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_double),target,dimension(:) :: out
+      !
+      call fftw_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftwf_execute_dft_c2r_assumed_rank(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(..) :: out
+      !
+      call fftwf_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+#else
+    subroutine fftwf_execute_dft_c2r_rank_0(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_float),target :: out
+      !
+      call fftwf_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+    subroutine fftwf_execute_dft_c2r_rank_1(plan,in,out)
+      implicit none
+      type(c_ptr), value :: plan
+      type(c_ptr), value :: in
+      real(c_float),target,dimension(:) :: out
+      !
+      call fftwf_execute_dft_c2r_(plan,in,c_loc(out))
+    end subroutine
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftw_flops_assumed_rank(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target,dimension(..) :: arg2
+      real(c_double),target,dimension(..) :: arg3
+      real(c_double),target,dimension(..) :: arg4
+      !
+      call fftw_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+#else
+    subroutine fftw_flops_rank_0(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target :: arg2
+      real(c_double),target :: arg3
+      real(c_double),target :: arg4
+      !
+      call fftw_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+    subroutine fftw_flops_rank_1(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target,dimension(:) :: arg2
+      real(c_double),target,dimension(:) :: arg3
+      real(c_double),target,dimension(:) :: arg4
+      !
+      call fftw_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    subroutine fftwf_flops_assumed_rank(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target,dimension(..) :: arg2
+      real(c_double),target,dimension(..) :: arg3
+      real(c_double),target,dimension(..) :: arg4
+      !
+      call fftwf_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+#else
+    subroutine fftwf_flops_rank_0(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target :: arg2
+      real(c_double),target :: arg3
+      real(c_double),target :: arg4
+      !
+      call fftwf_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+    subroutine fftwf_flops_rank_1(arg1,arg2,arg3,arg4)
+      implicit none
+      type(c_ptr), value :: arg1
+      real(c_double),target,dimension(:) :: arg2
+      real(c_double),target,dimension(:) :: arg3
+      real(c_double),target,dimension(:) :: arg4
+      !
+      call fftwf_flops_(arg1,c_loc(arg2),c_loc(arg3),c_loc(arg4))
+    end subroutine
+
+#endif
+#endif
 end module hipfort_hipfftw

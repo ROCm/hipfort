@@ -49,16 +49,16 @@
 45 | [hipsparseDestroyCsrgemm2Info](interfacehipfort__hipsparse_1_1hipsparsedestroycsrgemm2info.html "Interface documentation") | C binding
 46 | [hipsparseCreatePruneInfo](interfacehipfort__hipsparse_1_1hipsparsecreatepruneinfo.html "Interface documentation") | C binding
 47 | [hipsparseDestroyPruneInfo](interfacehipfort__hipsparse_1_1hipsparsedestroypruneinfo.html "Interface documentation") | C binding
-48 | [hipsparseSaxpyi](interfacehipfort__hipsparse_1_1hipsparsesaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-49 | [hipsparseDaxpyi](interfacehipfort__hipsparse_1_1hipsparsedaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-50 | [hipsparseCaxpyi](interfacehipfort__hipsparse_1_1hipsparsecaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-51 | [hipsparseZaxpyi](interfacehipfort__hipsparse_1_1hipsparsezaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-52 | [hipsparseCdotci](interfacehipfort__hipsparse_1_1hipsparsecdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-53 | [hipsparseZdotci](interfacehipfort__hipsparse_1_1hipsparsezdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-54 | [hipsparseSdoti](interfacehipfort__hipsparse_1_1hipsparsesdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-55 | [hipsparseDdoti](interfacehipfort__hipsparse_1_1hipsparseddoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-56 | [hipsparseCdoti](interfacehipfort__hipsparse_1_1hipsparsecdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-57 | [hipsparseZdoti](interfacehipfort__hipsparse_1_1hipsparsezdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+48 | [hipsparseSaxpyi](interfacehipfort__hipsparse_1_1hipsparsesaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+49 | [hipsparseDaxpyi](interfacehipfort__hipsparse_1_1hipsparsedaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+50 | [hipsparseCaxpyi](interfacehipfort__hipsparse_1_1hipsparsecaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+51 | [hipsparseZaxpyi](interfacehipfort__hipsparse_1_1hipsparsezaxpyi.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+52 | [hipsparseCdotci](interfacehipfort__hipsparse_1_1hipsparsecdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+53 | [hipsparseZdotci](interfacehipfort__hipsparse_1_1hipsparsezdotci.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+54 | [hipsparseSdoti](interfacehipfort__hipsparse_1_1hipsparsesdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+55 | [hipsparseDdoti](interfacehipfort__hipsparse_1_1hipsparseddoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+56 | [hipsparseCdoti](interfacehipfort__hipsparse_1_1hipsparsecdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+57 | [hipsparseZdoti](interfacehipfort__hipsparse_1_1hipsparsezdoti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 58 | [hipsparseSgthr](interfacehipfort__hipsparse_1_1hipsparsesgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 59 | [hipsparseDgthr](interfacehipfort__hipsparse_1_1hipsparsedgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 60 | [hipsparseCgthr](interfacehipfort__hipsparse_1_1hipsparsecgthr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -67,16 +67,16 @@
 63 | [hipsparseDgthrz](interfacehipfort__hipsparse_1_1hipsparsedgthrz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 64 | [hipsparseCgthrz](interfacehipfort__hipsparse_1_1hipsparsecgthrz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 65 | [hipsparseZgthrz](interfacehipfort__hipsparse_1_1hipsparsezgthrz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-66 | [hipsparseSroti](interfacehipfort__hipsparse_1_1hipsparsesroti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-67 | [hipsparseDroti](interfacehipfort__hipsparse_1_1hipsparsedroti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+66 | [hipsparseSroti](interfacehipfort__hipsparse_1_1hipsparsesroti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+67 | [hipsparseDroti](interfacehipfort__hipsparse_1_1hipsparsedroti.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 68 | [hipsparseSsctr](interfacehipfort__hipsparse_1_1hipsparsessctr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 69 | [hipsparseDsctr](interfacehipfort__hipsparse_1_1hipsparsedsctr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 70 | [hipsparseCsctr](interfacehipfort__hipsparse_1_1hipsparsecsctr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 71 | [hipsparseZsctr](interfacehipfort__hipsparse_1_1hipsparsezsctr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-72 | [hipsparseSbsrmv](interfacehipfort__hipsparse_1_1hipsparsesbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-73 | [hipsparseDbsrmv](interfacehipfort__hipsparse_1_1hipsparsedbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-74 | [hipsparseCbsrmv](interfacehipfort__hipsparse_1_1hipsparsecbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-75 | [hipsparseZbsrmv](interfacehipfort__hipsparse_1_1hipsparsezbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+72 | [hipsparseSbsrmv](interfacehipfort__hipsparse_1_1hipsparsesbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+73 | [hipsparseDbsrmv](interfacehipfort__hipsparse_1_1hipsparsedbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+74 | [hipsparseCbsrmv](interfacehipfort__hipsparse_1_1hipsparsecbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+75 | [hipsparseZbsrmv](interfacehipfort__hipsparse_1_1hipsparsezbsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 76 | [hipsparseXbsrsv2_zeroPivot](interfacehipfort__hipsparse_1_1hipsparsexbsrsv2__zeropivot.html "Interface documentation") | C binding, typed
 77 | [hipsparseSbsrsv2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesbsrsv2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 78 | [hipsparseDbsrsv2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedbsrsv2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -90,18 +90,18 @@
 86 | [hipsparseDbsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparsedbsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 87 | [hipsparseCbsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparsecbsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 88 | [hipsparseZbsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparsezbsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-89 | [hipsparseSbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsesbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-90 | [hipsparseDbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsedbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-91 | [hipsparseCbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsecbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-92 | [hipsparseZbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsezbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-93 | [hipsparseSbsrxmv](interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-94 | [hipsparseDbsrxmv](interfacehipfort__hipsparse_1_1hipsparsedbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-95 | [hipsparseCbsrxmv](interfacehipfort__hipsparse_1_1hipsparsecbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-96 | [hipsparseZbsrxmv](interfacehipfort__hipsparse_1_1hipsparsezbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-97 | [hipsparseScsrmv](interfacehipfort__hipsparse_1_1hipsparsescsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-98 | [hipsparseDcsrmv](interfacehipfort__hipsparse_1_1hipsparsedcsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-99 | [hipsparseCcsrmv](interfacehipfort__hipsparse_1_1hipsparseccsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-100 | [hipsparseZcsrmv](interfacehipfort__hipsparse_1_1hipsparsezcsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+89 | [hipsparseSbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsesbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+90 | [hipsparseDbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsedbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+91 | [hipsparseCbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsecbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+92 | [hipsparseZbsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsezbsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+93 | [hipsparseSbsrxmv](interfacehipfort__hipsparse_1_1hipsparsesbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+94 | [hipsparseDbsrxmv](interfacehipfort__hipsparse_1_1hipsparsedbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+95 | [hipsparseCbsrxmv](interfacehipfort__hipsparse_1_1hipsparsecbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+96 | [hipsparseZbsrxmv](interfacehipfort__hipsparse_1_1hipsparsezbsrxmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+97 | [hipsparseScsrmv](interfacehipfort__hipsparse_1_1hipsparsescsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+98 | [hipsparseDcsrmv](interfacehipfort__hipsparse_1_1hipsparsedcsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+99 | [hipsparseCcsrmv](interfacehipfort__hipsparse_1_1hipsparseccsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+100 | [hipsparseZcsrmv](interfacehipfort__hipsparse_1_1hipsparsezcsrmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 101 | [hipsparseXcsrsv2_zeroPivot](interfacehipfort__hipsparse_1_1hipsparsexcsrsv2__zeropivot.html "Interface documentation") | C binding, typed
 102 | [hipsparseScsrsv2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsescsrsv2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 103 | [hipsparseDcsrsv2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedcsrsv2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -115,26 +115,26 @@
 111 | [hipsparseDcsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparsedcsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 112 | [hipsparseCcsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparseccsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 113 | [hipsparseZcsrsv2_analysis](interfacehipfort__hipsparse_1_1hipsparsezcsrsv2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-114 | [hipsparseScsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsescsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-115 | [hipsparseDcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsedcsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-116 | [hipsparseCcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparseccsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-117 | [hipsparseZcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsezcsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+114 | [hipsparseScsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsescsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+115 | [hipsparseDcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsedcsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+116 | [hipsparseCcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparseccsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+117 | [hipsparseZcsrsv2_solve](interfacehipfort__hipsparse_1_1hipsparsezcsrsv2__solve.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 118 | [hipsparseSgemvi_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesgemvi__buffersize.html "Interface documentation") | C binding, typed
 119 | [hipsparseDgemvi_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedgemvi__buffersize.html "Interface documentation") | C binding, typed
 120 | [hipsparseCgemvi_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecgemvi__buffersize.html "Interface documentation") | C binding, typed
 121 | [hipsparseZgemvi_bufferSize](interfacehipfort__hipsparse_1_1hipsparsezgemvi__buffersize.html "Interface documentation") | C binding, typed
-122 | [hipsparseSgemvi](interfacehipfort__hipsparse_1_1hipsparsesgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-123 | [hipsparseDgemvi](interfacehipfort__hipsparse_1_1hipsparsedgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-124 | [hipsparseCgemvi](interfacehipfort__hipsparse_1_1hipsparsecgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-125 | [hipsparseZgemvi](interfacehipfort__hipsparse_1_1hipsparsezgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-126 | [hipsparseShybmv](interfacehipfort__hipsparse_1_1hipsparseshybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-127 | [hipsparseDhybmv](interfacehipfort__hipsparse_1_1hipsparsedhybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-128 | [hipsparseChybmv](interfacehipfort__hipsparse_1_1hipsparsechybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-129 | [hipsparseZhybmv](interfacehipfort__hipsparse_1_1hipsparsezhybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-130 | [hipsparseSbsrmm](interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-131 | [hipsparseDbsrmm](interfacehipfort__hipsparse_1_1hipsparsedbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-132 | [hipsparseCbsrmm](interfacehipfort__hipsparse_1_1hipsparsecbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-133 | [hipsparseZbsrmm](interfacehipfort__hipsparse_1_1hipsparsezbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+122 | [hipsparseSgemvi](interfacehipfort__hipsparse_1_1hipsparsesgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+123 | [hipsparseDgemvi](interfacehipfort__hipsparse_1_1hipsparsedgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+124 | [hipsparseCgemvi](interfacehipfort__hipsparse_1_1hipsparsecgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+125 | [hipsparseZgemvi](interfacehipfort__hipsparse_1_1hipsparsezgemvi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+126 | [hipsparseShybmv](interfacehipfort__hipsparse_1_1hipsparseshybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+127 | [hipsparseDhybmv](interfacehipfort__hipsparse_1_1hipsparsedhybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+128 | [hipsparseChybmv](interfacehipfort__hipsparse_1_1hipsparsechybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+129 | [hipsparseZhybmv](interfacehipfort__hipsparse_1_1hipsparsezhybmv.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+130 | [hipsparseSbsrmm](interfacehipfort__hipsparse_1_1hipsparsesbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+131 | [hipsparseDbsrmm](interfacehipfort__hipsparse_1_1hipsparsedbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+132 | [hipsparseCbsrmm](interfacehipfort__hipsparse_1_1hipsparsecbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+133 | [hipsparseZbsrmm](interfacehipfort__hipsparse_1_1hipsparsezbsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 134 | [hipsparseXbsrsm2_zeroPivot](interfacehipfort__hipsparse_1_1hipsparsexbsrsm2__zeropivot.html "Interface documentation") | C binding, typed
 135 | [hipsparseSbsrsm2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesbsrsm2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 136 | [hipsparseDbsrsm2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedbsrsm2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -144,50 +144,50 @@
 140 | [hipsparseDbsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsedbsrsm2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 141 | [hipsparseCbsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsecbsrsm2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 142 | [hipsparseZbsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsezbsrsm2__analysis.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-143 | [hipsparseSbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsesbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-144 | [hipsparseDbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsedbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-145 | [hipsparseCbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsecbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-146 | [hipsparseZbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsezbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-147 | [hipsparseScsrmm](interfacehipfort__hipsparse_1_1hipsparsescsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-148 | [hipsparseDcsrmm](interfacehipfort__hipsparse_1_1hipsparsedcsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-149 | [hipsparseCcsrmm](interfacehipfort__hipsparse_1_1hipsparseccsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-150 | [hipsparseZcsrmm](interfacehipfort__hipsparse_1_1hipsparsezcsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-151 | [hipsparseScsrmm2](interfacehipfort__hipsparse_1_1hipsparsescsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-152 | [hipsparseDcsrmm2](interfacehipfort__hipsparse_1_1hipsparsedcsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-153 | [hipsparseCcsrmm2](interfacehipfort__hipsparse_1_1hipsparseccsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-154 | [hipsparseZcsrmm2](interfacehipfort__hipsparse_1_1hipsparsezcsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+143 | [hipsparseSbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsesbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+144 | [hipsparseDbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsedbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+145 | [hipsparseCbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsecbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+146 | [hipsparseZbsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsezbsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+147 | [hipsparseScsrmm](interfacehipfort__hipsparse_1_1hipsparsescsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+148 | [hipsparseDcsrmm](interfacehipfort__hipsparse_1_1hipsparsedcsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+149 | [hipsparseCcsrmm](interfacehipfort__hipsparse_1_1hipsparseccsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+150 | [hipsparseZcsrmm](interfacehipfort__hipsparse_1_1hipsparsezcsrmm.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+151 | [hipsparseScsrmm2](interfacehipfort__hipsparse_1_1hipsparsescsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+152 | [hipsparseDcsrmm2](interfacehipfort__hipsparse_1_1hipsparsedcsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+153 | [hipsparseCcsrmm2](interfacehipfort__hipsparse_1_1hipsparseccsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+154 | [hipsparseZcsrmm2](interfacehipfort__hipsparse_1_1hipsparsezcsrmm2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 155 | [hipsparseXcsrsm2_zeroPivot](interfacehipfort__hipsparse_1_1hipsparsexcsrsm2__zeropivot.html "Interface documentation") | C binding, typed
-156 | [hipsparseScsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-157 | [hipsparseDcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-158 | [hipsparseCcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-159 | [hipsparseZcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-160 | [hipsparseScsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-161 | [hipsparseDcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-162 | [hipsparseCcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-163 | [hipsparseZcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-164 | [hipsparseScsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-165 | [hipsparseDcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-166 | [hipsparseCcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-167 | [hipsparseZcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-168 | [hipsparseSgemmi](interfacehipfort__hipsparse_1_1hipsparsesgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-169 | [hipsparseDgemmi](interfacehipfort__hipsparse_1_1hipsparsedgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-170 | [hipsparseCgemmi](interfacehipfort__hipsparse_1_1hipsparsecgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-171 | [hipsparseZgemmi](interfacehipfort__hipsparse_1_1hipsparsezgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-172 | [hipsparseXcsrgeamNnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgeamnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-173 | [hipsparseScsrgeam](interfacehipfort__hipsparse_1_1hipsparsescsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-174 | [hipsparseDcsrgeam](interfacehipfort__hipsparse_1_1hipsparsedcsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-175 | [hipsparseCcsrgeam](interfacehipfort__hipsparse_1_1hipsparseccsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-176 | [hipsparseZcsrgeam](interfacehipfort__hipsparse_1_1hipsparsezcsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+156 | [hipsparseScsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+157 | [hipsparseDcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+158 | [hipsparseCcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+159 | [hipsparseZcsrsm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+160 | [hipsparseScsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+161 | [hipsparseDcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+162 | [hipsparseCcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+163 | [hipsparseZcsrsm2_analysis](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__analysis.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+164 | [hipsparseScsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsescsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+165 | [hipsparseDcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsedcsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+166 | [hipsparseCcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparseccsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+167 | [hipsparseZcsrsm2_solve](interfacehipfort__hipsparse_1_1hipsparsezcsrsm2__solve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+168 | [hipsparseSgemmi](interfacehipfort__hipsparse_1_1hipsparsesgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+169 | [hipsparseDgemmi](interfacehipfort__hipsparse_1_1hipsparsedgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+170 | [hipsparseCgemmi](interfacehipfort__hipsparse_1_1hipsparsecgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+171 | [hipsparseZgemmi](interfacehipfort__hipsparse_1_1hipsparsezgemmi.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+172 | [hipsparseXcsrgeamNnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgeamnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+173 | [hipsparseScsrgeam](interfacehipfort__hipsparse_1_1hipsparsescsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+174 | [hipsparseDcsrgeam](interfacehipfort__hipsparse_1_1hipsparsedcsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+175 | [hipsparseCcsrgeam](interfacehipfort__hipsparse_1_1hipsparseccsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+176 | [hipsparseZcsrgeam](interfacehipfort__hipsparse_1_1hipsparsezcsrgeam.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 177 | [hipsparseScsrgeam2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsescsrgeam2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 178 | [hipsparseDcsrgeam2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedcsrgeam2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 179 | [hipsparseCcsrgeam2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparseccsrgeam2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 180 | [hipsparseZcsrgeam2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezcsrgeam2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-181 | [hipsparseXcsrgeam2Nnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-182 | [hipsparseScsrgeam2](interfacehipfort__hipsparse_1_1hipsparsescsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-183 | [hipsparseDcsrgeam2](interfacehipfort__hipsparse_1_1hipsparsedcsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-184 | [hipsparseCcsrgeam2](interfacehipfort__hipsparse_1_1hipsparseccsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-185 | [hipsparseZcsrgeam2](interfacehipfort__hipsparse_1_1hipsparsezcsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-186 | [hipsparseXcsrgemmNnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgemmnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+181 | [hipsparseXcsrgeam2Nnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgeam2nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+182 | [hipsparseScsrgeam2](interfacehipfort__hipsparse_1_1hipsparsescsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+183 | [hipsparseDcsrgeam2](interfacehipfort__hipsparse_1_1hipsparsedcsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+184 | [hipsparseCcsrgeam2](interfacehipfort__hipsparse_1_1hipsparseccsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+185 | [hipsparseZcsrgeam2](interfacehipfort__hipsparse_1_1hipsparsezcsrgeam2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+186 | [hipsparseXcsrgemmNnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgemmnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 187 | [hipsparseScsrgemm](interfacehipfort__hipsparse_1_1hipsparsescsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 188 | [hipsparseDcsrgemm](interfacehipfort__hipsparse_1_1hipsparsedcsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 189 | [hipsparseCcsrgemm](interfacehipfort__hipsparse_1_1hipsparseccsrgemm.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -196,11 +196,11 @@
 192 | [hipsparseDcsrgemm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedcsrgemm2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 193 | [hipsparseCcsrgemm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparseccsrgemm2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 194 | [hipsparseZcsrgemm2_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezcsrgemm2__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-195 | [hipsparseXcsrgemm2Nnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgemm2nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-196 | [hipsparseScsrgemm2](interfacehipfort__hipsparse_1_1hipsparsescsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-197 | [hipsparseDcsrgemm2](interfacehipfort__hipsparse_1_1hipsparsedcsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-198 | [hipsparseCcsrgemm2](interfacehipfort__hipsparse_1_1hipsparseccsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-199 | [hipsparseZcsrgemm2](interfacehipfort__hipsparse_1_1hipsparsezcsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+195 | [hipsparseXcsrgemm2Nnz](interfacehipfort__hipsparse_1_1hipsparsexcsrgemm2nnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+196 | [hipsparseScsrgemm2](interfacehipfort__hipsparse_1_1hipsparsescsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+197 | [hipsparseDcsrgemm2](interfacehipfort__hipsparse_1_1hipsparsedcsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+198 | [hipsparseCcsrgemm2](interfacehipfort__hipsparse_1_1hipsparseccsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+199 | [hipsparseZcsrgemm2](interfacehipfort__hipsparse_1_1hipsparsezcsrgemm2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 200 | [hipsparseXbsric02_zeroPivot](interfacehipfort__hipsparse_1_1hipsparsexbsric02__zeropivot.html "Interface documentation") | C binding, typed
 201 | [hipsparseSbsric02_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesbsric02__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 202 | [hipsparseDbsric02_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedbsric02__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
@@ -285,14 +285,14 @@
 281 | [hipsparseDgtsv2](interfacehipfort__hipsparse_1_1hipsparsedgtsv2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 282 | [hipsparseCgtsv2](interfacehipfort__hipsparse_1_1hipsparsecgtsv2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 283 | [hipsparseZgtsv2](interfacehipfort__hipsparse_1_1hipsparsezgtsv2.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-284 | [hipsparseSgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, typed
-285 | [hipsparseDgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, typed
-286 | [hipsparseCgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsecgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, typed
-287 | [hipsparseZgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, typed
-288 | [hipsparseSgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsesgtsvinterleavedbatch.html "Interface documentation") | C binding
-289 | [hipsparseDgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsedgtsvinterleavedbatch.html "Interface documentation") | C binding
-290 | [hipsparseCgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsecgtsvinterleavedbatch.html "Interface documentation") | C binding
-291 | [hipsparseZgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsezgtsvinterleavedbatch.html "Interface documentation") | C binding
+284 | [hipsparseSgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+285 | [hipsparseDgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+286 | [hipsparseCgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsecgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+287 | [hipsparseZgtsvInterleavedBatch_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsezgtsvinterleavedbatch__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+288 | [hipsparseSgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsesgtsvinterleavedbatch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+289 | [hipsparseDgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsedgtsvinterleavedbatch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+290 | [hipsparseCgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsecgtsvinterleavedbatch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+291 | [hipsparseZgtsvInterleavedBatch](interfacehipfort__hipsparse_1_1hipsparsezgtsvinterleavedbatch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 292 | [hipsparseSgtsv2_nopivot_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesgtsv2__nopivot__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 293 | [hipsparseDgtsv2_nopivot_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedgtsv2__nopivot__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 294 | [hipsparseCgtsv2_nopivot_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsecgtsv2__nopivot__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
@@ -324,7 +324,7 @@
 320 | [hipsparseZcsc2dense](interfacehipfort__hipsparse_1_1hipsparsezcsc2dense.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 321 | [hipsparseXcscsort_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsexcscsort__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 322 | [hipsparseXcscsort](interfacehipfort__hipsparse_1_1hipsparsexcscsort.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-323 | [hipsparseXcsr2bsrNnz](interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+323 | [hipsparseXcsr2bsrNnz](interfacehipfort__hipsparse_1_1hipsparsexcsr2bsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 324 | [hipsparseScsr2bsr](interfacehipfort__hipsparse_1_1hipsparsescsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 325 | [hipsparseDcsr2bsr](interfacehipfort__hipsparse_1_1hipsparsedcsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 326 | [hipsparseCcsr2bsr](interfacehipfort__hipsparse_1_1hipsparseccsr2bsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -334,8 +334,8 @@
 330 | [hipsparseDcsr2csc](interfacehipfort__hipsparse_1_1hipsparsedcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 331 | [hipsparseCcsr2csc](interfacehipfort__hipsparse_1_1hipsparseccsr2csc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 332 | [hipsparseZcsr2csc](interfacehipfort__hipsparse_1_1hipsparsezcsr2csc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-333 | [hipsparseCsr2cscEx2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecsr2cscex2__buffersize.html "Interface documentation") | C binding, typed
-334 | [hipsparseCsr2cscEx2](interfacehipfort__hipsparse_1_1hipsparsecsr2cscex2.html "Interface documentation") | C binding
+333 | [hipsparseCsr2cscEx2_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecsr2cscex2__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+334 | [hipsparseCsr2cscEx2](interfacehipfort__hipsparse_1_1hipsparsecsr2cscex2.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 335 | [hipsparseScsr2csr_compress](interfacehipfort__hipsparse_1_1hipsparsescsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 336 | [hipsparseDcsr2csr_compress](interfacehipfort__hipsparse_1_1hipsparsedcsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 337 | [hipsparseCcsr2csr_compress](interfacehipfort__hipsparse_1_1hipsparseccsr2csr__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -352,7 +352,7 @@
 348 | [hipsparseDcsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 349 | [hipsparseCcsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 350 | [hipsparseZcsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsezcsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-351 | [hipsparseXcsr2gebsrNnz](interfacehipfort__hipsparse_1_1hipsparsexcsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+351 | [hipsparseXcsr2gebsrNnz](interfacehipfort__hipsparse_1_1hipsparsexcsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 352 | [hipsparseScsr2gebsr](interfacehipfort__hipsparse_1_1hipsparsescsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 353 | [hipsparseDcsr2gebsr](interfacehipfort__hipsparse_1_1hipsparsedcsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 354 | [hipsparseCcsr2gebsr](interfacehipfort__hipsparse_1_1hipsparseccsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -383,19 +383,19 @@
 379 | [hipsparseDgebsr2csr](interfacehipfort__hipsparse_1_1hipsparsedgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 380 | [hipsparseCgebsr2csr](interfacehipfort__hipsparse_1_1hipsparsecgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 381 | [hipsparseZgebsr2csr](interfacehipfort__hipsparse_1_1hipsparsezgebsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-382 | [hipsparseSgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc__buffersize.html "Interface documentation") | C binding, typed
-383 | [hipsparseDgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc__buffersize.html "Interface documentation") | C binding, typed
-384 | [hipsparseCgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc__buffersize.html "Interface documentation") | C binding, typed
-385 | [hipsparseZgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc__buffersize.html "Interface documentation") | C binding, typed
-386 | [hipsparseSgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc.html "Interface documentation") | C binding
-387 | [hipsparseDgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc.html "Interface documentation") | C binding
-388 | [hipsparseCgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc.html "Interface documentation") | C binding
-389 | [hipsparseZgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc.html "Interface documentation") | C binding
+382 | [hipsparseSgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+383 | [hipsparseDgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+384 | [hipsparseCgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+385 | [hipsparseZgebsr2gebsc_bufferSize](interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+386 | [hipsparseSgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+387 | [hipsparseDgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+388 | [hipsparseCgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+389 | [hipsparseZgebsr2gebsc](interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsc.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 390 | [hipsparseSgebsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 391 | [hipsparseDgebsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 392 | [hipsparseCgebsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 393 | [hipsparseZgebsr2gebsr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsezgebsr2gebsr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-394 | [hipsparseXgebsr2gebsrNnz](interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+394 | [hipsparseXgebsr2gebsrNnz](interfacehipfort__hipsparse_1_1hipsparsexgebsr2gebsrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 395 | [hipsparseSgebsr2gebsr](interfacehipfort__hipsparse_1_1hipsparsesgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 396 | [hipsparseDgebsr2gebsr](interfacehipfort__hipsparse_1_1hipsparsedgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 397 | [hipsparseCgebsr2gebsr](interfacehipfort__hipsparse_1_1hipsparsecgebsr2gebsr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
@@ -404,50 +404,50 @@
 400 | [hipsparseDhyb2csr](interfacehipfort__hipsparse_1_1hipsparsedhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 401 | [hipsparseChyb2csr](interfacehipfort__hipsparse_1_1hipsparsechyb2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 402 | [hipsparseZhyb2csr](interfacehipfort__hipsparse_1_1hipsparsezhyb2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-403 | [hipsparseSnnz](interfacehipfort__hipsparse_1_1hipsparsesnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-404 | [hipsparseDnnz](interfacehipfort__hipsparse_1_1hipsparsednnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-405 | [hipsparseCnnz](interfacehipfort__hipsparse_1_1hipsparsecnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-406 | [hipsparseZnnz](interfacehipfort__hipsparse_1_1hipsparseznnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-407 | [hipsparseSnnz_compress](interfacehipfort__hipsparse_1_1hipsparsesnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-408 | [hipsparseDnnz_compress](interfacehipfort__hipsparse_1_1hipsparsednnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-409 | [hipsparseCnnz_compress](interfacehipfort__hipsparse_1_1hipsparsecnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-410 | [hipsparseZnnz_compress](interfacehipfort__hipsparse_1_1hipsparseznnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-411 | [hipsparseSpruneCsr2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-412 | [hipsparseDpruneCsr2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-413 | [hipsparseSpruneCsr2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-414 | [hipsparseDpruneCsr2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-415 | [hipsparseSpruneCsr2csrNnz](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-416 | [hipsparseDpruneCsr2csrNnz](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-417 | [hipsparseSpruneCsr2csr](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-418 | [hipsparseDpruneCsr2csr](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+403 | [hipsparseSnnz](interfacehipfort__hipsparse_1_1hipsparsesnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+404 | [hipsparseDnnz](interfacehipfort__hipsparse_1_1hipsparsednnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+405 | [hipsparseCnnz](interfacehipfort__hipsparse_1_1hipsparsecnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+406 | [hipsparseZnnz](interfacehipfort__hipsparse_1_1hipsparseznnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+407 | [hipsparseSnnz_compress](interfacehipfort__hipsparse_1_1hipsparsesnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+408 | [hipsparseDnnz_compress](interfacehipfort__hipsparse_1_1hipsparsednnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+409 | [hipsparseCnnz_compress](interfacehipfort__hipsparse_1_1hipsparsecnnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+410 | [hipsparseZnnz_compress](interfacehipfort__hipsparse_1_1hipsparseznnz__compress.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+411 | [hipsparseSpruneCsr2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+412 | [hipsparseDpruneCsr2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+413 | [hipsparseSpruneCsr2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+414 | [hipsparseDpruneCsr2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+415 | [hipsparseSpruneCsr2csrNnz](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+416 | [hipsparseDpruneCsr2csrNnz](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnz.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+417 | [hipsparseSpruneCsr2csr](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+418 | [hipsparseDpruneCsr2csr](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 419 | [hipsparseSpruneCsr2csrByPercentage_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 420 | [hipsparseDpruneCsr2csrByPercentage_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 421 | [hipsparseSpruneCsr2csrByPercentage_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 422 | [hipsparseDpruneCsr2csrByPercentage_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-423 | [hipsparseSpruneCsr2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-424 | [hipsparseDpruneCsr2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+423 | [hipsparseSpruneCsr2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+424 | [hipsparseDpruneCsr2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrnnzbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 425 | [hipsparseSpruneCsr2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 426 | [hipsparseDpruneCsr2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunecsr2csrbypercentage.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-427 | [hipsparseSpruneDense2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-428 | [hipsparseDpruneDense2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-429 | [hipsparseSpruneDense2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-430 | [hipsparseDpruneDense2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-431 | [hipsparseSpruneDense2csrNnz](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-432 | [hipsparseDpruneDense2csrNnz](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-433 | [hipsparseSpruneDense2csr](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-434 | [hipsparseDpruneDense2csr](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+427 | [hipsparseSpruneDense2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+428 | [hipsparseDpruneDense2csr_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+429 | [hipsparseSpruneDense2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+430 | [hipsparseDpruneDense2csr_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+431 | [hipsparseSpruneDense2csrNnz](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+432 | [hipsparseDpruneDense2csrNnz](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnz.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+433 | [hipsparseSpruneDense2csr](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+434 | [hipsparseDpruneDense2csr](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 435 | [hipsparseSpruneDense2csrByPercentage_bufferSize](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 436 | [hipsparseDpruneDense2csrByPercentage_bufferSize](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 437 | [hipsparseSpruneDense2csrByPercentage_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 438 | [hipsparseDpruneDense2csrByPercentage_bufferSizeExt](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage__buffersizeext.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-439 | [hipsparseSpruneDense2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
-440 | [hipsparseDpruneDense2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+439 | [hipsparseSpruneDense2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+440 | [hipsparseDpruneDense2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 441 | [hipsparseSpruneDense2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 442 | [hipsparseDpruneDense2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-443 | [hipsparseScsrcolor](interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-444 | [hipsparseDcsrcolor](interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-445 | [hipsparseCcsrcolor](interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
-446 | [hipsparseZcsrcolor](interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+443 | [hipsparseScsrcolor](interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+444 | [hipsparseDcsrcolor](interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+445 | [hipsparseCcsrcolor](interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+446 | [hipsparseZcsrcolor](interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 447 | [hipsparseCreateSpVec](interfacehipfort__hipsparse_1_1hipsparsecreatespvec.html "Interface documentation") | C binding
 448 | [hipsparseCreateConstSpVec](interfacehipfort__hipsparse_1_1hipsparsecreateconstspvec.html "Interface documentation") | C binding
 449 | [hipsparseDestroySpVec](interfacehipfort__hipsparse_1_1hipsparsedestroyspvec.html "Interface documentation") | C binding
