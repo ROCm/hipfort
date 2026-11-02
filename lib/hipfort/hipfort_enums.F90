@@ -800,9 +800,21 @@ module hipfort_enums
 #else
     enumerator :: hipDeviceAttributeHostAllocDmaBufSupported = 96
 #endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeGPUDirectRDMASupported = 116
+#else
     enumerator :: hipDeviceAttributeGPUDirectRDMASupported = 97
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeGPUDirectRDMAFlushWritesOptions = 117
+#else
     enumerator :: hipDeviceAttributeGPUDirectRDMAFlushWritesOptions = 98
+#endif
+#ifdef USE_CUDA_NAMES
+    enumerator :: hipDeviceAttributeGPUDirectRDMAWritesOrdering = 118
+#else
     enumerator :: hipDeviceAttributeGPUDirectRDMAWritesOrdering = 99
+#endif
     enumerator :: hipDeviceAttributeCudaCompatibleEnd = 9999
     enumerator :: hipDeviceAttributeAmdSpecificBegin = 10000
 #ifdef USE_CUDA_NAMES
