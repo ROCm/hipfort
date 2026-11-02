@@ -34182,12 +34182,16 @@ module hipfort_rocsparse
     module procedure rocsparse_scsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_scsrcolor_assumed_rank
+    module procedure &
+      rocsparse_scsrcolor_assumed_rank,&
+      rocsparse_scsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_scsrcolor_rank_0,&
-      rocsparse_scsrcolor_rank_1
+      rocsparse_scsrcolor_rank_0_devptr,&
+      rocsparse_scsrcolor_rank_1,&
+      rocsparse_scsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -34216,12 +34220,16 @@ module hipfort_rocsparse
     module procedure rocsparse_dcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_dcsrcolor_assumed_rank
+    module procedure &
+      rocsparse_dcsrcolor_assumed_rank,&
+      rocsparse_dcsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_dcsrcolor_rank_0,&
-      rocsparse_dcsrcolor_rank_1
+      rocsparse_dcsrcolor_rank_0_devptr,&
+      rocsparse_dcsrcolor_rank_1,&
+      rocsparse_dcsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -34250,12 +34258,16 @@ module hipfort_rocsparse
     module procedure rocsparse_ccsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_ccsrcolor_assumed_rank
+    module procedure &
+      rocsparse_ccsrcolor_assumed_rank,&
+      rocsparse_ccsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_ccsrcolor_rank_0,&
-      rocsparse_ccsrcolor_rank_1
+      rocsparse_ccsrcolor_rank_0_devptr,&
+      rocsparse_ccsrcolor_rank_1,&
+      rocsparse_ccsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -34284,12 +34296,16 @@ module hipfort_rocsparse
     module procedure rocsparse_zcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure rocsparse_zcsrcolor_assumed_rank
+    module procedure &
+      rocsparse_zcsrcolor_assumed_rank,&
+      rocsparse_zcsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       rocsparse_zcsrcolor_rank_0,&
-      rocsparse_zcsrcolor_rank_1
+      rocsparse_zcsrcolor_rank_0_devptr,&
+      rocsparse_zcsrcolor_rank_1,&
+      rocsparse_zcsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -40453,11 +40469,14 @@ module hipfort_rocsparse
       type(c_ptr), value :: mat
       integer(kind(rocsparse_data_status_success)),target :: data_status
       integer(kind(rocsparse_check_spmat_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_check_spmat_typed = rocsparse_check_spmat_(handle,mat,c_loc(data_status),stage, &
-        c_loc(buffer_size),temp_buffer)
+        buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_dense_to_sparse_typed(handle,mat_A,mat_B,alg,buffer_size,temp_buffer)
@@ -40467,11 +40486,14 @@ module hipfort_rocsparse
       type(c_ptr), value :: mat_A
       type(c_ptr), value :: mat_B
       integer(kind(rocsparse_dense_to_sparse_alg_default)) :: alg
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_dense_to_sparse_typed = rocsparse_dense_to_sparse_(handle,mat_A,mat_B,alg, &
-        c_loc(buffer_size),temp_buffer)
+        buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_extract_buffer_size_typed(handle,descr,source,target,stage, &
@@ -40526,11 +40548,14 @@ module hipfort_rocsparse
       type(c_ptr), value :: mat_A
       type(c_ptr), value :: mat_B
       integer(kind(rocsparse_sparse_to_dense_alg_default)) :: alg
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_sparse_to_dense_typed = rocsparse_sparse_to_dense_(handle,mat_A,mat_B,alg, &
-        c_loc(buffer_size),temp_buffer)
+        buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_sparse_to_sparse_buffer_size_typed(handle,descr,source,target,stage, &
@@ -40625,11 +40650,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spgemm_alg_default)) :: alg
       integer(kind(rocsparse_spgemm_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spgemm_typed = rocsparse_spgemm_(handle,trans_A,trans_B,alpha,A,B,beta,D,C, &
-        compute_type,alg,stage,c_loc(buffer_size),temp_buffer)
+        compute_type,alg,stage,buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_spic0_buffer_size_opt(handle,spic0_descr,A,P,spic0_stage, &
@@ -40837,11 +40865,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spitsv_alg_default)) :: alg
       integer(kind(rocsparse_spitsv_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spitsv_typed = rocsparse_spitsv_(handle,c_loc(host_nmaxiter),host_tol, &
-        host_history,trans,alpha,mat,x,y,compute_type,alg,stage,c_loc(buffer_size),temp_buffer)
+        host_history,trans,alpha,mat,x,y,compute_type,alg,stage,buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_spmm_typed(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C, &
@@ -40859,11 +40890,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spmm_alg_default)) :: alg
       integer(kind(rocsparse_spmm_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spmm_typed = rocsparse_spmm_(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C, &
-        compute_type,alg,stage,c_loc(buffer_size),temp_buffer)
+        compute_type,alg,stage,buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_spmv_typed(handle,trans,alpha,mat,x,beta,y,compute_type,alg,stage, &
@@ -40880,11 +40914,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spmv_alg_default)) :: alg
       integer(kind(rocsparse_spmv_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spmv_typed = rocsparse_spmv_(handle,trans,alpha,mat,x,beta,y,compute_type,alg, &
-        stage,c_loc(buffer_size),temp_buffer)
+        stage,buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_spsm_typed(handle,trans_A,trans_B,alpha,matA,matB,matC,compute_type,alg, &
@@ -40901,11 +40938,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spsm_alg_default)) :: alg
       integer(kind(rocsparse_spsm_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spsm_typed = rocsparse_spsm_(handle,trans_A,trans_B,alpha,matA,matB,matC, &
-        compute_type,alg,stage,c_loc(buffer_size),temp_buffer)
+        compute_type,alg,stage,buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_spsort_buffer_size_opt(handle,descr,source,target,stage, &
@@ -40979,11 +41019,14 @@ module hipfort_rocsparse
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
       integer(kind(rocsparse_spsv_alg_default)) :: alg
       integer(kind(rocsparse_spsv_stage_buffer_size)) :: stage
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spsv_typed = rocsparse_spsv_(handle,trans,alpha,mat,x,y,compute_type,alg,stage, &
-        c_loc(buffer_size),temp_buffer)
+        buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_sptrsm_buffer_size_opt(handle,sptrsm_descr,A,X,Y,sptrsm_stage, &
@@ -41117,11 +41160,14 @@ module hipfort_rocsparse
       type(c_ptr), value :: y
       type(c_ptr), value :: myResult
       integer(kind(rocsparse_datatype_f16_r)) :: compute_type
-      integer(c_size_t),target :: buffer_size
+      integer(c_size_t),optional,target :: buffer_size
       type(c_ptr), value :: temp_buffer
+      type(c_ptr) :: buffer_size__p
       !
+      buffer_size__p = c_null_ptr
+      if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spvv_typed = rocsparse_spvv_(handle,trans,x,y,myResult,compute_type, &
-        c_loc(buffer_size),temp_buffer)
+        buffer_size__p,temp_buffer)
     end function
 
     function rocsparse_v2_spmv_buffer_size_opt(handle,descr,mat,x,y,stage,buffer_size_in_bytes, &
@@ -44285,11 +44331,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_float),target :: boost_tol
-      real(c_float),target :: boost_val
+      real(c_float),optional,target :: boost_tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_sbsrilu0_numeric_boost_typed = rocsparse_sbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dbsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44298,11 +44350,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      real(c_double),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      real(c_double),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dbsrilu0_numeric_boost_typed = rocsparse_dbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_cbsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44311,11 +44369,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_float),target :: boost_tol
-      complex(c_float_complex),target :: boost_val
+      real(c_float),optional,target :: boost_tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_cbsrilu0_numeric_boost_typed = rocsparse_cbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_zbsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44324,11 +44388,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      complex(c_double_complex),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      complex(c_double_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_zbsrilu0_numeric_boost_typed = rocsparse_zbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dsbsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44337,11 +44407,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      real(c_float),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dsbsrilu0_numeric_boost_typed = rocsparse_dsbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dcbsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44350,11 +44426,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      complex(c_float_complex),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dcbsrilu0_numeric_boost_typed = rocsparse_dcbsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_sbsrilu0_buffer_size_typed(handle,dir,mb,nnzb,descr,bsr_val,bsr_row_ptr, &
@@ -44581,11 +44663,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_float),target :: boost_tol
-      real(c_float),target :: boost_val
+      real(c_float),optional,target :: boost_tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_scsrilu0_numeric_boost_typed = rocsparse_scsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dcsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44594,11 +44682,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      real(c_double),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      real(c_double),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dcsrilu0_numeric_boost_typed = rocsparse_dcsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_ccsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44607,11 +44701,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_float),target :: boost_tol
-      complex(c_float_complex),target :: boost_val
+      real(c_float),optional,target :: boost_tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_ccsrilu0_numeric_boost_typed = rocsparse_ccsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_zcsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44620,11 +44720,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      complex(c_double_complex),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      complex(c_double_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_zcsrilu0_numeric_boost_typed = rocsparse_zcsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dscsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44633,11 +44739,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      real(c_float),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dscsrilu0_numeric_boost_typed = rocsparse_dscsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_dccsrilu0_numeric_boost_typed(handle,myInfo,enable_boost,boost_tol,boost_val)
@@ -44646,11 +44758,17 @@ module hipfort_rocsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: boost_tol
-      complex(c_float_complex),target :: boost_val
+      real(c_double),optional,target :: boost_tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: boost_tol__p
+      type(c_ptr) :: boost_val__p
       !
+      boost_tol__p = c_null_ptr
+      if (present(boost_tol)) boost_tol__p = c_loc(boost_tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       rocsparse_dccsrilu0_numeric_boost_typed = rocsparse_dccsrilu0_numeric_boost_(handle,myInfo, &
-        enable_boost,c_loc(boost_tol),c_loc(boost_val))
+        enable_boost,boost_tol__p,boost_val__p)
     end function
 
     function rocsparse_scsrilu0_buffer_size_typed(handle,m,nnz,descr,csr_val,csr_row_ptr, &
@@ -91220,6 +91338,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_scsrcolor_assumed_rank_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr, &
+        csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(..) :: csr_val
+      integer(c_int),target,dimension(..) :: csr_row_ptr
+      integer(c_int),target,dimension(..) :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_scsrcolor_assumed_rank_devptr = rocsparse_scsrcolor_(handle,m,nnz,descr, &
+        c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color), &
+        c_loc(ncolors),c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function rocsparse_scsrcolor_rank_0(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
@@ -91243,6 +91383,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_scsrcolor_rank_0_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_float),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_scsrcolor_rank_0_devptr = rocsparse_scsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
     function rocsparse_scsrcolor_rank_1(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -91263,6 +91425,28 @@ module hipfort_rocsparse
       rocsparse_scsrcolor_rank_1 = rocsparse_scsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
         c_loc(coloring),c_loc(reordering),myInfo)
+    end function
+
+    function rocsparse_scsrcolor_rank_1_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_scsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_float),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_scsrcolor_rank_1_devptr = rocsparse_scsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
     end function
 
 #endif
@@ -91289,6 +91473,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_dcsrcolor_assumed_rank_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr, &
+        csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(..) :: csr_val
+      integer(c_int),target,dimension(..) :: csr_row_ptr
+      integer(c_int),target,dimension(..) :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_dcsrcolor_assumed_rank_devptr = rocsparse_dcsrcolor_(handle,m,nnz,descr, &
+        c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color), &
+        c_loc(ncolors),c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function rocsparse_dcsrcolor_rank_0(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
@@ -91312,6 +91518,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_dcsrcolor_rank_0_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_double),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_dcsrcolor_rank_0_devptr = rocsparse_dcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
     function rocsparse_dcsrcolor_rank_1(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -91332,6 +91560,28 @@ module hipfort_rocsparse
       rocsparse_dcsrcolor_rank_1 = rocsparse_dcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
         c_loc(coloring),c_loc(reordering),myInfo)
+    end function
+
+    function rocsparse_dcsrcolor_rank_1_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dcsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      real(c_double),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_dcsrcolor_rank_1_devptr = rocsparse_dcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
     end function
 
 #endif
@@ -91358,6 +91608,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_ccsrcolor_assumed_rank_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr, &
+        csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target,dimension(..) :: csr_val
+      integer(c_int),target,dimension(..) :: csr_row_ptr
+      integer(c_int),target,dimension(..) :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_ccsrcolor_assumed_rank_devptr = rocsparse_ccsrcolor_(handle,m,nnz,descr, &
+        c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color), &
+        c_loc(ncolors),c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function rocsparse_ccsrcolor_rank_0(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
@@ -91381,6 +91653,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_ccsrcolor_rank_0_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_ccsrcolor_rank_0_devptr = rocsparse_ccsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
     function rocsparse_ccsrcolor_rank_1(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -91401,6 +91695,28 @@ module hipfort_rocsparse
       rocsparse_ccsrcolor_rank_1 = rocsparse_ccsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
         c_loc(coloring),c_loc(reordering),myInfo)
+    end function
+
+    function rocsparse_ccsrcolor_rank_1_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_ccsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_float_complex),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_float),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_ccsrcolor_rank_1_devptr = rocsparse_ccsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
     end function
 
 #endif
@@ -91427,6 +91743,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_zcsrcolor_assumed_rank_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr, &
+        csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target,dimension(..) :: csr_val
+      integer(c_int),target,dimension(..) :: csr_row_ptr
+      integer(c_int),target,dimension(..) :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_zcsrcolor_assumed_rank_devptr = rocsparse_zcsrcolor_(handle,m,nnz,descr, &
+        c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color), &
+        c_loc(ncolors),c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function rocsparse_zcsrcolor_rank_0(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
@@ -91450,6 +91788,28 @@ module hipfort_rocsparse
         c_loc(coloring),c_loc(reordering),myInfo)
     end function
 
+    function rocsparse_zcsrcolor_rank_0_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target :: csr_val
+      integer(c_int),target :: csr_row_ptr
+      integer(c_int),target :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_zcsrcolor_rank_0_devptr = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
     function rocsparse_zcsrcolor_rank_1(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
         fraction_to_color,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -91470,6 +91830,28 @@ module hipfort_rocsparse
       rocsparse_zcsrcolor_rank_1 = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
         c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
         c_loc(coloring),c_loc(reordering),myInfo)
+    end function
+
+    function rocsparse_zcsrcolor_rank_1_devptr(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind, &
+        fraction_to_color,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zcsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descr
+      complex(c_double_complex),target,dimension(:) :: csr_val
+      integer(c_int),target,dimension(:) :: csr_row_ptr
+      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_double),target :: fraction_to_color
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      rocsparse_zcsrcolor_rank_1_devptr = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val), &
+        c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(fraction_to_color),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
     end function
 
 #endif

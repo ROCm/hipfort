@@ -444,10 +444,10 @@
 440 | [hipsparseDpruneDense2csrNnzByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrnnzbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 441 | [hipsparseSpruneDense2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsesprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 442 | [hipsparseDpruneDense2csrByPercentage](interfacehipfort__hipsparse_1_1hipsparsedprunedense2csrbypercentage.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
-443 | [hipsparseScsrcolor](interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-444 | [hipsparseDcsrcolor](interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-445 | [hipsparseCcsrcolor](interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-446 | [hipsparseZcsrcolor](interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+443 | [hipsparseScsrcolor](interfacehipfort__hipsparse_1_1hipsparsescsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+444 | [hipsparseDcsrcolor](interfacehipfort__hipsparse_1_1hipsparsedcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+445 | [hipsparseCcsrcolor](interfacehipfort__hipsparse_1_1hipsparseccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+446 | [hipsparseZcsrcolor](interfacehipfort__hipsparse_1_1hipsparsezcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 447 | [hipsparseCreateSpVec](interfacehipfort__hipsparse_1_1hipsparsecreatespvec.html "Interface documentation") | C binding
 448 | [hipsparseCreateConstSpVec](interfacehipfort__hipsparse_1_1hipsparsecreateconstspvec.html "Interface documentation") | C binding
 449 | [hipsparseDestroySpVec](interfacehipfort__hipsparse_1_1hipsparsedestroyspvec.html "Interface documentation") | C binding

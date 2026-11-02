@@ -23381,12 +23381,16 @@ module hipfort_hipsparse
     module procedure hipsparseScsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseScsrcolor_assumed_rank
+    module procedure &
+      hipsparseScsrcolor_assumed_rank,&
+      hipsparseScsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseScsrcolor_rank_0,&
-      hipsparseScsrcolor_rank_1
+      hipsparseScsrcolor_rank_0_devptr,&
+      hipsparseScsrcolor_rank_1,&
+      hipsparseScsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -23421,12 +23425,16 @@ module hipfort_hipsparse
     module procedure hipsparseDcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseDcsrcolor_assumed_rank
+    module procedure &
+      hipsparseDcsrcolor_assumed_rank,&
+      hipsparseDcsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseDcsrcolor_rank_0,&
-      hipsparseDcsrcolor_rank_1
+      hipsparseDcsrcolor_rank_0_devptr,&
+      hipsparseDcsrcolor_rank_1,&
+      hipsparseDcsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -23461,12 +23469,16 @@ module hipfort_hipsparse
     module procedure hipsparseCcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseCcsrcolor_assumed_rank
+    module procedure &
+      hipsparseCcsrcolor_assumed_rank,&
+      hipsparseCcsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseCcsrcolor_rank_0,&
-      hipsparseCcsrcolor_rank_1
+      hipsparseCcsrcolor_rank_0_devptr,&
+      hipsparseCcsrcolor_rank_1,&
+      hipsparseCcsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -23501,12 +23513,16 @@ module hipfort_hipsparse
     module procedure hipsparseZcsrcolor_typed
 
 #ifdef USE_ASSUMED_RANK
-    module procedure hipsparseZcsrcolor_assumed_rank
+    module procedure &
+      hipsparseZcsrcolor_assumed_rank,&
+      hipsparseZcsrcolor_assumed_rank_devptr
 #else
 #ifdef USE_ASSUMED_SHAPE
     module procedure &
       hipsparseZcsrcolor_rank_0,&
-      hipsparseZcsrcolor_rank_1
+      hipsparseZcsrcolor_rank_0_devptr,&
+      hipsparseZcsrcolor_rank_1,&
+      hipsparseZcsrcolor_rank_1_devptr
 #endif
 #endif
   end interface
@@ -29502,11 +29518,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      real(c_float),target :: boost_val
+      real(c_double),optional,target :: tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseSbsrilu02_numericBoost_typed = hipsparseSbsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseDbsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29515,11 +29537,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      real(c_double),target :: boost_val
+      real(c_double),optional,target :: tol
+      real(c_double),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseDbsrilu02_numericBoost_typed = hipsparseDbsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseCbsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29528,11 +29556,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      complex(c_float_complex),target :: boost_val
+      real(c_double),optional,target :: tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseCbsrilu02_numericBoost_typed = hipsparseCbsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseZbsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29541,11 +29575,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      complex(c_double_complex),target :: boost_val
+      real(c_double),optional,target :: tol
+      complex(c_double_complex),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseZbsrilu02_numericBoost_typed = hipsparseZbsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseSbsrilu02_bufferSize_typed(handle,dirA,mb,nnzb,descrA,bsrSortedValA, &
@@ -29812,11 +29852,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      real(c_float),target :: boost_val
+      real(c_double),optional,target :: tol
+      real(c_float),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseScsrilu02_numericBoost_typed = hipsparseScsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseDcsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29825,11 +29871,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      real(c_double),target :: boost_val
+      real(c_double),optional,target :: tol
+      real(c_double),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseDcsrilu02_numericBoost_typed = hipsparseDcsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseCcsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29838,11 +29890,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      complex(c_float_complex),target :: boost_val
+      real(c_double),optional,target :: tol
+      complex(c_float_complex),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseCcsrilu02_numericBoost_typed = hipsparseCcsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseZcsrilu02_numericBoost_typed(handle,myInfo,enable_boost,tol,boost_val)
@@ -29851,11 +29909,17 @@ module hipfort_hipsparse
       type(c_ptr), value :: handle
       type(c_ptr), value :: myInfo
       integer(c_int) :: enable_boost
-      real(c_double),target :: tol
-      complex(c_double_complex),target :: boost_val
+      real(c_double),optional,target :: tol
+      complex(c_double_complex),optional,target :: boost_val
+      type(c_ptr) :: tol__p
+      type(c_ptr) :: boost_val__p
       !
+      tol__p = c_null_ptr
+      if (present(tol)) tol__p = c_loc(tol)
+      boost_val__p = c_null_ptr
+      if (present(boost_val)) boost_val__p = c_loc(boost_val)
       hipsparseZcsrilu02_numericBoost_typed = hipsparseZcsrilu02_numericBoost_(handle,myInfo, &
-        enable_boost,c_loc(tol),c_loc(boost_val))
+        enable_boost,tol__p,boost_val__p)
     end function
 
     function hipsparseScsrilu02_bufferSize_typed(handle,m,nnz,descrA,csrSortedValA, &
@@ -71056,6 +71120,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseScsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseScsrcolor_assumed_rank_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function hipsparseScsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -71079,6 +71165,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseScsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_float),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseScsrcolor_rank_0_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
+    end function
+
     function hipsparseScsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -71099,6 +71207,28 @@ module hipfort_hipsparse
       hipsparseScsrcolor_rank_1 = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
+    end function
+
+    function hipsparseScsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_float),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseScsrcolor_rank_1_devptr = hipsparseScsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
     end function
 
 #endif
@@ -71125,6 +71255,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseDcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseDcsrcolor_assumed_rank_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function hipsparseDcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -71148,6 +71300,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseDcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_double),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseDcsrcolor_rank_0_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
+    end function
+
     function hipsparseDcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -71168,6 +71342,28 @@ module hipfort_hipsparse
       hipsparseDcsrcolor_rank_1 = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
+    end function
+
+    function hipsparseDcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      real(c_double),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseDcsrcolor_rank_1_devptr = hipsparseDcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
     end function
 
 #endif
@@ -71194,6 +71390,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseCcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseCcsrcolor_assumed_rank_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function hipsparseCcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -71217,6 +71435,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseCcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseCcsrcolor_rank_0_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
+    end function
+
     function hipsparseCcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -71237,6 +71477,28 @@ module hipfort_hipsparse
       hipsparseCcsrcolor_rank_1 = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
+    end function
+
+    function hipsparseCcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_float_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_float),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseCcsrcolor_rank_1_devptr = hipsparseCcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
     end function
 
 #endif
@@ -71263,6 +71525,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseZcsrcolor_assumed_rank_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA, &
+        csrColIndA,fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_assumed_rank_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(..) :: csrValA
+      integer(c_int),target,dimension(..) :: csrRowPtrA
+      integer(c_int),target,dimension(..) :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(..) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseZcsrcolor_assumed_rank_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA, &
+        c_loc(csrValA),c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors), &
+        c_loc(coloring),reordering,myInfo)
+    end function
+
 #else
     function hipsparseZcsrcolor_rank_0(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
@@ -71286,6 +71570,28 @@ module hipfort_hipsparse
         c_loc(reordering),myInfo)
     end function
 
+    function hipsparseZcsrcolor_rank_0_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_0_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target :: csrValA
+      integer(c_int),target :: csrRowPtrA
+      integer(c_int),target :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseZcsrcolor_rank_0_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
+    end function
+
     function hipsparseZcsrcolor_rank_1(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
         fractionToColor,ncolors,coloring,reordering,myInfo)
       implicit none
@@ -71306,6 +71612,28 @@ module hipfort_hipsparse
       hipsparseZcsrcolor_rank_1 = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
         c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
         c_loc(reordering),myInfo)
+    end function
+
+    function hipsparseZcsrcolor_rank_1_devptr(handle,m,nnz,descrA,csrValA,csrRowPtrA,csrColIndA, &
+        fractionToColor,ncolors,coloring,reordering,myInfo)
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsrcolor_rank_1_devptr
+      type(c_ptr), value :: handle
+      integer(c_int) :: m
+      integer(c_int) :: nnz
+      type(c_ptr), value :: descrA
+      complex(c_double_complex),target,dimension(:) :: csrValA
+      integer(c_int),target,dimension(:) :: csrRowPtrA
+      integer(c_int),target,dimension(:) :: csrColIndA
+      real(c_double),target :: fractionToColor
+      integer(c_int),target :: ncolors
+      integer(c_int),target,dimension(:) :: coloring
+      type(c_ptr),value :: reordering
+      type(c_ptr), value :: myInfo
+      !
+      hipsparseZcsrcolor_rank_1_devptr = hipsparseZcsrcolor_(handle,m,nnz,descrA,c_loc(csrValA), &
+        c_loc(csrRowPtrA),c_loc(csrColIndA),c_loc(fractionToColor),c_loc(ncolors),c_loc(coloring), &
+        reordering,myInfo)
     end function
 
 #endif

@@ -46753,10 +46753,13 @@ module hipfort_rocblas
       implicit none
       integer(kind(rocblas_status_success)) :: rocblas_set_solution_fitness_query_typed
       type(c_ptr), value :: handle
-      real(c_double),target :: fitness
+      real(c_double),optional,target :: fitness
+      type(c_ptr) :: fitness__p
       !
+      fitness__p = c_null_ptr
+      if (present(fitness)) fitness__p = c_loc(fitness)
       rocblas_set_solution_fitness_query_typed = rocblas_set_solution_fitness_query_(handle, &
-        c_loc(fitness))
+        fitness__p)
     end function
 
     function rocblas_get_performance_metric_typed(handle,metric)

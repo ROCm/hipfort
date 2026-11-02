@@ -683,10 +683,10 @@
 679 | [rocsparse_dgtsv_interleaved_batch](interfacehipfort__rocsparse_1_1rocsparse__dgtsv__interleaved__batch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 680 | [rocsparse_cgtsv_interleaved_batch](interfacehipfort__rocsparse_1_1rocsparse__cgtsv__interleaved__batch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 681 | [rocsparse_zgtsv_interleaved_batch](interfacehipfort__rocsparse_1_1rocsparse__zgtsv__interleaved__batch.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-682 | [rocsparse_scsrcolor](interfacehipfort__rocsparse_1_1rocsparse__scsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-683 | [rocsparse_dcsrcolor](interfacehipfort__rocsparse_1_1rocsparse__dcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-684 | [rocsparse_ccsrcolor](interfacehipfort__rocsparse_1_1rocsparse__ccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-685 | [rocsparse_zcsrcolor](interfacehipfort__rocsparse_1_1rocsparse__zcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+682 | [rocsparse_scsrcolor](interfacehipfort__rocsparse_1_1rocsparse__scsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+683 | [rocsparse_dcsrcolor](interfacehipfort__rocsparse_1_1rocsparse__dcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+684 | [rocsparse_ccsrcolor](interfacehipfort__rocsparse_1_1rocsparse__ccsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
+685 | [rocsparse_zcsrcolor](interfacehipfort__rocsparse_1_1rocsparse__zcsrcolor.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed, devptr
 686 | [rocsparse_scheck_matrix_coo_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__scheck__matrix__coo__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 687 | [rocsparse_dcheck_matrix_coo_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__dcheck__matrix__coo__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 688 | [rocsparse_ccheck_matrix_coo_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__ccheck__matrix__coo__buffer__size.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
