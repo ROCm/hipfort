@@ -1661,6 +1661,13 @@ if(BUILD_TESTING)
     # A size query's host size_t output; getters' host outputs
     hipfort_add_test(rocsparse rocsparse_dgebsr2gebsc_buffer_size_host f2008)
     hipfort_add_test(rocsparse rocsparse_spmat_get_size_getter f2008)
+    # Nullable arguments: buffer_size of the generic routines and boost_tol/
+    # boost_val of csrilu0_numeric_boost as optional arguments of the typed
+    # forms, reordering of csrcolor through the _devptr overloads.
+    hipfort_add_test(rocsparse rocsparse_dspmv_buffer_size_opt f2003)
+    hipfort_add_test(rocsparse rocsparse_ddense_to_sparse_buffer_size_opt f2003)
+    hipfort_add_test(rocsparse rocsparse_dcsrilu0_numeric_boost_opt f2003)
+    hipfort_add_test(rocsparse rocsparse_dcsrcolor_reordering_devptr f2008)
     # Added in ROCm 10.2
     hipfort_add_test(rocsparse rocsparse_spsort f2003)
     hipfort_add_test(rocsparse rocsparse_dnmat_copy_transpose f2003)
