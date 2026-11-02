@@ -123,6 +123,7 @@ if(BUILD_TESTING)
     f2008/hipsolver/hipsolver_cpotrs
     f2008/hipsolver/hipsolver_dgesvd
     f2008/hipsolver/hipsolver_dgetrf
+    f2008/hipsolver/hipsolver_dgetrfbatched_work
     f2008/hipsolver/hipsolver_dgetrs
     f2008/hipsolver/hipsolver_dpotrfbatched
     f2008/hipsolver/hipsolver_dpotrs
@@ -716,6 +717,8 @@ if(BUILD_TESTING)
     hipfort_add_test(hipsolver hipsolver_rf_params f2008)
     # The 64-bit API's devInfo on the device
     hipfort_add_test(hipsolver hipsolver_dnxpotrf_info f2008)
+    # A batched routine's device workspace by value, and NULL (handle-managed)
+    hipfort_add_test(hipsolver hipsolver_dgetrfbatched_work f2008)
     # Added in ROCm 10.2
     hipfort_add_test(hipsolver hipsolver_dgetrfbatched f2003)
     hipfort_add_test(hipsolver hipsolver_dgeqrfbatched f2003)
@@ -1110,6 +1113,8 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas dgemm_strided_batched_ranks f2008)
     hipfort_add_test(rocblas ddot_strided_batched_result f2008)
     hipfort_add_test(rocblas drotm_param f2008)
+    # The optional fitness of the solution fitness query: present, then absent (off)
+    hipfort_add_test(rocblas dgemm_ex_fitness_query f2008)
     # every transa/transb (gemm) and trans (gemv) value, on rectangular padded data
     foreach(std IN ITEMS f2003 f2008)
       foreach(prec IN ITEMS s d c z)
