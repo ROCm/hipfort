@@ -1783,16 +1783,6 @@ module hipfort_hipfft
       type(c_ptr),value :: input_stride
       type(c_ptr),value :: output_stride
     end function
-
-#ifdef USE_ASSUMED_RANK
-    module procedure hipfftXtSetDistribution_assumed_rank
-#else
-#ifdef USE_ASSUMED_SHAPE
-    module procedure &
-      hipfftXtSetDistribution_rank_0,&
-      hipfftXtSetDistribution_rank_1
-#endif
-#endif
   end interface
 #endif
 
@@ -3021,65 +3011,6 @@ module hipfort_hipfft
       hipfftXtSetGPUs_rank_1 = hipfftXtSetGPUs_(plan,count,c_loc(gpus))
     end function
 
-#endif
-#ifndef USE_CUDA_NAMES
-#ifdef USE_ASSUMED_RANK
-    function hipfftXtSetDistribution_assumed_rank(plan,rank,input_lower,input_upper,output_lower, &
-        output_upper,input_stride,output_stride)
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetDistribution_assumed_rank
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      integer(c_int64_t),target,dimension(..) :: input_lower
-      integer(c_int64_t),target,dimension(..) :: input_upper
-      integer(c_int64_t),target,dimension(..) :: output_lower
-      integer(c_int64_t),target,dimension(..) :: output_upper
-      integer(c_int64_t),target,dimension(..) :: input_stride
-      integer(c_int64_t),target,dimension(..) :: output_stride
-      !
-      hipfftXtSetDistribution_assumed_rank = hipfftXtSetDistribution_(plan,rank, &
-        c_loc(input_lower),c_loc(input_upper),c_loc(output_lower),c_loc(output_upper), &
-        c_loc(input_stride),c_loc(output_stride))
-    end function
-
-#else
-    function hipfftXtSetDistribution_rank_0(plan,rank,input_lower,input_upper,output_lower, &
-        output_upper,input_stride,output_stride)
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetDistribution_rank_0
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      integer(c_int64_t),target :: input_lower
-      integer(c_int64_t),target :: input_upper
-      integer(c_int64_t),target :: output_lower
-      integer(c_int64_t),target :: output_upper
-      integer(c_int64_t),target :: input_stride
-      integer(c_int64_t),target :: output_stride
-      !
-      hipfftXtSetDistribution_rank_0 = hipfftXtSetDistribution_(plan,rank,c_loc(input_lower), &
-        c_loc(input_upper),c_loc(output_lower),c_loc(output_upper),c_loc(input_stride), &
-        c_loc(output_stride))
-    end function
-
-    function hipfftXtSetDistribution_rank_1(plan,rank,input_lower,input_upper,output_lower, &
-        output_upper,input_stride,output_stride)
-      implicit none
-      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetDistribution_rank_1
-      type(c_ptr), value :: plan
-      integer(c_int) :: rank
-      integer(c_int64_t),target,dimension(:) :: input_lower
-      integer(c_int64_t),target,dimension(:) :: input_upper
-      integer(c_int64_t),target,dimension(:) :: output_lower
-      integer(c_int64_t),target,dimension(:) :: output_upper
-      integer(c_int64_t),target,dimension(:) :: input_stride
-      integer(c_int64_t),target,dimension(:) :: output_stride
-      !
-      hipfftXtSetDistribution_rank_1 = hipfftXtSetDistribution_(plan,rank,c_loc(input_lower), &
-        c_loc(input_upper),c_loc(output_lower),c_loc(output_upper),c_loc(input_stride), &
-        c_loc(output_stride))
-    end function
-
-#endif
 #endif
 #endif
 end module hipfort_hipfft

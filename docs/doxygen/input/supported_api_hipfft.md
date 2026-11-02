@@ -55,5 +55,5 @@
 51 | [hipfftXtExecDescriptorZ2D](interfacehipfort__hipfft_1_1hipfftxtexecdescriptorz2d.html "Interface documentation") | C binding
 52 | [hipfftXtExecDescriptor](interfacehipfort__hipfft_1_1hipfftxtexecdescriptor.html "Interface documentation") | C binding
 53 | [hipfftMpAttachComm](interfacehipfort__hipfft_1_1hipfftmpattachcomm.html "Interface documentation") | C binding
-54 | [hipfftXtSetDistribution](interfacehipfort__hipfft_1_1hipfftxtsetdistribution.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+54 | [hipfftXtSetDistribution](interfacehipfort__hipfft_1_1hipfftxtsetdistribution.html "Interface documentation") | C binding
 55 | [hipfftXtSetSubformatDefault](interfacehipfort__hipfft_1_1hipfftxtsetsubformatdefault.html "Interface documentation") | C binding
