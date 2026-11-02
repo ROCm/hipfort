@@ -868,6 +868,9 @@ if(BUILD_TESTING)
     # csrcolor's host fraction; the scalars of the csrsm2 and prune size queries
     hipfort_add_test(hipsparse hipsparse_scsrcolor_fraction_host f2008)
     hipfort_add_test(hipsparse hipsparse_size_query_scalars f2008)
+    # numericBoost's optional tol and boost_val; csrcolor's reordering as a device pointer
+    hipfort_add_test(hipsparse hipsparse_dcsrilu02_boost_optional f2003)
+    hipfort_add_test(hipsparse hipsparse_dcsrcolor_reordering_devptr f2008)
   endif()
 
   if(TARGET hipfort::rocblas)
