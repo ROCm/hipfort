@@ -85,6 +85,12 @@
 
 ### Fixed
 
+* On the CUDA backend, `hipDeviceAttributeGPUDirectRDMASupported`,
+  `hipDeviceAttributeGPUDirectRDMAFlushWritesOptions` and
+  `hipDeviceAttributeGPUDirectRDMAWritesOrdering` had their HIP values (97 to
+  99), so `hipDeviceGetAttribute` returned other CUDA attributes. They now have
+  their CUDA values (116 to 118).
+
 * An array overload of `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that
   fails now leaves its pointer unassociated. It used to associate it with
   whatever the uninitialized C pointer held (NULL, or an arbitrary address if HIP
