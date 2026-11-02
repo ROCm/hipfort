@@ -489,6 +489,16 @@ module hipfort_rocfft
       integer(c_size_t),value :: dim_with_batch
       integer(c_int),value :: deviceID
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure rocfft_brick_create_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      rocfft_brick_create_rank_0,&
+      rocfft_brick_create_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Deallocate a brick created with rocfft_brick_create.
@@ -1098,6 +1108,54 @@ module hipfort_rocfft
         description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets), &
         in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides), &
         out_distance)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function rocfft_brick_create_assumed_rank(brick,field_lower,field_upper,brick_stride, &
+        dim_with_batch,deviceID)
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_brick_create_assumed_rank
+      type(c_ptr) :: brick
+      integer(c_size_t),target,dimension(..) :: field_lower
+      integer(c_size_t),target,dimension(..) :: field_upper
+      integer(c_size_t),target,dimension(..) :: brick_stride
+      integer(c_size_t) :: dim_with_batch
+      integer(c_int) :: deviceID
+      !
+      rocfft_brick_create_assumed_rank = rocfft_brick_create_(brick,c_loc(field_lower), &
+        c_loc(field_upper),c_loc(brick_stride),dim_with_batch,deviceID)
+    end function
+
+#else
+    function rocfft_brick_create_rank_0(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
+        deviceID)
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_brick_create_rank_0
+      type(c_ptr) :: brick
+      integer(c_size_t),target :: field_lower
+      integer(c_size_t),target :: field_upper
+      integer(c_size_t),target :: brick_stride
+      integer(c_size_t) :: dim_with_batch
+      integer(c_int) :: deviceID
+      !
+      rocfft_brick_create_rank_0 = rocfft_brick_create_(brick,c_loc(field_lower), &
+        c_loc(field_upper),c_loc(brick_stride),dim_with_batch,deviceID)
+    end function
+
+    function rocfft_brick_create_rank_1(brick,field_lower,field_upper,brick_stride,dim_with_batch, &
+        deviceID)
+      implicit none
+      integer(kind(rocfft_status_success)) :: rocfft_brick_create_rank_1
+      type(c_ptr) :: brick
+      integer(c_size_t),target,dimension(:) :: field_lower
+      integer(c_size_t),target,dimension(:) :: field_upper
+      integer(c_size_t),target,dimension(:) :: brick_stride
+      integer(c_size_t) :: dim_with_batch
+      integer(c_int) :: deviceID
+      !
+      rocfft_brick_create_rank_1 = rocfft_brick_create_(brick,c_loc(field_lower), &
+        c_loc(field_upper),c_loc(brick_stride),dim_with_batch,deviceID)
     end function
 
 #endif

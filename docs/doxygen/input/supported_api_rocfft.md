@@ -15,7 +15,7 @@
 11 | [rocfft_plan_description_set_comm](interfacehipfort__rocfft_1_1rocfft__plan__description__set__comm.html "Interface documentation") | C binding
 12 | [rocfft_plan_description_set_load_callback](interfacehipfort__rocfft_1_1rocfft__plan__description__set__load__callback.html "Interface documentation") | C binding
 13 | [rocfft_plan_description_set_store_callback](interfacehipfort__rocfft_1_1rocfft__plan__description__set__store__callback.html "Interface documentation") | C binding
-14 | [rocfft_brick_create](interfacehipfort__rocfft_1_1rocfft__brick__create.html "Interface documentation") | C binding
+14 | [rocfft_brick_create](interfacehipfort__rocfft_1_1rocfft__brick__create.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 15 | [rocfft_brick_destroy](interfacehipfort__rocfft_1_1rocfft__brick__destroy.html "Interface documentation") | C binding
 16 | [rocfft_field_add_brick](interfacehipfort__rocfft_1_1rocfft__field__add__brick.html "Interface documentation") | C binding
 17 | [rocfft_plan_description_add_infield](interfacehipfort__rocfft_1_1rocfft__plan__description__add__infield.html "Interface documentation") | C binding

@@ -16,50 +16,50 @@
 12 | [fftwf_plan_dft_2d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__2d.html "Interface documentation") | C binding
 13 | [fftw_plan_dft_3d](interfacehipfort__hipfftw_1_1fftw__plan__dft__3d.html "Interface documentation") | C binding
 14 | [fftwf_plan_dft_3d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__3d.html "Interface documentation") | C binding
-15 | [fftw_plan_dft](interfacehipfort__hipfftw_1_1fftw__plan__dft.html "Interface documentation") | C binding
-16 | [fftwf_plan_dft](interfacehipfort__hipfftw_1_1fftwf__plan__dft.html "Interface documentation") | C binding
-17 | [fftw_plan_dft_r2c_1d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__1d.html "Interface documentation") | C binding
-18 | [fftwf_plan_dft_r2c_1d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__1d.html "Interface documentation") | C binding
-19 | [fftw_plan_dft_r2c_2d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__2d.html "Interface documentation") | C binding
-20 | [fftwf_plan_dft_r2c_2d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__2d.html "Interface documentation") | C binding
-21 | [fftw_plan_dft_r2c_3d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__3d.html "Interface documentation") | C binding
-22 | [fftwf_plan_dft_r2c_3d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__3d.html "Interface documentation") | C binding
-23 | [fftw_plan_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c.html "Interface documentation") | C binding
-24 | [fftwf_plan_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c.html "Interface documentation") | C binding
-25 | [fftw_plan_dft_c2r_1d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__1d.html "Interface documentation") | C binding
-26 | [fftwf_plan_dft_c2r_1d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__1d.html "Interface documentation") | C binding
-27 | [fftw_plan_dft_c2r_2d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__2d.html "Interface documentation") | C binding
-28 | [fftwf_plan_dft_c2r_2d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__2d.html "Interface documentation") | C binding
-29 | [fftw_plan_dft_c2r_3d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__3d.html "Interface documentation") | C binding
-30 | [fftwf_plan_dft_c2r_3d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__3d.html "Interface documentation") | C binding
-31 | [fftw_plan_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r.html "Interface documentation") | C binding
-32 | [fftwf_plan_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r.html "Interface documentation") | C binding
-33 | [fftw_plan_many_dft](interfacehipfort__hipfftw_1_1fftw__plan__many__dft.html "Interface documentation") | C binding
-34 | [fftwf_plan_many_dft](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft.html "Interface documentation") | C binding
-35 | [fftw_plan_many_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__many__dft__r2c.html "Interface documentation") | C binding
-36 | [fftwf_plan_many_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft__r2c.html "Interface documentation") | C binding
-37 | [fftw_plan_many_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__many__dft__c2r.html "Interface documentation") | C binding
-38 | [fftwf_plan_many_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft__c2r.html "Interface documentation") | C binding
+15 | [fftw_plan_dft](interfacehipfort__hipfftw_1_1fftw__plan__dft.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+16 | [fftwf_plan_dft](interfacehipfort__hipfftw_1_1fftwf__plan__dft.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+17 | [fftw_plan_dft_r2c_1d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__1d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+18 | [fftwf_plan_dft_r2c_1d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__1d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+19 | [fftw_plan_dft_r2c_2d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__2d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+20 | [fftwf_plan_dft_r2c_2d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__2d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+21 | [fftw_plan_dft_r2c_3d](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c__3d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+22 | [fftwf_plan_dft_r2c_3d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c__3d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+23 | [fftw_plan_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+24 | [fftwf_plan_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+25 | [fftw_plan_dft_c2r_1d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__1d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+26 | [fftwf_plan_dft_c2r_1d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__1d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+27 | [fftw_plan_dft_c2r_2d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__2d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+28 | [fftwf_plan_dft_c2r_2d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__2d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+29 | [fftw_plan_dft_c2r_3d](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r__3d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+30 | [fftwf_plan_dft_c2r_3d](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r__3d.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+31 | [fftw_plan_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+32 | [fftwf_plan_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+33 | [fftw_plan_many_dft](interfacehipfort__hipfftw_1_1fftw__plan__many__dft.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+34 | [fftwf_plan_many_dft](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+35 | [fftw_plan_many_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__many__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+36 | [fftwf_plan_many_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+37 | [fftw_plan_many_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__many__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+38 | [fftwf_plan_many_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__many__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 39 | [fftw_plan_guru_dft](interfacehipfort__hipfftw_1_1fftw__plan__guru__dft.html "Interface documentation") | C binding
 40 | [fftwf_plan_guru_dft](interfacehipfort__hipfftw_1_1fftwf__plan__guru__dft.html "Interface documentation") | C binding
-41 | [fftw_plan_guru_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__guru__dft__r2c.html "Interface documentation") | C binding
-42 | [fftwf_plan_guru_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__guru__dft__r2c.html "Interface documentation") | C binding
-43 | [fftw_plan_guru_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__guru__dft__c2r.html "Interface documentation") | C binding
-44 | [fftwf_plan_guru_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__guru__dft__c2r.html "Interface documentation") | C binding
+41 | [fftw_plan_guru_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__guru__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+42 | [fftwf_plan_guru_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__guru__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+43 | [fftw_plan_guru_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__guru__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+44 | [fftwf_plan_guru_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__guru__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 45 | [fftw_plan_guru64_dft](interfacehipfort__hipfftw_1_1fftw__plan__guru64__dft.html "Interface documentation") | C binding
 46 | [fftwf_plan_guru64_dft](interfacehipfort__hipfftw_1_1fftwf__plan__guru64__dft.html "Interface documentation") | C binding
-47 | [fftw_plan_guru64_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__guru64__dft__r2c.html "Interface documentation") | C binding
-48 | [fftwf_plan_guru64_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__guru64__dft__r2c.html "Interface documentation") | C binding
-49 | [fftw_plan_guru64_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__guru64__dft__c2r.html "Interface documentation") | C binding
-50 | [fftwf_plan_guru64_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__guru64__dft__c2r.html "Interface documentation") | C binding
+47 | [fftw_plan_guru64_dft_r2c](interfacehipfort__hipfftw_1_1fftw__plan__guru64__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+48 | [fftwf_plan_guru64_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__plan__guru64__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+49 | [fftw_plan_guru64_dft_c2r](interfacehipfort__hipfftw_1_1fftw__plan__guru64__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+50 | [fftwf_plan_guru64_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__plan__guru64__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 51 | [fftw_execute](interfacehipfort__hipfftw_1_1fftw__execute.html "Interface documentation") | C binding
 52 | [fftwf_execute](interfacehipfort__hipfftw_1_1fftwf__execute.html "Interface documentation") | C binding
 53 | [fftw_execute_dft](interfacehipfort__hipfftw_1_1fftw__execute__dft.html "Interface documentation") | C binding
 54 | [fftwf_execute_dft](interfacehipfort__hipfftw_1_1fftwf__execute__dft.html "Interface documentation") | C binding
-55 | [fftw_execute_dft_r2c](interfacehipfort__hipfftw_1_1fftw__execute__dft__r2c.html "Interface documentation") | C binding
-56 | [fftwf_execute_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__execute__dft__r2c.html "Interface documentation") | C binding
-57 | [fftw_execute_dft_c2r](interfacehipfort__hipfftw_1_1fftw__execute__dft__c2r.html "Interface documentation") | C binding
-58 | [fftwf_execute_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__execute__dft__c2r.html "Interface documentation") | C binding
+55 | [fftw_execute_dft_r2c](interfacehipfort__hipfftw_1_1fftw__execute__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+56 | [fftwf_execute_dft_r2c](interfacehipfort__hipfftw_1_1fftwf__execute__dft__r2c.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+57 | [fftw_execute_dft_c2r](interfacehipfort__hipfftw_1_1fftw__execute__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+58 | [fftwf_execute_dft_c2r](interfacehipfort__hipfftw_1_1fftwf__execute__dft__c2r.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 59 | [fftw_destroy_plan](interfacehipfort__hipfftw_1_1fftw__destroy__plan.html "Interface documentation") | C binding
 60 | [fftwf_destroy_plan](interfacehipfort__hipfftw_1_1fftwf__destroy__plan.html "Interface documentation") | C binding
 61 | [fftw_print_plan](interfacehipfort__hipfftw_1_1fftw__print__plan.html "Interface documentation") | C binding
@@ -68,7 +68,7 @@
 64 | [fftwf_set_timelimit](interfacehipfort__hipfftw_1_1fftwf__set__timelimit.html "Interface documentation") | C binding
 65 | [fftw_cost](interfacehipfort__hipfftw_1_1fftw__cost.html "Interface documentation") | C binding
 66 | [fftwf_cost](interfacehipfort__hipfftw_1_1fftwf__cost.html "Interface documentation") | C binding
-67 | [fftw_flops](interfacehipfort__hipfftw_1_1fftw__flops.html "Interface documentation") | C binding
-68 | [fftwf_flops](interfacehipfort__hipfftw_1_1fftwf__flops.html "Interface documentation") | C binding
+67 | [fftw_flops](interfacehipfort__hipfftw_1_1fftw__flops.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+68 | [fftwf_flops](interfacehipfort__hipfftw_1_1fftwf__flops.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 69 | [fftw_cleanup](interfacehipfort__hipfftw_1_1fftw__cleanup.html "Interface documentation") | C binding
 70 | [fftwf_cleanup](interfacehipfort__hipfftw_1_1fftwf__cleanup.html "Interface documentation") | C binding

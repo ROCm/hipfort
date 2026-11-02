@@ -70,14 +70,14 @@
 66 | [hipsolverDgebrd](interfacehipfort__hipsolver_1_1hipsolverdgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 67 | [hipsolverCgebrd](interfacehipfort__hipsolver_1_1hipsolvercgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 68 | [hipsolverZgebrd](interfacehipfort__hipsolver_1_1hipsolverzgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
-69 | [hipsolverSSgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssgels__buffersize.html "Interface documentation") | C binding, typed
-70 | [hipsolverDDgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverddgels__buffersize.html "Interface documentation") | C binding, typed
-71 | [hipsolverCCgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverccgels__buffersize.html "Interface documentation") | C binding, typed
-72 | [hipsolverZZgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzzgels__buffersize.html "Interface documentation") | C binding, typed
-73 | [hipsolverSSgels](interfacehipfort__hipsolver_1_1hipsolverssgels.html "Interface documentation") | C binding, typed
-74 | [hipsolverDDgels](interfacehipfort__hipsolver_1_1hipsolverddgels.html "Interface documentation") | C binding, typed
-75 | [hipsolverCCgels](interfacehipfort__hipsolver_1_1hipsolverccgels.html "Interface documentation") | C binding, typed
-76 | [hipsolverZZgels](interfacehipfort__hipsolver_1_1hipsolverzzgels.html "Interface documentation") | C binding, typed
+69 | [hipsolverSSgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+70 | [hipsolverDDgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverddgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+71 | [hipsolverCCgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverccgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+72 | [hipsolverZZgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzzgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+73 | [hipsolverSSgels](interfacehipfort__hipsolver_1_1hipsolverssgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+74 | [hipsolverDDgels](interfacehipfort__hipsolver_1_1hipsolverddgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+75 | [hipsolverCCgels](interfacehipfort__hipsolver_1_1hipsolverccgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+76 | [hipsolverZZgels](interfacehipfort__hipsolver_1_1hipsolverzzgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 77 | [hipsolverSgelsBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgelsbatched__buffersize.html "Interface documentation") | C binding, typed
 78 | [hipsolverDgelsBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgelsbatched__buffersize.html "Interface documentation") | C binding, typed
 79 | [hipsolverCgelsBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgelsbatched__buffersize.html "Interface documentation") | C binding, typed
@@ -114,26 +114,26 @@
 110 | [hipsolverDgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgesvd__buffersize.html "Interface documentation") | C binding, typed
 111 | [hipsolverCgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgesvd__buffersize.html "Interface documentation") | C binding, typed
 112 | [hipsolverZgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgesvd__buffersize.html "Interface documentation") | C binding, typed
-113 | [hipsolverSgesvd](interfacehipfort__hipsolver_1_1hipsolversgesvd.html "Interface documentation") | C binding
-114 | [hipsolverDgesvd](interfacehipfort__hipsolver_1_1hipsolverdgesvd.html "Interface documentation") | C binding
-115 | [hipsolverCgesvd](interfacehipfort__hipsolver_1_1hipsolvercgesvd.html "Interface documentation") | C binding
-116 | [hipsolverZgesvd](interfacehipfort__hipsolver_1_1hipsolverzgesvd.html "Interface documentation") | C binding
-117 | [hipsolverSgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgesvdj__buffersize.html "Interface documentation") | C binding, typed
-118 | [hipsolverDgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgesvdj__buffersize.html "Interface documentation") | C binding, typed
-119 | [hipsolverCgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgesvdj__buffersize.html "Interface documentation") | C binding, typed
-120 | [hipsolverZgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgesvdj__buffersize.html "Interface documentation") | C binding, typed
-121 | [hipsolverSgesvdj](interfacehipfort__hipsolver_1_1hipsolversgesvdj.html "Interface documentation") | C binding
-122 | [hipsolverDgesvdj](interfacehipfort__hipsolver_1_1hipsolverdgesvdj.html "Interface documentation") | C binding
-123 | [hipsolverCgesvdj](interfacehipfort__hipsolver_1_1hipsolvercgesvdj.html "Interface documentation") | C binding
-124 | [hipsolverZgesvdj](interfacehipfort__hipsolver_1_1hipsolverzgesvdj.html "Interface documentation") | C binding
-125 | [hipsolverSgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-126 | [hipsolverDgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-127 | [hipsolverCgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-128 | [hipsolverZgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-129 | [hipsolverSgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolversgesvdjbatched.html "Interface documentation") | C binding
-130 | [hipsolverDgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdgesvdjbatched.html "Interface documentation") | C binding
-131 | [hipsolverCgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolvercgesvdjbatched.html "Interface documentation") | C binding
-132 | [hipsolverZgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverzgesvdjbatched.html "Interface documentation") | C binding
+113 | [hipsolverSgesvd](interfacehipfort__hipsolver_1_1hipsolversgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+114 | [hipsolverDgesvd](interfacehipfort__hipsolver_1_1hipsolverdgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+115 | [hipsolverCgesvd](interfacehipfort__hipsolver_1_1hipsolvercgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+116 | [hipsolverZgesvd](interfacehipfort__hipsolver_1_1hipsolverzgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+117 | [hipsolverSgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+118 | [hipsolverDgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+119 | [hipsolverCgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+120 | [hipsolverZgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+121 | [hipsolverSgesvdj](interfacehipfort__hipsolver_1_1hipsolversgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+122 | [hipsolverDgesvdj](interfacehipfort__hipsolver_1_1hipsolverdgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+123 | [hipsolverCgesvdj](interfacehipfort__hipsolver_1_1hipsolvercgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+124 | [hipsolverZgesvdj](interfacehipfort__hipsolver_1_1hipsolverzgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+125 | [hipsolverSgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+126 | [hipsolverDgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+127 | [hipsolverCgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+128 | [hipsolverZgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+129 | [hipsolverSgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolversgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+130 | [hipsolverDgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+131 | [hipsolverCgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolvercgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+132 | [hipsolverZgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverzgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 133 | [hipsolverSgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 134 | [hipsolverDgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 135 | [hipsolverCgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
@@ -146,18 +146,18 @@
 142 | [hipsolverDgetrfBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgetrfbatched__buffersize.html "Interface documentation") | C binding, typed
 143 | [hipsolverCgetrfBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgetrfbatched__buffersize.html "Interface documentation") | C binding, typed
 144 | [hipsolverZgetrfBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgetrfbatched__buffersize.html "Interface documentation") | C binding, typed
-145 | [hipsolverSgetrfBatched](interfacehipfort__hipsolver_1_1hipsolversgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-146 | [hipsolverDgetrfBatched](interfacehipfort__hipsolver_1_1hipsolverdgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-147 | [hipsolverCgetrfBatched](interfacehipfort__hipsolver_1_1hipsolvercgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-148 | [hipsolverZgetrfBatched](interfacehipfort__hipsolver_1_1hipsolverzgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+145 | [hipsolverSgetrfBatched](interfacehipfort__hipsolver_1_1hipsolversgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+146 | [hipsolverDgetrfBatched](interfacehipfort__hipsolver_1_1hipsolverdgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+147 | [hipsolverCgetrfBatched](interfacehipfort__hipsolver_1_1hipsolvercgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+148 | [hipsolverZgetrfBatched](interfacehipfort__hipsolver_1_1hipsolverzgetrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
 149 | [hipsolverSgetriBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgetribatched__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 150 | [hipsolverDgetriBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgetribatched__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 151 | [hipsolverCgetriBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgetribatched__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
 152 | [hipsolverZgetriBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzgetribatched__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
-153 | [hipsolverSgetriBatched](interfacehipfort__hipsolver_1_1hipsolversgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-154 | [hipsolverDgetriBatched](interfacehipfort__hipsolver_1_1hipsolverdgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-155 | [hipsolverCgetriBatched](interfacehipfort__hipsolver_1_1hipsolvercgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
-156 | [hipsolverZgetriBatched](interfacehipfort__hipsolver_1_1hipsolverzgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+153 | [hipsolverSgetriBatched](interfacehipfort__hipsolver_1_1hipsolversgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+154 | [hipsolverDgetriBatched](interfacehipfort__hipsolver_1_1hipsolverdgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+155 | [hipsolverCgetriBatched](interfacehipfort__hipsolver_1_1hipsolvercgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+156 | [hipsolverZgetriBatched](interfacehipfort__hipsolver_1_1hipsolverzgetribatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
 157 | [hipsolverSgetrs_bufferSize](interfacehipfort__hipsolver_1_1hipsolversgetrs__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 158 | [hipsolverDgetrs_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdgetrs__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 159 | [hipsolverCgetrs_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercgetrs__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
@@ -222,30 +222,30 @@
 218 | [hipsolverDsyevd](interfacehipfort__hipsolver_1_1hipsolverdsyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 219 | [hipsolverCheevd](interfacehipfort__hipsolver_1_1hipsolvercheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 220 | [hipsolverZheevd](interfacehipfort__hipsolver_1_1hipsolverzheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
-221 | [hipsolverSsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevdx__buffersize.html "Interface documentation") | C binding, typed
-222 | [hipsolverDsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevdx__buffersize.html "Interface documentation") | C binding, typed
-223 | [hipsolverCheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevdx__buffersize.html "Interface documentation") | C binding, typed
-224 | [hipsolverZheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevdx__buffersize.html "Interface documentation") | C binding, typed
-225 | [hipsolverSsyevdx](interfacehipfort__hipsolver_1_1hipsolverssyevdx.html "Interface documentation") | C binding, typed
-226 | [hipsolverDsyevdx](interfacehipfort__hipsolver_1_1hipsolverdsyevdx.html "Interface documentation") | C binding, typed
-227 | [hipsolverCheevdx](interfacehipfort__hipsolver_1_1hipsolvercheevdx.html "Interface documentation") | C binding, typed
-228 | [hipsolverZheevdx](interfacehipfort__hipsolver_1_1hipsolverzheevdx.html "Interface documentation") | C binding, typed
-229 | [hipsolverSsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevj__buffersize.html "Interface documentation") | C binding, typed
-230 | [hipsolverDsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevj__buffersize.html "Interface documentation") | C binding, typed
-231 | [hipsolverCheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevj__buffersize.html "Interface documentation") | C binding, typed
-232 | [hipsolverZheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevj__buffersize.html "Interface documentation") | C binding, typed
-233 | [hipsolverSsyevj](interfacehipfort__hipsolver_1_1hipsolverssyevj.html "Interface documentation") | C binding
-234 | [hipsolverDsyevj](interfacehipfort__hipsolver_1_1hipsolverdsyevj.html "Interface documentation") | C binding
-235 | [hipsolverCheevj](interfacehipfort__hipsolver_1_1hipsolvercheevj.html "Interface documentation") | C binding
-236 | [hipsolverZheevj](interfacehipfort__hipsolver_1_1hipsolverzheevj.html "Interface documentation") | C binding
-237 | [hipsolverSsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevjbatched__buffersize.html "Interface documentation") | C binding, typed
-238 | [hipsolverDsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevjbatched__buffersize.html "Interface documentation") | C binding, typed
-239 | [hipsolverCheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevjbatched__buffersize.html "Interface documentation") | C binding, typed
-240 | [hipsolverZheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevjbatched__buffersize.html "Interface documentation") | C binding, typed
-241 | [hipsolverSsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverssyevjbatched.html "Interface documentation") | C binding
-242 | [hipsolverDsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdsyevjbatched.html "Interface documentation") | C binding
-243 | [hipsolverCheevjBatched](interfacehipfort__hipsolver_1_1hipsolvercheevjbatched.html "Interface documentation") | C binding
-244 | [hipsolverZheevjBatched](interfacehipfort__hipsolver_1_1hipsolverzheevjbatched.html "Interface documentation") | C binding
+221 | [hipsolverSsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+222 | [hipsolverDsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+223 | [hipsolverCheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+224 | [hipsolverZheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+225 | [hipsolverSsyevdx](interfacehipfort__hipsolver_1_1hipsolverssyevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+226 | [hipsolverDsyevdx](interfacehipfort__hipsolver_1_1hipsolverdsyevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+227 | [hipsolverCheevdx](interfacehipfort__hipsolver_1_1hipsolvercheevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+228 | [hipsolverZheevdx](interfacehipfort__hipsolver_1_1hipsolverzheevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+229 | [hipsolverSsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+230 | [hipsolverDsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+231 | [hipsolverCheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+232 | [hipsolverZheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+233 | [hipsolverSsyevj](interfacehipfort__hipsolver_1_1hipsolverssyevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+234 | [hipsolverDsyevj](interfacehipfort__hipsolver_1_1hipsolverdsyevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+235 | [hipsolverCheevj](interfacehipfort__hipsolver_1_1hipsolvercheevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+236 | [hipsolverZheevj](interfacehipfort__hipsolver_1_1hipsolverzheevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+237 | [hipsolverSsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssyevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+238 | [hipsolverDsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsyevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+239 | [hipsolverCheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolvercheevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+240 | [hipsolverZheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzheevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+241 | [hipsolverSsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverssyevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+242 | [hipsolverDsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdsyevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+243 | [hipsolverCheevjBatched](interfacehipfort__hipsolver_1_1hipsolvercheevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+244 | [hipsolverZheevjBatched](interfacehipfort__hipsolver_1_1hipsolverzheevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
 245 | [hipsolverSsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssygvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 246 | [hipsolverDsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsygvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 247 | [hipsolverChegvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchegvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
@@ -254,22 +254,22 @@
 250 | [hipsolverDsygvd](interfacehipfort__hipsolver_1_1hipsolverdsygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 251 | [hipsolverChegvd](interfacehipfort__hipsolver_1_1hipsolverchegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 252 | [hipsolverZhegvd](interfacehipfort__hipsolver_1_1hipsolverzhegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
-253 | [hipsolverSsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssygvdx__buffersize.html "Interface documentation") | C binding, typed
-254 | [hipsolverDsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsygvdx__buffersize.html "Interface documentation") | C binding, typed
-255 | [hipsolverChegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchegvdx__buffersize.html "Interface documentation") | C binding, typed
-256 | [hipsolverZhegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzhegvdx__buffersize.html "Interface documentation") | C binding, typed
-257 | [hipsolverSsygvdx](interfacehipfort__hipsolver_1_1hipsolverssygvdx.html "Interface documentation") | C binding, typed
-258 | [hipsolverDsygvdx](interfacehipfort__hipsolver_1_1hipsolverdsygvdx.html "Interface documentation") | C binding, typed
-259 | [hipsolverChegvdx](interfacehipfort__hipsolver_1_1hipsolverchegvdx.html "Interface documentation") | C binding, typed
-260 | [hipsolverZhegvdx](interfacehipfort__hipsolver_1_1hipsolverzhegvdx.html "Interface documentation") | C binding, typed
-261 | [hipsolverSsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssygvj__buffersize.html "Interface documentation") | C binding, typed
-262 | [hipsolverDsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsygvj__buffersize.html "Interface documentation") | C binding, typed
-263 | [hipsolverChegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchegvj__buffersize.html "Interface documentation") | C binding, typed
-264 | [hipsolverZhegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzhegvj__buffersize.html "Interface documentation") | C binding, typed
-265 | [hipsolverSsygvj](interfacehipfort__hipsolver_1_1hipsolverssygvj.html "Interface documentation") | C binding
-266 | [hipsolverDsygvj](interfacehipfort__hipsolver_1_1hipsolverdsygvj.html "Interface documentation") | C binding
-267 | [hipsolverChegvj](interfacehipfort__hipsolver_1_1hipsolverchegvj.html "Interface documentation") | C binding
-268 | [hipsolverZhegvj](interfacehipfort__hipsolver_1_1hipsolverzhegvj.html "Interface documentation") | C binding
+253 | [hipsolverSsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssygvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+254 | [hipsolverDsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsygvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+255 | [hipsolverChegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchegvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+256 | [hipsolverZhegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzhegvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+257 | [hipsolverSsygvdx](interfacehipfort__hipsolver_1_1hipsolverssygvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+258 | [hipsolverDsygvdx](interfacehipfort__hipsolver_1_1hipsolverdsygvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+259 | [hipsolverChegvdx](interfacehipfort__hipsolver_1_1hipsolverchegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+260 | [hipsolverZhegvdx](interfacehipfort__hipsolver_1_1hipsolverzhegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+261 | [hipsolverSsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssygvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+262 | [hipsolverDsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsygvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+263 | [hipsolverChegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchegvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+264 | [hipsolverZhegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverzhegvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+265 | [hipsolverSsygvj](interfacehipfort__hipsolver_1_1hipsolverssygvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+266 | [hipsolverDsygvj](interfacehipfort__hipsolver_1_1hipsolverdsygvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+267 | [hipsolverChegvj](interfacehipfort__hipsolver_1_1hipsolverchegvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+268 | [hipsolverZhegvj](interfacehipfort__hipsolver_1_1hipsolverzhegvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 269 | [hipsolverSsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverssytrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 270 | [hipsolverDsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdsytrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
 271 | [hipsolverChetrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverchetrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
@@ -306,222 +306,222 @@
 302 | [hipsolverDnXsyevjSetTolerance](interfacehipfort__hipsolver_1_1hipsolverdnxsyevjsettolerance.html "Interface documentation") | C binding
 303 | [hipsolverDnXsyevjGetResidual](interfacehipfort__hipsolver_1_1hipsolverdnxsyevjgetresidual.html "Interface documentation") | C binding, typed
 304 | [hipsolverDnXsyevjGetSweeps](interfacehipfort__hipsolver_1_1hipsolverdnxsyevjgetsweeps.html "Interface documentation") | C binding, typed
-305 | [hipsolverDnSorgbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgbr__buffersize.html "Interface documentation") | C binding, typed
-306 | [hipsolverDnDorgbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgbr__buffersize.html "Interface documentation") | C binding, typed
-307 | [hipsolverDnCungbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungbr__buffersize.html "Interface documentation") | C binding, typed
-308 | [hipsolverDnZungbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungbr__buffersize.html "Interface documentation") | C binding, typed
-309 | [hipsolverDnSorgbr](interfacehipfort__hipsolver_1_1hipsolverdnsorgbr.html "Interface documentation") | C binding
-310 | [hipsolverDnDorgbr](interfacehipfort__hipsolver_1_1hipsolverdndorgbr.html "Interface documentation") | C binding
-311 | [hipsolverDnCungbr](interfacehipfort__hipsolver_1_1hipsolverdncungbr.html "Interface documentation") | C binding
-312 | [hipsolverDnZungbr](interfacehipfort__hipsolver_1_1hipsolverdnzungbr.html "Interface documentation") | C binding
-313 | [hipsolverDnSorgqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgqr__buffersize.html "Interface documentation") | C binding, typed
-314 | [hipsolverDnDorgqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgqr__buffersize.html "Interface documentation") | C binding, typed
-315 | [hipsolverDnCungqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungqr__buffersize.html "Interface documentation") | C binding, typed
-316 | [hipsolverDnZungqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungqr__buffersize.html "Interface documentation") | C binding, typed
-317 | [hipsolverDnSorgqr](interfacehipfort__hipsolver_1_1hipsolverdnsorgqr.html "Interface documentation") | C binding
-318 | [hipsolverDnDorgqr](interfacehipfort__hipsolver_1_1hipsolverdndorgqr.html "Interface documentation") | C binding
-319 | [hipsolverDnCungqr](interfacehipfort__hipsolver_1_1hipsolverdncungqr.html "Interface documentation") | C binding
-320 | [hipsolverDnZungqr](interfacehipfort__hipsolver_1_1hipsolverdnzungqr.html "Interface documentation") | C binding
-321 | [hipsolverDnSorgtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgtr__buffersize.html "Interface documentation") | C binding, typed
-322 | [hipsolverDnDorgtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgtr__buffersize.html "Interface documentation") | C binding, typed
-323 | [hipsolverDnCungtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungtr__buffersize.html "Interface documentation") | C binding, typed
-324 | [hipsolverDnZungtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungtr__buffersize.html "Interface documentation") | C binding, typed
-325 | [hipsolverDnSorgtr](interfacehipfort__hipsolver_1_1hipsolverdnsorgtr.html "Interface documentation") | C binding
-326 | [hipsolverDnDorgtr](interfacehipfort__hipsolver_1_1hipsolverdndorgtr.html "Interface documentation") | C binding
-327 | [hipsolverDnCungtr](interfacehipfort__hipsolver_1_1hipsolverdncungtr.html "Interface documentation") | C binding
-328 | [hipsolverDnZungtr](interfacehipfort__hipsolver_1_1hipsolverdnzungtr.html "Interface documentation") | C binding
-329 | [hipsolverDnSormqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsormqr__buffersize.html "Interface documentation") | C binding, typed
-330 | [hipsolverDnDormqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndormqr__buffersize.html "Interface documentation") | C binding, typed
-331 | [hipsolverDnCunmqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncunmqr__buffersize.html "Interface documentation") | C binding, typed
-332 | [hipsolverDnZunmqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzunmqr__buffersize.html "Interface documentation") | C binding, typed
-333 | [hipsolverDnSormqr](interfacehipfort__hipsolver_1_1hipsolverdnsormqr.html "Interface documentation") | C binding
-334 | [hipsolverDnDormqr](interfacehipfort__hipsolver_1_1hipsolverdndormqr.html "Interface documentation") | C binding
-335 | [hipsolverDnCunmqr](interfacehipfort__hipsolver_1_1hipsolverdncunmqr.html "Interface documentation") | C binding
-336 | [hipsolverDnZunmqr](interfacehipfort__hipsolver_1_1hipsolverdnzunmqr.html "Interface documentation") | C binding
-337 | [hipsolverDnSormtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsormtr__buffersize.html "Interface documentation") | C binding, typed
-338 | [hipsolverDnDormtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndormtr__buffersize.html "Interface documentation") | C binding, typed
-339 | [hipsolverDnCunmtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncunmtr__buffersize.html "Interface documentation") | C binding, typed
-340 | [hipsolverDnZunmtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzunmtr__buffersize.html "Interface documentation") | C binding, typed
-341 | [hipsolverDnSormtr](interfacehipfort__hipsolver_1_1hipsolverdnsormtr.html "Interface documentation") | C binding
-342 | [hipsolverDnDormtr](interfacehipfort__hipsolver_1_1hipsolverdndormtr.html "Interface documentation") | C binding
-343 | [hipsolverDnCunmtr](interfacehipfort__hipsolver_1_1hipsolverdncunmtr.html "Interface documentation") | C binding
-344 | [hipsolverDnZunmtr](interfacehipfort__hipsolver_1_1hipsolverdnzunmtr.html "Interface documentation") | C binding
+305 | [hipsolverDnSorgbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgbr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+306 | [hipsolverDnDorgbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgbr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+307 | [hipsolverDnCungbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungbr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+308 | [hipsolverDnZungbr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungbr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+309 | [hipsolverDnSorgbr](interfacehipfort__hipsolver_1_1hipsolverdnsorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+310 | [hipsolverDnDorgbr](interfacehipfort__hipsolver_1_1hipsolverdndorgbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+311 | [hipsolverDnCungbr](interfacehipfort__hipsolver_1_1hipsolverdncungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+312 | [hipsolverDnZungbr](interfacehipfort__hipsolver_1_1hipsolverdnzungbr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+313 | [hipsolverDnSorgqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+314 | [hipsolverDnDorgqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+315 | [hipsolverDnCungqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+316 | [hipsolverDnZungqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+317 | [hipsolverDnSorgqr](interfacehipfort__hipsolver_1_1hipsolverdnsorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+318 | [hipsolverDnDorgqr](interfacehipfort__hipsolver_1_1hipsolverdndorgqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+319 | [hipsolverDnCungqr](interfacehipfort__hipsolver_1_1hipsolverdncungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+320 | [hipsolverDnZungqr](interfacehipfort__hipsolver_1_1hipsolverdnzungqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+321 | [hipsolverDnSorgtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsorgtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+322 | [hipsolverDnDorgtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndorgtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+323 | [hipsolverDnCungtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncungtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+324 | [hipsolverDnZungtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzungtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+325 | [hipsolverDnSorgtr](interfacehipfort__hipsolver_1_1hipsolverdnsorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+326 | [hipsolverDnDorgtr](interfacehipfort__hipsolver_1_1hipsolverdndorgtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+327 | [hipsolverDnCungtr](interfacehipfort__hipsolver_1_1hipsolverdncungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+328 | [hipsolverDnZungtr](interfacehipfort__hipsolver_1_1hipsolverdnzungtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+329 | [hipsolverDnSormqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsormqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+330 | [hipsolverDnDormqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndormqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+331 | [hipsolverDnCunmqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncunmqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+332 | [hipsolverDnZunmqr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzunmqr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+333 | [hipsolverDnSormqr](interfacehipfort__hipsolver_1_1hipsolverdnsormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+334 | [hipsolverDnDormqr](interfacehipfort__hipsolver_1_1hipsolverdndormqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+335 | [hipsolverDnCunmqr](interfacehipfort__hipsolver_1_1hipsolverdncunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+336 | [hipsolverDnZunmqr](interfacehipfort__hipsolver_1_1hipsolverdnzunmqr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+337 | [hipsolverDnSormtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsormtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+338 | [hipsolverDnDormtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndormtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+339 | [hipsolverDnCunmtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncunmtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+340 | [hipsolverDnZunmtr_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzunmtr__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+341 | [hipsolverDnSormtr](interfacehipfort__hipsolver_1_1hipsolverdnsormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+342 | [hipsolverDnDormtr](interfacehipfort__hipsolver_1_1hipsolverdndormtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+343 | [hipsolverDnCunmtr](interfacehipfort__hipsolver_1_1hipsolverdncunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+344 | [hipsolverDnZunmtr](interfacehipfort__hipsolver_1_1hipsolverdnzunmtr.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 345 | [hipsolverDnSgebrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgebrd__buffersize.html "Interface documentation") | C binding, typed
 346 | [hipsolverDnDgebrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgebrd__buffersize.html "Interface documentation") | C binding, typed
 347 | [hipsolverDnCgebrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgebrd__buffersize.html "Interface documentation") | C binding, typed
 348 | [hipsolverDnZgebrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgebrd__buffersize.html "Interface documentation") | C binding, typed
-349 | [hipsolverDnSgebrd](interfacehipfort__hipsolver_1_1hipsolverdnsgebrd.html "Interface documentation") | C binding
-350 | [hipsolverDnDgebrd](interfacehipfort__hipsolver_1_1hipsolverdndgebrd.html "Interface documentation") | C binding
-351 | [hipsolverDnCgebrd](interfacehipfort__hipsolver_1_1hipsolverdncgebrd.html "Interface documentation") | C binding
-352 | [hipsolverDnZgebrd](interfacehipfort__hipsolver_1_1hipsolverdnzgebrd.html "Interface documentation") | C binding
-353 | [hipsolverDnSSgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssgels__buffersize.html "Interface documentation") | C binding, typed
-354 | [hipsolverDnDDgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnddgels__buffersize.html "Interface documentation") | C binding, typed
-355 | [hipsolverDnCCgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnccgels__buffersize.html "Interface documentation") | C binding, typed
-356 | [hipsolverDnZZgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzzgels__buffersize.html "Interface documentation") | C binding, typed
-357 | [hipsolverDnSSgels](interfacehipfort__hipsolver_1_1hipsolverdnssgels.html "Interface documentation") | C binding, typed
-358 | [hipsolverDnDDgels](interfacehipfort__hipsolver_1_1hipsolverdnddgels.html "Interface documentation") | C binding, typed
-359 | [hipsolverDnCCgels](interfacehipfort__hipsolver_1_1hipsolverdnccgels.html "Interface documentation") | C binding, typed
-360 | [hipsolverDnZZgels](interfacehipfort__hipsolver_1_1hipsolverdnzzgels.html "Interface documentation") | C binding, typed
-361 | [hipsolverDnSgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgeqrf__buffersize.html "Interface documentation") | C binding, typed
-362 | [hipsolverDnDgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgeqrf__buffersize.html "Interface documentation") | C binding, typed
-363 | [hipsolverDnCgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgeqrf__buffersize.html "Interface documentation") | C binding, typed
-364 | [hipsolverDnZgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgeqrf__buffersize.html "Interface documentation") | C binding, typed
-365 | [hipsolverDnSgeqrf](interfacehipfort__hipsolver_1_1hipsolverdnsgeqrf.html "Interface documentation") | C binding
-366 | [hipsolverDnDgeqrf](interfacehipfort__hipsolver_1_1hipsolverdndgeqrf.html "Interface documentation") | C binding
-367 | [hipsolverDnCgeqrf](interfacehipfort__hipsolver_1_1hipsolverdncgeqrf.html "Interface documentation") | C binding
-368 | [hipsolverDnZgeqrf](interfacehipfort__hipsolver_1_1hipsolverdnzgeqrf.html "Interface documentation") | C binding
-369 | [hipsolverDnSSgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssgesv__buffersize.html "Interface documentation") | C binding, typed
-370 | [hipsolverDnDDgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnddgesv__buffersize.html "Interface documentation") | C binding, typed
-371 | [hipsolverDnCCgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnccgesv__buffersize.html "Interface documentation") | C binding, typed
-372 | [hipsolverDnZZgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzzgesv__buffersize.html "Interface documentation") | C binding, typed
-373 | [hipsolverDnSSgesv](interfacehipfort__hipsolver_1_1hipsolverdnssgesv.html "Interface documentation") | C binding, typed
-374 | [hipsolverDnDDgesv](interfacehipfort__hipsolver_1_1hipsolverdnddgesv.html "Interface documentation") | C binding, typed
-375 | [hipsolverDnCCgesv](interfacehipfort__hipsolver_1_1hipsolverdnccgesv.html "Interface documentation") | C binding, typed
-376 | [hipsolverDnZZgesv](interfacehipfort__hipsolver_1_1hipsolverdnzzgesv.html "Interface documentation") | C binding, typed
+349 | [hipsolverDnSgebrd](interfacehipfort__hipsolver_1_1hipsolverdnsgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+350 | [hipsolverDnDgebrd](interfacehipfort__hipsolver_1_1hipsolverdndgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+351 | [hipsolverDnCgebrd](interfacehipfort__hipsolver_1_1hipsolverdncgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+352 | [hipsolverDnZgebrd](interfacehipfort__hipsolver_1_1hipsolverdnzgebrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+353 | [hipsolverDnSSgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+354 | [hipsolverDnDDgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnddgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+355 | [hipsolverDnCCgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnccgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+356 | [hipsolverDnZZgels_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzzgels__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+357 | [hipsolverDnSSgels](interfacehipfort__hipsolver_1_1hipsolverdnssgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+358 | [hipsolverDnDDgels](interfacehipfort__hipsolver_1_1hipsolverdnddgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+359 | [hipsolverDnCCgels](interfacehipfort__hipsolver_1_1hipsolverdnccgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+360 | [hipsolverDnZZgels](interfacehipfort__hipsolver_1_1hipsolverdnzzgels.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+361 | [hipsolverDnSgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgeqrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+362 | [hipsolverDnDgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgeqrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+363 | [hipsolverDnCgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgeqrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+364 | [hipsolverDnZgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgeqrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+365 | [hipsolverDnSgeqrf](interfacehipfort__hipsolver_1_1hipsolverdnsgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+366 | [hipsolverDnDgeqrf](interfacehipfort__hipsolver_1_1hipsolverdndgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+367 | [hipsolverDnCgeqrf](interfacehipfort__hipsolver_1_1hipsolverdncgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+368 | [hipsolverDnZgeqrf](interfacehipfort__hipsolver_1_1hipsolverdnzgeqrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+369 | [hipsolverDnSSgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssgesv__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+370 | [hipsolverDnDDgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnddgesv__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+371 | [hipsolverDnCCgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnccgesv__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+372 | [hipsolverDnZZgesv_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzzgesv__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+373 | [hipsolverDnSSgesv](interfacehipfort__hipsolver_1_1hipsolverdnssgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+374 | [hipsolverDnDDgesv](interfacehipfort__hipsolver_1_1hipsolverdnddgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+375 | [hipsolverDnCCgesv](interfacehipfort__hipsolver_1_1hipsolverdnccgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+376 | [hipsolverDnZZgesv](interfacehipfort__hipsolver_1_1hipsolverdnzzgesv.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
 377 | [hipsolverDnSgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvd__buffersize.html "Interface documentation") | C binding, typed
 378 | [hipsolverDnDgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvd__buffersize.html "Interface documentation") | C binding, typed
 379 | [hipsolverDnCgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvd__buffersize.html "Interface documentation") | C binding, typed
 380 | [hipsolverDnZgesvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvd__buffersize.html "Interface documentation") | C binding, typed
-381 | [hipsolverDnSgesvd](interfacehipfort__hipsolver_1_1hipsolverdnsgesvd.html "Interface documentation") | C binding
-382 | [hipsolverDnDgesvd](interfacehipfort__hipsolver_1_1hipsolverdndgesvd.html "Interface documentation") | C binding
-383 | [hipsolverDnCgesvd](interfacehipfort__hipsolver_1_1hipsolverdncgesvd.html "Interface documentation") | C binding
-384 | [hipsolverDnZgesvd](interfacehipfort__hipsolver_1_1hipsolverdnzgesvd.html "Interface documentation") | C binding
-385 | [hipsolverDnSgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdj__buffersize.html "Interface documentation") | C binding, typed
-386 | [hipsolverDnDgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdj__buffersize.html "Interface documentation") | C binding, typed
-387 | [hipsolverDnCgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdj__buffersize.html "Interface documentation") | C binding, typed
-388 | [hipsolverDnZgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdj__buffersize.html "Interface documentation") | C binding, typed
-389 | [hipsolverDnSgesvdj](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdj.html "Interface documentation") | C binding
-390 | [hipsolverDnDgesvdj](interfacehipfort__hipsolver_1_1hipsolverdndgesvdj.html "Interface documentation") | C binding
-391 | [hipsolverDnCgesvdj](interfacehipfort__hipsolver_1_1hipsolverdncgesvdj.html "Interface documentation") | C binding
-392 | [hipsolverDnZgesvdj](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdj.html "Interface documentation") | C binding
-393 | [hipsolverDnSgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-394 | [hipsolverDnDgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-395 | [hipsolverDnCgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-396 | [hipsolverDnZgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdjbatched__buffersize.html "Interface documentation") | C binding, typed
-397 | [hipsolverDnSgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdjbatched.html "Interface documentation") | C binding
-398 | [hipsolverDnDgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdndgesvdjbatched.html "Interface documentation") | C binding
-399 | [hipsolverDnCgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdncgesvdjbatched.html "Interface documentation") | C binding
-400 | [hipsolverDnZgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdjbatched.html "Interface documentation") | C binding
-401 | [hipsolverDnSgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, typed
-402 | [hipsolverDnDgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, typed
-403 | [hipsolverDnCgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, typed
-404 | [hipsolverDnZgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, typed
-405 | [hipsolverDnSgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdastridedbatched.html "Interface documentation") | C binding
-406 | [hipsolverDnDgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdndgesvdastridedbatched.html "Interface documentation") | C binding
-407 | [hipsolverDnCgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdncgesvdastridedbatched.html "Interface documentation") | C binding
-408 | [hipsolverDnZgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdastridedbatched.html "Interface documentation") | C binding
-409 | [hipsolverDnSgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgetrf__buffersize.html "Interface documentation") | C binding, typed
-410 | [hipsolverDnDgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgetrf__buffersize.html "Interface documentation") | C binding, typed
-411 | [hipsolverDnCgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgetrf__buffersize.html "Interface documentation") | C binding, typed
-412 | [hipsolverDnZgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgetrf__buffersize.html "Interface documentation") | C binding, typed
-413 | [hipsolverDnSgetrf](interfacehipfort__hipsolver_1_1hipsolverdnsgetrf.html "Interface documentation") | C binding
-414 | [hipsolverDnDgetrf](interfacehipfort__hipsolver_1_1hipsolverdndgetrf.html "Interface documentation") | C binding
-415 | [hipsolverDnCgetrf](interfacehipfort__hipsolver_1_1hipsolverdncgetrf.html "Interface documentation") | C binding
-416 | [hipsolverDnZgetrf](interfacehipfort__hipsolver_1_1hipsolverdnzgetrf.html "Interface documentation") | C binding
-417 | [hipsolverDnSgetrs](interfacehipfort__hipsolver_1_1hipsolverdnsgetrs.html "Interface documentation") | C binding
-418 | [hipsolverDnDgetrs](interfacehipfort__hipsolver_1_1hipsolverdndgetrs.html "Interface documentation") | C binding
-419 | [hipsolverDnCgetrs](interfacehipfort__hipsolver_1_1hipsolverdncgetrs.html "Interface documentation") | C binding
-420 | [hipsolverDnZgetrs](interfacehipfort__hipsolver_1_1hipsolverdnzgetrs.html "Interface documentation") | C binding
-421 | [hipsolverDnSpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnspotrf__buffersize.html "Interface documentation") | C binding, typed
-422 | [hipsolverDnDpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndpotrf__buffersize.html "Interface documentation") | C binding, typed
-423 | [hipsolverDnCpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncpotrf__buffersize.html "Interface documentation") | C binding, typed
-424 | [hipsolverDnZpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzpotrf__buffersize.html "Interface documentation") | C binding, typed
-425 | [hipsolverDnSpotrf](interfacehipfort__hipsolver_1_1hipsolverdnspotrf.html "Interface documentation") | C binding
-426 | [hipsolverDnDpotrf](interfacehipfort__hipsolver_1_1hipsolverdndpotrf.html "Interface documentation") | C binding
-427 | [hipsolverDnCpotrf](interfacehipfort__hipsolver_1_1hipsolverdncpotrf.html "Interface documentation") | C binding
-428 | [hipsolverDnZpotrf](interfacehipfort__hipsolver_1_1hipsolverdnzpotrf.html "Interface documentation") | C binding
-429 | [hipsolverDnSpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdnspotrfbatched.html "Interface documentation") | C binding
-430 | [hipsolverDnDpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdndpotrfbatched.html "Interface documentation") | C binding
-431 | [hipsolverDnCpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdncpotrfbatched.html "Interface documentation") | C binding
-432 | [hipsolverDnZpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdnzpotrfbatched.html "Interface documentation") | C binding
-433 | [hipsolverDnSpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnspotri__buffersize.html "Interface documentation") | C binding, typed
-434 | [hipsolverDnDpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndpotri__buffersize.html "Interface documentation") | C binding, typed
-435 | [hipsolverDnCpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncpotri__buffersize.html "Interface documentation") | C binding, typed
-436 | [hipsolverDnZpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzpotri__buffersize.html "Interface documentation") | C binding, typed
-437 | [hipsolverDnSpotri](interfacehipfort__hipsolver_1_1hipsolverdnspotri.html "Interface documentation") | C binding
-438 | [hipsolverDnDpotri](interfacehipfort__hipsolver_1_1hipsolverdndpotri.html "Interface documentation") | C binding
-439 | [hipsolverDnCpotri](interfacehipfort__hipsolver_1_1hipsolverdncpotri.html "Interface documentation") | C binding
-440 | [hipsolverDnZpotri](interfacehipfort__hipsolver_1_1hipsolverdnzpotri.html "Interface documentation") | C binding
-441 | [hipsolverDnSpotrs](interfacehipfort__hipsolver_1_1hipsolverdnspotrs.html "Interface documentation") | C binding
-442 | [hipsolverDnDpotrs](interfacehipfort__hipsolver_1_1hipsolverdndpotrs.html "Interface documentation") | C binding
-443 | [hipsolverDnCpotrs](interfacehipfort__hipsolver_1_1hipsolverdncpotrs.html "Interface documentation") | C binding
-444 | [hipsolverDnZpotrs](interfacehipfort__hipsolver_1_1hipsolverdnzpotrs.html "Interface documentation") | C binding
-445 | [hipsolverDnSpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdnspotrsbatched.html "Interface documentation") | C binding
-446 | [hipsolverDnDpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdndpotrsbatched.html "Interface documentation") | C binding
-447 | [hipsolverDnCpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdncpotrsbatched.html "Interface documentation") | C binding
-448 | [hipsolverDnZpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdnzpotrsbatched.html "Interface documentation") | C binding
-449 | [hipsolverDnSsyevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevd__buffersize.html "Interface documentation") | C binding, typed
-450 | [hipsolverDnDsyevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevd__buffersize.html "Interface documentation") | C binding, typed
-451 | [hipsolverDnCheevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevd__buffersize.html "Interface documentation") | C binding, typed
-452 | [hipsolverDnZheevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevd__buffersize.html "Interface documentation") | C binding, typed
-453 | [hipsolverDnSsyevd](interfacehipfort__hipsolver_1_1hipsolverdnssyevd.html "Interface documentation") | C binding
-454 | [hipsolverDnDsyevd](interfacehipfort__hipsolver_1_1hipsolverdndsyevd.html "Interface documentation") | C binding
-455 | [hipsolverDnCheevd](interfacehipfort__hipsolver_1_1hipsolverdncheevd.html "Interface documentation") | C binding
-456 | [hipsolverDnZheevd](interfacehipfort__hipsolver_1_1hipsolverdnzheevd.html "Interface documentation") | C binding
-457 | [hipsolverDnSsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevdx__buffersize.html "Interface documentation") | C binding, typed
-458 | [hipsolverDnDsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevdx__buffersize.html "Interface documentation") | C binding, typed
-459 | [hipsolverDnCheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevdx__buffersize.html "Interface documentation") | C binding, typed
-460 | [hipsolverDnZheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevdx__buffersize.html "Interface documentation") | C binding, typed
-461 | [hipsolverDnSsyevdx](interfacehipfort__hipsolver_1_1hipsolverdnssyevdx.html "Interface documentation") | C binding, typed
-462 | [hipsolverDnDsyevdx](interfacehipfort__hipsolver_1_1hipsolverdndsyevdx.html "Interface documentation") | C binding, typed
-463 | [hipsolverDnCheevdx](interfacehipfort__hipsolver_1_1hipsolverdncheevdx.html "Interface documentation") | C binding, typed
-464 | [hipsolverDnZheevdx](interfacehipfort__hipsolver_1_1hipsolverdnzheevdx.html "Interface documentation") | C binding, typed
-465 | [hipsolverDnSsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevj__buffersize.html "Interface documentation") | C binding, typed
-466 | [hipsolverDnDsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevj__buffersize.html "Interface documentation") | C binding, typed
-467 | [hipsolverDnCheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevj__buffersize.html "Interface documentation") | C binding, typed
-468 | [hipsolverDnZheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevj__buffersize.html "Interface documentation") | C binding, typed
-469 | [hipsolverDnSsyevj](interfacehipfort__hipsolver_1_1hipsolverdnssyevj.html "Interface documentation") | C binding
-470 | [hipsolverDnDsyevj](interfacehipfort__hipsolver_1_1hipsolverdndsyevj.html "Interface documentation") | C binding
-471 | [hipsolverDnCheevj](interfacehipfort__hipsolver_1_1hipsolverdncheevj.html "Interface documentation") | C binding
-472 | [hipsolverDnZheevj](interfacehipfort__hipsolver_1_1hipsolverdnzheevj.html "Interface documentation") | C binding
-473 | [hipsolverDnSsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevjbatched__buffersize.html "Interface documentation") | C binding, typed
-474 | [hipsolverDnDsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevjbatched__buffersize.html "Interface documentation") | C binding, typed
-475 | [hipsolverDnCheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevjbatched__buffersize.html "Interface documentation") | C binding, typed
-476 | [hipsolverDnZheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevjbatched__buffersize.html "Interface documentation") | C binding, typed
-477 | [hipsolverDnSsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdnssyevjbatched.html "Interface documentation") | C binding
-478 | [hipsolverDnDsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdndsyevjbatched.html "Interface documentation") | C binding
-479 | [hipsolverDnCheevjBatched](interfacehipfort__hipsolver_1_1hipsolverdncheevjbatched.html "Interface documentation") | C binding
-480 | [hipsolverDnZheevjBatched](interfacehipfort__hipsolver_1_1hipsolverdnzheevjbatched.html "Interface documentation") | C binding
-481 | [hipsolverDnSsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvd__buffersize.html "Interface documentation") | C binding, typed
-482 | [hipsolverDnDsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvd__buffersize.html "Interface documentation") | C binding, typed
-483 | [hipsolverDnChegvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvd__buffersize.html "Interface documentation") | C binding, typed
-484 | [hipsolverDnZhegvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvd__buffersize.html "Interface documentation") | C binding, typed
-485 | [hipsolverDnSsygvd](interfacehipfort__hipsolver_1_1hipsolverdnssygvd.html "Interface documentation") | C binding
-486 | [hipsolverDnDsygvd](interfacehipfort__hipsolver_1_1hipsolverdndsygvd.html "Interface documentation") | C binding
-487 | [hipsolverDnChegvd](interfacehipfort__hipsolver_1_1hipsolverdnchegvd.html "Interface documentation") | C binding
-488 | [hipsolverDnZhegvd](interfacehipfort__hipsolver_1_1hipsolverdnzhegvd.html "Interface documentation") | C binding
-489 | [hipsolverDnSsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvdx__buffersize.html "Interface documentation") | C binding, typed
-490 | [hipsolverDnDsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvdx__buffersize.html "Interface documentation") | C binding, typed
-491 | [hipsolverDnChegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvdx__buffersize.html "Interface documentation") | C binding, typed
-492 | [hipsolverDnZhegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvdx__buffersize.html "Interface documentation") | C binding, typed
-493 | [hipsolverDnSsygvdx](interfacehipfort__hipsolver_1_1hipsolverdnssygvdx.html "Interface documentation") | C binding, typed
-494 | [hipsolverDnDsygvdx](interfacehipfort__hipsolver_1_1hipsolverdndsygvdx.html "Interface documentation") | C binding, typed
-495 | [hipsolverDnChegvdx](interfacehipfort__hipsolver_1_1hipsolverdnchegvdx.html "Interface documentation") | C binding, typed
-496 | [hipsolverDnZhegvdx](interfacehipfort__hipsolver_1_1hipsolverdnzhegvdx.html "Interface documentation") | C binding, typed
-497 | [hipsolverDnSsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvj__buffersize.html "Interface documentation") | C binding, typed
-498 | [hipsolverDnDsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvj__buffersize.html "Interface documentation") | C binding, typed
-499 | [hipsolverDnChegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvj__buffersize.html "Interface documentation") | C binding, typed
-500 | [hipsolverDnZhegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvj__buffersize.html "Interface documentation") | C binding, typed
-501 | [hipsolverDnSsygvj](interfacehipfort__hipsolver_1_1hipsolverdnssygvj.html "Interface documentation") | C binding
-502 | [hipsolverDnDsygvj](interfacehipfort__hipsolver_1_1hipsolverdndsygvj.html "Interface documentation") | C binding
-503 | [hipsolverDnChegvj](interfacehipfort__hipsolver_1_1hipsolverdnchegvj.html "Interface documentation") | C binding
-504 | [hipsolverDnZhegvj](interfacehipfort__hipsolver_1_1hipsolverdnzhegvj.html "Interface documentation") | C binding
-505 | [hipsolverDnSsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssytrd__buffersize.html "Interface documentation") | C binding, typed
-506 | [hipsolverDnDsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsytrd__buffersize.html "Interface documentation") | C binding, typed
-507 | [hipsolverDnChetrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchetrd__buffersize.html "Interface documentation") | C binding, typed
-508 | [hipsolverDnZhetrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhetrd__buffersize.html "Interface documentation") | C binding, typed
-509 | [hipsolverDnSsytrd](interfacehipfort__hipsolver_1_1hipsolverdnssytrd.html "Interface documentation") | C binding
-510 | [hipsolverDnDsytrd](interfacehipfort__hipsolver_1_1hipsolverdndsytrd.html "Interface documentation") | C binding
-511 | [hipsolverDnChetrd](interfacehipfort__hipsolver_1_1hipsolverdnchetrd.html "Interface documentation") | C binding
-512 | [hipsolverDnZhetrd](interfacehipfort__hipsolver_1_1hipsolverdnzhetrd.html "Interface documentation") | C binding
-513 | [hipsolverDnSsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssytrf__buffersize.html "Interface documentation") | C binding, typed
-514 | [hipsolverDnDsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsytrf__buffersize.html "Interface documentation") | C binding, typed
-515 | [hipsolverDnCsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncsytrf__buffersize.html "Interface documentation") | C binding, typed
-516 | [hipsolverDnZsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzsytrf__buffersize.html "Interface documentation") | C binding, typed
-517 | [hipsolverDnSsytrf](interfacehipfort__hipsolver_1_1hipsolverdnssytrf.html "Interface documentation") | C binding
-518 | [hipsolverDnDsytrf](interfacehipfort__hipsolver_1_1hipsolverdndsytrf.html "Interface documentation") | C binding
-519 | [hipsolverDnCsytrf](interfacehipfort__hipsolver_1_1hipsolverdncsytrf.html "Interface documentation") | C binding
-520 | [hipsolverDnZsytrf](interfacehipfort__hipsolver_1_1hipsolverdnzsytrf.html "Interface documentation") | C binding
+381 | [hipsolverDnSgesvd](interfacehipfort__hipsolver_1_1hipsolverdnsgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+382 | [hipsolverDnDgesvd](interfacehipfort__hipsolver_1_1hipsolverdndgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+383 | [hipsolverDnCgesvd](interfacehipfort__hipsolver_1_1hipsolverdncgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+384 | [hipsolverDnZgesvd](interfacehipfort__hipsolver_1_1hipsolverdnzgesvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+385 | [hipsolverDnSgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+386 | [hipsolverDnDgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+387 | [hipsolverDnCgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+388 | [hipsolverDnZgesvdj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+389 | [hipsolverDnSgesvdj](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+390 | [hipsolverDnDgesvdj](interfacehipfort__hipsolver_1_1hipsolverdndgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+391 | [hipsolverDnCgesvdj](interfacehipfort__hipsolver_1_1hipsolverdncgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+392 | [hipsolverDnZgesvdj](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+393 | [hipsolverDnSgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+394 | [hipsolverDnDgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+395 | [hipsolverDnCgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+396 | [hipsolverDnZgesvdjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+397 | [hipsolverDnSgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+398 | [hipsolverDnDgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdndgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+399 | [hipsolverDnCgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdncgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+400 | [hipsolverDnZgesvdjBatched](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+401 | [hipsolverDnSgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+402 | [hipsolverDnDgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+403 | [hipsolverDnCgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+404 | [hipsolverDnZgesvdaStridedBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdastridedbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+405 | [hipsolverDnSgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdnsgesvdastridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+406 | [hipsolverDnDgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdndgesvdastridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+407 | [hipsolverDnCgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdncgesvdastridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+408 | [hipsolverDnZgesvdaStridedBatched](interfacehipfort__hipsolver_1_1hipsolverdnzgesvdastridedbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+409 | [hipsolverDnSgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnsgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+410 | [hipsolverDnDgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+411 | [hipsolverDnCgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+412 | [hipsolverDnZgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzgetrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+413 | [hipsolverDnSgetrf](interfacehipfort__hipsolver_1_1hipsolverdnsgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+414 | [hipsolverDnDgetrf](interfacehipfort__hipsolver_1_1hipsolverdndgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+415 | [hipsolverDnCgetrf](interfacehipfort__hipsolver_1_1hipsolverdncgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+416 | [hipsolverDnZgetrf](interfacehipfort__hipsolver_1_1hipsolverdnzgetrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+417 | [hipsolverDnSgetrs](interfacehipfort__hipsolver_1_1hipsolverdnsgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+418 | [hipsolverDnDgetrs](interfacehipfort__hipsolver_1_1hipsolverdndgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+419 | [hipsolverDnCgetrs](interfacehipfort__hipsolver_1_1hipsolverdncgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+420 | [hipsolverDnZgetrs](interfacehipfort__hipsolver_1_1hipsolverdnzgetrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+421 | [hipsolverDnSpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnspotrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+422 | [hipsolverDnDpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndpotrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+423 | [hipsolverDnCpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncpotrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+424 | [hipsolverDnZpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzpotrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+425 | [hipsolverDnSpotrf](interfacehipfort__hipsolver_1_1hipsolverdnspotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+426 | [hipsolverDnDpotrf](interfacehipfort__hipsolver_1_1hipsolverdndpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+427 | [hipsolverDnCpotrf](interfacehipfort__hipsolver_1_1hipsolverdncpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+428 | [hipsolverDnZpotrf](interfacehipfort__hipsolver_1_1hipsolverdnzpotrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+429 | [hipsolverDnSpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdnspotrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+430 | [hipsolverDnDpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdndpotrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+431 | [hipsolverDnCpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdncpotrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+432 | [hipsolverDnZpotrfBatched](interfacehipfort__hipsolver_1_1hipsolverdnzpotrfbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+433 | [hipsolverDnSpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnspotri__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+434 | [hipsolverDnDpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndpotri__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+435 | [hipsolverDnCpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncpotri__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+436 | [hipsolverDnZpotri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzpotri__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+437 | [hipsolverDnSpotri](interfacehipfort__hipsolver_1_1hipsolverdnspotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+438 | [hipsolverDnDpotri](interfacehipfort__hipsolver_1_1hipsolverdndpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+439 | [hipsolverDnCpotri](interfacehipfort__hipsolver_1_1hipsolverdncpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+440 | [hipsolverDnZpotri](interfacehipfort__hipsolver_1_1hipsolverdnzpotri.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+441 | [hipsolverDnSpotrs](interfacehipfort__hipsolver_1_1hipsolverdnspotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+442 | [hipsolverDnDpotrs](interfacehipfort__hipsolver_1_1hipsolverdndpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+443 | [hipsolverDnCpotrs](interfacehipfort__hipsolver_1_1hipsolverdncpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+444 | [hipsolverDnZpotrs](interfacehipfort__hipsolver_1_1hipsolverdnzpotrs.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+445 | [hipsolverDnSpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdnspotrsbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+446 | [hipsolverDnDpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdndpotrsbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+447 | [hipsolverDnCpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdncpotrsbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+448 | [hipsolverDnZpotrsBatched](interfacehipfort__hipsolver_1_1hipsolverdnzpotrsbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+449 | [hipsolverDnSsyevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+450 | [hipsolverDnDsyevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+451 | [hipsolverDnCheevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+452 | [hipsolverDnZheevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+453 | [hipsolverDnSsyevd](interfacehipfort__hipsolver_1_1hipsolverdnssyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+454 | [hipsolverDnDsyevd](interfacehipfort__hipsolver_1_1hipsolverdndsyevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+455 | [hipsolverDnCheevd](interfacehipfort__hipsolver_1_1hipsolverdncheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+456 | [hipsolverDnZheevd](interfacehipfort__hipsolver_1_1hipsolverdnzheevd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+457 | [hipsolverDnSsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+458 | [hipsolverDnDsyevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+459 | [hipsolverDnCheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+460 | [hipsolverDnZheevdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+461 | [hipsolverDnSsyevdx](interfacehipfort__hipsolver_1_1hipsolverdnssyevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+462 | [hipsolverDnDsyevdx](interfacehipfort__hipsolver_1_1hipsolverdndsyevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+463 | [hipsolverDnCheevdx](interfacehipfort__hipsolver_1_1hipsolverdncheevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+464 | [hipsolverDnZheevdx](interfacehipfort__hipsolver_1_1hipsolverdnzheevdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+465 | [hipsolverDnSsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+466 | [hipsolverDnDsyevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+467 | [hipsolverDnCheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+468 | [hipsolverDnZheevj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+469 | [hipsolverDnSsyevj](interfacehipfort__hipsolver_1_1hipsolverdnssyevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+470 | [hipsolverDnDsyevj](interfacehipfort__hipsolver_1_1hipsolverdndsyevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+471 | [hipsolverDnCheevj](interfacehipfort__hipsolver_1_1hipsolverdncheevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+472 | [hipsolverDnZheevj](interfacehipfort__hipsolver_1_1hipsolverdnzheevj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+473 | [hipsolverDnSsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssyevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+474 | [hipsolverDnDsyevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsyevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+475 | [hipsolverDnCheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncheevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+476 | [hipsolverDnZheevjBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzheevjbatched__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+477 | [hipsolverDnSsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdnssyevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+478 | [hipsolverDnDsyevjBatched](interfacehipfort__hipsolver_1_1hipsolverdndsyevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+479 | [hipsolverDnCheevjBatched](interfacehipfort__hipsolver_1_1hipsolverdncheevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+480 | [hipsolverDnZheevjBatched](interfacehipfort__hipsolver_1_1hipsolverdnzheevjbatched.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+481 | [hipsolverDnSsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+482 | [hipsolverDnDsygvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+483 | [hipsolverDnChegvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+484 | [hipsolverDnZhegvd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+485 | [hipsolverDnSsygvd](interfacehipfort__hipsolver_1_1hipsolverdnssygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+486 | [hipsolverDnDsygvd](interfacehipfort__hipsolver_1_1hipsolverdndsygvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+487 | [hipsolverDnChegvd](interfacehipfort__hipsolver_1_1hipsolverdnchegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+488 | [hipsolverDnZhegvd](interfacehipfort__hipsolver_1_1hipsolverdnzhegvd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+489 | [hipsolverDnSsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+490 | [hipsolverDnDsygvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+491 | [hipsolverDnChegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+492 | [hipsolverDnZhegvdx_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvdx__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+493 | [hipsolverDnSsygvdx](interfacehipfort__hipsolver_1_1hipsolverdnssygvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+494 | [hipsolverDnDsygvdx](interfacehipfort__hipsolver_1_1hipsolverdndsygvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+495 | [hipsolverDnChegvdx](interfacehipfort__hipsolver_1_1hipsolverdnchegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+496 | [hipsolverDnZhegvdx](interfacehipfort__hipsolver_1_1hipsolverdnzhegvdx.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed, devptr
+497 | [hipsolverDnSsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssygvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+498 | [hipsolverDnDsygvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsygvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+499 | [hipsolverDnChegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchegvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+500 | [hipsolverDnZhegvj_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhegvj__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+501 | [hipsolverDnSsygvj](interfacehipfort__hipsolver_1_1hipsolverdnssygvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+502 | [hipsolverDnDsygvj](interfacehipfort__hipsolver_1_1hipsolverdndsygvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+503 | [hipsolverDnChegvj](interfacehipfort__hipsolver_1_1hipsolverdnchegvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+504 | [hipsolverDnZhegvj](interfacehipfort__hipsolver_1_1hipsolverdnzhegvj.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+505 | [hipsolverDnSsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssytrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+506 | [hipsolverDnDsytrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsytrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+507 | [hipsolverDnChetrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnchetrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+508 | [hipsolverDnZhetrd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzhetrd__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+509 | [hipsolverDnSsytrd](interfacehipfort__hipsolver_1_1hipsolverdnssytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+510 | [hipsolverDnDsytrd](interfacehipfort__hipsolver_1_1hipsolverdndsytrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+511 | [hipsolverDnChetrd](interfacehipfort__hipsolver_1_1hipsolverdnchetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+512 | [hipsolverDnZhetrd](interfacehipfort__hipsolver_1_1hipsolverdnzhetrd.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+513 | [hipsolverDnSsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnssytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+514 | [hipsolverDnDsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdndsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+515 | [hipsolverDnCsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdncsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+516 | [hipsolverDnZsytrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnzsytrf__buffersize.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, typed
+517 | [hipsolverDnSsytrf](interfacehipfort__hipsolver_1_1hipsolverdnssytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+518 | [hipsolverDnDsytrf](interfacehipfort__hipsolver_1_1hipsolverdndsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+519 | [hipsolverDnCsytrf](interfacehipfort__hipsolver_1_1hipsolverdncsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
+520 | [hipsolverDnZsytrf](interfacehipfort__hipsolver_1_1hipsolverdnzsytrf.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank, devptr
 521 | [hipsolverDnCreateParams](interfacehipfort__hipsolver_1_1hipsolverdncreateparams.html "Interface documentation") | C binding
 522 | [hipsolverDnDestroyParams](interfacehipfort__hipsolver_1_1hipsolverdndestroyparams.html "Interface documentation") | C binding
 523 | [hipsolverDnSetAdvOptions](interfacehipfort__hipsolver_1_1hipsolverdnsetadvoptions.html "Interface documentation") | C binding
@@ -530,8 +530,8 @@
 526 | [hipsolverDnXgeqrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxgeqrf__buffersize.html "Interface documentation") | C binding, typed
 527 | [hipsolverDnXgeqrf](interfacehipfort__hipsolver_1_1hipsolverdnxgeqrf.html "Interface documentation") | C binding
 528 | [hipsolverDnXgetrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxgetrf__buffersize.html "Interface documentation") | C binding, typed
-529 | [hipsolverDnXgetrf](interfacehipfort__hipsolver_1_1hipsolverdnxgetrf.html "Interface documentation") | C binding
-530 | [hipsolverDnXgetrs](interfacehipfort__hipsolver_1_1hipsolverdnxgetrs.html "Interface documentation") | C binding
+529 | [hipsolverDnXgetrf](interfacehipfort__hipsolver_1_1hipsolverdnxgetrf.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
+530 | [hipsolverDnXgetrs](interfacehipfort__hipsolver_1_1hipsolverdnxgetrs.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
 531 | [hipsolverDnXlarft_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxlarft__buffersize.html "Interface documentation") | C binding, typed
 532 | [hipsolverDnXlarft](interfacehipfort__hipsolver_1_1hipsolverdnxlarft.html "Interface documentation") | C binding
 533 | [hipsolverDnXpotrf_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxpotrf__buffersize.html "Interface documentation") | C binding, typed
@@ -540,15 +540,15 @@
 536 | [hipsolverDnXsyevd_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxsyevd__buffersize.html "Interface documentation") | C binding, typed
 537 | [hipsolverDnXsyevd](interfacehipfort__hipsolver_1_1hipsolverdnxsyevd.html "Interface documentation") | C binding
 538 | [hipsolverDnXsyevBatched_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxsyevbatched__buffersize.html "Interface documentation") | C binding, typed
-539 | [hipsolverDnXsyevBatched](interfacehipfort__hipsolver_1_1hipsolverdnxsyevbatched.html "Interface documentation") | C binding
-540 | [hipsolverDnXsytrs_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxsytrs__buffersize.html "Interface documentation") | C binding, typed
-541 | [hipsolverDnXsytrs](interfacehipfort__hipsolver_1_1hipsolverdnxsytrs.html "Interface documentation") | C binding
+539 | [hipsolverDnXsyevBatched](interfacehipfort__hipsolver_1_1hipsolverdnxsyevbatched.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+540 | [hipsolverDnXsytrs_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxsytrs__buffersize.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+541 | [hipsolverDnXsytrs](interfacehipfort__hipsolver_1_1hipsolverdnxsytrs.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, devptr
 542 | [hipsolverDnXtrtri_bufferSize](interfacehipfort__hipsolver_1_1hipsolverdnxtrtri__buffersize.html "Interface documentation") | C binding, typed
 543 | [hipsolverDnXtrtri](interfacehipfort__hipsolver_1_1hipsolverdnxtrtri.html "Interface documentation") | C binding
 544 | [hipsolverRfCreate](interfacehipfort__hipsolver_1_1hipsolverrfcreate.html "Interface documentation") | C binding
 545 | [hipsolverRfDestroy](interfacehipfort__hipsolver_1_1hipsolverrfdestroy.html "Interface documentation") | C binding
-546 | [hipsolverRfSetupDevice](interfacehipfort__hipsolver_1_1hipsolverrfsetupdevice.html "Interface documentation") | C binding
-547 | [hipsolverRfSetupHost](interfacehipfort__hipsolver_1_1hipsolverrfsetuphost.html "Interface documentation") | C binding
+546 | [hipsolverRfSetupDevice](interfacehipfort__hipsolver_1_1hipsolverrfsetupdevice.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+547 | [hipsolverRfSetupHost](interfacehipfort__hipsolver_1_1hipsolverrfsetuphost.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 548 | [hipsolverRfAccessBundledFactorsDevice](interfacehipfort__hipsolver_1_1hipsolverrfaccessbundledfactorsdevice.html "Interface documentation") | C binding, typed
 549 | [hipsolverRfAnalyze](interfacehipfort__hipsolver_1_1hipsolverrfanalyze.html "Interface documentation") | C binding
 550 | [hipsolverRfExtractBundledFactorsHost](interfacehipfort__hipsolver_1_1hipsolverrfextractbundledfactorshost.html "Interface documentation") | C binding, typed
@@ -559,26 +559,26 @@
 555 | [hipsolverRfGetNumericProperties](interfacehipfort__hipsolver_1_1hipsolverrfgetnumericproperties.html "Interface documentation") | C binding, typed
 556 | [hipsolverRfGetResetValuesFastMode](interfacehipfort__hipsolver_1_1hipsolverrfgetresetvaluesfastmode.html "Interface documentation") | C binding, typed
 557 | [hipsolverRfRefactor](interfacehipfort__hipsolver_1_1hipsolverrfrefactor.html "Interface documentation") | C binding
-558 | [hipsolverRfResetValues](interfacehipfort__hipsolver_1_1hipsolverrfresetvalues.html "Interface documentation") | C binding
+558 | [hipsolverRfResetValues](interfacehipfort__hipsolver_1_1hipsolverrfresetvalues.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 559 | [hipsolverRfSetAlgs](interfacehipfort__hipsolver_1_1hipsolverrfsetalgs.html "Interface documentation") | C binding
 560 | [hipsolverRfSetMatrixFormat](interfacehipfort__hipsolver_1_1hipsolverrfsetmatrixformat.html "Interface documentation") | C binding
 561 | [hipsolverRfSetNumericProperties](interfacehipfort__hipsolver_1_1hipsolverrfsetnumericproperties.html "Interface documentation") | C binding
 562 | [hipsolverRfSetResetValuesFastMode](interfacehipfort__hipsolver_1_1hipsolverrfsetresetvaluesfastmode.html "Interface documentation") | C binding
-563 | [hipsolverRfSolve](interfacehipfort__hipsolver_1_1hipsolverrfsolve.html "Interface documentation") | C binding
-564 | [hipsolverRfBatchSetupHost](interfacehipfort__hipsolver_1_1hipsolverrfbatchsetuphost.html "Interface documentation") | C binding
+563 | [hipsolverRfSolve](interfacehipfort__hipsolver_1_1hipsolverrfsolve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+564 | [hipsolverRfBatchSetupHost](interfacehipfort__hipsolver_1_1hipsolverrfbatchsetuphost.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 565 | [hipsolverRfBatchAnalyze](interfacehipfort__hipsolver_1_1hipsolverrfbatchanalyze.html "Interface documentation") | C binding
 566 | [hipsolverRfBatchRefactor](interfacehipfort__hipsolver_1_1hipsolverrfbatchrefactor.html "Interface documentation") | C binding
-567 | [hipsolverRfBatchResetValues](interfacehipfort__hipsolver_1_1hipsolverrfbatchresetvalues.html "Interface documentation") | C binding
-568 | [hipsolverRfBatchSolve](interfacehipfort__hipsolver_1_1hipsolverrfbatchsolve.html "Interface documentation") | C binding
-569 | [hipsolverRfBatchZeroPivot](interfacehipfort__hipsolver_1_1hipsolverrfbatchzeropivot.html "Interface documentation") | C binding
+567 | [hipsolverRfBatchResetValues](interfacehipfort__hipsolver_1_1hipsolverrfbatchresetvalues.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
+568 | [hipsolverRfBatchSolve](interfacehipfort__hipsolver_1_1hipsolverrfbatchsolve.html "Interface documentation") | C binding, full_rank, rank_0, rank_1, assumed_rank
+569 | [hipsolverRfBatchZeroPivot](interfacehipfort__hipsolver_1_1hipsolverrfbatchzeropivot.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank
 570 | [hipsolverSpCreate](interfacehipfort__hipsolver_1_1hipsolverspcreate.html "Interface documentation") | C binding
 571 | [hipsolverSpDestroy](interfacehipfort__hipsolver_1_1hipsolverspdestroy.html "Interface documentation") | C binding
 572 | [hipsolverSpSetStream](interfacehipfort__hipsolver_1_1hipsolverspsetstream.html "Interface documentation") | C binding
-573 | [hipsolverSpScsrlsvchol](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvchol.html "Interface documentation") | C binding, typed
-574 | [hipsolverSpDcsrlsvchol](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvchol.html "Interface documentation") | C binding, typed
-575 | [hipsolverSpScsrlsvcholHost](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvcholhost.html "Interface documentation") | C binding, typed
-576 | [hipsolverSpDcsrlsvcholHost](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvcholhost.html "Interface documentation") | C binding, typed
-577 | [hipsolverSpScsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvqr.html "Interface documentation") | C binding, typed
-578 | [hipsolverSpDcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvqr.html "Interface documentation") | C binding, typed
-579 | [hipsolverSpCcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspccsrlsvqr.html "Interface documentation") | C binding, typed
-580 | [hipsolverSpZcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspzcsrlsvqr.html "Interface documentation") | C binding, typed
+573 | [hipsolverSpScsrlsvchol](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvchol.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+574 | [hipsolverSpDcsrlsvchol](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvchol.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+575 | [hipsolverSpScsrlsvcholHost](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvcholhost.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+576 | [hipsolverSpDcsrlsvcholHost](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvcholhost.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+577 | [hipsolverSpScsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspscsrlsvqr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+578 | [hipsolverSpDcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspdcsrlsvqr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+579 | [hipsolverSpCcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspccsrlsvqr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed
+580 | [hipsolverSpZcsrlsvqr](interfacehipfort__hipsolver_1_1hipsolverspzcsrlsvqr.html "Interface documentation") | C binding, rank_0, rank_1, assumed_rank, typed

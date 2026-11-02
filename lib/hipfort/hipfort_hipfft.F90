@@ -1297,6 +1297,16 @@ module hipfort_hipfft
     end function
 
     module procedure hipfftXtMakePlanMany_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftXtMakePlanMany_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftXtMakePlanMany_rank_0,&
+      hipfftXtMakePlanMany_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Return size of the work area size required for a
@@ -1350,6 +1360,16 @@ module hipfort_hipfft
     end function
 
     module procedure hipfftXtGetSizeMany_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftXtGetSizeMany_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftXtGetSizeMany_rank_0,&
+      hipfftXtGetSizeMany_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Execute an FFT plan for any precision and type.
@@ -1410,6 +1430,16 @@ module hipfort_hipfft
       integer(c_int),value :: count
       type(c_ptr),value :: gpus
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipfftXtSetGPUs_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipfftXtSetGPUs_rank_0,&
+      hipfftXtSetGPUs_rank_1
+#endif
+#endif
   end interface
 
   !>  @brief Allocates a multi-device descriptor (i.e., a `hipLibXtDesc` instance),
@@ -2798,6 +2828,187 @@ module hipfort_hipfft
       real(c_double),target,dimension(:,:,:) :: odata
       !
       hipfftExecZ2D_rank_3 = hipfftExecZ2D_(plan,c_loc(idata),c_loc(odata))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftXtMakePlanMany_assumed_rank(plan,rank,n,inembed,istride,idist,inputType, &
+        onembed,ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtMakePlanMany_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,dimension(..) :: n
+      integer(c_int64_t),target,dimension(..) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target,dimension(..) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtMakePlanMany_assumed_rank = hipfftXtMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize), &
+        executionType)
+    end function
+
+#else
+    function hipfftXtMakePlanMany_rank_0(plan,rank,n,inembed,istride,idist,inputType,onembed, &
+        ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtMakePlanMany_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target :: n
+      integer(c_int64_t),target :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtMakePlanMany_rank_0 = hipfftXtMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize), &
+        executionType)
+    end function
+
+    function hipfftXtMakePlanMany_rank_1(plan,rank,n,inembed,istride,idist,inputType,onembed, &
+        ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtMakePlanMany_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,dimension(:) :: n
+      integer(c_int64_t),target,dimension(:) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target,dimension(:) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtMakePlanMany_rank_1 = hipfftXtMakePlanMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize), &
+        executionType)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftXtGetSizeMany_assumed_rank(plan,rank,n,inembed,istride,idist,inputType,onembed, &
+        ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtGetSizeMany_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,dimension(..) :: n
+      integer(c_int64_t),target,dimension(..) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target,dimension(..) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtGetSizeMany_assumed_rank = hipfftXtGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed), &
+        istride,idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize), &
+        executionType)
+    end function
+
+#else
+    function hipfftXtGetSizeMany_rank_0(plan,rank,n,inembed,istride,idist,inputType,onembed, &
+        ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtGetSizeMany_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target :: n
+      integer(c_int64_t),target :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtGetSizeMany_rank_0 = hipfftXtGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize),executionType)
+    end function
+
+    function hipfftXtGetSizeMany_rank_1(plan,rank,n,inembed,istride,idist,inputType,onembed, &
+        ostride,odist,outputType,batch,workSize,executionType)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtGetSizeMany_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: rank
+      integer(c_int64_t),target,dimension(:) :: n
+      integer(c_int64_t),target,dimension(:) :: inembed
+      integer(c_int64_t) :: istride
+      integer(c_int64_t) :: idist
+      integer(c_int) :: inputType
+      integer(c_int64_t),target,dimension(:) :: onembed
+      integer(c_int64_t) :: ostride
+      integer(c_int64_t) :: odist
+      integer(c_int) :: outputType
+      integer(c_int64_t) :: batch
+      integer(c_size_t),target :: workSize
+      integer(c_int) :: executionType
+      !
+      hipfftXtGetSizeMany_rank_1 = hipfftXtGetSizeMany_(plan,rank,c_loc(n),c_loc(inembed),istride, &
+        idist,inputType,c_loc(onembed),ostride,odist,outputType,batch,c_loc(workSize),executionType)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipfftXtSetGPUs_assumed_rank(plan,count,gpus)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetGPUs_assumed_rank
+      type(c_ptr), value :: plan
+      integer(c_int) :: count
+      integer(c_int),target,dimension(..) :: gpus
+      !
+      hipfftXtSetGPUs_assumed_rank = hipfftXtSetGPUs_(plan,count,c_loc(gpus))
+    end function
+
+#else
+    function hipfftXtSetGPUs_rank_0(plan,count,gpus)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetGPUs_rank_0
+      type(c_ptr), value :: plan
+      integer(c_int) :: count
+      integer(c_int),target :: gpus
+      !
+      hipfftXtSetGPUs_rank_0 = hipfftXtSetGPUs_(plan,count,c_loc(gpus))
+    end function
+
+    function hipfftXtSetGPUs_rank_1(plan,count,gpus)
+      implicit none
+      integer(kind(HIPFFT_SUCCESS)) :: hipfftXtSetGPUs_rank_1
+      type(c_ptr), value :: plan
+      integer(c_int) :: count
+      integer(c_int),target,dimension(:) :: gpus
+      !
+      hipfftXtSetGPUs_rank_1 = hipfftXtSetGPUs_(plan,count,c_loc(gpus))
     end function
 
 #endif

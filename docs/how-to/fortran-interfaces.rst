@@ -110,18 +110,28 @@ them through the generic name ``X``.
      - A buffer followed by its leading dimension (``A``, ``lda``) as a 2-D
        array, ``dimension(:,:)``; you still pass the leading dimension, except
        to the rocBLAS and hipBLAS matrix transfer helpers, which use
-       ``size(A, 1)``.
-   * - ``X_rank_N_devptr``, ``X_full_rank_devptr``
+       ``size(A, 1)``. In a strided-batched routine the batch stays packed in
+       the last dimension.
+   * - ``X_strided_rank``
      - Fortran 2008
-     - As above, with a scalar that ``X_rank_N`` takes as a variable passed as a
-       ``type(c_ptr)`` instead: a scalar the GPU writes (hipSOLVER's
-       ``devInfo``), or a scalar read or written per the pointer mode
-       (``rocblas_sdot``'s ``result``, ``rocblas_drot``'s ``c`` and ``s``). See
+     - For a strided-batched routine, each operand with the batch as one more
+       dimension: a matrix followed by its leading dimension and batch stride as
+       ``dimension(:,:,:)`` (``A(lda, n, batch_count)``), a vector followed by its
+       batch stride as ``dimension(:,:)``; you still pass the strides.
+   * - ``X_rank_N_devptr``, ``X_full_rank_devptr``, ``X_strided_rank_devptr``
+     - Fortran 2008
+     - As above, with an argument that ``X_rank_N`` takes as a Fortran variable
+       or array passed as a ``type(c_ptr)`` instead: a scalar the GPU writes
+       (``rocsolver_dgetrf``'s ``info``, hipSOLVER's ``devInfo``), a scalar read
+       or written per the pointer mode (``rocblas_sdot``'s ``result``,
+       ``rocblas_drot``'s ``c`` and ``s``), or an array of one value per batch
+       entry that you may hold as a device pointer (``rocsolver_dgetrf_batched``'s
+       ``info``, ``rocblas_sdot_strided_batched``'s ``result``). See
        `Device-only scalars`_.
    * - ``X_assumed_rank``, ``X_assumed_rank_devptr``
      - Fortran 2018
      - Buffers as ``dimension(..)`` arrays of any rank, replacing the
-       ``X_rank_N`` and ``X_full_rank`` specifics. See
+       ``X_rank_N``, ``X_full_rank`` and ``X_strided_rank`` specifics. See
        `Assumed-rank interfaces (Fortran 2018)`_.
 
 Other kinds of arguments
@@ -143,7 +153,8 @@ Other kinds of arguments
 * **Batched routines** (``*_batched``) take ``A`` as a device array of device
   pointers, one per matrix: pass the ``type(c_ptr)`` of that array, which you
   fill with the ``type(c_ptr)`` of each matrix. The ``*_strided_batched`` forms
-  take one array and a stride instead.
+  take one array and a stride instead, which ``X_strided_rank`` takes with the
+  batch as its last dimension.
 * **64-bit routines** (``*_64`` in rocBLAS, hipBLAS and rocSOLVER) take their
   sizes, increments and leading dimensions as ``integer(c_int64_t)``, and have
   the same variants as the 32-bit ones. The exception is rocBLAS's
@@ -338,7 +349,9 @@ Device-only scalars
 -------------------
 
 hipSOLVER's ``devInfo`` is written by the GPU, so it is always device memory.
-So is rocSOLVER's ``info``, which every form takes as a ``type(c_ptr)``.
+So are rocSOLVER's ``info`` and the other single values it writes, such as the
+``n_sweeps`` and ``residual`` of the Jacobi solvers or the ``nev`` of the
+selective eigensolvers.
 
 * With ``type(c_ptr)`` buffers, pass it as a ``type(c_ptr)``, for example the
   one ``hipMalloc`` returned. There is no Fortran-variable form here: a host
@@ -346,6 +359,9 @@ So is rocSOLVER's ``info``, which every form takes as a ``type(c_ptr)``.
 * With the Fortran 2008 array overloads, pass either an integer that lives on
   the device, such as an ``integer(c_int), pointer`` allocated with
   ``hipMalloc``, like the arrays beside it, or a ``type(c_ptr)``.
+* A batched routine writes one ``info`` per batch entry: pass an
+  ``integer(c_int)`` array of ``batch_count`` entries on the device, or its
+  ``type(c_ptr)``.
 
 .. note::
 

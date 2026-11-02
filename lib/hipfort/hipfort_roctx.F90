@@ -258,6 +258,8 @@ module hipfort_roctx
       integer(c_int) :: roctxGetThreadId_
       type(c_ptr),value :: tid
     end function
+
+    module procedure roctxGetThreadId_typed
   end interface
 
 
@@ -319,6 +321,14 @@ module hipfort_roctx
       type(c_ptr), value :: stream
       !
       roctxNameHipStream_typed = roctxNameHipStream_(c_loc(name),stream)
+    end function
+
+    function roctxGetThreadId_typed(tid)
+      implicit none
+      integer(c_int) :: roctxGetThreadId_typed
+      integer(c_int64_t),target :: tid
+      !
+      roctxGetThreadId_typed = roctxGetThreadId_(c_loc(tid))
     end function
 
 end module hipfort_roctx
