@@ -13,8 +13,8 @@ You call a ROCm math library from Fortran through the module **that library
 ships itself**, ``use rocblas`` compiled against
 ``/opt/rocm/include/rocblas/rocblas_module.f90``, ``use rocsparse``,
 ``use rocrand_m``. Several ROCm libraries have shipped a hand-written Fortran
-module next to their C API for years. At ROCm 10.3 a generated binding
-supersedes them and they are removed.
+module next to their C API for years. From ROCm 10.3 a generated binding
+supersedes them: they are deprecated, and removed in a later release.
 
 If instead you build **hipFORT** yourself and write ``use hipfort_rocblas``,
 this page is not yours: see :doc:`migration-guide`. The two migrations share a
@@ -37,24 +37,26 @@ Each of these modules was written and maintained by hand next to its library,
 and it shows: they cover a subset of the C API, they lag behind it, and every
 library delivered its module differently (a source file to compile, a ``.mod``,
 a shared library, or nothing installed at all). The generated binding that
-replaces them is generated from the library's own headers and committed next to
-them, so it declares every entry point the ``.so`` exports, with the same
+replaces them is generated from the library's own headers and committed in the
+same repository, so it declares every entry point the ``.so`` exports, with the same
 layout, options and CMake package in every library. hipSOLVER's binding, for
 example, goes from 224 entry points to 546.
 
-Your deadline is 10.3
-=====================
+When to move
+============
 
-Not 11.0, as for hipFORT users. ROCm 10.3 is the release where the hand-written
-module is removed and the generated one takes its place, and **there is no window in which both exist**:
-for five of the seven libraries the two carry the same module name and cannot
-coexist in one build.
+ROCm 10.3 ships the generated binding beside the hand-written module, which is
+deprecated from then on and removed in a later release, announced in the
+library's CHANGELOG. Move during that window; unlike hipFORT, there is no 11.0
+horizon.
 
-That is also why these modules are removed rather than deprecated in place. The
-old module is already called ``rocblas``, not ``hipfort_rocblas``, so there is
-no prefixed-versus-bare distinction to keep two versions apart. At 10.3 there is
-exactly one ``rocblas`` module in the tree, the generated one. Unlike the
-hipFORT migration, there is no gradual file-by-file window.
+**One program uses one or the other.** For five of the seven libraries the two
+carry the same module name (the old module is already called ``rocblas``, not
+``hipfort_rocblas``), so they cannot be mixed in one build, and there is no
+gradual file-by-file migration. They install apart, the hand-written source
+where it always was and the generated ``.mod`` under
+``include/fortran/<compiler>/``, so which one you get depends only on what your
+build compiles and links (`What you change in your build`_).
 
 What you are coming from
 ========================
@@ -118,8 +120,8 @@ Note how little of that is uniform, which is much of the point of the move:
 three libraries installed a source file unconditionally, one compiled its module
 only into its own samples, one exported a shared library without its module, and
 two installed sources only behind an option that is off by default. All of it
-collapses to one ``BUILD_FORTRAN_BINDINGS`` and one installed archive per
-library.
+gives way to one binding project per library, in rocm-libraries'
+``bindings/fortran/<library>``, with one installed archive each.
 
 What you change in your build
 =============================
@@ -157,15 +159,14 @@ Stop compiling the library's source
 The build change catches people precisely because the ``use`` line often does
 not move. rocBLAS, hipBLAS and rocSPARSE installed their module as a **source**
 file (``/opt/rocm/include/rocblas/rocblas_module.f90``), so you almost certainly
-compile it as part of your own build today. Stop: the file is gone at 10.3, and
-a compiled module now ships with ROCm. Drop it from your source list and link
-the archive instead.
+compile it as part of your own build today. Stop: the file is deprecated from
+10.3 and goes away in a later release, and a compiled module now ships with
+ROCm. Drop it from your source list and link the archive instead.
 
 rocRAND and hipRAND did the same thing one level further out, installing their
 sources under ``<lib>/src/fortran/`` and pointing at them from the config
 package with ``<lib>_FORTRAN_SRC_DIR`` and ``<lib>_FORTRAN_SRC_DIRS``.
-``find_package(rocrand)`` and ``find_package(hiprand)`` no longer set those, nor
-``<lib>_FORTRAN_FOUND``. ``find_package(rocrand-fortran)``
+Those variables are deprecated with the wrappers. ``find_package(rocrand-fortran)``
 (``roc::rocrand_fortran``) and ``find_package(hiprand-fortran)``
 (``hip::hiprand_fortran``) now hand you the binding directly, and set
 ``<lib>_FORTRAN_FOUND``. Nothing of yours is left to compile.
@@ -282,8 +283,7 @@ These are compile errors when they hit:
 rocSPARSE
 ---------
 
-rocSPARSE has the longest list, all in ``projects/rocsparse/CHANGELOG.md``.
-The ones you are likely to meet:
+rocSPARSE has the longest list. The ones you are likely to meet:
 
 *  **Buffer sizes.** The 69 ``*_buffer_size`` routines also accept the size as
    an ``integer(c_size_t)`` passed by reference; ``c_loc`` of it still works.
@@ -397,11 +397,14 @@ is the one library that already exported ``roc::hipsolver_fortran``, and it was
 a *shared* library built from the hand-written ``hipsolver_module.f90``. The
 generated binding takes the same public name, but it is a *static* archive,
 ``libhipsolver_fortran.a``, with a regenerated ``hipsolver`` module, and it
-comes from its own package. ``find_package(hipsolver)`` no longer defines
-``roc::hipsolver_fortran``, so a build that links it must add
-``find_package(hipsolver-fortran REQUIRED)``, then re-check its call sites
-(`hipSPARSE and hipSOLVER`_). ``libhipsolver_fortran.so``
-also stops existing, which matters if you link it by filename or depend on its
+comes from its own package: link it with
+``find_package(hipsolver-fortran REQUIRED)``, then re-check your call sites
+(`hipSPARSE and hipSOLVER`_). ROCm's packages build hipSOLVER without exporting
+the old target, so the two never meet there. If you build hipSOLVER yourself,
+configure it with ``-DEXPORT_FORTRAN_BINDINGS=OFF`` before using the generated
+binding in the same project, or CMake refuses the second
+``roc::hipsolver_fortran``. ``libhipsolver_fortran.so`` goes away with the
+hand-written module, which matters if you link it by filename or depend on its
 soversion.
 
 Few builds should actually be affected, because that module was never
@@ -410,20 +413,20 @@ anywhere, so no ``.f90`` and no ``.mod`` ever reached an install tree, and the
 backward-compatibility symlinks beside it point at a file that is not there.
 Only an in-tree hipSOLVER build could consume it.
 
-hipSOLVER also already had a ``BUILD_FORTRAN_BINDINGS`` option, meaning "build
-the hand-written module". The name now means the generated bindings, as
-everywhere else, and keeps its default, ``ON`` on Linux, except that it is now
-``OFF`` on the CUDA backend. ``EXPORT_FORTRAN_BINDINGS`` and the never-defined
-``BUILD_FORTRAN_MODULE`` guard retire with the module they gated.
+hipSOLVER's own ``BUILD_FORTRAN_BINDINGS`` and ``EXPORT_FORTRAN_BINDINGS``
+options still build and export the hand-written module, and retire with it, as
+does the never-defined ``BUILD_FORTRAN_MODULE`` guard. The generated binding's
+``BUILD_FORTRAN_BINDINGS`` belongs to its own project, and is ``ON`` on Linux
+and ``OFF`` on the CUDA backend.
 
-**rocRAND and hipRAND drop** ``BUILD_FORTRAN_WRAPPER``. Their deprecated
+**rocRAND and hipRAND keep** ``BUILD_FORTRAN_WRAPPER`` while their deprecated
 hand-written wrappers (``rocrand_m.f90``, ``hiprand_m.f90``, and the small
-``hipfor`` module beside each) are removed together with the option that built
-them, and the generated binding takes over the ``<lib>_fortran`` target name.
-A build that still passes ``-DBUILD_FORTRAN_WRAPPER=ON`` is not refused: CMake
-only reports the variable as unused, and you get the generated binding. Switch
-to ``use rocrand`` or ``use hiprand`` (with ``BUILD_FORTRAN_BINDINGS``, which
-is ``ON`` on Linux and ``OFF`` on hipRAND's CUDA backend).
+``hipfor`` module beside each) remain, and both go away together in a later
+release. The generated binding is a package of its own,
+``find_package(rocrand-fortran)`` (``roc::rocrand_fortran``) or
+``find_package(hiprand-fortran)`` (``hip::hiprand_fortran``): switch to
+``use rocrand`` or ``use hiprand``, and leave ``BUILD_FORTRAN_WRAPPER`` at its
+default, ``OFF``.
 
 What ``BUILD_FORTRAN_CLIENTS`` still means
 ==========================================
@@ -431,13 +434,10 @@ What ``BUILD_FORTRAN_CLIENTS`` still means
 ``BUILD_FORTRAN_CLIENTS``, which rocBLAS, hipBLAS and rocSPARSE already have, is
 **not** the switch that builds the bindings and is not renamed. It means "build
 the Fortran part of ``clients/``" (rocSPARSE's Fortran samples, rocBLAS and
-hipBLAS's ``*_fortran_client`` wrappers), it keeps its ``ON`` default, and that
-surface survives. For rocSPARSE it now also builds the binding's own tests in
-``fortran/test/``.
+hipBLAS's ``*_fortran_client`` wrappers), it keeps its ``ON`` default, and
+nothing about it changes while the hand-written modules are deprecated: those
+clients still compile them.
 
-What changes is where its module comes from: those samples used to compile the
-hand-written ``.f90`` in-tree and now link the generated
-``roc::<lib>_fortran``. The one new constraint is that they need the bindings:
-with ``-DBUILD_FORTRAN_BINDINGS=OFF``, or no Fortran compiler, the Fortran
-clients are skipped with a message saying why, and the rest of the build goes
-on.
+The generated bindings are not part of the library builds. Each is a project of
+its own, ``bindings/fortran/<library>`` in rocm-libraries, whose own
+``BUILD_FORTRAN_CLIENTS`` builds and registers its tests in ``test/``.
