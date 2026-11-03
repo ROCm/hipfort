@@ -182,10 +182,11 @@ Usually not. Find your case:
        compiler`_). The C libraries are not rebuilt.
    * - You build ROCm itself from source (Spack, EasyBuild, a distribution
        package)
-     - **Nothing extra.** With a Fortran compiler present, each math
-       library's binding is built along with the library, by that compiler;
-       HIP's and ROCTx's are built by rocm-systems' ``projects/fortran/``
-       against the installed HIP and ROCTx.
+     - **One more project per binding.** The bindings are not built with
+       the libraries: each is a project of its own, in the
+       ``bindings/fortran/`` tree of the repository that holds its library,
+       built after the library and against it (`Building a binding with
+       your compiler`_). TheRock builds them all.
    * - ROCm older than 10.3
      - **hipFORT, as today.** See `Codes that build on several ROCm versions`_.
    * - Windows
@@ -504,7 +505,7 @@ Which compiler?
 
 The supported compilers are ``amdflang`` (ROCm's bundled LLVM Flang, the
 recommended default), ``gfortran``, and Cray Fortran (``ftn``). Each
-``fortran/`` project also carries toolchain files for Intel ``ifx`` and
+binding's project also carries toolchain files for Intel ``ifx`` and
 ``ifort`` and NVIDIA ``nvfortran`` as a convenience, but those compilers are not
 in the supported list. Any compiler with Fortran 2003 ``iso_c_binding`` should
 work for the raw ``type(c_ptr)`` forms; the default array overloads need
@@ -538,8 +539,8 @@ The bindings are Linux-first. ROCm for Windows ships no Fortran compiler, so
 contains no ``.mod``, no ``lib<lib>_fortran`` archive, and no installed
 ``.F90``. Nothing in the bindings is Linux-specific, though: they are plain
 ``iso_c_binding`` code. With a Fortran compiler of your own (Intel ``ifx``, for
-example), take the library's ``fortran/`` directory (``projects/fortran`` in
-rocm-systems for HIP and ROCTx) from the repository at the tag of your ROCm and build it as in `Building a binding with your compiler`_. This
+example), take the binding's directory (``bindings/fortran/<library>`` in
+rocm-libraries, ``bindings/fortran`` in rocm-systems for HIP and ROCTx) from the repository at the tag of your ROCm and build it as in `Building a binding with your compiler`_. This
 path is not tested yet; if you try it, please
 `report how it went <https://github.com/ROCm/hipfort/issues>`_.
 
@@ -672,12 +673,12 @@ to the first command and ``-Wl,--gc-sections`` to the second
 
 **With CMake**, which also installs the result in the per-compiler layout with
 its CMake package, so that ``find_package(rocblas-fortran)`` works as for the
-shipped bindings. Each library's ``fortran/`` directory is a self-contained
+shipped bindings. Each binding's directory is a self-contained
 project; build it against your installed ROCm, into a prefix of your own:
 
 .. code-block:: shell
 
-   cmake -S <source of rocblas>/fortran -B build/rocblas-fortran \
+   cmake -S <rocm-libraries>/bindings/fortran/rocblas -B build/rocblas-fortran \
      -DCMAKE_Fortran_COMPILER=gfortran \
      -DCMAKE_PREFIX_PATH=/opt/rocm \
      -DCMAKE_INSTALL_PREFIX=$HOME/rocm-fortran
@@ -688,12 +689,12 @@ The project compiles one section per procedure with the compilers that accept
 the flags, for a program linked with ``-Wl,--gc-sections``
 (`Binding and library versions`_).
 
-The ``fortran/`` project lives in
-`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
-``projects/<library>/fortran`` for the math libraries, and in
+The bindings live in their own ``bindings/fortran/`` tree, apart from the
+libraries: in `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
+``bindings/fortran/<library>`` for the math libraries, and in
 `rocm-systems <https://github.com/ROCm/rocm-systems>`_ under
-``projects/fortran`` for HIP and ROCTx, which one project builds together
-(``cmake -S <rocm-systems>/projects/fortran -B build/fortran`` with the same
+``bindings/fortran`` for HIP and ROCTx, which one project builds together
+(``cmake -S <rocm-systems>/bindings/fortran -B build/fortran`` with the same
 options). Check out the tag of the ROCm
 you have installed (both repositories tag releases as ``therock-<version>``),
 for the reason given above.
@@ -747,7 +748,7 @@ out.
        to
    * - ``BUILD_TESTING``, ``HIPFORT_ROCM_LIB_DIR``, ``HIPFORT_CUDA_LIB_DIR``
      - ``BUILD_FORTRAN_CLIENTS`` (``ON``), per library. hipFORT's single suite
-       splits into each library's ``fortran/test/`` (rocBLAS's and hipBLAS's are
+       splits into each binding's ``test/`` (rocBLAS's and hipBLAS's are
        still to come), and rides on the same
        switch as the Fortran clients rather than having one of its own
    * - ``HIPFORT_EXTENDED_TESTS``
@@ -793,7 +794,7 @@ branch against a recent ROCm, such as a TheRock nightly, with the commands in
 nightly: link with ``-Wl,--gc-sections`` (`Binding and library versions`_), so
 that a routine the nightly does not have yet fails only if you call it. Build HIP's binding first: the other
 bindings' tests ``use hip``. ROCTx's binding is built with HIP's, in
-rocm-systems' ``projects/fortran/``.
+rocm-systems' ``bindings/fortran/``.
 
 .. list-table::
    :header-rows: 1
