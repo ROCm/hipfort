@@ -38,8 +38,9 @@ bindings into ROCm fixes that at the root:
    of the library it ships with, committed next to them, and kept in sync by
    CI whenever a header changes. Every entry point the ``.so`` exports is
    declared, and none that it does not.
-*  **Nothing extra to build.** The bindings arrive precompiled with ROCm, in
-   its development packages. There is no separate project to clone,
+*  **Nothing extra to build.** The bindings arrive precompiled with ROCm: in
+   TheRock's tarballs from the 10.3 tech preview, and in the development
+   packages from 10.4. There is no separate project to clone,
    configure, and keep in step.
 *  **Pay for what you use.** One module and one archive per library, built and
    shipped with that library, instead of one hipFORT build for everything, so a
@@ -83,9 +84,14 @@ Timeline
      - What happens
    * - **≤ 10.2**
      - Nothing changes. Keep using hipFORT as today.
-   * - **10.3 to 10.x**
-     - The new bindings ship inside ROCm. **hipFORT is still maintained beside
-       them**, so both work and you can migrate at any point in this window.
+   * - **10.3**
+     - The new bindings ship as a tech preview, in TheRock's tarballs and, if
+       they are ready, in the OS packages. Their interfaces can still change.
+       **hipFORT is still maintained beside them.**
+   * - **10.4 to 10.x**
+     - The new bindings are production: they ship in the OS packages, with the
+       full documentation and the compatibility promise below. hipFORT is still
+       maintained, so both work and you can migrate at any point in this window.
        Aim for the start of it rather than the end.
    * - **11.0**
      - hipFORT is removed. You must be on the new bindings by this release.
@@ -96,10 +102,10 @@ you migrate on your own schedule. Migrate early anyway: the edit is mechanical,
 but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
-A binding is versioned with its library and stays valid across a major ROCm
-series in one direction: a binding built for 10.3 still links against the
-libraries of any later 10.x, and the CMake package accepts any version with the
-same major number. A binding newer than the libraries it links against is
+From 10.4, a binding is versioned with its library and stays valid across a
+major ROCm series in one direction: a binding built for 10.4 still links against
+the libraries of any later 10.x, and the CMake package accepts any version with
+the same major number. The 10.3 tech preview carries no such promise. A binding newer than the libraries it links against is
 another matter (`Binding and library versions`_). You revisit your build at a
 major release, not at every point release.
 
@@ -261,13 +267,13 @@ from an archive, so a single such routine makes every link against that
 library fail, even if your program never calls it. Take a binding and its
 library from the same release.
 
-If you have to mix them, build the binding yourself (`Building a binding with
-your compiler`_) with one section per procedure
-(``-ffunction-sections -fdata-sections``), and link your program with
-``-Wl,--gc-sections``. The linker then keeps only the wrappers you call, so the
-program links as long as it calls only routines the libraries export, and it
-is smaller. The archives ROCm ships are not compiled with one section per
-procedure, so the option removes nothing from them.
+If you have to mix them, link your program with ``-Wl,--gc-sections``. The
+archives ROCm ships are compiled with one section per procedure, so the linker
+then keeps only the wrappers you call: the program links as long as it calls
+only routines the libraries export, and it is smaller. A binding you build
+with its CMake project is compiled the same way; one you compile by hand needs
+``-ffunction-sections -fdata-sections`` (`Building a binding with your
+compiler`_).
 
 .. code-block:: cmake
 
@@ -496,11 +502,13 @@ Compiler support
 Which compiler?
 ---------------
 
-The bindings support ``amdflang`` (ROCm's bundled LLVM Flang, the recommended
-default), ``gfortran``, and Cray Fortran, and each ``fortran/`` project carries
-toolchain files for Intel ``ifx`` and ``ifort`` and NVIDIA ``nvfortran``. Any
-compiler with Fortran 2003 ``iso_c_binding`` should work for the raw
-``type(c_ptr)`` forms; the default array overloads need Fortran 2008.
+The supported compilers are ``amdflang`` (ROCm's bundled LLVM Flang, the
+recommended default), ``gfortran``, and Cray Fortran (``ftn``). Each
+``fortran/`` project also carries toolchain files for Intel ``ifx`` and
+``ifort`` and NVIDIA ``nvfortran`` as a convenience, but those compilers are not
+in the supported list. Any compiler with Fortran 2003 ``iso_c_binding`` should
+work for the raw ``type(c_ptr)`` forms; the default array overloads need
+Fortran 2008.
 
 One catch is worth knowing: there is no portable Fortran ABI, so a ``.mod``
 (and its compiled ``.a``) is tied to one compiler, and even one compiler
@@ -676,9 +684,9 @@ project; build it against your installed ROCm, into a prefix of your own:
    cmake --build build/rocblas-fortran
    cmake --install build/rocblas-fortran
 
-Add ``-DCMAKE_Fortran_FLAGS="-ffunction-sections -fdata-sections"`` to the
-first command to compile one section per procedure, for a program linked with
-``-Wl,--gc-sections`` (`Binding and library versions`_).
+The project compiles one section per procedure with the compilers that accept
+the flags, for a program linked with ``-Wl,--gc-sections``
+(`Binding and library versions`_).
 
 The ``fortran/`` project lives in
 `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
@@ -782,9 +790,8 @@ The bindings are under review in one pull request per library. Until they ship
 in a ROCm release, you can try them by building a binding from its pull request
 branch against a recent ROCm, such as a TheRock nightly, with the commands in
 `Building a binding with your compiler`_. A branch can be newer than your
-nightly: compile it with one section per procedure and link with
-``-Wl,--gc-sections`` (`Binding and library versions`_), so that a routine the
-nightly does not have yet fails only if you call it. Build HIP's binding first: the other
+nightly: link with ``-Wl,--gc-sections`` (`Binding and library versions`_), so
+that a routine the nightly does not have yet fails only if you call it. Build HIP's binding first: the other
 bindings' tests ``use hip``. ROCTx's branch still has its binding under
 ``projects/rocprofiler-sdk/fortran/``; it moves to ``projects/fortran/``
 beside HIP's before it merges.
@@ -861,10 +868,11 @@ FAQ
 
 **Will I be warned before old hipFORT is removed?**
 
-Old hipFORT keeps compiling and working through the 10.x series; whether it
-emits a build-time deprecation notice during that window is still being
-decided. Either way nothing is removed before ROCm 11.0, so a build that works
-today keeps working until then.
+Yes. Configuring hipFORT prints a CMake deprecation warning that points to
+this guide; ``-Wno-deprecated`` silences it. A warning when your project calls
+``find_package(hipfort)`` is planned for the last release before 11.0. Old
+hipFORT keeps compiling and working through the 10.x series, and nothing is
+removed before ROCm 11.0, so a build that works today keeps working until then.
 
 **Can I install both the old and new bindings at once?**
 
@@ -934,7 +942,8 @@ and it is the whole of the migration.
 
 **Where do I get the new bindings?**
 
-They ship precompiled for ``amdflang`` with ROCm 10.3 and later, with no
-separate install. For another compiler, see
+They ship precompiled for ``amdflang`` with ROCm, with no separate install:
+in TheRock's tarballs from the 10.3 tech preview (and in the OS packages if
+they are ready), and in the OS packages from 10.4. For another compiler, see
 `Building a binding with your compiler`_; before 10.3, see
 `Trying the bindings before ROCm 10.3`_.
