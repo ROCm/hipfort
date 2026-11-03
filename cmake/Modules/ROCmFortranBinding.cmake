@@ -26,7 +26,7 @@
 # rocm-systems / rocm-libraries project gets the same options, the same
 # per-compiler install layout and the same target naming without restating them.
 # It lives here so the sandbox can show all thirteen bindings built the way the
-# real ones will be; each <lib>/fortran/CMakeLists.txt is what would actually
+# real ones will be; each bindings/fortran/<lib>/CMakeLists.txt is what would actually
 # ship in the library's repository.
 #
 # The conventions implemented here are the ones documented in
@@ -66,7 +66,7 @@ set(_ROCM_FORTRAN_BINDING_DIR "${CMAKE_CURRENT_LIST_DIR}")
 #
 # Sets CMAKE_Fortran_COMPILER_SUPPORTS_F08 / _F18 in the cache. They decide
 # which array interface tier FORTRAN_ARRAY_INTERFACES can actually reach, so
-# they have to run in a standalone <lib>/fortran build as well as in a full
+# they have to run in a standalone bindings/fortran/<lib> build as well as in a full
 # monorepo one. Cached, so the probes compile once per build tree.
 # ---------------------------------------------------------------------------
 function(rocm_fortran_probe_standards)
@@ -164,7 +164,7 @@ endfunction()
 # rocm_fortran_require_c_package(<package>)
 #
 # Locate the C library a binding wraps. A missing package is fatal in a
-# standalone <lib>/fortran build (you asked for that binding and nothing else),
+# standalone bindings/fortran/<lib> build (you asked for that binding and nothing else),
 # and a skip inside a larger build (the rest of it still has work to do). Must
 # be a macro: the skip returns from the including CMakeLists.txt.
 # ---------------------------------------------------------------------------
@@ -351,7 +351,7 @@ function(rocm_add_fortran_binding)
   # linker does not look. HIPFORT_PLATFORM_LIBDIR is captured by the top-level
   # CMakeLists.txt right after GNUInstallDirs, before anything rewrites
   # CMAKE_INSTALL_LIBDIR; fall back to GNUInstallDirs directly so a standalone
-  # <lib>/fortran build, which has no hipfort top level, still gets it right.
+  # bindings/fortran/<lib> build, which has no hipfort top level, still gets it right.
   if(NOT DEFINED HIPFORT_PLATFORM_LIBDIR)
     include(GNUInstallDirs)
     set(HIPFORT_PLATFORM_LIBDIR "${CMAKE_INSTALL_LIBDIR}")

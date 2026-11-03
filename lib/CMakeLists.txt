@@ -26,8 +26,8 @@
 # Sandbox preview of the post-split build.
 #
 # This directory no longer builds anything itself. After the split there is no
-# hipfort: each library's binding is built, installed and exported by the
-# library's own repository, so what used to be one glob and one
+# hipfort: each library's binding is built, installed and exported from the
+# bindings/fortran tree of the library's own repository, so what used to be one glob and one
 # libhipfort-amdgcn.a is now thirteen independent subprojects, each producing
 # its own archive, its own .mod and its own config package:
 #
@@ -36,8 +36,9 @@
 #   ...
 #
 # All this file does is stand in for those thirteen separate builds, so the set
-# can be configured at once and tested together. Every <lib>/fortran directory
-# below is a standalone CMake project and can equally be configured on its own;
+# can be configured at once and tested together. Every bindings/fortran/<lib>
+# directory below is a standalone CMake project and can equally be configured on
+# its own;
 # see any of their CMakeLists.txt, and the "Building one library's binding from
 # source" section of docs/how-to/migration-guide.rst.
 #
@@ -86,17 +87,17 @@ endforeach()
 # rocSOLVER's module USEs rocBLAS's, so rocBLAS has to be configured first for
 # the target to exist when rocSOLVER looks for it. Everything else is
 # independent, and the order below is just the reading order.
-add_subdirectory(rocm-systems/hip/fortran)
-add_subdirectory(rocm-systems/roctx/fortran)
+add_subdirectory(rocm-systems/bindings/fortran/hip)
+add_subdirectory(rocm-systems/bindings/fortran/roctx)
 
-add_subdirectory(rocm-libraries/rocblas/fortran)
-add_subdirectory(rocm-libraries/rocsolver/fortran)
-add_subdirectory(rocm-libraries/hipblas/fortran)
-add_subdirectory(rocm-libraries/hipsolver/fortran)
-add_subdirectory(rocm-libraries/rocsparse/fortran)
-add_subdirectory(rocm-libraries/hipsparse/fortran)
-add_subdirectory(rocm-libraries/rocfft/fortran)
-add_subdirectory(rocm-libraries/hipfft/fortran)
-add_subdirectory(rocm-libraries/hipfftw/fortran)
-add_subdirectory(rocm-libraries/rocrand/fortran)
-add_subdirectory(rocm-libraries/hiprand/fortran)
+add_subdirectory(rocm-libraries/bindings/fortran/rocblas)
+add_subdirectory(rocm-libraries/bindings/fortran/rocsolver)
+add_subdirectory(rocm-libraries/bindings/fortran/hipblas)
+add_subdirectory(rocm-libraries/bindings/fortran/hipsolver)
+add_subdirectory(rocm-libraries/bindings/fortran/rocsparse)
+add_subdirectory(rocm-libraries/bindings/fortran/hipsparse)
+add_subdirectory(rocm-libraries/bindings/fortran/rocfft)
+add_subdirectory(rocm-libraries/bindings/fortran/hipfft)
+add_subdirectory(rocm-libraries/bindings/fortran/hipfftw)
+add_subdirectory(rocm-libraries/bindings/fortran/rocrand)
+add_subdirectory(rocm-libraries/bindings/fortran/hiprand)

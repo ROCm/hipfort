@@ -148,7 +148,7 @@ ENDIF(NOT CMAKE_Fortran_COMPILER_SUPPORTS_F90)
 
 # The Fortran 2008 / 2018 probes that decide which array interface tier
 # FORTRAN_ARRAY_INTERFACES can actually reach. They live in the binding helper
-# rather than here, because a standalone <lib>/fortran build needs them just as
+# rather than here, because a standalone bindings/fortran/<lib> build needs them just as
 # much and there is no hipfort top level in that case. Results are cached, so
 # this runs the probes once and the subdirectories reuse them.
 # NB: CMAKE_MODULE_PATH is appended to exactly once, above. Several INCLUDE()s
@@ -174,8 +174,8 @@ ENDIF(FCNAME STREQUAL "pgf90")
 # monorepo build needs a switch that means "the Fortran side" rather than "all
 # tests". It is the same name the libraries already used for the Fortran part of
 # their clients/, carrying both rather than standing beside a second option.
-# Declared by rocm_fortran_binding_options(), so a standalone <lib>/fortran
-# build has it too.
+# Declared by rocm_fortran_binding_options(), so a standalone
+# bindings/fortran/<lib> build has it too.
 if(DEFINED BUILD_TESTING AND NOT DEFINED BUILD_FORTRAN_CLIENTS)
   message(WARNING
     "BUILD_TESTING is replaced by BUILD_FORTRAN_CLIENTS; honouring it this once. "
