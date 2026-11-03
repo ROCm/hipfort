@@ -792,9 +792,8 @@ branch against a recent ROCm, such as a TheRock nightly, with the commands in
 `Building a binding with your compiler`_. A branch can be newer than your
 nightly: link with ``-Wl,--gc-sections`` (`Binding and library versions`_), so
 that a routine the nightly does not have yet fails only if you call it. Build HIP's binding first: the other
-bindings' tests ``use hip``. ROCTx's branch still has its binding under
-``projects/rocprofiler-sdk/fortran/``; it moves to ``projects/fortran/``
-beside HIP's before it merges.
+bindings' tests ``use hip``. ROCTx's binding is built with HIP's, in
+rocm-systems' ``projects/fortran/``.
 
 .. list-table::
    :header-rows: 1
@@ -805,7 +804,7 @@ beside HIP's before it merges.
    * - HIP
      - `rocm-systems#11923 <https://github.com/ROCm/rocm-systems/pull/11923>`_
    * - ROCTx
-     - `rocm-systems#12700 <https://github.com/ROCm/rocm-systems/pull/12700>`_
+     - `rocm-systems#14024 <https://github.com/ROCm/rocm-systems/pull/14024>`_
    * - rocBLAS
      - `rocm-libraries#12533 <https://github.com/ROCm/rocm-libraries/pull/12533>`_
    * - hipBLAS
