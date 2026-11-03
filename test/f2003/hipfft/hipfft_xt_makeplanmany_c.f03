@@ -25,9 +25,8 @@
 
 program hipfft_xt_makeplanmany_c
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfft
+  use hip
+  use hipfft
 
   implicit none
 

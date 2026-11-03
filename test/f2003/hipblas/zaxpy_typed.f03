@@ -29,9 +29,8 @@
 ! address. The handle is in host pointer mode, as that form requires.
 program hip_zaxpy_typed
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipblas
+  use hip
+  use hipblas
 
   implicit none
 

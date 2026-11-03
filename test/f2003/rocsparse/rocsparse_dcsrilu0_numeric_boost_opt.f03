@@ -48,9 +48,8 @@
 !
 program rocsparse_dcsrilu0_numeric_boost_opt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer(c_int), parameter :: m = 3, nnz = 7
   integer(c_int), target :: hRowPtr(m+1) = (/0, 2, 5, 7/)

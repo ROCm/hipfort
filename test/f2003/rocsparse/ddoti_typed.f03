@@ -30,9 +30,8 @@
 program rocsparse_ddoti_test_typed
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocsparse
+    use hip
+    use rocsparse
 
     implicit none
 

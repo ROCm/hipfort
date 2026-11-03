@@ -44,9 +44,8 @@
 !
 program rocsparse_dgebsr2gebsc_buffer_size_host
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i, k
   integer(c_int), parameter :: mb = 2, nb = 3, nnzb = 4, rbd = 2, cbd = 3

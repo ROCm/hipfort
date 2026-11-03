@@ -40,9 +40,8 @@
 !
 program dgelsbatched
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: b, i
   integer(c_int), parameter :: M = 4, N = 2, nrhs = 1, lda = 4, ldc = 4, batch = 2

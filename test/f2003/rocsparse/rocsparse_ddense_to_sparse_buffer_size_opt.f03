@@ -45,9 +45,8 @@
 !
 program rocsparse_ddense_to_sparse_buffer_size_opt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer(c_int), parameter :: m = 3, n = 4, ld = 3, expNnz = 6
   real(c_double), target :: hA(ld*n) = (/1, 0, 4,  0, 0, 5,  0, 3, 0,  2, 0, 6/)

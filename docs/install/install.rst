@@ -33,18 +33,15 @@ Building and testing hipFORT from source
 
       git clone https://github.com/ROCm/hipfort.git
       cd hipfort
-      cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
+      cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_FORTRAN_CLIENTS=ON
       cmake --build build
       cmake --install build
       ctest --test-dir build
 
    .. note::
 
-      ``-DHIPFORT_BUILD_NVPTX=OFF`` restricts the build to the ROCm backend
-      (``hipfort-amdgcn``). The CUDA backend archive (``hipfort-nvptx``) is built by
-      default, so omit the option if you also want it. ``HIPFORT_BUILD_AMDGCN`` is
-      the mirror switch: the two are independent, so ``-DHIPFORT_BUILD_AMDGCN=OFF``
-      gives a CUDA-only build. Turning both off is an error.
+      The bindings are generated for ROCm only: there is no CUDA (``nvptx``) backend,
+      and configuring with ``-DHIPFORT_BUILD_NVPTX=ON`` is an error.
       When installing hipFORT from source, you do not need to specify the ``HIP_PLATFORM`` environment variable.
 
 Customizing the build
@@ -62,12 +59,15 @@ or by setting the CMake cache variables:
 *  ``CMAKE_RANLIB``: The ``ranlib`` used to create the static archive
 *  ``CMAKE_INSTALL_PREFIX``: The install directory
 *  ``ROCM_PATH``: The ROCm installation root, if it cannot be detected automatically
-*  ``HIPFORT_BUILD_AMDGCN``: Build the ROCm (``amdgcn``) backend archive (``ON`` by default)
-*  ``HIPFORT_BUILD_NVPTX``: Build the CUDA (``nvptx``) backend archive (``ON`` by default)
-*  ``HIPFORT_USE_FPOINTER_INTERFACES``: Enable the Fortran 2008 array interfaces (``ON`` by default when the compiler supports Fortran 2008)
-*  ``HIPFORT_ASSUMED_RANK``: Use the experimental Fortran 2018 assumed-rank array interfaces instead of the per-rank overloads (``OFF`` by default)
-*  ``HIPFORT_MULTITOOLCHAIN_LAYOUT``: Install the modules and the library into compiler-specific subdirectories (``ON`` by default)
-*  ``BUILD_TESTING``: Build the CTest suite (``OFF`` by default)
+*  ``FORTRAN_ARRAY_INTERFACES``: The array interfaces to generate, one of ``none`` (the ``type(c_ptr)`` interfaces only, Fortran 2003),
+   ``assumed-shape`` (the per-rank array overloads, Fortran 2008; the default) or ``assumed-rank``
+   (the experimental Fortran 2018 assumed-rank overloads instead of the per-rank ones).
+   It replaces ``HIPFORT_USE_FPOINTER_INTERFACES`` and ``HIPFORT_ASSUMED_RANK``, which are now ignored with a warning.
+*  ``<LIB>_FORTRAN_COMPILER_DIR``: The compiler-specific install subdirectory (``include/fortran/<compiler>``, ``lib/fortran/<compiler>``),
+   named after the compiler by default. The per-compiler layout is always used; ``HIPFORT_MULTITOOLCHAIN_LAYOUT`` is gone.
+*  ``BUILD_FORTRAN_BINDINGS``: Build the Fortran bindings (``ON`` by default)
+*  ``BUILD_FORTRAN_CLIENTS``: Build the CTest suite (``ON`` by default). It replaces ``BUILD_TESTING``,
+   which is still honoured with a warning when ``BUILD_FORTRAN_CLIENTS`` is not set.
 
 .. _hipfort-toolchain-files:
 
@@ -87,42 +87,29 @@ options above. hipFORT is pure Fortran, so no C++ compiler is required.
 Linking against hipFORT
 =======================
 
-To use hipFORT in your project, compile your code with your Fortran compiler and link
-against hipFORT and the appropriate ROCm libraries. hipFORT provides exported CMake targets (such as
-``hipfort::hip``, ``hipfort::rocblas``, and ``hipfort::hipblas``) to make this straightforward:
+Each library ships its own Fortran module, archive, CMake package and target, so you
+ask for one package per library you ``use`` and link its target:
 
 .. code-block:: cmake
 
    # C is required by the CMake package of HIP, which finds Threads.
    project(my_app LANGUAGES Fortran C)
 
-   find_package(hipfort REQUIRED COMPONENTS hip hipblas)
+   find_package(hipblas-fortran REQUIRED)   # find_dependency()s hipblas itself
+   find_package(hip-fortran REQUIRED)
    add_executable(my_app main.f08)
-   target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
+   target_link_libraries(my_app PRIVATE roc::hipblas_fortran hip::hip_fortran)
 
-List each library you use as a ``COMPONENTS`` entry: a ``hipfort::<component>`` target
-is only defined when that component is requested. The Fortran language must be enabled
-before ``find_package(hipfort)``. See :doc:`../how-to/using-hipfort` for the full
-component list.
+The target sits in the C library's own namespace with a ``_fortran`` suffix, so it is
+``roc::rocblas_fortran`` but ``hip::hipfft_fortran``. The package name is hyphenated and
+the target underscored, which is ROCm's convention for the two rather than an inconsistency.
+The Fortran language must be enabled before ``find_package``. See
+:doc:`../how-to/using-hipfort` for the full list of packages and targets.
 
 On Linux, link your executable with ``-Wl,--gc-sections``. It keeps only the
-hipFORT wrappers your program calls, and lets the program link against a ROCm
-release older than hipFORT as long as it does not call the newer routines. See
-:ref:`hipfort-gc-sections`.
-
-The installed CMake package follows the backend the components were exported for.
-On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves each
-component against its ROCm package. On a host where HIP does not target
-the AMD platform, and provided the CUDA Toolkit is found and the ``nvptx`` archive is
-built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip``,
-``hipblas``, ``hipfft``, ``hiprand``, ``hipsolver`` and ``hipsparse`` components, and
-resolves them against ``CUDAToolkit``.
-
-With the ``nvptx`` archive, a ``complex(8)`` host scalar passed by address, such as
-``alpha`` or ``beta`` given as ``c_loc(alpha)``, must be 16-byte aligned: the CUDA
-libraries access a ``cuDoubleComplex`` with an aligned load or store, and a Fortran
-``complex(8)`` variable is only guaranteed 8-byte alignment. Declaring the scalar
-``allocatable`` places it on the heap, which is 16-byte aligned.
+binding wrappers your program calls, and lets the program link against a ROCm
+release older than the bindings as long as it does not call the newer routines.
+See :ref:`hipfort-gc-sections`.
 
 
 Examples and tests
@@ -135,13 +122,13 @@ standard or newer. The ``f2003`` tests only require support for the Fortran 2003
 The ``f2003`` and ``f2008`` subdirectories are further subdivided into tests for the various ``hip*`` and ``roc*`` libraries.
 The ``test`` folder also contains an ``f2018`` subdirectory holding an experimental example built on the
 Fortran 2018 assumed-rank interfaces. That example is only registered with CTest when hipFORT is configured
-with ``-DHIPFORT_ASSUMED_RANK=ON`` (off by default). The ``openmp`` subdirectory holds OpenMP target-offload
+with ``-DFORTRAN_ARRAY_INTERFACES=assumed-rank`` (``assumed-shape`` by default). The ``openmp`` subdirectory holds OpenMP target-offload
 tests, which require an offload-capable compiler (LLVM Flang) and a host LAPACK.
 
 Building and running the tests
 ------------------------------
 
-The tests are driven by CTest. Configure the build with ``-DBUILD_TESTING=ON``,
+The tests are driven by CTest. Configure the build with ``-DBUILD_FORTRAN_CLIENTS=ON`` (the default),
 build hipFORT, and run the suite with ``ctest``
 (see :ref:`build-test-hipfort-from-source`).
 
@@ -150,7 +137,7 @@ The commands below need the ROCm math libraries. The ROCm root is detected from
 
 .. code-block:: shell
 
-   cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
+   cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DBUILD_FORTRAN_CLIENTS=ON
    cmake --build build
    ctest --test-dir build
 
