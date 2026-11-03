@@ -29,7 +29,6 @@ module roctx
 
   interface roctxMark
     subroutine roctxMark_(message) bind(c, name="roctxMarkA")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr),value :: message
@@ -40,7 +39,6 @@ module roctx
 
   interface roctxRangePush
     function roctxRangePush_(message) bind(c, name="roctxRangePushA")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxRangePush_
@@ -52,7 +50,6 @@ module roctx
 
   interface roctxRangePop
     function roctxRangePop_() bind(c, name="roctxRangePop")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxRangePop_
@@ -61,7 +58,6 @@ module roctx
 
   interface roctxRangeStart
     function roctxRangeStart_(message) bind(c, name="roctxRangeStartA")
-      use iso_c_binding
       import
       implicit none
       integer(c_int64_t) :: roctxRangeStart_
@@ -73,7 +69,6 @@ module roctx
 
   interface roctxRangeStop
     subroutine roctxRangeStop_(id) bind(c, name="roctxRangeStop")
-      use iso_c_binding
       import
       implicit none
       integer(c_int64_t),value :: id
@@ -82,7 +77,6 @@ module roctx
 
   interface roctxProfilerPause
     function roctxProfilerPause_(tid) bind(c, name="roctxProfilerPause")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxProfilerPause_
@@ -92,7 +86,6 @@ module roctx
 
   interface roctxProfilerResume
     function roctxProfilerResume_(tid) bind(c, name="roctxProfilerResume")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxProfilerResume_
@@ -102,7 +95,6 @@ module roctx
 
   interface roctxNameOsThread
     function roctxNameOsThread_(name) bind(c, name="roctxNameOsThread")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxNameOsThread_
@@ -114,7 +106,6 @@ module roctx
 
   interface roctxNameHsaAgent
     function roctxNameHsaAgent_(name,agent) bind(c, name="roctxNameHsaAgent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxNameHsaAgent_
@@ -127,7 +118,6 @@ module roctx
 
   interface roctxNameHipDevice
     function roctxNameHipDevice_(name,device_id) bind(c, name="roctxNameHipDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxNameHipDevice_
@@ -140,7 +130,6 @@ module roctx
 
   interface roctxNameHipStream
     function roctxNameHipStream_(name,stream) bind(c, name="roctxNameHipStream")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxNameHipStream_
@@ -153,19 +142,19 @@ module roctx
 
   interface roctxGetThreadId
     function roctxGetThreadId_(tid) bind(c, name="roctxGetThreadId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: roctxGetThreadId_
       type(c_ptr),value :: tid
     end function
+
+    module procedure roctxGetThreadId_typed
   end interface
 
 
   contains
 
     subroutine roctxMark_typed(message)
-      use iso_c_binding
       implicit none
       character(kind=c_char,len=*),intent(in),target :: message
       !
@@ -173,7 +162,6 @@ module roctx
     end subroutine
 
     function roctxRangePush_typed(message)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxRangePush_typed
       character(kind=c_char,len=*),intent(in),target :: message
@@ -182,7 +170,6 @@ module roctx
     end function
 
     function roctxRangeStart_typed(message)
-      use iso_c_binding
       implicit none
       integer(c_int64_t) :: roctxRangeStart_typed
       character(kind=c_char,len=*),intent(in),target :: message
@@ -191,7 +178,6 @@ module roctx
     end function
 
     function roctxNameOsThread_typed(name)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameOsThread_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -200,7 +186,6 @@ module roctx
     end function
 
     function roctxNameHsaAgent_typed(name,agent)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHsaAgent_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -210,7 +195,6 @@ module roctx
     end function
 
     function roctxNameHipDevice_typed(name,device_id)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHipDevice_typed
       character(kind=c_char,len=*),intent(in),target :: name
@@ -220,13 +204,20 @@ module roctx
     end function
 
     function roctxNameHipStream_typed(name,stream)
-      use iso_c_binding
       implicit none
       integer(c_int) :: roctxNameHipStream_typed
       character(kind=c_char,len=*),intent(in),target :: name
       type(c_ptr), value :: stream
       !
       roctxNameHipStream_typed = roctxNameHipStream_(c_loc(name),stream)
+    end function
+
+    function roctxGetThreadId_typed(tid)
+      implicit none
+      integer(c_int) :: roctxGetThreadId_typed
+      integer(c_int64_t),target :: tid
+      !
+      roctxGetThreadId_typed = roctxGetThreadId_(c_loc(tid))
     end function
 
 end module roctx

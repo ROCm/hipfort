@@ -1049,7 +1049,7 @@ module hip
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
   integer(c_int), parameter :: HIP_VERSION_MINOR = 17
-  integer(c_int), parameter :: HIP_VERSION_PATCH = 0
+  integer(c_int), parameter :: HIP_VERSION_PATCH = 26422
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_LEGACY_STREAM = 1
@@ -1835,7 +1835,6 @@ module hip
 
   interface hipCreateChannelDesc
     function hipCreateChannelDesc_(x,y,z,w,f) bind(c, name="hipCreateChannelDesc")
-      use iso_c_binding
       import
       implicit none
       type(hipChannelFormatDesc) :: hipCreateChannelDesc_
@@ -1849,7 +1848,6 @@ module hip
 
   interface hipInit
     function hipInit_(flags) bind(c, name="hipInit")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipInit_
@@ -1859,7 +1857,6 @@ module hip
 
   interface hipDriverGetVersion
     function hipDriverGetVersion_(driverVersion) bind(c, name="hipDriverGetVersion")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDriverGetVersion_
@@ -1871,7 +1868,6 @@ module hip
 
   interface hipRuntimeGetVersion
     function hipRuntimeGetVersion_(runtimeVersion) bind(c, name="hipRuntimeGetVersion")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipRuntimeGetVersion_
@@ -1883,7 +1879,6 @@ module hip
 
   interface hipDeviceGet
     function hipDeviceGet_(device,ordinal) bind(c, name="hipDeviceGet")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGet_
@@ -1897,7 +1892,6 @@ module hip
   interface hipDeviceComputeCapability
     function hipDeviceComputeCapability_(major,minor,device) &
         bind(c, name="hipDeviceComputeCapability")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceComputeCapability_
@@ -1911,7 +1905,6 @@ module hip
 
   interface hipDeviceGetName
     function hipDeviceGetName_(name,len,device) bind(c, name="hipDeviceGetName")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetName_
@@ -1923,7 +1916,6 @@ module hip
 
   interface hipDeviceGetUuid
     function hipDeviceGetUuid_(uuid,device) bind(c, name="hipDeviceGetUuid")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetUuid_
@@ -1934,7 +1926,6 @@ module hip
 
   interface hipDeviceGetLuid
     function hipDeviceGetLuid_(luid,deviceNodeMask,device) bind(c, name="hipDeviceGetLuid")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetLuid_
@@ -1949,7 +1940,6 @@ module hip
   interface hipDeviceGetP2PAttribute
     function hipDeviceGetP2PAttribute_(myValue,attr,srcDevice,dstDevice) &
         bind(c, name="hipDeviceGetP2PAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetP2PAttribute_
@@ -1964,7 +1954,6 @@ module hip
 
   interface hipDeviceGetPCIBusId
     function hipDeviceGetPCIBusId_(pciBusId,len,device) bind(c, name="hipDeviceGetPCIBusId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetPCIBusId_
@@ -1976,7 +1965,6 @@ module hip
 
   interface hipDeviceGetByPCIBusId
     function hipDeviceGetByPCIBusId_(device,pciBusId) bind(c, name="hipDeviceGetByPCIBusId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetByPCIBusId_
@@ -1989,7 +1977,6 @@ module hip
 
   interface hipDeviceTotalMem
     function hipDeviceTotalMem_(bytes,device) bind(c, name="hipDeviceTotalMem")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceTotalMem_
@@ -2002,7 +1989,6 @@ module hip
 
   interface hipDeviceSynchronize
     function hipDeviceSynchronize_() bind(c, name="hipDeviceSynchronize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSynchronize_
@@ -2011,7 +1997,6 @@ module hip
 
   interface hipDeviceReset
     function hipDeviceReset_() bind(c, name="hipDeviceReset")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceReset_
@@ -2020,7 +2005,6 @@ module hip
 
   interface hipSetDevice
     function hipSetDevice_(deviceId) bind(c, name="hipSetDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipSetDevice_
@@ -2030,18 +2014,26 @@ module hip
 
   interface hipSetValidDevices
     function hipSetValidDevices_(device_arr,len) bind(c, name="hipSetValidDevices")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipSetValidDevices_
       type(c_ptr),value :: device_arr
       integer(c_int),value :: len
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipSetValidDevices_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipSetValidDevices_rank_0,&
+      hipSetValidDevices_rank_1
+#endif
+#endif
   end interface
 
   interface hipGetDevice
     function hipGetDevice_(deviceId) bind(c, name="hipGetDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDevice_
@@ -2053,7 +2045,6 @@ module hip
 
   interface hipGetDeviceCount
     function hipGetDeviceCount_(count) bind(c, name="hipGetDeviceCount")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDeviceCount_
@@ -2065,7 +2056,6 @@ module hip
 
   interface hipDeviceGetAttribute
     function hipDeviceGetAttribute_(pi,attr,deviceId) bind(c, name="hipDeviceGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetAttribute_
@@ -2080,7 +2070,6 @@ module hip
   interface hipDeviceFlushGPUDirectRDMAWrites
     function hipDeviceFlushGPUDirectRDMAWrites_(target,scope) &
         bind(c, name="hipDeviceFlushGPUDirectRDMAWrites")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceFlushGPUDirectRDMAWrites_
@@ -2091,7 +2080,6 @@ module hip
 
   interface hipDeviceGetDefaultMemPool
     function hipDeviceGetDefaultMemPool_(mem_pool,device) bind(c, name="hipDeviceGetDefaultMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetDefaultMemPool_
@@ -2102,7 +2090,6 @@ module hip
 
   interface hipDeviceSetMemPool
     function hipDeviceSetMemPool_(device,mem_pool) bind(c, name="hipDeviceSetMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSetMemPool_
@@ -2113,7 +2100,6 @@ module hip
 
   interface hipDeviceGetMemPool
     function hipDeviceGetMemPool_(mem_pool,device) bind(c, name="hipDeviceGetMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetMemPool_
@@ -2125,7 +2111,6 @@ module hip
   interface hipDeviceGetTexture1DLinearMaxWidth
     function hipDeviceGetTexture1DLinearMaxWidth_(max_width,desc,device) &
         bind(c, name="hipDeviceGetTexture1DLinearMaxWidth")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetTexture1DLinearMaxWidth_
@@ -2139,7 +2124,6 @@ module hip
 
   interface hipDeviceSetCacheConfig
     function hipDeviceSetCacheConfig_(cacheConfig) bind(c, name="hipDeviceSetCacheConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSetCacheConfig_
@@ -2149,7 +2133,6 @@ module hip
 
   interface hipDeviceGetCacheConfig
     function hipDeviceGetCacheConfig_(cacheConfig) bind(c, name="hipDeviceGetCacheConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetCacheConfig_
@@ -2161,7 +2144,6 @@ module hip
 
   interface hipDeviceGetLimit
     function hipDeviceGetLimit_(pValue,limit) bind(c, name="hipDeviceGetLimit")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetLimit_
@@ -2174,7 +2156,6 @@ module hip
 
   interface hipDeviceSetLimit
     function hipDeviceSetLimit_(limit,myValue) bind(c, name="hipDeviceSetLimit")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSetLimit_
@@ -2185,7 +2166,6 @@ module hip
 
   interface hipDeviceGetSharedMemConfig
     function hipDeviceGetSharedMemConfig_(pConfig) bind(c, name="hipDeviceGetSharedMemConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetSharedMemConfig_
@@ -2197,7 +2177,6 @@ module hip
 
   interface hipGetDeviceFlags
     function hipGetDeviceFlags_(flags) bind(c, name="hipGetDeviceFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDeviceFlags_
@@ -2209,7 +2188,6 @@ module hip
 
   interface hipDeviceSetSharedMemConfig
     function hipDeviceSetSharedMemConfig_(config) bind(c, name="hipDeviceSetSharedMemConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSetSharedMemConfig_
@@ -2219,7 +2197,6 @@ module hip
 
   interface hipSetDeviceFlags
     function hipSetDeviceFlags_(flags) bind(c, name="hipSetDeviceFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipSetDeviceFlags_
@@ -2229,7 +2206,6 @@ module hip
 
   interface hipChooseDeviceR0600
     function hipChooseDeviceR0600_(device,prop) bind(c, name="hipChooseDeviceR0600")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipChooseDeviceR0600_
@@ -2242,7 +2218,6 @@ module hip
 
   interface hipInitDevice
     function hipInitDevice_(device,deviceFlags,flags) bind(c, name="hipInitDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipInitDevice_
@@ -2255,7 +2230,6 @@ module hip
   interface hipExtGetLinkTypeAndHopCount
     function hipExtGetLinkTypeAndHopCount_(device1,device2,linktype,hopcount) &
         bind(c, name="hipExtGetLinkTypeAndHopCount")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtGetLinkTypeAndHopCount_
@@ -2270,7 +2244,6 @@ module hip
 
   interface hipIpcGetMemHandle
     function hipIpcGetMemHandle_(handle,devPtr) bind(c, name="hipIpcGetMemHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipIpcGetMemHandle_
@@ -2281,7 +2254,6 @@ module hip
 
   interface hipIpcOpenMemHandle
     function hipIpcOpenMemHandle_(devPtr,handle,flags) bind(c, name="hipIpcOpenMemHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipIpcOpenMemHandle_
@@ -2293,7 +2265,6 @@ module hip
 
   interface hipIpcCloseMemHandle
     function hipIpcCloseMemHandle_(devPtr) bind(c, name="hipIpcCloseMemHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipIpcCloseMemHandle_
@@ -2303,7 +2274,6 @@ module hip
 
   interface hipIpcGetEventHandle
     function hipIpcGetEventHandle_(handle,event) bind(c, name="hipIpcGetEventHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipIpcGetEventHandle_
@@ -2314,7 +2284,6 @@ module hip
 
   interface hipIpcOpenEventHandle
     function hipIpcOpenEventHandle_(event,handle) bind(c, name="hipIpcOpenEventHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipIpcOpenEventHandle_
@@ -2325,7 +2294,6 @@ module hip
 
   interface hipFuncSetAttribute
     function hipFuncSetAttribute_(func,attr,myValue) bind(c, name="hipFuncSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFuncSetAttribute_
@@ -2337,7 +2305,6 @@ module hip
 
   interface hipKernelSetAttribute
     function hipKernelSetAttribute_(attrib,myValue,kernel,dev) bind(c, name="hipKernelSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelSetAttribute_
@@ -2351,7 +2318,6 @@ module hip
   interface hipKernelSetAttributeForDevice
     function hipKernelSetAttributeForDevice_(kernel,attr,myValue,device) &
         bind(c, name="hipKernelSetAttributeForDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelSetAttributeForDevice_
@@ -2364,7 +2330,6 @@ module hip
 
   interface hipKernelGetFunction
     function hipKernelGetFunction_(pFunc,kernel) bind(c, name="hipKernelGetFunction")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelGetFunction_
@@ -2375,7 +2340,6 @@ module hip
 
   interface hipFuncSetCacheConfig
     function hipFuncSetCacheConfig_(func,config) bind(c, name="hipFuncSetCacheConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFuncSetCacheConfig_
@@ -2386,7 +2350,6 @@ module hip
 
   interface hipFuncSetSharedMemConfig
     function hipFuncSetSharedMemConfig_(func,config) bind(c, name="hipFuncSetSharedMemConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFuncSetSharedMemConfig_
@@ -2397,7 +2360,6 @@ module hip
 
   interface hipGetLastError
     function hipGetLastError_() bind(c, name="hipGetLastError")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetLastError_
@@ -2406,7 +2368,6 @@ module hip
 
   interface hipExtGetLastError
     function hipExtGetLastError_() bind(c, name="hipExtGetLastError")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtGetLastError_
@@ -2415,7 +2376,6 @@ module hip
 
   interface hipPeekAtLastError
     function hipPeekAtLastError_() bind(c, name="hipPeekAtLastError")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipPeekAtLastError_
@@ -2424,7 +2384,6 @@ module hip
 
   interface hipGetErrorName
     function hipGetErrorName_(hip_error) bind(c, name="hipGetErrorName")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr) :: hipGetErrorName_
@@ -2434,7 +2393,6 @@ module hip
 
   interface hipGetErrorString
     function hipGetErrorString_(hipError) bind(c, name="hipGetErrorString")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr) :: hipGetErrorString_
@@ -2444,7 +2402,6 @@ module hip
 
   interface hipDrvGetErrorName
     function hipDrvGetErrorName_(hipError,errorString) bind(c, name="hipDrvGetErrorName")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGetErrorName_
@@ -2455,7 +2412,6 @@ module hip
 
   interface hipDrvGetErrorString
     function hipDrvGetErrorString_(hipError,errorString) bind(c, name="hipDrvGetErrorString")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGetErrorString_
@@ -2466,7 +2422,6 @@ module hip
 
   interface hipStreamCreate
     function hipStreamCreate_(stream) bind(c, name="hipStreamCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamCreate_
@@ -2476,7 +2431,6 @@ module hip
 
   interface hipStreamCreateWithFlags
     function hipStreamCreateWithFlags_(stream,flags) bind(c, name="hipStreamCreateWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamCreateWithFlags_
@@ -2488,7 +2442,6 @@ module hip
   interface hipStreamCreateWithPriority
     function hipStreamCreateWithPriority_(stream,flags,priority) &
         bind(c, name="hipStreamCreateWithPriority")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamCreateWithPriority_
@@ -2501,7 +2454,6 @@ module hip
   interface hipDeviceGetStreamPriorityRange
     function hipDeviceGetStreamPriorityRange_(leastPriority,greatestPriority) &
         bind(c, name="hipDeviceGetStreamPriorityRange")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetStreamPriorityRange_
@@ -2514,7 +2466,6 @@ module hip
 
   interface hipStreamDestroy
     function hipStreamDestroy_(stream) bind(c, name="hipStreamDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamDestroy_
@@ -2524,7 +2475,6 @@ module hip
 
   interface hipStreamQuery
     function hipStreamQuery_(stream) bind(c, name="hipStreamQuery")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamQuery_
@@ -2534,7 +2484,6 @@ module hip
 
   interface hipStreamSynchronize
     function hipStreamSynchronize_(stream) bind(c, name="hipStreamSynchronize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamSynchronize_
@@ -2544,7 +2493,6 @@ module hip
 
   interface hipStreamWaitEvent
     function hipStreamWaitEvent_(stream,event,flags) bind(c, name="hipStreamWaitEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWaitEvent_
@@ -2556,7 +2504,6 @@ module hip
 
   interface hipStreamGetFlags
     function hipStreamGetFlags_(stream,flags) bind(c, name="hipStreamGetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetFlags_
@@ -2569,7 +2516,6 @@ module hip
 
   interface hipStreamGetId
     function hipStreamGetId_(stream,streamId) bind(c, name="hipStreamGetId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetId_
@@ -2582,7 +2528,6 @@ module hip
 
   interface hipStreamGetPriority
     function hipStreamGetPriority_(stream,priority) bind(c, name="hipStreamGetPriority")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetPriority_
@@ -2595,7 +2540,6 @@ module hip
 
   interface hipStreamGetDevice
     function hipStreamGetDevice_(stream,device) bind(c, name="hipStreamGetDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetDevice_
@@ -2609,7 +2553,6 @@ module hip
   interface hipExtStreamCreateWithCUMask
     function hipExtStreamCreateWithCUMask_(stream,cuMaskSize,cuMask) &
         bind(c, name="hipExtStreamCreateWithCUMask")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtStreamCreateWithCUMask_
@@ -2617,11 +2560,20 @@ module hip
       integer(c_int32_t),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipExtStreamCreateWithCUMask_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipExtStreamCreateWithCUMask_rank_0,&
+      hipExtStreamCreateWithCUMask_rank_1
+#endif
+#endif
   end interface
 
   interface hipExtStreamGetCUMask
     function hipExtStreamGetCUMask_(stream,cuMaskSize,cuMask) bind(c, name="hipExtStreamGetCUMask")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtStreamGetCUMask_
@@ -2629,12 +2581,21 @@ module hip
       integer(c_int32_t),value :: cuMaskSize
       type(c_ptr),value :: cuMask
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipExtStreamGetCUMask_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipExtStreamGetCUMask_rank_0,&
+      hipExtStreamGetCUMask_rank_1
+#endif
+#endif
   end interface
 
   interface hipStreamAddCallback
     function hipStreamAddCallback_(stream,callback,userData,flags) &
         bind(c, name="hipStreamAddCallback")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamAddCallback_
@@ -2647,7 +2608,6 @@ module hip
 
   interface hipStreamSetAttribute
     function hipStreamSetAttribute_(stream,attr,myValue) bind(c, name="hipStreamSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamSetAttribute_
@@ -2659,7 +2619,6 @@ module hip
 
   interface hipStreamGetAttribute
     function hipStreamGetAttribute_(stream,attr,value_out) bind(c, name="hipStreamGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetAttribute_
@@ -2671,7 +2630,6 @@ module hip
 
   interface hipStreamCopyAttributes
     function hipStreamCopyAttributes_(dst,src) bind(c, name="hipStreamCopyAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamCopyAttributes_
@@ -2683,7 +2641,6 @@ module hip
   interface hipStreamWaitValue32
     function hipStreamWaitValue32_(stream,ptr,myValue,flags,mask) &
         bind(c, name="hipStreamWaitValue32")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWaitValue32_
@@ -2698,7 +2655,6 @@ module hip
   interface hipStreamWaitValue64
     function hipStreamWaitValue64_(stream,ptr,myValue,flags,mask) &
         bind(c, name="hipStreamWaitValue64")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWaitValue64_
@@ -2712,7 +2668,6 @@ module hip
 
   interface hipStreamWriteValue32
     function hipStreamWriteValue32_(stream,ptr,myValue,flags) bind(c, name="hipStreamWriteValue32")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWriteValue32_
@@ -2725,7 +2680,6 @@ module hip
 
   interface hipStreamWriteValue64
     function hipStreamWriteValue64_(stream,ptr,myValue,flags) bind(c, name="hipStreamWriteValue64")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWriteValue64_
@@ -2738,7 +2692,6 @@ module hip
 
   interface hipStreamBatchMemOp
     function hipStreamBatchMemOp_(stream,count,paramArray,flags) bind(c, name="hipStreamBatchMemOp")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamBatchMemOp_
@@ -2753,7 +2706,6 @@ module hip
     function hipGraphAddBatchMemOpNode_(phGraphNode,hGraph,dependencies,numDependencies, &
         nodeParams) &
         bind(c, name="hipGraphAddBatchMemOpNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddBatchMemOpNode_
@@ -2768,7 +2720,6 @@ module hip
   interface hipGraphBatchMemOpNodeGetParams
     function hipGraphBatchMemOpNodeGetParams_(hNode,nodeParams_out) &
         bind(c, name="hipGraphBatchMemOpNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphBatchMemOpNodeGetParams_
@@ -2780,7 +2731,6 @@ module hip
   interface hipGraphBatchMemOpNodeSetParams
     function hipGraphBatchMemOpNodeSetParams_(hNode,nodeParams) &
         bind(c, name="hipGraphBatchMemOpNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphBatchMemOpNodeSetParams_
@@ -2792,7 +2742,6 @@ module hip
   interface hipGraphExecBatchMemOpNodeSetParams
     function hipGraphExecBatchMemOpNodeSetParams_(hGraphExec,hNode,nodeParams) &
         bind(c, name="hipGraphExecBatchMemOpNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecBatchMemOpNodeSetParams_
@@ -2804,7 +2753,6 @@ module hip
 
   interface hipEventCreateWithFlags
     function hipEventCreateWithFlags_(event,flags) bind(c, name="hipEventCreateWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventCreateWithFlags_
@@ -2815,7 +2763,6 @@ module hip
 
   interface hipEventCreate
     function hipEventCreate_(event) bind(c, name="hipEventCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventCreate_
@@ -2825,7 +2772,6 @@ module hip
 
   interface hipEventRecordWithFlags
     function hipEventRecordWithFlags_(event,stream,flags) bind(c, name="hipEventRecordWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventRecordWithFlags_
@@ -2837,7 +2783,6 @@ module hip
 
   interface hipEventRecord
     function hipEventRecord_(event,stream) bind(c, name="hipEventRecord")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventRecord_
@@ -2848,7 +2793,6 @@ module hip
 
   interface hipEventDestroy
     function hipEventDestroy_(event) bind(c, name="hipEventDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventDestroy_
@@ -2858,7 +2802,6 @@ module hip
 
   interface hipEventSynchronize
     function hipEventSynchronize_(event) bind(c, name="hipEventSynchronize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventSynchronize_
@@ -2868,7 +2811,6 @@ module hip
 
   interface hipEventElapsedTime
     function hipEventElapsedTime_(ms,start,myStop) bind(c, name="hipEventElapsedTime")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventElapsedTime_
@@ -2882,7 +2824,6 @@ module hip
 
   interface hipEventQuery
     function hipEventQuery_(event) bind(c, name="hipEventQuery")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventQuery_
@@ -2892,7 +2833,6 @@ module hip
 
   interface hipPointerSetAttribute
     function hipPointerSetAttribute_(myValue,attribute,ptr) bind(c, name="hipPointerSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipPointerSetAttribute_
@@ -2904,7 +2844,6 @@ module hip
 
   interface hipPointerGetAttributes
     function hipPointerGetAttributes_(attributes,ptr) bind(c, name="hipPointerGetAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipPointerGetAttributes_
@@ -2915,7 +2854,6 @@ module hip
 
   interface hipPointerGetAttribute
     function hipPointerGetAttribute_(myData,attribute,ptr) bind(c, name="hipPointerGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipPointerGetAttribute_
@@ -2928,7 +2866,6 @@ module hip
   interface hipDrvPointerGetAttributes
     function hipDrvPointerGetAttributes_(numAttributes,attributes,myData,ptr) &
         bind(c, name="hipDrvPointerGetAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvPointerGetAttributes_
@@ -2937,12 +2874,21 @@ module hip
       type(c_ptr) :: myData
       type(c_ptr),value :: ptr
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvPointerGetAttributes_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvPointerGetAttributes_rank_0,&
+      hipDrvPointerGetAttributes_rank_1
+#endif
+#endif
   end interface
 
   interface hipImportExternalSemaphore
     function hipImportExternalSemaphore_(extSem_out,semHandleDesc) &
         bind(c, name="hipImportExternalSemaphore")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipImportExternalSemaphore_
@@ -2954,7 +2900,6 @@ module hip
   interface hipSignalExternalSemaphoresAsync
     function hipSignalExternalSemaphoresAsync_(extSemArray,paramsArray,numExtSems,stream) &
         bind(c, name="hipSignalExternalSemaphoresAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipSignalExternalSemaphoresAsync_
@@ -2968,7 +2913,6 @@ module hip
   interface hipWaitExternalSemaphoresAsync
     function hipWaitExternalSemaphoresAsync_(extSemArray,paramsArray,numExtSems,stream) &
         bind(c, name="hipWaitExternalSemaphoresAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipWaitExternalSemaphoresAsync_
@@ -2981,7 +2925,6 @@ module hip
 
   interface hipDestroyExternalSemaphore
     function hipDestroyExternalSemaphore_(extSem) bind(c, name="hipDestroyExternalSemaphore")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDestroyExternalSemaphore_
@@ -2992,7 +2935,6 @@ module hip
   interface hipImportExternalMemory
     function hipImportExternalMemory_(extMem_out,memHandleDesc) &
         bind(c, name="hipImportExternalMemory")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipImportExternalMemory_
@@ -3004,7 +2946,6 @@ module hip
   interface hipExternalMemoryGetMappedBuffer
     function hipExternalMemoryGetMappedBuffer_(devPtr,extMem,bufferDesc) &
         bind(c, name="hipExternalMemoryGetMappedBuffer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExternalMemoryGetMappedBuffer_
@@ -3016,7 +2957,6 @@ module hip
 
   interface hipDestroyExternalMemory
     function hipDestroyExternalMemory_(extMem) bind(c, name="hipDestroyExternalMemory")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDestroyExternalMemory_
@@ -3027,7 +2967,6 @@ module hip
   interface hipExternalMemoryGetMappedMipmappedArray
     function hipExternalMemoryGetMappedMipmappedArray_(mipmap,extMem,mipmapDesc) &
         bind(c, name="hipExternalMemoryGetMappedMipmappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExternalMemoryGetMappedMipmappedArray_
@@ -3039,7 +2978,6 @@ module hip
 
   interface hipExtMallocWithFlags
     function hipExtMallocWithFlags_(ptr,sizeBytes,flags) bind(c, name="hipExtMallocWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtMallocWithFlags_
@@ -3051,7 +2989,6 @@ module hip
 
   interface hipMallocHost
     function hipMallocHost_(ptr,mySize) bind(c, name="hipMallocHost")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocHost_
@@ -3062,7 +2999,6 @@ module hip
 
   interface hipMemAllocHost
     function hipMemAllocHost_(ptr,mySize) bind(c, name="hipMemAllocHost")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAllocHost_
@@ -3073,7 +3009,6 @@ module hip
 
   interface hipMemPrefetchAsync
     function hipMemPrefetchAsync_(dev_ptr,count,device,stream) bind(c, name="hipMemPrefetchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPrefetchAsync_
@@ -3087,7 +3022,6 @@ module hip
   interface hipMemPrefetchAsync_v2
     function hipMemPrefetchAsync_v2_(dev_ptr,count,location,flags,stream) &
         bind(c, name="hipMemPrefetchAsync_v2")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPrefetchAsync_v2_
@@ -3103,7 +3037,6 @@ module hip
     function hipMemPrefetchBatchAsync_(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
         num_prefetch_locs,flags,stream) &
         bind(c, name="hipMemPrefetchBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPrefetchBatchAsync_
@@ -3116,12 +3049,21 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemPrefetchBatchAsync_rank_0,&
+      hipMemPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipMemDiscardBatchAsync
     function hipMemDiscardBatchAsync_(dev_ptrs,sizes,count,flags,stream) &
         bind(c, name="hipMemDiscardBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemDiscardBatchAsync_
@@ -3131,12 +3073,21 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemDiscardBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemDiscardBatchAsync_rank_0,&
+      hipMemDiscardBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipDrvMemDiscardBatchAsync
     function hipDrvMemDiscardBatchAsync_(dptrs,sizes,count,flags,stream) &
         bind(c, name="hipDrvMemDiscardBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvMemDiscardBatchAsync_
@@ -3146,13 +3097,22 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvMemDiscardBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvMemDiscardBatchAsync_rank_0,&
+      hipDrvMemDiscardBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipMemDiscardAndPrefetchBatchAsync
     function hipMemDiscardAndPrefetchBatchAsync_(dptrs,sizes,count,prefetchLocs,prefetchLocIdxs, &
         numPrefetchLocs,flags,stream) &
         bind(c, name="hipMemDiscardAndPrefetchBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemDiscardAndPrefetchBatchAsync_
@@ -3165,13 +3125,22 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemDiscardAndPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemDiscardAndPrefetchBatchAsync_rank_0,&
+      hipMemDiscardAndPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipDrvMemDiscardAndPrefetchBatchAsync
     function hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs,sizes,count,prefetchLocs, &
         prefetchLocIdxs,numPrefetchLocs,flags,stream) &
         bind(c, name="hipDrvMemDiscardAndPrefetchBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvMemDiscardAndPrefetchBatchAsync_
@@ -3184,11 +3153,20 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: stream
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_0,&
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipMemAdvise_v2
     function hipMemAdvise_v2_(dev_ptr,count,advice,location) bind(c, name="hipMemAdvise_v2")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAdvise_v2_
@@ -3201,7 +3179,6 @@ module hip
 
   interface hipMemAdvise
     function hipMemAdvise_(dev_ptr,count,advice,device) bind(c, name="hipMemAdvise")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAdvise_
@@ -3215,7 +3192,6 @@ module hip
   interface hipMemRangeGetAttribute
     function hipMemRangeGetAttribute_(myData,data_size,attribute,dev_ptr,count) &
         bind(c, name="hipMemRangeGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemRangeGetAttribute_
@@ -3230,7 +3206,6 @@ module hip
   interface hipMemRangeGetAttributes
     function hipMemRangeGetAttributes_(myData,data_sizes,attributes,num_attributes,dev_ptr,count) &
         bind(c, name="hipMemRangeGetAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemRangeGetAttributes_
@@ -3241,12 +3216,21 @@ module hip
       type(c_ptr),value :: dev_ptr
       integer(c_size_t),value :: count
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemRangeGetAttributes_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemRangeGetAttributes_rank_0,&
+      hipMemRangeGetAttributes_rank_1
+#endif
+#endif
   end interface
 
   interface hipStreamAttachMemAsync
     function hipStreamAttachMemAsync_(stream,dev_ptr,length,flags) &
         bind(c, name="hipStreamAttachMemAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamAttachMemAsync_
@@ -3259,7 +3243,6 @@ module hip
 
   interface hipMallocAsync
     function hipMallocAsync_(dev_ptr,mySize,stream) bind(c, name="hipMallocAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocAsync_
@@ -3271,7 +3254,6 @@ module hip
 
   interface hipFreeAsync
     function hipFreeAsync_(dev_ptr,stream) bind(c, name="hipFreeAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFreeAsync_
@@ -3282,7 +3264,6 @@ module hip
 
   interface hipMemPoolTrimTo
     function hipMemPoolTrimTo_(mem_pool,min_bytes_to_hold) bind(c, name="hipMemPoolTrimTo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolTrimTo_
@@ -3293,7 +3274,6 @@ module hip
 
   interface hipMemPoolSetAttribute
     function hipMemPoolSetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolSetAttribute_
@@ -3305,7 +3285,6 @@ module hip
 
   interface hipMemPoolGetAttribute
     function hipMemPoolGetAttribute_(mem_pool,attr,myValue) bind(c, name="hipMemPoolGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolGetAttribute_
@@ -3317,7 +3296,6 @@ module hip
 
   interface hipMemPoolSetAccess
     function hipMemPoolSetAccess_(mem_pool,desc_list,count) bind(c, name="hipMemPoolSetAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolSetAccess_
@@ -3329,7 +3307,6 @@ module hip
 
   interface hipMemPoolGetAccess
     function hipMemPoolGetAccess_(flags,mem_pool,location) bind(c, name="hipMemPoolGetAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolGetAccess_
@@ -3343,7 +3320,6 @@ module hip
 
   interface hipMemPoolCreate
     function hipMemPoolCreate_(mem_pool,pool_props) bind(c, name="hipMemPoolCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolCreate_
@@ -3354,7 +3330,6 @@ module hip
 
   interface hipMemPoolDestroy
     function hipMemPoolDestroy_(mem_pool) bind(c, name="hipMemPoolDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolDestroy_
@@ -3365,7 +3340,6 @@ module hip
   interface hipMallocFromPoolAsync
     function hipMallocFromPoolAsync_(dev_ptr,mySize,mem_pool,stream) &
         bind(c, name="hipMallocFromPoolAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocFromPoolAsync_
@@ -3379,7 +3353,6 @@ module hip
   interface hipMemPoolExportToShareableHandle
     function hipMemPoolExportToShareableHandle_(shared_handle,mem_pool,handle_type,flags) &
         bind(c, name="hipMemPoolExportToShareableHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolExportToShareableHandle_
@@ -3393,7 +3366,6 @@ module hip
   interface hipMemPoolImportFromShareableHandle
     function hipMemPoolImportFromShareableHandle_(mem_pool,shared_handle,handle_type,flags) &
         bind(c, name="hipMemPoolImportFromShareableHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolImportFromShareableHandle_
@@ -3406,7 +3378,6 @@ module hip
 
   interface hipMemPoolExportPointer
     function hipMemPoolExportPointer_(export_data,dev_ptr) bind(c, name="hipMemPoolExportPointer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolExportPointer_
@@ -3418,7 +3389,6 @@ module hip
   interface hipMemPoolImportPointer
     function hipMemPoolImportPointer_(dev_ptr,mem_pool,export_data) &
         bind(c, name="hipMemPoolImportPointer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPoolImportPointer_
@@ -3430,7 +3400,6 @@ module hip
 
   interface hipMemSetMemPool
     function hipMemSetMemPool_(location,myType,pool) bind(c, name="hipMemSetMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemSetMemPool_
@@ -3442,7 +3411,6 @@ module hip
 
   interface hipMemGetMemPool
     function hipMemGetMemPool_(pool,location,myType) bind(c, name="hipMemGetMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetMemPool_
@@ -3455,7 +3423,6 @@ module hip
   interface hipMemGetDefaultMemPool
     function hipMemGetDefaultMemPool_(memPool,location,myType) &
         bind(c, name="hipMemGetDefaultMemPool")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetDefaultMemPool_
@@ -3467,7 +3434,6 @@ module hip
 
   interface hipHostAlloc
     function hipHostAlloc_(ptr,mySize,flags) bind(c, name="hipHostAlloc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipHostAlloc_
@@ -3479,7 +3445,6 @@ module hip
 
   interface hipMallocPitch
     function hipMallocPitch_(ptr,pitch,width,height) bind(c, name="hipMallocPitch")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocPitch_
@@ -3495,7 +3460,6 @@ module hip
   interface hipMemAllocPitch
     function hipMemAllocPitch_(dptr,pitch,widthInBytes,height,elementSizeBytes) &
         bind(c, name="hipMemAllocPitch")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAllocPitch_
@@ -3511,7 +3475,6 @@ module hip
 
   interface hipFreeHost
     function hipFreeHost_(ptr) bind(c, name="hipFreeHost")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFreeHost_
@@ -3522,7 +3485,6 @@ module hip
   interface hipMemcpyWithStream
     function hipMemcpyWithStream_(dst,src,sizeBytes,myKind,stream) &
         bind(c, name="hipMemcpyWithStream")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyWithStream_
@@ -3536,7 +3498,6 @@ module hip
 
   interface hipMemcpyHtoD
     function hipMemcpyHtoD_(dst,src,sizeBytes) bind(c, name="hipMemcpyHtoD")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyHtoD_
@@ -3548,7 +3509,6 @@ module hip
 
   interface hipMemcpyDtoH
     function hipMemcpyDtoH_(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoH")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyDtoH_
@@ -3560,7 +3520,6 @@ module hip
 
   interface hipMemcpyDtoD
     function hipMemcpyDtoD_(dst,src,sizeBytes) bind(c, name="hipMemcpyDtoD")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyDtoD_
@@ -3572,7 +3531,6 @@ module hip
 
   interface hipMemcpyAtoD
     function hipMemcpyAtoD_(dstDevice,srcArray,srcOffset,ByteCount) bind(c, name="hipMemcpyAtoD")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyAtoD_
@@ -3585,7 +3543,6 @@ module hip
 
   interface hipMemcpyDtoA
     function hipMemcpyDtoA_(dstArray,dstOffset,srcDevice,ByteCount) bind(c, name="hipMemcpyDtoA")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyDtoA_
@@ -3599,7 +3556,6 @@ module hip
   interface hipMemcpyAtoA
     function hipMemcpyAtoA_(dstArray,dstOffset,srcArray,srcOffset,ByteCount) &
         bind(c, name="hipMemcpyAtoA")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyAtoA_
@@ -3613,7 +3569,6 @@ module hip
 
   interface hipMemcpyHtoDAsync
     function hipMemcpyHtoDAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyHtoDAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyHtoDAsync_
@@ -3626,7 +3581,6 @@ module hip
 
   interface hipMemcpyDtoHAsync
     function hipMemcpyDtoHAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoHAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyDtoHAsync_
@@ -3639,7 +3593,6 @@ module hip
 
   interface hipMemcpyDtoDAsync
     function hipMemcpyDtoDAsync_(dst,src,sizeBytes,stream) bind(c, name="hipMemcpyDtoDAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyDtoDAsync_
@@ -3653,7 +3606,6 @@ module hip
   interface hipMemcpyAtoHAsync
     function hipMemcpyAtoHAsync_(dstHost,srcArray,srcOffset,ByteCount,stream) &
         bind(c, name="hipMemcpyAtoHAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyAtoHAsync_
@@ -3668,7 +3620,6 @@ module hip
   interface hipMemcpyHtoAAsync
     function hipMemcpyHtoAAsync_(dstArray,dstOffset,srcHost,ByteCount,stream) &
         bind(c, name="hipMemcpyHtoAAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyHtoAAsync_
@@ -3682,7 +3633,6 @@ module hip
 
   interface
     function hipModuleGetGlobal_(dptr,bytes,hmod,name) bind(c, name="hipModuleGetGlobal")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleGetGlobal_
@@ -3702,7 +3652,6 @@ module hip
 
   interface hipGetSymbolAddress
     function hipGetSymbolAddress_(devPtr,symbol) bind(c, name="hipGetSymbolAddress")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetSymbolAddress_
@@ -3713,7 +3662,6 @@ module hip
 
   interface hipGetSymbolSize
     function hipGetSymbolSize_(mySize,symbol) bind(c, name="hipGetSymbolSize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetSymbolSize_
@@ -3727,7 +3675,6 @@ module hip
   interface hipGetProcAddress
     function hipGetProcAddress_(symbol,pfn,hipVersion,flags,symbolStatus) &
         bind(c, name="hipGetProcAddress")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetProcAddress_
@@ -3744,7 +3691,6 @@ module hip
   interface hipMemcpyToSymbol
     function hipMemcpyToSymbol_(symbol,src,sizeBytes,offset,myKind) &
         bind(c, name="hipMemcpyToSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyToSymbol_
@@ -3759,7 +3705,6 @@ module hip
   interface hipMemcpyToSymbolAsync
     function hipMemcpyToSymbolAsync_(symbol,src,sizeBytes,offset,myKind,stream) &
         bind(c, name="hipMemcpyToSymbolAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyToSymbolAsync_
@@ -3775,7 +3720,6 @@ module hip
   interface hipMemcpyFromSymbol
     function hipMemcpyFromSymbol_(dst,symbol,sizeBytes,offset,myKind) &
         bind(c, name="hipMemcpyFromSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromSymbol_
@@ -3790,7 +3734,6 @@ module hip
   interface hipMemcpyFromSymbolAsync
     function hipMemcpyFromSymbolAsync_(dst,symbol,sizeBytes,offset,myKind,stream) &
         bind(c, name="hipMemcpyFromSymbolAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromSymbolAsync_
@@ -3805,7 +3748,6 @@ module hip
 
   interface hipMemset
     function hipMemset_(dst,myValue,sizeBytes) bind(c, name="hipMemset")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset_
@@ -3817,7 +3759,6 @@ module hip
 
   interface hipMemsetD8
     function hipMemsetD8_(dest,myValue,count) bind(c, name="hipMemsetD8")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD8_
@@ -3829,7 +3770,6 @@ module hip
 
   interface hipMemsetD8Async
     function hipMemsetD8Async_(dest,myValue,count,stream) bind(c, name="hipMemsetD8Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD8Async_
@@ -3842,7 +3782,6 @@ module hip
 
   interface hipMemsetD16
     function hipMemsetD16_(dest,myValue,count) bind(c, name="hipMemsetD16")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD16_
@@ -3854,7 +3793,6 @@ module hip
 
   interface hipMemsetD16Async
     function hipMemsetD16Async_(dest,myValue,count,stream) bind(c, name="hipMemsetD16Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD16Async_
@@ -3867,7 +3805,6 @@ module hip
 
   interface hipMemsetD32
     function hipMemsetD32_(dest,myValue,count) bind(c, name="hipMemsetD32")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD32_
@@ -3879,7 +3816,6 @@ module hip
 
   interface hipMemsetAsync
     function hipMemsetAsync_(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetAsync_
@@ -3892,7 +3828,6 @@ module hip
 
   interface hipMemsetD32Async
     function hipMemsetD32Async_(dst,myValue,count,stream) bind(c, name="hipMemsetD32Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD32Async_
@@ -3905,7 +3840,6 @@ module hip
 
   interface hipMemset2D
     function hipMemset2D_(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset2D_
@@ -3920,7 +3854,6 @@ module hip
   interface hipMemset2DAsync
     function hipMemset2DAsync_(dst,pitch,myValue,width,height,stream) &
         bind(c, name="hipMemset2DAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset2DAsync_
@@ -3935,7 +3868,6 @@ module hip
 
   interface hipMemset3D
     function hipMemset3D_(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset3D_
@@ -3947,7 +3879,6 @@ module hip
 
   interface hipMemset3DAsync
     function hipMemset3DAsync_(pitchedDevPtr,myValue,extent,stream) bind(c, name="hipMemset3DAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset3DAsync_
@@ -3960,7 +3891,6 @@ module hip
 
   interface hipMemsetD2D8
     function hipMemsetD2D8_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D8")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D8_
@@ -3975,7 +3905,6 @@ module hip
   interface hipMemsetD2D8Async
     function hipMemsetD2D8Async_(dst,dstPitch,myValue,width,height,stream) &
         bind(c, name="hipMemsetD2D8Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D8Async_
@@ -3990,7 +3919,6 @@ module hip
 
   interface hipMemsetD2D16
     function hipMemsetD2D16_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D16")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D16_
@@ -4005,7 +3933,6 @@ module hip
   interface hipMemsetD2D16Async
     function hipMemsetD2D16Async_(dst,dstPitch,myValue,width,height,stream) &
         bind(c, name="hipMemsetD2D16Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D16Async_
@@ -4020,7 +3947,6 @@ module hip
 
   interface hipMemsetD2D32
     function hipMemsetD2D32_(dst,dstPitch,myValue,width,height) bind(c, name="hipMemsetD2D32")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D32_
@@ -4035,7 +3961,6 @@ module hip
   interface hipMemsetD2D32Async
     function hipMemsetD2D32Async_(dst,dstPitch,myValue,width,height,stream) &
         bind(c, name="hipMemsetD2D32Async")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetD2D32Async_
@@ -4050,7 +3975,6 @@ module hip
 
   interface hipMemGetInfo
     function hipMemGetInfo_(free,total) bind(c, name="hipMemGetInfo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetInfo_
@@ -4063,7 +3987,6 @@ module hip
 
   interface hipMemPtrGetInfo
     function hipMemPtrGetInfo_(ptr,mySize) bind(c, name="hipMemPtrGetInfo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemPtrGetInfo_
@@ -4076,7 +3999,6 @@ module hip
 
   interface hipMallocArray
     function hipMallocArray_(array,desc,width,height,flags) bind(c, name="hipMallocArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocArray_
@@ -4090,7 +4012,6 @@ module hip
 
   interface hipArrayCreate
     function hipArrayCreate_(pHandle,pAllocateArray) bind(c, name="hipArrayCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArrayCreate_
@@ -4101,7 +4022,6 @@ module hip
 
   interface hipArrayDestroy
     function hipArrayDestroy_(array) bind(c, name="hipArrayDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArrayDestroy_
@@ -4111,7 +4031,6 @@ module hip
 
   interface hipArray3DCreate
     function hipArray3DCreate_(array,pAllocateArray) bind(c, name="hipArray3DCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArray3DCreate_
@@ -4122,7 +4041,6 @@ module hip
 
   interface hipMalloc3D
     function hipMalloc3D_(pitchedDevPtr,extent) bind(c, name="hipMalloc3D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMalloc3D_
@@ -4133,7 +4051,6 @@ module hip
 
   interface hipFreeArray
     function hipFreeArray_(array) bind(c, name="hipFreeArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFreeArray_
@@ -4143,7 +4060,6 @@ module hip
 
   interface hipMalloc3DArray
     function hipMalloc3DArray_(array,desc,extent,flags) bind(c, name="hipMalloc3DArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMalloc3DArray_
@@ -4156,7 +4072,6 @@ module hip
 
   interface hipArrayGetInfo
     function hipArrayGetInfo_(desc,extent,flags,array) bind(c, name="hipArrayGetInfo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArrayGetInfo_
@@ -4171,7 +4086,6 @@ module hip
 
   interface hipArrayGetDescriptor
     function hipArrayGetDescriptor_(pArrayDescriptor,array) bind(c, name="hipArrayGetDescriptor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArrayGetDescriptor_
@@ -4183,7 +4097,6 @@ module hip
   interface hipArray3DGetDescriptor
     function hipArray3DGetDescriptor_(pArrayDescriptor,array) &
         bind(c, name="hipArray3DGetDescriptor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipArray3DGetDescriptor_
@@ -4194,7 +4107,6 @@ module hip
 
   interface hipMemcpyParam2D
     function hipMemcpyParam2D_(pCopy) bind(c, name="hipMemcpyParam2D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyParam2D_
@@ -4204,7 +4116,6 @@ module hip
 
   interface hipMemcpyParam2DAsync
     function hipMemcpyParam2DAsync_(pCopy,stream) bind(c, name="hipMemcpyParam2DAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyParam2DAsync_
@@ -4216,7 +4127,6 @@ module hip
   interface hipMemcpy2DToArray
     function hipMemcpy2DToArray_(dst,wOffset,hOffset,src,spitch,width,height,myKind) &
         bind(c, name="hipMemcpy2DToArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DToArray_
@@ -4234,7 +4144,6 @@ module hip
   interface hipMemcpy2DToArrayAsync
     function hipMemcpy2DToArrayAsync_(dst,wOffset,hOffset,src,spitch,width,height,myKind,stream) &
         bind(c, name="hipMemcpy2DToArrayAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DToArrayAsync_
@@ -4254,7 +4163,6 @@ module hip
     function hipMemcpy2DArrayToArray_(dst,wOffsetDst,hOffsetDst,src,wOffsetSrc,hOffsetSrc,width, &
         height,myKind) &
         bind(c, name="hipMemcpy2DArrayToArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DArrayToArray_
@@ -4273,7 +4181,6 @@ module hip
   interface hipMemcpyToArray
     function hipMemcpyToArray_(dst,wOffset,hOffset,src,count,myKind) &
         bind(c, name="hipMemcpyToArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyToArray_
@@ -4289,7 +4196,6 @@ module hip
   interface hipMemcpyFromArray
     function hipMemcpyFromArray_(dst,srcArray,wOffset,hOffset,count,myKind) &
         bind(c, name="hipMemcpyFromArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromArray_
@@ -4305,7 +4211,6 @@ module hip
   interface hipMemcpy2DFromArray
     function hipMemcpy2DFromArray_(dst,dpitch,src,wOffset,hOffset,width,height,myKind) &
         bind(c, name="hipMemcpy2DFromArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DFromArray_
@@ -4323,7 +4228,6 @@ module hip
   interface hipMemcpy2DFromArrayAsync
     function hipMemcpy2DFromArrayAsync_(dst,dpitch,src,wOffset,hOffset,width,height,myKind,stream) &
         bind(c, name="hipMemcpy2DFromArrayAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DFromArrayAsync_
@@ -4341,7 +4245,6 @@ module hip
 
   interface hipMemcpyAtoH
     function hipMemcpyAtoH_(dst,srcArray,srcOffset,count) bind(c, name="hipMemcpyAtoH")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyAtoH_
@@ -4354,7 +4257,6 @@ module hip
 
   interface hipMemcpyHtoA
     function hipMemcpyHtoA_(dstArray,dstOffset,srcHost,count) bind(c, name="hipMemcpyHtoA")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyHtoA_
@@ -4367,7 +4269,6 @@ module hip
 
   interface hipMemcpy3D
     function hipMemcpy3D_(p) bind(c, name="hipMemcpy3D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3D_
@@ -4377,7 +4278,6 @@ module hip
 
   interface hipMemcpy3DAsync
     function hipMemcpy3DAsync_(p,stream) bind(c, name="hipMemcpy3DAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3DAsync_
@@ -4388,7 +4288,6 @@ module hip
 
   interface hipDrvMemcpy3D
     function hipDrvMemcpy3D_(pCopy) bind(c, name="hipDrvMemcpy3D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvMemcpy3D_
@@ -4398,7 +4297,6 @@ module hip
 
   interface hipDrvMemcpy3DAsync
     function hipDrvMemcpy3DAsync_(pCopy,stream) bind(c, name="hipDrvMemcpy3DAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvMemcpy3DAsync_
@@ -4409,7 +4307,6 @@ module hip
 
   interface hipMemGetAddressRange
     function hipMemGetAddressRange_(pbase,psize,dptr) bind(c, name="hipMemGetAddressRange")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetAddressRange_
@@ -4424,7 +4321,6 @@ module hip
   interface hipMemcpyBatchAsync
     function hipMemcpyBatchAsync_(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx,stream) &
         bind(c, name="hipMemcpyBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyBatchAsync_
@@ -4440,12 +4336,21 @@ module hip
     end function
 
     module procedure hipMemcpyBatchAsync_typed
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipMemcpyBatchAsync_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipMemcpyBatchAsync_rank_0,&
+      hipMemcpyBatchAsync_rank_1
+#endif
+#endif
   end interface
 
   interface hipMemcpy3DBatchAsync
     function hipMemcpy3DBatchAsync_(numOps,opList,failIdx,flags,stream) &
         bind(c, name="hipMemcpy3DBatchAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3DBatchAsync_
@@ -4461,7 +4366,6 @@ module hip
 
   interface hipMemcpy3DPeer
     function hipMemcpy3DPeer_(p) bind(c, name="hipMemcpy3DPeer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3DPeer_
@@ -4471,7 +4375,6 @@ module hip
 
   interface hipMemcpy3DPeerAsync
     function hipMemcpy3DPeerAsync_(p,stream) bind(c, name="hipMemcpy3DPeerAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3DPeerAsync_
@@ -4483,7 +4386,6 @@ module hip
   interface hipMipmappedArrayGetMemoryRequirements
     function hipMipmappedArrayGetMemoryRequirements_(memoryRequirements,mipmap,device) &
         bind(c, name="hipMipmappedArrayGetMemoryRequirements")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMipmappedArrayGetMemoryRequirements_
@@ -4496,7 +4398,6 @@ module hip
   interface hipDeviceCanAccessPeer
     function hipDeviceCanAccessPeer_(canAccessPeer,deviceId,peerDeviceId) &
         bind(c, name="hipDeviceCanAccessPeer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceCanAccessPeer_
@@ -4511,7 +4412,6 @@ module hip
   interface hipDeviceEnablePeerAccess
     function hipDeviceEnablePeerAccess_(peerDeviceId,flags) &
         bind(c, name="hipDeviceEnablePeerAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceEnablePeerAccess_
@@ -4522,7 +4422,6 @@ module hip
 
   interface hipDeviceDisablePeerAccess
     function hipDeviceDisablePeerAccess_(peerDeviceId) bind(c, name="hipDeviceDisablePeerAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceDisablePeerAccess_
@@ -4532,7 +4431,6 @@ module hip
 
   interface hipMemcpyPeer
     function hipMemcpyPeer_(dst,dstDeviceId,src,srcDeviceId,sizeBytes) bind(c, name="hipMemcpyPeer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyPeer_
@@ -4547,7 +4445,6 @@ module hip
   interface hipMemcpyPeerAsync
     function hipMemcpyPeerAsync_(dst,dstDeviceId,src,srcDevice,sizeBytes,stream) &
         bind(c, name="hipMemcpyPeerAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyPeerAsync_
@@ -4563,7 +4460,6 @@ module hip
   interface hipDeviceGetDevResource
     function hipDeviceGetDevResource_(device,resource,myType) &
         bind(c, name="hipDeviceGetDevResource")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetDevResource_
@@ -4576,7 +4472,6 @@ module hip
   interface hipDevSmResourceSplitByCount
     function hipDevSmResourceSplitByCount_(myResult,nbGroups,input,remainder,flags,minCount) &
         bind(c, name="hipDevSmResourceSplitByCount")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevSmResourceSplitByCount_
@@ -4594,7 +4489,6 @@ module hip
   interface hipDevSmResourceSplit
     function hipDevSmResourceSplit_(myResult,nbGroups,input,remainder,flags,groupParams) &
         bind(c, name="hipDevSmResourceSplit")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevSmResourceSplit_
@@ -4610,7 +4504,6 @@ module hip
   interface hipDevResourceGenerateDesc
     function hipDevResourceGenerateDesc_(phDesc,resources,nbResources) &
         bind(c, name="hipDevResourceGenerateDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevResourceGenerateDesc_
@@ -4622,7 +4515,6 @@ module hip
 
   interface hipGreenCtxCreate
     function hipGreenCtxCreate_(ctx,desc,device,flags) bind(c, name="hipGreenCtxCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGreenCtxCreate_
@@ -4635,7 +4527,6 @@ module hip
 
   interface hipExecutionCtxDestroy
     function hipExecutionCtxDestroy_(ctx) bind(c, name="hipExecutionCtxDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxDestroy_
@@ -4645,7 +4536,6 @@ module hip
 
   interface hipDeviceGetExecutionCtx
     function hipDeviceGetExecutionCtx_(ctx,device) bind(c, name="hipDeviceGetExecutionCtx")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetExecutionCtx_
@@ -4657,7 +4547,6 @@ module hip
   interface hipExecutionCtxStreamCreate
     function hipExecutionCtxStreamCreate_(stream,greenctx,flags,priority) &
         bind(c, name="hipExecutionCtxStreamCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxStreamCreate_
@@ -4671,7 +4560,6 @@ module hip
   interface hipExecutionCtxGetDevResource
     function hipExecutionCtxGetDevResource_(ctx,resource,myType) &
         bind(c, name="hipExecutionCtxGetDevResource")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxGetDevResource_
@@ -4683,7 +4571,6 @@ module hip
 
   interface hipExecutionCtxGetDevice
     function hipExecutionCtxGetDevice_(device,ctx) bind(c, name="hipExecutionCtxGetDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxGetDevice_
@@ -4696,7 +4583,6 @@ module hip
 
   interface hipExecutionCtxGetId
     function hipExecutionCtxGetId_(ctx,ctxId) bind(c, name="hipExecutionCtxGetId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxGetId_
@@ -4710,7 +4596,6 @@ module hip
   interface hipStreamGetDevResource
     function hipStreamGetDevResource_(hStream,resource,myType) &
         bind(c, name="hipStreamGetDevResource")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetDevResource_
@@ -4722,7 +4607,6 @@ module hip
 
   interface hipExecutionCtxRecordEvent
     function hipExecutionCtxRecordEvent_(ctx,event) bind(c, name="hipExecutionCtxRecordEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxRecordEvent_
@@ -4733,7 +4617,6 @@ module hip
 
   interface hipExecutionCtxSynchronize
     function hipExecutionCtxSynchronize_(ctx) bind(c, name="hipExecutionCtxSynchronize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxSynchronize_
@@ -4743,7 +4626,6 @@ module hip
 
   interface hipExecutionCtxWaitEvent
     function hipExecutionCtxWaitEvent_(ctx,event) bind(c, name="hipExecutionCtxWaitEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExecutionCtxWaitEvent_
@@ -4754,7 +4636,6 @@ module hip
 
   interface hipCtxCreate
     function hipCtxCreate_(ctx,flags,device) bind(c, name="hipCtxCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxCreate_
@@ -4766,7 +4647,6 @@ module hip
 
   interface hipCtxDestroy
     function hipCtxDestroy_(ctx) bind(c, name="hipCtxDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxDestroy_
@@ -4776,7 +4656,6 @@ module hip
 
   interface hipCtxPopCurrent
     function hipCtxPopCurrent_(ctx) bind(c, name="hipCtxPopCurrent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxPopCurrent_
@@ -4786,7 +4665,6 @@ module hip
 
   interface hipCtxPushCurrent
     function hipCtxPushCurrent_(ctx) bind(c, name="hipCtxPushCurrent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxPushCurrent_
@@ -4796,7 +4674,6 @@ module hip
 
   interface hipCtxSetCurrent
     function hipCtxSetCurrent_(ctx) bind(c, name="hipCtxSetCurrent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxSetCurrent_
@@ -4806,7 +4683,6 @@ module hip
 
   interface hipCtxGetCurrent
     function hipCtxGetCurrent_(ctx) bind(c, name="hipCtxGetCurrent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetCurrent_
@@ -4816,7 +4692,6 @@ module hip
 
   interface hipCtxGetDevice
     function hipCtxGetDevice_(device) bind(c, name="hipCtxGetDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetDevice_
@@ -4828,7 +4703,6 @@ module hip
 
   interface hipCtxGetApiVersion
     function hipCtxGetApiVersion_(ctx,apiVersion) bind(c, name="hipCtxGetApiVersion")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetApiVersion_
@@ -4841,7 +4715,6 @@ module hip
 
   interface hipCtxGetCacheConfig
     function hipCtxGetCacheConfig_(cacheConfig) bind(c, name="hipCtxGetCacheConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetCacheConfig_
@@ -4853,7 +4726,6 @@ module hip
 
   interface hipCtxSetCacheConfig
     function hipCtxSetCacheConfig_(cacheConfig) bind(c, name="hipCtxSetCacheConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxSetCacheConfig_
@@ -4863,7 +4735,6 @@ module hip
 
   interface hipCtxSetSharedMemConfig
     function hipCtxSetSharedMemConfig_(config) bind(c, name="hipCtxSetSharedMemConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxSetSharedMemConfig_
@@ -4873,7 +4744,6 @@ module hip
 
   interface hipCtxGetSharedMemConfig
     function hipCtxGetSharedMemConfig_(pConfig) bind(c, name="hipCtxGetSharedMemConfig")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetSharedMemConfig_
@@ -4885,7 +4755,6 @@ module hip
 
   interface hipCtxSynchronize
     function hipCtxSynchronize_() bind(c, name="hipCtxSynchronize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxSynchronize_
@@ -4894,7 +4763,6 @@ module hip
 
   interface hipCtxGetFlags
     function hipCtxGetFlags_(flags) bind(c, name="hipCtxGetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxGetFlags_
@@ -4906,7 +4774,6 @@ module hip
 
   interface hipCtxEnablePeerAccess
     function hipCtxEnablePeerAccess_(peerCtx,flags) bind(c, name="hipCtxEnablePeerAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxEnablePeerAccess_
@@ -4917,7 +4784,6 @@ module hip
 
   interface hipCtxDisablePeerAccess
     function hipCtxDisablePeerAccess_(peerCtx) bind(c, name="hipCtxDisablePeerAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCtxDisablePeerAccess_
@@ -4928,7 +4794,6 @@ module hip
   interface hipDevicePrimaryCtxGetState
     function hipDevicePrimaryCtxGetState_(dev,flags,active) &
         bind(c, name="hipDevicePrimaryCtxGetState")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevicePrimaryCtxGetState_
@@ -4942,7 +4807,6 @@ module hip
 
   interface hipDevicePrimaryCtxRelease
     function hipDevicePrimaryCtxRelease_(dev) bind(c, name="hipDevicePrimaryCtxRelease")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevicePrimaryCtxRelease_
@@ -4952,7 +4816,6 @@ module hip
 
   interface hipDevicePrimaryCtxRetain
     function hipDevicePrimaryCtxRetain_(pctx,dev) bind(c, name="hipDevicePrimaryCtxRetain")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevicePrimaryCtxRetain_
@@ -4963,7 +4826,6 @@ module hip
 
   interface hipDevicePrimaryCtxReset
     function hipDevicePrimaryCtxReset_(dev) bind(c, name="hipDevicePrimaryCtxReset")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevicePrimaryCtxReset_
@@ -4973,7 +4835,6 @@ module hip
 
   interface hipDevicePrimaryCtxSetFlags
     function hipDevicePrimaryCtxSetFlags_(dev,flags) bind(c, name="hipDevicePrimaryCtxSetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDevicePrimaryCtxSetFlags_
@@ -4984,7 +4845,6 @@ module hip
 
   interface hipModuleLoadFatBinary
     function hipModuleLoadFatBinary_(myModule,fatbin) bind(c, name="hipModuleLoadFatBinary")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLoadFatBinary_
@@ -4995,7 +4855,6 @@ module hip
 
   interface hipModuleLoad
     function hipModuleLoad_(myModule,fname) bind(c, name="hipModuleLoad")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLoad_
@@ -5006,7 +4865,6 @@ module hip
 
   interface hipModuleUnload
     function hipModuleUnload_(myModule) bind(c, name="hipModuleUnload")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleUnload_
@@ -5016,7 +4874,6 @@ module hip
 
   interface hipModuleGetFunction
     function hipModuleGetFunction_(myFunction,myModule,kname) bind(c, name="hipModuleGetFunction")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleGetFunction_
@@ -5028,7 +4885,6 @@ module hip
 
   interface hipModuleGetFunctionCount
     function hipModuleGetFunctionCount_(count,mod) bind(c, name="hipModuleGetFunctionCount")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleGetFunctionCount_
@@ -5042,7 +4898,6 @@ module hip
   interface hipModuleEnumerateFunctions
     function hipModuleEnumerateFunctions_(functions,numFunctions,mod) &
         bind(c, name="hipModuleEnumerateFunctions")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleEnumerateFunctions_
@@ -5054,7 +4909,6 @@ module hip
 
   interface hipKernelGetAttribute
     function hipKernelGetAttribute_(pi,attrib,kernel,dev) bind(c, name="hipKernelGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelGetAttribute_
@@ -5071,7 +4925,6 @@ module hip
     function hipLibraryLoadData_(library,code,jitOptions,jitOptionsValues,numJitOptions, &
         libraryOptions,libraryOptionValues,numLibraryOptions) &
         bind(c, name="hipLibraryLoadData")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryLoadData_
@@ -5084,13 +4937,22 @@ module hip
       type(c_ptr) :: libraryOptionValues
       integer(c_int),value :: numLibraryOptions
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLibraryLoadData_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLibraryLoadData_rank_0,&
+      hipLibraryLoadData_rank_1
+#endif
+#endif
   end interface
 
   interface hipLibraryLoadFromFile
     function hipLibraryLoadFromFile_(library,fileName,jitOptions,jitOptionsValues,numJitOptions, &
         libraryOptions,libraryOptionValues,numLibraryOptions) &
         bind(c, name="hipLibraryLoadFromFile")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryLoadFromFile_
@@ -5103,11 +4965,20 @@ module hip
       type(c_ptr) :: libraryOptionValues
       integer(c_int),value :: numLibraryOptions
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLibraryLoadFromFile_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLibraryLoadFromFile_rank_0,&
+      hipLibraryLoadFromFile_rank_1
+#endif
+#endif
   end interface
 
   interface hipLibraryUnload
     function hipLibraryUnload_(library) bind(c, name="hipLibraryUnload")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryUnload_
@@ -5117,7 +4988,6 @@ module hip
 
   interface hipLibraryGetKernel
     function hipLibraryGetKernel_(pKernel,library,name) bind(c, name="hipLibraryGetKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryGetKernel_
@@ -5129,7 +4999,6 @@ module hip
 
   interface hipLibraryGetKernelCount
     function hipLibraryGetKernelCount_(count,library) bind(c, name="hipLibraryGetKernelCount")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryGetKernelCount_
@@ -5142,7 +5011,6 @@ module hip
 
   interface
     function hipLibraryGetGlobal_(dptr,bytes,library,name) bind(c, name="hipLibraryGetGlobal")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryGetGlobal_
@@ -5162,7 +5030,6 @@ module hip
 
   interface
     function hipLibraryGetManaged_(dptr,bytes,library,name) bind(c, name="hipLibraryGetManaged")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryGetManaged_
@@ -5182,7 +5049,6 @@ module hip
 
   interface hipLibraryGetModule
     function hipLibraryGetModule_(pMod,library) bind(c, name="hipLibraryGetModule")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryGetModule_
@@ -5194,7 +5060,6 @@ module hip
   interface hipLibraryEnumerateKernels
     function hipLibraryEnumerateKernels_(kernels,numKernels,library) &
         bind(c, name="hipLibraryEnumerateKernels")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLibraryEnumerateKernels_
@@ -5206,7 +5071,6 @@ module hip
 
   interface hipKernelGetLibrary
     function hipKernelGetLibrary_(library,kernel) bind(c, name="hipKernelGetLibrary")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelGetLibrary_
@@ -5217,7 +5081,6 @@ module hip
 
   interface hipKernelGetName
     function hipKernelGetName_(name,kernel) bind(c, name="hipKernelGetName")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelGetName_
@@ -5229,7 +5092,6 @@ module hip
   interface hipKernelGetParamInfo
     function hipKernelGetParamInfo_(kernel,paramIndex,paramOffset,paramSize) &
         bind(c, name="hipKernelGetParamInfo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipKernelGetParamInfo_
@@ -5244,7 +5106,6 @@ module hip
 
   interface hipFuncGetAttributes
     function hipFuncGetAttributes_(attr,func) bind(c, name="hipFuncGetAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFuncGetAttributes_
@@ -5255,7 +5116,6 @@ module hip
 
   interface hipFuncGetAttribute
     function hipFuncGetAttribute_(myValue,attrib,hfunc) bind(c, name="hipFuncGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFuncGetAttribute_
@@ -5269,7 +5129,6 @@ module hip
 
   interface hipGetFuncBySymbol
     function hipGetFuncBySymbol_(functionPtr,symbolPtr) bind(c, name="hipGetFuncBySymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetFuncBySymbol_
@@ -5281,7 +5140,6 @@ module hip
   interface hipGetDriverEntryPoint
     function hipGetDriverEntryPoint_(symbol,funcPtr,flags,driverStatus) &
         bind(c, name="hipGetDriverEntryPoint")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDriverEntryPoint_
@@ -5296,7 +5154,6 @@ module hip
 
   interface hipModuleGetTexRef
     function hipModuleGetTexRef_(texRef,hmod,name) bind(c, name="hipModuleGetTexRef")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleGetTexRef_
@@ -5308,7 +5165,6 @@ module hip
 
   interface hipModuleLoadData
     function hipModuleLoadData_(myModule,image) bind(c, name="hipModuleLoadData")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLoadData_
@@ -5320,7 +5176,6 @@ module hip
   interface hipModuleLoadDataEx
     function hipModuleLoadDataEx_(myModule,image,numOptions,options,optionValues) &
         bind(c, name="hipModuleLoadDataEx")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLoadDataEx_
@@ -5330,12 +5185,21 @@ module hip
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipModuleLoadDataEx_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipModuleLoadDataEx_rank_0,&
+      hipModuleLoadDataEx_rank_1
+#endif
+#endif
   end interface
 
   interface hipLinkAddData
     function hipLinkAddData_(state,myType,myData,mySize,name,numOptions,options,optionValues) &
         bind(c, name="hipLinkAddData")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLinkAddData_
@@ -5348,12 +5212,21 @@ module hip
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkAddData_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkAddData_rank_0,&
+      hipLinkAddData_rank_1
+#endif
+#endif
   end interface
 
   interface hipLinkAddFile
     function hipLinkAddFile_(state,myType,path,numOptions,options,optionValues) &
         bind(c, name="hipLinkAddFile")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLinkAddFile_
@@ -5364,11 +5237,20 @@ module hip
       type(c_ptr),value :: options
       type(c_ptr) :: optionValues
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkAddFile_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkAddFile_rank_0,&
+      hipLinkAddFile_rank_1
+#endif
+#endif
   end interface
 
   interface hipLinkComplete
     function hipLinkComplete_(state,hipBinOut,sizeOut) bind(c, name="hipLinkComplete")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLinkComplete_
@@ -5382,7 +5264,6 @@ module hip
 
   interface hipLinkCreate
     function hipLinkCreate_(numOptions,options,optionValues,stateOut) bind(c, name="hipLinkCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLinkCreate_
@@ -5391,11 +5272,20 @@ module hip
       type(c_ptr) :: optionValues
       type(c_ptr) :: stateOut
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipLinkCreate_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipLinkCreate_rank_0,&
+      hipLinkCreate_rank_1
+#endif
+#endif
   end interface
 
   interface hipLinkDestroy
     function hipLinkDestroy_(state) bind(c, name="hipLinkDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLinkDestroy_
@@ -5407,7 +5297,6 @@ module hip
     function hipModuleLaunchKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ, &
         sharedMemBytes,stream,kernelParams,extra) &
         bind(c, name="hipModuleLaunchKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLaunchKernel_
@@ -5429,7 +5318,6 @@ module hip
     function hipModuleLaunchCooperativeKernel_(f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY, &
         blockDimZ,sharedMemBytes,stream,kernelParams) &
         bind(c, name="hipModuleLaunchCooperativeKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLaunchCooperativeKernel_
@@ -5449,7 +5337,6 @@ module hip
   interface hipModuleLaunchCooperativeKernelMultiDevice
     function hipModuleLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
         bind(c, name="hipModuleLaunchCooperativeKernelMultiDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleLaunchCooperativeKernelMultiDevice_
@@ -5462,7 +5349,6 @@ module hip
   interface hipLaunchCooperativeKernel
     function hipLaunchCooperativeKernel_(f,gridDim,blockDimX,kernelParams,sharedMemBytes,stream) &
         bind(c, name="hipLaunchCooperativeKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchCooperativeKernel_
@@ -5478,7 +5364,6 @@ module hip
   interface hipLaunchCooperativeKernelMultiDevice
     function hipLaunchCooperativeKernelMultiDevice_(launchParamsList,numDevices,flags) &
         bind(c, name="hipLaunchCooperativeKernelMultiDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchCooperativeKernelMultiDevice_
@@ -5491,7 +5376,6 @@ module hip
   interface hipExtLaunchMultiKernelMultiDevice
     function hipExtLaunchMultiKernelMultiDevice_(launchParamsList,numDevices,flags) &
         bind(c, name="hipExtLaunchMultiKernelMultiDevice")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtLaunchMultiKernelMultiDevice_
@@ -5503,7 +5387,6 @@ module hip
 
   interface hipLaunchKernelExC
     function hipLaunchKernelExC_(config,fPtr,args) bind(c, name="hipLaunchKernelExC")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchKernelExC_
@@ -5515,7 +5398,6 @@ module hip
 
   interface hipDrvLaunchKernelEx
     function hipDrvLaunchKernelEx_(config,f,params,extra) bind(c, name="hipDrvLaunchKernelEx")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvLaunchKernelEx_
@@ -5529,7 +5411,6 @@ module hip
   interface hipMemGetHandleForAddressRange
     function hipMemGetHandleForAddressRange_(handle,dptr,mySize,handleType,flags) &
         bind(c, name="hipMemGetHandleForAddressRange")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetHandleForAddressRange_
@@ -5545,7 +5426,6 @@ module hip
     function hipModuleOccupancyMaxPotentialBlockSize_(gridSize,blockSize,f,dynSharedMemPerBlk, &
         blockSizeLimit) &
         bind(c, name="hipModuleOccupancyMaxPotentialBlockSize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleOccupancyMaxPotentialBlockSize_
@@ -5563,7 +5443,6 @@ module hip
     function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_(gridSize,blockSize,f, &
         dynSharedMemPerBlk,blockSizeLimit,flags) &
         bind(c, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_
@@ -5582,7 +5461,6 @@ module hip
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_(numBlocks,f,blockSize, &
         dynSharedMemPerBlk) &
         bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_
@@ -5599,7 +5477,6 @@ module hip
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
         dynSharedMemPerBlk,flags) &
         bind(c, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
@@ -5617,7 +5494,6 @@ module hip
     function hipOccupancyMaxActiveBlocksPerMultiprocessor_(numBlocks,f,blockSize, &
         dynSharedMemPerBlk) &
         bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_
@@ -5634,7 +5510,6 @@ module hip
     function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_(numBlocks,f,blockSize, &
         dynSharedMemPerBlk,flags) &
         bind(c, name="hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_
@@ -5652,7 +5527,6 @@ module hip
     function hipOccupancyMaxPotentialBlockSize_(gridSize,blockSize,f,dynSharedMemPerBlk, &
         blockSizeLimit) &
         bind(c, name="hipOccupancyMaxPotentialBlockSize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyMaxPotentialBlockSize_
@@ -5669,7 +5543,6 @@ module hip
   interface hipOccupancyAvailableDynamicSMemPerBlock
     function hipOccupancyAvailableDynamicSMemPerBlock_(dynamicSmemSize,f,numBlocks,blockSize) &
         bind(c, name="hipOccupancyAvailableDynamicSMemPerBlock")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyAvailableDynamicSMemPerBlock_
@@ -5685,7 +5558,6 @@ module hip
   interface hipOccupancyMaxActiveClusters
     function hipOccupancyMaxActiveClusters_(numClusters,f,config) &
         bind(c, name="hipOccupancyMaxActiveClusters")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyMaxActiveClusters_
@@ -5700,7 +5572,6 @@ module hip
   interface hipOccupancyMaxPotentialClusterSize
     function hipOccupancyMaxPotentialClusterSize_(clusterSize,f,config) &
         bind(c, name="hipOccupancyMaxPotentialClusterSize")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipOccupancyMaxPotentialClusterSize_
@@ -5714,7 +5585,6 @@ module hip
 
   interface hipProfilerStart
     function hipProfilerStart_() bind(c, name="hipProfilerStart")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipProfilerStart_
@@ -5723,7 +5593,6 @@ module hip
 
   interface hipProfilerStop
     function hipProfilerStop_() bind(c, name="hipProfilerStop")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipProfilerStop_
@@ -5732,7 +5601,6 @@ module hip
 
   interface hipConfigureCall
     function hipConfigureCall_(gridDim,blockDim,sharedMem,stream) bind(c, name="hipConfigureCall")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipConfigureCall_
@@ -5745,7 +5613,6 @@ module hip
 
   interface hipSetupArgument
     function hipSetupArgument_(arg,mySize,offset) bind(c, name="hipSetupArgument")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipSetupArgument_
@@ -5757,7 +5624,6 @@ module hip
 
   interface hipLaunchByPtr
     function hipLaunchByPtr_(func) bind(c, name="hipLaunchByPtr")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchByPtr_
@@ -5768,7 +5634,6 @@ module hip
   interface hipLaunchKernel
     function hipLaunchKernel_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) &
         bind(c, name="hipLaunchKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchKernel_
@@ -5783,7 +5648,6 @@ module hip
 
   interface hipLaunchHostFunc
     function hipLaunchHostFunc_(stream,fn,userData) bind(c, name="hipLaunchHostFunc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchHostFunc_
@@ -5795,7 +5659,6 @@ module hip
 
   interface hipDrvMemcpy2DUnaligned
     function hipDrvMemcpy2DUnaligned_(pCopy) bind(c, name="hipDrvMemcpy2DUnaligned")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvMemcpy2DUnaligned_
@@ -5807,7 +5670,6 @@ module hip
     function hipExtLaunchKernel_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream, &
         startEvent,stopEvent,flags) &
         bind(c, name="hipExtLaunchKernel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtLaunchKernel_
@@ -5826,7 +5688,6 @@ module hip
   interface hipCreateTextureObject
     function hipCreateTextureObject_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
         bind(c, name="hipCreateTextureObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCreateTextureObject_
@@ -5839,7 +5700,6 @@ module hip
 
   interface hipDestroyTextureObject
     function hipDestroyTextureObject_(textureObject) bind(c, name="hipDestroyTextureObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDestroyTextureObject_
@@ -5849,7 +5709,6 @@ module hip
 
   interface hipGetChannelDesc
     function hipGetChannelDesc_(desc,array) bind(c, name="hipGetChannelDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetChannelDesc_
@@ -5861,7 +5720,6 @@ module hip
   interface hipGetTextureObjectResourceDesc
     function hipGetTextureObjectResourceDesc_(pResDesc,textureObject) &
         bind(c, name="hipGetTextureObjectResourceDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetTextureObjectResourceDesc_
@@ -5873,7 +5731,6 @@ module hip
   interface hipGetTextureObjectResourceViewDesc
     function hipGetTextureObjectResourceViewDesc_(pResViewDesc,textureObject) &
         bind(c, name="hipGetTextureObjectResourceViewDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetTextureObjectResourceViewDesc_
@@ -5885,7 +5742,6 @@ module hip
   interface hipGetTextureObjectTextureDesc
     function hipGetTextureObjectTextureDesc_(pTexDesc,textureObject) &
         bind(c, name="hipGetTextureObjectTextureDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetTextureObjectTextureDesc_
@@ -5897,7 +5753,6 @@ module hip
   interface hipTexObjectCreate
     function hipTexObjectCreate_(pTexObject,pResDesc,pTexDesc,pResViewDesc) &
         bind(c, name="hipTexObjectCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexObjectCreate_
@@ -5910,7 +5765,6 @@ module hip
 
   interface hipTexObjectDestroy
     function hipTexObjectDestroy_(texObject) bind(c, name="hipTexObjectDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexObjectDestroy_
@@ -5921,7 +5775,6 @@ module hip
   interface hipTexObjectGetResourceDesc
     function hipTexObjectGetResourceDesc_(pResDesc,texObject) &
         bind(c, name="hipTexObjectGetResourceDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexObjectGetResourceDesc_
@@ -5933,7 +5786,6 @@ module hip
   interface hipTexObjectGetResourceViewDesc
     function hipTexObjectGetResourceViewDesc_(pResViewDesc,texObject) &
         bind(c, name="hipTexObjectGetResourceViewDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexObjectGetResourceViewDesc_
@@ -5945,7 +5797,6 @@ module hip
   interface hipTexObjectGetTextureDesc
     function hipTexObjectGetTextureDesc_(pTexDesc,texObject) &
         bind(c, name="hipTexObjectGetTextureDesc")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexObjectGetTextureDesc_
@@ -5957,7 +5808,6 @@ module hip
   interface hipMallocMipmappedArray
     function hipMallocMipmappedArray_(mipmappedArray,desc,extent,numLevels,flags) &
         bind(c, name="hipMallocMipmappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMallocMipmappedArray_
@@ -5971,7 +5821,6 @@ module hip
 
   interface hipFreeMipmappedArray
     function hipFreeMipmappedArray_(mipmappedArray) bind(c, name="hipFreeMipmappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipFreeMipmappedArray_
@@ -5982,7 +5831,6 @@ module hip
   interface hipGetMipmappedArrayLevel
     function hipGetMipmappedArrayLevel_(levelArray,mipmappedArray,level) &
         bind(c, name="hipGetMipmappedArrayLevel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetMipmappedArrayLevel_
@@ -5995,7 +5843,6 @@ module hip
   interface hipMipmappedArrayCreate
     function hipMipmappedArrayCreate_(pHandle,pMipmappedArrayDesc,numMipmapLevels) &
         bind(c, name="hipMipmappedArrayCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMipmappedArrayCreate_
@@ -6007,7 +5854,6 @@ module hip
 
   interface hipMipmappedArrayDestroy
     function hipMipmappedArrayDestroy_(hMipmappedArray) bind(c, name="hipMipmappedArrayDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMipmappedArrayDestroy_
@@ -6018,7 +5864,6 @@ module hip
   interface hipMipmappedArrayGetLevel
     function hipMipmappedArrayGetLevel_(pLevelArray,hMipMappedArray,level) &
         bind(c, name="hipMipmappedArrayGetLevel")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMipmappedArrayGetLevel_
@@ -6031,7 +5876,6 @@ module hip
   interface hipBindTextureToMipmappedArray
     function hipBindTextureToMipmappedArray_(tex,mipmappedArray,desc) &
         bind(c, name="hipBindTextureToMipmappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipBindTextureToMipmappedArray_
@@ -6043,7 +5887,6 @@ module hip
 
   interface hipGetTextureReference
     function hipGetTextureReference_(texref,symbol) bind(c, name="hipGetTextureReference")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetTextureReference_
@@ -6054,18 +5897,26 @@ module hip
 
   interface hipTexRefGetBorderColor
     function hipTexRefGetBorderColor_(pBorderColor,texRef) bind(c, name="hipTexRefGetBorderColor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetBorderColor_
       type(c_ptr),value :: pBorderColor
       type(textureReference) :: texRef
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipTexRefGetBorderColor_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipTexRefGetBorderColor_rank_0,&
+      hipTexRefGetBorderColor_rank_1
+#endif
+#endif
   end interface
 
   interface hipTexRefGetArray
     function hipTexRefGetArray_(pArray,texRef) bind(c, name="hipTexRefGetArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetArray_
@@ -6076,7 +5927,6 @@ module hip
 
   interface hipTexRefSetAddressMode
     function hipTexRefSetAddressMode_(texRef,dim,am) bind(c, name="hipTexRefSetAddressMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetAddressMode_
@@ -6088,7 +5938,6 @@ module hip
 
   interface hipTexRefSetArray
     function hipTexRefSetArray_(tex,array,flags) bind(c, name="hipTexRefSetArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetArray_
@@ -6100,7 +5949,6 @@ module hip
 
   interface hipTexRefSetFilterMode
     function hipTexRefSetFilterMode_(texRef,fm) bind(c, name="hipTexRefSetFilterMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetFilterMode_
@@ -6111,7 +5959,6 @@ module hip
 
   interface hipTexRefSetFlags
     function hipTexRefSetFlags_(texRef,Flags) bind(c, name="hipTexRefSetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetFlags_
@@ -6122,7 +5969,6 @@ module hip
 
   interface hipTexRefSetFormat
     function hipTexRefSetFormat_(texRef,fmt,NumPackedComponents) bind(c, name="hipTexRefSetFormat")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetFormat_
@@ -6134,7 +5980,6 @@ module hip
 
   interface hipBindTexture
     function hipBindTexture_(offset,tex,devPtr,desc,mySize) bind(c, name="hipBindTexture")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipBindTexture_
@@ -6151,7 +5996,6 @@ module hip
   interface hipBindTexture2D
     function hipBindTexture2D_(offset,tex,devPtr,desc,width,height,pitch) &
         bind(c, name="hipBindTexture2D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipBindTexture2D_
@@ -6169,7 +6013,6 @@ module hip
 
   interface hipBindTextureToArray
     function hipBindTextureToArray_(tex,array,desc) bind(c, name="hipBindTextureToArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipBindTextureToArray_
@@ -6182,7 +6025,6 @@ module hip
   interface hipGetTextureAlignmentOffset
     function hipGetTextureAlignmentOffset_(offset,texref) &
         bind(c, name="hipGetTextureAlignmentOffset")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetTextureAlignmentOffset_
@@ -6195,7 +6037,6 @@ module hip
 
   interface hipUnbindTexture
     function hipUnbindTexture_(tex) bind(c, name="hipUnbindTexture")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipUnbindTexture_
@@ -6205,7 +6046,6 @@ module hip
 
   interface hipTexRefGetAddress
     function hipTexRefGetAddress_(dev_ptr,texRef) bind(c, name="hipTexRefGetAddress")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetAddress_
@@ -6216,7 +6056,6 @@ module hip
 
   interface hipTexRefGetAddressMode
     function hipTexRefGetAddressMode_(pam,texRef,dim) bind(c, name="hipTexRefGetAddressMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetAddressMode_
@@ -6230,7 +6069,6 @@ module hip
 
   interface hipTexRefGetFilterMode
     function hipTexRefGetFilterMode_(pfm,texRef) bind(c, name="hipTexRefGetFilterMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetFilterMode_
@@ -6243,7 +6081,6 @@ module hip
 
   interface hipTexRefGetFlags
     function hipTexRefGetFlags_(pFlags,texRef) bind(c, name="hipTexRefGetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetFlags_
@@ -6256,7 +6093,6 @@ module hip
 
   interface hipTexRefGetFormat
     function hipTexRefGetFormat_(pFormat,pNumChannels,texRef) bind(c, name="hipTexRefGetFormat")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetFormat_
@@ -6270,7 +6106,6 @@ module hip
 
   interface hipTexRefGetMaxAnisotropy
     function hipTexRefGetMaxAnisotropy_(pmaxAnsio,texRef) bind(c, name="hipTexRefGetMaxAnisotropy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetMaxAnisotropy_
@@ -6283,7 +6118,6 @@ module hip
 
   interface hipTexRefGetMipmapFilterMode
     function hipTexRefGetMipmapFilterMode_(pfm,texRef) bind(c, name="hipTexRefGetMipmapFilterMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetMipmapFilterMode_
@@ -6296,7 +6130,6 @@ module hip
 
   interface hipTexRefGetMipmapLevelBias
     function hipTexRefGetMipmapLevelBias_(pbias,texRef) bind(c, name="hipTexRefGetMipmapLevelBias")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetMipmapLevelBias_
@@ -6310,7 +6143,6 @@ module hip
   interface hipTexRefGetMipmapLevelClamp
     function hipTexRefGetMipmapLevelClamp_(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef) &
         bind(c, name="hipTexRefGetMipmapLevelClamp")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetMipmapLevelClamp_
@@ -6324,7 +6156,6 @@ module hip
 
   interface hipTexRefGetMipMappedArray
     function hipTexRefGetMipMappedArray_(pArray,texRef) bind(c, name="hipTexRefGetMipMappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefGetMipMappedArray_
@@ -6335,7 +6166,6 @@ module hip
 
   interface hipTexRefSetAddress
     function hipTexRefSetAddress_(ByteOffset,texRef,dptr,bytes) bind(c, name="hipTexRefSetAddress")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetAddress_
@@ -6350,7 +6180,6 @@ module hip
 
   interface hipTexRefSetAddress2D
     function hipTexRefSetAddress2D_(texRef,desc,dptr,Pitch) bind(c, name="hipTexRefSetAddress2D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetAddress2D_
@@ -6363,7 +6192,6 @@ module hip
 
   interface hipTexRefSetMaxAnisotropy
     function hipTexRefSetMaxAnisotropy_(texRef,maxAniso) bind(c, name="hipTexRefSetMaxAnisotropy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetMaxAnisotropy_
@@ -6374,18 +6202,26 @@ module hip
 
   interface hipTexRefSetBorderColor
     function hipTexRefSetBorderColor_(texRef,pBorderColor) bind(c, name="hipTexRefSetBorderColor")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetBorderColor_
       type(textureReference) :: texRef
       type(c_ptr),value :: pBorderColor
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipTexRefSetBorderColor_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipTexRefSetBorderColor_rank_0,&
+      hipTexRefSetBorderColor_rank_1
+#endif
+#endif
   end interface
 
   interface hipTexRefSetMipmapFilterMode
     function hipTexRefSetMipmapFilterMode_(texRef,fm) bind(c, name="hipTexRefSetMipmapFilterMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetMipmapFilterMode_
@@ -6396,7 +6232,6 @@ module hip
 
   interface hipTexRefSetMipmapLevelBias
     function hipTexRefSetMipmapLevelBias_(texRef,bias) bind(c, name="hipTexRefSetMipmapLevelBias")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetMipmapLevelBias_
@@ -6408,7 +6243,6 @@ module hip
   interface hipTexRefSetMipmapLevelClamp
     function hipTexRefSetMipmapLevelClamp_(texRef,minMipMapLevelClamp,maxMipMapLevelClamp) &
         bind(c, name="hipTexRefSetMipmapLevelClamp")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetMipmapLevelClamp_
@@ -6421,7 +6255,6 @@ module hip
   interface hipTexRefSetMipmappedArray
     function hipTexRefSetMipmappedArray_(texRef,mipmappedArray,Flags) &
         bind(c, name="hipTexRefSetMipmappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipTexRefSetMipmappedArray_
@@ -6433,7 +6266,6 @@ module hip
 
   interface hipApiName
     function hipApiName_(id) bind(c, name="hipApiName")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr) :: hipApiName_
@@ -6443,7 +6275,6 @@ module hip
 
   interface hipKernelNameRef
     function hipKernelNameRef_(f) bind(c, name="hipKernelNameRef")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr) :: hipKernelNameRef_
@@ -6453,7 +6284,6 @@ module hip
 
   interface hipKernelNameRefByPtr
     function hipKernelNameRefByPtr_(hostFunction,stream) bind(c, name="hipKernelNameRefByPtr")
-      use iso_c_binding
       import
       implicit none
       type(c_ptr) :: hipKernelNameRefByPtr_
@@ -6464,7 +6294,6 @@ module hip
 
   interface hipGetStreamDeviceId
     function hipGetStreamDeviceId_(stream) bind(c, name="hipGetStreamDeviceId")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetStreamDeviceId_
@@ -6474,7 +6303,6 @@ module hip
 
   interface hipStreamBeginCapture
     function hipStreamBeginCapture_(stream,mode) bind(c, name="hipStreamBeginCapture")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamBeginCapture_
@@ -6487,7 +6315,6 @@ module hip
     function hipStreamBeginCaptureToGraph_(stream,graph,dependencies,dependencyData, &
         numDependencies,mode) &
         bind(c, name="hipStreamBeginCaptureToGraph")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamBeginCaptureToGraph_
@@ -6502,7 +6329,6 @@ module hip
 
   interface hipStreamEndCapture
     function hipStreamEndCapture_(stream,pGraph) bind(c, name="hipStreamEndCapture")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamEndCapture_
@@ -6514,7 +6340,6 @@ module hip
   interface hipStreamGetCaptureInfo
     function hipStreamGetCaptureInfo_(stream,pCaptureStatus,pId) &
         bind(c, name="hipStreamGetCaptureInfo")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetCaptureInfo_
@@ -6530,7 +6355,6 @@ module hip
     function hipStreamGetCaptureInfo_v2_(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out) &
         bind(c, name="hipStreamGetCaptureInfo_v2")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetCaptureInfo_v2_
@@ -6552,7 +6376,6 @@ module hip
 
   interface hipStreamIsCapturing
     function hipStreamIsCapturing_(stream,pCaptureStatus) bind(c, name="hipStreamIsCapturing")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamIsCapturing_
@@ -6566,7 +6389,6 @@ module hip
   interface hipStreamUpdateCaptureDependencies
     function hipStreamUpdateCaptureDependencies_(stream,dependencies,numDependencies,flags) &
         bind(c, name="hipStreamUpdateCaptureDependencies")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamUpdateCaptureDependencies_
@@ -6580,7 +6402,6 @@ module hip
   interface hipThreadExchangeStreamCaptureMode
     function hipThreadExchangeStreamCaptureMode_(mode) &
         bind(c, name="hipThreadExchangeStreamCaptureMode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipThreadExchangeStreamCaptureMode_
@@ -6592,7 +6413,6 @@ module hip
 
   interface hipGraphCreate
     function hipGraphCreate_(pGraph,flags) bind(c, name="hipGraphCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphCreate_
@@ -6603,7 +6423,6 @@ module hip
 
   interface hipGraphDestroy
     function hipGraphDestroy_(graph) bind(c, name="hipGraphDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphDestroy_
@@ -6614,7 +6433,6 @@ module hip
   interface hipGraphAddDependencies
     function hipGraphAddDependencies_(graph,from,to,numDependencies) &
         bind(c, name="hipGraphAddDependencies")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddDependencies_
@@ -6628,7 +6446,6 @@ module hip
   interface hipGraphRemoveDependencies
     function hipGraphRemoveDependencies_(graph,from,to,numDependencies) &
         bind(c, name="hipGraphRemoveDependencies")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphRemoveDependencies_
@@ -6641,7 +6458,6 @@ module hip
 
   interface
     function hipGraphGetEdges_(graph,from,to,numEdges) bind(c, name="hipGraphGetEdges")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphGetEdges_
@@ -6661,7 +6477,6 @@ module hip
 
   interface
     function hipGraphGetNodes_(graph,nodes,numNodes) bind(c, name="hipGraphGetNodes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphGetNodes_
@@ -6681,7 +6496,6 @@ module hip
   interface
     function hipGraphGetRootNodes_(graph,pRootNodes,pNumRootNodes) &
         bind(c, name="hipGraphGetRootNodes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphGetRootNodes_
@@ -6701,7 +6515,6 @@ module hip
   interface
     function hipGraphNodeGetDependencies_(node,pDependencies,pNumDependencies) &
         bind(c, name="hipGraphNodeGetDependencies")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeGetDependencies_
@@ -6721,7 +6534,6 @@ module hip
   interface
     function hipGraphNodeGetDependentNodes_(node,pDependentNodes,pNumDependentNodes) &
         bind(c, name="hipGraphNodeGetDependentNodes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeGetDependentNodes_
@@ -6740,7 +6552,6 @@ module hip
 
   interface hipGraphNodeGetType
     function hipGraphNodeGetType_(node,pType) bind(c, name="hipGraphNodeGetType")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeGetType_
@@ -6753,7 +6564,6 @@ module hip
 
   interface hipGraphDestroyNode
     function hipGraphDestroyNode_(node) bind(c, name="hipGraphDestroyNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphDestroyNode_
@@ -6763,7 +6573,6 @@ module hip
 
   interface hipGraphClone
     function hipGraphClone_(pGraphClone,originalGraph) bind(c, name="hipGraphClone")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphClone_
@@ -6775,7 +6584,6 @@ module hip
   interface hipGraphNodeFindInClone
     function hipGraphNodeFindInClone_(pNode,originalNode,clonedGraph) &
         bind(c, name="hipGraphNodeFindInClone")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeFindInClone_
@@ -6788,7 +6596,6 @@ module hip
   interface hipGraphInstantiate
     function hipGraphInstantiate_(pGraphExec,graph,pErrorNode,pLogBuffer,bufferSize) &
         bind(c, name="hipGraphInstantiate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphInstantiate_
@@ -6803,7 +6610,6 @@ module hip
   interface hipGraphInstantiateWithFlags
     function hipGraphInstantiateWithFlags_(pGraphExec,graph,flags) &
         bind(c, name="hipGraphInstantiateWithFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphInstantiateWithFlags_
@@ -6816,7 +6622,6 @@ module hip
   interface hipGraphInstantiateWithParams
     function hipGraphInstantiateWithParams_(pGraphExec,graph,instantiateParams) &
         bind(c, name="hipGraphInstantiateWithParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphInstantiateWithParams_
@@ -6828,7 +6633,6 @@ module hip
 
   interface hipGraphLaunch
     function hipGraphLaunch_(graphExec,stream) bind(c, name="hipGraphLaunch")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphLaunch_
@@ -6839,7 +6643,6 @@ module hip
 
   interface hipGraphUpload
     function hipGraphUpload_(graphExec,stream) bind(c, name="hipGraphUpload")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphUpload_
@@ -6851,7 +6654,6 @@ module hip
   interface hipGraphAddNode
     function hipGraphAddNode_(pGraphNode,graph,pDependencies,numDependencies,nodeParams) &
         bind(c, name="hipGraphAddNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddNode_
@@ -6865,7 +6667,6 @@ module hip
 
   interface hipGraphExecGetFlags
     function hipGraphExecGetFlags_(graphExec,flags) bind(c, name="hipGraphExecGetFlags")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecGetFlags_
@@ -6878,7 +6679,6 @@ module hip
 
   interface hipGraphNodeSetParams
     function hipGraphNodeSetParams_(node,nodeParams) bind(c, name="hipGraphNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeSetParams_
@@ -6890,7 +6690,6 @@ module hip
   interface hipGraphExecNodeSetParams
     function hipGraphExecNodeSetParams_(graphExec,node,nodeParams) &
         bind(c, name="hipGraphExecNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecNodeSetParams_
@@ -6902,7 +6701,6 @@ module hip
 
   interface hipGraphExecDestroy
     function hipGraphExecDestroy_(graphExec) bind(c, name="hipGraphExecDestroy")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecDestroy_
@@ -6913,7 +6711,6 @@ module hip
   interface hipGraphExecUpdate
     function hipGraphExecUpdate_(hGraphExec,hGraph,hErrorNode_out,updateResult_out) &
         bind(c, name="hipGraphExecUpdate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecUpdate_
@@ -6929,7 +6726,6 @@ module hip
   interface hipGraphAddKernelNode
     function hipGraphAddKernelNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
         bind(c, name="hipGraphAddKernelNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddKernelNode_
@@ -6944,7 +6740,6 @@ module hip
   interface hipGraphKernelNodeGetParams
     function hipGraphKernelNodeGetParams_(node,pNodeParams) &
         bind(c, name="hipGraphKernelNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphKernelNodeGetParams_
@@ -6956,7 +6751,6 @@ module hip
   interface hipGraphKernelNodeSetParams
     function hipGraphKernelNodeSetParams_(node,pNodeParams) &
         bind(c, name="hipGraphKernelNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphKernelNodeSetParams_
@@ -6968,7 +6762,6 @@ module hip
   interface hipGraphExecKernelNodeSetParams
     function hipGraphExecKernelNodeSetParams_(hGraphExec,node,pNodeParams) &
         bind(c, name="hipGraphExecKernelNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecKernelNodeSetParams_
@@ -6982,7 +6775,6 @@ module hip
     function hipDrvGraphAddMemcpyNode_(phGraphNode,hGraph,dependencies,numDependencies,copyParams, &
         ctx) &
         bind(c, name="hipDrvGraphAddMemcpyNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphAddMemcpyNode_
@@ -6998,7 +6790,6 @@ module hip
   interface hipGraphAddMemcpyNode
     function hipGraphAddMemcpyNode_(pGraphNode,graph,pDependencies,numDependencies,pCopyParams) &
         bind(c, name="hipGraphAddMemcpyNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemcpyNode_
@@ -7013,7 +6804,6 @@ module hip
   interface hipGraphMemcpyNodeGetParams
     function hipGraphMemcpyNodeGetParams_(node,pNodeParams) &
         bind(c, name="hipGraphMemcpyNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemcpyNodeGetParams_
@@ -7025,7 +6815,6 @@ module hip
   interface hipGraphMemcpyNodeSetParams
     function hipGraphMemcpyNodeSetParams_(node,pNodeParams) &
         bind(c, name="hipGraphMemcpyNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemcpyNodeSetParams_
@@ -7037,7 +6826,6 @@ module hip
   interface hipGraphKernelNodeSetAttribute
     function hipGraphKernelNodeSetAttribute_(hNode,attr,myValue) &
         bind(c, name="hipGraphKernelNodeSetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphKernelNodeSetAttribute_
@@ -7050,7 +6838,6 @@ module hip
   interface hipGraphKernelNodeGetAttribute
     function hipGraphKernelNodeGetAttribute_(hNode,attr,myValue) &
         bind(c, name="hipGraphKernelNodeGetAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphKernelNodeGetAttribute_
@@ -7063,7 +6850,6 @@ module hip
   interface hipGraphExecMemcpyNodeSetParams
     function hipGraphExecMemcpyNodeSetParams_(hGraphExec,node,pNodeParams) &
         bind(c, name="hipGraphExecMemcpyNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecMemcpyNodeSetParams_
@@ -7077,7 +6863,6 @@ module hip
     function hipGraphAddMemcpyNode1D_(pGraphNode,graph,pDependencies,numDependencies,dst,src, &
         count,myKind) &
         bind(c, name="hipGraphAddMemcpyNode1D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemcpyNode1D_
@@ -7095,7 +6880,6 @@ module hip
   interface hipGraphMemcpyNodeSetParams1D
     function hipGraphMemcpyNodeSetParams1D_(node,dst,src,count,myKind) &
         bind(c, name="hipGraphMemcpyNodeSetParams1D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemcpyNodeSetParams1D_
@@ -7110,7 +6894,6 @@ module hip
   interface hipGraphExecMemcpyNodeSetParams1D
     function hipGraphExecMemcpyNodeSetParams1D_(hGraphExec,node,dst,src,count,myKind) &
         bind(c, name="hipGraphExecMemcpyNodeSetParams1D")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecMemcpyNodeSetParams1D_
@@ -7127,7 +6910,6 @@ module hip
     function hipGraphAddMemcpyNodeFromSymbol_(pGraphNode,graph,pDependencies,numDependencies,dst, &
         symbol,count,offset,myKind) &
         bind(c, name="hipGraphAddMemcpyNodeFromSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemcpyNodeFromSymbol_
@@ -7146,7 +6928,6 @@ module hip
   interface hipGraphMemcpyNodeSetParamsFromSymbol
     function hipGraphMemcpyNodeSetParamsFromSymbol_(node,dst,symbol,count,offset,myKind) &
         bind(c, name="hipGraphMemcpyNodeSetParamsFromSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemcpyNodeSetParamsFromSymbol_
@@ -7163,7 +6944,6 @@ module hip
     function hipGraphExecMemcpyNodeSetParamsFromSymbol_(hGraphExec,node,dst,symbol,count,offset, &
         myKind) &
         bind(c, name="hipGraphExecMemcpyNodeSetParamsFromSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecMemcpyNodeSetParamsFromSymbol_
@@ -7181,7 +6961,6 @@ module hip
     function hipGraphAddMemcpyNodeToSymbol_(pGraphNode,graph,pDependencies,numDependencies,symbol, &
         src,count,offset,myKind) &
         bind(c, name="hipGraphAddMemcpyNodeToSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemcpyNodeToSymbol_
@@ -7200,7 +6979,6 @@ module hip
   interface hipGraphMemcpyNodeSetParamsToSymbol
     function hipGraphMemcpyNodeSetParamsToSymbol_(node,symbol,src,count,offset,myKind) &
         bind(c, name="hipGraphMemcpyNodeSetParamsToSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemcpyNodeSetParamsToSymbol_
@@ -7217,7 +6995,6 @@ module hip
     function hipGraphExecMemcpyNodeSetParamsToSymbol_(hGraphExec,node,symbol,src,count,offset, &
         myKind) &
         bind(c, name="hipGraphExecMemcpyNodeSetParamsToSymbol")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecMemcpyNodeSetParamsToSymbol_
@@ -7234,7 +7011,6 @@ module hip
   interface hipGraphAddMemsetNode
     function hipGraphAddMemsetNode_(pGraphNode,graph,pDependencies,numDependencies,pMemsetParams) &
         bind(c, name="hipGraphAddMemsetNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemsetNode_
@@ -7249,7 +7025,6 @@ module hip
   interface hipGraphMemsetNodeGetParams
     function hipGraphMemsetNodeGetParams_(node,pNodeParams) &
         bind(c, name="hipGraphMemsetNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemsetNodeGetParams_
@@ -7261,7 +7036,6 @@ module hip
   interface hipGraphMemsetNodeSetParams
     function hipGraphMemsetNodeSetParams_(node,pNodeParams) &
         bind(c, name="hipGraphMemsetNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemsetNodeSetParams_
@@ -7273,7 +7047,6 @@ module hip
   interface hipGraphExecMemsetNodeSetParams
     function hipGraphExecMemsetNodeSetParams_(hGraphExec,node,pNodeParams) &
         bind(c, name="hipGraphExecMemsetNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecMemsetNodeSetParams_
@@ -7286,7 +7059,6 @@ module hip
   interface hipGraphAddHostNode
     function hipGraphAddHostNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
         bind(c, name="hipGraphAddHostNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddHostNode_
@@ -7300,7 +7072,6 @@ module hip
 
   interface hipGraphHostNodeGetParams
     function hipGraphHostNodeGetParams_(node,pNodeParams) bind(c, name="hipGraphHostNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphHostNodeGetParams_
@@ -7311,7 +7082,6 @@ module hip
 
   interface hipGraphHostNodeSetParams
     function hipGraphHostNodeSetParams_(node,pNodeParams) bind(c, name="hipGraphHostNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphHostNodeSetParams_
@@ -7323,7 +7093,6 @@ module hip
   interface hipGraphExecHostNodeSetParams
     function hipGraphExecHostNodeSetParams_(hGraphExec,node,pNodeParams) &
         bind(c, name="hipGraphExecHostNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecHostNodeSetParams_
@@ -7336,7 +7105,6 @@ module hip
   interface hipGraphAddChildGraphNode
     function hipGraphAddChildGraphNode_(pGraphNode,graph,pDependencies,numDependencies,childGraph) &
         bind(c, name="hipGraphAddChildGraphNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddChildGraphNode_
@@ -7351,7 +7119,6 @@ module hip
   interface hipGraphChildGraphNodeGetGraph
     function hipGraphChildGraphNodeGetGraph_(node,pGraph) &
         bind(c, name="hipGraphChildGraphNodeGetGraph")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphChildGraphNodeGetGraph_
@@ -7363,7 +7130,6 @@ module hip
   interface hipGraphExecChildGraphNodeSetParams
     function hipGraphExecChildGraphNodeSetParams_(hGraphExec,node,childGraph) &
         bind(c, name="hipGraphExecChildGraphNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecChildGraphNodeSetParams_
@@ -7376,7 +7142,6 @@ module hip
   interface hipGraphAddEmptyNode
     function hipGraphAddEmptyNode_(pGraphNode,graph,pDependencies,numDependencies) &
         bind(c, name="hipGraphAddEmptyNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddEmptyNode_
@@ -7390,7 +7155,6 @@ module hip
   interface hipGraphAddEventRecordNode
     function hipGraphAddEventRecordNode_(pGraphNode,graph,pDependencies,numDependencies,event) &
         bind(c, name="hipGraphAddEventRecordNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddEventRecordNode_
@@ -7405,7 +7169,6 @@ module hip
   interface hipGraphEventRecordNodeGetEvent
     function hipGraphEventRecordNodeGetEvent_(node,event_out) &
         bind(c, name="hipGraphEventRecordNodeGetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphEventRecordNodeGetEvent_
@@ -7417,7 +7180,6 @@ module hip
   interface hipGraphEventRecordNodeSetEvent
     function hipGraphEventRecordNodeSetEvent_(node,event) &
         bind(c, name="hipGraphEventRecordNodeSetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphEventRecordNodeSetEvent_
@@ -7429,7 +7191,6 @@ module hip
   interface hipGraphExecEventRecordNodeSetEvent
     function hipGraphExecEventRecordNodeSetEvent_(hGraphExec,hNode,event) &
         bind(c, name="hipGraphExecEventRecordNodeSetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecEventRecordNodeSetEvent_
@@ -7442,7 +7203,6 @@ module hip
   interface hipGraphAddEventWaitNode
     function hipGraphAddEventWaitNode_(pGraphNode,graph,pDependencies,numDependencies,event) &
         bind(c, name="hipGraphAddEventWaitNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddEventWaitNode_
@@ -7457,7 +7217,6 @@ module hip
   interface hipGraphEventWaitNodeGetEvent
     function hipGraphEventWaitNodeGetEvent_(node,event_out) &
         bind(c, name="hipGraphEventWaitNodeGetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphEventWaitNodeGetEvent_
@@ -7469,7 +7228,6 @@ module hip
   interface hipGraphEventWaitNodeSetEvent
     function hipGraphEventWaitNodeSetEvent_(node,event) &
         bind(c, name="hipGraphEventWaitNodeSetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphEventWaitNodeSetEvent_
@@ -7481,7 +7239,6 @@ module hip
   interface hipGraphExecEventWaitNodeSetEvent
     function hipGraphExecEventWaitNodeSetEvent_(hGraphExec,hNode,event) &
         bind(c, name="hipGraphExecEventWaitNodeSetEvent")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecEventWaitNodeSetEvent_
@@ -7494,7 +7251,6 @@ module hip
   interface hipGraphAddMemAllocNode
     function hipGraphAddMemAllocNode_(pGraphNode,graph,pDependencies,numDependencies,pNodeParams) &
         bind(c, name="hipGraphAddMemAllocNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemAllocNode_
@@ -7509,7 +7265,6 @@ module hip
   interface hipGraphMemAllocNodeGetParams
     function hipGraphMemAllocNodeGetParams_(node,pNodeParams) &
         bind(c, name="hipGraphMemAllocNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemAllocNodeGetParams_
@@ -7521,7 +7276,6 @@ module hip
   interface hipGraphAddMemFreeNode
     function hipGraphAddMemFreeNode_(pGraphNode,graph,pDependencies,numDependencies,dev_ptr) &
         bind(c, name="hipGraphAddMemFreeNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddMemFreeNode_
@@ -7536,7 +7290,6 @@ module hip
   interface hipGraphMemFreeNodeGetParams
     function hipGraphMemFreeNodeGetParams_(node,dev_ptr) &
         bind(c, name="hipGraphMemFreeNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphMemFreeNodeGetParams_
@@ -7548,7 +7301,6 @@ module hip
   interface hipDeviceGetGraphMemAttribute
     function hipDeviceGetGraphMemAttribute_(device,attr,myValue) &
         bind(c, name="hipDeviceGetGraphMemAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGetGraphMemAttribute_
@@ -7561,7 +7313,6 @@ module hip
   interface hipDeviceSetGraphMemAttribute
     function hipDeviceSetGraphMemAttribute_(device,attr,myValue) &
         bind(c, name="hipDeviceSetGraphMemAttribute")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceSetGraphMemAttribute_
@@ -7573,7 +7324,6 @@ module hip
 
   interface hipDeviceGraphMemTrim
     function hipDeviceGraphMemTrim_(device) bind(c, name="hipDeviceGraphMemTrim")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDeviceGraphMemTrim_
@@ -7584,7 +7334,6 @@ module hip
   interface hipUserObjectCreate
     function hipUserObjectCreate_(object_out,ptr,destroy,initialRefcount,flags) &
         bind(c, name="hipUserObjectCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipUserObjectCreate_
@@ -7598,7 +7347,6 @@ module hip
 
   interface hipUserObjectRelease
     function hipUserObjectRelease_(object,count) bind(c, name="hipUserObjectRelease")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipUserObjectRelease_
@@ -7609,7 +7357,6 @@ module hip
 
   interface hipUserObjectRetain
     function hipUserObjectRetain_(object,count) bind(c, name="hipUserObjectRetain")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipUserObjectRetain_
@@ -7621,7 +7368,6 @@ module hip
   interface hipGraphRetainUserObject
     function hipGraphRetainUserObject_(graph,object,count,flags) &
         bind(c, name="hipGraphRetainUserObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphRetainUserObject_
@@ -7635,7 +7381,6 @@ module hip
   interface hipGraphReleaseUserObject
     function hipGraphReleaseUserObject_(graph,object,count) &
         bind(c, name="hipGraphReleaseUserObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphReleaseUserObject_
@@ -7647,7 +7392,6 @@ module hip
 
   interface hipGraphDebugDotPrint
     function hipGraphDebugDotPrint_(graph,path,flags) bind(c, name="hipGraphDebugDotPrint")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphDebugDotPrint_
@@ -7660,7 +7404,6 @@ module hip
   interface hipGraphKernelNodeCopyAttributes
     function hipGraphKernelNodeCopyAttributes_(hSrc,hDst) &
         bind(c, name="hipGraphKernelNodeCopyAttributes")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphKernelNodeCopyAttributes_
@@ -7672,7 +7415,6 @@ module hip
   interface hipGraphNodeSetEnabled
     function hipGraphNodeSetEnabled_(hGraphExec,hNode,isEnabled) &
         bind(c, name="hipGraphNodeSetEnabled")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeSetEnabled_
@@ -7685,7 +7427,6 @@ module hip
   interface hipGraphNodeGetEnabled
     function hipGraphNodeGetEnabled_(hGraphExec,hNode,isEnabled) &
         bind(c, name="hipGraphNodeGetEnabled")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphNodeGetEnabled_
@@ -7701,7 +7442,6 @@ module hip
     function hipGraphAddExternalSemaphoresWaitNode_(pGraphNode,graph,pDependencies, &
         numDependencies,nodeParams) &
         bind(c, name="hipGraphAddExternalSemaphoresWaitNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddExternalSemaphoresWaitNode_
@@ -7717,7 +7457,6 @@ module hip
     function hipGraphAddExternalSemaphoresSignalNode_(pGraphNode,graph,pDependencies, &
         numDependencies,nodeParams) &
         bind(c, name="hipGraphAddExternalSemaphoresSignalNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphAddExternalSemaphoresSignalNode_
@@ -7732,7 +7471,6 @@ module hip
   interface hipGraphExternalSemaphoresSignalNodeSetParams
     function hipGraphExternalSemaphoresSignalNodeSetParams_(hNode,nodeParams) &
         bind(c, name="hipGraphExternalSemaphoresSignalNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExternalSemaphoresSignalNodeSetParams_
@@ -7744,7 +7482,6 @@ module hip
   interface hipGraphExternalSemaphoresWaitNodeSetParams
     function hipGraphExternalSemaphoresWaitNodeSetParams_(hNode,nodeParams) &
         bind(c, name="hipGraphExternalSemaphoresWaitNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExternalSemaphoresWaitNodeSetParams_
@@ -7756,7 +7493,6 @@ module hip
   interface hipGraphExternalSemaphoresSignalNodeGetParams
     function hipGraphExternalSemaphoresSignalNodeGetParams_(hNode,params_out) &
         bind(c, name="hipGraphExternalSemaphoresSignalNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExternalSemaphoresSignalNodeGetParams_
@@ -7768,7 +7504,6 @@ module hip
   interface hipGraphExternalSemaphoresWaitNodeGetParams
     function hipGraphExternalSemaphoresWaitNodeGetParams_(hNode,params_out) &
         bind(c, name="hipGraphExternalSemaphoresWaitNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExternalSemaphoresWaitNodeGetParams_
@@ -7780,7 +7515,6 @@ module hip
   interface hipGraphExecExternalSemaphoresSignalNodeSetParams
     function hipGraphExecExternalSemaphoresSignalNodeSetParams_(hGraphExec,hNode,nodeParams) &
         bind(c, name="hipGraphExecExternalSemaphoresSignalNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecExternalSemaphoresSignalNodeSetParams_
@@ -7793,7 +7527,6 @@ module hip
   interface hipGraphExecExternalSemaphoresWaitNodeSetParams
     function hipGraphExecExternalSemaphoresWaitNodeSetParams_(hGraphExec,hNode,nodeParams) &
         bind(c, name="hipGraphExecExternalSemaphoresWaitNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphExecExternalSemaphoresWaitNodeSetParams_
@@ -7806,7 +7539,6 @@ module hip
   interface hipDrvGraphMemcpyNodeGetParams
     function hipDrvGraphMemcpyNodeGetParams_(hNode,nodeParams) &
         bind(c, name="hipDrvGraphMemcpyNodeGetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphMemcpyNodeGetParams_
@@ -7818,7 +7550,6 @@ module hip
   interface hipDrvGraphMemcpyNodeSetParams
     function hipDrvGraphMemcpyNodeSetParams_(hNode,nodeParams) &
         bind(c, name="hipDrvGraphMemcpyNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphMemcpyNodeSetParams_
@@ -7831,7 +7562,6 @@ module hip
     function hipDrvGraphAddMemsetNode_(phGraphNode,hGraph,dependencies,numDependencies, &
         memsetParams,ctx) &
         bind(c, name="hipDrvGraphAddMemsetNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphAddMemsetNode_
@@ -7847,7 +7577,6 @@ module hip
   interface hipDrvGraphAddMemFreeNode
     function hipDrvGraphAddMemFreeNode_(phGraphNode,hGraph,dependencies,numDependencies,dptr) &
         bind(c, name="hipDrvGraphAddMemFreeNode")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphAddMemFreeNode_
@@ -7862,7 +7591,6 @@ module hip
   interface hipDrvGraphExecMemcpyNodeSetParams
     function hipDrvGraphExecMemcpyNodeSetParams_(hGraphExec,hNode,copyParams,ctx) &
         bind(c, name="hipDrvGraphExecMemcpyNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphExecMemcpyNodeSetParams_
@@ -7876,7 +7604,6 @@ module hip
   interface hipDrvGraphExecMemsetNodeSetParams
     function hipDrvGraphExecMemsetNodeSetParams_(hGraphExec,hNode,memsetParams,ctx) &
         bind(c, name="hipDrvGraphExecMemsetNodeSetParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDrvGraphExecMemsetNodeSetParams_
@@ -7889,7 +7616,6 @@ module hip
 
   interface hipMemAddressFree
     function hipMemAddressFree_(devPtr,mySize) bind(c, name="hipMemAddressFree")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAddressFree_
@@ -7901,7 +7627,6 @@ module hip
   interface hipMemAddressReserve
     function hipMemAddressReserve_(ptr,mySize,alignment,addr,flags) &
         bind(c, name="hipMemAddressReserve")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemAddressReserve_
@@ -7915,7 +7640,6 @@ module hip
 
   interface hipMemCreate
     function hipMemCreate_(handle,mySize,prop,flags) bind(c, name="hipMemCreate")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemCreate_
@@ -7929,7 +7653,6 @@ module hip
   interface hipMemExportToShareableHandle
     function hipMemExportToShareableHandle_(shareableHandle,handle,handleType,flags) &
         bind(c, name="hipMemExportToShareableHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemExportToShareableHandle_
@@ -7942,7 +7665,6 @@ module hip
 
   interface hipMemGetAccess
     function hipMemGetAccess_(flags,location,ptr) bind(c, name="hipMemGetAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetAccess_
@@ -7957,7 +7679,6 @@ module hip
   interface hipMemGetAllocationGranularity
     function hipMemGetAllocationGranularity_(granularity,prop,option) &
         bind(c, name="hipMemGetAllocationGranularity")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetAllocationGranularity_
@@ -7972,7 +7693,6 @@ module hip
   interface hipMemGetAllocationPropertiesFromHandle
     function hipMemGetAllocationPropertiesFromHandle_(prop,handle) &
         bind(c, name="hipMemGetAllocationPropertiesFromHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemGetAllocationPropertiesFromHandle_
@@ -7984,7 +7704,6 @@ module hip
   interface hipMemImportFromShareableHandle
     function hipMemImportFromShareableHandle_(handle,osHandle,shHandleType) &
         bind(c, name="hipMemImportFromShareableHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemImportFromShareableHandle_
@@ -7996,7 +7715,6 @@ module hip
 
   interface hipMemMap
     function hipMemMap_(ptr,mySize,offset,handle,flags) bind(c, name="hipMemMap")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemMap_
@@ -8010,7 +7728,6 @@ module hip
 
   interface hipMemMapArrayAsync
     function hipMemMapArrayAsync_(mapInfoList,count,stream) bind(c, name="hipMemMapArrayAsync")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemMapArrayAsync_
@@ -8022,7 +7739,6 @@ module hip
 
   interface hipMemRelease
     function hipMemRelease_(handle) bind(c, name="hipMemRelease")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemRelease_
@@ -8032,7 +7748,6 @@ module hip
 
   interface hipMemRetainAllocationHandle
     function hipMemRetainAllocationHandle_(handle,addr) bind(c, name="hipMemRetainAllocationHandle")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemRetainAllocationHandle_
@@ -8043,7 +7758,6 @@ module hip
 
   interface hipMemSetAccess
     function hipMemSetAccess_(ptr,mySize,desc,count) bind(c, name="hipMemSetAccess")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemSetAccess_
@@ -8056,7 +7770,6 @@ module hip
 
   interface hipMemUnmap
     function hipMemUnmap_(ptr,mySize) bind(c, name="hipMemUnmap")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemUnmap_
@@ -8068,7 +7781,6 @@ module hip
   interface hipGraphicsMapResources
     function hipGraphicsMapResources_(count,resources,stream) &
         bind(c, name="hipGraphicsMapResources")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphicsMapResources_
@@ -8081,7 +7793,6 @@ module hip
   interface hipGraphicsSubResourceGetMappedArray
     function hipGraphicsSubResourceGetMappedArray_(array,resource,arrayIndex,mipLevel) &
         bind(c, name="hipGraphicsSubResourceGetMappedArray")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphicsSubResourceGetMappedArray_
@@ -8095,7 +7806,6 @@ module hip
   interface hipGraphicsResourceGetMappedPointer
     function hipGraphicsResourceGetMappedPointer_(devPtr,mySize,resource) &
         bind(c, name="hipGraphicsResourceGetMappedPointer")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphicsResourceGetMappedPointer_
@@ -8110,7 +7820,6 @@ module hip
   interface hipGraphicsUnmapResources
     function hipGraphicsUnmapResources_(count,resources,stream) &
         bind(c, name="hipGraphicsUnmapResources")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphicsUnmapResources_
@@ -8122,7 +7831,6 @@ module hip
 
   interface hipGraphicsUnregisterResource
     function hipGraphicsUnregisterResource_(resource) bind(c, name="hipGraphicsUnregisterResource")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphicsUnregisterResource_
@@ -8132,7 +7840,6 @@ module hip
 
   interface hipCreateSurfaceObject
     function hipCreateSurfaceObject_(pSurfObject,pResDesc) bind(c, name="hipCreateSurfaceObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipCreateSurfaceObject_
@@ -8143,7 +7850,6 @@ module hip
 
   interface hipDestroySurfaceObject
     function hipDestroySurfaceObject_(surfaceObject) bind(c, name="hipDestroySurfaceObject")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipDestroySurfaceObject_
@@ -8153,7 +7859,6 @@ module hip
 
   interface hipExtEnableLogging
     function hipExtEnableLogging_() bind(c, name="hipExtEnableLogging")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtEnableLogging_
@@ -8162,7 +7867,6 @@ module hip
 
   interface hipExtDisableLogging
     function hipExtDisableLogging_() bind(c, name="hipExtDisableLogging")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtDisableLogging_
@@ -8172,7 +7876,6 @@ module hip
   interface hipExtSetLoggingParams
     function hipExtSetLoggingParams_(log_level,log_size,log_mask) &
         bind(c, name="hipExtSetLoggingParams")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipExtSetLoggingParams_
@@ -8184,7 +7887,6 @@ module hip
 
   interface hipMemcpy_spt
     function hipMemcpy_spt_(dst,src,sizeBytes,myKind) bind(c, name="hipMemcpy_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy_spt_
@@ -8198,7 +7900,6 @@ module hip
   interface hipMemcpyToSymbol_spt
     function hipMemcpyToSymbol_spt_(symbol,src,sizeBytes,offset,myKind) &
         bind(c, name="hipMemcpyToSymbol_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyToSymbol_spt_
@@ -8213,7 +7914,6 @@ module hip
   interface hipMemcpyFromSymbol_spt
     function hipMemcpyFromSymbol_spt_(dst,symbol,sizeBytes,offset,myKind) &
         bind(c, name="hipMemcpyFromSymbol_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromSymbol_spt_
@@ -8228,7 +7928,6 @@ module hip
   interface hipMemcpy2D_spt
     function hipMemcpy2D_spt_(dst,dpitch,src,spitch,width,height,myKind) &
         bind(c, name="hipMemcpy2D_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2D_spt_
@@ -8245,7 +7944,6 @@ module hip
   interface hipMemcpy2DFromArray_spt
     function hipMemcpy2DFromArray_spt_(dst,dpitch,src,wOffset,hOffset,width,height,myKind) &
         bind(c, name="hipMemcpy2DFromArray_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DFromArray_spt_
@@ -8262,7 +7960,6 @@ module hip
 
   interface hipMemcpy3D_spt
     function hipMemcpy3D_spt_(p) bind(c, name="hipMemcpy3D_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3D_spt_
@@ -8272,7 +7969,6 @@ module hip
 
   interface hipMemset_spt
     function hipMemset_spt_(dst,myValue,sizeBytes) bind(c, name="hipMemset_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset_spt_
@@ -8284,7 +7980,6 @@ module hip
 
   interface hipMemsetAsync_spt
     function hipMemsetAsync_spt_(dst,myValue,sizeBytes,stream) bind(c, name="hipMemsetAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemsetAsync_spt_
@@ -8297,7 +7992,6 @@ module hip
 
   interface hipMemset2D_spt
     function hipMemset2D_spt_(dst,pitch,myValue,width,height) bind(c, name="hipMemset2D_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset2D_spt_
@@ -8312,7 +8006,6 @@ module hip
   interface hipMemset2DAsync_spt
     function hipMemset2DAsync_spt_(dst,pitch,myValue,width,height,stream) &
         bind(c, name="hipMemset2DAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset2DAsync_spt_
@@ -8328,7 +8021,6 @@ module hip
   interface hipMemset3DAsync_spt
     function hipMemset3DAsync_spt_(pitchedDevPtr,myValue,extent,stream) &
         bind(c, name="hipMemset3DAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset3DAsync_spt_
@@ -8341,7 +8033,6 @@ module hip
 
   interface hipMemset3D_spt
     function hipMemset3D_spt_(pitchedDevPtr,myValue,extent) bind(c, name="hipMemset3D_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemset3D_spt_
@@ -8353,7 +8044,6 @@ module hip
 
   interface hipMemcpyAsync_spt
     function hipMemcpyAsync_spt_(dst,src,sizeBytes,myKind,stream) bind(c, name="hipMemcpyAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyAsync_spt_
@@ -8367,7 +8057,6 @@ module hip
 
   interface hipMemcpy3DAsync_spt
     function hipMemcpy3DAsync_spt_(p,stream) bind(c, name="hipMemcpy3DAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy3DAsync_spt_
@@ -8379,7 +8068,6 @@ module hip
   interface hipMemcpy2DAsync_spt
     function hipMemcpy2DAsync_spt_(dst,dpitch,src,spitch,width,height,myKind,stream) &
         bind(c, name="hipMemcpy2DAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DAsync_spt_
@@ -8397,7 +8085,6 @@ module hip
   interface hipMemcpyFromSymbolAsync_spt
     function hipMemcpyFromSymbolAsync_spt_(dst,symbol,sizeBytes,offset,myKind,stream) &
         bind(c, name="hipMemcpyFromSymbolAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromSymbolAsync_spt_
@@ -8413,7 +8100,6 @@ module hip
   interface hipMemcpyToSymbolAsync_spt
     function hipMemcpyToSymbolAsync_spt_(symbol,src,sizeBytes,offset,myKind,stream) &
         bind(c, name="hipMemcpyToSymbolAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyToSymbolAsync_spt_
@@ -8429,7 +8115,6 @@ module hip
   interface hipMemcpyFromArray_spt
     function hipMemcpyFromArray_spt_(dst,src,wOffsetSrc,hOffset,count,myKind) &
         bind(c, name="hipMemcpyFromArray_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpyFromArray_spt_
@@ -8445,7 +8130,6 @@ module hip
   interface hipMemcpy2DToArray_spt
     function hipMemcpy2DToArray_spt_(dst,wOffset,hOffset,src,spitch,width,height,myKind) &
         bind(c, name="hipMemcpy2DToArray_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DToArray_spt_
@@ -8464,7 +8148,6 @@ module hip
     function hipMemcpy2DFromArrayAsync_spt_(dst,dpitch,src,wOffsetSrc,hOffsetSrc,width,height, &
         myKind,stream) &
         bind(c, name="hipMemcpy2DFromArrayAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DFromArrayAsync_spt_
@@ -8484,7 +8167,6 @@ module hip
     function hipMemcpy2DToArrayAsync_spt_(dst,wOffset,hOffset,src,spitch,width,height,myKind, &
         stream) &
         bind(c, name="hipMemcpy2DToArrayAsync_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipMemcpy2DToArrayAsync_spt_
@@ -8502,7 +8184,6 @@ module hip
 
   interface hipStreamQuery_spt
     function hipStreamQuery_spt_(stream) bind(c, name="hipStreamQuery_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamQuery_spt_
@@ -8512,7 +8193,6 @@ module hip
 
   interface hipStreamSynchronize_spt
     function hipStreamSynchronize_spt_(stream) bind(c, name="hipStreamSynchronize_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamSynchronize_spt_
@@ -8522,18 +8202,18 @@ module hip
 
   interface hipStreamGetPriority_spt
     function hipStreamGetPriority_spt_(stream,priority) bind(c, name="hipStreamGetPriority_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetPriority_spt_
       type(c_ptr),value :: stream
       type(c_ptr),value :: priority
     end function
+
+    module procedure hipStreamGetPriority_spt_typed
   end interface
 
   interface hipStreamWaitEvent_spt
     function hipStreamWaitEvent_spt_(stream,event,flags) bind(c, name="hipStreamWaitEvent_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamWaitEvent_spt_
@@ -8545,19 +8225,19 @@ module hip
 
   interface hipStreamGetFlags_spt
     function hipStreamGetFlags_spt_(stream,flags) bind(c, name="hipStreamGetFlags_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetFlags_spt_
       type(c_ptr),value :: stream
       type(c_ptr),value :: flags
     end function
+
+    module procedure hipStreamGetFlags_spt_typed
   end interface
 
   interface hipStreamAddCallback_spt
     function hipStreamAddCallback_spt_(stream,callback,userData,flags) &
         bind(c, name="hipStreamAddCallback_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamAddCallback_spt_
@@ -8570,7 +8250,6 @@ module hip
 
   interface hipEventRecord_spt
     function hipEventRecord_spt_(event,stream) bind(c, name="hipEventRecord_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipEventRecord_spt_
@@ -8583,7 +8262,6 @@ module hip
     function hipLaunchCooperativeKernel_spt_(f,gridDim,blockDim,kernelParams,sharedMemBytes, &
         hStream) &
         bind(c, name="hipLaunchCooperativeKernel_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchCooperativeKernel_spt_
@@ -8599,7 +8277,6 @@ module hip
   interface hipLaunchKernel_spt
     function hipLaunchKernel_spt_(function_address,numBlocks,dimBlocks,args,sharedMemBytes,stream) &
         bind(c, name="hipLaunchKernel_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchKernel_spt_
@@ -8614,7 +8291,6 @@ module hip
 
   interface hipGraphLaunch_spt
     function hipGraphLaunch_spt_(graphExec,stream) bind(c, name="hipGraphLaunch_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGraphLaunch_spt_
@@ -8625,7 +8301,6 @@ module hip
 
   interface hipStreamBeginCapture_spt
     function hipStreamBeginCapture_spt_(stream,mode) bind(c, name="hipStreamBeginCapture_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamBeginCapture_spt_
@@ -8636,7 +8311,6 @@ module hip
 
   interface hipStreamEndCapture_spt
     function hipStreamEndCapture_spt_(stream,pGraph) bind(c, name="hipStreamEndCapture_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamEndCapture_spt_
@@ -8648,19 +8322,19 @@ module hip
   interface hipStreamIsCapturing_spt
     function hipStreamIsCapturing_spt_(stream,pCaptureStatus) &
         bind(c, name="hipStreamIsCapturing_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamIsCapturing_spt_
       type(c_ptr),value :: stream
       type(c_ptr),value :: pCaptureStatus
     end function
+
+    module procedure hipStreamIsCapturing_spt_typed
   end interface
 
   interface hipStreamGetCaptureInfo_spt
     function hipStreamGetCaptureInfo_spt_(stream,pCaptureStatus,pId) &
         bind(c, name="hipStreamGetCaptureInfo_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetCaptureInfo_spt_
@@ -8668,28 +8342,35 @@ module hip
       type(c_ptr),value :: pCaptureStatus
       type(c_ptr),value :: pId
     end function
+
+    module procedure hipStreamGetCaptureInfo_spt_typed
   end interface
 
-  interface hipStreamGetCaptureInfo_v2_spt
+  interface
     function hipStreamGetCaptureInfo_v2_spt_(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out) &
         bind(c, name="hipStreamGetCaptureInfo_v2_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipStreamGetCaptureInfo_v2_spt_
       type(c_ptr),value :: stream
       type(c_ptr),value :: captureStatus_out
       type(c_ptr),value :: id_out
-      type(c_ptr) :: graph_out
-      type(c_ptr) :: dependencies_out
+      type(c_ptr),value :: graph_out
+      type(c_ptr),value :: dependencies_out
       type(c_ptr),value :: numDependencies_out
     end function
   end interface
 
+  interface hipStreamGetCaptureInfo_v2_spt
+
+    module procedure &
+      hipStreamGetCaptureInfo_v2_spt_opt,&
+      hipStreamGetCaptureInfo_v2_spt_typed
+  end interface
+
   interface hipLaunchHostFunc_spt
     function hipLaunchHostFunc_spt_(stream,fn,userData) bind(c, name="hipLaunchHostFunc_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipLaunchHostFunc_spt_
@@ -8702,7 +8383,6 @@ module hip
   interface hipGetDriverEntryPoint_spt
     function hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags,status) &
         bind(c, name="hipGetDriverEntryPoint_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDriverEntryPoint_spt_
@@ -8711,12 +8391,21 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: status
     end function
+
+#ifdef USE_ASSUMED_RANK
+    module procedure hipGetDriverEntryPoint_spt_assumed_rank
+#else
+#ifdef USE_ASSUMED_SHAPE
+    module procedure &
+      hipGetDriverEntryPoint_spt_rank_0,&
+      hipGetDriverEntryPoint_spt_rank_1
+#endif
+#endif
   end interface
 
   interface hipGetProcAddress_spt
     function hipGetProcAddress_spt_(symbol,pfn,hipVersion,flags,symbolStatus) &
         bind(c, name="hipGetProcAddress_spt")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetProcAddress_spt_
@@ -8726,6 +8415,8 @@ module hip
       integer(c_int64_t),value :: flags
       type(c_ptr),value :: symbolStatus
     end function
+
+    module procedure hipGetProcAddress_spt_typed
   end interface
 
   interface hipChooseDevice
@@ -8736,7 +8427,7 @@ module hip
 
   interface hipMemcpy
     function hipMemcpy_(dest, src, sizeBytes, myKind) bind(c, name="hipMemcpy")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMemcpy_
       type(c_ptr), value :: dest
@@ -8942,7 +8633,7 @@ module hip
 
   interface hipMemcpyAsync
     function hipMemcpyAsync_(dest, src, sizeBytes, myKind, stream) bind(c, name="hipMemcpyAsync")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMemcpyAsync_
       type(c_ptr), value :: dest
@@ -9150,7 +8841,7 @@ module hip
   interface hipMemcpy2D
     function hipMemcpy2D_(dest, dpitch, src, spitch, width, height, myKind) &
         bind(c, name="hipMemcpy2D")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMemcpy2D_
       type(c_ptr), value :: dest
@@ -9297,7 +8988,7 @@ module hip
   interface hipMemcpy2DAsync
     function hipMemcpy2DAsync_(dest, dpitch, src, spitch, width, height, myKind, stream) &
         bind(c, name="hipMemcpy2DAsync")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMemcpy2DAsync_
       type(c_ptr), value :: dest
@@ -9444,7 +9135,7 @@ module hip
 
   interface hipMalloc
     function hipMalloc_(ptr, sizeBytes) bind(c, name="hipMalloc")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMalloc_
       type(c_ptr) :: ptr
@@ -9610,7 +9301,7 @@ module hip
 
   interface hipMallocManaged
     function hipMallocManaged_(ptr, sizeBytes, flags) bind(c, name="hipMallocManaged")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipMallocManaged_
       type(c_ptr) :: ptr
@@ -9777,7 +9468,7 @@ module hip
 
   interface hipHostMalloc
     function hipHostMalloc_(ptr, sizeBytes, flags) bind(c, name="hipHostMalloc")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostMalloc_
       type(c_ptr) :: ptr
@@ -9944,7 +9635,7 @@ module hip
 
   interface hipFree
     function hipFree_(ptr) bind(c, name="hipFree")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipFree_
       type(c_ptr), value :: ptr
@@ -10011,7 +9702,7 @@ module hip
 
   interface hipHostFree
     function hipHostFree_(ptr) bind(c, name="hipHostFree")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostFree_
       type(c_ptr), value :: ptr
@@ -10078,7 +9769,7 @@ module hip
 
   interface hipHostRegister
     function hipHostRegister_(hostPtr, sizeBytes, flags) bind(c, name="hipHostRegister")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostRegister_
       type(c_ptr), value :: hostPtr
@@ -10245,7 +9936,7 @@ module hip
 
   interface hipHostUnregister
     function hipHostUnregister_(hostPtr) bind(c, name="hipHostUnregister")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostUnregister_
       type(c_ptr), value :: hostPtr
@@ -10312,7 +10003,7 @@ module hip
 
   interface hipHostGetDevicePointer
     function hipHostGetDevicePointer_(devPtr, hstPtr, flags) bind(c, name="hipHostGetDevicePointer")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostGetDevicePointer_
       type(c_ptr) :: devPtr
@@ -10381,7 +10072,7 @@ module hip
 
   interface hipHostGetFlags
     function hipHostGetFlags_(flagsPtr, hostPtr) bind(c, name="hipHostGetFlags")
-      use iso_c_binding
+      import
       implicit none
       integer(c_int) :: hipHostGetFlags_
       integer(c_int) :: flagsPtr
@@ -10449,7 +10140,6 @@ module hip
 
   interface hipGetDeviceProperties
     function hipGetDeviceProperties_(prop,deviceId) bind(c, name="hipGetDevicePropertiesR0600")
-      use iso_c_binding
       import
       implicit none
       integer(c_int) :: hipGetDeviceProperties_
@@ -10464,8 +10154,9 @@ module hip
     subroutine hipCheck(status)
       implicit none
       integer(kind(hipSuccess)) :: status
-      character(len=:), allocatable :: name
+      character(len=36) :: name
       if (status /= hipSuccess) then
+        name = "unknown status"
         select case (status)
         case (hipErrorInvalidValue)
           name = "hipErrorInvalidValue"
@@ -10627,15 +10318,12 @@ module hip
           name = "hipErrorInvalidClusterSize"
         case (hipErrorTbd)
           name = "hipErrorTbd"
-        case default
-          name = "unknown status"
         end select
-        write (*, "(a,i0,a)") "HIP ERROR: " // name // " (code ", status, ")"
+        write (*, "(a,i0,a)") "HIP ERROR: " // trim(name) // " (code ", status, ")"
         stop 1
       end if
     end subroutine hipCheck
     function hipDriverGetVersion_typed(driverVersion)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDriverGetVersion_typed
       integer(c_int),target :: driverVersion
@@ -10644,7 +10332,6 @@ module hip
     end function
 
     function hipRuntimeGetVersion_typed(runtimeVersion)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipRuntimeGetVersion_typed
       integer(c_int),target :: runtimeVersion
@@ -10653,7 +10340,6 @@ module hip
     end function
 
     function hipDeviceGet_typed(device,ordinal)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGet_typed
       integer(c_int),target :: device
@@ -10663,7 +10349,6 @@ module hip
     end function
 
     function hipDeviceComputeCapability_typed(major,minor,device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceComputeCapability_typed
       integer(c_int),target :: major
@@ -10675,7 +10360,6 @@ module hip
     end function
 
     function hipDeviceGetLuid_typed(luid,deviceNodeMask,device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetLuid_typed
       type(c_ptr), value :: luid
@@ -10686,7 +10370,6 @@ module hip
     end function
 
     function hipDeviceGetP2PAttribute_typed(myValue,attr,srcDevice,dstDevice)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetP2PAttribute_typed
       integer(c_int),target :: myValue
@@ -10699,7 +10382,6 @@ module hip
     end function
 
     function hipDeviceGetByPCIBusId_typed(device,pciBusId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetByPCIBusId_typed
       integer(c_int),target :: device
@@ -10709,7 +10391,6 @@ module hip
     end function
 
     function hipDeviceTotalMem_typed(bytes,device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceTotalMem_typed
       integer(c_size_t),target :: bytes
@@ -10719,7 +10400,6 @@ module hip
     end function
 
     function hipGetDevice_typed(deviceId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetDevice_typed
       integer(c_int),target :: deviceId
@@ -10728,7 +10408,6 @@ module hip
     end function
 
     function hipGetDeviceCount_typed(count)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceCount_typed
       integer(c_int),target :: count
@@ -10737,7 +10416,6 @@ module hip
     end function
 
     function hipDeviceGetAttribute_typed(pi,attr,deviceId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetAttribute_typed
       integer(c_int),target :: pi
@@ -10748,7 +10426,6 @@ module hip
     end function
 
     function hipDeviceGetTexture1DLinearMaxWidth_typed(max_width,desc,device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetTexture1DLinearMaxWidth_typed
       integer(c_size_t),target :: max_width
@@ -10760,7 +10437,6 @@ module hip
     end function
 
     function hipDeviceGetCacheConfig_typed(cacheConfig)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetCacheConfig_typed
       integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
@@ -10769,7 +10445,6 @@ module hip
     end function
 
     function hipDeviceGetLimit_typed(pValue,limit)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetLimit_typed
       integer(c_size_t),target :: pValue
@@ -10779,7 +10454,6 @@ module hip
     end function
 
     function hipDeviceGetSharedMemConfig_typed(pConfig)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetSharedMemConfig_typed
       integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
@@ -10788,7 +10462,6 @@ module hip
     end function
 
     function hipGetDeviceFlags_typed(flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetDeviceFlags_typed
       integer(c_int),target :: flags
@@ -10797,7 +10470,6 @@ module hip
     end function
 
     function hipChooseDeviceR0600_typed(device,prop)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipChooseDeviceR0600_typed
       integer(c_int),target :: device
@@ -10807,7 +10479,6 @@ module hip
     end function
 
     function hipExtGetLinkTypeAndHopCount_typed(device1,device2,linktype,hopcount)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipExtGetLinkTypeAndHopCount_typed
       integer(c_int) :: device1
@@ -10820,7 +10491,6 @@ module hip
     end function
 
     function hipDeviceGetStreamPriorityRange_typed(leastPriority,greatestPriority)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceGetStreamPriorityRange_typed
       integer(c_int),target :: leastPriority
@@ -10831,7 +10501,6 @@ module hip
     end function
 
     function hipStreamGetFlags_typed(stream,flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetFlags_typed
       type(c_ptr), value :: stream
@@ -10841,7 +10510,6 @@ module hip
     end function
 
     function hipStreamGetId_typed(stream,streamId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetId_typed
       type(c_ptr), value :: stream
@@ -10851,7 +10519,6 @@ module hip
     end function
 
     function hipStreamGetPriority_typed(stream,priority)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetPriority_typed
       type(c_ptr), value :: stream
@@ -10861,7 +10528,6 @@ module hip
     end function
 
     function hipStreamGetDevice_typed(stream,device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetDevice_typed
       type(c_ptr), value :: stream
@@ -10871,7 +10537,6 @@ module hip
     end function
 
     function hipEventElapsedTime_typed(ms,start,myStop)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipEventElapsedTime_typed
       real(c_float),target :: ms
@@ -10882,7 +10547,6 @@ module hip
     end function
 
     function hipMemPoolGetAccess_typed(flags,mem_pool,location)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemPoolGetAccess_typed
       integer(kind(hipMemAccessFlagsProtNone)),target :: flags
@@ -10893,7 +10557,6 @@ module hip
     end function
 
     function hipMallocPitch_typed(ptr,pitch,width,height)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMallocPitch_typed
       type(c_ptr) :: ptr
@@ -10905,7 +10568,6 @@ module hip
     end function
 
     function hipMemAllocPitch_typed(dptr,pitch,widthInBytes,height,elementSizeBytes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemAllocPitch_typed
       type(c_ptr) :: dptr
@@ -10919,7 +10581,6 @@ module hip
     end function
 
     function hipModuleGetGlobal_opt(dptr,bytes,hmod,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_opt
       type(c_ptr),optional,target :: dptr
@@ -10934,7 +10595,6 @@ module hip
     end function
 
     function hipModuleGetGlobal_typed(dptr,bytes,hmod,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_typed
       type(c_ptr),optional,target :: dptr
@@ -10952,7 +10612,6 @@ module hip
     end function
 
     function hipGetSymbolSize_typed(mySize,symbol)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetSymbolSize_typed
       integer(c_size_t),target :: mySize
@@ -10962,7 +10621,6 @@ module hip
     end function
 
     function hipGetProcAddress_typed(symbol,pfn,hipVersion,flags,symbolStatus)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetProcAddress_typed
       type(c_ptr), value :: symbol
@@ -10978,7 +10636,6 @@ module hip
     end function
 
     function hipMemGetInfo_typed(free,total)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetInfo_typed
       integer(c_size_t),target :: free
@@ -10988,7 +10645,6 @@ module hip
     end function
 
     function hipMemPtrGetInfo_typed(ptr,mySize)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemPtrGetInfo_typed
       type(c_ptr), value :: ptr
@@ -10998,7 +10654,6 @@ module hip
     end function
 
     function hipArrayGetInfo_typed(desc,extent,flags,array)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipArrayGetInfo_typed
       type(hipChannelFormatDesc) :: desc
@@ -11010,7 +10665,6 @@ module hip
     end function
 
     function hipMemGetAddressRange_typed(pbase,psize,dptr)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAddressRange_typed
       type(c_ptr) :: pbase
@@ -11022,7 +10676,6 @@ module hip
 
     function hipMemcpyBatchAsync_typed(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
         stream)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_typed
       type(c_ptr) :: dsts
@@ -11040,7 +10693,6 @@ module hip
     end function
 
     function hipMemcpy3DBatchAsync_typed(numOps,opList,failIdx,flags,stream)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemcpy3DBatchAsync_typed
       integer(c_size_t) :: numOps
@@ -11054,7 +10706,6 @@ module hip
     end function
 
     function hipDeviceCanAccessPeer_typed(canAccessPeer,deviceId,peerDeviceId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDeviceCanAccessPeer_typed
       integer(c_int),target :: canAccessPeer
@@ -11066,7 +10717,6 @@ module hip
     end function
 
     function hipDevSmResourceSplitByCount_typed(myResult,nbGroups,input,remainder,flags,minCount)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDevSmResourceSplitByCount_typed
       type(hipDevResource) :: myResult
@@ -11081,7 +10731,6 @@ module hip
     end function
 
     function hipExecutionCtxGetDevice_typed(device,ctx)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipExecutionCtxGetDevice_typed
       integer(c_int),target :: device
@@ -11091,7 +10740,6 @@ module hip
     end function
 
     function hipExecutionCtxGetId_typed(ctx,ctxId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipExecutionCtxGetId_typed
       type(c_ptr), value :: ctx
@@ -11101,7 +10749,6 @@ module hip
     end function
 
     function hipCtxGetDevice_typed(device)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetDevice_typed
       integer(c_int),target :: device
@@ -11110,7 +10757,6 @@ module hip
     end function
 
     function hipCtxGetApiVersion_typed(ctx,apiVersion)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetApiVersion_typed
       type(c_ptr), value :: ctx
@@ -11120,7 +10766,6 @@ module hip
     end function
 
     function hipCtxGetCacheConfig_typed(cacheConfig)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetCacheConfig_typed
       integer(kind(hipFuncCachePreferNone)),target :: cacheConfig
@@ -11129,7 +10774,6 @@ module hip
     end function
 
     function hipCtxGetSharedMemConfig_typed(pConfig)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetSharedMemConfig_typed
       integer(kind(hipSharedMemBankSizeDefault)),target :: pConfig
@@ -11138,7 +10782,6 @@ module hip
     end function
 
     function hipCtxGetFlags_typed(flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipCtxGetFlags_typed
       integer(c_int),target :: flags
@@ -11147,7 +10790,6 @@ module hip
     end function
 
     function hipDevicePrimaryCtxGetState_typed(dev,flags,active)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipDevicePrimaryCtxGetState_typed
       integer(c_int) :: dev
@@ -11159,7 +10801,6 @@ module hip
     end function
 
     function hipModuleGetFunctionCount_typed(count,mod)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetFunctionCount_typed
       integer(c_int),target :: count
@@ -11169,7 +10810,6 @@ module hip
     end function
 
     function hipKernelGetAttribute_typed(pi,attrib,kernel,dev)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipKernelGetAttribute_typed
       integer(c_int),target :: pi
@@ -11181,7 +10821,6 @@ module hip
     end function
 
     function hipLibraryGetKernelCount_typed(count,library)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetKernelCount_typed
       integer(c_int),target :: count
@@ -11191,7 +10830,6 @@ module hip
     end function
 
     function hipLibraryGetGlobal_opt(dptr,bytes,library,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetGlobal_opt
       type(c_ptr),optional,target :: dptr
@@ -11206,7 +10844,6 @@ module hip
     end function
 
     function hipLibraryGetGlobal_typed(dptr,bytes,library,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetGlobal_typed
       type(c_ptr),optional,target :: dptr
@@ -11224,7 +10861,6 @@ module hip
     end function
 
     function hipLibraryGetManaged_opt(dptr,bytes,library,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetManaged_opt
       type(c_ptr),optional,target :: dptr
@@ -11239,7 +10875,6 @@ module hip
     end function
 
     function hipLibraryGetManaged_typed(dptr,bytes,library,name)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLibraryGetManaged_typed
       type(c_ptr),optional,target :: dptr
@@ -11257,7 +10892,6 @@ module hip
     end function
 
     function hipKernelGetParamInfo_typed(kernel,paramIndex,paramOffset,paramSize)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipKernelGetParamInfo_typed
       type(c_ptr), value :: kernel
@@ -11273,7 +10907,6 @@ module hip
     end function
 
     function hipFuncGetAttribute_typed(myValue,attrib,hfunc)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipFuncGetAttribute_typed
       integer(c_int),target :: myValue
@@ -11284,7 +10917,6 @@ module hip
     end function
 
     function hipGetDriverEntryPoint_typed(symbol,funcPtr,flags,driverStatus)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_typed
       type(c_ptr), value :: symbol
@@ -11299,7 +10931,6 @@ module hip
     end function
 
     function hipLinkComplete_typed(state,hipBinOut,sizeOut)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipLinkComplete_typed
       type(c_ptr), value :: state
@@ -11314,7 +10945,6 @@ module hip
 
     function hipModuleOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f, &
         dynSharedMemPerBlk,blockSizeLimit)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSize_typed
       integer(c_int),target :: gridSize
@@ -11329,7 +10959,6 @@ module hip
 
     function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed(gridSize,blockSize,f, &
         dynSharedMemPerBlk,blockSizeLimit,flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed
       integer(c_int),target :: gridSize
@@ -11346,7 +10975,6 @@ module hip
 
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
         dynSharedMemPerBlk)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed
       integer(c_int),target :: numBlocks
@@ -11361,7 +10989,6 @@ module hip
 
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed(numBlocks,f, &
         blockSize,dynSharedMemPerBlk,flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed
       integer(c_int),target :: numBlocks
@@ -11377,7 +11004,6 @@ module hip
 
     function hipOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks,f,blockSize, &
         dynSharedMemPerBlk)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessor_typed
       integer(c_int),target :: numBlocks
@@ -11392,7 +11018,6 @@ module hip
 
     function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed(numBlocks,f,blockSize, &
         dynSharedMemPerBlk,flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_typed
       integer(c_int),target :: numBlocks
@@ -11408,7 +11033,6 @@ module hip
 
     function hipOccupancyMaxPotentialBlockSize_typed(gridSize,blockSize,f,dynSharedMemPerBlk, &
         blockSizeLimit)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialBlockSize_typed
       integer(c_int),target :: gridSize
@@ -11422,7 +11046,6 @@ module hip
     end function
 
     function hipOccupancyAvailableDynamicSMemPerBlock_typed(dynamicSmemSize,f,numBlocks,blockSize)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyAvailableDynamicSMemPerBlock_typed
       integer(c_size_t),target :: dynamicSmemSize
@@ -11435,7 +11058,6 @@ module hip
     end function
 
     function hipOccupancyMaxActiveClusters_typed(numClusters,f,config)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxActiveClusters_typed
       integer(c_int),target :: numClusters
@@ -11447,7 +11069,6 @@ module hip
     end function
 
     function hipOccupancyMaxPotentialClusterSize_typed(clusterSize,f,config)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipOccupancyMaxPotentialClusterSize_typed
       integer(c_int),target :: clusterSize
@@ -11459,7 +11080,6 @@ module hip
     end function
 
     function hipBindTexture_typed(offset,tex,devPtr,desc,mySize)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipBindTexture_typed
       integer(c_size_t),target :: offset
@@ -11472,7 +11092,6 @@ module hip
     end function
 
     function hipBindTexture2D_typed(offset,tex,devPtr,desc,width,height,pitch)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipBindTexture2D_typed
       integer(c_size_t),target :: offset
@@ -11487,7 +11106,6 @@ module hip
     end function
 
     function hipGetTextureAlignmentOffset_typed(offset,texref)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGetTextureAlignmentOffset_typed
       integer(c_size_t),target :: offset
@@ -11497,7 +11115,6 @@ module hip
     end function
 
     function hipTexRefGetAddressMode_typed(pam,texRef,dim)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetAddressMode_typed
       integer(kind(hipAddressModeWrap)),target :: pam
@@ -11508,7 +11125,6 @@ module hip
     end function
 
     function hipTexRefGetFilterMode_typed(pfm,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFilterMode_typed
       integer(kind(hipFilterModePoint)),target :: pfm
@@ -11518,7 +11134,6 @@ module hip
     end function
 
     function hipTexRefGetFlags_typed(pFlags,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFlags_typed
       integer(c_int),target :: pFlags
@@ -11528,7 +11143,6 @@ module hip
     end function
 
     function hipTexRefGetFormat_typed(pFormat,pNumChannels,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetFormat_typed
       integer(kind(HIP_AD_FORMAT_UNSIGNED_INT8)),target :: pFormat
@@ -11539,7 +11153,6 @@ module hip
     end function
 
     function hipTexRefGetMaxAnisotropy_typed(pmaxAnsio,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMaxAnisotropy_typed
       integer(c_int),target :: pmaxAnsio
@@ -11549,7 +11162,6 @@ module hip
     end function
 
     function hipTexRefGetMipmapFilterMode_typed(pfm,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapFilterMode_typed
       integer(kind(hipFilterModePoint)),target :: pfm
@@ -11559,7 +11171,6 @@ module hip
     end function
 
     function hipTexRefGetMipmapLevelBias_typed(pbias,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelBias_typed
       real(c_float),target :: pbias
@@ -11569,7 +11180,6 @@ module hip
     end function
 
     function hipTexRefGetMipmapLevelClamp_typed(pminMipmapLevelClamp,pmaxMipmapLevelClamp,texRef)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefGetMipmapLevelClamp_typed
       real(c_float),target :: pminMipmapLevelClamp
@@ -11581,7 +11191,6 @@ module hip
     end function
 
     function hipTexRefSetAddress_typed(ByteOffset,texRef,dptr,bytes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipTexRefSetAddress_typed
       integer(c_size_t),target :: ByteOffset
@@ -11593,7 +11202,6 @@ module hip
     end function
 
     function hipStreamGetCaptureInfo_typed(stream,pCaptureStatus,pId)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_typed
       type(c_ptr), value :: stream
@@ -11608,7 +11216,6 @@ module hip
 
     function hipStreamGetCaptureInfo_v2_opt(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_opt
       type(c_ptr), value :: stream
@@ -11630,7 +11237,6 @@ module hip
 
     function hipStreamGetCaptureInfo_v2_typed(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_typed
       type(c_ptr), value :: stream
@@ -11657,7 +11263,6 @@ module hip
     end function
 
     function hipStreamIsCapturing_typed(stream,pCaptureStatus)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipStreamIsCapturing_typed
       type(c_ptr), value :: stream
@@ -11667,7 +11272,6 @@ module hip
     end function
 
     function hipThreadExchangeStreamCaptureMode_typed(mode)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipThreadExchangeStreamCaptureMode_typed
       integer(kind(hipStreamCaptureModeGlobal)),target :: mode
@@ -11676,7 +11280,6 @@ module hip
     end function
 
     function hipGraphGetEdges_opt(graph,from,to,numEdges)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetEdges_opt
       type(c_ptr), value :: graph
@@ -11694,7 +11297,6 @@ module hip
     end function
 
     function hipGraphGetEdges_typed(graph,from,to,numEdges)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetEdges_typed
       type(c_ptr), value :: graph
@@ -11712,7 +11314,6 @@ module hip
     end function
 
     function hipGraphGetNodes_opt(graph,nodes,numNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetNodes_opt
       type(c_ptr), value :: graph
@@ -11726,7 +11327,6 @@ module hip
     end function
 
     function hipGraphGetNodes_typed(graph,nodes,numNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetNodes_typed
       type(c_ptr), value :: graph
@@ -11740,7 +11340,6 @@ module hip
     end function
 
     function hipGraphGetRootNodes_opt(graph,pRootNodes,pNumRootNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetRootNodes_opt
       type(c_ptr), value :: graph
@@ -11754,7 +11353,6 @@ module hip
     end function
 
     function hipGraphGetRootNodes_typed(graph,pRootNodes,pNumRootNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphGetRootNodes_typed
       type(c_ptr), value :: graph
@@ -11768,7 +11366,6 @@ module hip
     end function
 
     function hipGraphNodeGetDependencies_opt(node,pDependencies,pNumDependencies)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_opt
       type(c_ptr), value :: node
@@ -11783,7 +11380,6 @@ module hip
     end function
 
     function hipGraphNodeGetDependencies_typed(node,pDependencies,pNumDependencies)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependencies_typed
       type(c_ptr), value :: node
@@ -11798,7 +11394,6 @@ module hip
     end function
 
     function hipGraphNodeGetDependentNodes_opt(node,pDependentNodes,pNumDependentNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_opt
       type(c_ptr), value :: node
@@ -11813,7 +11408,6 @@ module hip
     end function
 
     function hipGraphNodeGetDependentNodes_typed(node,pDependentNodes,pNumDependentNodes)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetDependentNodes_typed
       type(c_ptr), value :: node
@@ -11828,7 +11422,6 @@ module hip
     end function
 
     function hipGraphNodeGetType_typed(node,pType)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetType_typed
       type(c_ptr), value :: node
@@ -11838,7 +11431,6 @@ module hip
     end function
 
     function hipGraphExecGetFlags_typed(graphExec,flags)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphExecGetFlags_typed
       type(c_ptr), value :: graphExec
@@ -11848,7 +11440,6 @@ module hip
     end function
 
     function hipGraphExecUpdate_typed(hGraphExec,hGraph,hErrorNode_out,updateResult_out)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphExecUpdate_typed
       type(c_ptr), value :: hGraphExec
@@ -11861,7 +11452,6 @@ module hip
     end function
 
     function hipGraphNodeGetEnabled_typed(hGraphExec,hNode,isEnabled)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphNodeGetEnabled_typed
       type(c_ptr), value :: hGraphExec
@@ -11872,7 +11462,6 @@ module hip
     end function
 
     function hipMemGetAccess_typed(flags,location,ptr)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAccess_typed
       integer(c_int64_t),target :: flags
@@ -11883,7 +11472,6 @@ module hip
     end function
 
     function hipMemGetAllocationGranularity_typed(granularity,prop,option)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipMemGetAllocationGranularity_typed
       integer(c_size_t),target :: granularity
@@ -11895,7 +11483,6 @@ module hip
     end function
 
     function hipGraphicsResourceGetMappedPointer_typed(devPtr,mySize,resource)
-      use iso_c_binding
       implicit none
       integer(kind(hipSuccess)) :: hipGraphicsResourceGetMappedPointer_typed
       type(c_ptr) :: devPtr
@@ -11906,12 +11493,988 @@ module hip
         c_loc(mySize),resource)
     end function
 
+    function hipStreamGetPriority_spt_typed(stream,priority)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetPriority_spt_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: priority
+      !
+      hipStreamGetPriority_spt_typed = hipStreamGetPriority_spt_(stream,c_loc(priority))
+    end function
+
+    function hipStreamGetFlags_spt_typed(stream,flags)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetFlags_spt_typed
+      type(c_ptr), value :: stream
+      integer(c_int),target :: flags
+      !
+      hipStreamGetFlags_spt_typed = hipStreamGetFlags_spt_(stream,c_loc(flags))
+    end function
+
+    function hipStreamIsCapturing_spt_typed(stream,pCaptureStatus)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamIsCapturing_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      !
+      hipStreamIsCapturing_spt_typed = hipStreamIsCapturing_spt_(stream,c_loc(pCaptureStatus))
+    end function
+
+    function hipStreamGetCaptureInfo_spt_typed(stream,pCaptureStatus,pId)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: pCaptureStatus
+      integer(c_int64_t),optional,target :: pId
+      type(c_ptr) :: pId__p
+      !
+      pId__p = c_null_ptr
+      if (present(pId)) pId__p = c_loc(pId)
+      hipStreamGetCaptureInfo_spt_typed = hipStreamGetCaptureInfo_spt_(stream, &
+        c_loc(pCaptureStatus),pId__p)
+    end function
+
+    function hipStreamGetCaptureInfo_v2_spt_opt(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_spt_opt
+      type(c_ptr), value :: stream
+      type(c_ptr),value :: captureStatus_out
+      type(c_ptr),value :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      type(c_ptr),value :: numDependencies_out
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      !
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      hipStreamGetCaptureInfo_v2_spt_opt = hipStreamGetCaptureInfo_v2_spt_(stream, &
+        captureStatus_out,id_out,graph_out__p,dependencies_out__p,numDependencies_out)
+    end function
+
+    function hipStreamGetCaptureInfo_v2_spt_typed(stream,captureStatus_out,id_out,graph_out, &
+        dependencies_out,numDependencies_out)
+      implicit none
+      integer(kind(hipSuccess)) :: hipStreamGetCaptureInfo_v2_spt_typed
+      type(c_ptr), value :: stream
+      integer(kind(hipStreamCaptureStatusNone)),target :: captureStatus_out
+      integer(c_int64_t),optional,target :: id_out
+      type(c_ptr),optional,target :: graph_out
+      type(c_ptr),optional,target :: dependencies_out
+      integer(c_size_t),optional,target :: numDependencies_out
+      type(c_ptr) :: id_out__p
+      type(c_ptr) :: graph_out__p
+      type(c_ptr) :: dependencies_out__p
+      type(c_ptr) :: numDependencies_out__p
+      !
+      id_out__p = c_null_ptr
+      if (present(id_out)) id_out__p = c_loc(id_out)
+      graph_out__p = c_null_ptr
+      if (present(graph_out)) graph_out__p = c_loc(graph_out)
+      dependencies_out__p = c_null_ptr
+      if (present(dependencies_out)) dependencies_out__p = c_loc(dependencies_out)
+      numDependencies_out__p = c_null_ptr
+      if (present(numDependencies_out)) numDependencies_out__p = c_loc(numDependencies_out)
+      hipStreamGetCaptureInfo_v2_spt_typed = hipStreamGetCaptureInfo_v2_spt_(stream, &
+        c_loc(captureStatus_out),id_out__p,graph_out__p,dependencies_out__p,numDependencies_out__p)
+    end function
+
+    function hipGetProcAddress_spt_typed(symbol,pfn,hipVersion,flags,symbolStatus)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetProcAddress_spt_typed
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int) :: hipVersion
+      integer(c_int64_t) :: flags
+      integer(kind(HIP_GET_PROC_ADDRESS_SUCCESS)),optional,target :: symbolStatus
+      type(c_ptr) :: symbolStatus__p
+      !
+      symbolStatus__p = c_null_ptr
+      if (present(symbolStatus)) symbolStatus__p = c_loc(symbolStatus)
+      hipGetProcAddress_spt_typed = hipGetProcAddress_spt_(symbol,pfn,hipVersion,flags, &
+        symbolStatus__p)
+    end function
+
 
 #if defined(USE_ASSUMED_SHAPE) || defined(USE_ASSUMED_RANK)
 
 #ifdef USE_ASSUMED_RANK
+    function hipSetValidDevices_assumed_rank(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_assumed_rank
+      integer(c_int),target,dimension(..) :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_assumed_rank = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+#else
+    function hipSetValidDevices_rank_0(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_rank_0
+      integer(c_int),target :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_rank_0 = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+    function hipSetValidDevices_rank_1(device_arr,len)
+      implicit none
+      integer(kind(hipSuccess)) :: hipSetValidDevices_rank_1
+      integer(c_int),target,dimension(:) :: device_arr
+      integer(c_int) :: len
+      !
+      hipSetValidDevices_rank_1 = hipSetValidDevices_(c_loc(device_arr),len)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipExtStreamCreateWithCUMask_assumed_rank(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_assumed_rank
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(..) :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_assumed_rank = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+#else
+    function hipExtStreamCreateWithCUMask_rank_0(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_rank_0
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_rank_0 = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+    function hipExtStreamCreateWithCUMask_rank_1(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamCreateWithCUMask_rank_1
+      type(c_ptr) :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(:) :: cuMask
+      !
+      hipExtStreamCreateWithCUMask_rank_1 = hipExtStreamCreateWithCUMask_(stream,cuMaskSize, &
+        c_loc(cuMask))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipExtStreamGetCUMask_assumed_rank(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_assumed_rank
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(..) :: cuMask
+      !
+      hipExtStreamGetCUMask_assumed_rank = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+#else
+    function hipExtStreamGetCUMask_rank_0(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_rank_0
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target :: cuMask
+      !
+      hipExtStreamGetCUMask_rank_0 = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+    function hipExtStreamGetCUMask_rank_1(stream,cuMaskSize,cuMask)
+      implicit none
+      integer(kind(hipSuccess)) :: hipExtStreamGetCUMask_rank_1
+      type(c_ptr), value :: stream
+      integer(c_int32_t) :: cuMaskSize
+      integer(c_int32_t),target,dimension(:) :: cuMask
+      !
+      hipExtStreamGetCUMask_rank_1 = hipExtStreamGetCUMask_(stream,cuMaskSize,c_loc(cuMask))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipDrvPointerGetAttributes_assumed_rank(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_assumed_rank
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target,dimension(..) :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_assumed_rank = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+#else
+    function hipDrvPointerGetAttributes_rank_0(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_rank_0
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_rank_0 = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+    function hipDrvPointerGetAttributes_rank_1(numAttributes,attributes,myData,ptr)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvPointerGetAttributes_rank_1
+      integer(c_int) :: numAttributes
+      integer(kind(HIP_POINTER_ATTRIBUTE_CONTEXT)),target,dimension(:) :: attributes
+      type(c_ptr) :: myData
+      type(c_ptr), value :: ptr
+      !
+      hipDrvPointerGetAttributes_rank_1 = hipDrvPointerGetAttributes_(numAttributes, &
+        c_loc(attributes),myData,ptr)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemPrefetchBatchAsync_assumed_rank(dev_ptrs,sizes,count,prefetch_locs, &
+        prefetch_loc_idxs,num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target,dimension(..) :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_assumed_rank = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes), &
+        count,prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+#else
+    function hipMemPrefetchBatchAsync_rank_0(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
+        num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_rank_0 = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+    function hipMemPrefetchBatchAsync_rank_1(dev_ptrs,sizes,count,prefetch_locs,prefetch_loc_idxs, &
+        num_prefetch_locs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetch_locs
+      integer(c_size_t),target,dimension(:) :: prefetch_loc_idxs
+      integer(c_size_t) :: num_prefetch_locs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemPrefetchBatchAsync_rank_1 = hipMemPrefetchBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        prefetch_locs,c_loc(prefetch_loc_idxs),num_prefetch_locs,flags,stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemDiscardBatchAsync_assumed_rank(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_assumed_rank
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_assumed_rank = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+#else
+    function hipMemDiscardBatchAsync_rank_0(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_rank_0
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_rank_0 = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count,flags, &
+        stream)
+    end function
+
+    function hipMemDiscardBatchAsync_rank_1(dev_ptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardBatchAsync_rank_1
+      type(c_ptr) :: dev_ptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardBatchAsync_rank_1 = hipMemDiscardBatchAsync_(dev_ptrs,c_loc(sizes),count,flags, &
+        stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipDrvMemDiscardBatchAsync_assumed_rank(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_assumed_rank = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes), &
+        count,flags,stream)
+    end function
+
+#else
+    function hipDrvMemDiscardBatchAsync_rank_0(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_rank_0 = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+    function hipDrvMemDiscardBatchAsync_rank_1(dptrs,sizes,count,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardBatchAsync_rank_1 = hipDrvMemDiscardBatchAsync_(dptrs,c_loc(sizes),count, &
+        flags,stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemDiscardAndPrefetchBatchAsync_assumed_rank(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(..) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_assumed_rank = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#else
+    function hipMemDiscardAndPrefetchBatchAsync_rank_0(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_rank_0 = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+    function hipMemDiscardAndPrefetchBatchAsync_rank_1(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemDiscardAndPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(:) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipMemDiscardAndPrefetchBatchAsync_rank_1 = hipMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(..) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_assumed_rank = hipDrvMemDiscardAndPrefetchBatchAsync_( &
+        dptrs,c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#else
+    function hipDrvMemDiscardAndPrefetchBatchAsync_rank_0(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_rank_0
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_0 = hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+    function hipDrvMemDiscardAndPrefetchBatchAsync_rank_1(dptrs,sizes,count,prefetchLocs, &
+        prefetchLocIdxs,numPrefetchLocs,flags,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipDrvMemDiscardAndPrefetchBatchAsync_rank_1
+      type(c_ptr) :: dptrs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemLocation) :: prefetchLocs
+      integer(c_size_t),target,dimension(:) :: prefetchLocIdxs
+      integer(c_size_t) :: numPrefetchLocs
+      integer(c_int64_t) :: flags
+      type(c_ptr), value :: stream
+      !
+      hipDrvMemDiscardAndPrefetchBatchAsync_rank_1 = hipDrvMemDiscardAndPrefetchBatchAsync_(dptrs, &
+        c_loc(sizes),count,prefetchLocs,c_loc(prefetchLocIdxs),numPrefetchLocs,flags,stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemRangeGetAttributes_assumed_rank(myData,data_sizes,attributes,num_attributes, &
+        dev_ptr,count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_assumed_rank
+      type(c_ptr) :: myData
+      integer(c_size_t),target,dimension(..) :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target,dimension(..) :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_assumed_rank = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+#else
+    function hipMemRangeGetAttributes_rank_0(myData,data_sizes,attributes,num_attributes,dev_ptr, &
+        count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_rank_0
+      type(c_ptr) :: myData
+      integer(c_size_t),target :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_rank_0 = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+    function hipMemRangeGetAttributes_rank_1(myData,data_sizes,attributes,num_attributes,dev_ptr, &
+        count)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemRangeGetAttributes_rank_1
+      type(c_ptr) :: myData
+      integer(c_size_t),target,dimension(:) :: data_sizes
+      integer(kind(hipMemRangeAttributeReadMostly)),target,dimension(:) :: attributes
+      integer(c_size_t) :: num_attributes
+      type(c_ptr), value :: dev_ptr
+      integer(c_size_t) :: count
+      !
+      hipMemRangeGetAttributes_rank_1 = hipMemRangeGetAttributes_(myData,c_loc(data_sizes), &
+        c_loc(attributes),num_attributes,dev_ptr,count)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipMemcpyBatchAsync_assumed_rank(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs, &
+        failIdx,stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_assumed_rank
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target,dimension(..) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target,dimension(..) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_assumed_rank = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+#else
+    function hipMemcpyBatchAsync_rank_0(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_rank_0
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_rank_0 = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+    function hipMemcpyBatchAsync_rank_1(dsts,srcs,sizes,count,attrs,attrsIdxs,numAttrs,failIdx, &
+        stream)
+      implicit none
+      integer(kind(hipSuccess)) :: hipMemcpyBatchAsync_rank_1
+      type(c_ptr) :: dsts
+      type(c_ptr) :: srcs
+      integer(c_size_t),target,dimension(:) :: sizes
+      integer(c_size_t) :: count
+      type(hipMemcpyAttributes) :: attrs
+      integer(c_size_t),target,dimension(:) :: attrsIdxs
+      integer(c_size_t) :: numAttrs
+      integer(c_size_t),target :: failIdx
+      type(c_ptr), value :: stream
+      !
+      hipMemcpyBatchAsync_rank_1 = hipMemcpyBatchAsync_(dsts,srcs,c_loc(sizes),count,attrs, &
+        c_loc(attrsIdxs),numAttrs,c_loc(failIdx),stream)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLibraryLoadData_assumed_rank(library,code,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_assumed_rank
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(..) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_assumed_rank = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#else
+    function hipLibraryLoadData_rank_0(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_rank_0
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_rank_0 = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+    function hipLibraryLoadData_rank_1(library,code,jitOptions,jitOptionsValues,numJitOptions, &
+        libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadData_rank_1
+      type(c_ptr) :: library
+      type(c_ptr), value :: code
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(:) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadData_rank_1 = hipLibraryLoadData_(library,code,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLibraryLoadFromFile_assumed_rank(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_assumed_rank
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(..) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_assumed_rank = hipLibraryLoadFromFile_(library,fileName, &
+        c_loc(jitOptions),jitOptionsValues,numJitOptions,c_loc(libraryOptions), &
+        libraryOptionValues,numLibraryOptions)
+    end function
+
+#else
+    function hipLibraryLoadFromFile_rank_0(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_rank_0
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_rank_0 = hipLibraryLoadFromFile_(library,fileName,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+    function hipLibraryLoadFromFile_rank_1(library,fileName,jitOptions,jitOptionsValues, &
+        numJitOptions,libraryOptions,libraryOptionValues,numLibraryOptions)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLibraryLoadFromFile_rank_1
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int) :: numJitOptions
+      integer(kind(hipLibraryHostUniversalFunctionAndDataTable)),target,dimension(:) :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int) :: numLibraryOptions
+      !
+      hipLibraryLoadFromFile_rank_1 = hipLibraryLoadFromFile_(library,fileName,c_loc(jitOptions), &
+        jitOptionsValues,numJitOptions,c_loc(libraryOptions),libraryOptionValues,numLibraryOptions)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipModuleLoadDataEx_assumed_rank(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_assumed_rank
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_assumed_rank = hipModuleLoadDataEx_(myModule,image,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#else
+    function hipModuleLoadDataEx_rank_0(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_rank_0
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_rank_0 = hipModuleLoadDataEx_(myModule,image,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+    function hipModuleLoadDataEx_rank_1(myModule,image,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipModuleLoadDataEx_rank_1
+      type(c_ptr) :: myModule
+      type(c_ptr), value :: image
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipModuleLoadDataEx_rank_1 = hipModuleLoadDataEx_(myModule,image,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkAddData_assumed_rank(state,myType,myData,mySize,name,numOptions,options, &
+        optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_assumed_rank
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_assumed_rank = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#else
+    function hipLinkAddData_rank_0(state,myType,myData,mySize,name,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_rank_0
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_rank_0 = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+    function hipLinkAddData_rank_1(state,myType,myData,mySize,name,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddData_rank_1
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: myData
+      integer(c_size_t) :: mySize
+      type(c_ptr), value :: name
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddData_rank_1 = hipLinkAddData_(state,myType,myData,mySize,name,numOptions, &
+        c_loc(options),optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkAddFile_assumed_rank(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_assumed_rank
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_assumed_rank = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#else
+    function hipLinkAddFile_rank_0(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_rank_0
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_rank_0 = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+    function hipLinkAddFile_rank_1(state,myType,path,numOptions,options,optionValues)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkAddFile_rank_1
+      type(c_ptr), value :: state
+      integer(kind(hipJitInputCubin)) :: myType
+      type(c_ptr), value :: path
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      !
+      hipLinkAddFile_rank_1 = hipLinkAddFile_(state,myType,path,numOptions,c_loc(options), &
+        optionValues)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipLinkCreate_assumed_rank(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_assumed_rank
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(..) :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_assumed_rank = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+#else
+    function hipLinkCreate_rank_0(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_rank_0
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_rank_0 = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+    function hipLinkCreate_rank_1(numOptions,options,optionValues,stateOut)
+      implicit none
+      integer(kind(hipSuccess)) :: hipLinkCreate_rank_1
+      integer(c_int) :: numOptions
+      integer(kind(hipJitOptionMaxRegisters)),target,dimension(:) :: options
+      type(c_ptr) :: optionValues
+      type(c_ptr) :: stateOut
+      !
+      hipLinkCreate_rank_1 = hipLinkCreate_(numOptions,c_loc(options),optionValues,stateOut)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipTexRefGetBorderColor_assumed_rank(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_assumed_rank
+      real(c_float),target,dimension(..) :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_assumed_rank = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+#else
+    function hipTexRefGetBorderColor_rank_0(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_rank_0
+      real(c_float),target :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_rank_0 = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+    function hipTexRefGetBorderColor_rank_1(pBorderColor,texRef)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefGetBorderColor_rank_1
+      real(c_float),target,dimension(:) :: pBorderColor
+      type(textureReference) :: texRef
+      !
+      hipTexRefGetBorderColor_rank_1 = hipTexRefGetBorderColor_(c_loc(pBorderColor),texRef)
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipTexRefSetBorderColor_assumed_rank(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_assumed_rank
+      type(textureReference) :: texRef
+      real(c_float),target,dimension(..) :: pBorderColor
+      !
+      hipTexRefSetBorderColor_assumed_rank = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+#else
+    function hipTexRefSetBorderColor_rank_0(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_rank_0
+      type(textureReference) :: texRef
+      real(c_float),target :: pBorderColor
+      !
+      hipTexRefSetBorderColor_rank_0 = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+    function hipTexRefSetBorderColor_rank_1(texRef,pBorderColor)
+      implicit none
+      integer(kind(hipSuccess)) :: hipTexRefSetBorderColor_rank_1
+      type(textureReference) :: texRef
+      real(c_float),target,dimension(:) :: pBorderColor
+      !
+      hipTexRefSetBorderColor_rank_1 = hipTexRefSetBorderColor_(texRef,c_loc(pBorderColor))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
+    function hipGetDriverEntryPoint_spt_assumed_rank(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_assumed_rank
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target,dimension(..) :: status
+      !
+      hipGetDriverEntryPoint_spt_assumed_rank = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+#else
+    function hipGetDriverEntryPoint_spt_rank_0(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_rank_0
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target :: status
+      !
+      hipGetDriverEntryPoint_spt_rank_0 = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+    function hipGetDriverEntryPoint_spt_rank_1(symbol,funcPtr,flags,status)
+      implicit none
+      integer(kind(hipSuccess)) :: hipGetDriverEntryPoint_spt_rank_1
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t) :: flags
+      integer(kind(hipDriverEntryPointSuccess)),target,dimension(:) :: status
+      !
+      hipGetDriverEntryPoint_spt_rank_1 = hipGetDriverEntryPoint_spt_(symbol,funcPtr,flags, &
+        c_loc(status))
+    end function
+
+#endif
+#ifdef USE_ASSUMED_RANK
   function hipMemcpy_i4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -11924,7 +12487,6 @@ module hip
   end function hipMemcpy_i4_assumed_rank_c_size_t
 
   function hipMemcpy_i4_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -11937,7 +12499,6 @@ module hip
   end function hipMemcpy_i4_assumed_rank_c_int
 
   function hipMemcpy_i4_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -11949,7 +12510,6 @@ module hip
   end function hipMemcpy_i4_assumed_rank
 
   function hipMemcpy_i8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -11962,7 +12522,6 @@ module hip
   end function hipMemcpy_i8_assumed_rank_c_size_t
 
   function hipMemcpy_i8_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -11975,7 +12534,6 @@ module hip
   end function hipMemcpy_i8_assumed_rank_c_int
 
   function hipMemcpy_i8_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -11987,7 +12545,6 @@ module hip
   end function hipMemcpy_i8_assumed_rank
 
   function hipMemcpy_r4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12000,7 +12557,6 @@ module hip
   end function hipMemcpy_r4_assumed_rank_c_size_t
 
   function hipMemcpy_r4_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12013,7 +12569,6 @@ module hip
   end function hipMemcpy_r4_assumed_rank_c_int
 
   function hipMemcpy_r4_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12025,7 +12580,6 @@ module hip
   end function hipMemcpy_r4_assumed_rank
 
   function hipMemcpy_r8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12038,7 +12592,6 @@ module hip
   end function hipMemcpy_r8_assumed_rank_c_size_t
 
   function hipMemcpy_r8_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12051,7 +12604,6 @@ module hip
   end function hipMemcpy_r8_assumed_rank_c_int
 
   function hipMemcpy_r8_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12063,7 +12615,6 @@ module hip
   end function hipMemcpy_r8_assumed_rank
 
   function hipMemcpy_c4_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12076,7 +12627,6 @@ module hip
   end function hipMemcpy_c4_assumed_rank_c_size_t
 
   function hipMemcpy_c4_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12089,7 +12639,6 @@ module hip
   end function hipMemcpy_c4_assumed_rank_c_int
 
   function hipMemcpy_c4_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12101,7 +12650,6 @@ module hip
   end function hipMemcpy_c4_assumed_rank
 
   function hipMemcpy_c8_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12114,7 +12662,6 @@ module hip
   end function hipMemcpy_c8_assumed_rank_c_size_t
 
   function hipMemcpy_c8_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12127,7 +12674,6 @@ module hip
   end function hipMemcpy_c8_assumed_rank_c_int
 
   function hipMemcpy_c8_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12139,7 +12685,6 @@ module hip
   end function hipMemcpy_c8_assumed_rank
 
   function hipMemcpy_l_assumed_rank_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12152,7 +12697,6 @@ module hip
   end function hipMemcpy_l_assumed_rank_c_size_t
 
   function hipMemcpy_l_assumed_rank_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12165,7 +12709,6 @@ module hip
   end function hipMemcpy_l_assumed_rank_c_int
 
   function hipMemcpy_l_assumed_rank(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12177,7 +12720,6 @@ module hip
   end function hipMemcpy_l_assumed_rank
 
   function hipMemcpyAsync_i4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -12191,7 +12733,6 @@ module hip
   end function hipMemcpyAsync_i4_assumed_rank_c_size_t
 
   function hipMemcpyAsync_i4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -12205,7 +12746,6 @@ module hip
   end function hipMemcpyAsync_i4_assumed_rank_c_int
 
   function hipMemcpyAsync_i4_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), target, dimension(..), intent(in)    :: src
@@ -12218,7 +12758,6 @@ module hip
   end function hipMemcpyAsync_i4_assumed_rank
 
   function hipMemcpyAsync_i8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -12232,7 +12771,6 @@ module hip
   end function hipMemcpyAsync_i8_assumed_rank_c_size_t
 
   function hipMemcpyAsync_i8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -12246,7 +12784,6 @@ module hip
   end function hipMemcpyAsync_i8_assumed_rank_c_int
 
   function hipMemcpyAsync_i8_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int64_t), target, dimension(..), intent(in)    :: src
@@ -12259,7 +12796,6 @@ module hip
   end function hipMemcpyAsync_i8_assumed_rank
 
   function hipMemcpyAsync_r4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12273,7 +12809,6 @@ module hip
   end function hipMemcpyAsync_r4_assumed_rank_c_size_t
 
   function hipMemcpyAsync_r4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12287,7 +12822,6 @@ module hip
   end function hipMemcpyAsync_r4_assumed_rank_c_int
 
   function hipMemcpyAsync_r4_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     real(c_float), target, dimension(..), intent(in)    :: src
@@ -12300,7 +12834,6 @@ module hip
   end function hipMemcpyAsync_r4_assumed_rank
 
   function hipMemcpyAsync_r8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12314,7 +12847,6 @@ module hip
   end function hipMemcpyAsync_r8_assumed_rank_c_size_t
 
   function hipMemcpyAsync_r8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12328,7 +12860,6 @@ module hip
   end function hipMemcpyAsync_r8_assumed_rank_c_int
 
   function hipMemcpyAsync_r8_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     real(c_double), target, dimension(..), intent(in)    :: src
@@ -12341,7 +12872,6 @@ module hip
   end function hipMemcpyAsync_r8_assumed_rank
 
   function hipMemcpyAsync_c4_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12355,7 +12885,6 @@ module hip
   end function hipMemcpyAsync_c4_assumed_rank_c_size_t
 
   function hipMemcpyAsync_c4_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12369,7 +12898,6 @@ module hip
   end function hipMemcpyAsync_c4_assumed_rank_c_int
 
   function hipMemcpyAsync_c4_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     complex(c_float_complex), target, dimension(..), intent(in)    :: src
@@ -12382,7 +12910,6 @@ module hip
   end function hipMemcpyAsync_c4_assumed_rank
 
   function hipMemcpyAsync_c8_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12396,7 +12923,6 @@ module hip
   end function hipMemcpyAsync_c8_assumed_rank_c_size_t
 
   function hipMemcpyAsync_c8_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12410,7 +12936,6 @@ module hip
   end function hipMemcpyAsync_c8_assumed_rank_c_int
 
   function hipMemcpyAsync_c8_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     complex(c_double_complex), target, dimension(..), intent(in)    :: src
@@ -12423,7 +12948,6 @@ module hip
   end function hipMemcpyAsync_c8_assumed_rank
 
   function hipMemcpyAsync_l_assumed_rank_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12437,7 +12961,6 @@ module hip
   end function hipMemcpyAsync_l_assumed_rank_c_size_t
 
   function hipMemcpyAsync_l_assumed_rank_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12451,7 +12974,6 @@ module hip
   end function hipMemcpyAsync_l_assumed_rank_c_int
 
   function hipMemcpyAsync_l_assumed_rank(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     logical(c_bool), target, dimension(..), intent(in)    :: src
@@ -12464,7 +12986,6 @@ module hip
   end function hipMemcpyAsync_l_assumed_rank
 
   function hipMemcpy2D_i4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12479,7 +13000,6 @@ module hip
   end function hipMemcpy2D_i4_assumed_rank_c_size_t
 
   function hipMemcpy2D_i4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12494,7 +13014,6 @@ module hip
   end function hipMemcpy2D_i4_assumed_rank_c_int
 
   function hipMemcpy2D_i8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12509,7 +13028,6 @@ module hip
   end function hipMemcpy2D_i8_assumed_rank_c_size_t
 
   function hipMemcpy2D_i8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12524,7 +13042,6 @@ module hip
   end function hipMemcpy2D_i8_assumed_rank_c_int
 
   function hipMemcpy2D_r4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12539,7 +13056,6 @@ module hip
   end function hipMemcpy2D_r4_assumed_rank_c_size_t
 
   function hipMemcpy2D_r4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12554,7 +13070,6 @@ module hip
   end function hipMemcpy2D_r4_assumed_rank_c_int
 
   function hipMemcpy2D_r8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12569,7 +13084,6 @@ module hip
   end function hipMemcpy2D_r8_assumed_rank_c_size_t
 
   function hipMemcpy2D_r8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12584,7 +13098,6 @@ module hip
   end function hipMemcpy2D_r8_assumed_rank_c_int
 
   function hipMemcpy2D_c4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12599,7 +13112,6 @@ module hip
   end function hipMemcpy2D_c4_assumed_rank_c_size_t
 
   function hipMemcpy2D_c4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12614,7 +13126,6 @@ module hip
   end function hipMemcpy2D_c4_assumed_rank_c_int
 
   function hipMemcpy2D_c8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12629,7 +13140,6 @@ module hip
   end function hipMemcpy2D_c8_assumed_rank_c_size_t
 
   function hipMemcpy2D_c8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12644,7 +13154,6 @@ module hip
   end function hipMemcpy2D_c8_assumed_rank_c_int
 
   function hipMemcpy2D_l_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12659,7 +13168,6 @@ module hip
   end function hipMemcpy2D_l_assumed_rank_c_size_t
 
   function hipMemcpy2D_l_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12674,7 +13182,6 @@ module hip
   end function hipMemcpy2D_l_assumed_rank_c_int
 
   function hipMemcpy2DAsync_i4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12690,7 +13197,6 @@ module hip
   end function hipMemcpy2DAsync_i4_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_i4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12706,7 +13212,6 @@ module hip
   end function hipMemcpy2DAsync_i4_assumed_rank_c_int
 
   function hipMemcpy2DAsync_i8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12722,7 +13227,6 @@ module hip
   end function hipMemcpy2DAsync_i8_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_i8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12738,7 +13242,6 @@ module hip
   end function hipMemcpy2DAsync_i8_assumed_rank_c_int
 
   function hipMemcpy2DAsync_r4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12754,7 +13257,6 @@ module hip
   end function hipMemcpy2DAsync_r4_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_r4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12770,7 +13272,6 @@ module hip
   end function hipMemcpy2DAsync_r4_assumed_rank_c_int
 
   function hipMemcpy2DAsync_r8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12786,7 +13287,6 @@ module hip
   end function hipMemcpy2DAsync_r8_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_r8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12802,7 +13302,6 @@ module hip
   end function hipMemcpy2DAsync_r8_assumed_rank_c_int
 
   function hipMemcpy2DAsync_c4_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12818,7 +13317,6 @@ module hip
   end function hipMemcpy2DAsync_c4_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_c4_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12834,7 +13332,6 @@ module hip
   end function hipMemcpy2DAsync_c4_assumed_rank_c_int
 
   function hipMemcpy2DAsync_c8_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12850,7 +13347,6 @@ module hip
   end function hipMemcpy2DAsync_c8_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_c8_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12866,7 +13362,6 @@ module hip
   end function hipMemcpy2DAsync_c8_assumed_rank_c_int
 
   function hipMemcpy2DAsync_l_assumed_rank_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -12882,7 +13377,6 @@ module hip
   end function hipMemcpy2DAsync_l_assumed_rank_c_size_t
 
   function hipMemcpy2DAsync_l_assumed_rank_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(..), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -12899,7 +13393,6 @@ module hip
 
 #else
   function hipMemcpy_i4_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -12912,7 +13405,6 @@ module hip
   end function hipMemcpy_i4_0_c_size_t
 
   function hipMemcpy_i4_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -12925,7 +13417,6 @@ module hip
   end function hipMemcpy_i4_0_c_int
 
   function hipMemcpy_i4_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -12937,7 +13428,6 @@ module hip
   end function hipMemcpy_i4_0
 
   function hipMemcpy_i4_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -12950,7 +13440,6 @@ module hip
   end function hipMemcpy_i4_1_c_size_t
 
   function hipMemcpy_i4_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -12963,7 +13452,6 @@ module hip
   end function hipMemcpy_i4_1_c_int
 
   function hipMemcpy_i4_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -12975,7 +13463,6 @@ module hip
   end function hipMemcpy_i4_1
 
   function hipMemcpy_i4_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -12988,7 +13475,6 @@ module hip
   end function hipMemcpy_i4_2_c_size_t
 
   function hipMemcpy_i4_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -13001,7 +13487,6 @@ module hip
   end function hipMemcpy_i4_2_c_int
 
   function hipMemcpy_i4_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -13013,7 +13498,6 @@ module hip
   end function hipMemcpy_i4_2
 
   function hipMemcpy_i4_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -13026,7 +13510,6 @@ module hip
   end function hipMemcpy_i4_3_c_size_t
 
   function hipMemcpy_i4_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -13039,7 +13522,6 @@ module hip
   end function hipMemcpy_i4_3_c_int
 
   function hipMemcpy_i4_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -13051,7 +13533,6 @@ module hip
   end function hipMemcpy_i4_3
 
   function hipMemcpy_i4_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13064,7 +13545,6 @@ module hip
   end function hipMemcpy_i4_4_c_size_t
 
   function hipMemcpy_i4_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13077,7 +13557,6 @@ module hip
   end function hipMemcpy_i4_4_c_int
 
   function hipMemcpy_i4_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13089,7 +13568,6 @@ module hip
   end function hipMemcpy_i4_4
 
   function hipMemcpy_i4_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13102,7 +13580,6 @@ module hip
   end function hipMemcpy_i4_5_c_size_t
 
   function hipMemcpy_i4_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13115,7 +13592,6 @@ module hip
   end function hipMemcpy_i4_5_c_int
 
   function hipMemcpy_i4_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13127,7 +13603,6 @@ module hip
   end function hipMemcpy_i4_5
 
   function hipMemcpy_i4_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13140,7 +13615,6 @@ module hip
   end function hipMemcpy_i4_6_c_size_t
 
   function hipMemcpy_i4_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13153,7 +13627,6 @@ module hip
   end function hipMemcpy_i4_6_c_int
 
   function hipMemcpy_i4_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13165,7 +13638,6 @@ module hip
   end function hipMemcpy_i4_6
 
   function hipMemcpy_i4_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13178,7 +13650,6 @@ module hip
   end function hipMemcpy_i4_7_c_size_t
 
   function hipMemcpy_i4_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13191,7 +13662,6 @@ module hip
   end function hipMemcpy_i4_7_c_int
 
   function hipMemcpy_i4_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13203,7 +13673,6 @@ module hip
   end function hipMemcpy_i4_7
 
   function hipMemcpy_i8_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -13216,7 +13685,6 @@ module hip
   end function hipMemcpy_i8_0_c_size_t
 
   function hipMemcpy_i8_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -13229,7 +13697,6 @@ module hip
   end function hipMemcpy_i8_0_c_int
 
   function hipMemcpy_i8_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -13241,7 +13708,6 @@ module hip
   end function hipMemcpy_i8_0
 
   function hipMemcpy_i8_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -13254,7 +13720,6 @@ module hip
   end function hipMemcpy_i8_1_c_size_t
 
   function hipMemcpy_i8_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -13267,7 +13732,6 @@ module hip
   end function hipMemcpy_i8_1_c_int
 
   function hipMemcpy_i8_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -13279,7 +13743,6 @@ module hip
   end function hipMemcpy_i8_1
 
   function hipMemcpy_i8_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -13292,7 +13755,6 @@ module hip
   end function hipMemcpy_i8_2_c_size_t
 
   function hipMemcpy_i8_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -13305,7 +13767,6 @@ module hip
   end function hipMemcpy_i8_2_c_int
 
   function hipMemcpy_i8_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -13317,7 +13778,6 @@ module hip
   end function hipMemcpy_i8_2
 
   function hipMemcpy_i8_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -13330,7 +13790,6 @@ module hip
   end function hipMemcpy_i8_3_c_size_t
 
   function hipMemcpy_i8_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -13343,7 +13802,6 @@ module hip
   end function hipMemcpy_i8_3_c_int
 
   function hipMemcpy_i8_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -13355,7 +13813,6 @@ module hip
   end function hipMemcpy_i8_3
 
   function hipMemcpy_i8_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13368,7 +13825,6 @@ module hip
   end function hipMemcpy_i8_4_c_size_t
 
   function hipMemcpy_i8_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13381,7 +13837,6 @@ module hip
   end function hipMemcpy_i8_4_c_int
 
   function hipMemcpy_i8_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13393,7 +13848,6 @@ module hip
   end function hipMemcpy_i8_4
 
   function hipMemcpy_i8_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13406,7 +13860,6 @@ module hip
   end function hipMemcpy_i8_5_c_size_t
 
   function hipMemcpy_i8_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13419,7 +13872,6 @@ module hip
   end function hipMemcpy_i8_5_c_int
 
   function hipMemcpy_i8_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13431,7 +13883,6 @@ module hip
   end function hipMemcpy_i8_5
 
   function hipMemcpy_i8_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13444,7 +13895,6 @@ module hip
   end function hipMemcpy_i8_6_c_size_t
 
   function hipMemcpy_i8_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13457,7 +13907,6 @@ module hip
   end function hipMemcpy_i8_6_c_int
 
   function hipMemcpy_i8_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13469,7 +13918,6 @@ module hip
   end function hipMemcpy_i8_6
 
   function hipMemcpy_i8_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13482,7 +13930,6 @@ module hip
   end function hipMemcpy_i8_7_c_size_t
 
   function hipMemcpy_i8_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13495,7 +13942,6 @@ module hip
   end function hipMemcpy_i8_7_c_int
 
   function hipMemcpy_i8_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13507,7 +13953,6 @@ module hip
   end function hipMemcpy_i8_7
 
   function hipMemcpy_r4_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -13520,7 +13965,6 @@ module hip
   end function hipMemcpy_r4_0_c_size_t
 
   function hipMemcpy_r4_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -13533,7 +13977,6 @@ module hip
   end function hipMemcpy_r4_0_c_int
 
   function hipMemcpy_r4_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -13545,7 +13988,6 @@ module hip
   end function hipMemcpy_r4_0
 
   function hipMemcpy_r4_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -13558,7 +14000,6 @@ module hip
   end function hipMemcpy_r4_1_c_size_t
 
   function hipMemcpy_r4_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -13571,7 +14012,6 @@ module hip
   end function hipMemcpy_r4_1_c_int
 
   function hipMemcpy_r4_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -13583,7 +14023,6 @@ module hip
   end function hipMemcpy_r4_1
 
   function hipMemcpy_r4_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -13596,7 +14035,6 @@ module hip
   end function hipMemcpy_r4_2_c_size_t
 
   function hipMemcpy_r4_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -13609,7 +14047,6 @@ module hip
   end function hipMemcpy_r4_2_c_int
 
   function hipMemcpy_r4_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -13621,7 +14058,6 @@ module hip
   end function hipMemcpy_r4_2
 
   function hipMemcpy_r4_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -13634,7 +14070,6 @@ module hip
   end function hipMemcpy_r4_3_c_size_t
 
   function hipMemcpy_r4_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -13647,7 +14082,6 @@ module hip
   end function hipMemcpy_r4_3_c_int
 
   function hipMemcpy_r4_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -13659,7 +14093,6 @@ module hip
   end function hipMemcpy_r4_3
 
   function hipMemcpy_r4_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13672,7 +14105,6 @@ module hip
   end function hipMemcpy_r4_4_c_size_t
 
   function hipMemcpy_r4_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13685,7 +14117,6 @@ module hip
   end function hipMemcpy_r4_4_c_int
 
   function hipMemcpy_r4_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13697,7 +14128,6 @@ module hip
   end function hipMemcpy_r4_4
 
   function hipMemcpy_r4_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13710,7 +14140,6 @@ module hip
   end function hipMemcpy_r4_5_c_size_t
 
   function hipMemcpy_r4_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13723,7 +14152,6 @@ module hip
   end function hipMemcpy_r4_5_c_int
 
   function hipMemcpy_r4_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -13735,7 +14163,6 @@ module hip
   end function hipMemcpy_r4_5
 
   function hipMemcpy_r4_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13748,7 +14175,6 @@ module hip
   end function hipMemcpy_r4_6_c_size_t
 
   function hipMemcpy_r4_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13761,7 +14187,6 @@ module hip
   end function hipMemcpy_r4_6_c_int
 
   function hipMemcpy_r4_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -13773,7 +14198,6 @@ module hip
   end function hipMemcpy_r4_6
 
   function hipMemcpy_r4_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13786,7 +14210,6 @@ module hip
   end function hipMemcpy_r4_7_c_size_t
 
   function hipMemcpy_r4_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13799,7 +14222,6 @@ module hip
   end function hipMemcpy_r4_7_c_int
 
   function hipMemcpy_r4_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -13811,7 +14233,6 @@ module hip
   end function hipMemcpy_r4_7
 
   function hipMemcpy_r8_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -13824,7 +14245,6 @@ module hip
   end function hipMemcpy_r8_0_c_size_t
 
   function hipMemcpy_r8_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -13837,7 +14257,6 @@ module hip
   end function hipMemcpy_r8_0_c_int
 
   function hipMemcpy_r8_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -13849,7 +14268,6 @@ module hip
   end function hipMemcpy_r8_0
 
   function hipMemcpy_r8_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -13862,7 +14280,6 @@ module hip
   end function hipMemcpy_r8_1_c_size_t
 
   function hipMemcpy_r8_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -13875,7 +14292,6 @@ module hip
   end function hipMemcpy_r8_1_c_int
 
   function hipMemcpy_r8_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -13887,7 +14303,6 @@ module hip
   end function hipMemcpy_r8_1
 
   function hipMemcpy_r8_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -13900,7 +14315,6 @@ module hip
   end function hipMemcpy_r8_2_c_size_t
 
   function hipMemcpy_r8_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -13913,7 +14327,6 @@ module hip
   end function hipMemcpy_r8_2_c_int
 
   function hipMemcpy_r8_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -13925,7 +14338,6 @@ module hip
   end function hipMemcpy_r8_2
 
   function hipMemcpy_r8_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -13938,7 +14350,6 @@ module hip
   end function hipMemcpy_r8_3_c_size_t
 
   function hipMemcpy_r8_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -13951,7 +14362,6 @@ module hip
   end function hipMemcpy_r8_3_c_int
 
   function hipMemcpy_r8_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -13963,7 +14373,6 @@ module hip
   end function hipMemcpy_r8_3
 
   function hipMemcpy_r8_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13976,7 +14385,6 @@ module hip
   end function hipMemcpy_r8_4_c_size_t
 
   function hipMemcpy_r8_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -13989,7 +14397,6 @@ module hip
   end function hipMemcpy_r8_4_c_int
 
   function hipMemcpy_r8_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14001,7 +14408,6 @@ module hip
   end function hipMemcpy_r8_4
 
   function hipMemcpy_r8_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14014,7 +14420,6 @@ module hip
   end function hipMemcpy_r8_5_c_size_t
 
   function hipMemcpy_r8_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14027,7 +14432,6 @@ module hip
   end function hipMemcpy_r8_5_c_int
 
   function hipMemcpy_r8_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14039,7 +14443,6 @@ module hip
   end function hipMemcpy_r8_5
 
   function hipMemcpy_r8_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14052,7 +14455,6 @@ module hip
   end function hipMemcpy_r8_6_c_size_t
 
   function hipMemcpy_r8_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14065,7 +14467,6 @@ module hip
   end function hipMemcpy_r8_6_c_int
 
   function hipMemcpy_r8_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14077,7 +14478,6 @@ module hip
   end function hipMemcpy_r8_6
 
   function hipMemcpy_r8_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14090,7 +14490,6 @@ module hip
   end function hipMemcpy_r8_7_c_size_t
 
   function hipMemcpy_r8_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14103,7 +14502,6 @@ module hip
   end function hipMemcpy_r8_7_c_int
 
   function hipMemcpy_r8_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14115,7 +14513,6 @@ module hip
   end function hipMemcpy_r8_7
 
   function hipMemcpy_c4_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -14128,7 +14525,6 @@ module hip
   end function hipMemcpy_c4_0_c_size_t
 
   function hipMemcpy_c4_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -14141,7 +14537,6 @@ module hip
   end function hipMemcpy_c4_0_c_int
 
   function hipMemcpy_c4_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -14153,7 +14548,6 @@ module hip
   end function hipMemcpy_c4_0
 
   function hipMemcpy_c4_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -14166,7 +14560,6 @@ module hip
   end function hipMemcpy_c4_1_c_size_t
 
   function hipMemcpy_c4_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -14179,7 +14572,6 @@ module hip
   end function hipMemcpy_c4_1_c_int
 
   function hipMemcpy_c4_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -14191,7 +14583,6 @@ module hip
   end function hipMemcpy_c4_1
 
   function hipMemcpy_c4_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -14204,7 +14595,6 @@ module hip
   end function hipMemcpy_c4_2_c_size_t
 
   function hipMemcpy_c4_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -14217,7 +14607,6 @@ module hip
   end function hipMemcpy_c4_2_c_int
 
   function hipMemcpy_c4_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -14229,7 +14618,6 @@ module hip
   end function hipMemcpy_c4_2
 
   function hipMemcpy_c4_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14242,7 +14630,6 @@ module hip
   end function hipMemcpy_c4_3_c_size_t
 
   function hipMemcpy_c4_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14255,7 +14642,6 @@ module hip
   end function hipMemcpy_c4_3_c_int
 
   function hipMemcpy_c4_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14267,7 +14653,6 @@ module hip
   end function hipMemcpy_c4_3
 
   function hipMemcpy_c4_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14280,7 +14665,6 @@ module hip
   end function hipMemcpy_c4_4_c_size_t
 
   function hipMemcpy_c4_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14293,7 +14677,6 @@ module hip
   end function hipMemcpy_c4_4_c_int
 
   function hipMemcpy_c4_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14305,7 +14688,6 @@ module hip
   end function hipMemcpy_c4_4
 
   function hipMemcpy_c4_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14318,7 +14700,6 @@ module hip
   end function hipMemcpy_c4_5_c_size_t
 
   function hipMemcpy_c4_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14331,7 +14712,6 @@ module hip
   end function hipMemcpy_c4_5_c_int
 
   function hipMemcpy_c4_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14343,7 +14723,6 @@ module hip
   end function hipMemcpy_c4_5
 
   function hipMemcpy_c4_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14356,7 +14735,6 @@ module hip
   end function hipMemcpy_c4_6_c_size_t
 
   function hipMemcpy_c4_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14369,7 +14747,6 @@ module hip
   end function hipMemcpy_c4_6_c_int
 
   function hipMemcpy_c4_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14381,7 +14758,6 @@ module hip
   end function hipMemcpy_c4_6
 
   function hipMemcpy_c4_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14394,7 +14770,6 @@ module hip
   end function hipMemcpy_c4_7_c_size_t
 
   function hipMemcpy_c4_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14407,7 +14782,6 @@ module hip
   end function hipMemcpy_c4_7_c_int
 
   function hipMemcpy_c4_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14419,7 +14793,6 @@ module hip
   end function hipMemcpy_c4_7
 
   function hipMemcpy_c8_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -14432,7 +14805,6 @@ module hip
   end function hipMemcpy_c8_0_c_size_t
 
   function hipMemcpy_c8_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -14445,7 +14817,6 @@ module hip
   end function hipMemcpy_c8_0_c_int
 
   function hipMemcpy_c8_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -14457,7 +14828,6 @@ module hip
   end function hipMemcpy_c8_0
 
   function hipMemcpy_c8_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -14470,7 +14840,6 @@ module hip
   end function hipMemcpy_c8_1_c_size_t
 
   function hipMemcpy_c8_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -14483,7 +14852,6 @@ module hip
   end function hipMemcpy_c8_1_c_int
 
   function hipMemcpy_c8_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -14495,7 +14863,6 @@ module hip
   end function hipMemcpy_c8_1
 
   function hipMemcpy_c8_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -14508,7 +14875,6 @@ module hip
   end function hipMemcpy_c8_2_c_size_t
 
   function hipMemcpy_c8_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -14521,7 +14887,6 @@ module hip
   end function hipMemcpy_c8_2_c_int
 
   function hipMemcpy_c8_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -14533,7 +14898,6 @@ module hip
   end function hipMemcpy_c8_2
 
   function hipMemcpy_c8_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14546,7 +14910,6 @@ module hip
   end function hipMemcpy_c8_3_c_size_t
 
   function hipMemcpy_c8_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14559,7 +14922,6 @@ module hip
   end function hipMemcpy_c8_3_c_int
 
   function hipMemcpy_c8_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -14571,7 +14933,6 @@ module hip
   end function hipMemcpy_c8_3
 
   function hipMemcpy_c8_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14584,7 +14945,6 @@ module hip
   end function hipMemcpy_c8_4_c_size_t
 
   function hipMemcpy_c8_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14597,7 +14957,6 @@ module hip
   end function hipMemcpy_c8_4_c_int
 
   function hipMemcpy_c8_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14609,7 +14968,6 @@ module hip
   end function hipMemcpy_c8_4
 
   function hipMemcpy_c8_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14622,7 +14980,6 @@ module hip
   end function hipMemcpy_c8_5_c_size_t
 
   function hipMemcpy_c8_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14635,7 +14992,6 @@ module hip
   end function hipMemcpy_c8_5_c_int
 
   function hipMemcpy_c8_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14647,7 +15003,6 @@ module hip
   end function hipMemcpy_c8_5
 
   function hipMemcpy_c8_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14660,7 +15015,6 @@ module hip
   end function hipMemcpy_c8_6_c_size_t
 
   function hipMemcpy_c8_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14673,7 +15027,6 @@ module hip
   end function hipMemcpy_c8_6_c_int
 
   function hipMemcpy_c8_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14685,7 +15038,6 @@ module hip
   end function hipMemcpy_c8_6
 
   function hipMemcpy_c8_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14698,7 +15050,6 @@ module hip
   end function hipMemcpy_c8_7_c_size_t
 
   function hipMemcpy_c8_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14711,7 +15062,6 @@ module hip
   end function hipMemcpy_c8_7_c_int
 
   function hipMemcpy_c8_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -14723,7 +15073,6 @@ module hip
   end function hipMemcpy_c8_7
 
   function hipMemcpy_l_0_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -14736,7 +15085,6 @@ module hip
   end function hipMemcpy_l_0_c_size_t
 
   function hipMemcpy_l_0_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -14749,7 +15097,6 @@ module hip
   end function hipMemcpy_l_0_c_int
 
   function hipMemcpy_l_0(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -14761,7 +15108,6 @@ module hip
   end function hipMemcpy_l_0
 
   function hipMemcpy_l_1_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -14774,7 +15120,6 @@ module hip
   end function hipMemcpy_l_1_c_size_t
 
   function hipMemcpy_l_1_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -14787,7 +15132,6 @@ module hip
   end function hipMemcpy_l_1_c_int
 
   function hipMemcpy_l_1(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -14799,7 +15143,6 @@ module hip
   end function hipMemcpy_l_1
 
   function hipMemcpy_l_2_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -14812,7 +15155,6 @@ module hip
   end function hipMemcpy_l_2_c_size_t
 
   function hipMemcpy_l_2_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -14825,7 +15167,6 @@ module hip
   end function hipMemcpy_l_2_c_int
 
   function hipMemcpy_l_2(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -14837,7 +15178,6 @@ module hip
   end function hipMemcpy_l_2
 
   function hipMemcpy_l_3_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -14850,7 +15190,6 @@ module hip
   end function hipMemcpy_l_3_c_size_t
 
   function hipMemcpy_l_3_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -14863,7 +15202,6 @@ module hip
   end function hipMemcpy_l_3_c_int
 
   function hipMemcpy_l_3(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -14875,7 +15213,6 @@ module hip
   end function hipMemcpy_l_3
 
   function hipMemcpy_l_4_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14888,7 +15225,6 @@ module hip
   end function hipMemcpy_l_4_c_size_t
 
   function hipMemcpy_l_4_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14901,7 +15237,6 @@ module hip
   end function hipMemcpy_l_4_c_int
 
   function hipMemcpy_l_4(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -14913,7 +15248,6 @@ module hip
   end function hipMemcpy_l_4
 
   function hipMemcpy_l_5_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14926,7 +15260,6 @@ module hip
   end function hipMemcpy_l_5_c_size_t
 
   function hipMemcpy_l_5_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14939,7 +15272,6 @@ module hip
   end function hipMemcpy_l_5_c_int
 
   function hipMemcpy_l_5(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -14951,7 +15283,6 @@ module hip
   end function hipMemcpy_l_5
 
   function hipMemcpy_l_6_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14964,7 +15295,6 @@ module hip
   end function hipMemcpy_l_6_c_size_t
 
   function hipMemcpy_l_6_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14977,7 +15307,6 @@ module hip
   end function hipMemcpy_l_6_c_int
 
   function hipMemcpy_l_6(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -14989,7 +15318,6 @@ module hip
   end function hipMemcpy_l_6
 
   function hipMemcpy_l_7_c_size_t(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15002,7 +15330,6 @@ module hip
   end function hipMemcpy_l_7_c_size_t
 
   function hipMemcpy_l_7_c_int(dest, src, length, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15015,7 +15342,6 @@ module hip
   end function hipMemcpy_l_7_c_int
 
   function hipMemcpy_l_7(dest, src, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15027,7 +15353,6 @@ module hip
   end function hipMemcpy_l_7
 
   function hipMemcpyAsync_i4_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -15041,7 +15366,6 @@ module hip
   end function hipMemcpyAsync_i4_0_c_size_t
 
   function hipMemcpyAsync_i4_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -15055,7 +15379,6 @@ module hip
   end function hipMemcpyAsync_i4_0_c_int
 
   function hipMemcpyAsync_i4_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), target, intent(in)    :: src
@@ -15068,7 +15391,6 @@ module hip
   end function hipMemcpyAsync_i4_0
 
   function hipMemcpyAsync_i4_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -15082,7 +15404,6 @@ module hip
   end function hipMemcpyAsync_i4_1_c_size_t
 
   function hipMemcpyAsync_i4_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -15096,7 +15417,6 @@ module hip
   end function hipMemcpyAsync_i4_1_c_int
 
   function hipMemcpyAsync_i4_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), target, dimension(:), intent(in)    :: src
@@ -15109,7 +15429,6 @@ module hip
   end function hipMemcpyAsync_i4_1
 
   function hipMemcpyAsync_i4_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -15123,7 +15442,6 @@ module hip
   end function hipMemcpyAsync_i4_2_c_size_t
 
   function hipMemcpyAsync_i4_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -15137,7 +15455,6 @@ module hip
   end function hipMemcpyAsync_i4_2_c_int
 
   function hipMemcpyAsync_i4_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:), intent(in)    :: src
@@ -15150,7 +15467,6 @@ module hip
   end function hipMemcpyAsync_i4_2
 
   function hipMemcpyAsync_i4_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -15164,7 +15480,6 @@ module hip
   end function hipMemcpyAsync_i4_3_c_size_t
 
   function hipMemcpyAsync_i4_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -15178,7 +15493,6 @@ module hip
   end function hipMemcpyAsync_i4_3_c_int
 
   function hipMemcpyAsync_i4_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:), intent(in)    :: src
@@ -15191,7 +15505,6 @@ module hip
   end function hipMemcpyAsync_i4_3
 
   function hipMemcpyAsync_i4_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15205,7 +15518,6 @@ module hip
   end function hipMemcpyAsync_i4_4_c_size_t
 
   function hipMemcpyAsync_i4_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15219,7 +15531,6 @@ module hip
   end function hipMemcpyAsync_i4_4_c_int
 
   function hipMemcpyAsync_i4_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15232,7 +15543,6 @@ module hip
   end function hipMemcpyAsync_i4_4
 
   function hipMemcpyAsync_i4_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15246,7 +15556,6 @@ module hip
   end function hipMemcpyAsync_i4_5_c_size_t
 
   function hipMemcpyAsync_i4_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15260,7 +15569,6 @@ module hip
   end function hipMemcpyAsync_i4_5_c_int
 
   function hipMemcpyAsync_i4_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15273,7 +15581,6 @@ module hip
   end function hipMemcpyAsync_i4_5
 
   function hipMemcpyAsync_i4_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15287,7 +15594,6 @@ module hip
   end function hipMemcpyAsync_i4_6_c_size_t
 
   function hipMemcpyAsync_i4_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15301,7 +15607,6 @@ module hip
   end function hipMemcpyAsync_i4_6_c_int
 
   function hipMemcpyAsync_i4_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15314,7 +15619,6 @@ module hip
   end function hipMemcpyAsync_i4_6
 
   function hipMemcpyAsync_i4_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15328,7 +15632,6 @@ module hip
   end function hipMemcpyAsync_i4_7_c_size_t
 
   function hipMemcpyAsync_i4_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15342,7 +15645,6 @@ module hip
   end function hipMemcpyAsync_i4_7_c_int
 
   function hipMemcpyAsync_i4_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15355,7 +15657,6 @@ module hip
   end function hipMemcpyAsync_i4_7
 
   function hipMemcpyAsync_i8_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -15369,7 +15670,6 @@ module hip
   end function hipMemcpyAsync_i8_0_c_size_t
 
   function hipMemcpyAsync_i8_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -15383,7 +15683,6 @@ module hip
   end function hipMemcpyAsync_i8_0_c_int
 
   function hipMemcpyAsync_i8_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int64_t), target, intent(in)    :: src
@@ -15396,7 +15695,6 @@ module hip
   end function hipMemcpyAsync_i8_0
 
   function hipMemcpyAsync_i8_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -15410,7 +15708,6 @@ module hip
   end function hipMemcpyAsync_i8_1_c_size_t
 
   function hipMemcpyAsync_i8_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -15424,7 +15721,6 @@ module hip
   end function hipMemcpyAsync_i8_1_c_int
 
   function hipMemcpyAsync_i8_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:), intent(in)    :: src
@@ -15437,7 +15733,6 @@ module hip
   end function hipMemcpyAsync_i8_1
 
   function hipMemcpyAsync_i8_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -15451,7 +15746,6 @@ module hip
   end function hipMemcpyAsync_i8_2_c_size_t
 
   function hipMemcpyAsync_i8_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -15465,7 +15759,6 @@ module hip
   end function hipMemcpyAsync_i8_2_c_int
 
   function hipMemcpyAsync_i8_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
@@ -15478,7 +15771,6 @@ module hip
   end function hipMemcpyAsync_i8_2
 
   function hipMemcpyAsync_i8_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -15492,7 +15784,6 @@ module hip
   end function hipMemcpyAsync_i8_3_c_size_t
 
   function hipMemcpyAsync_i8_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -15506,7 +15797,6 @@ module hip
   end function hipMemcpyAsync_i8_3_c_int
 
   function hipMemcpyAsync_i8_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
@@ -15519,7 +15809,6 @@ module hip
   end function hipMemcpyAsync_i8_3
 
   function hipMemcpyAsync_i8_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15533,7 +15822,6 @@ module hip
   end function hipMemcpyAsync_i8_4_c_size_t
 
   function hipMemcpyAsync_i8_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15547,7 +15835,6 @@ module hip
   end function hipMemcpyAsync_i8_4_c_int
 
   function hipMemcpyAsync_i8_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15560,7 +15847,6 @@ module hip
   end function hipMemcpyAsync_i8_4
 
   function hipMemcpyAsync_i8_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15574,7 +15860,6 @@ module hip
   end function hipMemcpyAsync_i8_5_c_size_t
 
   function hipMemcpyAsync_i8_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15588,7 +15873,6 @@ module hip
   end function hipMemcpyAsync_i8_5_c_int
 
   function hipMemcpyAsync_i8_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15601,7 +15885,6 @@ module hip
   end function hipMemcpyAsync_i8_5
 
   function hipMemcpyAsync_i8_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15615,7 +15898,6 @@ module hip
   end function hipMemcpyAsync_i8_6_c_size_t
 
   function hipMemcpyAsync_i8_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15629,7 +15911,6 @@ module hip
   end function hipMemcpyAsync_i8_6_c_int
 
   function hipMemcpyAsync_i8_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15642,7 +15923,6 @@ module hip
   end function hipMemcpyAsync_i8_6
 
   function hipMemcpyAsync_i8_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15656,7 +15936,6 @@ module hip
   end function hipMemcpyAsync_i8_7_c_size_t
 
   function hipMemcpyAsync_i8_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15670,7 +15949,6 @@ module hip
   end function hipMemcpyAsync_i8_7_c_int
 
   function hipMemcpyAsync_i8_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15683,7 +15961,6 @@ module hip
   end function hipMemcpyAsync_i8_7
 
   function hipMemcpyAsync_r4_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -15697,7 +15974,6 @@ module hip
   end function hipMemcpyAsync_r4_0_c_size_t
 
   function hipMemcpyAsync_r4_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -15711,7 +15987,6 @@ module hip
   end function hipMemcpyAsync_r4_0_c_int
 
   function hipMemcpyAsync_r4_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     real(c_float), target, intent(in)    :: src
@@ -15724,7 +15999,6 @@ module hip
   end function hipMemcpyAsync_r4_0
 
   function hipMemcpyAsync_r4_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -15738,7 +16012,6 @@ module hip
   end function hipMemcpyAsync_r4_1_c_size_t
 
   function hipMemcpyAsync_r4_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -15752,7 +16025,6 @@ module hip
   end function hipMemcpyAsync_r4_1_c_int
 
   function hipMemcpyAsync_r4_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     real(c_float), target, dimension(:), intent(in)    :: src
@@ -15765,7 +16037,6 @@ module hip
   end function hipMemcpyAsync_r4_1
 
   function hipMemcpyAsync_r4_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -15779,7 +16050,6 @@ module hip
   end function hipMemcpyAsync_r4_2_c_size_t
 
   function hipMemcpyAsync_r4_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -15793,7 +16063,6 @@ module hip
   end function hipMemcpyAsync_r4_2_c_int
 
   function hipMemcpyAsync_r4_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:), intent(in)    :: src
@@ -15806,7 +16075,6 @@ module hip
   end function hipMemcpyAsync_r4_2
 
   function hipMemcpyAsync_r4_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -15820,7 +16088,6 @@ module hip
   end function hipMemcpyAsync_r4_3_c_size_t
 
   function hipMemcpyAsync_r4_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -15834,7 +16101,6 @@ module hip
   end function hipMemcpyAsync_r4_3_c_int
 
   function hipMemcpyAsync_r4_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:), intent(in)    :: src
@@ -15847,7 +16113,6 @@ module hip
   end function hipMemcpyAsync_r4_3
 
   function hipMemcpyAsync_r4_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15861,7 +16126,6 @@ module hip
   end function hipMemcpyAsync_r4_4_c_size_t
 
   function hipMemcpyAsync_r4_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15875,7 +16139,6 @@ module hip
   end function hipMemcpyAsync_r4_4_c_int
 
   function hipMemcpyAsync_r4_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
@@ -15888,7 +16151,6 @@ module hip
   end function hipMemcpyAsync_r4_4
 
   function hipMemcpyAsync_r4_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15902,7 +16164,6 @@ module hip
   end function hipMemcpyAsync_r4_5_c_size_t
 
   function hipMemcpyAsync_r4_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15916,7 +16177,6 @@ module hip
   end function hipMemcpyAsync_r4_5_c_int
 
   function hipMemcpyAsync_r4_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -15929,7 +16189,6 @@ module hip
   end function hipMemcpyAsync_r4_5
 
   function hipMemcpyAsync_r4_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15943,7 +16202,6 @@ module hip
   end function hipMemcpyAsync_r4_6_c_size_t
 
   function hipMemcpyAsync_r4_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15957,7 +16215,6 @@ module hip
   end function hipMemcpyAsync_r4_6_c_int
 
   function hipMemcpyAsync_r4_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -15970,7 +16227,6 @@ module hip
   end function hipMemcpyAsync_r4_6
 
   function hipMemcpyAsync_r4_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15984,7 +16240,6 @@ module hip
   end function hipMemcpyAsync_r4_7_c_size_t
 
   function hipMemcpyAsync_r4_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -15998,7 +16253,6 @@ module hip
   end function hipMemcpyAsync_r4_7_c_int
 
   function hipMemcpyAsync_r4_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16011,7 +16265,6 @@ module hip
   end function hipMemcpyAsync_r4_7
 
   function hipMemcpyAsync_r8_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -16025,7 +16278,6 @@ module hip
   end function hipMemcpyAsync_r8_0_c_size_t
 
   function hipMemcpyAsync_r8_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -16039,7 +16291,6 @@ module hip
   end function hipMemcpyAsync_r8_0_c_int
 
   function hipMemcpyAsync_r8_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     real(c_double), target, intent(in)    :: src
@@ -16052,7 +16303,6 @@ module hip
   end function hipMemcpyAsync_r8_0
 
   function hipMemcpyAsync_r8_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -16066,7 +16316,6 @@ module hip
   end function hipMemcpyAsync_r8_1_c_size_t
 
   function hipMemcpyAsync_r8_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -16080,7 +16329,6 @@ module hip
   end function hipMemcpyAsync_r8_1_c_int
 
   function hipMemcpyAsync_r8_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     real(c_double), target, dimension(:), intent(in)    :: src
@@ -16093,7 +16341,6 @@ module hip
   end function hipMemcpyAsync_r8_1
 
   function hipMemcpyAsync_r8_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -16107,7 +16354,6 @@ module hip
   end function hipMemcpyAsync_r8_2_c_size_t
 
   function hipMemcpyAsync_r8_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -16121,7 +16367,6 @@ module hip
   end function hipMemcpyAsync_r8_2_c_int
 
   function hipMemcpyAsync_r8_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:), intent(in)    :: src
@@ -16134,7 +16379,6 @@ module hip
   end function hipMemcpyAsync_r8_2
 
   function hipMemcpyAsync_r8_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -16148,7 +16392,6 @@ module hip
   end function hipMemcpyAsync_r8_3_c_size_t
 
   function hipMemcpyAsync_r8_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -16162,7 +16405,6 @@ module hip
   end function hipMemcpyAsync_r8_3_c_int
 
   function hipMemcpyAsync_r8_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:), intent(in)    :: src
@@ -16175,7 +16417,6 @@ module hip
   end function hipMemcpyAsync_r8_3
 
   function hipMemcpyAsync_r8_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16189,7 +16430,6 @@ module hip
   end function hipMemcpyAsync_r8_4_c_size_t
 
   function hipMemcpyAsync_r8_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16203,7 +16443,6 @@ module hip
   end function hipMemcpyAsync_r8_4_c_int
 
   function hipMemcpyAsync_r8_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16216,7 +16455,6 @@ module hip
   end function hipMemcpyAsync_r8_4
 
   function hipMemcpyAsync_r8_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16230,7 +16468,6 @@ module hip
   end function hipMemcpyAsync_r8_5_c_size_t
 
   function hipMemcpyAsync_r8_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16244,7 +16481,6 @@ module hip
   end function hipMemcpyAsync_r8_5_c_int
 
   function hipMemcpyAsync_r8_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16257,7 +16493,6 @@ module hip
   end function hipMemcpyAsync_r8_5
 
   function hipMemcpyAsync_r8_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16271,7 +16506,6 @@ module hip
   end function hipMemcpyAsync_r8_6_c_size_t
 
   function hipMemcpyAsync_r8_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16285,7 +16519,6 @@ module hip
   end function hipMemcpyAsync_r8_6_c_int
 
   function hipMemcpyAsync_r8_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16298,7 +16531,6 @@ module hip
   end function hipMemcpyAsync_r8_6
 
   function hipMemcpyAsync_r8_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16312,7 +16544,6 @@ module hip
   end function hipMemcpyAsync_r8_7_c_size_t
 
   function hipMemcpyAsync_r8_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16326,7 +16557,6 @@ module hip
   end function hipMemcpyAsync_r8_7_c_int
 
   function hipMemcpyAsync_r8_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16339,7 +16569,6 @@ module hip
   end function hipMemcpyAsync_r8_7
 
   function hipMemcpyAsync_c4_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -16353,7 +16582,6 @@ module hip
   end function hipMemcpyAsync_c4_0_c_size_t
 
   function hipMemcpyAsync_c4_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -16367,7 +16595,6 @@ module hip
   end function hipMemcpyAsync_c4_0_c_int
 
   function hipMemcpyAsync_c4_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     complex(c_float_complex), target, intent(in)    :: src
@@ -16380,7 +16607,6 @@ module hip
   end function hipMemcpyAsync_c4_0
 
   function hipMemcpyAsync_c4_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -16394,7 +16620,6 @@ module hip
   end function hipMemcpyAsync_c4_1_c_size_t
 
   function hipMemcpyAsync_c4_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -16408,7 +16633,6 @@ module hip
   end function hipMemcpyAsync_c4_1_c_int
 
   function hipMemcpyAsync_c4_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:), intent(in)    :: src
@@ -16421,7 +16645,6 @@ module hip
   end function hipMemcpyAsync_c4_1
 
   function hipMemcpyAsync_c4_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -16435,7 +16658,6 @@ module hip
   end function hipMemcpyAsync_c4_2_c_size_t
 
   function hipMemcpyAsync_c4_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -16449,7 +16671,6 @@ module hip
   end function hipMemcpyAsync_c4_2_c_int
 
   function hipMemcpyAsync_c4_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
@@ -16462,7 +16683,6 @@ module hip
   end function hipMemcpyAsync_c4_2
 
   function hipMemcpyAsync_c4_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16476,7 +16696,6 @@ module hip
   end function hipMemcpyAsync_c4_3_c_size_t
 
   function hipMemcpyAsync_c4_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16490,7 +16709,6 @@ module hip
   end function hipMemcpyAsync_c4_3_c_int
 
   function hipMemcpyAsync_c4_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16503,7 +16721,6 @@ module hip
   end function hipMemcpyAsync_c4_3
 
   function hipMemcpyAsync_c4_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16517,7 +16734,6 @@ module hip
   end function hipMemcpyAsync_c4_4_c_size_t
 
   function hipMemcpyAsync_c4_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16531,7 +16747,6 @@ module hip
   end function hipMemcpyAsync_c4_4_c_int
 
   function hipMemcpyAsync_c4_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16544,7 +16759,6 @@ module hip
   end function hipMemcpyAsync_c4_4
 
   function hipMemcpyAsync_c4_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16558,7 +16772,6 @@ module hip
   end function hipMemcpyAsync_c4_5_c_size_t
 
   function hipMemcpyAsync_c4_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16572,7 +16785,6 @@ module hip
   end function hipMemcpyAsync_c4_5_c_int
 
   function hipMemcpyAsync_c4_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16585,7 +16797,6 @@ module hip
   end function hipMemcpyAsync_c4_5
 
   function hipMemcpyAsync_c4_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16599,7 +16810,6 @@ module hip
   end function hipMemcpyAsync_c4_6_c_size_t
 
   function hipMemcpyAsync_c4_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16613,7 +16823,6 @@ module hip
   end function hipMemcpyAsync_c4_6_c_int
 
   function hipMemcpyAsync_c4_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16626,7 +16835,6 @@ module hip
   end function hipMemcpyAsync_c4_6
 
   function hipMemcpyAsync_c4_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16640,7 +16848,6 @@ module hip
   end function hipMemcpyAsync_c4_7_c_size_t
 
   function hipMemcpyAsync_c4_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16654,7 +16861,6 @@ module hip
   end function hipMemcpyAsync_c4_7_c_int
 
   function hipMemcpyAsync_c4_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16667,7 +16873,6 @@ module hip
   end function hipMemcpyAsync_c4_7
 
   function hipMemcpyAsync_c8_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -16681,7 +16886,6 @@ module hip
   end function hipMemcpyAsync_c8_0_c_size_t
 
   function hipMemcpyAsync_c8_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -16695,7 +16899,6 @@ module hip
   end function hipMemcpyAsync_c8_0_c_int
 
   function hipMemcpyAsync_c8_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     complex(c_double_complex), target, intent(in)    :: src
@@ -16708,7 +16911,6 @@ module hip
   end function hipMemcpyAsync_c8_0
 
   function hipMemcpyAsync_c8_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -16722,7 +16924,6 @@ module hip
   end function hipMemcpyAsync_c8_1_c_size_t
 
   function hipMemcpyAsync_c8_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -16736,7 +16937,6 @@ module hip
   end function hipMemcpyAsync_c8_1_c_int
 
   function hipMemcpyAsync_c8_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:), intent(in)    :: src
@@ -16749,7 +16949,6 @@ module hip
   end function hipMemcpyAsync_c8_1
 
   function hipMemcpyAsync_c8_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -16763,7 +16962,6 @@ module hip
   end function hipMemcpyAsync_c8_2_c_size_t
 
   function hipMemcpyAsync_c8_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -16777,7 +16975,6 @@ module hip
   end function hipMemcpyAsync_c8_2_c_int
 
   function hipMemcpyAsync_c8_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
@@ -16790,7 +16987,6 @@ module hip
   end function hipMemcpyAsync_c8_2
 
   function hipMemcpyAsync_c8_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16804,7 +17000,6 @@ module hip
   end function hipMemcpyAsync_c8_3_c_size_t
 
   function hipMemcpyAsync_c8_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16818,7 +17013,6 @@ module hip
   end function hipMemcpyAsync_c8_3_c_int
 
   function hipMemcpyAsync_c8_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
@@ -16831,7 +17025,6 @@ module hip
   end function hipMemcpyAsync_c8_3
 
   function hipMemcpyAsync_c8_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16845,7 +17038,6 @@ module hip
   end function hipMemcpyAsync_c8_4_c_size_t
 
   function hipMemcpyAsync_c8_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16859,7 +17051,6 @@ module hip
   end function hipMemcpyAsync_c8_4_c_int
 
   function hipMemcpyAsync_c8_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
@@ -16872,7 +17063,6 @@ module hip
   end function hipMemcpyAsync_c8_4
 
   function hipMemcpyAsync_c8_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16886,7 +17076,6 @@ module hip
   end function hipMemcpyAsync_c8_5_c_size_t
 
   function hipMemcpyAsync_c8_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16900,7 +17089,6 @@ module hip
   end function hipMemcpyAsync_c8_5_c_int
 
   function hipMemcpyAsync_c8_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -16913,7 +17101,6 @@ module hip
   end function hipMemcpyAsync_c8_5
 
   function hipMemcpyAsync_c8_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16927,7 +17114,6 @@ module hip
   end function hipMemcpyAsync_c8_6_c_size_t
 
   function hipMemcpyAsync_c8_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16941,7 +17127,6 @@ module hip
   end function hipMemcpyAsync_c8_6_c_int
 
   function hipMemcpyAsync_c8_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -16954,7 +17139,6 @@ module hip
   end function hipMemcpyAsync_c8_6
 
   function hipMemcpyAsync_c8_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16968,7 +17152,6 @@ module hip
   end function hipMemcpyAsync_c8_7_c_size_t
 
   function hipMemcpyAsync_c8_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16982,7 +17165,6 @@ module hip
   end function hipMemcpyAsync_c8_7_c_int
 
   function hipMemcpyAsync_c8_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -16995,7 +17177,6 @@ module hip
   end function hipMemcpyAsync_c8_7
 
   function hipMemcpyAsync_l_0_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -17009,7 +17190,6 @@ module hip
   end function hipMemcpyAsync_l_0_c_size_t
 
   function hipMemcpyAsync_l_0_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -17023,7 +17203,6 @@ module hip
   end function hipMemcpyAsync_l_0_c_int
 
   function hipMemcpyAsync_l_0(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     logical(c_bool), target, intent(in)    :: src
@@ -17036,7 +17215,6 @@ module hip
   end function hipMemcpyAsync_l_0
 
   function hipMemcpyAsync_l_1_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -17050,7 +17228,6 @@ module hip
   end function hipMemcpyAsync_l_1_c_size_t
 
   function hipMemcpyAsync_l_1_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -17064,7 +17241,6 @@ module hip
   end function hipMemcpyAsync_l_1_c_int
 
   function hipMemcpyAsync_l_1(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     logical(c_bool), target, dimension(:), intent(in)    :: src
@@ -17077,7 +17253,6 @@ module hip
   end function hipMemcpyAsync_l_1
 
   function hipMemcpyAsync_l_2_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -17091,7 +17266,6 @@ module hip
   end function hipMemcpyAsync_l_2_c_size_t
 
   function hipMemcpyAsync_l_2_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -17105,7 +17279,6 @@ module hip
   end function hipMemcpyAsync_l_2_c_int
 
   function hipMemcpyAsync_l_2(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:), intent(in)    :: src
@@ -17118,7 +17291,6 @@ module hip
   end function hipMemcpyAsync_l_2
 
   function hipMemcpyAsync_l_3_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -17132,7 +17304,6 @@ module hip
   end function hipMemcpyAsync_l_3_c_size_t
 
   function hipMemcpyAsync_l_3_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -17146,7 +17317,6 @@ module hip
   end function hipMemcpyAsync_l_3_c_int
 
   function hipMemcpyAsync_l_3(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:), intent(in)    :: src
@@ -17159,7 +17329,6 @@ module hip
   end function hipMemcpyAsync_l_3
 
   function hipMemcpyAsync_l_4_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -17173,7 +17342,6 @@ module hip
   end function hipMemcpyAsync_l_4_c_size_t
 
   function hipMemcpyAsync_l_4_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -17187,7 +17355,6 @@ module hip
   end function hipMemcpyAsync_l_4_c_int
 
   function hipMemcpyAsync_l_4(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:), intent(in)    :: src
@@ -17200,7 +17367,6 @@ module hip
   end function hipMemcpyAsync_l_4
 
   function hipMemcpyAsync_l_5_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -17214,7 +17380,6 @@ module hip
   end function hipMemcpyAsync_l_5_c_size_t
 
   function hipMemcpyAsync_l_5_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -17228,7 +17393,6 @@ module hip
   end function hipMemcpyAsync_l_5_c_int
 
   function hipMemcpyAsync_l_5(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in)    :: src
@@ -17241,7 +17405,6 @@ module hip
   end function hipMemcpyAsync_l_5
 
   function hipMemcpyAsync_l_6_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -17255,7 +17418,6 @@ module hip
   end function hipMemcpyAsync_l_6_c_size_t
 
   function hipMemcpyAsync_l_6_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -17269,7 +17431,6 @@ module hip
   end function hipMemcpyAsync_l_6_c_int
 
   function hipMemcpyAsync_l_6(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in)    :: src
@@ -17282,7 +17443,6 @@ module hip
   end function hipMemcpyAsync_l_6
 
   function hipMemcpyAsync_l_7_c_size_t(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -17296,7 +17456,6 @@ module hip
   end function hipMemcpyAsync_l_7_c_size_t
 
   function hipMemcpyAsync_l_7_c_int(dest, src, length, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -17310,7 +17469,6 @@ module hip
   end function hipMemcpyAsync_l_7_c_int
 
   function hipMemcpyAsync_l_7(dest, src, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
@@ -17323,7 +17481,6 @@ module hip
   end function hipMemcpyAsync_l_7
 
   function hipMemcpy2D_i4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17338,7 +17495,6 @@ module hip
   end function hipMemcpy2D_i4_0_c_size_t
 
   function hipMemcpy2D_i4_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17353,7 +17509,6 @@ module hip
   end function hipMemcpy2D_i4_0_c_int
 
   function hipMemcpy2D_i4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17368,7 +17523,6 @@ module hip
   end function hipMemcpy2D_i4_1_c_size_t
 
   function hipMemcpy2D_i4_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17383,7 +17537,6 @@ module hip
   end function hipMemcpy2D_i4_1_c_int
 
   function hipMemcpy2D_i4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17398,7 +17551,6 @@ module hip
   end function hipMemcpy2D_i4_2_c_size_t
 
   function hipMemcpy2D_i4_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17413,7 +17565,6 @@ module hip
   end function hipMemcpy2D_i4_2_c_int
 
   function hipMemcpy2D_i4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17428,7 +17579,6 @@ module hip
   end function hipMemcpy2D_i4_3_c_size_t
 
   function hipMemcpy2D_i4_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17443,7 +17593,6 @@ module hip
   end function hipMemcpy2D_i4_3_c_int
 
   function hipMemcpy2D_i4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17458,7 +17607,6 @@ module hip
   end function hipMemcpy2D_i4_4_c_size_t
 
   function hipMemcpy2D_i4_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17473,7 +17621,6 @@ module hip
   end function hipMemcpy2D_i4_4_c_int
 
   function hipMemcpy2D_i4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17488,7 +17635,6 @@ module hip
   end function hipMemcpy2D_i4_5_c_size_t
 
   function hipMemcpy2D_i4_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17503,7 +17649,6 @@ module hip
   end function hipMemcpy2D_i4_5_c_int
 
   function hipMemcpy2D_i4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17518,7 +17663,6 @@ module hip
   end function hipMemcpy2D_i4_6_c_size_t
 
   function hipMemcpy2D_i4_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17533,7 +17677,6 @@ module hip
   end function hipMemcpy2D_i4_6_c_int
 
   function hipMemcpy2D_i4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17548,7 +17691,6 @@ module hip
   end function hipMemcpy2D_i4_7_c_size_t
 
   function hipMemcpy2D_i4_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17563,7 +17705,6 @@ module hip
   end function hipMemcpy2D_i4_7_c_int
 
   function hipMemcpy2D_i8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17578,7 +17719,6 @@ module hip
   end function hipMemcpy2D_i8_0_c_size_t
 
   function hipMemcpy2D_i8_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17593,7 +17733,6 @@ module hip
   end function hipMemcpy2D_i8_0_c_int
 
   function hipMemcpy2D_i8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17608,7 +17747,6 @@ module hip
   end function hipMemcpy2D_i8_1_c_size_t
 
   function hipMemcpy2D_i8_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17623,7 +17761,6 @@ module hip
   end function hipMemcpy2D_i8_1_c_int
 
   function hipMemcpy2D_i8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17638,7 +17775,6 @@ module hip
   end function hipMemcpy2D_i8_2_c_size_t
 
   function hipMemcpy2D_i8_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17653,7 +17789,6 @@ module hip
   end function hipMemcpy2D_i8_2_c_int
 
   function hipMemcpy2D_i8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17668,7 +17803,6 @@ module hip
   end function hipMemcpy2D_i8_3_c_size_t
 
   function hipMemcpy2D_i8_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17683,7 +17817,6 @@ module hip
   end function hipMemcpy2D_i8_3_c_int
 
   function hipMemcpy2D_i8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17698,7 +17831,6 @@ module hip
   end function hipMemcpy2D_i8_4_c_size_t
 
   function hipMemcpy2D_i8_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17713,7 +17845,6 @@ module hip
   end function hipMemcpy2D_i8_4_c_int
 
   function hipMemcpy2D_i8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17728,7 +17859,6 @@ module hip
   end function hipMemcpy2D_i8_5_c_size_t
 
   function hipMemcpy2D_i8_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17743,7 +17873,6 @@ module hip
   end function hipMemcpy2D_i8_5_c_int
 
   function hipMemcpy2D_i8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17758,7 +17887,6 @@ module hip
   end function hipMemcpy2D_i8_6_c_size_t
 
   function hipMemcpy2D_i8_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17773,7 +17901,6 @@ module hip
   end function hipMemcpy2D_i8_6_c_int
 
   function hipMemcpy2D_i8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17788,7 +17915,6 @@ module hip
   end function hipMemcpy2D_i8_7_c_size_t
 
   function hipMemcpy2D_i8_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17803,7 +17929,6 @@ module hip
   end function hipMemcpy2D_i8_7_c_int
 
   function hipMemcpy2D_r4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17818,7 +17943,6 @@ module hip
   end function hipMemcpy2D_r4_0_c_size_t
 
   function hipMemcpy2D_r4_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17833,7 +17957,6 @@ module hip
   end function hipMemcpy2D_r4_0_c_int
 
   function hipMemcpy2D_r4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17848,7 +17971,6 @@ module hip
   end function hipMemcpy2D_r4_1_c_size_t
 
   function hipMemcpy2D_r4_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17863,7 +17985,6 @@ module hip
   end function hipMemcpy2D_r4_1_c_int
 
   function hipMemcpy2D_r4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17878,7 +17999,6 @@ module hip
   end function hipMemcpy2D_r4_2_c_size_t
 
   function hipMemcpy2D_r4_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17893,7 +18013,6 @@ module hip
   end function hipMemcpy2D_r4_2_c_int
 
   function hipMemcpy2D_r4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17908,7 +18027,6 @@ module hip
   end function hipMemcpy2D_r4_3_c_size_t
 
   function hipMemcpy2D_r4_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17923,7 +18041,6 @@ module hip
   end function hipMemcpy2D_r4_3_c_int
 
   function hipMemcpy2D_r4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17938,7 +18055,6 @@ module hip
   end function hipMemcpy2D_r4_4_c_size_t
 
   function hipMemcpy2D_r4_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17953,7 +18069,6 @@ module hip
   end function hipMemcpy2D_r4_4_c_int
 
   function hipMemcpy2D_r4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17968,7 +18083,6 @@ module hip
   end function hipMemcpy2D_r4_5_c_size_t
 
   function hipMemcpy2D_r4_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -17983,7 +18097,6 @@ module hip
   end function hipMemcpy2D_r4_5_c_int
 
   function hipMemcpy2D_r4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -17998,7 +18111,6 @@ module hip
   end function hipMemcpy2D_r4_6_c_size_t
 
   function hipMemcpy2D_r4_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18013,7 +18125,6 @@ module hip
   end function hipMemcpy2D_r4_6_c_int
 
   function hipMemcpy2D_r4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18028,7 +18139,6 @@ module hip
   end function hipMemcpy2D_r4_7_c_size_t
 
   function hipMemcpy2D_r4_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18043,7 +18153,6 @@ module hip
   end function hipMemcpy2D_r4_7_c_int
 
   function hipMemcpy2D_r8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18058,7 +18167,6 @@ module hip
   end function hipMemcpy2D_r8_0_c_size_t
 
   function hipMemcpy2D_r8_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18073,7 +18181,6 @@ module hip
   end function hipMemcpy2D_r8_0_c_int
 
   function hipMemcpy2D_r8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18088,7 +18195,6 @@ module hip
   end function hipMemcpy2D_r8_1_c_size_t
 
   function hipMemcpy2D_r8_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18103,7 +18209,6 @@ module hip
   end function hipMemcpy2D_r8_1_c_int
 
   function hipMemcpy2D_r8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18118,7 +18223,6 @@ module hip
   end function hipMemcpy2D_r8_2_c_size_t
 
   function hipMemcpy2D_r8_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18133,7 +18237,6 @@ module hip
   end function hipMemcpy2D_r8_2_c_int
 
   function hipMemcpy2D_r8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18148,7 +18251,6 @@ module hip
   end function hipMemcpy2D_r8_3_c_size_t
 
   function hipMemcpy2D_r8_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18163,7 +18265,6 @@ module hip
   end function hipMemcpy2D_r8_3_c_int
 
   function hipMemcpy2D_r8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18178,7 +18279,6 @@ module hip
   end function hipMemcpy2D_r8_4_c_size_t
 
   function hipMemcpy2D_r8_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18193,7 +18293,6 @@ module hip
   end function hipMemcpy2D_r8_4_c_int
 
   function hipMemcpy2D_r8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18208,7 +18307,6 @@ module hip
   end function hipMemcpy2D_r8_5_c_size_t
 
   function hipMemcpy2D_r8_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18223,7 +18321,6 @@ module hip
   end function hipMemcpy2D_r8_5_c_int
 
   function hipMemcpy2D_r8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18238,7 +18335,6 @@ module hip
   end function hipMemcpy2D_r8_6_c_size_t
 
   function hipMemcpy2D_r8_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18253,7 +18349,6 @@ module hip
   end function hipMemcpy2D_r8_6_c_int
 
   function hipMemcpy2D_r8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18268,7 +18363,6 @@ module hip
   end function hipMemcpy2D_r8_7_c_size_t
 
   function hipMemcpy2D_r8_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18283,7 +18377,6 @@ module hip
   end function hipMemcpy2D_r8_7_c_int
 
   function hipMemcpy2D_c4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18298,7 +18391,6 @@ module hip
   end function hipMemcpy2D_c4_0_c_size_t
 
   function hipMemcpy2D_c4_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18313,7 +18405,6 @@ module hip
   end function hipMemcpy2D_c4_0_c_int
 
   function hipMemcpy2D_c4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18328,7 +18419,6 @@ module hip
   end function hipMemcpy2D_c4_1_c_size_t
 
   function hipMemcpy2D_c4_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18343,7 +18433,6 @@ module hip
   end function hipMemcpy2D_c4_1_c_int
 
   function hipMemcpy2D_c4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18358,7 +18447,6 @@ module hip
   end function hipMemcpy2D_c4_2_c_size_t
 
   function hipMemcpy2D_c4_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18373,7 +18461,6 @@ module hip
   end function hipMemcpy2D_c4_2_c_int
 
   function hipMemcpy2D_c4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18388,7 +18475,6 @@ module hip
   end function hipMemcpy2D_c4_3_c_size_t
 
   function hipMemcpy2D_c4_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18403,7 +18489,6 @@ module hip
   end function hipMemcpy2D_c4_3_c_int
 
   function hipMemcpy2D_c4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18418,7 +18503,6 @@ module hip
   end function hipMemcpy2D_c4_4_c_size_t
 
   function hipMemcpy2D_c4_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18433,7 +18517,6 @@ module hip
   end function hipMemcpy2D_c4_4_c_int
 
   function hipMemcpy2D_c4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18448,7 +18531,6 @@ module hip
   end function hipMemcpy2D_c4_5_c_size_t
 
   function hipMemcpy2D_c4_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18463,7 +18545,6 @@ module hip
   end function hipMemcpy2D_c4_5_c_int
 
   function hipMemcpy2D_c4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18478,7 +18559,6 @@ module hip
   end function hipMemcpy2D_c4_6_c_size_t
 
   function hipMemcpy2D_c4_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18493,7 +18573,6 @@ module hip
   end function hipMemcpy2D_c4_6_c_int
 
   function hipMemcpy2D_c4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18508,7 +18587,6 @@ module hip
   end function hipMemcpy2D_c4_7_c_size_t
 
   function hipMemcpy2D_c4_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18523,7 +18601,6 @@ module hip
   end function hipMemcpy2D_c4_7_c_int
 
   function hipMemcpy2D_c8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18538,7 +18615,6 @@ module hip
   end function hipMemcpy2D_c8_0_c_size_t
 
   function hipMemcpy2D_c8_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18553,7 +18629,6 @@ module hip
   end function hipMemcpy2D_c8_0_c_int
 
   function hipMemcpy2D_c8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18568,7 +18643,6 @@ module hip
   end function hipMemcpy2D_c8_1_c_size_t
 
   function hipMemcpy2D_c8_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18583,7 +18657,6 @@ module hip
   end function hipMemcpy2D_c8_1_c_int
 
   function hipMemcpy2D_c8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18598,7 +18671,6 @@ module hip
   end function hipMemcpy2D_c8_2_c_size_t
 
   function hipMemcpy2D_c8_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18613,7 +18685,6 @@ module hip
   end function hipMemcpy2D_c8_2_c_int
 
   function hipMemcpy2D_c8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18628,7 +18699,6 @@ module hip
   end function hipMemcpy2D_c8_3_c_size_t
 
   function hipMemcpy2D_c8_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18643,7 +18713,6 @@ module hip
   end function hipMemcpy2D_c8_3_c_int
 
   function hipMemcpy2D_c8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18658,7 +18727,6 @@ module hip
   end function hipMemcpy2D_c8_4_c_size_t
 
   function hipMemcpy2D_c8_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18673,7 +18741,6 @@ module hip
   end function hipMemcpy2D_c8_4_c_int
 
   function hipMemcpy2D_c8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18688,7 +18755,6 @@ module hip
   end function hipMemcpy2D_c8_5_c_size_t
 
   function hipMemcpy2D_c8_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18703,7 +18769,6 @@ module hip
   end function hipMemcpy2D_c8_5_c_int
 
   function hipMemcpy2D_c8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18718,7 +18783,6 @@ module hip
   end function hipMemcpy2D_c8_6_c_size_t
 
   function hipMemcpy2D_c8_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18733,7 +18797,6 @@ module hip
   end function hipMemcpy2D_c8_6_c_int
 
   function hipMemcpy2D_c8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18748,7 +18811,6 @@ module hip
   end function hipMemcpy2D_c8_7_c_size_t
 
   function hipMemcpy2D_c8_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18763,7 +18825,6 @@ module hip
   end function hipMemcpy2D_c8_7_c_int
 
   function hipMemcpy2D_l_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18778,7 +18839,6 @@ module hip
   end function hipMemcpy2D_l_0_c_size_t
 
   function hipMemcpy2D_l_0_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18793,7 +18853,6 @@ module hip
   end function hipMemcpy2D_l_0_c_int
 
   function hipMemcpy2D_l_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18808,7 +18867,6 @@ module hip
   end function hipMemcpy2D_l_1_c_size_t
 
   function hipMemcpy2D_l_1_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18823,7 +18881,6 @@ module hip
   end function hipMemcpy2D_l_1_c_int
 
   function hipMemcpy2D_l_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18838,7 +18895,6 @@ module hip
   end function hipMemcpy2D_l_2_c_size_t
 
   function hipMemcpy2D_l_2_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18853,7 +18909,6 @@ module hip
   end function hipMemcpy2D_l_2_c_int
 
   function hipMemcpy2D_l_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18868,7 +18923,6 @@ module hip
   end function hipMemcpy2D_l_3_c_size_t
 
   function hipMemcpy2D_l_3_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18883,7 +18937,6 @@ module hip
   end function hipMemcpy2D_l_3_c_int
 
   function hipMemcpy2D_l_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18898,7 +18951,6 @@ module hip
   end function hipMemcpy2D_l_4_c_size_t
 
   function hipMemcpy2D_l_4_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18913,7 +18965,6 @@ module hip
   end function hipMemcpy2D_l_4_c_int
 
   function hipMemcpy2D_l_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18928,7 +18979,6 @@ module hip
   end function hipMemcpy2D_l_5_c_size_t
 
   function hipMemcpy2D_l_5_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18943,7 +18993,6 @@ module hip
   end function hipMemcpy2D_l_5_c_int
 
   function hipMemcpy2D_l_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18958,7 +19007,6 @@ module hip
   end function hipMemcpy2D_l_6_c_size_t
 
   function hipMemcpy2D_l_6_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -18973,7 +19021,6 @@ module hip
   end function hipMemcpy2D_l_6_c_int
 
   function hipMemcpy2D_l_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -18988,7 +19035,6 @@ module hip
   end function hipMemcpy2D_l_7_c_size_t
 
   function hipMemcpy2D_l_7_c_int(dest, dpitch, src, spitch, width, height, myKind) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19003,7 +19049,6 @@ module hip
   end function hipMemcpy2D_l_7_c_int
 
   function hipMemcpy2DAsync_i4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19019,7 +19064,6 @@ module hip
   end function hipMemcpy2DAsync_i4_0_c_size_t
 
   function hipMemcpy2DAsync_i4_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19035,7 +19079,6 @@ module hip
   end function hipMemcpy2DAsync_i4_0_c_int
 
   function hipMemcpy2DAsync_i4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19051,7 +19094,6 @@ module hip
   end function hipMemcpy2DAsync_i4_1_c_size_t
 
   function hipMemcpy2DAsync_i4_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19067,7 +19109,6 @@ module hip
   end function hipMemcpy2DAsync_i4_1_c_int
 
   function hipMemcpy2DAsync_i4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19083,7 +19124,6 @@ module hip
   end function hipMemcpy2DAsync_i4_2_c_size_t
 
   function hipMemcpy2DAsync_i4_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19099,7 +19139,6 @@ module hip
   end function hipMemcpy2DAsync_i4_2_c_int
 
   function hipMemcpy2DAsync_i4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19115,7 +19154,6 @@ module hip
   end function hipMemcpy2DAsync_i4_3_c_size_t
 
   function hipMemcpy2DAsync_i4_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19131,7 +19169,6 @@ module hip
   end function hipMemcpy2DAsync_i4_3_c_int
 
   function hipMemcpy2DAsync_i4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19147,7 +19184,6 @@ module hip
   end function hipMemcpy2DAsync_i4_4_c_size_t
 
   function hipMemcpy2DAsync_i4_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19163,7 +19199,6 @@ module hip
   end function hipMemcpy2DAsync_i4_4_c_int
 
   function hipMemcpy2DAsync_i4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19179,7 +19214,6 @@ module hip
   end function hipMemcpy2DAsync_i4_5_c_size_t
 
   function hipMemcpy2DAsync_i4_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19195,7 +19229,6 @@ module hip
   end function hipMemcpy2DAsync_i4_5_c_int
 
   function hipMemcpy2DAsync_i4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19211,7 +19244,6 @@ module hip
   end function hipMemcpy2DAsync_i4_6_c_size_t
 
   function hipMemcpy2DAsync_i4_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19227,7 +19259,6 @@ module hip
   end function hipMemcpy2DAsync_i4_6_c_int
 
   function hipMemcpy2DAsync_i4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19243,7 +19274,6 @@ module hip
   end function hipMemcpy2DAsync_i4_7_c_size_t
 
   function hipMemcpy2DAsync_i4_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19259,7 +19289,6 @@ module hip
   end function hipMemcpy2DAsync_i4_7_c_int
 
   function hipMemcpy2DAsync_i8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19275,7 +19304,6 @@ module hip
   end function hipMemcpy2DAsync_i8_0_c_size_t
 
   function hipMemcpy2DAsync_i8_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19291,7 +19319,6 @@ module hip
   end function hipMemcpy2DAsync_i8_0_c_int
 
   function hipMemcpy2DAsync_i8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19307,7 +19334,6 @@ module hip
   end function hipMemcpy2DAsync_i8_1_c_size_t
 
   function hipMemcpy2DAsync_i8_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19323,7 +19349,6 @@ module hip
   end function hipMemcpy2DAsync_i8_1_c_int
 
   function hipMemcpy2DAsync_i8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19339,7 +19364,6 @@ module hip
   end function hipMemcpy2DAsync_i8_2_c_size_t
 
   function hipMemcpy2DAsync_i8_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19355,7 +19379,6 @@ module hip
   end function hipMemcpy2DAsync_i8_2_c_int
 
   function hipMemcpy2DAsync_i8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19371,7 +19394,6 @@ module hip
   end function hipMemcpy2DAsync_i8_3_c_size_t
 
   function hipMemcpy2DAsync_i8_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19387,7 +19409,6 @@ module hip
   end function hipMemcpy2DAsync_i8_3_c_int
 
   function hipMemcpy2DAsync_i8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19403,7 +19424,6 @@ module hip
   end function hipMemcpy2DAsync_i8_4_c_size_t
 
   function hipMemcpy2DAsync_i8_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19419,7 +19439,6 @@ module hip
   end function hipMemcpy2DAsync_i8_4_c_int
 
   function hipMemcpy2DAsync_i8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19435,7 +19454,6 @@ module hip
   end function hipMemcpy2DAsync_i8_5_c_size_t
 
   function hipMemcpy2DAsync_i8_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19451,7 +19469,6 @@ module hip
   end function hipMemcpy2DAsync_i8_5_c_int
 
   function hipMemcpy2DAsync_i8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19467,7 +19484,6 @@ module hip
   end function hipMemcpy2DAsync_i8_6_c_size_t
 
   function hipMemcpy2DAsync_i8_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19483,7 +19499,6 @@ module hip
   end function hipMemcpy2DAsync_i8_6_c_int
 
   function hipMemcpy2DAsync_i8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19499,7 +19514,6 @@ module hip
   end function hipMemcpy2DAsync_i8_7_c_size_t
 
   function hipMemcpy2DAsync_i8_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19515,7 +19529,6 @@ module hip
   end function hipMemcpy2DAsync_i8_7_c_int
 
   function hipMemcpy2DAsync_r4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19531,7 +19544,6 @@ module hip
   end function hipMemcpy2DAsync_r4_0_c_size_t
 
   function hipMemcpy2DAsync_r4_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19547,7 +19559,6 @@ module hip
   end function hipMemcpy2DAsync_r4_0_c_int
 
   function hipMemcpy2DAsync_r4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19563,7 +19574,6 @@ module hip
   end function hipMemcpy2DAsync_r4_1_c_size_t
 
   function hipMemcpy2DAsync_r4_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19579,7 +19589,6 @@ module hip
   end function hipMemcpy2DAsync_r4_1_c_int
 
   function hipMemcpy2DAsync_r4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19595,7 +19604,6 @@ module hip
   end function hipMemcpy2DAsync_r4_2_c_size_t
 
   function hipMemcpy2DAsync_r4_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19611,7 +19619,6 @@ module hip
   end function hipMemcpy2DAsync_r4_2_c_int
 
   function hipMemcpy2DAsync_r4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19627,7 +19634,6 @@ module hip
   end function hipMemcpy2DAsync_r4_3_c_size_t
 
   function hipMemcpy2DAsync_r4_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19643,7 +19649,6 @@ module hip
   end function hipMemcpy2DAsync_r4_3_c_int
 
   function hipMemcpy2DAsync_r4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19659,7 +19664,6 @@ module hip
   end function hipMemcpy2DAsync_r4_4_c_size_t
 
   function hipMemcpy2DAsync_r4_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19675,7 +19679,6 @@ module hip
   end function hipMemcpy2DAsync_r4_4_c_int
 
   function hipMemcpy2DAsync_r4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19691,7 +19694,6 @@ module hip
   end function hipMemcpy2DAsync_r4_5_c_size_t
 
   function hipMemcpy2DAsync_r4_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19707,7 +19709,6 @@ module hip
   end function hipMemcpy2DAsync_r4_5_c_int
 
   function hipMemcpy2DAsync_r4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19723,7 +19724,6 @@ module hip
   end function hipMemcpy2DAsync_r4_6_c_size_t
 
   function hipMemcpy2DAsync_r4_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19739,7 +19739,6 @@ module hip
   end function hipMemcpy2DAsync_r4_6_c_int
 
   function hipMemcpy2DAsync_r4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19755,7 +19754,6 @@ module hip
   end function hipMemcpy2DAsync_r4_7_c_size_t
 
   function hipMemcpy2DAsync_r4_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19771,7 +19769,6 @@ module hip
   end function hipMemcpy2DAsync_r4_7_c_int
 
   function hipMemcpy2DAsync_r8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19787,7 +19784,6 @@ module hip
   end function hipMemcpy2DAsync_r8_0_c_size_t
 
   function hipMemcpy2DAsync_r8_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19803,7 +19799,6 @@ module hip
   end function hipMemcpy2DAsync_r8_0_c_int
 
   function hipMemcpy2DAsync_r8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19819,7 +19814,6 @@ module hip
   end function hipMemcpy2DAsync_r8_1_c_size_t
 
   function hipMemcpy2DAsync_r8_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19835,7 +19829,6 @@ module hip
   end function hipMemcpy2DAsync_r8_1_c_int
 
   function hipMemcpy2DAsync_r8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19851,7 +19844,6 @@ module hip
   end function hipMemcpy2DAsync_r8_2_c_size_t
 
   function hipMemcpy2DAsync_r8_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19867,7 +19859,6 @@ module hip
   end function hipMemcpy2DAsync_r8_2_c_int
 
   function hipMemcpy2DAsync_r8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19883,7 +19874,6 @@ module hip
   end function hipMemcpy2DAsync_r8_3_c_size_t
 
   function hipMemcpy2DAsync_r8_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19899,7 +19889,6 @@ module hip
   end function hipMemcpy2DAsync_r8_3_c_int
 
   function hipMemcpy2DAsync_r8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19915,7 +19904,6 @@ module hip
   end function hipMemcpy2DAsync_r8_4_c_size_t
 
   function hipMemcpy2DAsync_r8_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19931,7 +19919,6 @@ module hip
   end function hipMemcpy2DAsync_r8_4_c_int
 
   function hipMemcpy2DAsync_r8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19947,7 +19934,6 @@ module hip
   end function hipMemcpy2DAsync_r8_5_c_size_t
 
   function hipMemcpy2DAsync_r8_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19963,7 +19949,6 @@ module hip
   end function hipMemcpy2DAsync_r8_5_c_int
 
   function hipMemcpy2DAsync_r8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -19979,7 +19964,6 @@ module hip
   end function hipMemcpy2DAsync_r8_6_c_size_t
 
   function hipMemcpy2DAsync_r8_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -19995,7 +19979,6 @@ module hip
   end function hipMemcpy2DAsync_r8_6_c_int
 
   function hipMemcpy2DAsync_r8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20011,7 +19994,6 @@ module hip
   end function hipMemcpy2DAsync_r8_7_c_size_t
 
   function hipMemcpy2DAsync_r8_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20027,7 +20009,6 @@ module hip
   end function hipMemcpy2DAsync_r8_7_c_int
 
   function hipMemcpy2DAsync_c4_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20043,7 +20024,6 @@ module hip
   end function hipMemcpy2DAsync_c4_0_c_size_t
 
   function hipMemcpy2DAsync_c4_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20059,7 +20039,6 @@ module hip
   end function hipMemcpy2DAsync_c4_0_c_int
 
   function hipMemcpy2DAsync_c4_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20075,7 +20054,6 @@ module hip
   end function hipMemcpy2DAsync_c4_1_c_size_t
 
   function hipMemcpy2DAsync_c4_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20091,7 +20069,6 @@ module hip
   end function hipMemcpy2DAsync_c4_1_c_int
 
   function hipMemcpy2DAsync_c4_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20107,7 +20084,6 @@ module hip
   end function hipMemcpy2DAsync_c4_2_c_size_t
 
   function hipMemcpy2DAsync_c4_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20123,7 +20099,6 @@ module hip
   end function hipMemcpy2DAsync_c4_2_c_int
 
   function hipMemcpy2DAsync_c4_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20139,7 +20114,6 @@ module hip
   end function hipMemcpy2DAsync_c4_3_c_size_t
 
   function hipMemcpy2DAsync_c4_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20155,7 +20129,6 @@ module hip
   end function hipMemcpy2DAsync_c4_3_c_int
 
   function hipMemcpy2DAsync_c4_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20171,7 +20144,6 @@ module hip
   end function hipMemcpy2DAsync_c4_4_c_size_t
 
   function hipMemcpy2DAsync_c4_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20187,7 +20159,6 @@ module hip
   end function hipMemcpy2DAsync_c4_4_c_int
 
   function hipMemcpy2DAsync_c4_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20203,7 +20174,6 @@ module hip
   end function hipMemcpy2DAsync_c4_5_c_size_t
 
   function hipMemcpy2DAsync_c4_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20219,7 +20189,6 @@ module hip
   end function hipMemcpy2DAsync_c4_5_c_int
 
   function hipMemcpy2DAsync_c4_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20235,7 +20204,6 @@ module hip
   end function hipMemcpy2DAsync_c4_6_c_size_t
 
   function hipMemcpy2DAsync_c4_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20251,7 +20219,6 @@ module hip
   end function hipMemcpy2DAsync_c4_6_c_int
 
   function hipMemcpy2DAsync_c4_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20267,7 +20234,6 @@ module hip
   end function hipMemcpy2DAsync_c4_7_c_size_t
 
   function hipMemcpy2DAsync_c4_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20283,7 +20249,6 @@ module hip
   end function hipMemcpy2DAsync_c4_7_c_int
 
   function hipMemcpy2DAsync_c8_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20299,7 +20264,6 @@ module hip
   end function hipMemcpy2DAsync_c8_0_c_size_t
 
   function hipMemcpy2DAsync_c8_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20315,7 +20279,6 @@ module hip
   end function hipMemcpy2DAsync_c8_0_c_int
 
   function hipMemcpy2DAsync_c8_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20331,7 +20294,6 @@ module hip
   end function hipMemcpy2DAsync_c8_1_c_size_t
 
   function hipMemcpy2DAsync_c8_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20347,7 +20309,6 @@ module hip
   end function hipMemcpy2DAsync_c8_1_c_int
 
   function hipMemcpy2DAsync_c8_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20363,7 +20324,6 @@ module hip
   end function hipMemcpy2DAsync_c8_2_c_size_t
 
   function hipMemcpy2DAsync_c8_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20379,7 +20339,6 @@ module hip
   end function hipMemcpy2DAsync_c8_2_c_int
 
   function hipMemcpy2DAsync_c8_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20395,7 +20354,6 @@ module hip
   end function hipMemcpy2DAsync_c8_3_c_size_t
 
   function hipMemcpy2DAsync_c8_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20411,7 +20369,6 @@ module hip
   end function hipMemcpy2DAsync_c8_3_c_int
 
   function hipMemcpy2DAsync_c8_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20427,7 +20384,6 @@ module hip
   end function hipMemcpy2DAsync_c8_4_c_size_t
 
   function hipMemcpy2DAsync_c8_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20443,7 +20399,6 @@ module hip
   end function hipMemcpy2DAsync_c8_4_c_int
 
   function hipMemcpy2DAsync_c8_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20459,7 +20414,6 @@ module hip
   end function hipMemcpy2DAsync_c8_5_c_size_t
 
   function hipMemcpy2DAsync_c8_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20475,7 +20429,6 @@ module hip
   end function hipMemcpy2DAsync_c8_5_c_int
 
   function hipMemcpy2DAsync_c8_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20491,7 +20444,6 @@ module hip
   end function hipMemcpy2DAsync_c8_6_c_size_t
 
   function hipMemcpy2DAsync_c8_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20507,7 +20459,6 @@ module hip
   end function hipMemcpy2DAsync_c8_6_c_int
 
   function hipMemcpy2DAsync_c8_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20523,7 +20474,6 @@ module hip
   end function hipMemcpy2DAsync_c8_7_c_size_t
 
   function hipMemcpy2DAsync_c8_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20539,7 +20489,6 @@ module hip
   end function hipMemcpy2DAsync_c8_7_c_int
 
   function hipMemcpy2DAsync_l_0_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20555,7 +20504,6 @@ module hip
   end function hipMemcpy2DAsync_l_0_c_size_t
 
   function hipMemcpy2DAsync_l_0_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20571,7 +20519,6 @@ module hip
   end function hipMemcpy2DAsync_l_0_c_int
 
   function hipMemcpy2DAsync_l_1_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20587,7 +20534,6 @@ module hip
   end function hipMemcpy2DAsync_l_1_c_size_t
 
   function hipMemcpy2DAsync_l_1_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20603,7 +20549,6 @@ module hip
   end function hipMemcpy2DAsync_l_1_c_int
 
   function hipMemcpy2DAsync_l_2_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20619,7 +20564,6 @@ module hip
   end function hipMemcpy2DAsync_l_2_c_size_t
 
   function hipMemcpy2DAsync_l_2_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20635,7 +20579,6 @@ module hip
   end function hipMemcpy2DAsync_l_2_c_int
 
   function hipMemcpy2DAsync_l_3_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20651,7 +20594,6 @@ module hip
   end function hipMemcpy2DAsync_l_3_c_size_t
 
   function hipMemcpy2DAsync_l_3_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20667,7 +20609,6 @@ module hip
   end function hipMemcpy2DAsync_l_3_c_int
 
   function hipMemcpy2DAsync_l_4_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20683,7 +20624,6 @@ module hip
   end function hipMemcpy2DAsync_l_4_c_size_t
 
   function hipMemcpy2DAsync_l_4_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20699,7 +20639,6 @@ module hip
   end function hipMemcpy2DAsync_l_4_c_int
 
   function hipMemcpy2DAsync_l_5_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20715,7 +20654,6 @@ module hip
   end function hipMemcpy2DAsync_l_5_c_size_t
 
   function hipMemcpy2DAsync_l_5_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20731,7 +20669,6 @@ module hip
   end function hipMemcpy2DAsync_l_5_c_int
 
   function hipMemcpy2DAsync_l_6_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20747,7 +20684,6 @@ module hip
   end function hipMemcpy2DAsync_l_6_c_size_t
 
   function hipMemcpy2DAsync_l_6_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20763,7 +20699,6 @@ module hip
   end function hipMemcpy2DAsync_l_6_c_int
 
   function hipMemcpy2DAsync_l_7_c_size_t(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_size_t), value :: dpitch, spitch, width, height
@@ -20779,7 +20714,6 @@ module hip
   end function hipMemcpy2DAsync_l_7_c_size_t
 
   function hipMemcpy2DAsync_l_7_c_int(dest, dpitch, src, spitch, width, height, myKind, stream) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
     integer(c_int), value :: dpitch, spitch, width, height
@@ -20796,7 +20730,6 @@ module hip
 
 #endif
   function hipMalloc_i4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -20815,7 +20748,6 @@ module hip
   end function hipMalloc_i4_1
 
   function hipMalloc_i4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -20834,7 +20766,6 @@ module hip
   end function hipMalloc_i4_1_c_size_t
 
   function hipMalloc_i4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -20854,7 +20785,6 @@ module hip
   end function hipMalloc_i4_2
 
   function hipMalloc_i4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -20874,7 +20804,6 @@ module hip
   end function hipMalloc_i4_2_c_size_t
 
   function hipMalloc_i4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -20895,7 +20824,6 @@ module hip
   end function hipMalloc_i4_3
 
   function hipMalloc_i4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -20916,7 +20844,6 @@ module hip
   end function hipMalloc_i4_3_c_size_t
 
   function hipMalloc_i4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -20938,7 +20865,6 @@ module hip
   end function hipMalloc_i4_4
 
   function hipMalloc_i4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -20960,7 +20886,6 @@ module hip
   end function hipMalloc_i4_4_c_size_t
 
   function hipMalloc_i4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -20983,7 +20908,6 @@ module hip
   end function hipMalloc_i4_5
 
   function hipMalloc_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -21006,7 +20930,6 @@ module hip
   end function hipMalloc_i4_5_c_size_t
 
   function hipMalloc_i4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21030,7 +20953,6 @@ module hip
   end function hipMalloc_i4_6
 
   function hipMalloc_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21054,7 +20976,6 @@ module hip
   end function hipMalloc_i4_6_c_size_t
 
   function hipMalloc_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21079,7 +21000,6 @@ module hip
   end function hipMalloc_i4_7
 
   function hipMalloc_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21104,7 +21024,6 @@ module hip
   end function hipMalloc_i4_7_c_size_t
 
   function hipMalloc_i8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -21123,7 +21042,6 @@ module hip
   end function hipMalloc_i8_1
 
   function hipMalloc_i8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -21142,7 +21060,6 @@ module hip
   end function hipMalloc_i8_1_c_size_t
 
   function hipMalloc_i8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -21162,7 +21079,6 @@ module hip
   end function hipMalloc_i8_2
 
   function hipMalloc_i8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -21182,7 +21098,6 @@ module hip
   end function hipMalloc_i8_2_c_size_t
 
   function hipMalloc_i8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -21203,7 +21118,6 @@ module hip
   end function hipMalloc_i8_3
 
   function hipMalloc_i8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -21224,7 +21138,6 @@ module hip
   end function hipMalloc_i8_3_c_size_t
 
   function hipMalloc_i8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -21246,7 +21159,6 @@ module hip
   end function hipMalloc_i8_4
 
   function hipMalloc_i8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -21268,7 +21180,6 @@ module hip
   end function hipMalloc_i8_4_c_size_t
 
   function hipMalloc_i8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -21291,7 +21202,6 @@ module hip
   end function hipMalloc_i8_5
 
   function hipMalloc_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -21314,7 +21224,6 @@ module hip
   end function hipMalloc_i8_5_c_size_t
 
   function hipMalloc_i8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21338,7 +21247,6 @@ module hip
   end function hipMalloc_i8_6
 
   function hipMalloc_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21362,7 +21270,6 @@ module hip
   end function hipMalloc_i8_6_c_size_t
 
   function hipMalloc_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21387,7 +21294,6 @@ module hip
   end function hipMalloc_i8_7
 
   function hipMalloc_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21412,7 +21318,6 @@ module hip
   end function hipMalloc_i8_7_c_size_t
 
   function hipMalloc_r4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -21431,7 +21336,6 @@ module hip
   end function hipMalloc_r4_1
 
   function hipMalloc_r4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -21450,7 +21354,6 @@ module hip
   end function hipMalloc_r4_1_c_size_t
 
   function hipMalloc_r4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -21470,7 +21373,6 @@ module hip
   end function hipMalloc_r4_2
 
   function hipMalloc_r4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -21490,7 +21392,6 @@ module hip
   end function hipMalloc_r4_2_c_size_t
 
   function hipMalloc_r4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -21511,7 +21412,6 @@ module hip
   end function hipMalloc_r4_3
 
   function hipMalloc_r4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -21532,7 +21432,6 @@ module hip
   end function hipMalloc_r4_3_c_size_t
 
   function hipMalloc_r4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -21554,7 +21453,6 @@ module hip
   end function hipMalloc_r4_4
 
   function hipMalloc_r4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -21576,7 +21474,6 @@ module hip
   end function hipMalloc_r4_4_c_size_t
 
   function hipMalloc_r4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -21599,7 +21496,6 @@ module hip
   end function hipMalloc_r4_5
 
   function hipMalloc_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -21622,7 +21518,6 @@ module hip
   end function hipMalloc_r4_5_c_size_t
 
   function hipMalloc_r4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21646,7 +21541,6 @@ module hip
   end function hipMalloc_r4_6
 
   function hipMalloc_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21670,7 +21564,6 @@ module hip
   end function hipMalloc_r4_6_c_size_t
 
   function hipMalloc_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21695,7 +21588,6 @@ module hip
   end function hipMalloc_r4_7
 
   function hipMalloc_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -21720,7 +21612,6 @@ module hip
   end function hipMalloc_r4_7_c_size_t
 
   function hipMalloc_r8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -21739,7 +21630,6 @@ module hip
   end function hipMalloc_r8_1
 
   function hipMalloc_r8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -21758,7 +21648,6 @@ module hip
   end function hipMalloc_r8_1_c_size_t
 
   function hipMalloc_r8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -21778,7 +21667,6 @@ module hip
   end function hipMalloc_r8_2
 
   function hipMalloc_r8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -21798,7 +21686,6 @@ module hip
   end function hipMalloc_r8_2_c_size_t
 
   function hipMalloc_r8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -21819,7 +21706,6 @@ module hip
   end function hipMalloc_r8_3
 
   function hipMalloc_r8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -21840,7 +21726,6 @@ module hip
   end function hipMalloc_r8_3_c_size_t
 
   function hipMalloc_r8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -21862,7 +21747,6 @@ module hip
   end function hipMalloc_r8_4
 
   function hipMalloc_r8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -21884,7 +21768,6 @@ module hip
   end function hipMalloc_r8_4_c_size_t
 
   function hipMalloc_r8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -21907,7 +21790,6 @@ module hip
   end function hipMalloc_r8_5
 
   function hipMalloc_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -21930,7 +21812,6 @@ module hip
   end function hipMalloc_r8_5_c_size_t
 
   function hipMalloc_r8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21954,7 +21835,6 @@ module hip
   end function hipMalloc_r8_6
 
   function hipMalloc_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -21978,7 +21858,6 @@ module hip
   end function hipMalloc_r8_6_c_size_t
 
   function hipMalloc_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22003,7 +21882,6 @@ module hip
   end function hipMalloc_r8_7
 
   function hipMalloc_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22028,7 +21906,6 @@ module hip
   end function hipMalloc_r8_7_c_size_t
 
   function hipMalloc_c4_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -22047,7 +21924,6 @@ module hip
   end function hipMalloc_c4_1
 
   function hipMalloc_c4_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -22066,7 +21942,6 @@ module hip
   end function hipMalloc_c4_1_c_size_t
 
   function hipMalloc_c4_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -22086,7 +21961,6 @@ module hip
   end function hipMalloc_c4_2
 
   function hipMalloc_c4_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -22106,7 +21980,6 @@ module hip
   end function hipMalloc_c4_2_c_size_t
 
   function hipMalloc_c4_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -22127,7 +22000,6 @@ module hip
   end function hipMalloc_c4_3
 
   function hipMalloc_c4_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -22148,7 +22020,6 @@ module hip
   end function hipMalloc_c4_3_c_size_t
 
   function hipMalloc_c4_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -22170,7 +22041,6 @@ module hip
   end function hipMalloc_c4_4
 
   function hipMalloc_c4_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -22192,7 +22062,6 @@ module hip
   end function hipMalloc_c4_4_c_size_t
 
   function hipMalloc_c4_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -22215,7 +22084,6 @@ module hip
   end function hipMalloc_c4_5
 
   function hipMalloc_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -22238,7 +22106,6 @@ module hip
   end function hipMalloc_c4_5_c_size_t
 
   function hipMalloc_c4_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22262,7 +22129,6 @@ module hip
   end function hipMalloc_c4_6
 
   function hipMalloc_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22286,7 +22152,6 @@ module hip
   end function hipMalloc_c4_6_c_size_t
 
   function hipMalloc_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22311,7 +22176,6 @@ module hip
   end function hipMalloc_c4_7
 
   function hipMalloc_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22336,7 +22200,6 @@ module hip
   end function hipMalloc_c4_7_c_size_t
 
   function hipMalloc_c8_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -22355,7 +22218,6 @@ module hip
   end function hipMalloc_c8_1
 
   function hipMalloc_c8_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -22374,7 +22236,6 @@ module hip
   end function hipMalloc_c8_1_c_size_t
 
   function hipMalloc_c8_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -22394,7 +22255,6 @@ module hip
   end function hipMalloc_c8_2
 
   function hipMalloc_c8_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -22414,7 +22274,6 @@ module hip
   end function hipMalloc_c8_2_c_size_t
 
   function hipMalloc_c8_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -22435,7 +22294,6 @@ module hip
   end function hipMalloc_c8_3
 
   function hipMalloc_c8_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -22456,7 +22314,6 @@ module hip
   end function hipMalloc_c8_3_c_size_t
 
   function hipMalloc_c8_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -22478,7 +22335,6 @@ module hip
   end function hipMalloc_c8_4
 
   function hipMalloc_c8_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -22500,7 +22356,6 @@ module hip
   end function hipMalloc_c8_4_c_size_t
 
   function hipMalloc_c8_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -22523,7 +22378,6 @@ module hip
   end function hipMalloc_c8_5
 
   function hipMalloc_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -22546,7 +22400,6 @@ module hip
   end function hipMalloc_c8_5_c_size_t
 
   function hipMalloc_c8_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22570,7 +22423,6 @@ module hip
   end function hipMalloc_c8_6
 
   function hipMalloc_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22594,7 +22446,6 @@ module hip
   end function hipMalloc_c8_6_c_size_t
 
   function hipMalloc_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22619,7 +22470,6 @@ module hip
   end function hipMalloc_c8_7
 
   function hipMalloc_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22644,7 +22494,6 @@ module hip
   end function hipMalloc_c8_7_c_size_t
 
   function hipMalloc_l_1(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -22663,7 +22512,6 @@ module hip
   end function hipMalloc_l_1
 
   function hipMalloc_l_1_c_size_t(ptr, length1) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -22682,7 +22530,6 @@ module hip
   end function hipMalloc_l_1_c_size_t
 
   function hipMalloc_l_2(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -22702,7 +22549,6 @@ module hip
   end function hipMalloc_l_2
 
   function hipMalloc_l_2_c_size_t(ptr, length1, length2) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -22722,7 +22568,6 @@ module hip
   end function hipMalloc_l_2_c_size_t
 
   function hipMalloc_l_3(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -22743,7 +22588,6 @@ module hip
   end function hipMalloc_l_3
 
   function hipMalloc_l_3_c_size_t(ptr, length1, length2, length3) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -22764,7 +22608,6 @@ module hip
   end function hipMalloc_l_3_c_size_t
 
   function hipMalloc_l_4(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -22786,7 +22629,6 @@ module hip
   end function hipMalloc_l_4
 
   function hipMalloc_l_4_c_size_t(ptr, length1, length2, length3, length4) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -22808,7 +22650,6 @@ module hip
   end function hipMalloc_l_4_c_size_t
 
   function hipMalloc_l_5(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -22831,7 +22672,6 @@ module hip
   end function hipMalloc_l_5
 
   function hipMalloc_l_5_c_size_t(ptr, length1, length2, length3, length4, length5) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -22854,7 +22694,6 @@ module hip
   end function hipMalloc_l_5_c_size_t
 
   function hipMalloc_l_6(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22878,7 +22717,6 @@ module hip
   end function hipMalloc_l_6
 
   function hipMalloc_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -22902,7 +22740,6 @@ module hip
   end function hipMalloc_l_6_c_size_t
 
   function hipMalloc_l_7(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22927,7 +22764,6 @@ module hip
   end function hipMalloc_l_7
 
   function hipMalloc_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -22952,7 +22788,6 @@ module hip
   end function hipMalloc_l_7_c_size_t
 
   function hipMalloc_i4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     integer(c_int), target, intent(in), optional :: dsource, source
@@ -22991,7 +22826,6 @@ module hip
   end function hipMalloc_i4_0_source
 
   function hipMalloc_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -23066,7 +22900,6 @@ module hip
   end function hipMalloc_i4_1_source
 
   function hipMalloc_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -23141,7 +22974,6 @@ module hip
   end function hipMalloc_i4_2_source
 
   function hipMalloc_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -23216,7 +23048,6 @@ module hip
   end function hipMalloc_i4_3_source
 
   function hipMalloc_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -23291,7 +23122,6 @@ module hip
   end function hipMalloc_i4_4_source
 
   function hipMalloc_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -23366,7 +23196,6 @@ module hip
   end function hipMalloc_i4_5_source
 
   function hipMalloc_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -23446,7 +23275,6 @@ module hip
   end function hipMalloc_i4_6_source
 
   function hipMalloc_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -23539,7 +23367,6 @@ module hip
   end function hipMalloc_i4_7_source
 
   function hipMalloc_i8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     integer(c_int64_t), target, intent(in), optional :: dsource, source
@@ -23578,7 +23405,6 @@ module hip
   end function hipMalloc_i8_0_source
 
   function hipMalloc_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -23653,7 +23479,6 @@ module hip
   end function hipMalloc_i8_1_source
 
   function hipMalloc_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -23728,7 +23553,6 @@ module hip
   end function hipMalloc_i8_2_source
 
   function hipMalloc_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -23803,7 +23627,6 @@ module hip
   end function hipMalloc_i8_3_source
 
   function hipMalloc_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -23878,7 +23701,6 @@ module hip
   end function hipMalloc_i8_4_source
 
   function hipMalloc_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -23953,7 +23775,6 @@ module hip
   end function hipMalloc_i8_5_source
 
   function hipMalloc_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -24033,7 +23854,6 @@ module hip
   end function hipMalloc_i8_6_source
 
   function hipMalloc_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -24126,7 +23946,6 @@ module hip
   end function hipMalloc_i8_7_source
 
   function hipMalloc_r4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     real(c_float), target, intent(in), optional :: dsource, source
@@ -24165,7 +23984,6 @@ module hip
   end function hipMalloc_r4_0_source
 
   function hipMalloc_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -24240,7 +24058,6 @@ module hip
   end function hipMalloc_r4_1_source
 
   function hipMalloc_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -24315,7 +24132,6 @@ module hip
   end function hipMalloc_r4_2_source
 
   function hipMalloc_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -24390,7 +24206,6 @@ module hip
   end function hipMalloc_r4_3_source
 
   function hipMalloc_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -24465,7 +24280,6 @@ module hip
   end function hipMalloc_r4_4_source
 
   function hipMalloc_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -24540,7 +24354,6 @@ module hip
   end function hipMalloc_r4_5_source
 
   function hipMalloc_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -24620,7 +24433,6 @@ module hip
   end function hipMalloc_r4_6_source
 
   function hipMalloc_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -24713,7 +24525,6 @@ module hip
   end function hipMalloc_r4_7_source
 
   function hipMalloc_r8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     real(c_double), target, intent(in), optional :: dsource, source
@@ -24752,7 +24563,6 @@ module hip
   end function hipMalloc_r8_0_source
 
   function hipMalloc_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -24827,7 +24637,6 @@ module hip
   end function hipMalloc_r8_1_source
 
   function hipMalloc_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -24902,7 +24711,6 @@ module hip
   end function hipMalloc_r8_2_source
 
   function hipMalloc_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -24977,7 +24785,6 @@ module hip
   end function hipMalloc_r8_3_source
 
   function hipMalloc_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -25052,7 +24859,6 @@ module hip
   end function hipMalloc_r8_4_source
 
   function hipMalloc_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -25127,7 +24933,6 @@ module hip
   end function hipMalloc_r8_5_source
 
   function hipMalloc_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -25207,7 +25012,6 @@ module hip
   end function hipMalloc_r8_6_source
 
   function hipMalloc_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -25300,7 +25104,6 @@ module hip
   end function hipMalloc_r8_7_source
 
   function hipMalloc_c4_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     complex(c_float_complex), target, intent(in), optional :: dsource, source
@@ -25339,7 +25142,6 @@ module hip
   end function hipMalloc_c4_0_source
 
   function hipMalloc_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -25414,7 +25216,6 @@ module hip
   end function hipMalloc_c4_1_source
 
   function hipMalloc_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -25489,7 +25290,6 @@ module hip
   end function hipMalloc_c4_2_source
 
   function hipMalloc_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -25564,7 +25364,6 @@ module hip
   end function hipMalloc_c4_3_source
 
   function hipMalloc_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -25639,7 +25438,6 @@ module hip
   end function hipMalloc_c4_4_source
 
   function hipMalloc_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -25714,7 +25512,6 @@ module hip
   end function hipMalloc_c4_5_source
 
   function hipMalloc_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -25794,7 +25591,6 @@ module hip
   end function hipMalloc_c4_6_source
 
   function hipMalloc_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -25887,7 +25683,6 @@ module hip
   end function hipMalloc_c4_7_source
 
   function hipMalloc_c8_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     complex(c_double_complex), target, intent(in), optional :: dsource, source
@@ -25926,7 +25721,6 @@ module hip
   end function hipMalloc_c8_0_source
 
   function hipMalloc_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -26001,7 +25795,6 @@ module hip
   end function hipMalloc_c8_1_source
 
   function hipMalloc_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -26076,7 +25869,6 @@ module hip
   end function hipMalloc_c8_2_source
 
   function hipMalloc_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -26151,7 +25943,6 @@ module hip
   end function hipMalloc_c8_3_source
 
   function hipMalloc_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -26226,7 +26017,6 @@ module hip
   end function hipMalloc_c8_4_source
 
   function hipMalloc_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -26301,7 +26091,6 @@ module hip
   end function hipMalloc_c8_5_source
 
   function hipMalloc_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -26381,7 +26170,6 @@ module hip
   end function hipMalloc_c8_6_source
 
   function hipMalloc_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -26474,7 +26262,6 @@ module hip
   end function hipMalloc_c8_7_source
 
   function hipMalloc_l_0_source(ptr, dsource, source) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical(c_bool), target, intent(in), optional :: dsource, source
@@ -26513,7 +26300,6 @@ module hip
   end function hipMalloc_l_0_source
 
   function hipMalloc_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -26588,7 +26374,6 @@ module hip
   end function hipMalloc_l_1_source
 
   function hipMalloc_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -26663,7 +26448,6 @@ module hip
   end function hipMalloc_l_2_source
 
   function hipMalloc_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -26738,7 +26522,6 @@ module hip
   end function hipMalloc_l_3_source
 
   function hipMalloc_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -26813,7 +26596,6 @@ module hip
   end function hipMalloc_l_4_source
 
   function hipMalloc_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -26888,7 +26670,6 @@ module hip
   end function hipMalloc_l_5_source
 
   function hipMalloc_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -26968,7 +26749,6 @@ module hip
   end function hipMalloc_l_6_source
 
   function hipMalloc_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -27061,7 +26841,6 @@ module hip
   end function hipMalloc_l_7_source
 
   function hipMallocManaged_i4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -27084,7 +26863,6 @@ module hip
   end function hipMallocManaged_i4_1
 
   function hipMallocManaged_i4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -27107,7 +26885,6 @@ module hip
   end function hipMallocManaged_i4_1_c_size_t
 
   function hipMallocManaged_i4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -27131,7 +26908,6 @@ module hip
   end function hipMallocManaged_i4_2
 
   function hipMallocManaged_i4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -27155,7 +26931,6 @@ module hip
   end function hipMallocManaged_i4_2_c_size_t
 
   function hipMallocManaged_i4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -27180,7 +26955,6 @@ module hip
   end function hipMallocManaged_i4_3
 
   function hipMallocManaged_i4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -27205,7 +26979,6 @@ module hip
   end function hipMallocManaged_i4_3_c_size_t
 
   function hipMallocManaged_i4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -27231,7 +27004,6 @@ module hip
   end function hipMallocManaged_i4_4
 
   function hipMallocManaged_i4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -27257,7 +27029,6 @@ module hip
   end function hipMallocManaged_i4_4_c_size_t
 
   function hipMallocManaged_i4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -27284,7 +27055,6 @@ module hip
   end function hipMallocManaged_i4_5
 
   function hipMallocManaged_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -27311,7 +27081,6 @@ module hip
   end function hipMallocManaged_i4_5_c_size_t
 
   function hipMallocManaged_i4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -27339,7 +27108,6 @@ module hip
   end function hipMallocManaged_i4_6
 
   function hipMallocManaged_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -27367,7 +27135,6 @@ module hip
   end function hipMallocManaged_i4_6_c_size_t
 
   function hipMallocManaged_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -27396,7 +27163,6 @@ module hip
   end function hipMallocManaged_i4_7
 
   function hipMallocManaged_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -27425,7 +27191,6 @@ module hip
   end function hipMallocManaged_i4_7_c_size_t
 
   function hipMallocManaged_i8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -27448,7 +27213,6 @@ module hip
   end function hipMallocManaged_i8_1
 
   function hipMallocManaged_i8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -27471,7 +27235,6 @@ module hip
   end function hipMallocManaged_i8_1_c_size_t
 
   function hipMallocManaged_i8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -27495,7 +27258,6 @@ module hip
   end function hipMallocManaged_i8_2
 
   function hipMallocManaged_i8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -27519,7 +27281,6 @@ module hip
   end function hipMallocManaged_i8_2_c_size_t
 
   function hipMallocManaged_i8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -27544,7 +27305,6 @@ module hip
   end function hipMallocManaged_i8_3
 
   function hipMallocManaged_i8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -27569,7 +27329,6 @@ module hip
   end function hipMallocManaged_i8_3_c_size_t
 
   function hipMallocManaged_i8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -27595,7 +27354,6 @@ module hip
   end function hipMallocManaged_i8_4
 
   function hipMallocManaged_i8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -27621,7 +27379,6 @@ module hip
   end function hipMallocManaged_i8_4_c_size_t
 
   function hipMallocManaged_i8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -27648,7 +27405,6 @@ module hip
   end function hipMallocManaged_i8_5
 
   function hipMallocManaged_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -27675,7 +27431,6 @@ module hip
   end function hipMallocManaged_i8_5_c_size_t
 
   function hipMallocManaged_i8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -27703,7 +27458,6 @@ module hip
   end function hipMallocManaged_i8_6
 
   function hipMallocManaged_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -27731,7 +27485,6 @@ module hip
   end function hipMallocManaged_i8_6_c_size_t
 
   function hipMallocManaged_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -27760,7 +27513,6 @@ module hip
   end function hipMallocManaged_i8_7
 
   function hipMallocManaged_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -27789,7 +27541,6 @@ module hip
   end function hipMallocManaged_i8_7_c_size_t
 
   function hipMallocManaged_r4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -27812,7 +27563,6 @@ module hip
   end function hipMallocManaged_r4_1
 
   function hipMallocManaged_r4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -27835,7 +27585,6 @@ module hip
   end function hipMallocManaged_r4_1_c_size_t
 
   function hipMallocManaged_r4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -27859,7 +27608,6 @@ module hip
   end function hipMallocManaged_r4_2
 
   function hipMallocManaged_r4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -27883,7 +27631,6 @@ module hip
   end function hipMallocManaged_r4_2_c_size_t
 
   function hipMallocManaged_r4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -27908,7 +27655,6 @@ module hip
   end function hipMallocManaged_r4_3
 
   function hipMallocManaged_r4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -27933,7 +27679,6 @@ module hip
   end function hipMallocManaged_r4_3_c_size_t
 
   function hipMallocManaged_r4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -27959,7 +27704,6 @@ module hip
   end function hipMallocManaged_r4_4
 
   function hipMallocManaged_r4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -27985,7 +27729,6 @@ module hip
   end function hipMallocManaged_r4_4_c_size_t
 
   function hipMallocManaged_r4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -28012,7 +27755,6 @@ module hip
   end function hipMallocManaged_r4_5
 
   function hipMallocManaged_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -28039,7 +27781,6 @@ module hip
   end function hipMallocManaged_r4_5_c_size_t
 
   function hipMallocManaged_r4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28067,7 +27808,6 @@ module hip
   end function hipMallocManaged_r4_6
 
   function hipMallocManaged_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28095,7 +27835,6 @@ module hip
   end function hipMallocManaged_r4_6_c_size_t
 
   function hipMallocManaged_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28124,7 +27863,6 @@ module hip
   end function hipMallocManaged_r4_7
 
   function hipMallocManaged_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28153,7 +27891,6 @@ module hip
   end function hipMallocManaged_r4_7_c_size_t
 
   function hipMallocManaged_r8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -28176,7 +27913,6 @@ module hip
   end function hipMallocManaged_r8_1
 
   function hipMallocManaged_r8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -28199,7 +27935,6 @@ module hip
   end function hipMallocManaged_r8_1_c_size_t
 
   function hipMallocManaged_r8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -28223,7 +27958,6 @@ module hip
   end function hipMallocManaged_r8_2
 
   function hipMallocManaged_r8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -28247,7 +27981,6 @@ module hip
   end function hipMallocManaged_r8_2_c_size_t
 
   function hipMallocManaged_r8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -28272,7 +28005,6 @@ module hip
   end function hipMallocManaged_r8_3
 
   function hipMallocManaged_r8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -28297,7 +28029,6 @@ module hip
   end function hipMallocManaged_r8_3_c_size_t
 
   function hipMallocManaged_r8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -28323,7 +28054,6 @@ module hip
   end function hipMallocManaged_r8_4
 
   function hipMallocManaged_r8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -28349,7 +28079,6 @@ module hip
   end function hipMallocManaged_r8_4_c_size_t
 
   function hipMallocManaged_r8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -28376,7 +28105,6 @@ module hip
   end function hipMallocManaged_r8_5
 
   function hipMallocManaged_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -28403,7 +28131,6 @@ module hip
   end function hipMallocManaged_r8_5_c_size_t
 
   function hipMallocManaged_r8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28431,7 +28158,6 @@ module hip
   end function hipMallocManaged_r8_6
 
   function hipMallocManaged_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28459,7 +28185,6 @@ module hip
   end function hipMallocManaged_r8_6_c_size_t
 
   function hipMallocManaged_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28488,7 +28213,6 @@ module hip
   end function hipMallocManaged_r8_7
 
   function hipMallocManaged_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28517,7 +28241,6 @@ module hip
   end function hipMallocManaged_r8_7_c_size_t
 
   function hipMallocManaged_c4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -28540,7 +28263,6 @@ module hip
   end function hipMallocManaged_c4_1
 
   function hipMallocManaged_c4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -28563,7 +28285,6 @@ module hip
   end function hipMallocManaged_c4_1_c_size_t
 
   function hipMallocManaged_c4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -28587,7 +28308,6 @@ module hip
   end function hipMallocManaged_c4_2
 
   function hipMallocManaged_c4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -28611,7 +28331,6 @@ module hip
   end function hipMallocManaged_c4_2_c_size_t
 
   function hipMallocManaged_c4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -28636,7 +28355,6 @@ module hip
   end function hipMallocManaged_c4_3
 
   function hipMallocManaged_c4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -28661,7 +28379,6 @@ module hip
   end function hipMallocManaged_c4_3_c_size_t
 
   function hipMallocManaged_c4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -28687,7 +28404,6 @@ module hip
   end function hipMallocManaged_c4_4
 
   function hipMallocManaged_c4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -28713,7 +28429,6 @@ module hip
   end function hipMallocManaged_c4_4_c_size_t
 
   function hipMallocManaged_c4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -28740,7 +28455,6 @@ module hip
   end function hipMallocManaged_c4_5
 
   function hipMallocManaged_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -28767,7 +28481,6 @@ module hip
   end function hipMallocManaged_c4_5_c_size_t
 
   function hipMallocManaged_c4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28795,7 +28508,6 @@ module hip
   end function hipMallocManaged_c4_6
 
   function hipMallocManaged_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -28823,7 +28535,6 @@ module hip
   end function hipMallocManaged_c4_6_c_size_t
 
   function hipMallocManaged_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28852,7 +28563,6 @@ module hip
   end function hipMallocManaged_c4_7
 
   function hipMallocManaged_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -28881,7 +28591,6 @@ module hip
   end function hipMallocManaged_c4_7_c_size_t
 
   function hipMallocManaged_c8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -28904,7 +28613,6 @@ module hip
   end function hipMallocManaged_c8_1
 
   function hipMallocManaged_c8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -28927,7 +28635,6 @@ module hip
   end function hipMallocManaged_c8_1_c_size_t
 
   function hipMallocManaged_c8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -28951,7 +28658,6 @@ module hip
   end function hipMallocManaged_c8_2
 
   function hipMallocManaged_c8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -28975,7 +28681,6 @@ module hip
   end function hipMallocManaged_c8_2_c_size_t
 
   function hipMallocManaged_c8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -29000,7 +28705,6 @@ module hip
   end function hipMallocManaged_c8_3
 
   function hipMallocManaged_c8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -29025,7 +28729,6 @@ module hip
   end function hipMallocManaged_c8_3_c_size_t
 
   function hipMallocManaged_c8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -29051,7 +28754,6 @@ module hip
   end function hipMallocManaged_c8_4
 
   function hipMallocManaged_c8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -29077,7 +28779,6 @@ module hip
   end function hipMallocManaged_c8_4_c_size_t
 
   function hipMallocManaged_c8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -29104,7 +28805,6 @@ module hip
   end function hipMallocManaged_c8_5
 
   function hipMallocManaged_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -29131,7 +28831,6 @@ module hip
   end function hipMallocManaged_c8_5_c_size_t
 
   function hipMallocManaged_c8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -29159,7 +28858,6 @@ module hip
   end function hipMallocManaged_c8_6
 
   function hipMallocManaged_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -29187,7 +28885,6 @@ module hip
   end function hipMallocManaged_c8_6_c_size_t
 
   function hipMallocManaged_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -29216,7 +28913,6 @@ module hip
   end function hipMallocManaged_c8_7
 
   function hipMallocManaged_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -29245,7 +28941,6 @@ module hip
   end function hipMallocManaged_c8_7_c_size_t
 
   function hipMallocManaged_l_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -29268,7 +28963,6 @@ module hip
   end function hipMallocManaged_l_1
 
   function hipMallocManaged_l_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -29291,7 +28985,6 @@ module hip
   end function hipMallocManaged_l_1_c_size_t
 
   function hipMallocManaged_l_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -29315,7 +29008,6 @@ module hip
   end function hipMallocManaged_l_2
 
   function hipMallocManaged_l_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -29339,7 +29031,6 @@ module hip
   end function hipMallocManaged_l_2_c_size_t
 
   function hipMallocManaged_l_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -29364,7 +29055,6 @@ module hip
   end function hipMallocManaged_l_3
 
   function hipMallocManaged_l_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -29389,7 +29079,6 @@ module hip
   end function hipMallocManaged_l_3_c_size_t
 
   function hipMallocManaged_l_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -29415,7 +29104,6 @@ module hip
   end function hipMallocManaged_l_4
 
   function hipMallocManaged_l_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -29441,7 +29129,6 @@ module hip
   end function hipMallocManaged_l_4_c_size_t
 
   function hipMallocManaged_l_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -29468,7 +29155,6 @@ module hip
   end function hipMallocManaged_l_5
 
   function hipMallocManaged_l_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -29495,7 +29181,6 @@ module hip
   end function hipMallocManaged_l_5_c_size_t
 
   function hipMallocManaged_l_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -29523,7 +29208,6 @@ module hip
   end function hipMallocManaged_l_6
 
   function hipMallocManaged_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -29551,7 +29235,6 @@ module hip
   end function hipMallocManaged_l_6_c_size_t
 
   function hipMallocManaged_l_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -29580,7 +29263,6 @@ module hip
   end function hipMallocManaged_l_7
 
   function hipMallocManaged_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -29609,7 +29291,6 @@ module hip
   end function hipMallocManaged_l_7_c_size_t
 
   function hipMallocManaged_i4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     integer(c_int), target, intent(in), optional :: dsource, source
@@ -29649,7 +29330,6 @@ module hip
   end function hipMallocManaged_i4_0_source
 
   function hipMallocManaged_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -29725,7 +29405,6 @@ module hip
   end function hipMallocManaged_i4_1_source
 
   function hipMallocManaged_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -29801,7 +29480,6 @@ module hip
   end function hipMallocManaged_i4_2_source
 
   function hipMallocManaged_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -29877,7 +29555,6 @@ module hip
   end function hipMallocManaged_i4_3_source
 
   function hipMallocManaged_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -29953,7 +29630,6 @@ module hip
   end function hipMallocManaged_i4_4_source
 
   function hipMallocManaged_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -30029,7 +29705,6 @@ module hip
   end function hipMallocManaged_i4_5_source
 
   function hipMallocManaged_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -30110,7 +29785,6 @@ module hip
   end function hipMallocManaged_i4_6_source
 
   function hipMallocManaged_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -30204,7 +29878,6 @@ module hip
   end function hipMallocManaged_i4_7_source
 
   function hipMallocManaged_i8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     integer(c_int64_t), target, intent(in), optional :: dsource, source
@@ -30244,7 +29917,6 @@ module hip
   end function hipMallocManaged_i8_0_source
 
   function hipMallocManaged_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -30320,7 +29992,6 @@ module hip
   end function hipMallocManaged_i8_1_source
 
   function hipMallocManaged_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -30396,7 +30067,6 @@ module hip
   end function hipMallocManaged_i8_2_source
 
   function hipMallocManaged_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -30472,7 +30142,6 @@ module hip
   end function hipMallocManaged_i8_3_source
 
   function hipMallocManaged_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -30548,7 +30217,6 @@ module hip
   end function hipMallocManaged_i8_4_source
 
   function hipMallocManaged_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -30624,7 +30292,6 @@ module hip
   end function hipMallocManaged_i8_5_source
 
   function hipMallocManaged_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -30705,7 +30372,6 @@ module hip
   end function hipMallocManaged_i8_6_source
 
   function hipMallocManaged_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -30799,7 +30465,6 @@ module hip
   end function hipMallocManaged_i8_7_source
 
   function hipMallocManaged_r4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     real(c_float), target, intent(in), optional :: dsource, source
@@ -30839,7 +30504,6 @@ module hip
   end function hipMallocManaged_r4_0_source
 
   function hipMallocManaged_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -30915,7 +30579,6 @@ module hip
   end function hipMallocManaged_r4_1_source
 
   function hipMallocManaged_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -30991,7 +30654,6 @@ module hip
   end function hipMallocManaged_r4_2_source
 
   function hipMallocManaged_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -31067,7 +30729,6 @@ module hip
   end function hipMallocManaged_r4_3_source
 
   function hipMallocManaged_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -31143,7 +30804,6 @@ module hip
   end function hipMallocManaged_r4_4_source
 
   function hipMallocManaged_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -31219,7 +30879,6 @@ module hip
   end function hipMallocManaged_r4_5_source
 
   function hipMallocManaged_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -31300,7 +30959,6 @@ module hip
   end function hipMallocManaged_r4_6_source
 
   function hipMallocManaged_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -31394,7 +31052,6 @@ module hip
   end function hipMallocManaged_r4_7_source
 
   function hipMallocManaged_r8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     real(c_double), target, intent(in), optional :: dsource, source
@@ -31434,7 +31091,6 @@ module hip
   end function hipMallocManaged_r8_0_source
 
   function hipMallocManaged_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -31510,7 +31166,6 @@ module hip
   end function hipMallocManaged_r8_1_source
 
   function hipMallocManaged_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -31586,7 +31241,6 @@ module hip
   end function hipMallocManaged_r8_2_source
 
   function hipMallocManaged_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -31662,7 +31316,6 @@ module hip
   end function hipMallocManaged_r8_3_source
 
   function hipMallocManaged_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -31738,7 +31391,6 @@ module hip
   end function hipMallocManaged_r8_4_source
 
   function hipMallocManaged_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -31814,7 +31466,6 @@ module hip
   end function hipMallocManaged_r8_5_source
 
   function hipMallocManaged_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -31895,7 +31546,6 @@ module hip
   end function hipMallocManaged_r8_6_source
 
   function hipMallocManaged_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -31989,7 +31639,6 @@ module hip
   end function hipMallocManaged_r8_7_source
 
   function hipMallocManaged_c4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     complex(c_float_complex), target, intent(in), optional :: dsource, source
@@ -32029,7 +31678,6 @@ module hip
   end function hipMallocManaged_c4_0_source
 
   function hipMallocManaged_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -32105,7 +31753,6 @@ module hip
   end function hipMallocManaged_c4_1_source
 
   function hipMallocManaged_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -32181,7 +31828,6 @@ module hip
   end function hipMallocManaged_c4_2_source
 
   function hipMallocManaged_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -32257,7 +31903,6 @@ module hip
   end function hipMallocManaged_c4_3_source
 
   function hipMallocManaged_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -32333,7 +31978,6 @@ module hip
   end function hipMallocManaged_c4_4_source
 
   function hipMallocManaged_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -32409,7 +32053,6 @@ module hip
   end function hipMallocManaged_c4_5_source
 
   function hipMallocManaged_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -32490,7 +32133,6 @@ module hip
   end function hipMallocManaged_c4_6_source
 
   function hipMallocManaged_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -32584,7 +32226,6 @@ module hip
   end function hipMallocManaged_c4_7_source
 
   function hipMallocManaged_c8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     complex(c_double_complex), target, intent(in), optional :: dsource, source
@@ -32624,7 +32265,6 @@ module hip
   end function hipMallocManaged_c8_0_source
 
   function hipMallocManaged_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -32700,7 +32340,6 @@ module hip
   end function hipMallocManaged_c8_1_source
 
   function hipMallocManaged_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -32776,7 +32415,6 @@ module hip
   end function hipMallocManaged_c8_2_source
 
   function hipMallocManaged_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -32852,7 +32490,6 @@ module hip
   end function hipMallocManaged_c8_3_source
 
   function hipMallocManaged_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -32928,7 +32565,6 @@ module hip
   end function hipMallocManaged_c8_4_source
 
   function hipMallocManaged_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -33004,7 +32640,6 @@ module hip
   end function hipMallocManaged_c8_5_source
 
   function hipMallocManaged_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -33085,7 +32720,6 @@ module hip
   end function hipMallocManaged_c8_6_source
 
   function hipMallocManaged_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -33179,7 +32813,6 @@ module hip
   end function hipMallocManaged_c8_7_source
 
   function hipMallocManaged_l_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical(c_bool), target, intent(in), optional :: dsource, source
@@ -33219,7 +32852,6 @@ module hip
   end function hipMallocManaged_l_0_source
 
   function hipMallocManaged_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -33295,7 +32927,6 @@ module hip
   end function hipMallocManaged_l_1_source
 
   function hipMallocManaged_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -33371,7 +33002,6 @@ module hip
   end function hipMallocManaged_l_2_source
 
   function hipMallocManaged_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -33447,7 +33077,6 @@ module hip
   end function hipMallocManaged_l_3_source
 
   function hipMallocManaged_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -33523,7 +33152,6 @@ module hip
   end function hipMallocManaged_l_4_source
 
   function hipMallocManaged_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -33599,7 +33227,6 @@ module hip
   end function hipMallocManaged_l_5_source
 
   function hipMallocManaged_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -33680,7 +33307,6 @@ module hip
   end function hipMallocManaged_l_6_source
 
   function hipMallocManaged_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -33774,7 +33400,6 @@ module hip
   end function hipMallocManaged_l_7_source
 
   function hipHostMalloc_i4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -33797,7 +33422,6 @@ module hip
   end function hipHostMalloc_i4_1
 
   function hipHostMalloc_i4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -33820,7 +33444,6 @@ module hip
   end function hipHostMalloc_i4_1_c_size_t
 
   function hipHostMalloc_i4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -33844,7 +33467,6 @@ module hip
   end function hipHostMalloc_i4_2
 
   function hipHostMalloc_i4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -33868,7 +33490,6 @@ module hip
   end function hipHostMalloc_i4_2_c_size_t
 
   function hipHostMalloc_i4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -33893,7 +33514,6 @@ module hip
   end function hipHostMalloc_i4_3
 
   function hipHostMalloc_i4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -33918,7 +33538,6 @@ module hip
   end function hipHostMalloc_i4_3_c_size_t
 
   function hipHostMalloc_i4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -33944,7 +33563,6 @@ module hip
   end function hipHostMalloc_i4_4
 
   function hipHostMalloc_i4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -33970,7 +33588,6 @@ module hip
   end function hipHostMalloc_i4_4_c_size_t
 
   function hipHostMalloc_i4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -33997,7 +33614,6 @@ module hip
   end function hipHostMalloc_i4_5
 
   function hipHostMalloc_i4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -34024,7 +33640,6 @@ module hip
   end function hipHostMalloc_i4_5_c_size_t
 
   function hipHostMalloc_i4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34052,7 +33667,6 @@ module hip
   end function hipHostMalloc_i4_6
 
   function hipHostMalloc_i4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34080,7 +33694,6 @@ module hip
   end function hipHostMalloc_i4_6_c_size_t
 
   function hipHostMalloc_i4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34109,7 +33722,6 @@ module hip
   end function hipHostMalloc_i4_7
 
   function hipHostMalloc_i4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34138,7 +33750,6 @@ module hip
   end function hipHostMalloc_i4_7_c_size_t
 
   function hipHostMalloc_i8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -34161,7 +33772,6 @@ module hip
   end function hipHostMalloc_i8_1
 
   function hipHostMalloc_i8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -34184,7 +33794,6 @@ module hip
   end function hipHostMalloc_i8_1_c_size_t
 
   function hipHostMalloc_i8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -34208,7 +33817,6 @@ module hip
   end function hipHostMalloc_i8_2
 
   function hipHostMalloc_i8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -34232,7 +33840,6 @@ module hip
   end function hipHostMalloc_i8_2_c_size_t
 
   function hipHostMalloc_i8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -34257,7 +33864,6 @@ module hip
   end function hipHostMalloc_i8_3
 
   function hipHostMalloc_i8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -34282,7 +33888,6 @@ module hip
   end function hipHostMalloc_i8_3_c_size_t
 
   function hipHostMalloc_i8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -34308,7 +33913,6 @@ module hip
   end function hipHostMalloc_i8_4
 
   function hipHostMalloc_i8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -34334,7 +33938,6 @@ module hip
   end function hipHostMalloc_i8_4_c_size_t
 
   function hipHostMalloc_i8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -34361,7 +33964,6 @@ module hip
   end function hipHostMalloc_i8_5
 
   function hipHostMalloc_i8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -34388,7 +33990,6 @@ module hip
   end function hipHostMalloc_i8_5_c_size_t
 
   function hipHostMalloc_i8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34416,7 +34017,6 @@ module hip
   end function hipHostMalloc_i8_6
 
   function hipHostMalloc_i8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34444,7 +34044,6 @@ module hip
   end function hipHostMalloc_i8_6_c_size_t
 
   function hipHostMalloc_i8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34473,7 +34072,6 @@ module hip
   end function hipHostMalloc_i8_7
 
   function hipHostMalloc_i8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34502,7 +34100,6 @@ module hip
   end function hipHostMalloc_i8_7_c_size_t
 
   function hipHostMalloc_r4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -34525,7 +34122,6 @@ module hip
   end function hipHostMalloc_r4_1
 
   function hipHostMalloc_r4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -34548,7 +34144,6 @@ module hip
   end function hipHostMalloc_r4_1_c_size_t
 
   function hipHostMalloc_r4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -34572,7 +34167,6 @@ module hip
   end function hipHostMalloc_r4_2
 
   function hipHostMalloc_r4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -34596,7 +34190,6 @@ module hip
   end function hipHostMalloc_r4_2_c_size_t
 
   function hipHostMalloc_r4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -34621,7 +34214,6 @@ module hip
   end function hipHostMalloc_r4_3
 
   function hipHostMalloc_r4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -34646,7 +34238,6 @@ module hip
   end function hipHostMalloc_r4_3_c_size_t
 
   function hipHostMalloc_r4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -34672,7 +34263,6 @@ module hip
   end function hipHostMalloc_r4_4
 
   function hipHostMalloc_r4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -34698,7 +34288,6 @@ module hip
   end function hipHostMalloc_r4_4_c_size_t
 
   function hipHostMalloc_r4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -34725,7 +34314,6 @@ module hip
   end function hipHostMalloc_r4_5
 
   function hipHostMalloc_r4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -34752,7 +34340,6 @@ module hip
   end function hipHostMalloc_r4_5_c_size_t
 
   function hipHostMalloc_r4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34780,7 +34367,6 @@ module hip
   end function hipHostMalloc_r4_6
 
   function hipHostMalloc_r4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -34808,7 +34394,6 @@ module hip
   end function hipHostMalloc_r4_6_c_size_t
 
   function hipHostMalloc_r4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34837,7 +34422,6 @@ module hip
   end function hipHostMalloc_r4_7
 
   function hipHostMalloc_r4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -34866,7 +34450,6 @@ module hip
   end function hipHostMalloc_r4_7_c_size_t
 
   function hipHostMalloc_r8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -34889,7 +34472,6 @@ module hip
   end function hipHostMalloc_r8_1
 
   function hipHostMalloc_r8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -34912,7 +34494,6 @@ module hip
   end function hipHostMalloc_r8_1_c_size_t
 
   function hipHostMalloc_r8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -34936,7 +34517,6 @@ module hip
   end function hipHostMalloc_r8_2
 
   function hipHostMalloc_r8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -34960,7 +34540,6 @@ module hip
   end function hipHostMalloc_r8_2_c_size_t
 
   function hipHostMalloc_r8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -34985,7 +34564,6 @@ module hip
   end function hipHostMalloc_r8_3
 
   function hipHostMalloc_r8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -35010,7 +34588,6 @@ module hip
   end function hipHostMalloc_r8_3_c_size_t
 
   function hipHostMalloc_r8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -35036,7 +34613,6 @@ module hip
   end function hipHostMalloc_r8_4
 
   function hipHostMalloc_r8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -35062,7 +34638,6 @@ module hip
   end function hipHostMalloc_r8_4_c_size_t
 
   function hipHostMalloc_r8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -35089,7 +34664,6 @@ module hip
   end function hipHostMalloc_r8_5
 
   function hipHostMalloc_r8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -35116,7 +34690,6 @@ module hip
   end function hipHostMalloc_r8_5_c_size_t
 
   function hipHostMalloc_r8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35144,7 +34717,6 @@ module hip
   end function hipHostMalloc_r8_6
 
   function hipHostMalloc_r8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35172,7 +34744,6 @@ module hip
   end function hipHostMalloc_r8_6_c_size_t
 
   function hipHostMalloc_r8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35201,7 +34772,6 @@ module hip
   end function hipHostMalloc_r8_7
 
   function hipHostMalloc_r8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35230,7 +34800,6 @@ module hip
   end function hipHostMalloc_r8_7_c_size_t
 
   function hipHostMalloc_c4_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -35253,7 +34822,6 @@ module hip
   end function hipHostMalloc_c4_1
 
   function hipHostMalloc_c4_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -35276,7 +34844,6 @@ module hip
   end function hipHostMalloc_c4_1_c_size_t
 
   function hipHostMalloc_c4_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -35300,7 +34867,6 @@ module hip
   end function hipHostMalloc_c4_2
 
   function hipHostMalloc_c4_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -35324,7 +34890,6 @@ module hip
   end function hipHostMalloc_c4_2_c_size_t
 
   function hipHostMalloc_c4_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -35349,7 +34914,6 @@ module hip
   end function hipHostMalloc_c4_3
 
   function hipHostMalloc_c4_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -35374,7 +34938,6 @@ module hip
   end function hipHostMalloc_c4_3_c_size_t
 
   function hipHostMalloc_c4_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -35400,7 +34963,6 @@ module hip
   end function hipHostMalloc_c4_4
 
   function hipHostMalloc_c4_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -35426,7 +34988,6 @@ module hip
   end function hipHostMalloc_c4_4_c_size_t
 
   function hipHostMalloc_c4_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -35453,7 +35014,6 @@ module hip
   end function hipHostMalloc_c4_5
 
   function hipHostMalloc_c4_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -35480,7 +35040,6 @@ module hip
   end function hipHostMalloc_c4_5_c_size_t
 
   function hipHostMalloc_c4_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35508,7 +35067,6 @@ module hip
   end function hipHostMalloc_c4_6
 
   function hipHostMalloc_c4_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35536,7 +35094,6 @@ module hip
   end function hipHostMalloc_c4_6_c_size_t
 
   function hipHostMalloc_c4_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35565,7 +35122,6 @@ module hip
   end function hipHostMalloc_c4_7
 
   function hipHostMalloc_c4_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35594,7 +35150,6 @@ module hip
   end function hipHostMalloc_c4_7_c_size_t
 
   function hipHostMalloc_c8_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -35617,7 +35172,6 @@ module hip
   end function hipHostMalloc_c8_1
 
   function hipHostMalloc_c8_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -35640,7 +35194,6 @@ module hip
   end function hipHostMalloc_c8_1_c_size_t
 
   function hipHostMalloc_c8_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -35664,7 +35217,6 @@ module hip
   end function hipHostMalloc_c8_2
 
   function hipHostMalloc_c8_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -35688,7 +35240,6 @@ module hip
   end function hipHostMalloc_c8_2_c_size_t
 
   function hipHostMalloc_c8_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -35713,7 +35264,6 @@ module hip
   end function hipHostMalloc_c8_3
 
   function hipHostMalloc_c8_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -35738,7 +35288,6 @@ module hip
   end function hipHostMalloc_c8_3_c_size_t
 
   function hipHostMalloc_c8_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -35764,7 +35313,6 @@ module hip
   end function hipHostMalloc_c8_4
 
   function hipHostMalloc_c8_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -35790,7 +35338,6 @@ module hip
   end function hipHostMalloc_c8_4_c_size_t
 
   function hipHostMalloc_c8_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -35817,7 +35364,6 @@ module hip
   end function hipHostMalloc_c8_5
 
   function hipHostMalloc_c8_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -35844,7 +35390,6 @@ module hip
   end function hipHostMalloc_c8_5_c_size_t
 
   function hipHostMalloc_c8_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35872,7 +35417,6 @@ module hip
   end function hipHostMalloc_c8_6
 
   function hipHostMalloc_c8_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -35900,7 +35444,6 @@ module hip
   end function hipHostMalloc_c8_6_c_size_t
 
   function hipHostMalloc_c8_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35929,7 +35472,6 @@ module hip
   end function hipHostMalloc_c8_7
 
   function hipHostMalloc_c8_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -35958,7 +35500,6 @@ module hip
   end function hipHostMalloc_c8_7_c_size_t
 
   function hipHostMalloc_l_1(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1
@@ -35981,7 +35522,6 @@ module hip
   end function hipHostMalloc_l_1
 
   function hipHostMalloc_l_1_c_size_t(ptr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1
@@ -36004,7 +35544,6 @@ module hip
   end function hipHostMalloc_l_1_c_size_t
 
   function hipHostMalloc_l_2(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2
@@ -36028,7 +35567,6 @@ module hip
   end function hipHostMalloc_l_2
 
   function hipHostMalloc_l_2_c_size_t(ptr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2
@@ -36052,7 +35590,6 @@ module hip
   end function hipHostMalloc_l_2_c_size_t
 
   function hipHostMalloc_l_3(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -36077,7 +35614,6 @@ module hip
   end function hipHostMalloc_l_3
 
   function hipHostMalloc_l_3_c_size_t(ptr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -36102,7 +35638,6 @@ module hip
   end function hipHostMalloc_l_3_c_size_t
 
   function hipHostMalloc_l_4(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -36128,7 +35663,6 @@ module hip
   end function hipHostMalloc_l_4
 
   function hipHostMalloc_l_4_c_size_t(ptr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -36154,7 +35688,6 @@ module hip
   end function hipHostMalloc_l_4_c_size_t
 
   function hipHostMalloc_l_5(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -36181,7 +35714,6 @@ module hip
   end function hipHostMalloc_l_5
 
   function hipHostMalloc_l_5_c_size_t(ptr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -36208,7 +35740,6 @@ module hip
   end function hipHostMalloc_l_5_c_size_t
 
   function hipHostMalloc_l_6(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -36236,7 +35767,6 @@ module hip
   end function hipHostMalloc_l_6
 
   function hipHostMalloc_l_6_c_size_t(ptr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -36264,7 +35794,6 @@ module hip
   end function hipHostMalloc_l_6_c_size_t
 
   function hipHostMalloc_l_7(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -36293,7 +35822,6 @@ module hip
   end function hipHostMalloc_l_7
 
   function hipHostMalloc_l_7_c_size_t(ptr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -36322,7 +35850,6 @@ module hip
   end function hipHostMalloc_l_7_c_size_t
 
   function hipHostMalloc_i4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     integer(c_int), target, intent(in), optional :: dsource, source
@@ -36362,7 +35889,6 @@ module hip
   end function hipHostMalloc_i4_0_source
 
   function hipHostMalloc_i4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -36438,7 +35964,6 @@ module hip
   end function hipHostMalloc_i4_1_source
 
   function hipHostMalloc_i4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -36514,7 +36039,6 @@ module hip
   end function hipHostMalloc_i4_2_source
 
   function hipHostMalloc_i4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -36590,7 +36114,6 @@ module hip
   end function hipHostMalloc_i4_3_source
 
   function hipHostMalloc_i4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -36666,7 +36189,6 @@ module hip
   end function hipHostMalloc_i4_4_source
 
   function hipHostMalloc_i4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -36742,7 +36264,6 @@ module hip
   end function hipHostMalloc_i4_5_source
 
   function hipHostMalloc_i4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -36823,7 +36344,6 @@ module hip
   end function hipHostMalloc_i4_6_source
 
   function hipHostMalloc_i4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -36917,7 +36437,6 @@ module hip
   end function hipHostMalloc_i4_7_source
 
   function hipHostMalloc_i8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     integer(c_int64_t), target, intent(in), optional :: dsource, source
@@ -36957,7 +36476,6 @@ module hip
   end function hipHostMalloc_i8_0_source
 
   function hipHostMalloc_i8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -37033,7 +36551,6 @@ module hip
   end function hipHostMalloc_i8_1_source
 
   function hipHostMalloc_i8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -37109,7 +36626,6 @@ module hip
   end function hipHostMalloc_i8_2_source
 
   function hipHostMalloc_i8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -37185,7 +36701,6 @@ module hip
   end function hipHostMalloc_i8_3_source
 
   function hipHostMalloc_i8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -37261,7 +36776,6 @@ module hip
   end function hipHostMalloc_i8_4_source
 
   function hipHostMalloc_i8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -37337,7 +36851,6 @@ module hip
   end function hipHostMalloc_i8_5_source
 
   function hipHostMalloc_i8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -37418,7 +36931,6 @@ module hip
   end function hipHostMalloc_i8_6_source
 
   function hipHostMalloc_i8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -37512,7 +37024,6 @@ module hip
   end function hipHostMalloc_i8_7_source
 
   function hipHostMalloc_r4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     real(c_float), target, intent(in), optional :: dsource, source
@@ -37552,7 +37063,6 @@ module hip
   end function hipHostMalloc_r4_0_source
 
   function hipHostMalloc_r4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -37628,7 +37138,6 @@ module hip
   end function hipHostMalloc_r4_1_source
 
   function hipHostMalloc_r4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -37704,7 +37213,6 @@ module hip
   end function hipHostMalloc_r4_2_source
 
   function hipHostMalloc_r4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -37780,7 +37288,6 @@ module hip
   end function hipHostMalloc_r4_3_source
 
   function hipHostMalloc_r4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -37856,7 +37363,6 @@ module hip
   end function hipHostMalloc_r4_4_source
 
   function hipHostMalloc_r4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -37932,7 +37438,6 @@ module hip
   end function hipHostMalloc_r4_5_source
 
   function hipHostMalloc_r4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -38013,7 +37518,6 @@ module hip
   end function hipHostMalloc_r4_6_source
 
   function hipHostMalloc_r4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -38107,7 +37611,6 @@ module hip
   end function hipHostMalloc_r4_7_source
 
   function hipHostMalloc_r8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     real(c_double), target, intent(in), optional :: dsource, source
@@ -38147,7 +37650,6 @@ module hip
   end function hipHostMalloc_r8_0_source
 
   function hipHostMalloc_r8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -38223,7 +37725,6 @@ module hip
   end function hipHostMalloc_r8_1_source
 
   function hipHostMalloc_r8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -38299,7 +37800,6 @@ module hip
   end function hipHostMalloc_r8_2_source
 
   function hipHostMalloc_r8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -38375,7 +37875,6 @@ module hip
   end function hipHostMalloc_r8_3_source
 
   function hipHostMalloc_r8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -38451,7 +37950,6 @@ module hip
   end function hipHostMalloc_r8_4_source
 
   function hipHostMalloc_r8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -38527,7 +38025,6 @@ module hip
   end function hipHostMalloc_r8_5_source
 
   function hipHostMalloc_r8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -38608,7 +38105,6 @@ module hip
   end function hipHostMalloc_r8_6_source
 
   function hipHostMalloc_r8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -38702,7 +38198,6 @@ module hip
   end function hipHostMalloc_r8_7_source
 
   function hipHostMalloc_c4_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     complex(c_float_complex), target, intent(in), optional :: dsource, source
@@ -38742,7 +38237,6 @@ module hip
   end function hipHostMalloc_c4_0_source
 
   function hipHostMalloc_c4_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -38818,7 +38312,6 @@ module hip
   end function hipHostMalloc_c4_1_source
 
   function hipHostMalloc_c4_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -38894,7 +38387,6 @@ module hip
   end function hipHostMalloc_c4_2_source
 
   function hipHostMalloc_c4_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -38970,7 +38462,6 @@ module hip
   end function hipHostMalloc_c4_3_source
 
   function hipHostMalloc_c4_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -39046,7 +38537,6 @@ module hip
   end function hipHostMalloc_c4_4_source
 
   function hipHostMalloc_c4_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -39122,7 +38612,6 @@ module hip
   end function hipHostMalloc_c4_5_source
 
   function hipHostMalloc_c4_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -39203,7 +38692,6 @@ module hip
   end function hipHostMalloc_c4_6_source
 
   function hipHostMalloc_c4_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -39297,7 +38785,6 @@ module hip
   end function hipHostMalloc_c4_7_source
 
   function hipHostMalloc_c8_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     complex(c_double_complex), target, intent(in), optional :: dsource, source
@@ -39337,7 +38824,6 @@ module hip
   end function hipHostMalloc_c8_0_source
 
   function hipHostMalloc_c8_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -39413,7 +38899,6 @@ module hip
   end function hipHostMalloc_c8_1_source
 
   function hipHostMalloc_c8_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -39489,7 +38974,6 @@ module hip
   end function hipHostMalloc_c8_2_source
 
   function hipHostMalloc_c8_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -39565,7 +39049,6 @@ module hip
   end function hipHostMalloc_c8_3_source
 
   function hipHostMalloc_c8_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -39641,7 +39124,6 @@ module hip
   end function hipHostMalloc_c8_4_source
 
   function hipHostMalloc_c8_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -39717,7 +39199,6 @@ module hip
   end function hipHostMalloc_c8_5_source
 
   function hipHostMalloc_c8_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -39798,7 +39279,6 @@ module hip
   end function hipHostMalloc_c8_6_source
 
   function hipHostMalloc_c8_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -39892,7 +39372,6 @@ module hip
   end function hipHostMalloc_c8_7_source
 
   function hipHostMalloc_l_0_source(ptr, dsource, source, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical(c_bool), target, intent(in), optional :: dsource, source
@@ -39932,7 +39411,6 @@ module hip
   end function hipHostMalloc_l_0_source
 
   function hipHostMalloc_l_1_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(1), lbounds(1)
@@ -40008,7 +39486,6 @@ module hip
   end function hipHostMalloc_l_1_source
 
   function hipHostMalloc_l_2_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(2), lbounds(2)
@@ -40084,7 +39561,6 @@ module hip
   end function hipHostMalloc_l_2_source
 
   function hipHostMalloc_l_3_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(3), lbounds(3)
@@ -40160,7 +39636,6 @@ module hip
   end function hipHostMalloc_l_3_source
 
   function hipHostMalloc_l_4_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(4), lbounds(4)
@@ -40236,7 +39711,6 @@ module hip
   end function hipHostMalloc_l_4_source
 
   function hipHostMalloc_l_5_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(5), lbounds(5)
@@ -40312,7 +39786,6 @@ module hip
   end function hipHostMalloc_l_5_source
 
   function hipHostMalloc_l_6_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(6), lbounds(6)
@@ -40393,7 +39866,6 @@ module hip
   end function hipHostMalloc_l_6_source
 
   function hipHostMalloc_l_7_source(ptr, dims, dims8, lbounds, lbounds8, dsource, source, mold, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     integer(c_int), intent(in), optional :: dims(7), lbounds(7)
@@ -40487,7 +39959,6 @@ module hip
   end function hipHostMalloc_l_7_source
 
   function hipFree_i4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40505,7 +39976,6 @@ module hip
   end function hipFree_i4_0
 
   function hipFree_i4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40523,7 +39993,6 @@ module hip
   end function hipFree_i4_1
 
   function hipFree_i4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40541,7 +40010,6 @@ module hip
   end function hipFree_i4_2
 
   function hipFree_i4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40559,7 +40027,6 @@ module hip
   end function hipFree_i4_3
 
   function hipFree_i4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40577,7 +40044,6 @@ module hip
   end function hipFree_i4_4
 
   function hipFree_i4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40595,7 +40061,6 @@ module hip
   end function hipFree_i4_5
 
   function hipFree_i4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40613,7 +40078,6 @@ module hip
   end function hipFree_i4_6
 
   function hipFree_i4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40631,7 +40095,6 @@ module hip
   end function hipFree_i4_7
 
   function hipFree_i8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40649,7 +40112,6 @@ module hip
   end function hipFree_i8_0
 
   function hipFree_i8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40667,7 +40129,6 @@ module hip
   end function hipFree_i8_1
 
   function hipFree_i8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40685,7 +40146,6 @@ module hip
   end function hipFree_i8_2
 
   function hipFree_i8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40703,7 +40163,6 @@ module hip
   end function hipFree_i8_3
 
   function hipFree_i8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40721,7 +40180,6 @@ module hip
   end function hipFree_i8_4
 
   function hipFree_i8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40739,7 +40197,6 @@ module hip
   end function hipFree_i8_5
 
   function hipFree_i8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40757,7 +40214,6 @@ module hip
   end function hipFree_i8_6
 
   function hipFree_i8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40775,7 +40231,6 @@ module hip
   end function hipFree_i8_7
 
   function hipFree_r4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40793,7 +40248,6 @@ module hip
   end function hipFree_r4_0
 
   function hipFree_r4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40811,7 +40265,6 @@ module hip
   end function hipFree_r4_1
 
   function hipFree_r4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40829,7 +40282,6 @@ module hip
   end function hipFree_r4_2
 
   function hipFree_r4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40847,7 +40299,6 @@ module hip
   end function hipFree_r4_3
 
   function hipFree_r4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40865,7 +40316,6 @@ module hip
   end function hipFree_r4_4
 
   function hipFree_r4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40883,7 +40333,6 @@ module hip
   end function hipFree_r4_5
 
   function hipFree_r4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40901,7 +40350,6 @@ module hip
   end function hipFree_r4_6
 
   function hipFree_r4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40919,7 +40367,6 @@ module hip
   end function hipFree_r4_7
 
   function hipFree_r8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40937,7 +40384,6 @@ module hip
   end function hipFree_r8_0
 
   function hipFree_r8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40955,7 +40401,6 @@ module hip
   end function hipFree_r8_1
 
   function hipFree_r8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40973,7 +40418,6 @@ module hip
   end function hipFree_r8_2
 
   function hipFree_r8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -40991,7 +40435,6 @@ module hip
   end function hipFree_r8_3
 
   function hipFree_r8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41009,7 +40452,6 @@ module hip
   end function hipFree_r8_4
 
   function hipFree_r8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41027,7 +40469,6 @@ module hip
   end function hipFree_r8_5
 
   function hipFree_r8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41045,7 +40486,6 @@ module hip
   end function hipFree_r8_6
 
   function hipFree_r8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41063,7 +40503,6 @@ module hip
   end function hipFree_r8_7
 
   function hipFree_c4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41081,7 +40520,6 @@ module hip
   end function hipFree_c4_0
 
   function hipFree_c4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41099,7 +40537,6 @@ module hip
   end function hipFree_c4_1
 
   function hipFree_c4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41117,7 +40554,6 @@ module hip
   end function hipFree_c4_2
 
   function hipFree_c4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41135,7 +40571,6 @@ module hip
   end function hipFree_c4_3
 
   function hipFree_c4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41153,7 +40588,6 @@ module hip
   end function hipFree_c4_4
 
   function hipFree_c4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41171,7 +40605,6 @@ module hip
   end function hipFree_c4_5
 
   function hipFree_c4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41189,7 +40622,6 @@ module hip
   end function hipFree_c4_6
 
   function hipFree_c4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41207,7 +40639,6 @@ module hip
   end function hipFree_c4_7
 
   function hipFree_c8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41225,7 +40656,6 @@ module hip
   end function hipFree_c8_0
 
   function hipFree_c8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41243,7 +40673,6 @@ module hip
   end function hipFree_c8_1
 
   function hipFree_c8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41261,7 +40690,6 @@ module hip
   end function hipFree_c8_2
 
   function hipFree_c8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41279,7 +40707,6 @@ module hip
   end function hipFree_c8_3
 
   function hipFree_c8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41297,7 +40724,6 @@ module hip
   end function hipFree_c8_4
 
   function hipFree_c8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41315,7 +40741,6 @@ module hip
   end function hipFree_c8_5
 
   function hipFree_c8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41333,7 +40758,6 @@ module hip
   end function hipFree_c8_6
 
   function hipFree_c8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41351,7 +40775,6 @@ module hip
   end function hipFree_c8_7
 
   function hipFree_l_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41369,7 +40792,6 @@ module hip
   end function hipFree_l_0
 
   function hipFree_l_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41387,7 +40809,6 @@ module hip
   end function hipFree_l_1
 
   function hipFree_l_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41405,7 +40826,6 @@ module hip
   end function hipFree_l_2
 
   function hipFree_l_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41423,7 +40843,6 @@ module hip
   end function hipFree_l_3
 
   function hipFree_l_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41441,7 +40860,6 @@ module hip
   end function hipFree_l_4
 
   function hipFree_l_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41459,7 +40877,6 @@ module hip
   end function hipFree_l_5
 
   function hipFree_l_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41477,7 +40894,6 @@ module hip
   end function hipFree_l_6
 
   function hipFree_l_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41495,7 +40911,6 @@ module hip
   end function hipFree_l_7
 
   function hipHostFree_i4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41513,7 +40928,6 @@ module hip
   end function hipHostFree_i4_0
 
   function hipHostFree_i4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41531,7 +40945,6 @@ module hip
   end function hipHostFree_i4_1
 
   function hipHostFree_i4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41549,7 +40962,6 @@ module hip
   end function hipHostFree_i4_2
 
   function hipHostFree_i4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41567,7 +40979,6 @@ module hip
   end function hipHostFree_i4_3
 
   function hipHostFree_i4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41585,7 +40996,6 @@ module hip
   end function hipHostFree_i4_4
 
   function hipHostFree_i4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41603,7 +41013,6 @@ module hip
   end function hipHostFree_i4_5
 
   function hipHostFree_i4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41621,7 +41030,6 @@ module hip
   end function hipHostFree_i4_6
 
   function hipHostFree_i4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41639,7 +41047,6 @@ module hip
   end function hipHostFree_i4_7
 
   function hipHostFree_i8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41657,7 +41064,6 @@ module hip
   end function hipHostFree_i8_0
 
   function hipHostFree_i8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41675,7 +41081,6 @@ module hip
   end function hipHostFree_i8_1
 
   function hipHostFree_i8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41693,7 +41098,6 @@ module hip
   end function hipHostFree_i8_2
 
   function hipHostFree_i8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41711,7 +41115,6 @@ module hip
   end function hipHostFree_i8_3
 
   function hipHostFree_i8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41729,7 +41132,6 @@ module hip
   end function hipHostFree_i8_4
 
   function hipHostFree_i8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41747,7 +41149,6 @@ module hip
   end function hipHostFree_i8_5
 
   function hipHostFree_i8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41765,7 +41166,6 @@ module hip
   end function hipHostFree_i8_6
 
   function hipHostFree_i8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41783,7 +41183,6 @@ module hip
   end function hipHostFree_i8_7
 
   function hipHostFree_r4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41801,7 +41200,6 @@ module hip
   end function hipHostFree_r4_0
 
   function hipHostFree_r4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41819,7 +41217,6 @@ module hip
   end function hipHostFree_r4_1
 
   function hipHostFree_r4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41837,7 +41234,6 @@ module hip
   end function hipHostFree_r4_2
 
   function hipHostFree_r4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41855,7 +41251,6 @@ module hip
   end function hipHostFree_r4_3
 
   function hipHostFree_r4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41873,7 +41268,6 @@ module hip
   end function hipHostFree_r4_4
 
   function hipHostFree_r4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41891,7 +41285,6 @@ module hip
   end function hipHostFree_r4_5
 
   function hipHostFree_r4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41909,7 +41302,6 @@ module hip
   end function hipHostFree_r4_6
 
   function hipHostFree_r4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41927,7 +41319,6 @@ module hip
   end function hipHostFree_r4_7
 
   function hipHostFree_r8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41945,7 +41336,6 @@ module hip
   end function hipHostFree_r8_0
 
   function hipHostFree_r8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41963,7 +41353,6 @@ module hip
   end function hipHostFree_r8_1
 
   function hipHostFree_r8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41981,7 +41370,6 @@ module hip
   end function hipHostFree_r8_2
 
   function hipHostFree_r8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -41999,7 +41387,6 @@ module hip
   end function hipHostFree_r8_3
 
   function hipHostFree_r8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42017,7 +41404,6 @@ module hip
   end function hipHostFree_r8_4
 
   function hipHostFree_r8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42035,7 +41421,6 @@ module hip
   end function hipHostFree_r8_5
 
   function hipHostFree_r8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42053,7 +41438,6 @@ module hip
   end function hipHostFree_r8_6
 
   function hipHostFree_r8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42071,7 +41455,6 @@ module hip
   end function hipHostFree_r8_7
 
   function hipHostFree_c4_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42089,7 +41472,6 @@ module hip
   end function hipHostFree_c4_0
 
   function hipHostFree_c4_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42107,7 +41489,6 @@ module hip
   end function hipHostFree_c4_1
 
   function hipHostFree_c4_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42125,7 +41506,6 @@ module hip
   end function hipHostFree_c4_2
 
   function hipHostFree_c4_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42143,7 +41523,6 @@ module hip
   end function hipHostFree_c4_3
 
   function hipHostFree_c4_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42161,7 +41540,6 @@ module hip
   end function hipHostFree_c4_4
 
   function hipHostFree_c4_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42179,7 +41557,6 @@ module hip
   end function hipHostFree_c4_5
 
   function hipHostFree_c4_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42197,7 +41574,6 @@ module hip
   end function hipHostFree_c4_6
 
   function hipHostFree_c4_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42215,7 +41591,6 @@ module hip
   end function hipHostFree_c4_7
 
   function hipHostFree_c8_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42233,7 +41608,6 @@ module hip
   end function hipHostFree_c8_0
 
   function hipHostFree_c8_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42251,7 +41625,6 @@ module hip
   end function hipHostFree_c8_1
 
   function hipHostFree_c8_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42269,7 +41642,6 @@ module hip
   end function hipHostFree_c8_2
 
   function hipHostFree_c8_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42287,7 +41659,6 @@ module hip
   end function hipHostFree_c8_3
 
   function hipHostFree_c8_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42305,7 +41676,6 @@ module hip
   end function hipHostFree_c8_4
 
   function hipHostFree_c8_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42323,7 +41693,6 @@ module hip
   end function hipHostFree_c8_5
 
   function hipHostFree_c8_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42341,7 +41710,6 @@ module hip
   end function hipHostFree_c8_6
 
   function hipHostFree_c8_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42359,7 +41727,6 @@ module hip
   end function hipHostFree_c8_7
 
   function hipHostFree_l_0(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42377,7 +41744,6 @@ module hip
   end function hipHostFree_l_0
 
   function hipHostFree_l_1(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42395,7 +41761,6 @@ module hip
   end function hipHostFree_l_1
 
   function hipHostFree_l_2(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42413,7 +41778,6 @@ module hip
   end function hipHostFree_l_2
 
   function hipHostFree_l_3(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42431,7 +41795,6 @@ module hip
   end function hipHostFree_l_3
 
   function hipHostFree_l_4(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42449,7 +41812,6 @@ module hip
   end function hipHostFree_l_4
 
   function hipHostFree_l_5(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42467,7 +41829,6 @@ module hip
   end function hipHostFree_l_5
 
   function hipHostFree_l_6(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42485,7 +41846,6 @@ module hip
   end function hipHostFree_l_6
 
   function hipHostFree_l_7(ptr, only_if_allocated) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), pointer, dimension(:,:,:,:,:,:,:), intent(inout) :: ptr
     logical, intent(in), optional :: only_if_allocated
@@ -42503,7 +41863,6 @@ module hip
   end function hipHostFree_l_7
 
   function hipHostRegister_i4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42512,7 +41871,6 @@ module hip
   end function hipHostRegister_i4_0_nosize
 
   function hipHostRegister_i4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42521,7 +41879,6 @@ module hip
   end function hipHostRegister_i4_1_nosize
 
   function hipHostRegister_i4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -42534,7 +41891,6 @@ module hip
   end function hipHostRegister_i4_1
 
   function hipHostRegister_i4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -42547,7 +41903,6 @@ module hip
   end function hipHostRegister_i4_1_c_size_t
 
   function hipHostRegister_i4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42556,7 +41911,6 @@ module hip
   end function hipHostRegister_i4_2_nosize
 
   function hipHostRegister_i4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -42570,7 +41924,6 @@ module hip
   end function hipHostRegister_i4_2
 
   function hipHostRegister_i4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -42584,7 +41937,6 @@ module hip
   end function hipHostRegister_i4_2_c_size_t
 
   function hipHostRegister_i4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42593,7 +41945,6 @@ module hip
   end function hipHostRegister_i4_3_nosize
 
   function hipHostRegister_i4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -42608,7 +41959,6 @@ module hip
   end function hipHostRegister_i4_3
 
   function hipHostRegister_i4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -42623,7 +41973,6 @@ module hip
   end function hipHostRegister_i4_3_c_size_t
 
   function hipHostRegister_i4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42632,7 +41981,6 @@ module hip
   end function hipHostRegister_i4_4_nosize
 
   function hipHostRegister_i4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -42648,7 +41996,6 @@ module hip
   end function hipHostRegister_i4_4
 
   function hipHostRegister_i4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -42664,7 +42011,6 @@ module hip
   end function hipHostRegister_i4_4_c_size_t
 
   function hipHostRegister_i4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42673,7 +42019,6 @@ module hip
   end function hipHostRegister_i4_5_nosize
 
   function hipHostRegister_i4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -42690,7 +42035,6 @@ module hip
   end function hipHostRegister_i4_5
 
   function hipHostRegister_i4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -42707,7 +42051,6 @@ module hip
   end function hipHostRegister_i4_5_c_size_t
 
   function hipHostRegister_i4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42716,7 +42059,6 @@ module hip
   end function hipHostRegister_i4_6_nosize
 
   function hipHostRegister_i4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -42734,7 +42076,6 @@ module hip
   end function hipHostRegister_i4_6
 
   function hipHostRegister_i4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -42752,7 +42093,6 @@ module hip
   end function hipHostRegister_i4_6_c_size_t
 
   function hipHostRegister_i4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42761,7 +42101,6 @@ module hip
   end function hipHostRegister_i4_7_nosize
 
   function hipHostRegister_i4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -42780,7 +42119,6 @@ module hip
   end function hipHostRegister_i4_7
 
   function hipHostRegister_i4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -42799,7 +42137,6 @@ module hip
   end function hipHostRegister_i4_7_c_size_t
 
   function hipHostRegister_i8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42808,7 +42145,6 @@ module hip
   end function hipHostRegister_i8_0_nosize
 
   function hipHostRegister_i8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42817,7 +42153,6 @@ module hip
   end function hipHostRegister_i8_1_nosize
 
   function hipHostRegister_i8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -42830,7 +42165,6 @@ module hip
   end function hipHostRegister_i8_1
 
   function hipHostRegister_i8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -42843,7 +42177,6 @@ module hip
   end function hipHostRegister_i8_1_c_size_t
 
   function hipHostRegister_i8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42852,7 +42185,6 @@ module hip
   end function hipHostRegister_i8_2_nosize
 
   function hipHostRegister_i8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -42866,7 +42198,6 @@ module hip
   end function hipHostRegister_i8_2
 
   function hipHostRegister_i8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -42880,7 +42211,6 @@ module hip
   end function hipHostRegister_i8_2_c_size_t
 
   function hipHostRegister_i8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42889,7 +42219,6 @@ module hip
   end function hipHostRegister_i8_3_nosize
 
   function hipHostRegister_i8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -42904,7 +42233,6 @@ module hip
   end function hipHostRegister_i8_3
 
   function hipHostRegister_i8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -42919,7 +42247,6 @@ module hip
   end function hipHostRegister_i8_3_c_size_t
 
   function hipHostRegister_i8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42928,7 +42255,6 @@ module hip
   end function hipHostRegister_i8_4_nosize
 
   function hipHostRegister_i8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -42944,7 +42270,6 @@ module hip
   end function hipHostRegister_i8_4
 
   function hipHostRegister_i8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -42960,7 +42285,6 @@ module hip
   end function hipHostRegister_i8_4_c_size_t
 
   function hipHostRegister_i8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -42969,7 +42293,6 @@ module hip
   end function hipHostRegister_i8_5_nosize
 
   function hipHostRegister_i8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -42986,7 +42309,6 @@ module hip
   end function hipHostRegister_i8_5
 
   function hipHostRegister_i8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -43003,7 +42325,6 @@ module hip
   end function hipHostRegister_i8_5_c_size_t
 
   function hipHostRegister_i8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43012,7 +42333,6 @@ module hip
   end function hipHostRegister_i8_6_nosize
 
   function hipHostRegister_i8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43030,7 +42350,6 @@ module hip
   end function hipHostRegister_i8_6
 
   function hipHostRegister_i8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43048,7 +42367,6 @@ module hip
   end function hipHostRegister_i8_6_c_size_t
 
   function hipHostRegister_i8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43057,7 +42375,6 @@ module hip
   end function hipHostRegister_i8_7_nosize
 
   function hipHostRegister_i8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43076,7 +42393,6 @@ module hip
   end function hipHostRegister_i8_7
 
   function hipHostRegister_i8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43095,7 +42411,6 @@ module hip
   end function hipHostRegister_i8_7_c_size_t
 
   function hipHostRegister_r4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43104,7 +42419,6 @@ module hip
   end function hipHostRegister_r4_0_nosize
 
   function hipHostRegister_r4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43113,7 +42427,6 @@ module hip
   end function hipHostRegister_r4_1_nosize
 
   function hipHostRegister_r4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -43126,7 +42439,6 @@ module hip
   end function hipHostRegister_r4_1
 
   function hipHostRegister_r4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -43139,7 +42451,6 @@ module hip
   end function hipHostRegister_r4_1_c_size_t
 
   function hipHostRegister_r4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43148,7 +42459,6 @@ module hip
   end function hipHostRegister_r4_2_nosize
 
   function hipHostRegister_r4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -43162,7 +42472,6 @@ module hip
   end function hipHostRegister_r4_2
 
   function hipHostRegister_r4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -43176,7 +42485,6 @@ module hip
   end function hipHostRegister_r4_2_c_size_t
 
   function hipHostRegister_r4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43185,7 +42493,6 @@ module hip
   end function hipHostRegister_r4_3_nosize
 
   function hipHostRegister_r4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -43200,7 +42507,6 @@ module hip
   end function hipHostRegister_r4_3
 
   function hipHostRegister_r4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -43215,7 +42521,6 @@ module hip
   end function hipHostRegister_r4_3_c_size_t
 
   function hipHostRegister_r4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43224,7 +42529,6 @@ module hip
   end function hipHostRegister_r4_4_nosize
 
   function hipHostRegister_r4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -43240,7 +42544,6 @@ module hip
   end function hipHostRegister_r4_4
 
   function hipHostRegister_r4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -43256,7 +42559,6 @@ module hip
   end function hipHostRegister_r4_4_c_size_t
 
   function hipHostRegister_r4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43265,7 +42567,6 @@ module hip
   end function hipHostRegister_r4_5_nosize
 
   function hipHostRegister_r4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -43282,7 +42583,6 @@ module hip
   end function hipHostRegister_r4_5
 
   function hipHostRegister_r4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -43299,7 +42599,6 @@ module hip
   end function hipHostRegister_r4_5_c_size_t
 
   function hipHostRegister_r4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43308,7 +42607,6 @@ module hip
   end function hipHostRegister_r4_6_nosize
 
   function hipHostRegister_r4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43326,7 +42624,6 @@ module hip
   end function hipHostRegister_r4_6
 
   function hipHostRegister_r4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43344,7 +42641,6 @@ module hip
   end function hipHostRegister_r4_6_c_size_t
 
   function hipHostRegister_r4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43353,7 +42649,6 @@ module hip
   end function hipHostRegister_r4_7_nosize
 
   function hipHostRegister_r4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43372,7 +42667,6 @@ module hip
   end function hipHostRegister_r4_7
 
   function hipHostRegister_r4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43391,7 +42685,6 @@ module hip
   end function hipHostRegister_r4_7_c_size_t
 
   function hipHostRegister_r8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43400,7 +42693,6 @@ module hip
   end function hipHostRegister_r8_0_nosize
 
   function hipHostRegister_r8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43409,7 +42701,6 @@ module hip
   end function hipHostRegister_r8_1_nosize
 
   function hipHostRegister_r8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -43422,7 +42713,6 @@ module hip
   end function hipHostRegister_r8_1
 
   function hipHostRegister_r8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -43435,7 +42725,6 @@ module hip
   end function hipHostRegister_r8_1_c_size_t
 
   function hipHostRegister_r8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43444,7 +42733,6 @@ module hip
   end function hipHostRegister_r8_2_nosize
 
   function hipHostRegister_r8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -43458,7 +42746,6 @@ module hip
   end function hipHostRegister_r8_2
 
   function hipHostRegister_r8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -43472,7 +42759,6 @@ module hip
   end function hipHostRegister_r8_2_c_size_t
 
   function hipHostRegister_r8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43481,7 +42767,6 @@ module hip
   end function hipHostRegister_r8_3_nosize
 
   function hipHostRegister_r8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -43496,7 +42781,6 @@ module hip
   end function hipHostRegister_r8_3
 
   function hipHostRegister_r8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -43511,7 +42795,6 @@ module hip
   end function hipHostRegister_r8_3_c_size_t
 
   function hipHostRegister_r8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43520,7 +42803,6 @@ module hip
   end function hipHostRegister_r8_4_nosize
 
   function hipHostRegister_r8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -43536,7 +42818,6 @@ module hip
   end function hipHostRegister_r8_4
 
   function hipHostRegister_r8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -43552,7 +42833,6 @@ module hip
   end function hipHostRegister_r8_4_c_size_t
 
   function hipHostRegister_r8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43561,7 +42841,6 @@ module hip
   end function hipHostRegister_r8_5_nosize
 
   function hipHostRegister_r8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -43578,7 +42857,6 @@ module hip
   end function hipHostRegister_r8_5
 
   function hipHostRegister_r8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -43595,7 +42873,6 @@ module hip
   end function hipHostRegister_r8_5_c_size_t
 
   function hipHostRegister_r8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43604,7 +42881,6 @@ module hip
   end function hipHostRegister_r8_6_nosize
 
   function hipHostRegister_r8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43622,7 +42898,6 @@ module hip
   end function hipHostRegister_r8_6
 
   function hipHostRegister_r8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43640,7 +42915,6 @@ module hip
   end function hipHostRegister_r8_6_c_size_t
 
   function hipHostRegister_r8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43649,7 +42923,6 @@ module hip
   end function hipHostRegister_r8_7_nosize
 
   function hipHostRegister_r8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43668,7 +42941,6 @@ module hip
   end function hipHostRegister_r8_7
 
   function hipHostRegister_r8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43687,7 +42959,6 @@ module hip
   end function hipHostRegister_r8_7_c_size_t
 
   function hipHostRegister_c4_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43696,7 +42967,6 @@ module hip
   end function hipHostRegister_c4_0_nosize
 
   function hipHostRegister_c4_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43705,7 +42975,6 @@ module hip
   end function hipHostRegister_c4_1_nosize
 
   function hipHostRegister_c4_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -43718,7 +42987,6 @@ module hip
   end function hipHostRegister_c4_1
 
   function hipHostRegister_c4_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -43731,7 +42999,6 @@ module hip
   end function hipHostRegister_c4_1_c_size_t
 
   function hipHostRegister_c4_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43740,7 +43007,6 @@ module hip
   end function hipHostRegister_c4_2_nosize
 
   function hipHostRegister_c4_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -43754,7 +43020,6 @@ module hip
   end function hipHostRegister_c4_2
 
   function hipHostRegister_c4_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -43768,7 +43033,6 @@ module hip
   end function hipHostRegister_c4_2_c_size_t
 
   function hipHostRegister_c4_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43777,7 +43041,6 @@ module hip
   end function hipHostRegister_c4_3_nosize
 
   function hipHostRegister_c4_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -43792,7 +43055,6 @@ module hip
   end function hipHostRegister_c4_3
 
   function hipHostRegister_c4_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -43807,7 +43069,6 @@ module hip
   end function hipHostRegister_c4_3_c_size_t
 
   function hipHostRegister_c4_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43816,7 +43077,6 @@ module hip
   end function hipHostRegister_c4_4_nosize
 
   function hipHostRegister_c4_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -43832,7 +43092,6 @@ module hip
   end function hipHostRegister_c4_4
 
   function hipHostRegister_c4_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -43848,7 +43107,6 @@ module hip
   end function hipHostRegister_c4_4_c_size_t
 
   function hipHostRegister_c4_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43857,7 +43115,6 @@ module hip
   end function hipHostRegister_c4_5_nosize
 
   function hipHostRegister_c4_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -43874,7 +43131,6 @@ module hip
   end function hipHostRegister_c4_5
 
   function hipHostRegister_c4_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -43891,7 +43147,6 @@ module hip
   end function hipHostRegister_c4_5_c_size_t
 
   function hipHostRegister_c4_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43900,7 +43155,6 @@ module hip
   end function hipHostRegister_c4_6_nosize
 
   function hipHostRegister_c4_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43918,7 +43172,6 @@ module hip
   end function hipHostRegister_c4_6
 
   function hipHostRegister_c4_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -43936,7 +43189,6 @@ module hip
   end function hipHostRegister_c4_6_c_size_t
 
   function hipHostRegister_c4_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43945,7 +43197,6 @@ module hip
   end function hipHostRegister_c4_7_nosize
 
   function hipHostRegister_c4_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43964,7 +43215,6 @@ module hip
   end function hipHostRegister_c4_7
 
   function hipHostRegister_c4_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -43983,7 +43233,6 @@ module hip
   end function hipHostRegister_c4_7_c_size_t
 
   function hipHostRegister_c8_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -43992,7 +43241,6 @@ module hip
   end function hipHostRegister_c8_0_nosize
 
   function hipHostRegister_c8_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44001,7 +43249,6 @@ module hip
   end function hipHostRegister_c8_1_nosize
 
   function hipHostRegister_c8_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -44014,7 +43261,6 @@ module hip
   end function hipHostRegister_c8_1
 
   function hipHostRegister_c8_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -44027,7 +43273,6 @@ module hip
   end function hipHostRegister_c8_1_c_size_t
 
   function hipHostRegister_c8_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44036,7 +43281,6 @@ module hip
   end function hipHostRegister_c8_2_nosize
 
   function hipHostRegister_c8_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -44050,7 +43294,6 @@ module hip
   end function hipHostRegister_c8_2
 
   function hipHostRegister_c8_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -44064,7 +43307,6 @@ module hip
   end function hipHostRegister_c8_2_c_size_t
 
   function hipHostRegister_c8_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44073,7 +43315,6 @@ module hip
   end function hipHostRegister_c8_3_nosize
 
   function hipHostRegister_c8_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -44088,7 +43329,6 @@ module hip
   end function hipHostRegister_c8_3
 
   function hipHostRegister_c8_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -44103,7 +43343,6 @@ module hip
   end function hipHostRegister_c8_3_c_size_t
 
   function hipHostRegister_c8_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44112,7 +43351,6 @@ module hip
   end function hipHostRegister_c8_4_nosize
 
   function hipHostRegister_c8_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -44128,7 +43366,6 @@ module hip
   end function hipHostRegister_c8_4
 
   function hipHostRegister_c8_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -44144,7 +43381,6 @@ module hip
   end function hipHostRegister_c8_4_c_size_t
 
   function hipHostRegister_c8_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44153,7 +43389,6 @@ module hip
   end function hipHostRegister_c8_5_nosize
 
   function hipHostRegister_c8_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -44170,7 +43405,6 @@ module hip
   end function hipHostRegister_c8_5
 
   function hipHostRegister_c8_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -44187,7 +43421,6 @@ module hip
   end function hipHostRegister_c8_5_c_size_t
 
   function hipHostRegister_c8_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44196,7 +43429,6 @@ module hip
   end function hipHostRegister_c8_6_nosize
 
   function hipHostRegister_c8_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -44214,7 +43446,6 @@ module hip
   end function hipHostRegister_c8_6
 
   function hipHostRegister_c8_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -44232,7 +43463,6 @@ module hip
   end function hipHostRegister_c8_6_c_size_t
 
   function hipHostRegister_c8_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44241,7 +43471,6 @@ module hip
   end function hipHostRegister_c8_7_nosize
 
   function hipHostRegister_c8_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -44260,7 +43489,6 @@ module hip
   end function hipHostRegister_c8_7
 
   function hipHostRegister_c8_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -44279,7 +43507,6 @@ module hip
   end function hipHostRegister_c8_7_c_size_t
 
   function hipHostRegister_l_0_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44288,7 +43515,6 @@ module hip
   end function hipHostRegister_l_0_nosize
 
   function hipHostRegister_l_1_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44297,7 +43523,6 @@ module hip
   end function hipHostRegister_l_1_nosize
 
   function hipHostRegister_l_1(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1
@@ -44310,7 +43535,6 @@ module hip
   end function hipHostRegister_l_1
 
   function hipHostRegister_l_1_c_size_t(hostPtr, length1, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1
@@ -44323,7 +43547,6 @@ module hip
   end function hipHostRegister_l_1_c_size_t
 
   function hipHostRegister_l_2_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44332,7 +43555,6 @@ module hip
   end function hipHostRegister_l_2_nosize
 
   function hipHostRegister_l_2(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2
@@ -44346,7 +43568,6 @@ module hip
   end function hipHostRegister_l_2
 
   function hipHostRegister_l_2_c_size_t(hostPtr, length1, length2, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2
@@ -44360,7 +43581,6 @@ module hip
   end function hipHostRegister_l_2_c_size_t
 
   function hipHostRegister_l_3_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44369,7 +43589,6 @@ module hip
   end function hipHostRegister_l_3_nosize
 
   function hipHostRegister_l_3(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3
@@ -44384,7 +43603,6 @@ module hip
   end function hipHostRegister_l_3
 
   function hipHostRegister_l_3_c_size_t(hostPtr, length1, length2, length3, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3
@@ -44399,7 +43617,6 @@ module hip
   end function hipHostRegister_l_3_c_size_t
 
   function hipHostRegister_l_4_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44408,7 +43625,6 @@ module hip
   end function hipHostRegister_l_4_nosize
 
   function hipHostRegister_l_4(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4
@@ -44424,7 +43640,6 @@ module hip
   end function hipHostRegister_l_4
 
   function hipHostRegister_l_4_c_size_t(hostPtr, length1, length2, length3, length4, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4
@@ -44440,7 +43655,6 @@ module hip
   end function hipHostRegister_l_4_c_size_t
 
   function hipHostRegister_l_5_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44449,7 +43663,6 @@ module hip
   end function hipHostRegister_l_5_nosize
 
   function hipHostRegister_l_5(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5
@@ -44466,7 +43679,6 @@ module hip
   end function hipHostRegister_l_5
 
   function hipHostRegister_l_5_c_size_t(hostPtr, length1, length2, length3, length4, length5, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5
@@ -44483,7 +43695,6 @@ module hip
   end function hipHostRegister_l_5_c_size_t
 
   function hipHostRegister_l_6_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44492,7 +43703,6 @@ module hip
   end function hipHostRegister_l_6_nosize
 
   function hipHostRegister_l_6(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -44510,7 +43720,6 @@ module hip
   end function hipHostRegister_l_6
 
   function hipHostRegister_l_6_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6
@@ -44528,7 +43737,6 @@ module hip
   end function hipHostRegister_l_6_c_size_t
 
   function hipHostRegister_l_7_nosize(hostPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: flags
@@ -44537,7 +43745,6 @@ module hip
   end function hipHostRegister_l_7_nosize
 
   function hipHostRegister_l_7(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_int), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -44556,7 +43763,6 @@ module hip
   end function hipHostRegister_l_7
 
   function hipHostRegister_l_7_c_size_t(hostPtr, length1, length2, length3, length4, length5, length6, length7, flags) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(in) :: hostPtr
     integer(c_size_t), intent(in) :: length1, length2, length3, length4, length5, length6, length7
@@ -44575,7 +43781,6 @@ module hip
   end function hipHostRegister_l_7_c_size_t
 
   function hipHostUnregister_i4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44583,7 +43788,6 @@ module hip
   end function hipHostUnregister_i4_0
 
   function hipHostUnregister_i4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44591,7 +43795,6 @@ module hip
   end function hipHostUnregister_i4_1
 
   function hipHostUnregister_i4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44599,7 +43802,6 @@ module hip
   end function hipHostUnregister_i4_2
 
   function hipHostUnregister_i4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44607,7 +43809,6 @@ module hip
   end function hipHostUnregister_i4_3
 
   function hipHostUnregister_i4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44615,7 +43816,6 @@ module hip
   end function hipHostUnregister_i4_4
 
   function hipHostUnregister_i4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44623,7 +43823,6 @@ module hip
   end function hipHostUnregister_i4_5
 
   function hipHostUnregister_i4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44631,7 +43830,6 @@ module hip
   end function hipHostUnregister_i4_6
 
   function hipHostUnregister_i4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44639,7 +43837,6 @@ module hip
   end function hipHostUnregister_i4_7
 
   function hipHostUnregister_i8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44647,7 +43844,6 @@ module hip
   end function hipHostUnregister_i8_0
 
   function hipHostUnregister_i8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44655,7 +43851,6 @@ module hip
   end function hipHostUnregister_i8_1
 
   function hipHostUnregister_i8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44663,7 +43858,6 @@ module hip
   end function hipHostUnregister_i8_2
 
   function hipHostUnregister_i8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44671,7 +43865,6 @@ module hip
   end function hipHostUnregister_i8_3
 
   function hipHostUnregister_i8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44679,7 +43872,6 @@ module hip
   end function hipHostUnregister_i8_4
 
   function hipHostUnregister_i8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44687,7 +43879,6 @@ module hip
   end function hipHostUnregister_i8_5
 
   function hipHostUnregister_i8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44695,7 +43886,6 @@ module hip
   end function hipHostUnregister_i8_6
 
   function hipHostUnregister_i8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44703,7 +43893,6 @@ module hip
   end function hipHostUnregister_i8_7
 
   function hipHostUnregister_r4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44711,7 +43900,6 @@ module hip
   end function hipHostUnregister_r4_0
 
   function hipHostUnregister_r4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44719,7 +43907,6 @@ module hip
   end function hipHostUnregister_r4_1
 
   function hipHostUnregister_r4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44727,7 +43914,6 @@ module hip
   end function hipHostUnregister_r4_2
 
   function hipHostUnregister_r4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44735,7 +43921,6 @@ module hip
   end function hipHostUnregister_r4_3
 
   function hipHostUnregister_r4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44743,7 +43928,6 @@ module hip
   end function hipHostUnregister_r4_4
 
   function hipHostUnregister_r4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44751,7 +43935,6 @@ module hip
   end function hipHostUnregister_r4_5
 
   function hipHostUnregister_r4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44759,7 +43942,6 @@ module hip
   end function hipHostUnregister_r4_6
 
   function hipHostUnregister_r4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44767,7 +43949,6 @@ module hip
   end function hipHostUnregister_r4_7
 
   function hipHostUnregister_r8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44775,7 +43956,6 @@ module hip
   end function hipHostUnregister_r8_0
 
   function hipHostUnregister_r8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44783,7 +43963,6 @@ module hip
   end function hipHostUnregister_r8_1
 
   function hipHostUnregister_r8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44791,7 +43970,6 @@ module hip
   end function hipHostUnregister_r8_2
 
   function hipHostUnregister_r8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44799,7 +43977,6 @@ module hip
   end function hipHostUnregister_r8_3
 
   function hipHostUnregister_r8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44807,7 +43984,6 @@ module hip
   end function hipHostUnregister_r8_4
 
   function hipHostUnregister_r8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44815,7 +43991,6 @@ module hip
   end function hipHostUnregister_r8_5
 
   function hipHostUnregister_r8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44823,7 +43998,6 @@ module hip
   end function hipHostUnregister_r8_6
 
   function hipHostUnregister_r8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44831,7 +44005,6 @@ module hip
   end function hipHostUnregister_r8_7
 
   function hipHostUnregister_c4_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44839,7 +44012,6 @@ module hip
   end function hipHostUnregister_c4_0
 
   function hipHostUnregister_c4_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44847,7 +44019,6 @@ module hip
   end function hipHostUnregister_c4_1
 
   function hipHostUnregister_c4_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44855,7 +44026,6 @@ module hip
   end function hipHostUnregister_c4_2
 
   function hipHostUnregister_c4_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44863,7 +44033,6 @@ module hip
   end function hipHostUnregister_c4_3
 
   function hipHostUnregister_c4_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44871,7 +44040,6 @@ module hip
   end function hipHostUnregister_c4_4
 
   function hipHostUnregister_c4_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44879,7 +44047,6 @@ module hip
   end function hipHostUnregister_c4_5
 
   function hipHostUnregister_c4_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44887,7 +44054,6 @@ module hip
   end function hipHostUnregister_c4_6
 
   function hipHostUnregister_c4_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44895,7 +44061,6 @@ module hip
   end function hipHostUnregister_c4_7
 
   function hipHostUnregister_c8_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44903,7 +44068,6 @@ module hip
   end function hipHostUnregister_c8_0
 
   function hipHostUnregister_c8_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44911,7 +44075,6 @@ module hip
   end function hipHostUnregister_c8_1
 
   function hipHostUnregister_c8_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44919,7 +44082,6 @@ module hip
   end function hipHostUnregister_c8_2
 
   function hipHostUnregister_c8_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44927,7 +44089,6 @@ module hip
   end function hipHostUnregister_c8_3
 
   function hipHostUnregister_c8_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44935,7 +44096,6 @@ module hip
   end function hipHostUnregister_c8_4
 
   function hipHostUnregister_c8_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44943,7 +44103,6 @@ module hip
   end function hipHostUnregister_c8_5
 
   function hipHostUnregister_c8_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44951,7 +44110,6 @@ module hip
   end function hipHostUnregister_c8_6
 
   function hipHostUnregister_c8_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44959,7 +44117,6 @@ module hip
   end function hipHostUnregister_c8_7
 
   function hipHostUnregister_l_0(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44967,7 +44124,6 @@ module hip
   end function hipHostUnregister_l_0
 
   function hipHostUnregister_l_1(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44975,7 +44131,6 @@ module hip
   end function hipHostUnregister_l_1
 
   function hipHostUnregister_l_2(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44983,7 +44138,6 @@ module hip
   end function hipHostUnregister_l_2
 
   function hipHostUnregister_l_3(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44991,7 +44145,6 @@ module hip
   end function hipHostUnregister_l_3
 
   function hipHostUnregister_l_4(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -44999,7 +44152,6 @@ module hip
   end function hipHostUnregister_l_4
 
   function hipHostUnregister_l_5(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -45007,7 +44159,6 @@ module hip
   end function hipHostUnregister_l_5
 
   function hipHostUnregister_l_6(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -45015,7 +44166,6 @@ module hip
   end function hipHostUnregister_l_6
 
   function hipHostUnregister_l_7(hostPtr) result(res)
-    use iso_c_binding
     implicit none
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
     integer(c_int) :: res
@@ -45023,7 +44173,6 @@ module hip
   end function hipHostUnregister_l_7
 
   function hipHostGetDevicePointer_i4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, intent(inout) :: hstPtr
@@ -45033,7 +44182,6 @@ module hip
   end function hipHostGetDevicePointer_i4_0
 
   function hipHostGetDevicePointer_i4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:), intent(inout) :: hstPtr
@@ -45043,7 +44191,6 @@ module hip
   end function hipHostGetDevicePointer_i4_1
 
   function hipHostGetDevicePointer_i4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45053,7 +44200,6 @@ module hip
   end function hipHostGetDevicePointer_i4_2
 
   function hipHostGetDevicePointer_i4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45063,7 +44209,6 @@ module hip
   end function hipHostGetDevicePointer_i4_3
 
   function hipHostGetDevicePointer_i4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45073,7 +44218,6 @@ module hip
   end function hipHostGetDevicePointer_i4_4
 
   function hipHostGetDevicePointer_i4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45083,7 +44227,6 @@ module hip
   end function hipHostGetDevicePointer_i4_5
 
   function hipHostGetDevicePointer_i4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45093,7 +44236,6 @@ module hip
   end function hipHostGetDevicePointer_i4_6
 
   function hipHostGetDevicePointer_i4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45103,7 +44245,6 @@ module hip
   end function hipHostGetDevicePointer_i4_7
 
   function hipHostGetDevicePointer_i8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, intent(inout) :: hstPtr
@@ -45113,7 +44254,6 @@ module hip
   end function hipHostGetDevicePointer_i8_0
 
   function hipHostGetDevicePointer_i8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:), intent(inout) :: hstPtr
@@ -45123,7 +44263,6 @@ module hip
   end function hipHostGetDevicePointer_i8_1
 
   function hipHostGetDevicePointer_i8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45133,7 +44272,6 @@ module hip
   end function hipHostGetDevicePointer_i8_2
 
   function hipHostGetDevicePointer_i8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45143,7 +44281,6 @@ module hip
   end function hipHostGetDevicePointer_i8_3
 
   function hipHostGetDevicePointer_i8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45153,7 +44290,6 @@ module hip
   end function hipHostGetDevicePointer_i8_4
 
   function hipHostGetDevicePointer_i8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45163,7 +44299,6 @@ module hip
   end function hipHostGetDevicePointer_i8_5
 
   function hipHostGetDevicePointer_i8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45173,7 +44308,6 @@ module hip
   end function hipHostGetDevicePointer_i8_6
 
   function hipHostGetDevicePointer_i8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45183,7 +44317,6 @@ module hip
   end function hipHostGetDevicePointer_i8_7
 
   function hipHostGetDevicePointer_r4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, intent(inout) :: hstPtr
@@ -45193,7 +44326,6 @@ module hip
   end function hipHostGetDevicePointer_r4_0
 
   function hipHostGetDevicePointer_r4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:), intent(inout) :: hstPtr
@@ -45203,7 +44335,6 @@ module hip
   end function hipHostGetDevicePointer_r4_1
 
   function hipHostGetDevicePointer_r4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45213,7 +44344,6 @@ module hip
   end function hipHostGetDevicePointer_r4_2
 
   function hipHostGetDevicePointer_r4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45223,7 +44353,6 @@ module hip
   end function hipHostGetDevicePointer_r4_3
 
   function hipHostGetDevicePointer_r4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45233,7 +44362,6 @@ module hip
   end function hipHostGetDevicePointer_r4_4
 
   function hipHostGetDevicePointer_r4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45243,7 +44371,6 @@ module hip
   end function hipHostGetDevicePointer_r4_5
 
   function hipHostGetDevicePointer_r4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45253,7 +44380,6 @@ module hip
   end function hipHostGetDevicePointer_r4_6
 
   function hipHostGetDevicePointer_r4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45263,7 +44389,6 @@ module hip
   end function hipHostGetDevicePointer_r4_7
 
   function hipHostGetDevicePointer_r8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, intent(inout) :: hstPtr
@@ -45273,7 +44398,6 @@ module hip
   end function hipHostGetDevicePointer_r8_0
 
   function hipHostGetDevicePointer_r8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:), intent(inout) :: hstPtr
@@ -45283,7 +44407,6 @@ module hip
   end function hipHostGetDevicePointer_r8_1
 
   function hipHostGetDevicePointer_r8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45293,7 +44416,6 @@ module hip
   end function hipHostGetDevicePointer_r8_2
 
   function hipHostGetDevicePointer_r8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45303,7 +44425,6 @@ module hip
   end function hipHostGetDevicePointer_r8_3
 
   function hipHostGetDevicePointer_r8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45313,7 +44434,6 @@ module hip
   end function hipHostGetDevicePointer_r8_4
 
   function hipHostGetDevicePointer_r8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45323,7 +44443,6 @@ module hip
   end function hipHostGetDevicePointer_r8_5
 
   function hipHostGetDevicePointer_r8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45333,7 +44452,6 @@ module hip
   end function hipHostGetDevicePointer_r8_6
 
   function hipHostGetDevicePointer_r8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45343,7 +44461,6 @@ module hip
   end function hipHostGetDevicePointer_r8_7
 
   function hipHostGetDevicePointer_c4_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, intent(inout) :: hstPtr
@@ -45353,7 +44470,6 @@ module hip
   end function hipHostGetDevicePointer_c4_0
 
   function hipHostGetDevicePointer_c4_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:), intent(inout) :: hstPtr
@@ -45363,7 +44479,6 @@ module hip
   end function hipHostGetDevicePointer_c4_1
 
   function hipHostGetDevicePointer_c4_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45373,7 +44488,6 @@ module hip
   end function hipHostGetDevicePointer_c4_2
 
   function hipHostGetDevicePointer_c4_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45383,7 +44497,6 @@ module hip
   end function hipHostGetDevicePointer_c4_3
 
   function hipHostGetDevicePointer_c4_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45393,7 +44506,6 @@ module hip
   end function hipHostGetDevicePointer_c4_4
 
   function hipHostGetDevicePointer_c4_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45403,7 +44515,6 @@ module hip
   end function hipHostGetDevicePointer_c4_5
 
   function hipHostGetDevicePointer_c4_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45413,7 +44524,6 @@ module hip
   end function hipHostGetDevicePointer_c4_6
 
   function hipHostGetDevicePointer_c4_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45423,7 +44533,6 @@ module hip
   end function hipHostGetDevicePointer_c4_7
 
   function hipHostGetDevicePointer_c8_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, intent(inout) :: hstPtr
@@ -45433,7 +44542,6 @@ module hip
   end function hipHostGetDevicePointer_c8_0
 
   function hipHostGetDevicePointer_c8_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:), intent(inout) :: hstPtr
@@ -45443,7 +44551,6 @@ module hip
   end function hipHostGetDevicePointer_c8_1
 
   function hipHostGetDevicePointer_c8_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45453,7 +44560,6 @@ module hip
   end function hipHostGetDevicePointer_c8_2
 
   function hipHostGetDevicePointer_c8_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45463,7 +44569,6 @@ module hip
   end function hipHostGetDevicePointer_c8_3
 
   function hipHostGetDevicePointer_c8_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45473,7 +44578,6 @@ module hip
   end function hipHostGetDevicePointer_c8_4
 
   function hipHostGetDevicePointer_c8_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45483,7 +44587,6 @@ module hip
   end function hipHostGetDevicePointer_c8_5
 
   function hipHostGetDevicePointer_c8_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45493,7 +44596,6 @@ module hip
   end function hipHostGetDevicePointer_c8_6
 
   function hipHostGetDevicePointer_c8_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45503,7 +44605,6 @@ module hip
   end function hipHostGetDevicePointer_c8_7
 
   function hipHostGetDevicePointer_l_0(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, intent(inout) :: hstPtr
@@ -45513,7 +44614,6 @@ module hip
   end function hipHostGetDevicePointer_l_0
 
   function hipHostGetDevicePointer_l_1(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:), intent(inout) :: hstPtr
@@ -45523,7 +44623,6 @@ module hip
   end function hipHostGetDevicePointer_l_1
 
   function hipHostGetDevicePointer_l_2(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:), intent(inout) :: hstPtr
@@ -45533,7 +44632,6 @@ module hip
   end function hipHostGetDevicePointer_l_2
 
   function hipHostGetDevicePointer_l_3(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hstPtr
@@ -45543,7 +44641,6 @@ module hip
   end function hipHostGetDevicePointer_l_3
 
   function hipHostGetDevicePointer_l_4(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hstPtr
@@ -45553,7 +44650,6 @@ module hip
   end function hipHostGetDevicePointer_l_4
 
   function hipHostGetDevicePointer_l_5(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
@@ -45563,7 +44659,6 @@ module hip
   end function hipHostGetDevicePointer_l_5
 
   function hipHostGetDevicePointer_l_6(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45573,7 +44668,6 @@ module hip
   end function hipHostGetDevicePointer_l_6
 
   function hipHostGetDevicePointer_l_7(devPtr, hstPtr, flags) result(res)
-    use iso_c_binding
     implicit none
     type(c_ptr) :: devPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
@@ -45583,7 +44677,6 @@ module hip
   end function hipHostGetDevicePointer_l_7
 
   function hipHostGetFlags_i4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, intent(inout) :: hostPtr
@@ -45592,7 +44685,6 @@ module hip
   end function hipHostGetFlags_i4_0
 
   function hipHostGetFlags_i4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:), intent(inout) :: hostPtr
@@ -45601,7 +44693,6 @@ module hip
   end function hipHostGetFlags_i4_1
 
   function hipHostGetFlags_i4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45610,7 +44701,6 @@ module hip
   end function hipHostGetFlags_i4_2
 
   function hipHostGetFlags_i4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45619,7 +44709,6 @@ module hip
   end function hipHostGetFlags_i4_3
 
   function hipHostGetFlags_i4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45628,7 +44717,6 @@ module hip
   end function hipHostGetFlags_i4_4
 
   function hipHostGetFlags_i4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45637,7 +44725,6 @@ module hip
   end function hipHostGetFlags_i4_5
 
   function hipHostGetFlags_i4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45646,7 +44733,6 @@ module hip
   end function hipHostGetFlags_i4_6
 
   function hipHostGetFlags_i4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45655,7 +44741,6 @@ module hip
   end function hipHostGetFlags_i4_7
 
   function hipHostGetFlags_i8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, intent(inout) :: hostPtr
@@ -45664,7 +44749,6 @@ module hip
   end function hipHostGetFlags_i8_0
 
   function hipHostGetFlags_i8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
@@ -45673,7 +44757,6 @@ module hip
   end function hipHostGetFlags_i8_1
 
   function hipHostGetFlags_i8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45682,7 +44765,6 @@ module hip
   end function hipHostGetFlags_i8_2
 
   function hipHostGetFlags_i8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45691,7 +44773,6 @@ module hip
   end function hipHostGetFlags_i8_3
 
   function hipHostGetFlags_i8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45700,7 +44781,6 @@ module hip
   end function hipHostGetFlags_i8_4
 
   function hipHostGetFlags_i8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45709,7 +44789,6 @@ module hip
   end function hipHostGetFlags_i8_5
 
   function hipHostGetFlags_i8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45718,7 +44797,6 @@ module hip
   end function hipHostGetFlags_i8_6
 
   function hipHostGetFlags_i8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45727,7 +44805,6 @@ module hip
   end function hipHostGetFlags_i8_7
 
   function hipHostGetFlags_r4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, intent(inout) :: hostPtr
@@ -45736,7 +44813,6 @@ module hip
   end function hipHostGetFlags_r4_0
 
   function hipHostGetFlags_r4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:), intent(inout) :: hostPtr
@@ -45745,7 +44821,6 @@ module hip
   end function hipHostGetFlags_r4_1
 
   function hipHostGetFlags_r4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45754,7 +44829,6 @@ module hip
   end function hipHostGetFlags_r4_2
 
   function hipHostGetFlags_r4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45763,7 +44837,6 @@ module hip
   end function hipHostGetFlags_r4_3
 
   function hipHostGetFlags_r4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45772,7 +44845,6 @@ module hip
   end function hipHostGetFlags_r4_4
 
   function hipHostGetFlags_r4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45781,7 +44853,6 @@ module hip
   end function hipHostGetFlags_r4_5
 
   function hipHostGetFlags_r4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45790,7 +44861,6 @@ module hip
   end function hipHostGetFlags_r4_6
 
   function hipHostGetFlags_r4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45799,7 +44869,6 @@ module hip
   end function hipHostGetFlags_r4_7
 
   function hipHostGetFlags_r8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, intent(inout) :: hostPtr
@@ -45808,7 +44877,6 @@ module hip
   end function hipHostGetFlags_r8_0
 
   function hipHostGetFlags_r8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:), intent(inout) :: hostPtr
@@ -45817,7 +44885,6 @@ module hip
   end function hipHostGetFlags_r8_1
 
   function hipHostGetFlags_r8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45826,7 +44893,6 @@ module hip
   end function hipHostGetFlags_r8_2
 
   function hipHostGetFlags_r8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45835,7 +44901,6 @@ module hip
   end function hipHostGetFlags_r8_3
 
   function hipHostGetFlags_r8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45844,7 +44909,6 @@ module hip
   end function hipHostGetFlags_r8_4
 
   function hipHostGetFlags_r8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45853,7 +44917,6 @@ module hip
   end function hipHostGetFlags_r8_5
 
   function hipHostGetFlags_r8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45862,7 +44925,6 @@ module hip
   end function hipHostGetFlags_r8_6
 
   function hipHostGetFlags_r8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45871,7 +44933,6 @@ module hip
   end function hipHostGetFlags_r8_7
 
   function hipHostGetFlags_c4_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, intent(inout) :: hostPtr
@@ -45880,7 +44941,6 @@ module hip
   end function hipHostGetFlags_c4_0
 
   function hipHostGetFlags_c4_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
@@ -45889,7 +44949,6 @@ module hip
   end function hipHostGetFlags_c4_1
 
   function hipHostGetFlags_c4_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45898,7 +44957,6 @@ module hip
   end function hipHostGetFlags_c4_2
 
   function hipHostGetFlags_c4_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45907,7 +44965,6 @@ module hip
   end function hipHostGetFlags_c4_3
 
   function hipHostGetFlags_c4_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45916,7 +44973,6 @@ module hip
   end function hipHostGetFlags_c4_4
 
   function hipHostGetFlags_c4_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45925,7 +44981,6 @@ module hip
   end function hipHostGetFlags_c4_5
 
   function hipHostGetFlags_c4_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45934,7 +44989,6 @@ module hip
   end function hipHostGetFlags_c4_6
 
   function hipHostGetFlags_c4_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -45943,7 +44997,6 @@ module hip
   end function hipHostGetFlags_c4_7
 
   function hipHostGetFlags_c8_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, intent(inout) :: hostPtr
@@ -45952,7 +45005,6 @@ module hip
   end function hipHostGetFlags_c8_0
 
   function hipHostGetFlags_c8_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
@@ -45961,7 +45013,6 @@ module hip
   end function hipHostGetFlags_c8_1
 
   function hipHostGetFlags_c8_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
@@ -45970,7 +45021,6 @@ module hip
   end function hipHostGetFlags_c8_2
 
   function hipHostGetFlags_c8_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -45979,7 +45029,6 @@ module hip
   end function hipHostGetFlags_c8_3
 
   function hipHostGetFlags_c8_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -45988,7 +45037,6 @@ module hip
   end function hipHostGetFlags_c8_4
 
   function hipHostGetFlags_c8_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -45997,7 +45045,6 @@ module hip
   end function hipHostGetFlags_c8_5
 
   function hipHostGetFlags_c8_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -46006,7 +45053,6 @@ module hip
   end function hipHostGetFlags_c8_6
 
   function hipHostGetFlags_c8_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -46015,7 +45061,6 @@ module hip
   end function hipHostGetFlags_c8_7
 
   function hipHostGetFlags_l_0(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, intent(inout) :: hostPtr
@@ -46024,7 +45069,6 @@ module hip
   end function hipHostGetFlags_l_0
 
   function hipHostGetFlags_l_1(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:), intent(inout) :: hostPtr
@@ -46033,7 +45077,6 @@ module hip
   end function hipHostGetFlags_l_1
 
   function hipHostGetFlags_l_2(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:), intent(inout) :: hostPtr
@@ -46042,7 +45085,6 @@ module hip
   end function hipHostGetFlags_l_2
 
   function hipHostGetFlags_l_3(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:), intent(inout) :: hostPtr
@@ -46051,7 +45093,6 @@ module hip
   end function hipHostGetFlags_l_3
 
   function hipHostGetFlags_l_4(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:), intent(inout) :: hostPtr
@@ -46060,7 +45101,6 @@ module hip
   end function hipHostGetFlags_l_4
 
   function hipHostGetFlags_l_5(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
@@ -46069,7 +45109,6 @@ module hip
   end function hipHostGetFlags_l_5
 
   function hipHostGetFlags_l_6(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
@@ -46078,7 +45117,6 @@ module hip
   end function hipHostGetFlags_l_6
 
   function hipHostGetFlags_l_7(flagsPtr, hostPtr) result(res)
-    use iso_c_binding
     implicit none
     integer(c_int) :: flagsPtr
     logical(c_bool), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
