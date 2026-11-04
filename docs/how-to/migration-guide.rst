@@ -35,16 +35,17 @@ a hipFORT build had to be matched by hand to the ROCm it ran against. Moving the
 bindings into ROCm fixes that at the root:
 
 *  **Always complete and current.** Each binding is generated from the headers
-   of the library it ships with, committed next to them, and kept in sync by
-   CI whenever a header changes. Every entry point the ``.so`` exports is
+   of the library it ships with, committed in the ``bindings/fortran/`` tree
+   of the same repository, and kept in sync by CI whenever a header changes. Every entry point the ``.so`` exports is
    declared, and none that it does not.
 *  **Nothing extra to build.** The bindings arrive precompiled with ROCm: in
-   TheRock's tarballs from the 10.3 tech preview, and in the development
-   packages from 10.4. There is no separate project to clone,
-   configure, and keep in step.
-*  **Pay for what you use.** One module and one archive per library, built and
-   shipped with that library, instead of one hipFORT build for everything, so a
-   code that only calls rocBLAS needs only rocBLAS's binding.
+   TheRock's tarballs from the 10.3 tech preview, and in the
+   ``amdrocm-<family>-fortran-devel`` packages from 10.4. There is no separate
+   project to clone, configure, and keep in step.
+*  **Pay for what you use.** One module and one archive per library, built
+   against that library in a separate stage and shipped in the family's Fortran
+   package, instead of one hipFORT build for everything, so a code that only
+   calls rocBLAS needs only rocBLAS's binding.
 *  **One way to build and find them.** The same CMake options, install layout,
    and ``find_package`` pattern across all thirteen bindings, where today each
    library that has a Fortran module does it differently.
@@ -351,7 +352,7 @@ module named after the library.
    * - ``use hipfort_hipfftw`` (plus ``_enums``, ``_types``)
      - ``use hipfftw``
      - ``hip::hipfftw_fortran``
-     - ``hipfftw-fortran`` (installed with hipFFT)
+     - ``hipfftw-fortran`` (built by hipFFT's binding project)
    * - ``use hipfort_rocsolver`` (plus ``_enums``)
      - ``use rocsolver``
      - ``roc::rocsolver_fortran``
@@ -598,7 +599,7 @@ so that you can tell a rebuild from a redirect:
 The installed sources
 =====================
 
-Every package installs, beside the compiled binding, the Fortran source it was
+Every binding installs, beside the compiled module, the Fortran source it was
 compiled from:
 
 .. code-block:: shell
@@ -612,7 +613,7 @@ which on a stock install is, for example,
    :header-rows: 1
    :widths: 30 70
 
-   * - Package
+   * - Binding
      - Installed source
    * - HIP
      - ``share/hip/fortran/hip.F90``
@@ -716,12 +717,15 @@ options control how the bindings are *built*. They matter if you build ROCm
 from source, or build a binding yourself as above. They replace the
 ``HIPFORT_*`` options you passed to hipFORT's build, which you no longer run.
 
-``BUILD_FORTRAN_BINDINGS`` replaces "do I build hipFORT at all". Every
-``rocm-systems`` and ``rocm-libraries`` project exposes it, ``ON`` by default
-on Linux (``OFF`` on Windows, where ROCm ships no Fortran compiler) but
-guarded: built when a Fortran compiler is present, silently skipped when one is
-not, so a C-only site never needs one. ``-DBUILD_FORTRAN_BINDINGS=OFF`` opts
-out.
+Each binding is a standalone CMake project, in the ``bindings/fortran/`` tree
+of ``rocm-systems`` or ``rocm-libraries``, built against the installed library.
+No library build adds it. The options below are those of these projects.
+
+``BUILD_FORTRAN_BINDINGS`` replaces "do I build hipFORT at all". Each binding
+project exposes it, ``ON`` by default on Linux (``OFF`` on Windows, where ROCm
+ships no Fortran compiler) but guarded: built when a Fortran compiler is
+present, skipped with a ``STATUS`` message when one is not.
+``-DBUILD_FORTRAN_BINDINGS=OFF`` opts out.
 
 .. list-table::
    :header-rows: 1
@@ -730,7 +734,7 @@ out.
    * - Old hipFORT option
      - New equivalent
    * - (build hipFORT, or do not)
-     - ``BUILD_FORTRAN_BINDINGS``, per library, ``ON`` on Linux but guarded
+     - ``BUILD_FORTRAN_BINDINGS``, ``ON`` on Linux but guarded
    * - ``HIPFORT_USE_FPOINTER_INTERFACES`` (``ON`` with F2008) and
        ``HIPFORT_ASSUMED_RANK`` (``OFF``)
      - Both fold into one tri-state ``FORTRAN_ARRAY_INTERFACES``, which is
@@ -747,21 +751,15 @@ out.
      - Gone. Use the plain ``CMAKE_*`` variables, as hipFORT already tells you
        to
    * - ``BUILD_TESTING``, ``HIPFORT_ROCM_LIB_DIR``, ``HIPFORT_CUDA_LIB_DIR``
-     - ``BUILD_FORTRAN_CLIENTS`` (``ON``), per library. hipFORT's single suite
-       splits into each binding's ``test/`` (rocBLAS's and hipBLAS's are
-       still to come), and rides on the same
-       switch as the Fortran clients rather than having one of its own
+     - ``BUILD_FORTRAN_CLIENTS`` (``ON``). hipFORT's single suite splits into
+       each binding's ``test/`` (rocBLAS's and hipBLAS's are still to come)
    * - ``HIPFORT_EXTENDED_TESTS``
      - Gone, with both link-time audits it gated, which checked the bindings
        themselves rather than your code. What you build is the runtime suite,
        under ``BUILD_FORTRAN_CLIENTS``
 
-Each switch also has a per-library override, so one library can differ from the
-rest of a monorepo build: ``<LIB>_BUILD_FORTRAN_BINDINGS`` and
-``<LIB>_BUILD_FORTRAN_CLIENTS`` (for example
-``-DROCSPARSE_BUILD_FORTRAN_BINDINGS=OFF``) win over the global spelling when
-set. ``<LIB>_FORTRAN_COMPILER_DIR`` overrides the per-compiler subdirectory name
-(`Where the files install`_).
+``<LIB>_FORTRAN_COMPILER_DIR`` (for example ``ROCBLAS_FORTRAN_COMPILER_DIR``)
+overrides the per-compiler subdirectory name (`Where the files install`_).
 
 The array tiers themselves are unchanged: raw ``type(c_ptr)`` (Fortran 2003)
 always present, array overloads (2008) on, assumed-rank (2018) opt-in. One
@@ -773,16 +771,14 @@ illegal combination. See :doc:`fortran-interfaces` for the call sites side by
 side. The shipped bindings use the default, ``assumed-shape``, which is what
 hipFORT gives you today.
 
-The bindings' test suite rides on ``BUILD_FORTRAN_CLIENTS``, ``ON`` by default
-and guarded the same way: asking for it when the bindings were not built is a
-skip, not an error. rocBLAS, hipBLAS and rocSPARSE already had that name for
-"build the Fortran part of ``clients/``"; it now covers both.
+Each binding project has its own ``BUILD_FORTRAN_CLIENTS``, ``ON`` by default,
+which builds its ``test/``. Asking for it when the binding was not built is a
+skip, not an error. The library option of the same name, in rocBLAS, hipBLAS
+and rocSPARSE, is unrelated: it still builds the Fortran part of the library's
+``clients/``.
 
 To test from CMake whether a binding is available, use
 ``if(TARGET roc::rocblas_fortran)`` after ``find_package(rocblas-fortran)``.
-Inside a ROCm build tree, ``<LIB>_HAVE_FORTRAN_BINDINGS`` is true only when
-that library's bindings were built, since a Fortran compiler can be present
-with ``BUILD_FORTRAN_BINDINGS=OFF``.
 
 Trying the bindings before ROCm 10.3
 ====================================
@@ -827,9 +823,11 @@ rocm-systems' ``bindings/fortran/``.
    * - hipRAND
      - `rocm-libraries#12506 <https://github.com/ROCm/rocm-libraries/pull/12506>`_
 
-Once they are merged, TheRock builds and packages them with the rest of ROCm,
-and its nightly builds are the first place to get them precompiled. Reports
-from trying a real code are especially welcome at this stage:
+Once they are merged, TheRock builds them in a separate stage after the
+libraries and packages each family's bindings in one
+``amdrocm-<family>-fortran-devel`` package. Its nightly builds are the first
+place to get them precompiled. Reports from trying a real code are especially
+welcome at this stage:
 `open an issue <https://github.com/ROCm/hipfort/issues>`_.
 
 What does not change
@@ -942,8 +940,10 @@ and it is the whole of the migration.
 
 **Where do I get the new bindings?**
 
-They ship precompiled for ``amdflang`` with ROCm, with no separate install:
-in TheRock's tarballs from the 10.3 tech preview (and in the OS packages if
-they are ready), and in the OS packages from 10.4. For another compiler, see
+They ship precompiled for ``amdflang`` with ROCm: in TheRock's tarballs from
+the 10.3 tech preview (and in the OS packages if they are ready), and in the OS
+packages from 10.4, where you install ``amdrocm-<family>-fortran-devel`` (for
+example ``amdrocm-blas-fortran-devel``), or ``amdrocm-fortran`` for all of
+them. For another compiler, see
 `Building a binding with your compiler`_; before 10.3, see
 `Trying the bindings before ROCm 10.3`_.
