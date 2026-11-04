@@ -29,8 +29,8 @@
 # real ones will be; each bindings/fortran/<lib>/CMakeLists.txt is what would actually
 # ship in the library's repository.
 #
-# The conventions implemented here are the ones documented in
-# docs/how-to/migration-guide.rst:
+# The conventions implemented here are the ones documented in the migration
+# guide, https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html:
 #
 #   target     <namespace>::<lib>_fortran   (roc:: or hip::, matching the C library)
 #   archive    lib<lib>_fortran.a
@@ -226,20 +226,20 @@ endfunction()
 # ---------------------------------------------------------------------------
 # rocm_fortran_binding_options()
 #
-# Declares the options shared by every binding. Idempotent: each library's
-# CMakeLists.txt calls it, and in a monorepo build the first call wins.
+# Declares the options shared by every binding. Idempotent: each binding's
+# CMakeLists.txt calls it, and in a build that adds several bindings (such as
+# this sandbox's lib/CMakeLists.txt) the first call wins.
 # ---------------------------------------------------------------------------
 macro(rocm_fortran_binding_options)
   rocm_fortran_probe_standards()
 
   # "Do I build the bindings at all", the switch that replaces "do I build
   # hipFORT". ON, but guarded below by whether a Fortran compiler is actually
-  # present, so a C-only site never has to acquire one.
+  # present: without one the binding is skipped, not an error.
   option(BUILD_FORTRAN_BINDINGS "Build the Fortran bindings" ON)
 
-  # The bindings' test suite, and the Fortran clients where a library has them:
-  # one switch rather than two neighbouring ones. ON, and guarded the same way,
-  # so asking for them when the bindings were not built is a skip, not an error.
+  # The binding's test suite, in its test/. ON, and guarded the same way, so
+  # asking for it when the binding was not built is a skip, not an error.
   option(BUILD_FORTRAN_CLIENTS "Build the Fortran clients and binding tests" ON)
 
   # One tri-state replaces hipFORT's HIPFORT_USE_FPOINTER_INTERFACES plus
@@ -322,7 +322,8 @@ function(rocm_add_fortran_binding)
 
   # ---- should this binding be built? -------------------------------------
   # <LIB>_BUILD_FORTRAN_BINDINGS wins over the global spelling when set, so one
-  # library can differ from the rest of a monorepo build.
+  # binding can differ from the others when a parent project (such as this
+  # sandbox's lib/CMakeLists.txt) adds several with add_subdirectory().
   set(_enabled ${BUILD_FORTRAN_BINDINGS})
   if(DEFINED ${_LIB}_BUILD_FORTRAN_BINDINGS)
     set(_enabled ${${_LIB}_BUILD_FORTRAN_BINDINGS})
@@ -406,8 +407,9 @@ function(rocm_add_fortran_binding)
       "links the generated one as plain '${_target}' instead. The installed "
       "${_lib}-fortran package still exports it as ${_rfb_NAMESPACE}::${_target}, "
       "so consuming that install on a ROCm whose ${_rfb_C_PACKAGE} still defines "
-      "the name will collide the same way. See 'Special cases' in "
-      "docs/how-to/migration-guide.rst.")
+      "the name will collide the same way. See 'Special cases' in the in-tree "
+      "migration guide, "
+      "https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide-in-tree.html")
   else()
     add_library(${_rfb_NAMESPACE}::${_target} ALIAS ${_target})
   endif()

@@ -50,7 +50,7 @@ if(NOT EXISTS "${_@_lib@_real}")
        "${_@_lib@_libdir}/fortran/*")
   set(@_lib@-fortran_FOUND FALSE)
   set(@_lib@-fortran_NOT_FOUND_MESSAGE
-      "@_lib@'s Fortran binding is not installed for the compiler '${_@_lib@_fc}'. Available toolchains: ${_@_lib@_toolchains}. Rebuild the binding with this compiler (see the migration guide, 'Building one library's binding from source'), or set @_lib@-fortran_DIR to the matching lib/fortran/<compiler>/cmake/@_lib@-fortran directory.")
+      "@_lib@'s Fortran binding is not installed for the compiler '${_@_lib@_fc}'. Available toolchains: ${_@_lib@_toolchains}. Rebuild the binding with this compiler (see the migration guide, 'Building a binding with your compiler'), or set @_lib@-fortran_DIR to the matching lib/fortran/<compiler>/cmake/@_lib@-fortran directory.")
   return()
 endif()
 

@@ -32,13 +32,12 @@
   and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
   `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
   `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
-* The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
+* The hipFFT Xt API in `hipfft`, as `bind(C)` interfaces (with `_typed`
   forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
   routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
   the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
   `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
-  routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
-  `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
+  routines, with the `hipXtDesc` and `hipLibXtDesc` types and the Xt enums.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
   and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
   `integer(c_size_t)` array as `workSize`. The multi-process routines
@@ -56,10 +55,10 @@
 ### Changed
 
 * **Breaking: one module per library, with no `hipfort_` prefix.** The flat
-  `lib/hipfort/` directory is replaced by one directory per library, grouped by
-  the upstream repository the bindings will be co-located with
-  (`lib/rocm-systems/`, `lib/rocm-libraries/`), and each library ships a single
-  self-contained module named after itself. The enums, derived types, opaque
+  `lib/hipfort/` directory is replaced by one directory per library, laid out
+  as in the upstream repositories that will hold the bindings
+  (`lib/rocm-{systems,libraries}/bindings/fortran/<lib>/`), and each library
+  ships a single self-contained module named after itself. The enums, derived types, opaque
   handles and the `<lib>Check` helper are folded into it, so thirteen modules
   replace thirty-three files.
 

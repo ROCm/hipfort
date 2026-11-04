@@ -99,7 +99,8 @@ endif()
 if(DEFINED HIPFORT_MULTITOOLCHAIN_LAYOUT)
   message(WARNING
     "HIPFORT_MULTITOOLCHAIN_LAYOUT is gone; the per-compiler install layout is "
-    "unconditional. See docs/how-to/migration-guide.rst, 'Where the files install'.")
+    "unconditional. See 'Where the files install' in the migration guide, "
+    "https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")
 endif()
 
 # ROCm root, resolved once for every find_package/find_program below.
@@ -169,17 +170,17 @@ IF(FCNAME STREQUAL "pgf90")
     UNSET(CMAKE_SHARED_LIBRARY_LINK_Fortran_FLAGS)
 ENDIF(FCNAME STREQUAL "pgf90")
 
-# BUILD_TESTING becomes BUILD_FORTRAN_CLIENTS, per library: after the split
-# hipFORT's single suite is distributed into each library's fortran/test/, and a
-# monorepo build needs a switch that means "the Fortran side" rather than "all
-# tests". It is the same name the libraries already used for the Fortran part of
-# their clients/, carrying both rather than standing beside a second option.
+# BUILD_TESTING becomes BUILD_FORTRAN_CLIENTS: after the split hipFORT's single
+# suite is distributed into each binding's bindings/fortran/<lib>/test/, and each
+# binding project has its own BUILD_FORTRAN_CLIENTS for it. The libraries' option
+# of the same name, for the Fortran part of their clients/, is unrelated.
 # Declared by rocm_fortran_binding_options(), so a standalone
 # bindings/fortran/<lib> build has it too.
 if(DEFINED BUILD_TESTING AND NOT DEFINED BUILD_FORTRAN_CLIENTS)
   message(WARNING
     "BUILD_TESTING is replaced by BUILD_FORTRAN_CLIENTS; honouring it this once. "
-    "See the option table in docs/how-to/migration-guide.rst.")
+    "See the option table in the migration guide, "
+    "https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")
   set(BUILD_FORTRAN_CLIENTS ${BUILD_TESTING} CACHE BOOL "Build the Fortran clients and binding tests" FORCE)
 endif()
 rocm_fortran_binding_options()

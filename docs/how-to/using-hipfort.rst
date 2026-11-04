@@ -91,7 +91,7 @@ and the C library it wraps.
 Ask for one package per library your code ``use``\ s. The target sits in the C
 library's own namespace with a ``_fortran`` suffix, so it is
 ``roc::rocblas_fortran`` but ``hip::hipfft_fortran``; the full table is in
-:doc:`migration-guide`. Note that the package name is hyphenated and the target
+the `migration guide <https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html>`_. Note that the package name is hyphenated and the target
 underscored, which is ROCm's convention for the two rather than an
 inconsistency. The Fortran language must be enabled before ``find_package``.
 

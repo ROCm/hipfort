@@ -39,8 +39,9 @@
 # can be configured at once and tested together. Every bindings/fortran/<lib>
 # directory below is a standalone CMake project and can equally be configured on
 # its own;
-# see any of their CMakeLists.txt, and the "Building one library's binding from
-# source" section of docs/how-to/migration-guide.rst.
+# see any of their CMakeLists.txt, and the "Building a binding with your
+# compiler" section of the migration guide,
+# https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html.
 #
 # What is deliberately gone, because it goes away with the split:
 #   * the single hipfort-amdgcn archive, and the hipfort::<lib> component
@@ -69,7 +70,8 @@ if(HIPFORT_BUILD_NVPTX)
     "HIPFORT_BUILD_NVPTX is not supported by the packaged bindings: they are "
     "generated for ROCm only and carry no USE_CUDA_NAMES branch, so the archive "
     "would still be bound to hip*/roc* symbols. The CUDA backend is dropped by "
-    "the split; see docs/how-to/migration-guide.rst.")
+    "the split; see the migration guide, "
+    "https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")
 endif()
 
 # These two fold into the tri-state FORTRAN_ARRAY_INTERFACES. Warn rather than
@@ -80,7 +82,8 @@ foreach(_old HIPFORT_USE_FPOINTER_INTERFACES HIPFORT_ASSUMED_RANK)
     message(WARNING
       "${_old} is gone. The two booleans are replaced by the tri-state "
       "FORTRAN_ARRAY_INTERFACES (none, assumed-shape, assumed-rank); see the "
-      "option table in docs/how-to/migration-guide.rst.")
+      "option table in the migration guide, "
+      "https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")
   endif()
 endforeach()
 
