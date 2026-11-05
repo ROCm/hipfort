@@ -4097,6 +4097,37 @@ module hipfort_rocsparse
     end function
   end interface
 
+  !>  \ingroup aux_module
+  !>   \brief Create a dense vector descriptor for a single scalar.
+  !>   \details
+  !>   \p rocsparse_dnvec_descr_create_scalar creates a size-one dense vector descriptor that
+  !>   records
+  !>   whether its value lives in host or device memory. It is a convenience wrapper for passing a
+  !>   self-describing scalar argument (for example the scaling factor consumed by
+  !>   \ref rocsparse_spmat_scale) without relying on the handle pointer mode. Pass a non-null
+  !>   \p values to obtain a read-write descriptor, or only \p const_values (with \p values null)
+  !>   for
+  !>   a read-only descriptor. It should be destroyed when it is no longer needed using
+  !>   rocsparse_destroy_dnvec_descr().
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[out] descr - the pointer to the dense vector descriptor.
+  !>   @param[in] pointer_mode - `rocsparse_pointer_mode_host` if the scalar lives in host memory,
+  !>                  `rocsparse_pointer_mode_device` if it lives in device memory.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
+  !>   @param[in] const_values - pointer to the scalar value (read-only view). Must not be null.
+  !>   @param[in] values - pointer to the scalar value (read-write view), or null for a read-only
+  !>   descriptor.
+  !>            When non-null it must equal \p const_values.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>             `rocsparse_status_success`. A null pointer can be passed if an error descriptor is
+  !>             not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr or \p const_values is invalid.
+  !>   \retval rocsparse_status_invalid_value if \p data_type or \p pointer_mode is invalid.
   interface
     function rocsparse_dnvec_descr_create_scalar_(handle,descr,pointer_mode,data_type, &
         const_values,values,p_error) &
@@ -16110,7 +16141,9 @@ module hipfort_rocsparse
   !>   <tr><td>rocsparse_sddmm_alg_default</td> <td>Yes</td> <td>No</td> <td>Uses the sparsity
   !>   pattern of matrix C to perform a limited set of dot products. </td>
   !>   <tr><td>rocsparse_sddmm_alg_dense</td> <td>Yes</td> <td>No</td> <td>Explicitly converts the
-  !>   matrix C into a dense matrix to perform a dense matrix multiply and add. </td>
+  !>   matrix C into a dense matrix to perform a dense matrix multiply and add. Requires rocSPARSE
+  !>   to be built with rocBLAS, otherwise `rocsparse_status_not_implemented` is returned.
+  !>   Deprecated, will be removed in a future release. </td>
   !>   </table>
   !>
   !>   Currently, \p rocsparse_sddmm only supports the uniform precisions indicated in the table
@@ -17051,86 +17084,6 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup generic_module
-  !>   \brief Sparse matrix scaling.
-  !>
-  !>   \details
-  !>   \p rocsparse_spmat_scale multiplies the values of the sparse matrix \p source (\f$A\f$) by
-  !>   the
-  !>   scalar \f$\alpha\f$ and writes them into the sparse matrix \p target (\f$C\f$):
-  !>   \f[
-  !>     C := \alpha \cdot A.
-  !>   \f]
-  !>   Only the value array of \p target is written; its data type is scaled by \f$\alpha\f$. This
-  !>   is a
-  !>   uniform scalar multiply of the matrix values; it is unrelated to row/column equilibration
-  !>   scaling. No temporary storage buffer is required.
-  !>
-  !>   This routine does not copy the sparsity pattern. \p target is assumed to already describe the
-  !>   same sparsity pattern as \p source (same format, dimensions and nonzero count), so its index
-  !>   arrays are left untouched. When \p target and \p source alias the same value array the
-  !>   scaling
-  !>   is performed in place; otherwise the scaled source values are written into \p target.
-  !>   In-place
-  !>   operation is the common case. A value of \f$\alpha = 0\f$ writes all-zero values into \p
-  !>   target
-  !>   (the pattern is not dropped).
-  !>
-  !>   The scaling factor \f$\alpha\f$ is passed as a size-one dense vector descriptor. It can live
-  !>   in
-  !>   host or device memory; the memory space is taken from the descriptor itself (see
-  !>   \ref rocsparse_dnvec_descr_create_scalar), so the handle pointer mode does not affect it. The
-  !>   data type of \p alpha must match the data type of the matrices.
-  !>
-  !>   \note The following formats are supported: `rocsparse_format_coo`,
-  !>   `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`,
-  !>   `rocsparse_format_bsr`, `rocsparse_format_ell`, `rocsparse_format_bell` and
-  !>   `rocsparse_format_sell`. \p source and \p target must use the same format.
-  !>   \note Batched matrices are not supported.
-  !>   \note
-  !>   This routine does not support execution in a hipGraph context.
-  !>
-  !>   \par Uniform Precisions:
-  !>   <table>
-  !>   <tr><th>alpha / A / C
-  !>   <tr><td>rocsparse_datatype_f32_r
-  !>   <tr><td>rocsparse_datatype_f64_r
-  !>   <tr><td>rocsparse_datatype_f32_c
-  !>   <tr><td>rocsparse_datatype_f64_c
-  !>   </table>
-  !>
-  !>   @param[in] handle - handle to the rocSPARSE library context queue.
-  !>   @param[in] alpha - size-one dense vector descriptor holding the scalar \f$\alpha\f$.
-  !>   @param[in] source - sparse matrix \f$A\f$ descriptor.
-  !>   @param[out] target - sparse matrix \f$C\f$ descriptor.
-  !>   @param[out] p_error - error descriptor created if the returned status is not
-  !>                `rocsparse_status_success`. A null pointer can be passed if an error
-  !>                descriptor is not required.
-  !>
-  !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
-  !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
-  !>           format is not one of the supported formats, or a batched matrix is passed.
-  interface
-    function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
-        bind(c, name="rocsparse_spmat_scale")
-      import
-      implicit none
-      integer(c_int) :: rocsparse_spmat_scale_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: source
-      type(c_ptr),value :: target
-      type(c_ptr),value :: p_error
-    end function
-  end interface
-
-  interface rocsparse_spmat_scale
-
-    module procedure rocsparse_spmat_scale_opt
-  end interface
-
-  !>  \ingroup generic_module
   !>   \brief Incomplete \f$LDL^H\f$ factorization with 0 fill-ins and no pivoting.
   !>   \details
   !>   \p rocsparse_spildlt0_buffer_size returns the size of the non-persistent buffer
@@ -17575,6 +17528,86 @@ module hipfort_rocsparse
     end function
 
     module procedure rocsparse_spitsv_typed
+  end interface
+
+  !>  \ingroup generic_module
+  !>   \brief Sparse matrix scaling.
+  !>
+  !>   \details
+  !>   \p rocsparse_spmat_scale multiplies the values of the sparse matrix \p source (\f$A\f$) by
+  !>   the
+  !>   scalar \f$\alpha\f$ and writes them into the sparse matrix \p target (\f$C\f$):
+  !>   \f[
+  !>     C := \alpha \cdot A.
+  !>   \f]
+  !>   Only the value array of \p target is written; its data type is scaled by \f$\alpha\f$. This
+  !>   is a
+  !>   uniform scalar multiply of the matrix values; it is unrelated to row/column equilibration
+  !>   scaling. No temporary storage buffer is required.
+  !>
+  !>   This routine does not copy the sparsity pattern. \p target is assumed to already describe the
+  !>   same sparsity pattern as \p source (same format, dimensions and nonzero count), so its index
+  !>   arrays are left untouched. When \p target and \p source alias the same value array the
+  !>   scaling
+  !>   is performed in place; otherwise the scaled source values are written into \p target.
+  !>   In-place
+  !>   operation is the common case. A value of \f$\alpha = 0\f$ writes all-zero values into \p
+  !>   target
+  !>   (the pattern is not dropped).
+  !>
+  !>   The scaling factor \f$\alpha\f$ is passed as a size-one dense vector descriptor. It can live
+  !>   in
+  !>   host or device memory; the memory space is taken from the descriptor itself (see
+  !>   \ref rocsparse_dnvec_descr_create_scalar), so the handle pointer mode does not affect it. The
+  !>   data type of \p alpha must match the data type of the matrices.
+  !>
+  !>   \note The following formats are supported: `rocsparse_format_coo`,
+  !>   `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`,
+  !>   `rocsparse_format_bsr`, `rocsparse_format_ell`, `rocsparse_format_bell` and
+  !>   `rocsparse_format_sell`. \p source and \p target must use the same format.
+  !>   \note Batched matrices are not supported.
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   \par Uniform Precisions:
+  !>   <table>
+  !>   <tr><th>alpha / A / C
+  !>   <tr><td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f64_r
+  !>   <tr><td>rocsparse_datatype_f32_c
+  !>   <tr><td>rocsparse_datatype_f64_c
+  !>   </table>
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alpha - size-one dense vector descriptor holding the scalar \f$\alpha\f$.
+  !>   @param[in] source - sparse matrix \f$A\f$ descriptor.
+  !>   @param[out] target - sparse matrix \f$C\f$ descriptor.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>                `rocsparse_status_success`. A null pointer can be passed if an error
+  !>                descriptor is not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
+  !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
+  !>           format is not one of the supported formats, or a batched matrix is passed.
+  interface
+    function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
+        bind(c, name="rocsparse_spmat_scale")
+      import
+      implicit none
+      integer(c_int) :: rocsparse_spmat_scale_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: source
+      type(c_ptr),value :: target
+      type(c_ptr),value :: p_error
+    end function
+  end interface
+
+  interface rocsparse_spmat_scale
+
+    module procedure rocsparse_spmat_scale_opt
   end interface
 
   !>  \ingroup generic_module
@@ -40718,21 +40751,6 @@ module hipfort_rocsparse
         buffer_size_in_bytes,buffer,p_error__p)
     end function
 
-    function rocsparse_spmat_scale_opt(handle,alpha,source,target,p_error)
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_opt
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: source
-      type(c_ptr), value :: target
-      type(c_ptr),optional,target :: p_error
-      type(c_ptr) :: p_error__p
-      !
-      p_error__p = c_null_ptr
-      if (present(p_error)) p_error__p = c_loc(p_error)
-      rocsparse_spmat_scale_opt = rocsparse_spmat_scale_(handle,alpha,source,target,p_error__p)
-    end function
-
     function rocsparse_spildlt0_buffer_size_opt(handle,spildlt0_descr,A,P,spildlt0_stage, &
         p_buffer_size_in_bytes,p_error)
       implicit none
@@ -40873,6 +40891,21 @@ module hipfort_rocsparse
       if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spitsv_typed = rocsparse_spitsv_(handle,c_loc(host_nmaxiter),host_tol, &
         host_history,trans,alpha,mat,x,y,compute_type,alg,stage,buffer_size__p,temp_buffer)
+    end function
+
+    function rocsparse_spmat_scale_opt(handle,alpha,source,target,p_error)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: alpha
+      type(c_ptr), value :: source
+      type(c_ptr), value :: target
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spmat_scale_opt = rocsparse_spmat_scale_(handle,alpha,source,target,p_error__p)
     end function
 
     function rocsparse_spmm_typed(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C, &
