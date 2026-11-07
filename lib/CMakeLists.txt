@@ -322,6 +322,8 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
     else()
       hipfort_add_component(hipfftw hip::hipfft)
     endif()
+    # hipFFT's Xt and Mp APIs (hipfort_hipfftxt), in libhipfft.
+    hipfort_add_component(hipfftxt hip::hipfft)
   else()
     message(STATUS "Skipping hipfort::hipfft target export")
   endif()
@@ -372,7 +374,7 @@ elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)
   # Only the hip* components exist here; roc* and the FFTW3 API have no CUDA counterpart.
   set(HIPFORT_BASE_LIB hipfort-nvptx)
   foreach(pair "hip:cudart" "hipblas:cublas" "hipfft:cufft"
-               "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
+               "hipfftxt:cufft" "hiprand:curand" "hipsolver:cusolver" "hipsparse:cusparse")
     string(REPLACE ":" ";" pair "${pair}")
     list(GET pair 0 _comp)
     list(GET pair 1 _cudalib)

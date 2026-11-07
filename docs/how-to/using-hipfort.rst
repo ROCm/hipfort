@@ -87,7 +87,7 @@ underlying ROCm library it wraps.
 
 List the libraries your code uses as ``COMPONENTS`` (``hip``, ``roctx``,
 ``rocblas``, ``rocfft``, ``rocrand``, ``rocsolver``, ``rocsparse``,
-``hipblas``, ``hipfft``, ``hipfftw``, ``hiprand``, ``hipsolver``,
+``hipblas``, ``hipfft``, ``hipfftw``, ``hipfftxt``, ``hiprand``, ``hipsolver``,
 ``hipsparse``) and link the matching ``hipfort::<component>`` targets.
 A ``hipfort::<component>`` target is only defined when that component is listed,
 and the Fortran language must be enabled before ``find_package(hipfort)``.
@@ -180,6 +180,7 @@ links as long as it does not call them. The following tables list the supported 
 * :doc:`HIP API <../doxygen/html/md_input_2supported__api__hip>`
 * :doc:`hipBLAS API <../doxygen/html/md_input_2supported__api__hipblas>`
 * :doc:`hipFFT API <../doxygen/html/md_input_2supported__api__hipfft>`
+* :doc:`hipFFT Xt API <../doxygen/html/md_input_2supported__api__hipfftxt>`
 * :doc:`hipFFTW API <../doxygen/html/md_input_2supported__api__hipfftw>`
 * :doc:`hipRAND API <../doxygen/html/md_input_2supported__api__hiprand>`
 * :doc:`hipSOLVER API <../doxygen/html/md_input_2supported__api__hipsolver>`

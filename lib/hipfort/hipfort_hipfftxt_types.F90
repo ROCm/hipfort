@@ -23,7 +23,7 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-module hipfort_hipfft_types
+module hipfort_hipfftxt_types
   use, intrinsic :: iso_c_binding
   implicit none
 
@@ -44,4 +44,4 @@ module hipfort_hipfft_types
     type(c_ptr) :: libDescriptor
   end type hipLibXtDesc
 
-end module hipfort_hipfft_types
+end module hipfort_hipfftxt_types

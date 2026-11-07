@@ -11,6 +11,7 @@ This section provides technical descriptions and important information about the
 - {doc}`/doxygen/html/md_input_2supported__api__hip`
 - {doc}`/doxygen/html/md_input_2supported__api__hipblas`
 - {doc}`/doxygen/html/md_input_2supported__api__hipfft`
+- {doc}`/doxygen/html/md_input_2supported__api__hipfftxt`
 - {doc}`/doxygen/html/md_input_2supported__api__hipfftw`
 - {doc}`/doxygen/html/md_input_2supported__api__hiprand`
 - {doc}`/doxygen/html/md_input_2supported__api__hipsolver`
