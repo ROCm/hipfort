@@ -89,6 +89,7 @@ GROUPS = [
     ("hipsolver", ["hipfort_hipsolver"]),
     ("hipsparse", ["hipfort_hipsparse"]),
     ("hipfft",   ["hipfort_hipfft"]),
+    ("hipfftxt", ["hipfort_hipfftxt"]),
     ("hipfftw",  ["hipfort_hipfftw"]),
     ("hiprand",  ["hipfort_hiprand"]),
     ("roctx",    ["hipfort_roctx"]),

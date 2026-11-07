@@ -29,19 +29,20 @@ include(CMakeFindDependencyMacro)
 
 set(_hipfort_supported_components hip roctx
   rocblas rocfft rocrand rocsolver rocsparse
-  hipblas hipfft hipfftw hiprand hipsolver hipsparse)
+  hipblas hipfft hipfftw hipfftxt hiprand hipsolver hipsparse)
 
 # Most components map 1:1 to a ROCm package of the same name. A few do not:
-# hipfftw is provided by the hipfft package (there is no standalone hipfftw
-# package), and roctx by rocprofiler-sdk-roctx.
+# hipfftw and hipfftxt are provided by the hipfft package (there is no standalone
+# hipfftw or hipfftxt package), and roctx by rocprofiler-sdk-roctx.
 set(_hipfort_hipfftw_dependency hipfft)
+set(_hipfort_hipfftxt_dependency hipfft)
 set(_hipfort_roctx_dependency rocprofiler-sdk-roctx)
 
 # A build of the CUDA (nvptx) backend exports only the hip* components, and
 # links them against the CUDA:: targets of CUDAToolkit instead.
 set(_hipfort_base_arch "@HIPFORT_BASE_ARCH@")
 if(_hipfort_base_arch STREQUAL "nvptx")
-  set(_hipfort_supported_components hip hipblas hipfft hiprand hipsolver hipsparse)
+  set(_hipfort_supported_components hip hipblas hipfft hipfftxt hiprand hipsolver hipsparse)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/hipfort-${_hipfort_base_arch}-targets.cmake")

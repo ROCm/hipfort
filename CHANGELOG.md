@@ -32,20 +32,25 @@
   and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
   `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
   `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
-* The hipFFT Xt API in `hipfort_hipfft`, as `bind(C)` interfaces (with `_typed`
-  forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
-  routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
-  the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
+* The hipFFT Xt API in the new `hipfort_hipfftxt` module (`hipfort::hipfftxt`
+  CMake component), as CUDA Fortran's `cufftXt`: it uses `hipfort_hipfft`, so
+  `use hipfort_hipfftxt` alone gives the whole hipFFT API, and
+  `hipfort_hipfft` keeps the `hipfft.h` API only. The routines are `bind(C)`
+  interfaces (with `_typed` forms for `hipfftXtMakePlanMany` and
+  `hipfftXtGetSizeMany`): the multi-GPU routines (`hipfftXtSetGPUs`,
+  `hipfftXtSetWorkArea`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`, the
+  `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
   `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
-  routines. The `hipXtDesc` and `hipLibXtDesc` types are in the new
-  `hipfort_hipfft_types` module, and the Xt enums in `hipfort_hipfft_enums`.
+  routines. The `hipXtDesc` and `hipLibXtDesc` types are in
+  `hipfort_hipfftxt_types`, and the Xt enums in `hipfort_hipfftxt_enums`.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
   and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
   `integer(c_size_t)` array as `workSize`. The multi-process routines
   of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
   `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
-  and multi-process routines added here are not available. The hipFFT examples document
+  routines bind their `cufftXt*` counterparts; the multi-process routines have
+  none. The hipFFT examples document
   the multi-GPU and MPI workflows.
 * Array overloads (`rank_N`, `full_rank`, assumed-rank) for the ILP64 (`_64`)
   routines of rocBLAS, hipBLAS and rocSOLVER (`rocblas_sscal_64`, ...), the same
