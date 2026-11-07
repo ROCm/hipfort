@@ -49,7 +49,8 @@
   of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
   `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
-  and multi-process routines added here are not available. The hipFFT examples document
+  routines bind their `cufftXt*` counterparts; the multi-process routines have
+  none. The hipFFT examples document
   the multi-GPU and MPI workflows.
 * Array overloads (`rank_N`, `full_rank`, assumed-rank) for the ILP64 (`_64`)
   routines of rocBLAS, hipBLAS and rocSOLVER (`rocblas_sscal_64`, ...), the same

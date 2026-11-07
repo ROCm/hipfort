@@ -184,7 +184,7 @@ if(BUILD_TESTING)
     f2008/hipsparse/hipsparse_zcsrsv2
     f2008/hipsparse/hipsparse_zgthr
     f2008/hipsparse/hipsparse_zsctr
-    # hipFFT Xt API: no cufftXt twin mapped yet, so not bound under USE_CUDA_NAMES.
+    # hipFFT Xt tests: not validated on the CUDA backend.
     f2003/hipfftxt/hipfftxt_descriptor_z
     f2003/hipfftxt/hipfftxt_makeplanmany_c
     # hipBLAS routines cuBLAS lacks: rotStridedBatched with c and s per the pointer
