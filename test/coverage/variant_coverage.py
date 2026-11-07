@@ -77,23 +77,21 @@ import sys
 from collections import defaultdict
 
 # Each entry is a reported row: the label, and the binding modules to scan for
-# it. The math libraries are one module each; the HIP runtime spreads its array
-# overloads over several.
+# it. Every library, the HIP runtime included, is one module.
 GROUPS = [
-    ("rocblas",  ["hipfort_rocblas"]),
-    ("rocsolver", ["hipfort_rocsolver"]),
-    ("rocsparse", ["hipfort_rocsparse"]),
-    ("rocfft",   ["hipfort_rocfft"]),
-    ("rocrand",  ["hipfort_rocrand"]),
-    ("hipblas",  ["hipfort_hipblas"]),
-    ("hipsolver", ["hipfort_hipsolver"]),
-    ("hipsparse", ["hipfort_hipsparse"]),
-    ("hipfft",   ["hipfort_hipfft"]),
-    ("hipfftw",  ["hipfort_hipfftw"]),
-    ("hiprand",  ["hipfort_hiprand"]),
-    ("roctx",    ["hipfort_roctx"]),
-    ("hip runtime", ["hipfort", "hipfort_hipmalloc", "hipfort_hipmemcpy",
-                     "hipfort_hiphostregister"]),
+    ("rocblas",  ["rocblas"]),
+    ("rocsolver", ["rocsolver"]),
+    ("rocsparse", ["rocsparse"]),
+    ("rocfft",   ["rocfft"]),
+    ("rocrand",  ["rocrand"]),
+    ("hipblas",  ["hipblas"]),
+    ("hipsolver", ["hipsolver"]),
+    ("hipsparse", ["hipsparse"]),
+    ("hipfft",   ["hipfft"]),
+    ("hipfftw",  ["hipfftw"]),
+    ("hiprand",  ["hiprand"]),
+    ("roctx",    ["roctx"]),
+    ("hip runtime", ["hip"]),
 ]
 
 # The generated wrappers are named <routine>_rank_0 / _rank_1 / _full_rank,
@@ -119,16 +117,21 @@ def matching_gcov():
     return (major and shutil.which(f"gcov-{major}")) or shutil.which("gcov")
 
 
-def find_object_dir(build):
-    """Locate the object directory holding the instrumented binding modules."""
-    direct = os.path.join(build, "lib", "CMakeFiles", "hipfort-amdgcn.dir", "hipfort")
-    if os.path.isdir(direct):
-        return direct
-    tail = os.path.join("hipfort-amdgcn.dir", "hipfort")
-    for root, _dirs, _files in os.walk(build):
-        if root.endswith(tail):
-            return root
-    return None
+def find_gcno(build):
+    """Map each instrumented binding module to its .gcno.
+
+    Each library builds its module into its own <lib>_fortran archive, so the
+    note file is <lib>_fortran.dir/<lib>.F90.gcno, wherever the target lives.
+    """
+    found = {}
+    for root, _dirs, files in os.walk(build):
+        target = os.path.basename(root)
+        if not target.endswith("_fortran.dir"):
+            continue
+        module = target[:-len("_fortran.dir")]
+        if f"{module}.F90.gcno" in files:
+            found[module] = os.path.join(root, f"{module}.F90.gcno")
+    return found
 
 
 def clean(build):
@@ -156,7 +159,9 @@ def run_suite(build, cmake_exe, ctest_exe):
     print(">>> building the test suite")
     subprocess.run([cmake_exe, "--build", build, "-j", jobs], check=False)
     # Second pass keeps going past a failing target so the rest still link.
-    subprocess.run([cmake_exe, "--build", build, "-j", jobs, "--", "-k"], check=False)
+    # make takes a bare -k; Ninja needs a count, 0 meaning no limit.
+    keep_going = ["-k", "0"] if os.path.exists(os.path.join(build, "build.ninja")) else ["-k"]
+    subprocess.run([cmake_exe, "--build", build, "-j", jobs, "--", *keep_going], check=False)
 
     # Counters accumulate across runs, so start from a clean slate: one pass in,
     # one pass out. A stale .gcda would otherwise be counted a second time.
@@ -183,8 +188,8 @@ def load_gcov(gcno, gcov_exe):
 
 def measure(build, gcov_exe):
     """Return {group: {run, gen, tested, families, detail}} (None when no data)."""
-    objdir = find_object_dir(build)
-    if objdir is None:
+    notes = find_gcno(build)
+    if not notes:
         sys.exit(f"error: no instrumented binding objects under {build}. "
                  f"Configure with -DHIPFORT_CODE_COVERAGE=ON and build first.")
 
@@ -195,8 +200,8 @@ def measure(build, gcov_exe):
         saw_data = False
 
         for module in modules:
-            gcno = os.path.join(objdir, f"{module}.F90.gcno")
-            if not os.path.exists(gcno):
+            gcno = notes.get(module)
+            if gcno is None:
                 continue
             # The module was built, so the group is reportable even if it turns
             # out to hold no wrapper bodies at all -- that is "no array
@@ -271,7 +276,7 @@ def print_report(results, show_partial=False):
                 continue
             print(f"  [{lib}] {len(partial)} routine(s):")
             for name, hit, gen_ in partial[:12]:
-                short = re.sub(r"^__hipfort_\w+_MOD_", "", name)
+                short = re.sub(r"^__\w+?_MOD_", "", name)
                 print(f"      {short:40} {hit}/{gen_}")
             if len(partial) > 12:
                 print(f"      ... and {len(partial) - 12} more")

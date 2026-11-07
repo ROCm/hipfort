@@ -43,9 +43,8 @@
 !
 program dgetrfbatched_work
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: b, run, i, j
   integer(c_int), parameter :: N = 64, lda = N, batch = 3, strideP = N

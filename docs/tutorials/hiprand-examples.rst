@@ -8,9 +8,8 @@ hipRAND examples
 
 `hipRAND <https://rocm.docs.amd.com/projects/hipRAND/en/latest/>`_ is a thin
 layer over rocRAND whose API follows cuRAND. hipFORT exposes it through the
-``hipfort_hiprand`` module, together with ``hipfort_hiprand_enums`` for the
-generator enumerations (``HIPRAND_RNG_PSEUDO_PHILOX4_32_10`` and so on). The
-programs below import both explicitly.
+``hiprand`` module, which carries the generator enumerations
+(``HIPRAND_RNG_PSEUDO_PHILOX4_32_10`` and so on) as well.
 
 Every program on this page is a complete, self-contained example that is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
@@ -20,7 +19,7 @@ instead of Fortran array pointers, lives in ``test/f2003/hiprand``.
 
 If you want direct access to rocRAND rather than a cuRAND-style interface, see
 the :doc:`rocRAND examples <rocrand-examples>`, where the equivalent programs
-are written against the ``hipfort_rocrand`` module. The two test suites cover
+are written against the ``rocrand`` module. The two test suites cover
 exactly the same generators and distributions, so the pages differ only in the
 names of the entry points:
 
@@ -67,7 +66,7 @@ Keep the following conventions in mind:
 * A fixed seed makes a pseudo-random sequence reproducible, which is what lets
   these programs assert on sample statistics.
 * Every hipRAND call returns a status code. The examples wrap them in
-  ``hiprandCheck`` from the ``hipfort_check`` module, which aborts on failure.
+  ``hiprandCheck`` from the ``hiprand`` module, which aborts on failure.
 
 Building an example
 ===================
@@ -76,10 +75,11 @@ The examples only need the ``hiprand`` and ``hip`` hipFORT components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip hiprand)
+   find_package(hip-fortran REQUIRED)
+   find_package(hiprand-fortran REQUIRED)
 
    add_executable(my_rand philox_uniform.f08)
-   target_link_libraries(my_rand PRIVATE hipfort::hiprand hipfort::hip)
+   target_link_libraries(my_rand PRIVATE hip::hiprand_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

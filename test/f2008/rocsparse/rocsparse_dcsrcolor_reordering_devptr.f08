@@ -45,9 +45,8 @@
 !
 program rocsparse_dcsrcolor_reordering_devptr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer(c_int), parameter :: g = 3, m = g*g, nnz = 5*m - 4*g
   integer(c_int) :: hRowPtr(m+1), hColInd(nnz), hColoring(m)

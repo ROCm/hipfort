@@ -38,10 +38,8 @@
 !
 program dnxtrtri
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: i, j, l
   integer(c_int64_t), parameter :: N = 4, lda = 4

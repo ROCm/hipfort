@@ -25,9 +25,8 @@
 
 program fortran_hip
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_roctx
+  use hip
+  use roctx
 
   implicit none
 

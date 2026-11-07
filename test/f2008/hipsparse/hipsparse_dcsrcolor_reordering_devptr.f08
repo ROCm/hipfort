@@ -41,9 +41,8 @@
 !
 program hipsparse_dcsrcolor_reordering_devptr
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer, parameter :: n = 3
   integer(c_int), parameter :: m = n*n, nnz = 5*m - 4*n

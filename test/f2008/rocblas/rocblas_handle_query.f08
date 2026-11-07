@@ -44,10 +44,8 @@
 program rocblas_handle_query
 
     use iso_c_binding
-    use hipfort
-    use hipfort_check
-    use hipfort_rocblas
-    use hipfort_rocblas_enums
+    use hip
+    use rocblas
 
     implicit none
 

@@ -38,9 +38,8 @@
 !
 program rocsparse_spmat_get_size_getter
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer(c_int64_t), parameter :: m = 3, n = 4, nnz = 5
   integer(c_int), target :: hRowPtr(m+1) = (/0, 2, 3, 5/)

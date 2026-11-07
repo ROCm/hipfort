@@ -48,9 +48,8 @@
 !
 program hipsparse_dcsrilu02_boost_optional
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
   implicit none
   integer(c_int), parameter :: m = 5, nnz = 13
   integer(c_int), target :: hRowPtr(m+1) = (/0, 2, 5, 8, 11, 13/)

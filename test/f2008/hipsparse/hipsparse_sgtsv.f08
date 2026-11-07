@@ -37,9 +37,8 @@
 program hipsparse_sgtsv
 
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsparse
+  use hip
+  use hipsparse
 
   implicit none
 

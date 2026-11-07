@@ -40,9 +40,8 @@
 !
 program dgeqrfbatched
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
+  use hip
+  use hipsolver
   implicit none
   integer :: b, i, j, k
   integer(c_int), parameter :: M = 4, N = 3, lda = 4, batch = 2

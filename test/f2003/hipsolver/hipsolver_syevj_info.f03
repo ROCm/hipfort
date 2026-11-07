@@ -49,10 +49,8 @@
 !
 program hipsolver_syevj_info
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
 
   implicit none
   integer :: i

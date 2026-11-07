@@ -38,9 +38,8 @@
 ! hipfftGetProperty queries. Any mismatch prints "FAILED! ..." and STOP 1.
 program hipfft_version
   use iso_c_binding
-  use hipfort_check
-  use hipfort_hipfft
-  use hipfort_hipfft_enums
+  use hip
+  use hipfft
 
   implicit none
 
