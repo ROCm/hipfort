@@ -32,25 +32,23 @@
   and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
   `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
   `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
-* The hipFFT Xt API in the new `hipfort_hipfftxt` module (`hipfort::hipfftxt`
-  CMake component), as CUDA Fortran's `cufftXt`: it uses `hipfort_hipfft`, so
-  `use hipfort_hipfftxt` alone gives the whole hipFFT API, and
-  `hipfort_hipfft` keeps the `hipfft.h` API only. The routines are `bind(C)`
-  interfaces (with `_typed` forms for `hipfftXtMakePlanMany` and
-  `hipfftXtGetSizeMany`): the multi-GPU routines (`hipfftXtSetGPUs`,
-  `hipfftXtSetWorkArea`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`, the
-  `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
+* The hipFFT Xt API in a `hipfftxt` module, as `bind(C)` interfaces (with `_typed`
+  forms for `hipfftXtMakePlanMany` and `hipfftXtGetSizeMany`): the multi-GPU
+  routines (`hipfftXtSetGPUs`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`,
+  the `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
   `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
-  routines. The `hipXtDesc` and `hipLibXtDesc` types are in
-  `hipfort_hipfftxt_types`, and the Xt enums in `hipfort_hipfftxt_enums`.
+  routines, with the `hipXtDesc` and `hipLibXtDesc` types and the Xt enums.
+  As CUDA Fortran's `cufft` and `cufftXt`, every `hipfftXt*` and `hipfftMp*`
+  function (`hipfftXtSetWorkArea` included) is in `hipfftxt`, which uses and
+  re-exports `hipfft` and is built into the same `hip::hipfft_fortran` archive
+  and `hipfft-fortran` package.
   On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
   and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
   `integer(c_size_t)` array as `workSize`. The multi-process routines
   of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
   `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
   with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
-  routines bind their `cufftXt*` counterparts; the multi-process routines have
-  none. The hipFFT examples document
+  and multi-process routines added here are not available. The hipFFT examples document
   the multi-GPU and MPI workflows.
 * Array overloads (`rank_N`, `full_rank`, assumed-rank) for the ILP64 (`_64`)
   routines of rocBLAS, hipBLAS and rocSOLVER (`rocblas_sscal_64`, ...), the same
@@ -60,6 +58,36 @@
 
 ### Changed
 
+* **Breaking: one module per library, with no `hipfort_` prefix.** The flat
+  `lib/hipfort/` directory is replaced by one directory per library, laid out
+  as in the upstream repositories that will hold the bindings
+  (`lib/rocm-{systems,libraries}/bindings/fortran/<lib>/`), and each library
+  ships a self-contained module named after itself (hipFFT also ships
+  `hipfftxt`, for its Xt and multi-process API). The enums, derived types, opaque
+  handles and the `<lib>Check` helper are folded into them, so fourteen modules
+  replace thirty-three files.
+
+  Every `use` statement changes. `hipfort_rocblas` and its `_enums` companion
+  become `rocblas`; the HIP runtime modules (`hipfort`, `hipfort_check`,
+  `hipfort_enums`, `hipfort_types`, `hipfort_auxiliary`, `hipfort_hipmalloc`,
+  `hipfort_hipmemcpy`, `hipfort_hiphostregister`) all become `hip`:
+
+  ```fortran
+  ! before                 ! after
+  use hipfort              use hip
+  use hipfort_check        use rocblas
+  use hipfort_rocblas
+  ```
+
+  The `<lib>Check` helpers travel with their library: `rocblasCheck` now comes
+  from `rocblas`, and only `hipCheck` is in `hip`. `find_package(hipfort)`
+  and the `hipfort::*` targets are gone: each library has its own package and
+  target, for example `find_package(rocblas-fortran)` and `roc::rocblas_fortran`.
+* **Breaking: the CUDA (nvptx) backend is dropped.** These bindings are
+  generated for ROCm only and carry no `USE_CUDA_NAMES` branch, so an nvptx
+  build would compile cleanly while binding `hip*`/`roc*` symbols.
+  `HIPFORT_BUILD_NVPTX` now defaults to `OFF` and raises a fatal error if
+  enabled, rather than producing a silently wrong archive.
 * The single values rocSOLVER writes on the GPU are taken as one value: `info`
   (every non-batched routine), `n_sweeps` and `residual` (`gesvdj`, `syevj`,
   `heevj`, `sygvj`, `hegvj`), `nev` (`syevx`, `heevx`, `syevdx`, `heevdx`,
@@ -93,20 +121,18 @@
   arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
   `elem_size`, `A` and `B`. Only calls by keyword are affected; the array
   overloads are unchanged.
-* Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
-  compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`) when the Fortran compiler accepts these flags, which the
-  amdflang of ROCm 7.13 does not. A program linked with `-Wl,--gc-sections` keeps only the
-  wrappers it calls, instead of all of a library's wrappers, and still links
-  when another wrapper names a C function that the installed library does not
-  export. The tests link that way. A shared library that links an archive also
-  needs `-Wl,--exclude-libs` naming it, for example
-  `-Wl,--exclude-libs,libhipfort-amdgcn.a`.
 * **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
   `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
   `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
-  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
+  those of the math libraries. A build with `-DFORTRAN_ARRAY_INTERFACES=none`
   no longer has them: pass a `type(c_ptr)` and a byte count.
+* Each binding archive is compiled with one section per procedure
+  (`-ffunction-sections -fdata-sections`). A program linked with
+  `-Wl,--gc-sections` keeps only the wrappers it calls, instead of all of a
+  library's wrappers, and still links when another wrapper names a C function
+  that the installed library does not export yet. The tests link that way.
+  A shared library that links an archive also needs `-Wl,--exclude-libs`
+  naming it, for example `-Wl,--exclude-libs,librocblas_fortran.a`.
 * **Breaking.** The array overloads of the hipSOLVER batched routines
   (`hipsolver[SDCZ]{potrf,potrs,getrf,getri,gels,gesvdj,syevj,heevj}Batched`)
   take `devInfo` as an `integer(c_int)` array of `batch_count` entries, which is
@@ -122,7 +148,7 @@
   arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
   `integer(kind(HIP_R_32F))`. Both are the C `int` kind, so existing code is
   unaffected, and these routines no longer `use hipfort_enums`.
-* The assumed-rank overloads (`-DHIPFORT_ASSUMED_RANK=ON`) no longer declare
+* The assumed-rank overloads (`-DFORTRAN_ARRAY_INTERFACES=assumed-rank`) no longer declare
   their arrays `contiguous`, like the per-rank ones. Given a non-contiguous
   section, the compiler used to pass a copy made in a host temporary: fatal for
   an array in device memory on GPUs without XNACK enabled, and freed when the

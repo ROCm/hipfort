@@ -25,9 +25,8 @@
 
 program hipfftxt_descriptor_z
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_hipfftxt
+  use hip
+  use hipfftxt
 
   implicit none
 

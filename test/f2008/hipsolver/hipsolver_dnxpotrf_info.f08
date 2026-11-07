@@ -41,11 +41,8 @@
 !
 program dnxpotrf_info
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
-  use hipfort_hipsolver
-  use hipfort_hipsolver_enums
+  use hip
+  use hipsolver
   implicit none
   integer :: i
   integer(c_int64_t), parameter :: N = 3, lda = 3, ldb = 3, nrhs = 1

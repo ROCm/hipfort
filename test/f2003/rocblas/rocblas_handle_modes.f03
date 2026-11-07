@@ -39,8 +39,8 @@
 program rocblas_handle_modes_test
 
     use iso_c_binding
-    use hipfort_check
-    use hipfort_rocblas
+    use hip
+    use rocblas
 
     implicit none
 

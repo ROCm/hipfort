@@ -24,9 +24,10 @@
 #
 ###############################################################################
 
-# Build hipfort and run its CTest suite once per Fortran compiler, with and without
-# HIPFORT_ASSUMED_RANK. Each combination needs its own build: .mod files are not
-# portable between compilers. Missing compilers are skipped.
+# Build hipfort and run its CTest suite once per Fortran compiler, with the default
+# array interfaces and with FORTRAN_ARRAY_INTERFACES=assumed-rank. Each combination
+# needs its own build: .mod files are not portable between compilers. Missing
+# compilers are skipped.
 #
 # Local equivalent of the math-ci hipfort precheckin job.
 #
@@ -156,7 +157,7 @@ for entry in "${TOOLCHAINS[@]}"; do
   # Assumed-rank swaps the array interfaces and enables test/f2018, so it needs
   # its own build rather than a rerun.
   if $ASSUMED_RANK; then
-    run_config "$name-assumed-rank" "$tc" "$bin" -DHIPFORT_ASSUMED_RANK=ON
+    run_config "$name-assumed-rank" "$tc" "$bin" -DFORTRAN_ARRAY_INTERFACES=assumed-rank
   fi
 done
 

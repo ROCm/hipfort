@@ -42,9 +42,8 @@
 !
 program rocsparse_dspmv_buffer_size_opt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_rocsparse
+  use hip
+  use rocsparse
   implicit none
   integer :: i, k
   integer(c_int), parameter :: m = 4, n = 4, nnz = 8

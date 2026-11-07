@@ -8,9 +8,9 @@ rocSOLVER examples
 
 `rocSOLVER <https://rocm.docs.amd.com/projects/rocSOLVER/en/latest/>`_ is the AMD
 implementation of LAPACK for AMD GPUs. hipFORT exposes it through the
-``hipfort_rocsolver`` module, which mirrors the rocSOLVER C API one to one.
+``rocsolver`` module, which mirrors the rocSOLVER C API one to one.
 rocSOLVER is built on rocBLAS and reuses its handle type, so every program also
-uses the ``hipfort_rocblas`` module for ``rocblas_create_handle`` and the rocBLAS
+uses the ``rocblas`` module for ``rocblas_create_handle`` and the rocBLAS
 enumerators.
 
 Every program on this page is complete and self-contained, and is built
@@ -50,13 +50,13 @@ rocSOLVER follows a small number of conventions that recur in every program:
 * **Enumerators select variants.** ``rocblas_operation_none`` /
   ``rocblas_operation_transpose`` choose whether a routine works on ``A`` or
   ``A**T``, and ``rocblas_fill_upper`` / ``rocblas_fill_lower`` choose the
-  stored triangle; both come from ``hipfort_rocblas_enums``. The
+  stored triangle; both come from ``rocblas``. The
   ``rocblas_evect_*`` and ``rocblas_svect_*`` selectors, which choose whether
   vectors are computed, are rocSOLVER enumerators from
-  ``hipfort_rocsolver_enums`` despite their prefix.
-* **Every call returns a status code.** The ``hipfort_check`` module provides
-  ``hipCheck`` for HIP calls, ``rocblasCheck`` for the rocBLAS handle calls, and
-  ``rocsolverCheck`` for rocSOLVER calls; all abort on failure.
+  ``rocsolver`` despite their prefix.
+* **Every call returns a status code.** ``hipCheck`` comes from the ``hip``
+  module, ``rocblasCheck`` from ``rocblas`` for the rocBLAS handle calls, and
+  ``rocsolverCheck`` from ``rocsolver``; all abort on failure.
 
 Building and running
 ====================
@@ -66,10 +66,12 @@ components:
 
 .. code-block:: cmake
 
-   find_package(hipfort REQUIRED COMPONENTS hip rocblas rocsolver)
+   find_package(hip-fortran REQUIRED)
+   find_package(rocblas-fortran REQUIRED)
+   find_package(rocsolver-fortran REQUIRED)
 
    add_executable(my_solver rocsolver_dgetrf.f08)
-   target_link_libraries(my_solver PRIVATE hipfort::rocsolver hipfort::rocblas hipfort::hip)
+   target_link_libraries(my_solver PRIVATE roc::rocsolver_fortran roc::rocblas_fortran hip::hip_fortran)
 
 See :doc:`../how-to/using-hipfort` for the full set of build options.
 

@@ -43,9 +43,7 @@
 !
 program stream_capture_info_spt_opt
   use iso_c_binding
-  use hipfort
-  use hipfort_check
-  use hipfort_enums
+  use hip
   implicit none
   integer(c_size_t), parameter :: nbytes = 256_c_size_t
   type(c_ptr) :: stream = c_null_ptr, dptr = c_null_ptr, graph = c_null_ptr
