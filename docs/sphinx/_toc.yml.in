@@ -20,6 +20,8 @@ subtrees:
         title: Migrate to the ROCm-packaged bindings
       - file: how-to/migration-guide-in-tree.rst
         title: Migrate from a library's own Fortran module
+      - file: how-to/migration-guide-cuda-fortran.rst
+        title: Migrate from CUDA Fortran
 
   - caption: Tutorials
     entries:
