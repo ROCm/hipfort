@@ -25,6 +25,8 @@ Fortran archive, and nothing else in your code changes.**
    has a different deadline, different edits, and, unlike this one, call sites
    that do change. See :doc:`migration-guide-in-tree`.
 
+   **Coming from CUDA Fortran?** See :doc:`migration-guide-cuda-fortran`.
+
 Why the bindings are moving
 ===========================
 
@@ -307,7 +309,8 @@ Rename your ``use`` statements
 ------------------------------
 
 The ``hipfort_`` prefix is dropped, and each library collapses to a single
-module named after the library.
+module named after the library. hipFFT is the exception, with a second module
+for its Xt API (see below).
 
 .. list-table::
    :header-rows: 1
@@ -349,6 +352,10 @@ module named after the library.
      - ``use hipfft``
      - ``hip::hipfft_fortran``
      - ``hipfft-fortran``
+   * - ``use hipfort_hipfftxt`` (plus ``_enums``, ``_types``)
+     - ``use hipfftxt``
+     - ``hip::hipfft_fortran``
+     - ``hipfft-fortran``
    * - ``use hipfort_hipfftw`` (plus ``_enums``, ``_types``)
      - ``use hipfftw``
      - ``hip::hipfftw_fortran``
@@ -369,6 +376,14 @@ module named after the library.
      - ``use hiprand``
      - ``hip::hiprand_fortran``
      - ``hiprand-fortran``
+
+hipFFT's binding has two modules in one archive, as CUDA Fortran has
+``cufft`` and ``cufftXt``. Every ``hipfftXt*`` and ``hipfftMp*`` routine is in
+``hipfftxt``, including ``hipfftXtSetWorkArea``, and every other ``hipfft*``
+routine is in ``hipfft``. ``hipfftxt`` uses and re-exports ``hipfft``, so a file
+that calls the Xt API writes ``use hipfftxt`` alone. hipFORT gets the same
+split, into ``hipfort_hipfft`` and ``hipfort_hipfftxt``; code that calls the Xt
+API through ``hipfort_hipfft`` moves to ``use hipfftxt``.
 
 The HIP memory helpers you might ``use`` directly (``hipfort_hipmalloc``,
 ``hipfort_hipmemcpy``, ``hipfort_hiphostregister``) fold into ``use hip`` as
@@ -427,7 +442,7 @@ codebase by hand. On a Git tree, this rewrites every ``use`` line in place:
 
 .. code-block:: shell
 
-   libs='roctx|rocblas|hipblas|rocsparse|hipsparse|hipfftw|rocfft|hipfft|rocsolver|hipsolver|rocrand|hiprand'
+   libs='roctx|rocblas|hipblas|rocsparse|hipsparse|hipfftw|hipfftxt|rocfft|hipfft|rocsolver|hipsolver|rocrand|hiprand'
 
    sed -i -E \
      -e "/^[[:space:]]*use[[:space:]]+hipfort_($libs)_(enums|types)\b/Id" \
@@ -462,6 +477,9 @@ Then read the diff, because a few things are deliberately left to you:
    the whole line. Add ``use hip`` there.
 *  ``use hipfort_cuda_errors`` is left untouched on purpose; it has no new
    equivalent (see above).
+*  A file that calls hipFFT's Xt API through ``use hipfort_hipfft`` becomes
+   ``use hipfft``, which does not have it. Change that line to
+   ``use hipfftxt``.
 *  Fixed-form sources, continuation lines, and ``use`` lines behind
    preprocessor guards are not covered.
    ``grep -rniE 'use[[:space:]]+hipfort' .`` finds whatever the rules missed.
@@ -620,7 +638,8 @@ which on a stock install is, for example,
    * - ROCTx
      - ``share/roctx/fortran/roctx.F90``
    * - hipFFT
-     - ``share/hipfft/fortran/hipfft.F90`` and ``hipfftw.F90``
+     - ``share/hipfft/fortran/hipfft.F90``, ``hipfftxt.F90`` and
+       ``hipfftw.F90``
    * - Every other library
      - ``share/<library>/fortran/<library>.F90`` (``rocblas``, ``hipblas``,
        ``rocsparse``, ``hipsparse``, ``rocfft``, ``rocsolver``, ``hipsolver``,
@@ -860,6 +879,9 @@ shipped themselves have collisions of their own at 10.3; those are covered in
 
 **If you build for NVIDIA (CUDA)**, the ``nvptx`` backend is dropped from the
 new bindings. It survives only in old hipFORT until 11.0.
+
+**If you port code from CUDA Fortran**, the ``hip*`` modules follow the names
+of NVIDIA's CUDA Fortran modules; see :doc:`migration-guide-cuda-fortran`.
 
 FAQ
 ===
