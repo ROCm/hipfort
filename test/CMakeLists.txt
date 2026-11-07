@@ -185,8 +185,8 @@ if(BUILD_TESTING)
     f2008/hipsparse/hipsparse_zgthr
     f2008/hipsparse/hipsparse_zsctr
     # hipFFT Xt API: no cufftXt twin mapped yet, so not bound under USE_CUDA_NAMES.
-    f2003/hipfft/hipfft_xt_descriptor_z
-    f2003/hipfft/hipfft_xt_makeplanmany_c
+    f2003/hipfftxt/hipfftxt_descriptor_z
+    f2003/hipfftxt/hipfftxt_makeplanmany_c
     # hipBLAS routines cuBLAS lacks: rotStridedBatched with c and s per the pointer
     # mode, a non-batched geqrf, getrfStridedBatched; and hipSPARSE size queries
     # without a cuSPARSE 12 twin (csrsm2, prune).
@@ -545,12 +545,16 @@ if(BUILD_TESTING)
     hipfort_add_test(hipfft hipfft_setstream_z f2008)
     hipfort_add_test(hipfft hipfft_version f2003)
     hipfort_add_test(hipfft hipfft_version f2008)
+  endif()
+
+  if(TARGET hipfort::hipfftxt)
+    hipfort_add_symbol_test(hipfftxt)
     # The Xt API: a hipDataType plan on one GPU, and multi-GPU descriptors.
-    hipfort_add_test(hipfft hipfft_xt_makeplanmany_c f2003)
-    hipfort_add_test(hipfft hipfft_xt_descriptor_z f2003)
+    hipfort_add_test(hipfftxt hipfftxt_makeplanmany_c f2003)
+    hipfort_add_test(hipfftxt hipfftxt_descriptor_z f2003)
     # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
-    if(TEST hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z)
-      set_tests_properties(hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z
+    if(TEST hipfort_test_f2003_hipfftxt_hipfftxt_descriptor_z)
+      set_tests_properties(hipfort_test_f2003_hipfftxt_hipfftxt_descriptor_z
         PROPERTIES SKIP_RETURN_CODE 77)
     endif()
   endif()

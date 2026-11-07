@@ -8,14 +8,17 @@ hipFFT examples
 
 `hipFFT <https://rocm.docs.amd.com/projects/hipFFT/en/latest/>`_ is a thin layer
 over rocFFT with an API that follows cuFFT. hipFORT exposes it through the
-``hipfort_hipfft`` module.
+``hipfort_hipfft`` module, and its Xt and multi-process APIs through the
+``hipfort_hipfftxt`` module, as CUDA Fortran does with ``cufft`` and ``cufftXt``.
+``hipfort_hipfftxt`` uses ``hipfort_hipfft``, so ``use hipfort_hipfftxt`` alone
+gives the whole hipFFT API.
 
 Every program on this page is complete and self-contained, and is built
 and run as part of the hipFORT test suite. The Fortran 2008 version of each
 program lives in ``test/f2008/hipfft``, and the equivalent Fortran 2003 version,
 which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
 Fortran array pointers, lives in ``test/f2003/hipfft``. The Xt programs exist
-only in the Fortran 2003 form.
+only in the Fortran 2003 form, in ``test/f2003/hipfftxt``.
 
 If you want direct access to rocFFT rather than a cuFFT-style interface, see
 the :doc:`rocFFT examples <rocfft-examples>`. For FFTW3-compatible code, see the
@@ -177,7 +180,7 @@ names the input, output and execution data types with ``hipDataType`` values
 ``hipfftXtExec`` runs the plan whatever its data types, taking the direction for
 complex transforms.
 
-.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_makeplanmany_c.f03
+.. literalinclude:: ../../test/f2003/hipfftxt/hipfftxt_makeplanmany_c.f03
    :language: fortran
 
 Multi-GPU transforms
@@ -211,9 +214,9 @@ copy of the type: ``hipfftXtFree`` would then release the wrong address. The
 ``GPUs``, ``data`` and ``size`` fields say where each part of the data is.
 
 The ``hipLibXtDesc`` and ``hipXtDesc`` types are in the
-``hipfort_hipfft_types`` module, which ``hipfort_hipfft`` uses, and the Xt
-constants (``HIPFFT_XT_FORMAT_INPLACE``, ``HIPFFT_COPY_HOST_TO_DEVICE``, ...)
-are in ``hipfort_hipfft_enums``.
+``hipfort_hipfftxt_types`` module, and the Xt constants
+(``HIPFFT_XT_FORMAT_INPLACE``, ``HIPFFT_COPY_HOST_TO_DEVICE``, ...) in
+``hipfort_hipfftxt_enums``; ``hipfort_hipfftxt`` uses both.
 
 On AMD GPUs a descriptor needs a plan over two or more GPUs, and unbatched
 one-dimensional transforms are not supported. This program runs a
@@ -221,7 +224,7 @@ two-dimensional transform on two GPUs, forward then inverse, and checks the
 result against the input; on a machine with fewer than two GPUs it reports so
 and the test is skipped.
 
-.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_descriptor_z.f03
+.. literalinclude:: ../../test/f2003/hipfftxt/hipfftxt_descriptor_z.f03
    :language: fortran
 
 Multi-process transforms with MPI
@@ -229,7 +232,7 @@ Multi-process transforms with MPI
 
 ``hipfftMpAttachComm``, ``hipfftXtSetDistribution`` and
 ``hipfftXtSetSubformatDefault`` distribute a transform over the ranks of an MPI
-communicator. They are bound in ``hipfort_hipfft``, but exist only in a hipFFT
+communicator. They are bound in ``hipfort_hipfftxt``, but exist only in a hipFFT
 built with MPI support (``HIPFFT_MPI_ENABLE``), which the ROCm packages are
 not: with those, a program that calls them does not link.
 
@@ -256,7 +259,7 @@ depend on the MPI implementation, so build it in C from the Fortran handle with
    use iso_c_binding
    use mpi_f08
    use hipfort_check
-   use hipfort_hipfft
+   use hipfort_hipfftxt
 
    interface
      function c_comm_from_fortran(fcomm) bind(c, name="c_comm_from_fortran")

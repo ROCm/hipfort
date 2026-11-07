@@ -23,11 +23,11 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-program hipfft_xt_makeplanmany_c
+program hipfftxt_makeplanmany_c
   use iso_c_binding
   use hipfort
   use hipfort_check
-  use hipfort_hipfft
+  use hipfort_hipfftxt
 
   implicit none
 
@@ -86,4 +86,4 @@ program hipfft_xt_makeplanmany_c
 
   write(*,*) "PASSED!"
 
-end program hipfft_xt_makeplanmany_c
+end program hipfftxt_makeplanmany_c
