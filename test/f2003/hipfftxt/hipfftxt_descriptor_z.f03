@@ -23,7 +23,7 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-program hipfft_xt_descriptor_z
+program hipfftxt_descriptor_z
   use iso_c_binding
   use hip
   use hipfftxt
@@ -98,4 +98,4 @@ program hipfft_xt_descriptor_z
 
   write(*,*) "PASSED!"
 
-end program hipfft_xt_descriptor_z
+end program hipfftxt_descriptor_z

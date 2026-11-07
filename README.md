@@ -140,6 +140,7 @@ The following tables list the supported API:
 * [HIP](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hip.html)
 * [hipBLAS](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipblas.html)
 * [hipFFT](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfft.html)
+* [hipFFT Xt](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfftxt.html)
 * [hipFFTW](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfftw.html)
 * [hipRAND](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hiprand.html)
 * [hipSOLVER](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipsolver.html)

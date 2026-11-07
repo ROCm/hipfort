@@ -23,7 +23,7 @@
 !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-program hipfft_xt_makeplanmany_c
+program hipfftxt_makeplanmany_c
   use iso_c_binding
   use hip
   use hipfftxt
@@ -85,4 +85,4 @@ program hipfft_xt_makeplanmany_c
 
   write(*,*) "PASSED!"
 
-end program hipfft_xt_makeplanmany_c
+end program hipfftxt_makeplanmany_c

@@ -17,7 +17,7 @@ and run as part of the hipFORT test suite. The Fortran 2008 version of each
 program lives in ``test/f2008/hipfft``, and the equivalent Fortran 2003 version,
 which uses ``type(c_ptr)`` device pointers and explicit byte counts instead of
 Fortran array pointers, lives in ``test/f2003/hipfft``. The Xt programs exist
-only in the Fortran 2003 form.
+only in the Fortran 2003 form, in ``test/f2003/hipfftxt``.
 
 If you want direct access to rocFFT rather than a cuFFT-style interface, see
 the :doc:`rocFFT examples <rocfft-examples>`. For FFTW3-compatible code, see the
@@ -180,7 +180,7 @@ names the input, output and execution data types with ``hipDataType`` values
 ``hipfftXtExec`` runs the plan whatever its data types, taking the direction for
 complex transforms. These programs ``use hipfftxt``.
 
-.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_makeplanmany_c.f03
+.. literalinclude:: ../../test/f2003/hipfftxt/hipfftxt_makeplanmany_c.f03
    :language: fortran
 
 Multi-GPU transforms
@@ -223,7 +223,7 @@ two-dimensional transform on two GPUs, forward then inverse, and checks the
 result against the input; on a machine with fewer than two GPUs it reports so
 and the test is skipped.
 
-.. literalinclude:: ../../test/f2003/hipfft/hipfft_xt_descriptor_z.f03
+.. literalinclude:: ../../test/f2003/hipfftxt/hipfftxt_descriptor_z.f03
    :language: fortran
 
 Multi-process transforms with MPI

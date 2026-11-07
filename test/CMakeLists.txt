@@ -69,6 +69,10 @@ if(BUILD_FORTRAN_CLIENTS)
   # not we built anything, so testing it would both mis-guard the tests and
   # silently link the hand-written binding instead of the generated one.
   function(hipfort_test_target lib out)
+    # The hipfftxt module is part of the hipfft binding: same archive.
+    if(lib STREQUAL "hipfftxt")
+      set(lib hipfft)
+    endif()
     set(${out} "${ROCM_FORTRAN_TARGET_${lib}}" PARENT_SCOPE)
   endfunction()
 
@@ -375,11 +379,11 @@ if(BUILD_FORTRAN_CLIENTS)
     endif()
     hipfort_add_test(hipfft hipfft_version f2008)
     # The Xt API: a hipDataType plan on one GPU, and multi-GPU descriptors.
-    hipfort_add_test(hipfft hipfft_xt_makeplanmany_c f2003)
-    hipfort_add_test(hipfft hipfft_xt_descriptor_z f2003)
+    hipfort_add_test(hipfftxt hipfftxt_makeplanmany_c f2003)
+    hipfort_add_test(hipfftxt hipfftxt_descriptor_z f2003)
     # Needs two visible GPUs, else exits 77: reported as skipped, not passed.
-    if(TEST hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z)
-      set_tests_properties(hipfort_test_f2003_hipfft_hipfft_xt_descriptor_z
+    if(TEST hipfort_test_f2003_hipfftxt_hipfftxt_descriptor_z)
+      set_tests_properties(hipfort_test_f2003_hipfftxt_hipfftxt_descriptor_z
         PROPERTIES SKIP_RETURN_CODE 77)
     endif()
   endif()

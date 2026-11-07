@@ -77,7 +77,8 @@ import sys
 from collections import defaultdict
 
 # Each entry is a reported row: the label, and the binding modules to scan for
-# it. Every library, the HIP runtime included, is one module.
+# it. Every library, the HIP runtime included, is one module, except hipFFT,
+# whose Xt API is the separate hipfftxt module.
 GROUPS = [
     ("rocblas",  ["rocblas"]),
     ("rocsolver", ["rocsolver"]),
@@ -88,6 +89,7 @@ GROUPS = [
     ("hipsolver", ["hipsolver"]),
     ("hipsparse", ["hipsparse"]),
     ("hipfft",   ["hipfft"]),
+    ("hipfftxt", ["hipfftxt"]),
     ("hipfftw",  ["hipfftw"]),
     ("hiprand",  ["hiprand"]),
     ("roctx",    ["roctx"]),
@@ -120,17 +122,18 @@ def matching_gcov():
 def find_gcno(build):
     """Map each instrumented binding module to its .gcno.
 
-    Each library builds its module into its own <lib>_fortran archive, so the
-    note file is <lib>_fortran.dir/<lib>.F90.gcno, wherever the target lives.
+    Each library builds its modules into its own <lib>_fortran archive, so the
+    note file of a module is <lib>_fortran.dir/<module>.F90.gcno, wherever the
+    target lives. Most libraries are one module, <lib>; hipfft is two, hipfft
+    and hipfftxt.
     """
     found = {}
     for root, _dirs, files in os.walk(build):
-        target = os.path.basename(root)
-        if not target.endswith("_fortran.dir"):
+        if not os.path.basename(root).endswith("_fortran.dir"):
             continue
-        module = target[:-len("_fortran.dir")]
-        if f"{module}.F90.gcno" in files:
-            found[module] = os.path.join(root, f"{module}.F90.gcno")
+        for name in files:
+            if name.endswith(".F90.gcno"):
+                found[name[:-len(".F90.gcno")]] = os.path.join(root, name)
     return found
 
 
