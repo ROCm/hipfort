@@ -34,7 +34,8 @@
 #
 #   target     <namespace>::<lib>_fortran   (roc:: or hip::, matching the C library)
 #   archive    lib<lib>_fortran.a
-#   module     <lib>.mod, from a single self-contained <lib>.F90
+#   module     <lib>.mod, from a self-contained <lib>.F90 (and one .mod per
+#              further SOURCE, such as hipFFT's hipfftxt.mod)
 #   package    <lib>-fortran  (hyphenated package, underscored target -- ROCm
 #                              hyphenates package names and underscores targets)
 #   .mod       <prefix>/<includedir>/fortran/<compiler>/
@@ -47,7 +48,7 @@
 #   rocm_add_fortran_binding(
 #     LIBRARY         rocsolver          # names the module, archive and target
 #     NAMESPACE       roc                # roc:: or hip::
-#     SOURCE          rocsolver.F90
+#     SOURCE          rocsolver.F90      # one or more; each <name>.F90 is module <name>
 #     C_PACKAGE       rocsolver          # find_package() name of the C library
 #     C_TARGET        roc::rocsolver     # imported target to link
 #     FORTRAN_DEPENDS rocblas            # other bindings whose .mod this one USEs
@@ -304,8 +305,8 @@ endfunction()
 function(rocm_add_fortran_binding)
   cmake_parse_arguments(_rfb
     ""
-    "LIBRARY;NAMESPACE;SOURCE;C_PACKAGE;C_TARGET"
-    "FORTRAN_DEPENDS"
+    "LIBRARY;NAMESPACE;C_PACKAGE;C_TARGET"
+    "SOURCE;FORTRAN_DEPENDS"
     ${ARGN})
 
   foreach(_required LIBRARY NAMESPACE SOURCE C_PACKAGE C_TARGET)
@@ -374,7 +375,7 @@ function(rocm_add_fortran_binding)
   set(CMAKE_Fortran_MODULE_DIRECTORY "${_moddir}")
 
   # ---- the archive --------------------------------------------------------
-  add_library(${_target} STATIC "${_rfb_SOURCE}")
+  add_library(${_target} STATIC ${_rfb_SOURCE})
   # The module compiles to one object, and a linker extracts whole objects from
   # an archive, so a program that calls one wrapper links them all. One section
   # per procedure lets a consumer that links with -Wl,--gc-sections keep only the
@@ -454,10 +455,19 @@ function(rocm_add_fortran_binding)
     LIBRARY DESTINATION ${_install_libdir}
     INCLUDES DESTINATION ${_install_includedir})
 
-  # Only this library's own .mod: the module directory is shared by the whole
+  # Only this library's own modules: the module directory is shared by the whole
   # build tree, so installing the directory would make every package ship every
   # other package's module.
-  install(FILES "${_moddir}/${_lib}.mod"
+  set(_mods "")
+  set(_mod_names "")
+  foreach(_src IN LISTS _rfb_SOURCE)
+    get_filename_component(_mod "${_src}" NAME_WE)
+    string(TOLOWER "${_mod}.mod" _mod)
+    list(APPEND _mods "${_moddir}/${_mod}")
+    list(APPEND _mod_names "${_mod}")
+  endforeach()
+  list(JOIN _mod_names ", " _mod_names)
+  install(FILES ${_mods}
     DESTINATION ${_install_includedir})
 
   install(EXPORT ${_lib}-fortran-targets
@@ -501,5 +511,5 @@ function(rocm_add_fortran_binding)
   # namespaced target was already taken (see the collision above).
   message(STATUS
     "${_lib}: Fortran binding -> ${_link_target} "
-    "(lib${_target}.a, ${_lib}.mod, ${_cdir})")
+    "(lib${_target}.a, ${_mod_names}, ${_cdir})")
 endfunction()

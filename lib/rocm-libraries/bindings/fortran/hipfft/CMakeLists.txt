@@ -10,8 +10,10 @@
 #   cmake -S bindings/fortran/hipfft -B build/hipfft-fortran \
 #     -DCMAKE_Fortran_COMPILER=gfortran -DCMAKE_PREFIX_PATH=/opt/rocm
 #
-# Compiling hipfft.F90 needs only a Fortran compiler: it is self-contained
-# Fortran and references neither the C headers nor the .so, which resolve when
+# Two modules in one archive, as CUDA Fortran's cufft and cufftXt: hipfft, and
+# hipfftxt (every hipfftXt* and hipfftMp* function; it uses and re-exports
+# hipfft). Compiling them needs only a Fortran compiler: they are self-contained
+# Fortran and reference neither the C headers nor the .so, which resolve when
 # the application links.
 
 cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
@@ -32,6 +34,6 @@ rocm_fortran_require_c_package(hipfft)
 rocm_add_fortran_binding(
   LIBRARY   hipfft
   NAMESPACE hip
-  SOURCE    hipfft.F90
+  SOURCE    hipfft.F90 hipfftxt.F90
   C_PACKAGE hipfft
   C_TARGET  hip::hipfft)
