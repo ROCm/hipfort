@@ -235,6 +235,18 @@ add_executable(test_rocsolver_zhegvdx ${CMAKE_SOURCE_DIR}/rocsolver/test_rocsolv
 target_link_libraries(test_rocsolver_zhegvdx PUBLIC roc::rocsolver ${BLAS_LIBRARIES} flang_rt.hostdevice)
 set_property(TARGET test_rocsolver_zhegvdx PROPERTY LINKER_LANGUAGE Fortran)
 
+find_package(hipblas REQUIRED)
+# Compile the hipfort_hipblas array overloads as the main build does. They
+# reference every routine of their library, so exclude the other libraries.
+set(hipfort_hipblas_src ${hipfort_src})
+list(FILTER hipfort_hipblas_src EXCLUDE REGEX
+     "/hipfort_(hipfftw?|hipfftxt|hiprand|hipsolver|hipsparse|roc(blas|fft|rand|solver|sparse|tx))\\.F90$")
+add_executable(test_hipblas_saxpy_device_addr ${CMAKE_SOURCE_DIR}/hipblas/test_hipblas_saxpy_device_addr.f90 ${hipfort_hipblas_src})
+target_compile_definitions(test_hipblas_saxpy_device_addr PRIVATE USE_ASSUMED_SHAPE)
+target_link_libraries(test_hipblas_saxpy_device_addr PUBLIC roc::hipblas)
+set_property(TARGET test_hipblas_saxpy_device_addr PROPERTY LINKER_LANGUAGE Fortran)
+add_test(NAME test_hipblas_saxpy_device_addr COMMAND test_hipblas_saxpy_device_addr)
+
 #### Test ####
 enable_testing()
 add_test(NAME test_rocsolver_zhegvdx COMMAND test_rocsolver_zhegvdx)
