@@ -26,6 +26,7 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipfort>`_
 
      * :doc:`Use hipFORT <./how-to/using-hipfort>`
      * :doc:`Fortran interface variants <./how-to/fortran-interfaces>`
+     * :doc:`Use hipFORT with OpenMP offload <./how-to/openmp-offload>`
 
   .. grid-item-card:: Tutorials
 
