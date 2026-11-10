@@ -4734,7 +4734,7 @@ module hipfort
   interface hipModuleGetGlobal
 
 #ifdef USE_CUDA_NAMES
-    procedure hipModuleGetGlobal_
+    module procedure hipModuleGetGlobal_opt
 #else
     module procedure &
       hipModuleGetGlobal_opt,&
@@ -10542,7 +10542,7 @@ module hipfort
   interface hipStreamGetCaptureInfo_v2
 
 #ifdef USE_CUDA_NAMES
-    procedure hipStreamGetCaptureInfo_v2_
+    module procedure hipStreamGetCaptureInfo_v2_opt
 #else
     module procedure &
       hipStreamGetCaptureInfo_v2_opt,&
@@ -14128,7 +14128,7 @@ module hipfort
   interface hipStreamGetCaptureInfo_v2_spt
 
 #ifdef USE_CUDA_NAMES
-    procedure hipStreamGetCaptureInfo_v2_spt_
+    module procedure hipStreamGetCaptureInfo_v2_spt_opt
 #else
     module procedure &
       hipStreamGetCaptureInfo_v2_spt_opt,&
@@ -14481,7 +14481,6 @@ module hipfort
     end function
 
 #endif
-#ifndef USE_CUDA_NAMES
     function hipModuleGetGlobal_opt(dptr,bytes,hmod,name)
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_opt
@@ -14496,6 +14495,7 @@ module hipfort
       hipModuleGetGlobal_opt = hipModuleGetGlobal_(dptr__p,bytes,hmod,name)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipModuleGetGlobal_typed(dptr,bytes,hmod,name)
       implicit none
       integer(kind(hipSuccess)) :: hipModuleGetGlobal_typed
@@ -15185,7 +15185,6 @@ module hipfort
     end function
 
 #endif
-#ifndef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_opt(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
       implicit none
@@ -15207,6 +15206,7 @@ module hipfort
         id_out,graph_out__p,dependencies_out__p,numDependencies_out)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_typed(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
       implicit none
@@ -15521,7 +15521,6 @@ module hipfort
     end function
 
 #endif
-#ifndef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_spt_opt(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
       implicit none
@@ -15543,6 +15542,7 @@ module hipfort
         captureStatus_out,id_out,graph_out__p,dependencies_out__p,numDependencies_out)
     end function
 
+#ifndef USE_CUDA_NAMES
     function hipStreamGetCaptureInfo_v2_spt_typed(stream,captureStatus_out,id_out,graph_out, &
         dependencies_out,numDependencies_out)
       implicit none
