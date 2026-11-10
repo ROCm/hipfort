@@ -386,8 +386,8 @@ elseif(CUDAToolkit_FOUND AND TARGET hipfort-nvptx)
   endforeach()
   # The HIP runtime binds part of its routines to the CUDA driver API (cu*:
   # hipModule*, hipMemsetD*, hipGraphInstantiate, ...), which lives in libcuda,
-  # not libcudart. The archive itself never calls them (their wrappers are
-  # AMD-only), but a program that does needs libcuda on its link line.
+  # not libcudart. Some wrappers in the archive call them (hipModuleGetGlobal,
+  # hipLinkCreate, ...), and so may a program, so libcuda goes on the link line.
   if(TARGET hipfort-hip AND TARGET CUDA::cuda_driver)
     target_link_libraries(hipfort-hip INTERFACE CUDA::cuda_driver)
     target_link_libraries(${HIPFORT_BASE_LIB} INTERFACE "$<BUILD_INTERFACE:CUDA::cuda_driver>")
