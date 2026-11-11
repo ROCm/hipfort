@@ -16571,6 +16571,7 @@ module hipfort
   !>
   !>   This section describes the managed memory management functions of HIP runtime API.
   !>
-  !>   @note  The managed memory management APIs are implemented on Linux, under development on Windows.
+  !>   @note The managed memory management APIs are implemented on Linux, under development on
+  !>   Windows.
   !>
 end module hipfort

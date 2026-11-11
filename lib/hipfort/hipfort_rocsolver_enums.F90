@@ -24,6 +24,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocsolver_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
   ! rocblas_layer_mode_ex_
@@ -148,5 +149,9 @@ module hipfort_rocsolver_enums
     enumerator :: rocsolver_function_sytrd = 406
     enumerator :: rocsolver_function_hetrd = 406
   end enum
+
+  integer(c_int), parameter :: ROCSOLVER_VERSION_MAJOR = 3
+  integer(c_int), parameter :: ROCSOLVER_VERSION_MINOR = 38
+  integer(c_int), parameter :: ROCSOLVER_VERSION_PATCH = 0
 
 end module hipfort_rocsolver_enums
