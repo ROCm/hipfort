@@ -25,13 +25,9 @@
 
 module hipfort_rocsolver
   use hipfort_rocsolver_enums
-  use, intrinsic :: iso_c_binding, only: c_double, c_double_complex, c_float, c_float_complex, &
-    c_int, c_int64_t, c_loc, c_ptr, c_size_t
   use hipfort_rocblas_enums, only: rocblas_diagonal_non_unit, rocblas_fill_upper, &
     rocblas_operation_none, rocblas_side_left, rocblas_status_success
   implicit none
-  private :: c_double, c_double_complex, c_float, c_float_complex, c_int, c_int64_t, c_loc, c_ptr, &
-    c_size_t
   private :: rocblas_diagonal_non_unit, rocblas_fill_upper, rocblas_operation_none, &
     rocblas_side_left, rocblas_status_success
 
