@@ -1007,6 +1007,7 @@ module hipfort_hipfftxt
 
   !>   @defgroup hipfftXtExecDescriptor Multi-device descriptor execution
   !>
-  !>   Executes multi-device transforms using hipLibXtDesc descriptors as input and output. In-place transforms require input == output.
+  !>   Executes multi-device transforms using hipLibXtDesc descriptors as input and output. In-place
+  !>   transforms require input == output.
   !>
 end module hipfort_hipfftxt
