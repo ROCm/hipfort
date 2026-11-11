@@ -1899,6 +1899,7 @@ if(BUILD_TESTING)
                        --offload-arch=${HIPFORT_OFFLOAD_ARCH})
 
     # Also the GPU-less guard: --offload-arch=native cannot compile without a GPU.
+    # SRC_EXT F90: the snippet is free form, and the default .F is fixed form.
     include(CheckFortranSourceCompiles)
     set(CMAKE_REQUIRED_FLAGS "-fopenmp --offload-arch=${HIPFORT_OFFLOAD_ARCH}")
     check_fortran_source_compiles("
@@ -1907,7 +1908,7 @@ integer :: i(1)
 !$omp target map(tofrom: i)
 i(1) = 1
 !$omp end target
-end program" HIPFORT_HAVE_OMP_OFFLOAD)
+end program" HIPFORT_HAVE_OMP_OFFLOAD SRC_EXT F90)
     unset(CMAKE_REQUIRED_FLAGS)
 
     find_package(LAPACK QUIET)   # zhegvd, the reference for rocsolver_zhegvdx
@@ -1932,7 +1933,12 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD)
         endif()
         add_executable(hipfort_test_openmp_${_name} "${_src}")
         target_compile_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
-        target_link_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags})
+        # ld.lld defaults to -z start-stop-gc, under which -Wl,--gc-sections
+        # drops the llvm_offload_entries section: no kernel gets registered
+        # and the first target region aborts with "Host ptr ... does not have
+        # a matching target pointer".
+        target_link_options(hipfort_test_openmp_${_name} PRIVATE ${_offload_flags}
+                            -Wl,-z,nostart-stop-gc)
         target_link_libraries(hipfort_test_openmp_${_name}
           PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
         set_target_properties(hipfort_test_openmp_${_name}

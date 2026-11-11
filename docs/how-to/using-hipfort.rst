@@ -127,6 +127,13 @@ Without CMake, add ``-Wl,--gc-sections`` to the command that links your program.
 
 .. note::
 
+   If your program uses OpenMP offload, also link it with
+   ``-Wl,-z,nostart-stop-gc``. ``amdflang`` links with ``ld.lld``, which by
+   default lets ``-Wl,--gc-sections`` remove the table of offload kernels, so
+   the program aborts at its first ``target`` construct.
+
+.. note::
+
    If you build a shared library rather than an executable, also link it with
    ``-Wl,--exclude-libs,libhipfort-amdgcn.a``. A shared library exports its
    global symbols by default, including the hipFORT wrappers it links, and the
