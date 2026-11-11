@@ -290,6 +290,13 @@ passes the latter to ``amdflang`` without the ``-Wl,`` prefix, and the link
 fails. Without CMake, add ``-Wl,--gc-sections`` to the command that links your
 program.
 
+.. note::
+
+   If your program uses OpenMP offload, also link it with
+   ``-Wl,-z,nostart-stop-gc``. ``amdflang`` links with ``ld.lld``, which by
+   default lets ``-Wl,--gc-sections`` remove the table of offload kernels, so
+   the program aborts at its first ``target`` construct.
+
 If you build a shared library rather than an executable, also link it with
 ``-Wl,--exclude-libs`` and the archive of each binding you use, separated by
 colons, for example ``-Wl,--exclude-libs,librocblas_fortran.a:libhip_fortran.a``.
