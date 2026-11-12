@@ -151,7 +151,7 @@ module hipfort_rocsolver_enums
   end enum
 
   integer(c_int), parameter :: ROCSOLVER_VERSION_MAJOR = 3
-  integer(c_int), parameter :: ROCSOLVER_VERSION_MINOR = 38
+  integer(c_int), parameter :: ROCSOLVER_VERSION_MINOR = 39
   integer(c_int), parameter :: ROCSOLVER_VERSION_PATCH = 0
 
 end module hipfort_rocsolver_enums

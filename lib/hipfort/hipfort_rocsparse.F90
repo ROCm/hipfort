@@ -1585,30 +1585,35 @@ module hipfort_rocsparse
   !>   \p rocsparse_create_bell_descr creates a sparse blocked ELL matrix descriptor. It should be
   !>   destroyed at the end using \p rocsparse_destroy_spmat_descr.
   !>
-  !>   Currently the only routine that supports the Blocked ELL format is \ref rocsparse_spmm.
+  !>   The routines that support the Blocked ELL format are \ref rocsparse_spmm,
+  !>   \ref rocsparse_dense_to_sparse, and \ref rocsparse_spmat_scale.
   !>
   !>   @param[out] descr - the pointer to the sparse blocked ELL matrix descriptor.
   !>   @param[in] rows - number of rows in the blocked ELL matrix.
-  !>   @param[in] cols - number of columns in the blocked ELL matrix
+  !>   @param[in] cols - number of columns in the blocked ELL matrix.
   !>   @param[in] ell_block_dir - `rocsparse_direction_row` or `rocsparse_direction_column`.
   !>   @param[in] ell_block_dim - block dimension of the sparse blocked ELL matrix.
-  !>   @param[in] ell_cols - column indices of the blocked ELL matrix. Must be an array of length \p
-  !>   rows*ell_width.
+  !>   @param[in] ell_cols - number of columns of the blocked ELL storage, that is, \p ell_block_dim
+  !>   times the
+  !>                 number of blocks stored per block row. Must be a multiple of \p ell_block_dim
+  !>                 and must not exceed \p cols.
   !>   @param[in] ell_col_ind - column indices of the blocked ELL matrix. Must be an array of length
-  !>   \p rows*ell_width.
+  !>                 \p mb*ell_cols/ell_block_dim,
+  !>                 where \p mb = (rows+ell_block_dim-1)/ell_block_dim.
   !>   @param[in] ell_val - values of the blocked ELL matrix. Must be an array of length \p
-  !>   rows*ell_width.
+  !>   rows*ell_cols.
   !>   @param[in] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
   !>   @param[in] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                 `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_pointer if \p descr, \p ell_cols, \p ell_col_ind, or \p
-  !>   ell_val is invalid.
-  !>   \retval rocsparse_status_invalid_size if \p rows or \p cols is invalid.
-  !>   \retval rocsparse_status_invalid_value if \p idx_type, \p idx_base, or \p data_type is
+  !>   \retval rocsparse_status_invalid_pointer if \p descr, \p ell_col_ind, or \p ell_val is
   !>   invalid.
+  !>   \retval rocsparse_status_invalid_size if \p rows, \p cols, \p ell_block_dim, or \p ell_cols
+  !>   is invalid.
+  !>   \retval rocsparse_status_invalid_value if \p ell_block_dir, \p idx_type, \p idx_base, or \p
+  !>   data_type is invalid.
   interface rocsparse_create_bell_descr
     function rocsparse_create_bell_descr_(descr,rows,cols,ell_block_dir,ell_block_dim,ell_cols, &
         ell_col_ind,ell_val,idx_type,idx_base,data_type) &
@@ -1739,7 +1744,8 @@ module hipfort_rocsparse
   !>   \p rocsparse_destroy_spmat_descr destroys a sparse matrix descriptor and releases all
   !>   resources used by the descriptor.
   !>
-  !>   Currently the only routine that supports the Blocked ELL format is \ref rocsparse_spmm.
+  !>   The routines that support the Blocked ELL format are \ref rocsparse_spmm,
+  !>   \ref rocsparse_dense_to_sparse, and \ref rocsparse_spmat_scale.
   !>
   !>   @param[in] descr - the matrix descriptor.
   !>
@@ -3284,23 +3290,21 @@ module hipfort_rocsparse
   !>   @param[out] cols - number of columns in the blocked ELL matrix.
   !>   @param[out] ell_block_dir - `rocsparse_direction_row` or `rocsparse_direction_column`.
   !>   @param[out] ell_block_dim - block dimension of the sparse blocked ELL matrix.
-  !>   @param[out] ell_cols - column indices of the blocked ELL matrix. Must be an array of length
-  !>   \p rows*ell_width.
-  !>   @param[out] ell_col_ind - column indices of the blocked ELL matrix. Must be an array of
-  !>   length \p rows*ell_width.
-  !>   @param[out] ell_val - values of the blocked ELL matrix. Must be an array of length \p
-  !>   rows*ell_width.
+  !>   @param[out] ell_cols - number of columns of the blocked ELL storage, that is, \p
+  !>   ell_block_dim times the
+  !>                 number of blocks stored per block row.
+  !>   @param[out] ell_col_ind - column indices of the blocked ELL matrix, an array of length
+  !>                 \p mb*ell_cols/ell_block_dim,
+  !>                 where \p mb = (rows+ell_block_dim-1)/ell_block_dim.
+  !>   @param[out] ell_val - values of the blocked ELL matrix, an array of length \p rows*ell_cols.
   !>   @param[out] idx_type - `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
   !>   @param[out] idx_base - `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
   !>   @param[out] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
   !>                 `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_pointer if \p descr, \p ell_cols, \p ell_col_ind, or \p
-  !>   ell_val is invalid.
-  !>   \retval rocsparse_status_invalid_size if \p rows, \p cols, or \p ell_block_dim is invalid.
-  !>   \retval rocsparse_status_invalid_value if \p ell_block_dir, \p idx_type, \p idx_base, or \p
-  !>   data_type is invalid.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr or any output pointer is invalid.
+  !>   \retval rocsparse_status_not_initialized if \p descr is not initialized.
   interface rocsparse_bell_get
     function rocsparse_bell_get_(descr,rows,cols,ell_block_dir,ell_block_dim,ell_cols,ell_col_ind, &
         ell_val,idx_type,idx_base,data_type) &
@@ -3661,13 +3665,17 @@ module hipfort_rocsparse
   !>
   !>   @param[inout] descr - the pointer to the sparse matrix descriptor.
   !>   @param[in] bell_col_ind - column indices of the Blocked ELL matrix. Must be an array of
-  !>   length \p mb*ell_cols/ell_block_size.
+  !>   length
+  !>                 \p mb*ell_cols/ell_block_dim, where \p mb =
+  !>                 (rows+ell_block_dim-1)/ell_block_dim
+  !>                 and \p rows, \p ell_block_dim, and \p ell_cols are those of \p descr.
   !>   @param[in] bell_val - values of the Blocked ELL matrix. Must be an array of length \p
-  !>   m*ell_cols.
+  !>   rows*ell_cols.
   !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_pointer if \p descr, \p bell_col_ind, or \p bell_val is
   !>   invalid.
+  !>   \retval rocsparse_status_not_initialized if \p descr is not initialized.
   interface rocsparse_bell_set_pointers
     function rocsparse_bell_set_pointers_(descr,bell_col_ind,bell_val) &
         bind(c, name="rocsparse_bell_set_pointers")
@@ -4097,6 +4105,37 @@ module hipfort_rocsparse
     end function
   end interface
 
+  !>  \ingroup aux_module
+  !>   \brief Create a dense vector descriptor for a single scalar.
+  !>   \details
+  !>   \p rocsparse_dnvec_descr_create_scalar creates a size-one dense vector descriptor that
+  !>   records
+  !>   whether its value lives in host or device memory. It is a convenience wrapper for passing a
+  !>   self-describing scalar argument (for example the scaling factor consumed by
+  !>   \ref rocsparse_spmat_scale) without relying on the handle pointer mode. Pass a non-null
+  !>   \p values to obtain a read-write descriptor, or only \p const_values (with \p values null)
+  !>   for
+  !>   a read-only descriptor. It should be destroyed when it is no longer needed using
+  !>   rocsparse_destroy_dnvec_descr().
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[out] descr - the pointer to the dense vector descriptor.
+  !>   @param[in] pointer_mode - `rocsparse_pointer_mode_host` if the scalar lives in host memory,
+  !>                  `rocsparse_pointer_mode_device` if it lives in device memory.
+  !>   @param[in] data_type - `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+  !>               `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
+  !>   @param[in] const_values - pointer to the scalar value (read-only view). Must not be null.
+  !>   @param[in] values - pointer to the scalar value (read-write view), or null for a read-only
+  !>   descriptor.
+  !>            When non-null it must equal \p const_values.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>             `rocsparse_status_success`. A null pointer can be passed if an error descriptor is
+  !>             not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_pointer if \p descr or \p const_values is invalid.
+  !>   \retval rocsparse_status_invalid_value if \p data_type or \p pointer_mode is invalid.
   interface
     function rocsparse_dnvec_descr_create_scalar_(handle,descr,pointer_mode,data_type, &
         const_values,values,p_error) &
@@ -15392,7 +15431,8 @@ module hipfort_rocsparse
   !>
   !>   \details
   !>   \p rocsparse_dense_to_sparse performs the conversion of a dense matrix to a sparse matrix in
-  !>   CSR, CSC, or COO format.
+  !>   CSR, CSC, COO, or
+  !>   Blocked ELL format.
   !>
   !>   \p rocsparse_dense_to_sparse requires multiple steps to complete. First, call \p
   !>   rocsparse_dense_to_sparse
@@ -15427,7 +15467,12 @@ module hipfort_rocsparse
   !>   and
   !>   set them on the sparse matrix descriptor using \ref rocsparse_csr_set_pointers (CSR format),
   !>   \ref rocsparse_csc_set_pointers (for CSC format), or \ref rocsparse_coo_set_pointers (for COO
-  !>   format). Finally, the
+  !>   format). For the
+  !>   Blocked ELL format, the analysis instead determines \p ell_cols, which can be queried using
+  !>   \ref rocsparse_bell_get,
+  !>   and the arrays are set using \ref rocsparse_bell_set_pointers. In that case, \p ell_block_dim
+  !>   must be set when
+  !>   creating the sparse matrix descriptor with \ref rocsparse_create_bell_descr. Finally, the
   !>   conversion is completed by calling \p rocsparse_dense_to_sparse with both the \p buffer_size
   !>   and \p temp_buffer :
   !>   \code{.c}
@@ -15447,8 +15492,8 @@ module hipfort_rocsparse
   !>   `rocsparse_datatype_bf16_r`, `rocsparse_datatype_f32_r`,
   !>   `rocsparse_datatype_f64_r`, `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c` for
   !>   values arrays in the sparse matrix
-  !>   (stored in CSR, CSC, or COO format) and the dense matrix. For the row/column offset and
-  !>   row/column index arrays of the sparse matrix,
+  !>   (stored in CSR, CSC, COO, or Blocked ELL format) and the dense matrix. For the row/column
+  !>   offset and row/column index arrays of the sparse matrix,
   !>   \p rocsparse_dense_to_sparse supports the precisions `rocsparse_indextype_i32` and
   !>   `rocsparse_indextype_i64`.
   !>
@@ -16110,7 +16155,9 @@ module hipfort_rocsparse
   !>   <tr><td>rocsparse_sddmm_alg_default</td> <td>Yes</td> <td>No</td> <td>Uses the sparsity
   !>   pattern of matrix C to perform a limited set of dot products. </td>
   !>   <tr><td>rocsparse_sddmm_alg_dense</td> <td>Yes</td> <td>No</td> <td>Explicitly converts the
-  !>   matrix C into a dense matrix to perform a dense matrix multiply and add. </td>
+  !>   matrix C into a dense matrix to perform a dense matrix multiply and add. Requires rocSPARSE
+  !>   to be built with rocBLAS, otherwise `rocsparse_status_not_implemented` is returned.
+  !>   Deprecated, will be removed in a future release. </td>
   !>   </table>
   !>
   !>   Currently, \p rocsparse_sddmm only supports the uniform precisions indicated in the table
@@ -17051,86 +17098,6 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup generic_module
-  !>   \brief Sparse matrix scaling.
-  !>
-  !>   \details
-  !>   \p rocsparse_spmat_scale multiplies the values of the sparse matrix \p source (\f$A\f$) by
-  !>   the
-  !>   scalar \f$\alpha\f$ and writes them into the sparse matrix \p target (\f$C\f$):
-  !>   \f[
-  !>     C := \alpha \cdot A.
-  !>   \f]
-  !>   Only the value array of \p target is written; its data type is scaled by \f$\alpha\f$. This
-  !>   is a
-  !>   uniform scalar multiply of the matrix values; it is unrelated to row/column equilibration
-  !>   scaling. No temporary storage buffer is required.
-  !>
-  !>   This routine does not copy the sparsity pattern. \p target is assumed to already describe the
-  !>   same sparsity pattern as \p source (same format, dimensions and nonzero count), so its index
-  !>   arrays are left untouched. When \p target and \p source alias the same value array the
-  !>   scaling
-  !>   is performed in place; otherwise the scaled source values are written into \p target.
-  !>   In-place
-  !>   operation is the common case. A value of \f$\alpha = 0\f$ writes all-zero values into \p
-  !>   target
-  !>   (the pattern is not dropped).
-  !>
-  !>   The scaling factor \f$\alpha\f$ is passed as a size-one dense vector descriptor. It can live
-  !>   in
-  !>   host or device memory; the memory space is taken from the descriptor itself (see
-  !>   \ref rocsparse_dnvec_descr_create_scalar), so the handle pointer mode does not affect it. The
-  !>   data type of \p alpha must match the data type of the matrices.
-  !>
-  !>   \note The following formats are supported: `rocsparse_format_coo`,
-  !>   `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`,
-  !>   `rocsparse_format_bsr`, `rocsparse_format_ell`, `rocsparse_format_bell` and
-  !>   `rocsparse_format_sell`. \p source and \p target must use the same format.
-  !>   \note Batched matrices are not supported.
-  !>   \note
-  !>   This routine does not support execution in a hipGraph context.
-  !>
-  !>   \par Uniform Precisions:
-  !>   <table>
-  !>   <tr><th>alpha / A / C
-  !>   <tr><td>rocsparse_datatype_f32_r
-  !>   <tr><td>rocsparse_datatype_f64_r
-  !>   <tr><td>rocsparse_datatype_f32_c
-  !>   <tr><td>rocsparse_datatype_f64_c
-  !>   </table>
-  !>
-  !>   @param[in] handle - handle to the rocSPARSE library context queue.
-  !>   @param[in] alpha - size-one dense vector descriptor holding the scalar \f$\alpha\f$.
-  !>   @param[in] source - sparse matrix \f$A\f$ descriptor.
-  !>   @param[out] target - sparse matrix \f$C\f$ descriptor.
-  !>   @param[out] p_error - error descriptor created if the returned status is not
-  !>                `rocsparse_status_success`. A null pointer can be passed if an error
-  !>                descriptor is not required.
-  !>
-  !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
-  !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
-  !>           format is not one of the supported formats, or a batched matrix is passed.
-  interface
-    function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
-        bind(c, name="rocsparse_spmat_scale")
-      import
-      implicit none
-      integer(c_int) :: rocsparse_spmat_scale_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: alpha
-      type(c_ptr),value :: source
-      type(c_ptr),value :: target
-      type(c_ptr),value :: p_error
-    end function
-  end interface
-
-  interface rocsparse_spmat_scale
-
-    module procedure rocsparse_spmat_scale_opt
-  end interface
-
-  !>  \ingroup generic_module
   !>   \brief Incomplete \f$LDL^H\f$ factorization with 0 fill-ins and no pivoting.
   !>   \details
   !>   \p rocsparse_spildlt0_buffer_size returns the size of the non-persistent buffer
@@ -17578,6 +17545,86 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup generic_module
+  !>   \brief Sparse matrix scaling.
+  !>
+  !>   \details
+  !>   \p rocsparse_spmat_scale multiplies the values of the sparse matrix \p source (\f$A\f$) by
+  !>   the
+  !>   scalar \f$\alpha\f$ and writes them into the sparse matrix \p target (\f$C\f$):
+  !>   \f[
+  !>     C := \alpha \cdot A.
+  !>   \f]
+  !>   Only the value array of \p target is written; its data type is scaled by \f$\alpha\f$. This
+  !>   is a
+  !>   uniform scalar multiply of the matrix values; it is unrelated to row/column equilibration
+  !>   scaling. No temporary storage buffer is required.
+  !>
+  !>   This routine does not copy the sparsity pattern. \p target is assumed to already describe the
+  !>   same sparsity pattern as \p source (same format, dimensions and nonzero count), so its index
+  !>   arrays are left untouched. When \p target and \p source alias the same value array the
+  !>   scaling
+  !>   is performed in place; otherwise the scaled source values are written into \p target.
+  !>   In-place
+  !>   operation is the common case. A value of \f$\alpha = 0\f$ writes all-zero values into \p
+  !>   target
+  !>   (the pattern is not dropped).
+  !>
+  !>   The scaling factor \f$\alpha\f$ is passed as a size-one dense vector descriptor. It can live
+  !>   in
+  !>   host or device memory; the memory space is taken from the descriptor itself (see
+  !>   \ref rocsparse_dnvec_descr_create_scalar), so the handle pointer mode does not affect it. The
+  !>   data type of \p alpha must match the data type of the matrices.
+  !>
+  !>   \note The following formats are supported: `rocsparse_format_coo`,
+  !>   `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`,
+  !>   `rocsparse_format_bsr`, `rocsparse_format_ell`, `rocsparse_format_bell` and
+  !>   `rocsparse_format_sell`. \p source and \p target must use the same format.
+  !>   \note Batched matrices are not supported.
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   \par Uniform Precisions:
+  !>   <table>
+  !>   <tr><th>alpha / A / C
+  !>   <tr><td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f64_r
+  !>   <tr><td>rocsparse_datatype_f32_c
+  !>   <tr><td>rocsparse_datatype_f64_c
+  !>   </table>
+  !>
+  !>   @param[in] handle - handle to the rocSPARSE library context queue.
+  !>   @param[in] alpha - size-one dense vector descriptor holding the scalar \f$\alpha\f$.
+  !>   @param[in] source - sparse matrix \f$A\f$ descriptor.
+  !>   @param[out] target - sparse matrix \f$C\f$ descriptor.
+  !>   @param[out] p_error - error descriptor created if the returned status is not
+  !>                `rocsparse_status_success`. A null pointer can be passed if an error
+  !>                descriptor is not required.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha, \p source or \p target pointer is invalid.
+  !>   \retval rocsparse_status_not_implemented the formats of \p source and \p target differ, the
+  !>           format is not one of the supported formats, or a batched matrix is passed.
+  interface
+    function rocsparse_spmat_scale_(handle,alpha,source,target,p_error) &
+        bind(c, name="rocsparse_spmat_scale")
+      import
+      implicit none
+      integer(c_int) :: rocsparse_spmat_scale_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: source
+      type(c_ptr),value :: target
+      type(c_ptr),value :: p_error
+    end function
+  end interface
+
+  interface rocsparse_spmat_scale
+
+    module procedure rocsparse_spmat_scale_opt
+  end interface
+
+  !>  \ingroup generic_module
   !>   \brief Sparse matrix dense matrix multiplication.
   !>
   !>   \details
@@ -17931,6 +17978,12 @@ module hipfort_rocsparse
   !>
   !>   <table>
   !>   <tr><th>Algorithm                            <th>Deterministic  <th>Preprocessing  <th>Notes
+  !>   <tr><td>rocsparse_spmv_alg_default</td> <td>No</td> <td>Yes</td> <td>Non-transposed CSR and
+  !>   transposed or conjugate-transposed CSC use the adaptive algorithm, or the nnz-split algorithm
+  !>   when the adaptive row-block partition is a poor fit for the sparsity pattern, for example
+  !>   when many empty rows are scattered through the matrix. In those cases, half-precision
+  !>   matrices use the adaptive algorithm. Transposed CSR and non-transposed CSC use the rowsplit
+  !>   algorithm.</td>
   !>   <tr><td>rocsparse_spmv_alg_csr_rowsplit</td> <td>Yes</td> <td>No</td> <td>Is best suited for
   !>   matrices with all rows having a similar number of non-zeros. Can outperform adaptive and LRB
   !>   algorithms in certain sparsity patterns. Will perform very poorly if some rows have few
@@ -19104,6 +19157,11 @@ module hipfort_rocsparse
   !>
   !>   <table>
   !>   <tr><th>Algorithm                            <th>Deterministic  <th>Notes
+  !>   <tr><td>rocsparse_spmv_alg_default</td> <td>No</td> <td>Non-transposed CSR and transposed or
+  !>   conjugate-transposed CSC use the adaptive algorithm, or the nnz-split algorithm when the
+  !>   adaptive row-block partition is a poor fit for the sparsity pattern, for example when many
+  !>   empty rows are scattered through the matrix. In those cases, half-precision matrices use the
+  !>   adaptive algorithm. Transposed CSR and non-transposed CSC use the rowsplit algorithm.</td>
   !>   <tr><td>rocsparse_spmv_alg_csr_rowsplit</td> <td>Yes</td> <td>This is best suited for
   !>   matrices with all rows having a similar number of non-zeros. Can outperform adaptive and LRB
   !>   algorithms in certain sparsity patterns. Will perform very poorly if some rows have few
@@ -29860,8 +29918,9 @@ module hipfort_rocsparse
   !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval     rocsparse_status_invalid_pointer if \p info tolerance pointer is
-  !>               invalid
+  !>   \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval     rocsparse_status_invalid_value \p tolerance is negative.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_csric0_set_tolerance
     function rocsparse_csric0_set_tolerance_(handle,myInfo,tolerance) &
         bind(c, name="rocsparse_csric0_set_tolerance")
@@ -30644,6 +30703,7 @@ module hipfort_rocsparse
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_pointer \p info pointer is invalid.
+  !>   \retval     rocsparse_status_invalid_value \p tolerance is negative.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_csrilu0_set_tolerance
     function rocsparse_csrilu0_set_tolerance_(handle,myInfo,tolerance) &
@@ -40718,21 +40778,6 @@ module hipfort_rocsparse
         buffer_size_in_bytes,buffer,p_error__p)
     end function
 
-    function rocsparse_spmat_scale_opt(handle,alpha,source,target,p_error)
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_opt
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: source
-      type(c_ptr), value :: target
-      type(c_ptr),optional,target :: p_error
-      type(c_ptr) :: p_error__p
-      !
-      p_error__p = c_null_ptr
-      if (present(p_error)) p_error__p = c_loc(p_error)
-      rocsparse_spmat_scale_opt = rocsparse_spmat_scale_(handle,alpha,source,target,p_error__p)
-    end function
-
     function rocsparse_spildlt0_buffer_size_opt(handle,spildlt0_descr,A,P,spildlt0_stage, &
         p_buffer_size_in_bytes,p_error)
       implicit none
@@ -40873,6 +40918,21 @@ module hipfort_rocsparse
       if (present(buffer_size)) buffer_size__p = c_loc(buffer_size)
       rocsparse_spitsv_typed = rocsparse_spitsv_(handle,c_loc(host_nmaxiter),host_tol, &
         host_history,trans,alpha,mat,x,y,compute_type,alg,stage,buffer_size__p,temp_buffer)
+    end function
+
+    function rocsparse_spmat_scale_opt(handle,alpha,source,target,p_error)
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_spmat_scale_opt
+      type(c_ptr), value :: handle
+      type(c_ptr), value :: alpha
+      type(c_ptr), value :: source
+      type(c_ptr), value :: target
+      type(c_ptr),optional,target :: p_error
+      type(c_ptr) :: p_error__p
+      !
+      p_error__p = c_null_ptr
+      if (present(p_error)) p_error__p = c_loc(p_error)
+      rocsparse_spmat_scale_opt = rocsparse_spmat_scale_(handle,alpha,source,target,p_error__p)
     end function
 
     function rocsparse_spmm_typed(handle,trans_A,trans_B,alpha,mat_A,mat_B,beta,mat_C, &

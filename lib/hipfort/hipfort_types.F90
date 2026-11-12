@@ -189,7 +189,7 @@ module hipfort_types
     integer(c_int) :: memoryClockRate !< Max global memory clock frequency in khz.
     integer(c_int) :: memoryBusWidth !< Global memory bus width in bits.
     integer(c_int) :: l2CacheSize !< L2 cache size.
-    integer(c_int) :: persistingL2CacheMaxSize !< Device's max L2 persisting lines in bytes
+    integer(c_int) :: persistingL2CacheMaxSize !< Maximum L2 cache size in bytes available for persisting accesses. 0 when th...
     integer(c_int) :: maxThreadsPerMultiProcessor !< Maximum resident threads per multi-processor.
     integer(c_int) :: streamPrioritiesSupported !< Device supports stream priority
     integer(c_int) :: globalL1CacheSupported !< Indicates globals are cached in L1
@@ -449,12 +449,37 @@ module hipfort_types
     integer(c_int) :: id !< Identifier for the provided location type @p hipMemLocationType
   end type hipMemLocation
 
+  type, bind(c) :: hipExtMemcpyWait
+    type(c_ptr) :: addr !< GPU address to poll; NULL iff compareOp is None
+    integer(c_int64_t) :: value !< Reference value for comparison
+    integer(c_int64_t) :: mask !< AND mask applied before comparison (0 = full 64-bit word)
+    integer(c_int32_t) :: compareOp !< Comparison function; see hipExtMemcpyWaitOp
+    integer(c_int32_t) :: reserved0 !< Reserved; must be 0
+    integer(c_int64_t) :: reserved(4) !< Reserved; must be 0 (future use)
+  end type hipExtMemcpyWait
+
+  type, bind(c) :: hipExtMemcpySignal
+    type(c_ptr) :: addr !< GPU address to signal; NULL iff signalOp is None
+    integer(c_int64_t) :: data !< Data value for the atomic operation
+    integer(c_int32_t) :: signalOp !< Atomic operation; see hipExtMemcpySignalOp
+    integer(c_int32_t) :: reserved0 !< Reserved; must be 0
+    integer(c_int64_t) :: reserved(5) !< Reserved; must be 0 (future use)
+  end type hipExtMemcpySignal
+
   type, bind(c) :: hipMemcpyAttributes
     integer(c_int) :: srcAccessOrder !< Source access ordering to be observed for copies with this attribute.
     type(hipMemLocation) :: srcLocHint !< Location hint for src operand.
     type(hipMemLocation) :: dstLocHint !< Location hint for destination operand.
     integer(c_int) :: flags !< Additional Flags for copies. See hipMemcpyFlags.
   end type hipMemcpyAttributes
+
+  type, bind(c) :: hipExtMemcpyAttributes
+    integer(c_int) :: srcAccessOrder !< Source access ordering; see hipMemcpySrcAccessOrder.
+    type(hipMemLocation) :: srcLocHint !< Location hint for src operand.
+    type(hipMemLocation) :: dstLocHint !< Location hint for destination operand.
+    integer(c_int) :: flags !< Op selection and hints; see hipMemcpyFlags.
+    integer(c_int32_t) :: reserved(8) !< Reserved; must be 0 (future use).
+  end type hipExtMemcpyAttributes
 
   type, bind(c) :: hipOffset3D
     integer(c_size_t) :: x

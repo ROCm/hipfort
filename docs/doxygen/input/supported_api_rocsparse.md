@@ -373,12 +373,12 @@
 369 | [rocsparse_spgemm](interfacehipfort__rocsparse_1_1rocsparse__spgemm.html "Interface documentation") | C binding, typed
 370 | [rocsparse_spic0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__spic0__buffer__size.html "Interface documentation") | C binding, typed
 371 | [rocsparse_spic0](interfacehipfort__rocsparse_1_1rocsparse__spic0.html "Interface documentation") | C binding
-372 | [rocsparse_spmat_scale](interfacehipfort__rocsparse_1_1rocsparse__spmat__scale.html "Interface documentation") | C binding
-373 | [rocsparse_spildlt0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__spildlt0__buffer__size.html "Interface documentation") | C binding, typed
-374 | [rocsparse_spildlt0](interfacehipfort__rocsparse_1_1rocsparse__spildlt0.html "Interface documentation") | C binding
-375 | [rocsparse_spilu0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__spilu0__buffer__size.html "Interface documentation") | C binding, typed
-376 | [rocsparse_spilu0](interfacehipfort__rocsparse_1_1rocsparse__spilu0.html "Interface documentation") | C binding
-377 | [rocsparse_spitsv](interfacehipfort__rocsparse_1_1rocsparse__spitsv.html "Interface documentation") | C binding, typed
+372 | [rocsparse_spildlt0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__spildlt0__buffer__size.html "Interface documentation") | C binding, typed
+373 | [rocsparse_spildlt0](interfacehipfort__rocsparse_1_1rocsparse__spildlt0.html "Interface documentation") | C binding
+374 | [rocsparse_spilu0_buffer_size](interfacehipfort__rocsparse_1_1rocsparse__spilu0__buffer__size.html "Interface documentation") | C binding, typed
+375 | [rocsparse_spilu0](interfacehipfort__rocsparse_1_1rocsparse__spilu0.html "Interface documentation") | C binding
+376 | [rocsparse_spitsv](interfacehipfort__rocsparse_1_1rocsparse__spitsv.html "Interface documentation") | C binding, typed
+377 | [rocsparse_spmat_scale](interfacehipfort__rocsparse_1_1rocsparse__spmat__scale.html "Interface documentation") | C binding
 378 | [rocsparse_spmm](interfacehipfort__rocsparse_1_1rocsparse__spmm.html "Interface documentation") | C binding, typed
 379 | [rocsparse_spmv](interfacehipfort__rocsparse_1_1rocsparse__spmv.html "Interface documentation") | C binding, typed
 380 | [rocsparse_spsm](interfacehipfort__rocsparse_1_1rocsparse__spsm.html "Interface documentation") | C binding, typed
