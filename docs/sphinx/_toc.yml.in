@@ -16,6 +16,8 @@ subtrees:
         title: Use hipFORT
       - file: how-to/fortran-interfaces.rst
         title: Fortran interface variants
+      - file: how-to/openmp-offload.rst
+        title: Use hipFORT with OpenMP offload
 
   - caption: Tutorials
     entries:
