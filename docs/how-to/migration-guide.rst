@@ -565,8 +565,10 @@ The bindings are Linux-first. ROCm for Windows ships no Fortran compiler, so
 contains no ``.mod``, no ``lib<lib>_fortran`` archive, and no installed
 ``.F90``. Nothing in the bindings is Linux-specific, though: they are plain
 ``iso_c_binding`` code. With a Fortran compiler of your own (Intel ``ifx``, for
-example), take the binding's directory (``bindings/fortran/<library>`` in
-rocm-libraries, ``bindings/fortran`` in rocm-systems for HIP and ROCTx) from the repository at the tag of your ROCm and build it as in `Building a binding with your compiler`_. This
+example), take the binding's directory, ``bindings/fortran/<library>`` (in
+rocm-libraries for the math libraries, in rocm-systems for HIP and ROCTx), from
+the repository at the tag of your ROCm and build it as in
+`Building a binding with your compiler`_. This
 path is not tested yet; if you try it, please
 `report how it went <https://github.com/ROCm/hipfort/issues>`_.
 
@@ -717,12 +719,13 @@ the flags, for a program linked with ``-Wl,--gc-sections``
 (`Binding and library versions`_).
 
 The bindings live in their own ``bindings/fortran/`` tree, apart from the
-libraries: in `rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
+libraries, one directory per library: in
+`rocm-libraries <https://github.com/ROCm/rocm-libraries>`_ under
 ``bindings/fortran/<library>`` for the math libraries, and in
 `rocm-systems <https://github.com/ROCm/rocm-systems>`_ under
-``bindings/fortran`` for HIP and ROCTx, which one project builds together
-(``cmake -S <rocm-systems>/bindings/fortran -B build/fortran`` with the same
-options). Check out the tag of the ROCm
+``bindings/fortran/hip`` and ``bindings/fortran/roctx`` (for example
+``cmake -S <rocm-systems>/bindings/fortran/hip -B build/hip-fortran`` with the
+same options). Check out the tag of the ROCm
 you have installed (both repositories tag releases as ``therock-<version>``),
 for the reason given above.
 
@@ -815,8 +818,8 @@ branch against a recent ROCm, such as a TheRock nightly, with the commands in
 `Building a binding with your compiler`_. A branch can be newer than your
 nightly: link with ``-Wl,--gc-sections`` (`Binding and library versions`_), so
 that a routine the nightly does not have yet fails only if you call it. Build HIP's binding first: the other
-bindings' tests ``use hip``. ROCTx's binding is built with HIP's, in
-rocm-systems' ``bindings/fortran/``.
+bindings' tests ``use hip``. HIP's and ROCTx's bindings are in rocm-systems'
+``bindings/fortran/hip/`` and ``bindings/fortran/roctx/``.
 
 .. list-table::
    :header-rows: 1
