@@ -62,6 +62,10 @@ jobs:
           version: '1.12'
       - uses: julia-actions/cache@9353db09a0f2bbbdec6f41791918c75d37391b36 # v3.5.0
 
+      - name: Install doxygen and gfortran
+        # regenerate.sh step 4 runs Doxygen over the generated modules.
+        run: sudo apt-get update && sudo apt-get install -y doxygen gfortran
+
       - name: Download the ROCm nightly headers
         id: rocm
         env:
@@ -86,6 +90,11 @@ jobs:
         run: |
           julia --project=generator/src -e 'using Pkg; Pkg.instantiate()'
           bash generator/regenerate.sh "${GITHUB_WORKSPACE}/hipfort"
+          # The Doxygen denylist is read at generation time: a refreshed one needs a second pass.
+          if ! git -C generator diff --quiet -- src/common/doxygen_denylist.txt; then
+            echo "::notice::The generator's doxygen_denylist.txt changed; regenerating once more. Update it in ${GENERATOR_REPO}."
+            bash generator/regenerate.sh "${GITHUB_WORKSPACE}/hipfort"
+          fi
           git -C hipfort status --short
 
       - name: Skip a PR someone has pushed to
