@@ -1,0 +1,131 @@
+# Copyright Advanced Micro Devices, Inc.
+# SPDX-License-Identifier: MIT
+#
+# Daily: regenerate hipfort's bindings (lib/hipfort, the symbol tests and the
+# supported-API tables) from the newest TheRock ROCm nightly's headers with
+# rocm-fortran-generator, and open or refresh one draft PR when they changed.
+# The PR is closed when develop is already up to date. A PR someone has pushed
+# to (e.g. a CHANGELOG entry) is never overwritten.
+#
+# Needs: Settings > Actions > "Allow GitHub Actions to create and approve pull
+# requests".
+
+name: Regenerate bindings
+
+on:
+  schedule:
+    - cron: '0 5 * * *'
+  workflow_dispatch:
+    inputs:
+      rocm_tarball:
+        description: TheRock nightly tarball name (empty = newest gfx94X-dcgpu)
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+env:
+  # The generator with the hipfort layout (regenerate.sh). Bump on purpose.
+  GENERATOR_REPO: ROCm/rocm-fortran-generator
+  GENERATOR_REF: main
+  NIGHTLY_URL: https://nightly.repo.amd.com/rocm/core/tarball
+  BOT_BRANCH: bindings-bot/regenerate
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout hipfort
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: develop
+          path: hipfort
+
+      - name: Checkout rocm-fortran-generator
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          repository: ${{ env.GENERATOR_REPO }}
+          ref: ${{ env.GENERATOR_REF }}
+          path: generator
+          persist-credentials: false
+
+      - uses: julia-actions/setup-julia@da908477b5db94c10ffce8cfea9f2b3b9d5db687 # v3.0.3
+        with:
+          version: '1.12'
+      - uses: julia-actions/cache@9353db09a0f2bbbdec6f41791918c75d37391b36 # v3.5.0
+
+      - name: Install doxygen and gfortran
+        # regenerate.sh step 4 runs Doxygen over the generated modules.
+        run: sudo apt-get update && sudo apt-get install -y doxygen gfortran
+
+      - name: Download the ROCm nightly headers
+        id: rocm
+        env:
+          ROCM_TARBALL: ${{ inputs.rocm_tarball }}
+        run: |
+          if [ -z "${ROCM_TARBALL}" ]; then
+            # The index page embeds its listing; the headers are arch-independent.
+            ROCM_TARBALL=$(curl -fsSL "${NIGHTLY_URL}/" \
+              | grep -oE 'therock-dist-linux-gfx94X-dcgpu-[0-9][0-9.]*a[0-9]{8}\.tar\.gz' \
+              | sort -uV | tail -1)
+          fi
+          [ -n "${ROCM_TARBALL}" ]
+          mkdir -p rocm
+          curl -fsSL "${NIGHTLY_URL}/${ROCM_TARBALL}" | tar -xz -C rocm --wildcards './include/*'
+          hip=$(awk '/#define HIP_VERSION_(MAJOR|MINOR|PATCH) /{v=v (v?".":"") $3} END{print v}' rocm/include/hip/hip_version.h)
+          echo "tarball=${ROCM_TARBALL}" >> "$GITHUB_OUTPUT"
+          echo "hip=${hip}" >> "$GITHUB_OUTPUT"
+
+      - name: Regenerate
+        env:
+          ROCM_INCLUDE: ${{ github.workspace }}/rocm/include
+        run: |
+          julia --project=generator/src -e 'using Pkg; Pkg.instantiate()'
+          bash generator/regenerate.sh "${GITHUB_WORKSPACE}/hipfort"
+          # The Doxygen denylist is read at generation time: a refreshed one needs a second pass.
+          if ! git -C generator diff --quiet -- src/common/doxygen_denylist.txt; then
+            echo "::notice::The generator's doxygen_denylist.txt changed; regenerating once more. Update it in ${GENERATOR_REPO}."
+            bash generator/regenerate.sh "${GITHUB_WORKSPACE}/hipfort"
+          fi
+          git -C hipfort status --short
+
+      - name: Skip a PR someone has pushed to
+        id: guard
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr=$(gh pr list -R "${GITHUB_REPOSITORY}" --head "${BOT_BRANCH}" --state open --json number -q '.[0].number')
+          author=""
+          [ -n "${pr}" ] && author=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${BOT_BRANCH}" -q .commit.author.email)
+          if [ -n "${pr}" ] && [ "${author}" != "41898282+github-actions[bot]@users.noreply.github.com" ]; then
+            echo "::notice::PR #${pr} has commits from ${author}; leaving it alone."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open, refresh or close the PR
+        if: steps.guard.outputs.skip != 'true'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          path: hipfort
+          branch: ${{ env.BOT_BRANCH }}
+          base: develop
+          draft: true
+          delete-branch: true
+          # The guard above recognizes the bot's own commits by this author.
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit-message: Regenerate the bindings from ROCm nightly (HIP ${{ steps.rocm.outputs.hip }})
+          title: Regenerate the bindings from ROCm nightly (HIP ${{ steps.rocm.outputs.hip }})
+          body: |
+            Regenerated by the [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) workflow from:
+            - ROCm headers: `${{ steps.rocm.outputs.tarball }}` (HIP ${{ steps.rocm.outputs.hip }})
+            - Generator: ${{ env.GENERATOR_REPO }}@${{ env.GENERATOR_REF }}
+
+            Review, add a CHANGELOG entry, then mark ready. Once you push to this branch the workflow stops updating it.
