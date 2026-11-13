@@ -1981,7 +1981,11 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD SRC_EXT F90)
           endif()
           add_executable(${_tgt} "${_src}")
           target_compile_options(${_tgt} PRIVATE ${_flags})
-          target_link_options(${_tgt} PRIVATE ${_flags})
+          # ld.lld defaults to -z start-stop-gc, under which -Wl,--gc-sections
+          # drops the llvm_offload_entries section: no kernel gets registered
+          # and the first target region aborts with "Host ptr ... does not have
+          # a matching target pointer".
+          target_link_options(${_tgt} PRIVATE ${_flags} -Wl,-z,nostart-stop-gc)
           target_link_libraries(${_tgt} PRIVATE hipfort::${_lib} ${LAPACK_LIBRARIES})
           set_target_properties(${_tgt} PROPERTIES LINKER_LANGUAGE Fortran)
         endforeach()

@@ -43,7 +43,7 @@ program test_hipsolver_dsyevd_host
 
         info = -1
         cerr = hipsolverDsyevd(handle, HIPSOLVER_EIG_MODE_VECTOR, HIPSOLVER_FILL_MODE_UPPER, &
-               n, c_loc(A(1,1)), n, c_loc(W(1)), work, lwork, info)
+               n, c_loc(A(1,1)), n, c_loc(W(1)), work, lwork, c_loc(info))
         if (cerr /= HIPSOLVER_STATUS_SUCCESS) then
                 write(*,*) "hipsolverDsyevd on host buffers returned status ", cerr
                 error stop "FAILED"
