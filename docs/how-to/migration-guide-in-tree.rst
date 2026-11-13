@@ -14,7 +14,7 @@ ships itself**, ``use rocblas`` compiled against
 ``/opt/rocm/include/rocblas/rocblas_module.f90``, ``use rocsparse``,
 ``use rocrand_m``. Several ROCm libraries have shipped a hand-written Fortran
 module next to their C API for years. From ROCm 10.3 a generated binding
-supersedes them: they are deprecated, and removed in a later release.
+supersedes them: they are deprecated, and removed no earlier than ROCm 11.0.
 
 If instead you build **hipFORT** yourself and write ``use hipfort_rocblas``,
 this page is not yours: see :doc:`migration-guide`. The two migrations share a
@@ -46,9 +46,8 @@ When to move
 ============
 
 ROCm 10.3 ships the generated binding beside the hand-written module, which is
-deprecated from then on and removed in a later release, announced in the
-library's CHANGELOG. Move during that window; unlike hipFORT, there is no 11.0
-horizon.
+deprecated from then on and removed no earlier than ROCm 11.0, announced in
+the library's CHANGELOG. Move during that window.
 
 In 10.3 the generated bindings are a tech preview: they ship in TheRock's
 tarballs and, if they are ready, in the OS packages, and their interfaces can
@@ -166,8 +165,8 @@ The build change catches people precisely because the ``use`` line often does
 not move. rocBLAS, hipBLAS and rocSPARSE installed their module as a **source**
 file (``/opt/rocm/include/rocblas/rocblas_module.f90``), so you almost certainly
 compile it as part of your own build today. Stop: the file is deprecated from
-10.3 and goes away in a later release, and a compiled module ships with ROCm
-from 10.3 (as a tech preview, see `When to move`_). Drop it from your source list and link the archive instead.
+10.3 and goes away no earlier than ROCm 11.0, and a compiled module ships with
+ROCm from 10.3 (as a tech preview, see `When to move`_). Drop it from your source list and link the archive instead.
 
 rocRAND and hipRAND did the same thing one level further out, installing their
 sources under ``<lib>/src/fortran/`` and pointing at them from the config

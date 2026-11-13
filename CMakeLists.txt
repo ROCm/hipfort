@@ -136,7 +136,7 @@ endif()
 # DEPRECATION messages as warnings by default; -Wno-deprecated silences them.
 message(DEPRECATION
   "hipFORT is deprecated: it is maintained through the ROCm 10.x series and "
-  "removed in ROCm 11.0. From ROCm 10.3, ROCm ships Fortran bindings for HIP, "
+  "removed no earlier than ROCm 11.0. From ROCm 10.3, ROCm ships Fortran bindings for HIP, "
   "ROCTx and the math libraries, one module and one CMake package per library "
   "(use hip, use rocblas, ...; find_package(rocblas-fortran)). Migrate with the "
   "guide at https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html")

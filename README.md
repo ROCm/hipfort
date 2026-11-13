@@ -1,7 +1,7 @@
 # hipfort: Fortran Interface For GPU Kernel Libraries
 
 > [!WARNING]
-> hipFORT is deprecated. It is maintained through the ROCm 10.x series and removed in ROCm 11.0.
+> hipFORT is deprecated. It is maintained through the ROCm 10.x series and removed no earlier than ROCm 11.0.
 > From ROCm 10.3, ROCm ships Fortran bindings for HIP, ROCTx and the math libraries itself,
 > one module and one CMake package per library (`use hip`, `use rocblas`, `find_package(rocblas-fortran)`).
 > See the [migration guide](https://rocm.docs.amd.com/projects/hipfort/en/latest/how-to/migration-guide.html).
