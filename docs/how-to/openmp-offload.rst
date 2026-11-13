@@ -76,3 +76,15 @@ On a system with unified memory, such as the MI300A, a program built with
 ``-fopenmp-force-usm`` can pass host arrays to the library directly. The
 ``target data`` regions and ``use_device_addr`` are then not needed, but the
 ``hipDeviceSynchronize`` call before reading the results on the host still is.
+
+Run such a program with XNACK on (``HSA_XNACK=1``): with XNACK off, the GPU
+cannot access host memory on demand, and the first library call faults. The
+same holds for a program that passes host allocations to a library without
+``-fopenmp-force-usm``. The ``test/openmp/<library>/test_*_host.f90`` programs
+of the hipFORT test suite do exactly that, one per library, and run only in the
+XNACK matrix below.
+
+To run the test suite in both XNACK modes, configure it with
+``-DBUILD_TESTING=ON -DHIPFORT_XNACK_MATRIX=ON``. Every test then also runs with
+``HSA_XNACK=1``, and with LLVM Flang, each OpenMP offload test also runs as a
+``-fopenmp-force-usm`` build. The option is off by default.

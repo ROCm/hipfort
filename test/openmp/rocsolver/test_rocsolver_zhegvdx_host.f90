@@ -75,7 +75,7 @@ program test_rocsolver_zhegvdx_host
         if (cerr /= rocblas_status_success) error stop "rocblas_create_handle failed"
 
         cerr = rocsolver_zhegvdx(handle, rocblas_eform_ax, rocblas_evect_original, rocblas_erange_index, rocblas_fill_upper, &
-                                 n, c_loc(A_rocsolver(1,1)), n, c_loc(B_rocsolver(1,1)), n, vl, vu, il, iu, m, &
+                                 n, c_loc(A_rocsolver(1,1)), n, c_loc(B_rocsolver(1,1)), n, vl, vu, il, iu, c_loc(m), &
                                  c_loc(W(1)), c_loc(Z(1,1)), n, c_loc(info))
         if (cerr /= rocblas_status_success) then
             write(*,*) "rocsolver_zhegvdx on host buffers returned status ", cerr
