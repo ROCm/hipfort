@@ -96,12 +96,13 @@ Timeline
        full documentation and the compatibility promise below. hipFORT is still
        maintained, so both work and you can migrate at any point in this window.
        Aim for the start of it rather than the end.
-   * - **11.0**
-     - hipFORT is removed. You must be on the new bindings by this release.
+   * - **11.0 or later**
+     - hipFORT is removed, no earlier than 11.0. Be on the new bindings by
+       11.0.
 
 **Do I need to do anything now?** No. Today's hipFORT keeps working until it is
-removed at ROCm 11.0, and old and new share the same interfaces underneath, so
-you migrate on your own schedule. Migrate early anyway: the edit is mechanical,
+removed, no earlier than ROCm 11.0, and old and new share the same interfaces
+underneath, so you migrate on your own schedule. Migrate early anyway: the edit is mechanical,
 but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
@@ -412,8 +413,7 @@ now come from the library module you already ``use``:
      - In ``hip`` (``hipGetDeviceProperties``)
 
 Only ``hipfort_cuda_errors`` (the CUDA-backend error enum) has no new
-equivalent: it is tied to the dropped CUDA backend and retires with hipFORT at
-11.0.
+equivalent: it is tied to the dropped CUDA backend and retires with hipFORT.
 
 A rename looks like this; the calls in between are untouched:
 
@@ -781,7 +781,7 @@ present, skipped with a ``STATUS`` message when one is not.
        to
    * - ``BUILD_TESTING``, ``HIPFORT_ROCM_LIB_DIR``, ``HIPFORT_CUDA_LIB_DIR``
      - ``BUILD_FORTRAN_CLIENTS`` (``ON``). hipFORT's single suite splits into
-       each binding's ``test/`` (rocBLAS's and hipBLAS's are still to come)
+       each binding's ``test/``
    * - ``HIPFORT_EXTENDED_TESTS``
      - Gone, with both link-time audits it gated, which checked the bindings
        themselves rather than your code. What you build is the runtime suite,
@@ -852,11 +852,11 @@ bindings' tests ``use hip``. HIP's and ROCTx's bindings are in rocm-systems'
    * - hipRAND
      - `rocm-libraries#12506 <https://github.com/ROCm/rocm-libraries/pull/12506>`_
 
-Once they are merged, TheRock builds them in a separate stage after the
-libraries and packages each family's bindings in one
-``amdrocm-<family>-fortran-devel`` package. Its nightly builds are the first
-place to get them precompiled. Reports from trying a real code are especially
-welcome at this stage:
+Once they are merged, TheRock builds and tests them in a separate stage after
+the libraries. They reach its nightly tarballs, precompiled, once TheRock
+enables them in its release builds, and the OS packages once the proposed
+``amdrocm-<family>-fortran-devel`` packages are approved. Reports from trying a
+real code are especially welcome at this stage:
 `open an issue <https://github.com/ROCm/hipfort/issues>`_.
 
 What does not change
@@ -888,7 +888,7 @@ shipped themselves have collisions of their own at 10.3; those are covered in
 :doc:`migration-guide-in-tree`, not here.
 
 **If you build for NVIDIA (CUDA)**, the ``nvptx`` backend is dropped from the
-new bindings. It survives only in old hipFORT until 11.0.
+new bindings. It survives only in old hipFORT, until hipFORT is removed.
 
 **If you port code from CUDA Fortran**, the ``hip*`` modules follow the names
 of NVIDIA's CUDA Fortran modules; see :doc:`migration-guide-cuda-fortran`.
