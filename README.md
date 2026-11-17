@@ -18,7 +18,7 @@ interfaces that take Fortran arrays directly.
 
 It covers:
 
-* [Installing hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/install/install.html), including the CMake options and the tests
+* [Installing hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/install/install.html), including the CMake options, the toolchain files and the tests
 * [Using hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/using-hipfort.html): linking with and without CMake, and the supported API of each library
 * [The Fortran interfaces](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/fortran-interfaces.html): Fortran 2003, Fortran 2008 and the experimental assumed-rank interfaces
 * [Using hipfort with OpenMP offload](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/openmp-offload.html)
