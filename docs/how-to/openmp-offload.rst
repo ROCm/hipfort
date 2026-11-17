@@ -29,7 +29,10 @@ The following program computes ``y := alpha * x + y`` three times with
 The outer ``target data`` region copies ``x`` and ``y`` to the device and
 copies ``y`` back to the host when it ends. In the inner region,
 ``use_device_addr(x, y)`` makes ``x`` and ``y`` refer to their device copies,
-so hipBLAS reads and writes device memory. Keep three points in mind:
+so hipBLAS reads and writes device memory. The two regions can also be
+written as one construct,
+``!$omp target data map(to: x) map(tofrom: y) use_device_addr(x, y)``.
+Keep three points in mind:
 
 * **Synchronize before the outer** ``end target data``. hipBLAS routines are
   asynchronous: they return once the work is queued. Without a call to
@@ -59,8 +62,9 @@ allocatables themselves: ``use_device_ptr`` on ``type(c_ptr)`` variables set to
 ``c_loc(x)`` and ``c_loc(y)`` before the region, passed to the raw interface.
 
 Build the program with the OpenMP offload flags, for example
-``amdflang -fopenmp --offload-arch=gfx90a``, and link it against
-``hipfort::hipblas``. The hipFORT test suite builds and runs this example when
+``amdflang -fopenmp --offload-arch=gfx90a``. With CMake, link it against
+``hipfort::hipblas``; without CMake, :ref:`hipfort-without-cmake` lists the
+options and the libraries to link. The hipFORT test suite builds and runs this example when
 the Fortran compiler is LLVM Flang with OpenMP offload support; see
 ``test/openmp/README.openmp``.
 

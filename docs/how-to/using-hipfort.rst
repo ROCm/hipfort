@@ -95,6 +95,73 @@ If hipFORT is not in a default location,
 point CMake at it with ``-Dhipfort_ROOT=/path/to/hipfort`` (or
 ``CMAKE_PREFIX_PATH``).
 
+.. _hipfort-without-cmake:
+
+Building your application without CMake
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ROCm does not ship hipFORT: build it and install it with the Fortran compiler you
+use for your application (``cmake --install build --prefix <prefix>``). With the
+default layout, its modules are in ``<prefix>/include/fortran/<compiler>/hipfort/amdgcn``
+and its library in ``<prefix>/lib/fortran/<compiler>``, where ``<compiler>`` is,
+for example, ``amdflang`` or ``gfortran``.
+
+A program that uses hipBLAS compiles and links with:
+
+.. code-block:: shell
+
+   amdflang main.f90 -o main \
+     -I<prefix>/include/fortran/amdflang/hipfort/amdgcn \
+     -L<prefix>/lib/fortran/amdflang -lhipfort-amdgcn \
+     -L<rocm>/lib -lhipblas -lamdhip64 -Wl,-rpath,<rocm>/lib
+
+* ``-I`` points the compiler at the hipFORT modules (``.mod`` files).
+* ``-lhipfort-amdgcn`` is the hipFORT library. It holds the module procedures:
+  the array forms of the routines (``hipblasSaxpy`` on Fortran arrays), the
+  ``hipCheck``, ``hipblasCheck``, ... routines of ``hipfort_check``, and the
+  ``hipMalloc`` and ``hipMemcpy`` overloads.
+* Each module you ``use`` needs the ROCm library it binds, from the table below.
+  ``-lamdhip64``, the HIP runtime, is always needed.
+* ``-Wl,-rpath`` lets the program find the ROCm libraries at run time without
+  ``LD_LIBRARY_PATH``.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 45 55
+
+   * - Module
+     - Link with
+   * - ``hipfort`` (HIP)
+     - ``-lamdhip64``
+   * - ``hipfort_roctx``
+     - ``-lrocprofiler-sdk-roctx``
+   * - ``hipfort_rocblas``
+     - ``-lrocblas``
+   * - ``hipfort_rocsolver``
+     - ``-lrocsolver -lrocblas``
+   * - ``hipfort_rocsparse``
+     - ``-lrocsparse``
+   * - ``hipfort_rocfft``
+     - ``-lrocfft``
+   * - ``hipfort_rocrand``
+     - ``-lrocrand``
+   * - ``hipfort_hipblas``
+     - ``-lhipblas``
+   * - ``hipfort_hipsolver``
+     - ``-lhipsolver``
+   * - ``hipfort_hipsparse``
+     - ``-lhipsparse``
+   * - ``hipfort_hipfft``, ``hipfort_hipfftxt``
+     - ``-lhipfft``
+   * - ``hipfort_hipfftw``
+     - ``-lhipfftw``
+   * - ``hipfort_hiprand``
+     - ``-lhiprand``
+
+rocSOLVER takes a rocBLAS handle, so a rocSOLVER program also links rocBLAS.
+With OpenMP offload, add ``-fopenmp`` and ``--offload-arch=<gfx>``
+(see :doc:`openmp-offload`).
+
 .. _hipfort-gc-sections:
 
 Linking only the routines you call
