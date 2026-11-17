@@ -31,7 +31,7 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 
    *  hipBLAS
    *  hipFFT
-   *  hipFFTXt, the multi-GPU (Xt) API of hipFFT
+   *  hipFFTXt
    *  hipRAND
    *  hipSOLVER
    *  hipSPARSE
