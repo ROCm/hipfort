@@ -1,6 +1,10 @@
 ! Host-buffer CSR SpMV via the hipSPARSE generic API: row pointers, column
 ! indices, values, x and y are plain Fortran allocatables with no OpenMP
 ! mapping. hipSPARSE receives host addresses under HSA_XNACK=1 (USM).
+!
+! HIPSPARSE_SPMV_CSR_ALG2 is rocSPARSE's row-split kernel: the default, adaptive
+! one copies the row pointers with hipMemcpyDeviceToHost during its analysis,
+! which HIP rejects for memory it did not allocate or register.
 program test_hipsparse_dcsrmv_host
 
         use iso_fortran_env,       only: i32=>int32, r64=>real64
@@ -62,7 +66,7 @@ program test_hipsparse_dcsrmv_host
         buf_size = 0_c_size_t
         cerr = hipsparseSpMV_bufferSize(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
                 c_loc(alpha), matA, vecX, c_loc(beta), vecY, &
-                HIP_R_64F, HIPSPARSE_SPMV_ALG_DEFAULT, buf_size)
+                HIP_R_64F, HIPSPARSE_SPMV_CSR_ALG2, buf_size)
         if (cerr /= HIPSPARSE_STATUS_SUCCESS) error stop "hipsparseSpMV_bufferSize failed"
 
         ! External workspace: host-allocated so the pointer path stays entirely on host
@@ -75,7 +79,7 @@ program test_hipsparse_dcsrmv_host
         ! y = alpha*A*x + beta*y; every pointer is a host allocatable
         cerr = hipsparseSpMV(handle, HIPSPARSE_OPERATION_NON_TRANSPOSE, &
                 c_loc(alpha), matA, vecX, c_loc(beta), vecY, &
-                HIP_R_64F, HIPSPARSE_SPMV_ALG_DEFAULT, buf_ptr)
+                HIP_R_64F, HIPSPARSE_SPMV_CSR_ALG2, buf_ptr)
         if (cerr /= HIPSPARSE_STATUS_SUCCESS) then
                 write(*,*) "hipsparseSpMV on host buffers returned status ", cerr
                 error stop "FAILED"

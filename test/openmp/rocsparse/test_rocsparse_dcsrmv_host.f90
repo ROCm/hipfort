@@ -1,6 +1,10 @@
 ! Host-buffer CSR SpMV: row pointers, column indices, values, x and y are plain
 ! Fortran allocatables with no OpenMP mapping. rocSPARSE receives host addresses.
 ! Requires unified shared memory (HSA_XNACK=1) on MI300A.
+!
+! No csrmv analysis, so rocSPARSE uses its row-split kernel: the analysis for the
+! adaptive kernel copies the row pointers with hipMemcpyDeviceToHost, which HIP
+! rejects for memory it did not allocate or register.
 program test_rocsparse_dcsrmv_host
 
         use iso_fortran_env,  only: i32=>int32, r64=>real64
@@ -20,7 +24,7 @@ program test_rocsparse_dcsrmv_host
 
         real(r64)    :: alpha = 1.0_r64, beta = 0.0_r64
         real(r64)    :: expected(4)
-        type(c_ptr)  :: handle = c_null_ptr, descr = c_null_ptr, info = c_null_ptr
+        type(c_ptr)  :: handle = c_null_ptr, descr = c_null_ptr
         integer(i32) :: cerr, i
         character(len=8) :: xnack
 
@@ -43,22 +47,10 @@ program test_rocsparse_dcsrmv_host
         cerr = rocsparse_create_mat_descr(descr)
         if (cerr /= rocsparse_status_success) error stop "rocsparse_create_mat_descr failed"
 
-        cerr = rocsparse_create_mat_info(info)
-        if (cerr /= rocsparse_status_success) error stop "rocsparse_create_mat_info failed"
-
-        ! Analyze sparsity structure (enables adaptive kernel selection)
-        cerr = rocsparse_dcsrmv_analysis(handle, rocsparse_operation_none, &
-                m_dim, n_dim, nnz, descr, &
-                c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info)
-        if (cerr /= rocsparse_status_success) then
-                write(*,*) "rocsparse_dcsrmv_analysis on host buffers returned status ", cerr
-                error stop "FAILED"
-        end if
-
         ! y = alpha*A*x + beta*y; all buffers are host allocatables
         cerr = rocsparse_dcsrmv(handle, rocsparse_operation_none, &
                 m_dim, n_dim, nnz, alpha, descr, &
-                c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, &
+                c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_null_ptr, &
                 c_loc(x(1)), beta, c_loc(y(1)))
         if (cerr /= rocsparse_status_success) then
                 write(*,*) "rocsparse_dcsrmv on host buffers returned status ", cerr
@@ -76,12 +68,6 @@ program test_rocsparse_dcsrmv_host
                         error stop "FAILED"
                 end if
         end do
-
-        cerr = rocsparse_csrmv_clear(handle, info)
-        if (cerr /= rocsparse_status_success) error stop "rocsparse_csrmv_clear failed"
-
-        cerr = rocsparse_destroy_mat_info(info)
-        if (cerr /= rocsparse_status_success) error stop "rocsparse_destroy_mat_info failed"
 
         cerr = rocsparse_destroy_mat_descr(descr)
         if (cerr /= rocsparse_status_success) error stop "rocsparse_destroy_mat_descr failed"

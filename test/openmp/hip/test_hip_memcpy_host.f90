@@ -1,6 +1,8 @@
 ! HIP runtime copies driven straight onto host allocatables: no hipMalloc, no
-! OpenMP mapping. The GPU reads and writes the Fortran arrays in place, which
-! requires unified shared memory.
+! OpenMP mapping.
+!
+! The copies use hipMemcpyDefault: HIP rejects any other kind, such as
+! hipMemcpyDeviceToDevice, for memory it did not allocate or register.
 !
 ! hipMemset is not exercised here: it rejects a plain host pointer with
 ! hipErrorInvalidValue even when XNACK is on.
@@ -34,7 +36,7 @@ program test_hip_memcpy_host
         cerr = hipSetDevice(0)
         if (cerr /= hipSuccess) error stop "hipSetDevice failed"
 
-        cerr = hipMemcpy(c_loc(b(1)), c_loc(a(1)), nbytes, hipMemcpyDeviceToDevice)
+        cerr = hipMemcpy(c_loc(b(1)), c_loc(a(1)), nbytes, hipMemcpyDefault)
         if (cerr /= hipSuccess) then
            write(*,*) "hipMemcpy on host buffers returned ", cerr
            error stop "FAILED"
@@ -53,7 +55,7 @@ program test_hip_memcpy_host
         cerr = hipStreamCreate(stream)
         if (cerr /= hipSuccess) error stop "hipStreamCreate failed"
 
-        cerr = hipMemcpyAsync(c_loc(c(1)), c_loc(b(1)), nbytes, hipMemcpyDeviceToDevice, stream)
+        cerr = hipMemcpyAsync(c_loc(c(1)), c_loc(b(1)), nbytes, hipMemcpyDefault, stream)
         if (cerr /= hipSuccess) then
            write(*,*) "hipMemcpyAsync on host buffers returned ", cerr
            error stop "FAILED"
