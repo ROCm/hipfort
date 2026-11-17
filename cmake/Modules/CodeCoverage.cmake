@@ -25,8 +25,8 @@
 
 # Code-coverage support for the hipfort test suite.
 #
-# Enable with -DHIPFORT_CODE_COVERAGE=ON. This instruments the generated binding
-# modules with gcov and adds two targets:
+# Enable with -DHIPFORT_CODE_COVERAGE=ON. This instruments the binding modules
+# and the test programs with gcov and adds two targets:
 #
 #   coverage_cleanup   discard the .gcda counters left by a previous run
 #   coverage           run the test suite once, then measure and write a report
@@ -36,15 +36,15 @@
 #
 # What is measured
 # ----------------
-# hipfort is generated code, and the only part of it with an instrumentable body
-# is the set of Fortran wrappers the generator emits around a routine's bind(C)
-# interface: the array overloads (_rank_0, _rank_1, _full_rank) and the typed
-# forms (_typed, _devptr, _rank_N_devptr). The report counts how many of those
-# wrapper bodies actually executed. Tests that call the raw bind(C) interface --
-# which every Fortran 2003 test does, and which is correct usage -- execute no
-# wrapper and so do not register, and routines that get no wrapper cannot
-# register at all. Read the number as how much of the generator's output is
-# live, not as API test coverage. See test/coverage/variant_coverage.py.
+# Two numbers per library. Routines: of every bind(C) <routine>_ interface in
+# the library's binding module (the complete API), how many a test called --
+# directly through <routine>_ or the generic <routine>, on a test line that
+# executed, or through one of the generated wrappers. Credit is per line, so a
+# call after a test's early stop or crash does not count. Variants: of the
+# Fortran wrappers the generator emits for some routines -- the array overloads
+# (_rank_0, _rank_1, _full_rank) and the typed forms (_typed, _devptr,
+# _rank_N_devptr) -- how many bodies executed; this says how much of the
+# generator's output is live. See test/coverage/variant_coverage.py.
 #
 # Requirements
 # ------------
@@ -94,6 +94,11 @@ if(NOT HIPFORT_GCOV_EXECUTABLE)
 endif()
 
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
+
+# Self-check of the report's line-level crediting (no GPU needed).
+add_test(NAME hipfort_coverage_selftest
+         COMMAND "${Python3_EXECUTABLE}"
+                 "${CMAKE_CURRENT_SOURCE_DIR}/test/coverage/test_variant_coverage.py")
 
 # -O0 keeps each wrapper a distinct body. Optimised builds inline the wrappers
 # away and link-time optimisation scatters their counters across translation
