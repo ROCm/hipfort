@@ -2024,6 +2024,36 @@ end program" HIPFORT_HAVE_OMP_OFFLOAD SRC_EXT F90)
       endforeach()
     endif()
   endif()
+  # The XNACK matrix registers each test a second time (_xnack, and _usm for the
+  # OpenMP offload tests) before the per-test properties above are set: give
+  # each twin the properties of its test, and pin HSA_XNACK in both
+  # environments, which a later ENVIRONMENT property would otherwise replace.
+  if(HIPFORT_XNACK_MATRIX)
+    get_property(_tests DIRECTORY PROPERTY TESTS)
+    foreach(_t IN LISTS _tests)
+      foreach(_suffix IN ITEMS _xnack _usm)
+        if(NOT "${_t}${_suffix}" IN_LIST _tests)
+          continue()
+        endif()
+        foreach(_p IN ITEMS SKIP_RETURN_CODE WILL_FAIL PASS_REGULAR_EXPRESSION
+                            FAIL_REGULAR_EXPRESSION TIMEOUT WORKING_DIRECTORY)
+          get_test_property(${_t} ${_p} _v)
+          if(NOT "${_v}" STREQUAL "NOTFOUND")
+            set_tests_properties(${_t}${_suffix} PROPERTIES ${_p} "${_v}")
+          endif()
+        endforeach()
+        get_test_property(${_t} ENVIRONMENT _env)
+        if("${_env}" STREQUAL "NOTFOUND")
+          set(_env "")
+        endif()
+        list(FILTER _env EXCLUDE REGEX "^HSA_XNACK=")
+        set(_on ${_env} "HSA_XNACK=1")
+        set(_off ${_env} "HSA_XNACK=0")
+        set_tests_properties(${_t}${_suffix} PROPERTIES ENVIRONMENT "${_on}")
+        set_tests_properties(${_t} PROPERTIES ENVIRONMENT "${_off}")
+      endforeach()
+    endforeach()
+  endif()
   # Source-only lint. Needs bash, so not on Windows.
   if(NOT CMAKE_HOST_WIN32)
     add_test(NAME hipfort_fortran_line_length
