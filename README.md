@@ -7,9 +7,9 @@ hipfort provides Fortran interfaces to the HIP runtime and the ROCm libraries:
 * **FFTW3-compatible interface:** hipFFTW
 * **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
 
-The interfaces are derived from ROCm 10.2.0. With a Fortran 2003 compiler, they take
-`type(c_ptr)` arguments; with a Fortran 2008 compiler, hipfort also provides
-interfaces that take Fortran arrays directly.
+The interfaces are derived from ROCm 10.2.0. They take `type(c_ptr)` arguments, and
+with a Fortran 2008 compiler, hipfort also provides interfaces that take Fortran
+arrays directly.
 
 ## Documentation
 
@@ -27,7 +27,7 @@ It covers:
 
 Install `git`, `cmake`, HIP, a Fortran compiler, and a matching C compiler, if not yet
 installed. `amdflang`/`amdclang` (ROCm's LLVM Flang and Clang, bundled with ROCm) is the
-recommended default; `gfortran`/`gcc` (version 7.5.0 or newer) is also supported.
+recommended default, and `gfortran`/`gcc` (version 7.5.0 or newer) is also supported.
 Then build, install, and test hipfort from source with the commands below:
 
 ```shell
@@ -56,11 +56,11 @@ target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 ```
 
 List each library you use as a `COMPONENTS` entry. On Linux, also link with
-`-Wl,--gc-sections` to keep only the wrappers you call; see
+`-Wl,--gc-sections` to keep only the wrappers you call. See
 [Using hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/using-hipfort.html) for the details and for building without CMake.
 
 Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
 ## License
 
-hipfort is licensed under the MIT license; see [LICENSE](LICENSE).
+hipfort is licensed under the MIT license. See [LICENSE](LICENSE).
