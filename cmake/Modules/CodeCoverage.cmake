@@ -37,11 +37,13 @@
 # What is measured
 # ----------------
 # Two numbers per library. Routines: of every bind(C) <routine>_ interface in
-# the library's binding module (the complete API), how many a test called --
-# directly through <routine>_ or the generic <routine>, on a test line that
-# executed, or through one of the generated wrappers. Credit is per line, so a
-# call after a test's early stop or crash does not count. Variants: of the
-# Fortran wrappers the generator emits for some routines -- the array overloads
+# the library's binding module (the complete API), how many had a raw call that
+# ran: a test or wrapper line naming <routine>_ that executed, or a test line
+# naming the generic <routine> where the generic resolves to the raw interface
+# (no wrappers, or the test object references the C symbol). Entering a wrapper
+# is not enough. Credit is per line, so a call after a test's early stop or
+# crash does not count. Variants: of the Fortran wrappers the generator emits
+# for some routines -- the array overloads
 # (_rank_0, _rank_1, _full_rank) and the typed forms (_typed, _devptr,
 # _rank_N_devptr) -- how many bodies executed; this says how much of the
 # generator's output is live. See test/coverage/variant_coverage.py.

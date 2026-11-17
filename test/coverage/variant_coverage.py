@@ -32,11 +32,22 @@ reported per library.
 
 Routines -- API coverage. The denominator is every bind(C) <routine>_ declared
 in the library's binding module(s): the complete API, counted once per routine
-however many #ifdef branches declare it. A routine is covered when
+however many #ifdef branches declare it. A routine is covered only when a call
+to its raw bind(C) interface is seen to execute:
 
-  * a test source line that executed (gcov count > 0) names it, as <routine>_
-    or the generic <routine> (case-insensitive, whole identifier), or
-  * one of its wrappers (below) executed.
+  * a test source line that executed (gcov count > 0) names <routine>_
+    (case-insensitive, whole identifier), or
+  * a line of the binding module itself that executed names <routine>_, that
+    is, a wrapper's own raw call ran, or
+  * a test line that executed names the generic <routine>, and either the
+    generic has no module procedures, so it can only resolve to the raw
+    interface, or that test's object file references the routine's bind(C)
+    symbol (nm -u), so the generic resolved to the raw interface there.
+
+Entering a wrapper is not enough: some skip the raw call (hipFree with
+only_if_allocated on an unassociated pointer never calls hipFree_). One blind
+spot remains: a test object with a raw call to a routine that never ran plus an
+executed generic call routed through a wrapper credits that routine.
 
 The test programs are compiled with --coverage too, so this is line-level:
 comments, declarations and `use` lines have no count and never give credit, and
@@ -131,19 +142,26 @@ BINDING_SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 # String literals and trailing comments, dropped before looking for names.
 NOISE_RE = re.compile(r"'[^']*'|\"[^\"]*\"|!.*")
 TOKEN_RE = re.compile(r"[a-z_]\w*")
-# The raw interface of a routine: function|subroutine <routine>_(...) bind(c ...).
-BIND_C_RE = re.compile(r"\b(?:function|subroutine)\s+(\w+)_\s*\(.*\bbind\s*\(\s*c\b")
+# The raw interface of a routine: function|subroutine <routine>_(...)
+# bind(c [, name="<C symbol>"]).
+BIND_C_RE = re.compile(r"\b(?:function|subroutine)\s+(\w+)_\s*\(.*\bbind\s*\(\s*c\b"
+                       r"(?:\s*,\s*name\s*=\s*['\"](\w+)['\"])?")
 LOGICAL_IF_RE = re.compile(r"(?:\d+\s+)?if\s*\(")
 
 
-def statements(text):
+def statements(text, keep_strings=False):
     """Yield (line numbers, code) per Fortran statement: & continuations joined,
-    comments, string contents and preprocessor lines dropped, lowercased."""
+    comments, string contents (unless keep_strings) and preprocessor lines
+    dropped, lowercased."""
+    def noise(m):
+        if m.group().startswith("!"):
+            return ""
+        return m.group() if keep_strings else "''"
     nums, parts = [], []
     for num, raw in enumerate(text.splitlines(), 1):
         if raw.lstrip().startswith("#"):
             continue
-        code = NOISE_RE.sub(lambda m: "" if m.group().startswith("!") else "''", raw).strip()
+        code = NOISE_RE.sub(noise, raw).strip()
         if not code:
             continue    # blank or comment line, possibly inside a continuation
         nums.append(num)
@@ -153,13 +171,42 @@ def statements(text):
             nums, parts = [], []
 
 
-def bind_c_routines(path):
-    """The routines of a binding module: every bind(C) interface <routine>_,
-    lowercased and without the underscore, each counted once however many
-    #ifdef branches declare it."""
-    with open(path, errors="replace") as fh:
-        return {m.group(1) for _nums, code in statements(fh.read())
-                for m in [BIND_C_RE.search(code)] if m}
+def parse_bindings(text):
+    """Return (routines, wrapped) for a binding module's source. routines maps
+    every bind(C) interface <routine>_, lowercased and without the underscore,
+    to its C symbol(s), lowercased: one entry however many #ifdef branches
+    declare it. wrapped is the generic interfaces that hold module procedures,
+    which a generic call may resolve to instead."""
+    routines, wrapped, generic = defaultdict(set), set(), None
+    for _nums, code in statements(text, keep_strings=True):
+        m = BIND_C_RE.search(code)
+        if m:
+            routines[m.group(1)].add(m.group(2) or f"{m.group(1)}_")
+        elif re.match(r"interface\s+(\w+)$", code):
+            generic = code.split()[1]
+        elif re.match(r"end\s*interface\b", code):
+            generic = None
+        elif generic and re.match(r"module\s+procedure\b", code):
+            wrapped.add(generic)
+    return dict(routines), wrapped
+
+
+def covered_routines(routines, wrapped, tests, binding_names):
+    """The routines whose raw bind(C) interface was seen to execute (see the
+    module docstring). routines and wrapped come from parse_bindings; tests is
+    one (executed names, undefined symbols) pair per test object, and
+    binding_names the executed names of the binding modules."""
+    in_tests = set().union(*(executed for executed, _undefined in tests))
+
+    def raw_call(routine, symbols):
+        if f"{routine}_" in binding_names or f"{routine}_" in in_tests:
+            return True
+        if routine not in in_tests:
+            return False
+        return routine not in wrapped or any(
+            routine in executed and symbols & undefined for executed, undefined in tests)
+
+    return {r for r, symbols in routines.items() if raw_call(r, symbols)}
 
 
 def split_logical_if(code):
@@ -197,23 +244,40 @@ def executed_names(text, gcov_lines):
     return names
 
 
-def called_in_tests(build, gcov_exe):
-    """Identifiers on executed lines of every instrumented test source."""
+def names_in(data):
+    """executed_names over every source file in one gcov JSON result."""
     names = set()
+    for entry in (data or {}).get("files", []):
+        path = os.path.join(data.get("current_working_directory", ""), entry["file"])
+        if os.path.isfile(path):
+            with open(path, errors="replace") as fh:
+                names |= executed_names(fh.read(), entry["lines"])
+    return names
+
+
+def undefined_symbols(obj):
+    """The undefined symbols an object file references, lowercased."""
+    if not os.path.isfile(obj):
+        return set()
+    out = subprocess.run(["nm", "-u", obj], capture_output=True, text=True).stdout
+    return {line.split()[-1].lower() for line in out.splitlines() if line.strip()}
+
+
+def called_in_tests(build, gcov_exe):
+    """One (executed identifiers, undefined symbols) pair per instrumented test
+    object; the object file sits next to its .gcno (x.f03.gcno, x.f03.o)."""
+    tests = []
     for root, _dirs, files in os.walk(build):
         if root.endswith(os.path.join(".dir", "hipfort")):
             continue    # the bindings themselves (hipfort-amdgcn, hipfort-nvptx)
         for name in files:
             if not name.endswith(".gcno"):
                 continue
-            data = load_gcov(os.path.join(root, name), gcov_exe)
-            for entry in (data or {}).get("files", []):
-                path = os.path.join(data.get("current_working_directory", ""), entry["file"])
-                if os.path.isfile(path):
-                    with open(path, errors="replace") as fh:
-                        names |= executed_names(fh.read(), entry["lines"])
-    return names
-
+            gcno = os.path.join(root, name)
+            executed = names_in(load_gcov(gcno, gcov_exe))
+            if executed:
+                tests.append((executed, undefined_symbols(gcno[:-len(".gcno")] + ".o")))
+    return tests
 
 
 def matching_gcov():
@@ -289,13 +353,6 @@ def load_gcov(gcno, gcov_exe):
     return None
 
 
-def wrapped_routine(family, hip_scheme):
-    """The routine a wrapper family belongs to: drop the module mangling and,
-    for the HIP runtime scheme, the element-type key (hipmalloc_i4 -> hipmalloc)."""
-    routine = re.sub(r"^.*_MOD_", "", family).lower()
-    return re.sub(r"_(?:i|r|c|l)\d+$", "", routine) if hip_scheme else routine
-
-
 def measure(build, gcov_exe):
     """Return {group: {run, gen, tested, families, detail, routines_run,
     routines_gen}} (None when no data)."""
@@ -303,20 +360,25 @@ def measure(build, gcov_exe):
     if objdir is None:
         sys.exit(f"error: no instrumented binding objects under {build}. "
                  f"Configure with -DHIPFORT_CODE_COVERAGE=ON and build first.")
-    called = called_in_tests(build, gcov_exe)
+    tests = called_in_tests(build, gcov_exe)
 
     results = {}
     for label, modules in GROUPS:
         generated = defaultdict(set)   # family -> variants emitted
         executed = defaultdict(set)    # family -> variants that ran
-        routines = set()               # bind(C) routines declared
-        wrapped = set()                # routines with a wrapper that ran
+        routines = defaultdict(set)    # bind(C) routine -> C symbols
+        wrapped = set()                # generics with module procedures
+        raw_calls = set()              # names on executed binding-module lines
         saw_data = False
 
         for module in modules:
             source = os.path.join(BINDING_SRC, f"{module}.F90")
             if os.path.exists(source):
-                routines |= bind_c_routines(source)
+                with open(source, errors="replace") as fh:
+                    found, generics = parse_bindings(fh.read())
+                for routine, symbols in found.items():
+                    routines[routine] |= symbols
+                wrapped |= generics
             gcno = os.path.join(objdir, f"{module}.F90.gcno")
             if not os.path.exists(gcno):
                 continue
@@ -327,21 +389,20 @@ def measure(build, gcov_exe):
             data = load_gcov(gcno, gcov_exe)
             if not data or not data.get("files"):
                 continue
+            raw_calls |= names_in(data)
             for line in data["files"][0]["lines"]:
                 fn = line.get("function_name")
                 if not fn:
                     continue
                 if "_assumed_rank" in fn:
                     continue    # off by default; see the module docstring
-                vmatch = VARIANT_RE.match(fn)
-                match = vmatch or HIP_VARIANT_RE.match(fn)
+                match = VARIANT_RE.match(fn) or HIP_VARIANT_RE.match(fn)
                 if not match:
                     continue
                 family, variant = match.group(1), match.group(2)
                 generated[family].add(variant)
                 if line.get("count", 0) > 0:
                     executed[family].add(variant)
-                    wrapped.add(wrapped_routine(family, not vmatch))
 
         if not saw_data:
             results[label] = None
@@ -355,8 +416,7 @@ def measure(build, gcov_exe):
             "families": len(generated),
             "detail": {f: (len(executed[f]), len(generated[f])) for f in tested},
             "routines_gen": len(routines),
-            "routines_run": sum(1 for r in routines
-                                if r in wrapped or r in called or f"{r}_" in called),
+            "routines_run": len(covered_routines(routines, wrapped, tests, raw_calls)),
         }
     return results
 
@@ -454,10 +514,13 @@ def write_html(results, path):
 </table>
 <p class="note"><b>Routines</b> counts every <code>bind(C)</code> interface
 (<code>&lt;routine&gt;_</code>) in the library's binding module, the complete
-API. A routine is covered when a test line that executed names it, through the
-raw <code>&lt;routine&gt;_</code> or the generic <code>&lt;routine&gt;</code>,
-or when one of its wrappers executed. Credit is per line: a call after a test's
-early stop or crash, a comment or a declaration does not count.</p>
+API. A routine is covered when a call to that raw interface is seen to run: a
+test line or a wrapper line that executed names <code>&lt;routine&gt;_</code>,
+or a test line that executed names the generic <code>&lt;routine&gt;</code>
+and the generic resolves to the raw interface (it has no wrappers, or the
+test's object file references the routine's C symbol). Entering a wrapper is
+not enough. Credit is per line: a call after a test's early stop or crash, a
+comment or a declaration does not count.</p>
 <p class="note"><b>Variants</b> counts the generated Fortran wrapper bodies
 (<code>rank_0</code>, <code>rank_1</code>, <code>full_rank</code>,
 <code>typed</code>, <code>devptr</code>) that actually executed, over the
