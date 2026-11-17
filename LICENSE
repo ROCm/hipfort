@@ -1,5 +1,3 @@
-hipfort: FORTRAN Interfaces for GPU kernels
- 
 Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 
 SPDX-License-Identifier: MIT
