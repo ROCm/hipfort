@@ -27,7 +27,7 @@ module hipfort_rocfft
   use hipfort_rocfft_enums
   use, intrinsic :: iso_c_binding, only: c_double, c_int, c_loc, c_ptr, c_size_t
   implicit none
-  private :: c_double, c_int, c_loc, c_ptr, c_size_t
+  private :: c_double, c_int, c_ptr, c_size_t
 
   !>  @brief Library setup function, called at least once in program before
   !>  start of library use
