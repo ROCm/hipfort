@@ -1,4 +1,4 @@
-# hipfort: Fortran Interface For GPU Kernel Libraries
+# hipfort: Fortran interfaces to HIP and the ROCm libraries
 
 hipfort provides Fortran interfaces to the HIP runtime and the ROCm libraries:
 
@@ -39,7 +39,7 @@ cmake --install build
 ctest --test-dir build
 ```
 
-The tests need a GPU and the ROCm math libraries.
+The tests need an AMD GPU and the libraries listed above, from your ROCm installation.
 
 ## Using hipfort with CMake
 
