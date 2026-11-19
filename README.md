@@ -1,18 +1,33 @@
-# hipfort: Fortran Interface For GPU Kernel Libraries
+# hipfort: Fortran interfaces to HIP and the ROCm libraries
 
-This repository contains the source and testing for hipfort.
-This is a Fortran interface library for accessing GPU kernels.
+hipfort provides Fortran interfaces to the HIP runtime and the ROCm libraries:
+
+* **HIP runtime and tooling:** HIP runtime, ROCTx
+* **HIP math libraries (`hip*`):** hipBLAS, hipFFT, hipFFTXt, hipRAND, hipSOLVER, hipSPARSE
+* **FFTW3-compatible interface:** hipFFTW
+* **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
+
+The interfaces are derived from ROCm 10.2.0. They take `type(c_ptr)` arguments, and
+with a Fortran 2008 compiler, hipfort also provides interfaces that take Fortran
+arrays directly.
 
 ## Documentation
 
 > [!NOTE]
 > The published hipfort documentation is available at [hipfort](https://rocm.docs.amd.com/projects/hipfort/en/latest/index.html) in an organized, easy-to-read format, with search and a table of contents. The documentation source files reside in the hipfort/docs folder of this repository. As with all ROCm projects, the documentation is open source. For more information, see [Contribute to ROCm documentation](https://rocm.docs.amd.com/en/latest/contribute/contributing.html).
 
+It covers:
+
+* [Installing hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/install/install.html), including the CMake options, the toolchain files and the tests
+* [Using hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/using-hipfort.html): linking with and without CMake, and the supported API of each library
+* [The Fortran interfaces](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/fortran-interfaces.html): Fortran 2003, Fortran 2008 and the experimental assumed-rank interfaces
+* [Using hipfort with OpenMP offload](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/openmp-offload.html)
+
 ## Build and test hipfort from source
 
 Install `git`, `cmake`, HIP, a Fortran compiler, and a matching C compiler, if not yet
 installed. `amdflang`/`amdclang` (ROCm's LLVM Flang and Clang, bundled with ROCm) is the
-recommended default; `gfortran`/`gcc` (version 7.5.0 or newer) is also supported.
+recommended default, and `gfortran`/`gcc` (version 7.5.0 or newer) is also supported.
 Then build, install, and test hipfort from source with the commands below:
 
 ```shell
@@ -24,138 +39,12 @@ cmake --install build
 ctest --test-dir build
 ```
 
-### Toolchain files
+The tests need an AMD GPU and the libraries listed above, from your ROCm installation.
 
-Example CMake toolchain files are provided in [`cmake/toolchains`](cmake/toolchains)
-to select the Fortran and C compilers without setting cache variables by
-hand. Pass one with `-DCMAKE_TOOLCHAIN_FILE`:
+## Using hipfort with CMake
 
-```shell
-cmake -S . -B build -DHIPFORT_BUILD_NVPTX=OFF -DCMAKE_TOOLCHAIN_FILE=cmake/toolchains/amdflang.cmake
-```
-
-## Fortran interfaces
-
-`hipfort` provides interfaces to the following HIP and ROCm libraries:
-
-* **HIP runtime and tooling:** HIP runtime, ROCTx
-* **HIP math libraries (`hip*`):** hipBLAS, hipFFT, hipRAND, hipSOLVER, hipSPARSE
-* **FFTW3-compatible interface:** hipFFTW
-* **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
-
-The APIs of the `hip*` math libraries follow their NVIDIA counterparts (cuBLAS, cuFFT,
-cuRAND, cuSOLVER, and cuSPARSE), whereas hipFFTW follows FFTW3. The `roc*` libraries
-expose AMD-specific APIs.
-
-The available interfaces depend on the Fortran compiler that is used to compile the `hipfort` modules and libraries.
-As the interfaces make use of the `iso_c_binding` module, the minimum requirement is a Fortran compiler
-that supports the Fortran 2003 standard (`f2003`).
-These interfaces typically require passing `type(c_ptr)` variables and the number of bytes to memory
-management routines (e.g. `hipMalloc`), and `type(c_ptr)` variables to math library
-routines (e.g. `hipblasDgemm`).
-
-If your compiler understands the Fortran 2008 (`f2008`) code constructs,
-additional interfaces are compiled into the `hipfort` modules and libraries.
-These directly take Fortran (array) variables and the number of
-elements instead of `type(c_ptr)` variables and the number of bytes, respectively.
-Therefore, they reduce the chance of introducing compile-time and runtime errors
-into your code and make it easier to read too.
-These additional interfaces are enabled automatically once `hipfort` detects
-Fortran 2008 support in your compiler. By convention, application and test sources that rely on them use the
-`.f08` file extension (see the `test/f2008` examples), while Fortran 2003 sources use `.f03`.
-
-You can override the automatic detection with the `HIPFORT_USE_FPOINTER_INTERFACES`
-CMake option. It defaults to `ON` when the compiler supports Fortran 2008; set
-`-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` to build with the plain Fortran 2003
-`type(c_ptr)` interfaces only. This is useful for an old compiler, or one whose
-Fortran 2008 support is buggy. Requesting it on a compiler without Fortran 2008
-support is ignored (with a warning).
-
-**Experimental (`-DHIPFORT_ASSUMED_RANK=ON`).** By default each array generic is resolved by a set of rank-specific overloads (`rank_0`, `rank_1`, ...).
-With this option `hipfort` builds a single Fortran 2018 assumed-rank (`dimension(..)`) overload per routine instead.
-It requires a compiler with F2018 assumed-rank plus `c_loc` support, which `hipfort` probes for at configure time;
-if the probe fails, it warns and falls back to the per-rank Fortran 2008 interfaces instead of failing the build.
-It also requires `HIPFORT_USE_FPOINTER_INTERFACES` (on which the per-rank interfaces themselves depend); with that off there are no array interfaces at all, only the plain Fortran 2003 `type(c_ptr)` ones.
-Off by default.
-
-The assumed-rank wrapper takes the base address of the array with `c_loc`, so the actual argument must be contiguous: pass whole arrays or contiguous slices only.
-As in the per-rank wrappers, the dummy is not declared `contiguous`, so a non-contiguous section (e.g. `a(:,::2)`) is not copied into a host temporary, which would be fatal for an array in device memory; the library reads the wrong elements instead.
-
-### Example
-
-While you could write the following using the `f2003` interfaces:
-
-```Fortran
-use iso_c_binding
-use hipfort
-integer     :: ierr        ! error code
-real,target :: a_h(5,6)    ! host array
-type(c_ptr) :: a_d         ! device array pointer
-!
-ierr = hipMalloc(a_d,size(a_h)*4_c_size_t) ! real has 4 bytes
-                                           ! append suffix '_c_size_t' to write '4'
-                                           ! as 'integer(c_size_t)'
-ierr = hipMemcpy(a_d,c_loc(a_h),size(a_h)*4_c_size_t,hipMemcpyHostToDevice)
-```
-
-you could express the same with the `f2008` interfaces as follows:
-
-```Fortran
-use hipfort
-integer     :: ierr        ! error code
-real        :: a_h(5,6)    ! host array
-real,pointer :: a_d(:,:)   ! device array pointer
-!
-ierr = hipMalloc(a_d,shape(a_h))  ! or hipMalloc(a_d,[5,6]) or hipMalloc(a_d,5,6) or hipMalloc(a_d,mold=a_h)
-ierr = hipMemcpy(a_d,a_h,size(a_h),hipMemcpyHostToDevice)
-```
-
-The `f2008` interfaces also overload `hipMalloc` similarly to the Fortran `ALLOCATE` statement.
-So you could write the whole code as shown below:
-
-```Fortran
-use hipfort
-integer     :: ierr        ! error code
-real        :: a_h(5,6)    ! host array
-real,pointer :: a_d(:,:)   ! device array pointer
-!
-ierr = hipMalloc(a_d,source=a_h)       ! take shape (incl. bounds) of a_h and perform a blocking copy to device
-```
-
-In addition to `source`, there is also `dsource` in case the source is a device array.
-
-### Supported HIP and ROCm API
-
-The current batch of hipfort interfaces is derived from ROCm 10.2.0.
-With an older ROCm, link with `-Wl,--gc-sections` (see [Linking against hipfort](#linking-against-hipfort))
-so that routines missing from the installed libraries do not break the link.
-The following tables list the supported API:
-
-* [HIP](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hip.html)
-* [hipBLAS](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipblas.html)
-* [hipFFT](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfft.html)
-* [hipFFT Xt](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfftxt.html)
-* [hipFFTW](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipfftw.html)
-* [hipRAND](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hiprand.html)
-* [hipSOLVER](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipsolver.html)
-* [hipSPARSE](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__hipsparse.html)
-* [rocBLAS](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocblas.html)
-* [rocFFT](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocfft.html)
-* [rocRAND](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocrand.html)
-* [rocSOLVER](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsolver.html)
-* [rocSPARSE](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__rocsparse.html)
-* [ROCTx](https://rocm.docs.amd.com/projects/hipfort/en/develop/doxygen/html/md_input_2supported__api__roctx.html)
-
-You may further find it convenient to directly use the search function on
-[hipfort's documentation page](https://rocm.docs.amd.com/projects/hipfort/en/develop/) to get information on the arguments of an interface.
-Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
-
-## Linking against hipfort
-
-To use hipfort in your project, compile your code with your Fortran compiler and
-link against hipfort and the appropriate ROCm libraries. hipfort provides exported CMake targets
-(such as `hipfort::hip`, `hipfort::rocblas`, and `hipfort::hipblas`) to make this
-straightforward:
+hipfort exports one CMake target per library (such as `hipfort::hip`, `hipfort::rocblas`,
+and `hipfort::hipblas`):
 
 ```cmake
 # C is required by the CMake package of HIP, which finds Threads.
@@ -166,84 +55,12 @@ add_executable(my_app main.f08)
 target_link_libraries(my_app PRIVATE hipfort::hipblas hipfort::hip)
 ```
 
-List each library you use as a `COMPONENTS` entry: a `hipfort::<component>` target is
-only defined when that component is requested. The Fortran language must be enabled
-before `find_package(hipfort)`.
+List each library you use as a `COMPONENTS` entry. On Linux, also link with
+`-Wl,--gc-sections` to keep only the wrappers you call. See
+[Using hipfort](https://rocm.docs.amd.com/projects/hipfort/en/develop/how-to/using-hipfort.html) for the details and for building without CMake.
 
-Each hipfort module compiles to one object, and a linker takes whole objects from an
-archive, so a program that calls one rocBLAS routine links every rocBLAS wrapper.
-hipfort compiles each procedure into its own section, so on Linux you can link with
-`-Wl,--gc-sections` to keep only the wrappers you call. This also lets your program
-link against a ROCm release older than hipfort, as long as it does not call routines
-that release lacks:
+Please [open an issue](https://github.com/ROCm/hipfort/issues) if you run into problems.
 
-```cmake
-if(NOT APPLE AND NOT WIN32)
-  target_link_options(my_app PRIVATE -Wl,--gc-sections)
-endif()
-```
+## License
 
-Without CMake, add `-Wl,--gc-sections` to the link command. If you build a shared
-library rather than an executable, also link it with
-`-Wl,--exclude-libs,libhipfort-amdgcn.a`: a shared library exports the hipfort
-wrappers it links by default, and an exported symbol is never removed. The option
-keeps the wrappers in your library, where your code calls them as before, but
-stops exporting them, so the unused ones can be removed.
-
-## Examples and tests
-
-The examples, which simultaneously serve as tests, are located in the
-`f2003`, `f2008`, `f2018`, and `openmp` subdirectories of the repo's `test/` folder.
-The `f2003` and `f2008` collections largely overlap, but they are not identical:
-some tests exist only in one of them. Each requires that the Fortran compiler
-used supports at least the respective Fortran standard.
-The `f2018` tests exercise the experimental assumed-rank interfaces and are only
-registered when configuring with `-DHIPFORT_ASSUMED_RANK=ON`; the `openmp` tests
-require an offload-capable compiler (LLVM Flang) and a host LAPACK.
-There are further subcategories per `hip*` or `roc*` library that is tested.
-
-### Building and running the tests
-
-The tests are driven by CTest. Configure the build with `-DBUILD_TESTING=ON`,
-build hipfort, and run the suite with `ctest`.
-
-> **NOTE**: Running the tests requires the ROCm math libraries. The ROCm root is
-detected from `ROCM_PATH` or from `hipcc` on your `PATH`; override with `-DROCM_PATH=<path>`.
-
-```shell
-cmake -S. -Bbuild -DCMAKE_INSTALL_PREFIX=/tmp/hipfort -DHIPFORT_BUILD_NVPTX=OFF -DBUILD_TESTING=ON
-cmake --build build
-ctest --test-dir build
-```
-
-To run a single test, pass its name to `ctest` via the `-R` filter, for example:
-
-```shell
-ctest --test-dir build -R hipfort_test_f2008_hipblas_dgemm
-```
-
-## Copyright, License, and Disclaimer
-
-<a id="Copyright"></a>
-
-Copyright (C) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
-
-SPDX-License-Identifier: MIT
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+hipfort is licensed under the MIT license. See [LICENSE](LICENSE).
