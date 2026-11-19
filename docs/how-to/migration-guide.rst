@@ -389,9 +389,10 @@ hipFFT's binding has two modules in one archive, as CUDA Fortran has
 ``cufft`` and ``cufftXt``. Every ``hipfftXt*`` and ``hipfftMp*`` routine is in
 ``hipfftxt``, including ``hipfftXtSetWorkArea``, and every other ``hipfft*``
 routine is in ``hipfft``. ``hipfftxt`` uses and re-exports ``hipfft``, so a file
-that calls the Xt API writes ``use hipfftxt`` alone. hipFORT gets the same
-split, into ``hipfort_hipfft`` and ``hipfort_hipfftxt``; code that calls the Xt
-API through ``hipfort_hipfft`` moves to ``use hipfftxt``.
+that calls the Xt API writes ``use hipfftxt`` alone. hipFORT 0.11.0 has the
+same split, into ``hipfort_hipfft`` and ``hipfort_hipfftxt``. Code that calls
+the Xt API, through ``hipfort_hipfftxt`` or, before hipFORT 0.11.0,
+``hipfort_hipfft``, moves to ``use hipfftxt``.
 
 The HIP memory helpers you might ``use`` directly (``hipfort_hipmalloc``,
 ``hipfort_hipmemcpy``, ``hipfort_hiphostregister``) fold into ``use hip`` as
@@ -530,10 +531,13 @@ Which compiler?
 ---------------
 
 The supported compilers are ``amdflang`` (ROCm's bundled LLVM Flang, the
-recommended default), ``gfortran``, and Cray Fortran (``ftn``). Each
-binding's project also carries toolchain files for Intel ``ifx`` and
-``ifort`` and NVIDIA ``nvfortran`` as a convenience, but those compilers are not
-in the supported list. Any compiler with Fortran 2003 ``iso_c_binding`` should
+recommended default) and ``gfortran``. Intel ``ifx`` and ``ifort`` and NVIDIA
+``nvfortran`` also build the bindings, checked by hand but not in CI: with
+``ifx`` and ``ifort``, the tests need ``-DCMAKE_Fortran_FLAGS=-free``, and with
+``nvfortran``, one HIP test does not compile because of a compiler bug. hipFORT
+builds with Cray Fortran (``ftn``), and the bindings come from the same
+generator, but they have not been checked with it yet. Each binding's project
+carries a toolchain file for each of these compilers. Any compiler with Fortran 2003 ``iso_c_binding`` should
 work for the raw ``type(c_ptr)`` forms; the default array overloads need
 Fortran 2008.
 
@@ -814,7 +818,7 @@ Trying the bindings before ROCm 10.3
 
 The bindings are under review in one pull request per library. Until they ship
 in a ROCm release, you can try them by building a binding from its pull request
-branch against a recent ROCm, such as a TheRock nightly, with the commands in
+branch against a recent ROCm, such as ROCm 10.2 or a TheRock nightly, with the commands in
 `Building a binding with your compiler`_. A branch can be newer than your
 nightly: link with ``-Wl,--gc-sections`` (`Binding and library versions`_), so
 that a routine the nightly does not have yet fails only if you call it. Build HIP's binding first: the other
