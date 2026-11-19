@@ -168,22 +168,32 @@ prints the status by name and stops the program when a call fails.
 Passing arrays to the array overloads
 -------------------------------------
 
-The array overloads hand the address of the array to the C library, which reads
-it as one contiguous block. Pass **contiguous** arrays: a whole array, or a
-section such as ``a(:, j)`` or ``a(i:j)``. A strided section such as
-``a(1:n:2)`` is not rejected, but the library then reads the wrong elements.
+The array overloads hand the C library the address of the first element of the
+array, without a copy, and the library reads the elements that its other
+arguments describe. Pass a whole array, a contiguous section such as
+``a(:, j)`` or ``a(i:j)``, or a section whose layout these arguments describe:
+
+* a submatrix ``a(i1:i2, j1:j2)``, with the leading dimension (``lda``,
+  ``ldb``, ...) of the whole array ``a``, not of the section;
+* a strided vector ``x(1:n:k)``, with the increment (``incx``, ...) ``k``.
+
+A section with a stride in its first dimension, such as ``a(::2, :)``, cannot be
+described by a leading dimension: it is not rejected, but the library reads the
+wrong elements. Passing a section relies on the compiler giving the address of
+its first element, which ``amdflang`` and ``gfortran`` do.
+
 No overload, Fortran 2008 or Fortran 2018, declares its arrays ``contiguous``:
-the compiler would then pass a contiguous copy of such a section, made on the
-host, which is fatal for an array in device memory on GPUs without XNACK
-enabled, and which an asynchronous routine would still be reading after the
-call returns.
+the compiler would then pass a contiguous copy of a section, made on the host,
+which is fatal for an array in device memory on GPUs without XNACK enabled,
+which an asynchronous routine would still be reading after the call returns,
+and to which a leading dimension of the whole array would no longer apply.
 
 The address is that of your array, valid as long as the array is. For an
 asynchronous routine, such as ``hipMemcpyAsync`` from a host array, keep the
 array alive and unchanged until the stream has completed, and give it the
-``target`` attribute: if the compiler has to pass a temporary copy (an
-expression, a non-contiguous section), the copy disappears when the call
-returns, while the transfer may still be running.
+``target`` attribute. Do not pass an expression: the compiler passes a
+temporary copy of it, which disappears when the call returns, while the
+transfer may still be running.
 
 Allocating and copying device memory
 ====================================
@@ -387,7 +397,8 @@ The option is experimental and ``OFF`` by default. Note the following:
   missing, hipFORT warns and falls back to the per-rank interfaces (or to the
   ``type(c_ptr)`` interfaces only, if the Fortran 2008 interfaces are off)
   instead of failing the build.
-* Only **contiguous** arrays may be passed.
+* Arrays and sections are passed as with the per-rank interfaces (see
+  `Passing arrays to the array overloads`_).
 * ``hipMalloc`` keeps its per-rank overloads either way; ``hipMemcpy``,
   ``hipMemcpyAsync``, ``hipMemcpy2D`` and ``hipMemcpy2DAsync`` gain assumed-rank
   forms.
