@@ -1,6 +1,6 @@
 # Changelog for hipfort
 
-## Unreleased
+## hipfort 0.11.0 for ROCm 10.2.0
 
 ### Added
 
