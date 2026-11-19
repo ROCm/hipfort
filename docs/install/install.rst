@@ -115,7 +115,7 @@ On ROCm, ``hipfort-config.cmake`` pulls in ``libhipfort-amdgcn`` and resolves ea
 component against its ROCm package. On a host where HIP does not target
 the AMD platform, and provided the CUDA Toolkit is found and the ``nvptx`` archive is
 built, it pulls in ``libhipfort-nvptx`` instead, offers only the ``hip``,
-``hipblas``, ``hipfft``, ``hiprand``, ``hipsolver`` and ``hipsparse`` components, and
+``hipblas``, ``hipfft``, ``hipfftxt``, ``hiprand``, ``hipsolver`` and ``hipsparse`` components, and
 resolves them against ``CUDAToolkit``.
 
 With the ``nvptx`` archive, a ``complex(8)`` host scalar passed by address, such as

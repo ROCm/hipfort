@@ -31,6 +31,7 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 
    *  hipBLAS
    *  hipFFT
+   *  hipFFTXt
    *  hipRAND
    *  hipSOLVER
    *  hipSPARSE
@@ -66,6 +67,89 @@ AMD's ``amdflang`` (ROCm's LLVM Flang, bundled with ROCm) is the recommended def
 ``gfortran`` (version 7.5.0 or newer) is also supported.
 Please open an issue at https://github.com/ROCm/hipfort/issues if you run into problems.
 
+.. _hipfort-modules:
+
+Modules
+-------
+
+Each library has its own module, CMake component and ROCm library. Its
+constants and C structures are in separate modules.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 22 14 26 38
+
+   * - Module
+     - CMake component
+     - Link with
+     - Constants and types
+   * - ``hipfort``
+     - ``hip``
+     - ``-lamdhip64``
+     - ``hipfort_enums``, ``hipfort_types``
+   * - ``hipfort_check``
+     - ``hip``
+     - No ROCm library
+     - None
+   * - ``hipfort_roctx``
+     - ``roctx``
+     - ``-lrocprofiler-sdk-roctx``
+     - None
+   * - ``hipfort_rocblas``
+     - ``rocblas``
+     - ``-lrocblas``
+     - ``hipfort_rocblas_enums``
+   * - ``hipfort_rocsolver``
+     - ``rocsolver``
+     - ``-lrocsolver -lrocblas``
+     - ``hipfort_rocsolver_enums``
+   * - ``hipfort_rocsparse``
+     - ``rocsparse``
+     - ``-lrocsparse``
+     - ``hipfort_rocsparse_enums``
+   * - ``hipfort_rocfft``
+     - ``rocfft``
+     - ``-lrocfft``
+     - ``hipfort_rocfft_enums``
+   * - ``hipfort_rocrand``
+     - ``rocrand``
+     - ``-lrocrand``
+     - ``hipfort_rocrand_enums``, ``hipfort_rocrand_types``
+   * - ``hipfort_hipblas``
+     - ``hipblas``
+     - ``-lhipblas``
+     - ``hipfort_hipblas_enums``
+   * - ``hipfort_hipsolver``
+     - ``hipsolver``
+     - ``-lhipsolver``
+     - ``hipfort_hipsolver_enums``
+   * - ``hipfort_hipsparse``
+     - ``hipsparse``
+     - ``-lhipsparse``
+     - ``hipfort_hipsparse_enums``
+   * - ``hipfort_hipfft``
+     - ``hipfft``
+     - ``-lhipfft``
+     - ``hipfort_hipfft_enums``
+   * - ``hipfort_hipfftxt``
+     - ``hipfftxt``
+     - ``-lhipfft``
+     - ``hipfort_hipfftxt_enums``, ``hipfort_hipfftxt_types``
+   * - ``hipfort_hipfftw``
+     - ``hipfftw``
+     - ``-lhipfftw``
+     - ``hipfort_hipfftw_enums``, ``hipfort_hipfftw_types``
+   * - ``hipfort_hiprand``
+     - ``hiprand``
+     - ``-lhiprand``
+     - ``hipfort_hiprand_enums``
+
+``hipfort_hipfftxt`` uses ``hipfort_hipfft``, so ``use hipfort_hipfftxt`` alone gives
+the whole hipFFT API. ``hipfort_check`` has the ``hipCheck``, ``hipblasCheck``, ...
+routines, which call no ROCm library. rocSOLVER takes a rocBLAS handle, so a
+rocSOLVER program also links rocBLAS. ``-lamdhip64``, the HIP runtime, is always
+needed.
+
 Building your application with CMake
 ------------------------------------
 
@@ -85,10 +169,8 @@ underlying ROCm library it wraps.
    add_executable(my_app main.f08)
    target_link_libraries(my_app PRIVATE hipfort::rocblas hipfort::hipblas hipfort::hip)
 
-List the libraries your code uses as ``COMPONENTS`` (``hip``, ``roctx``,
-``rocblas``, ``rocfft``, ``rocrand``, ``rocsolver``, ``rocsparse``,
-``hipblas``, ``hipfft``, ``hipfftw``, ``hipfftxt``, ``hiprand``, ``hipsolver``,
-``hipsparse``) and link the matching ``hipfort::<component>`` targets.
+List the libraries your code uses as ``COMPONENTS`` (the components are in
+:ref:`hipfort-modules`) and link the matching ``hipfort::<component>`` targets.
 A ``hipfort::<component>`` target is only defined when that component is listed,
 and the Fortran language must be enabled before ``find_package(hipfort)``.
 If hipFORT is not in a default location,
@@ -120,45 +202,11 @@ A program that uses hipBLAS compiles and links with:
   the array forms of the routines (``hipblasSaxpy`` on Fortran arrays), the
   ``hipCheck``, ``hipblasCheck``, ... routines of ``hipfort_check``, and the
   ``hipMalloc`` and ``hipMemcpy`` overloads.
-* Each module you ``use`` needs the ROCm library it binds, from the table below.
-  ``-lamdhip64``, the HIP runtime, is always needed.
+* Each module you ``use`` needs the ROCm library it binds, in the "Link with"
+  column of :ref:`hipfort-modules`. ``-lamdhip64``, the HIP runtime, is always needed.
 * ``-Wl,-rpath`` lets the program find the ROCm libraries at run time without
   ``LD_LIBRARY_PATH``.
 
-.. list-table::
-   :header-rows: 1
-   :widths: 45 55
-
-   * - Module
-     - Link with
-   * - ``hipfort`` (HIP)
-     - ``-lamdhip64``
-   * - ``hipfort_roctx``
-     - ``-lrocprofiler-sdk-roctx``
-   * - ``hipfort_rocblas``
-     - ``-lrocblas``
-   * - ``hipfort_rocsolver``
-     - ``-lrocsolver -lrocblas``
-   * - ``hipfort_rocsparse``
-     - ``-lrocsparse``
-   * - ``hipfort_rocfft``
-     - ``-lrocfft``
-   * - ``hipfort_rocrand``
-     - ``-lrocrand``
-   * - ``hipfort_hipblas``
-     - ``-lhipblas``
-   * - ``hipfort_hipsolver``
-     - ``-lhipsolver``
-   * - ``hipfort_hipsparse``
-     - ``-lhipsparse``
-   * - ``hipfort_hipfft``, ``hipfort_hipfftxt``
-     - ``-lhipfft``
-   * - ``hipfort_hipfftw``
-     - ``-lhipfftw``
-   * - ``hipfort_hiprand``
-     - ``-lhiprand``
-
-rocSOLVER takes a rocBLAS handle, so a rocSOLVER program also links rocBLAS.
 With OpenMP offload, add ``-fopenmp`` and ``--offload-arch=<gfx>``
 (see :doc:`openmp-offload`).
 
