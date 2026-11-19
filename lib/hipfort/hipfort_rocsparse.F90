@@ -15250,6 +15250,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="axpby_uniform">Uniform Precisions</caption>
   !>   <tr><th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -15259,6 +15260,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Precisions:
   !>   <table>
+  !>   <caption id="axpby_mixed">Mixed Precisions</caption>
   !>   <tr><th>X / Y                     <th>compute_type
   !>   <tr><td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_f32_r
@@ -15317,6 +15319,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="check_spmat_uniform">Uniform Precisions</caption>
   !>   <tr><th>A
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -15454,6 +15457,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="dense_to_sparse_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B
   !>   <tr><td>rocsparse_datatype_f16_r
   !>   <tr><td>rocsparse_datatype_bf16_r
@@ -15780,6 +15784,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="gather_uniform">Uniform Precisions</caption>
   !>   <tr><th>X / Y
   !>   <tr><td>rocsparse_datatype_i8_r
   !>   <tr><td>rocsparse_datatype_f16_r
@@ -15847,6 +15852,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="rot_uniform">Uniform Precisions</caption>
   !>   <tr><th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -15908,6 +15914,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="scatter_uniform">Uniform Precisions</caption>
   !>   <tr><th>X / Y
   !>   <tr><td>rocsparse_datatype_i8_r
   !>   <tr><td>rocsparse_datatype_f16_r
@@ -16106,6 +16113,7 @@ module hipfort_rocsparse
   !>   different matrices.
   !>
   !>   <table>
+  !>   <caption id="sddmm_algorithms">Algorithms</caption>
   !>   <tr><th>Algorithms                        <th>Deterministic  <th>Preprocessing  <th>Notes
   !>   <tr><td>rocsparse_sddmm_alg_default</td> <td>Yes</td> <td>No</td> <td>Uses the sparsity
   !>   pattern of matrix C to perform a limited set of dot products. </td>
@@ -16119,6 +16127,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="sddmm_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B / C / compute_type
   !>   <tr><td>rocsparse_datatype_f16_r
   !>   <tr><td>rocsparse_datatype_f32_r
@@ -16129,6 +16138,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Precisions:
   !>   <table>
+  !>   <caption id="sddmm_mixed">Mixed Precisions</caption>
   !>   <tr><th>A / B                     <th>C                         <th>compute_type
   !>   <tr><td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f32_r  <td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f32_r
@@ -16315,6 +16325,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="sparse_to_dense_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B
   !>   <tr><td>rocsparse_datatype_f16_r
   !>   <tr><td>rocsparse_datatype_bf16_r
@@ -16599,6 +16610,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spgeam_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B / C / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -16608,6 +16620,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Index Types:
   !>   <table>
+  !>   <caption id="spgeam_csr_uniform_indextype">CSR Uniform Index Types</caption>
   !>   <tr><th>CSR Row offset                 <th>CSR Column indices
   !>   <tr><td>rocsparse_indextype_i32</td>   <td>rocsparse_indextype_i32</td>
   !>   <tr><td>rocsparse_indextype_i64</td>   <td>rocsparse_indextype_i64</td>
@@ -16615,6 +16628,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Index Types:
   !>   <table>
+  !>   <caption id="spgeam_csr_mixed_indextype">CSR Mixed Index Types</caption>
   !>   <tr><th>CSR Row offset                 <th>CSR Column indices
   !>   <tr><td>rocsparse_indextype_i64</td>   <td>rocsparse_indextype_i32</td>
   !>   </table>
@@ -16765,6 +16779,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spgemm_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B / C / D / compute_type
   !>   <tr><td>rocsparse_datatype_f16_r
   !>   <tr><td>rocsparse_datatype_bf16_r
@@ -17091,6 +17106,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spmat_scale_uniform">Uniform Precisions</caption>
   !>   <tr><th>alpha / A / C
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -17506,6 +17522,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spitsv_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -17640,6 +17657,7 @@ module hipfort_rocsparse
   !>   be performed.
   !>
   !>   <table>
+  !>   <caption id="spmm_csr_algorithms">CSR Algorithms</caption>
   !>   <tr><th>CSR Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
   !>   <tr><td>rocsparse_spmm_alg_csr</td> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Default
   !>   algorithm.</td>
@@ -17657,6 +17675,7 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmm_coo_algorithms">COO Algorithms</caption>
   !>   <tr><th>COO Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
   !>   <tr><td>rocsparse_spmm_alg_coo_segmented</td> <td>Yes</td> <td>No</td> <td>Yes</td>
   !>   <td>Generally not as fast as the atomic algorithm but is deterministic.</td>
@@ -17667,11 +17686,13 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmm_bell_algorithms">Blocked-ELL Algorithms</caption>
   !>   <tr><th>Blocked ELL Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
   !>   <tr><td>rocsparse_spmm_alg_bell</td> <td>Yes</td> <td>No</td> <td>No</td> <td></td>
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmm_bsr_algorithms">BSR Algorithms</caption>
   !>   <tr><th>BSR Algorithms <th>Deterministic <th>Preprocessing <th>Batched <th>Notes
   !>   <tr><td>rocsparse_spmm_alg_bsr</td> <td>Yes</td> <td>No</td> <td>No</td> <td></td>
   !>   </table>
@@ -17701,6 +17722,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spmm_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B / C / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -17710,6 +17732,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed precisions:
   !>   <table>
+  !>   <caption id="spmm_mixed">Mixed Precisions</caption>
   !>   <tr><th>A / B                     <th>C                        <th>compute_type
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_i32_r <td>rocsparse_datatype_i32_r
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_f32_r <td>rocsparse_datatype_f32_r
@@ -17930,6 +17953,7 @@ module hipfort_rocsparse
   !>   be performed.
   !>
   !>   <table>
+  !>   <caption id="spmv_csr_algorithms">CSR/CSC Algorithms</caption>
   !>   <tr><th>Algorithm                            <th>Deterministic  <th>Preprocessing  <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_csr_rowsplit</td> <td>Yes</td> <td>No</td> <td>Is best suited for
   !>   matrices with all rows having a similar number of non-zeros. Can outperform adaptive and LRB
@@ -17954,6 +17978,7 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmv_coo_algorithms">COO Algorithms</caption>
   !>   <tr><th>COO Algorithms                     <th>Deterministic   <th>Preprocessing <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_coo</td> <td>Yes</td> <td>Yes</td> <td>Generally not as fast as
   !>   the atomic algorithm but is deterministic.</td>
@@ -17962,11 +17987,13 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmv_ell_algorithms">ELL Algorithms</caption>
   !>   <tr><th>ELL Algorithms                <th>Deterministic   <th>Preprocessing <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_ell</td>   <td>Yes</td>        <td>No</td>       <td></td>
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="spmv_bsr_algorithms">BSR Algorithms</caption>
   !>   <tr><th>BSR Algorithm                 <th>Deterministic   <th>Preprocessing <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_bsr</td>   <td>Yes</td>        <td>No</td>       <td></td>
   !>   </table>
@@ -17982,6 +18009,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spmv_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -17991,6 +18019,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Precisions:
   !>   <table>
+  !>   <caption id="spmv_mixed">Mixed Precisions</caption>
   !>   <tr><th>A / X                     <th>Y                         <th>compute_type
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_i32_r  <td>rocsparse_datatype_i32_r
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_f32_r  <td>rocsparse_datatype_f32_r
@@ -18002,6 +18031,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed-regular Real Precisions
   !>   <table>
+  !>   <caption id="spmv_mixed_regular_real">Mixed-regular Real Precisions</caption>
   !>   <tr><th>A                        <th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r <td>rocsparse_datatype_f64_r
   !>   <tr><td>rocsparse_datatype_f32_c <td>rocsparse_datatype_f64_c
@@ -18009,6 +18039,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed-regular Complex Precisions
   !>   <table>
+  !>   <caption id="spmv_mixed_regular_complex">Mixed-regular Complex Precisions</caption>
   !>   <tr><th>A                        <th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r <td>rocsparse_datatype_f32_c
   !>   <tr><td>rocsparse_datatype_f64_r <td>rocsparse_datatype_f64_c
@@ -18164,6 +18195,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spsm_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / B / C / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -18450,6 +18482,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spsv_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -18656,6 +18689,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="sptrsm_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -18820,6 +18854,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="sptrsv_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / scalar
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -18940,6 +18975,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="spvv_uniform">Uniform Precisions</caption>
   !>   <tr><th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -18949,6 +18985,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Precisions:
   !>   <table>
+  !>   <caption id="spvv_mixed">Mixed Precisions</caption>
   !>   <tr><th>X / Y                     <th>compute_type / result
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_i32_r
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_f32_r
@@ -19103,6 +19140,7 @@ module hipfort_rocsparse
   !>   product will be performed.
   !>
   !>   <table>
+  !>   <caption id="v2_spmv_csr_algorithms">CSR/CSC Algorithms</caption>
   !>   <tr><th>Algorithm                            <th>Deterministic  <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_csr_rowsplit</td> <td>Yes</td> <td>This is best suited for
   !>   matrices with all rows having a similar number of non-zeros. Can outperform adaptive and LRB
@@ -19127,6 +19165,7 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="v2_spmv_coo_algorithms">COO Algorithms</caption>
   !>   <tr><th>COO Algorithms                     <th>Deterministic   <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_coo</td> <td>Yes</td> <td>Generally not as fast as the atomic
   !>   algorithm but is deterministic.</td>
@@ -19135,16 +19174,19 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="v2_spmv_ell_algorithms">ELL Algorithms</caption>
   !>   <tr><th>ELL Algorithms                <th>Deterministic   <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_ell</td>   <td>Yes</td>        <td></td>
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="v2_spmv_sell_algorithms">Sliced ELL Algorithms</caption>
   !>   <tr><th>Sliced ELL Algorithms          <th>Deterministic   <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_sell</td>   <td>Yes</td>        <td></td>
   !>   </table>
   !>
   !>   <table>
+  !>   <caption id="v2_spmv_bsr_algorithms">BSR Algorithms</caption>
   !>   <tr><th>BSR Algorithm                 <th>Deterministic   <th>Notes
   !>   <tr><td>rocsparse_spmv_alg_bsr</td>   <td>Yes</td>        <td></td>
   !>   </table>
@@ -19160,6 +19202,7 @@ module hipfort_rocsparse
   !>
   !>   \par Uniform Precisions:
   !>   <table>
+  !>   <caption id="v2_spmv_uniform">Uniform Precisions</caption>
   !>   <tr><th>A / X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r
   !>   <tr><td>rocsparse_datatype_f64_r
@@ -19169,6 +19212,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed Precisions:
   !>   <table>
+  !>   <caption id="v2_spmv_mixed">Mixed Precisions</caption>
   !>   <tr><th>A / X                     <th>Y                         <th>compute_type
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_i32_r  <td>rocsparse_datatype_i32_r
   !>   <tr><td>rocsparse_datatype_i8_r   <td>rocsparse_datatype_f32_r  <td>rocsparse_datatype_f32_r
@@ -19180,6 +19224,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed-regular Real Precisions
   !>   <table>
+  !>   <caption id="v2_spmv_mixed_regular_real">Mixed-regular Real Precisions</caption>
   !>   <tr><th>A                        <th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r <td>rocsparse_datatype_f64_r
   !>   <tr><td>rocsparse_datatype_f32_c <td>rocsparse_datatype_f64_c
@@ -19187,6 +19232,7 @@ module hipfort_rocsparse
   !>
   !>   \par Mixed-regular Complex Precisions
   !>   <table>
+  !>   <caption id="v2_spmv_mixed_regular_complex">Mixed-regular Complex Precisions</caption>
   !>   <tr><th>A                        <th>X / Y / compute_type
   !>   <tr><td>rocsparse_datatype_f32_r <td>rocsparse_datatype_f32_c
   !>   <tr><td>rocsparse_datatype_f64_r <td>rocsparse_datatype_f64_c
@@ -31706,6 +31752,7 @@ module hipfort_rocsparse
   !>   convergence history, easily printing debug
   !>   information, and using the COO internal format.
   !>   <table>
+  !>   <caption id="csritilu0 options">Options</caption>
   !>   <tr><th>Option                                              <th>Notes
   !>   <tr><td>rocsparse_itilu0_option_verbose</td> <td>Print to stdout convergence data as the
   !>   routine runs. Useful for debugging.</td>
