@@ -4,168 +4,68 @@
 
 ### Added
 
-* `X_strided_rank` array overloads for the strided-batched routines of
-  rocBLAS, hipBLAS, rocSOLVER and hipSOLVER, which take each operand with the
-  batch as one more dimension: `A(lda, n, batch_count)`, and a vector of each
-  batch entry as a column of a 2-D array. `X_full_rank` keeps taking the batch
-  packed in the last dimension, as before.
-* Array overloads for the routines that had none, derived from the C
-  signature: every routine with a data buffer now has them (in rocSOLVER 1002
-  routines instead of 680, hipSOLVER 461 instead of 164, rocSPARSE 470 instead
-  of 347, hipBLAS 846 instead of 752, rocBLAS 838 instead of 700, HIP 20,
-  hipFFTW 32), with `_devptr` twins wherever an argument may be a device pointer.
-* `_devptr` twins of the array overloads for an array of one value per batch
-  entry that is also passed as a `type(c_ptr)`, in routines that take another
-  array: the `info` of rocSOLVER's batched routines, of
-  `hipsolverXgetrfBatched`, `hipsolverXgetriBatched` and
-  `hipblasXgetrfStridedBatched`, the results of the strided-batched reductions
-  of rocBLAS and hipBLAS (`dot`, `dotc`, `dotu`, `asum`, `nrm2`, `iamax`,
-  `iamin`), and `rotm`'s `param`. The array overloads take them as Fortran
-  arrays, in host or device memory.
-* `hipStreamGetCaptureInfo_spt` and `hipStreamGetCaptureInfo_v2_spt` get the
-  optional arguments of their base routine: `pId` is optional in the `_typed`
-  form of the first, and the second gains an `_opt` form.
-* Regenerated all Fortran bindings against the ROCm 10.2 API, adding 77
-  routines: four in the HIP runtime (`hipDeviceFlushGPUDirectRDMAWrites`,
-  `hipKernelSetAttributeForDevice`, `hipLibraryGetModule`,
-  `hipModuleEnumerateFunctions`), the batched `gels`, `geqrf`, `getrf`, `getri`
-  and `getrs` routines and `hipsolverDnXtrtri` in hipSOLVER, the `gehd2` and
-  `gehrd` families in rocSOLVER, and `rocsparse_spsort_*`,
-  `rocsparse_dnmat_copy_data` and `rocsparse_dnmat_transpose` in rocSPARSE.
-* The hipFFT Xt API in the new `hipfort_hipfftxt` module (`hipfort::hipfftxt`
-  CMake component), as CUDA Fortran's `cufftXt`: it uses `hipfort_hipfft`, so
-  `use hipfort_hipfftxt` alone gives the whole hipFFT API, and
-  `hipfort_hipfft` keeps the `hipfft.h` API only. The routines are `bind(C)`
-  interfaces (with `_typed` forms for `hipfftXtMakePlanMany` and
-  `hipfftXtGetSizeMany`): the multi-GPU routines (`hipfftXtSetGPUs`,
-  `hipfftXtSetWorkArea`, `hipfftXtMalloc`, `hipfftXtMemcpy`, `hipfftXtFree`, the
-  `hipfftXtExecDescriptor*` family), `hipfftXtMakePlanMany`,
-  `hipfftXtGetSizeMany` and `hipfftXtExec` on `hipDataType`, and the callback
-  routines. The `hipXtDesc` and `hipLibXtDesc` types are in
-  `hipfort_hipfftxt_types`, and the Xt enums in `hipfort_hipfftxt_enums`.
-  On AMD GPUs the descriptor routines need a plan spread over two or more GPUs,
-  and a multi-GPU plan writes one work size per GPU: pass `c_loc` of an
-  `integer(c_size_t)` array as `workSize`. The multi-process routines
-  of `hipfftMp.h` (`hipfftMpAttachComm`, `hipfftXtSetDistribution`,
-  `hipfftXtSetSubformatDefault`) are bound too, but exist only in a hipFFT built
-  with MPI support, which the ROCm packages are not. On the CUDA backend the Xt
-  routines bind their `cufftXt*` counterparts; the multi-process routines have
-  none. The hipFFT examples document
-  the multi-GPU and MPI workflows.
-* Array overloads (`rank_N`, `full_rank`, assumed-rank) for the ILP64 (`_64`)
-  routines of rocBLAS, hipBLAS and rocSOLVER (`rocblas_sscal_64`, ...), the same
-  as for their 32-bit counterparts. They only had their `bind(C)` and, for some,
-  `_typed` forms. rocBLAS's `rocblas_{set,get}_{vector,matrix}*_64`
-  transfer helpers still have only their `bind(C)` form.
+* Regenerated the bindings against the ROCm 10.2 API, adding 77 routines in
+  HIP, hipSOLVER, rocSOLVER and rocSPARSE.
+* The hipFFT Xt API, in the new `hipfort_hipfftxt` module (`hipfort::hipfftxt`
+  CMake component). `use hipfort_hipfftxt` gives the whole hipFFT API.
+  `hipfort_hipfft` keeps the `hipfft.h` API only. The multi-process routines
+  exist only in a hipFFT built with MPI, which the ROCm packages are not.
+* Array overloads for every routine with a data buffer, including the ILP64
+  (`_64`) routines of rocBLAS, hipBLAS and rocSOLVER, with `_devptr` twins that
+  take a `type(c_ptr)` wherever an argument may be a device pointer.
+* `X_strided_rank` array overloads for the strided-batched routines of rocBLAS,
+  hipBLAS, rocSOLVER and hipSOLVER, which take the batch as one more dimension,
+  as in `A(lda, n, batch_count)`.
+* The optional arguments of `hipStreamGetCaptureInfo_spt` and
+  `hipStreamGetCaptureInfo_v2_spt`.
 
 ### Changed
 
-* The single values rocSOLVER writes on the GPU are taken as one value: `info`
-  (every non-batched routine), `n_sweeps` and `residual` (`gesvdj`, `syevj`,
-  `heevj`, `sygvj`, `hegvj`), `nev` (`syevx`, `heevx`, `syevdx`, `heevdx`,
-  `sygvx`, `hegvx`, `sygvdx`, `stein`, `stebz`), `nsplit` (`stebz`), `nsv`
-  (`gesvdx`, `bdsvdx`), `nr` and `sigma` (`cholqr`), `anorm` and `rcond`
-  (`gecon`), `norm` (`lange`), and the `info` of `hipsolverDnXpotrf` and
-  `hipsolverDnXpotrs`. The array overloads take an integer or real variable on
-  the device (an `integer(c_int), pointer` allocated with `hipMalloc`), and
-  their `_devptr` twins a `type(c_ptr)`, which the array overloads took before.
-  A call through the generic name with a `type(c_ptr)` compiles as before.
-* `hipblasXrotBatched` and `hipblasXrotStridedBatched` take `c` and `s` as
-  scalars read per the pointer mode, as rocBLAS does: the `_typed` form takes
-  them as variables, the `_devptr` form as `type(c_ptr)`.
-* **Breaking.** Arguments the bindings classified against the C documentation:
-  * `info` of `hipblasXgeqrf`, `hipblasXgetrs` and their `StridedBatched` forms,
-    `p_buffer_size` of `rocsparse_Xgebsr2gebsc_buffer_size` and `fractionToColor`
-    of `hipsparseXcsrcolor` are host values, which the library writes or reads
-    on the host: their `_devptr` forms, which took them as device pointers, are
-    gone (88 procedures). Pass a Fortran variable.
-  * `nev` and `info` of `rocsolver_chegvdx` and `rocsolver_zhegvdx`, the `alpha`
-    of `hipsparseXcsrsm2_bufferSizeExt` and the `threshold` of the hipSPARSE
-    `prune` size queries are single values, not one-element arrays (38
-    procedures).
-* A specific procedure whose argument moves from `type(c_ptr)` to a Fortran
-  variable or array keeps its name; its `type(c_ptr)` form is the `_devptr`
-  specific of the same overload. Calls through the generic names resolve as
-  before; a call to the specific by name may need the `_devptr` one.
-* **Breaking for calls by keyword.** The `bind(C)` specifics of
-  `hipblasSetVector`, `hipblasGetVector`,
-  `hipblasSetMatrix`, `hipblasGetMatrix` and their `Async` forms spell their
-  arguments as the hipBLAS headers do: `elemSize`, `AP` and `BP` instead of
-  `elem_size`, `A` and `B`. Only calls by keyword are affected; the array
-  overloads are unchanged.
-* Each backend archive (`libhipfort-amdgcn.a`, `libhipfort-nvptx.a`) is
-  compiled with one section per procedure (`-ffunction-sections
-  -fdata-sections`) when the Fortran compiler accepts these flags, which the
-  amdflang of ROCm 7.13 does not. A program linked with `-Wl,--gc-sections` keeps only the
-  wrappers it calls, instead of all of a library's wrappers, and still links
-  when another wrapper names a C function that the installed library does not
-  export. The tests link that way. A shared library that links an archive also
-  needs `-Wl,--exclude-libs` naming it, for example
-  `-Wl,--exclude-libs,libhipfort-amdgcn.a`.
-* **Breaking.** The array overloads of `hipMalloc`, `hipMallocManaged`,
-  `hipHostMalloc`, `hipFree`, `hipHostFree`, the `hipMemcpy` families and the
-  `hipHostRegister` family are now part of the Fortran 2008 array overloads, like
-  those of the math libraries. A build with `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF`
-  no longer has them: pass a `type(c_ptr)` and a byte count.
-* **Breaking.** The array overloads of the hipSOLVER batched routines
-  (`hipsolver[SDCZ]{potrf,potrs,getrf,getri,gels,gesvdj,syevj,heevj}Batched`)
-  take `devInfo` as an `integer(c_int)` array of `batch_count` entries, which is
-  what hipSOLVER writes, instead of a single integer. Pass the device array
-  itself, or call the `bind(C)` specific with `type(c_ptr)` arguments;
-  `getrfBatched` and `getriBatched` also have `_devptr` forms that take it as a
-  `type(c_ptr)`. The `gels` batched routines gain array overloads.
-* `fftw_iodim64` declares its fields `integer(c_intptr_t)` instead of
-  `integer(c_ptrdiff_t)`, a Fortran 2008 kind, so `hipfort_hipfftw_types`
-  compiles with a Fortran 2003 compiler. Both kinds are equal on every
-  platform ROCm supports, so existing code is unaffected.
-* The `_typed` forms of hipSOLVER and hipSPARSE declare their `hipDataType`
-  arguments `integer(c_int)`, like their `bind(C)` interfaces, instead of
-  `integer(kind(HIP_R_32F))`. Both are the C `int` kind, so existing code is
-  unaffected, and these routines no longer `use hipfort_enums`.
-* The assumed-rank overloads (`-DHIPFORT_ASSUMED_RANK=ON`) no longer declare
-  their arrays `contiguous`, like the per-rank ones. Given a non-contiguous
-  section, the compiler used to pass a copy made in a host temporary: fatal for
-  an array in device memory on GPUs without XNACK enabled, and freed when the
-  call returns while an asynchronous routine is still reading it. Both forms
-  now take the address of the array as it is, so pass contiguous arrays.
+* **Breaking.** Arguments are now classified against the C documentation.
+  * The single values that rocSOLVER writes on the GPU (`info`, `nev`,
+    `n_sweeps`, `residual`, `rcond`, ...) and the `info` of
+    `hipsolverDnXpotrf` and `hipsolverDnXpotrs` are taken as one value on the
+    device, not as an array.
+  * Host values (the `info` of `hipblasXgeqrf` and `hipblasXgetrs`, and a few
+    rocSPARSE and hipSPARSE arguments) lose their `_devptr` forms. Pass a
+    Fortran variable.
+  * The array overloads of the hipSOLVER batched routines take `devInfo` as an
+    array of `batch_count` entries.
 
-* The modules compile 2 to 3 times faster with gfortran and amdflang, and the
-  Cray compiler no longer takes an hour on the assumed-shape rocSOLVER module
-  (8 s now). Each module `use`s `iso_c_binding` and its enums once, and its
-  interfaces `import` them, instead of a `use` in each of its thousands of
-  interfaces and wrappers, which `ftn` read again every time. The modules export
-  the same names as before.
+  Calls through the generic names with a `type(c_ptr)` compile as before, but a call
+  to a specific procedure by name may need its `_devptr` form.
+* **Breaking.** The array overloads of `hipMalloc`, `hipFree`, `hipMemcpy` and
+  related routines are now part of the Fortran 2008 interfaces, so a build with
+  `-DHIPFORT_USE_FPOINTER_INTERFACES=OFF` no longer has them.
+* **Breaking.** `hipfftXtSetWorkArea` moves from `hipfort_hipfft` to the new
+  `hipfort_hipfftxt` module, with the rest of the hipFFT Xt API. Code that calls
+  it writes `use hipfort_hipfftxt`.
+* **Breaking for calls by keyword.** The `hipblasSetVector`/`GetVector`/
+  `SetMatrix`/`GetMatrix` families name their arguments as in the hipBLAS
+  headers (`elemSize`, `AP`, `BP`).
+* `hipblasXrotBatched` and `hipblasXrotStridedBatched` take `c` and `s` as
+  scalars read per the pointer mode, as rocBLAS does.
+* The archives are compiled with one section per procedure. Link with
+  `-Wl,--gc-sections` to keep only the wrappers you call and to link against an
+  older ROCm. A shared library also needs
+  `-Wl,--exclude-libs,libhipfort-amdgcn.a`.
+* The assumed-rank overloads (`-DHIPFORT_ASSUMED_RANK=ON`) no longer declare
+  their arrays `contiguous`, like the per-rank ones, so a section is passed as
+  it is, without a copy. A submatrix works when the leading dimension is that of
+  the whole array, and a strided vector when the increment matches the stride.
+* The modules compile 2 to 3 times faster with gfortran and amdflang, and much
+  faster with the Cray compiler.
 
 ### Fixed
 
-* On the CUDA backend, `hipDeviceAttributeGPUDirectRDMASupported`,
-  `hipDeviceAttributeGPUDirectRDMAFlushWritesOptions` and
-  `hipDeviceAttributeGPUDirectRDMAWritesOrdering` had their HIP values (97 to
-  99), so `hipDeviceGetAttribute` returned other CUDA attributes. They now have
-  their CUDA values (116 to 118).
-
-* An array overload of `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` that
-  fails now leaves its pointer unassociated. It used to associate it with
-  whatever the uninitialized C pointer held (NULL, or an arbitrary address if HIP
-  returned before writing it), so `associated(ptr)` was true and
-  `hipFree(ptr, only_if_allocated=.true.)` freed that address. `hipFree` and
-  `hipHostFree` no longer take `c_loc` of an unassociated pointer: without
-  `only_if_allocated` they free NULL, as the C call does.
-* Fixed `-DHIPFORT_ASSUMED_RANK=ON` with nvfortran, whose `c_loc` of an
-  assumed-rank argument returns a wrong address for a scalar or an array of rank
-  2 or more: the assumed-rank overloads passed a wrong pointer to the C library.
-  The configure probe now runs a program that checks the address for ranks 0, 1
-  and 2 instead of only compiling it, so nvfortran falls back to the per-rank
-  interfaces with a warning.
-
-* The Cray compiler no longer warns that `hipfort_check` may use its status name
-  unallocated (ftn-7206), nor, when building hipfort and its tests, that a scope
-  uses a module twice (ftn-878, which the standard allows: the modules re-export
-  their enums). The `pointer_attributes` tests compare addresses in a way the
-  Cray compiler accepts.
-* The `find_package` test looks for the installed `hipfort-config.cmake` under
-  the platform's libdir (`lib64` on SUSE, RHEL and Fedora), where it is
-  installed, rather than under `lib`.
+* On the CUDA backend, the GPUDirect RDMA device attributes had their HIP
+  values instead of their CUDA values.
+* A failed `hipMalloc`, `hipMallocManaged` or `hipHostMalloc` array overload
+  now leaves its pointer unassociated.
+* `-DHIPFORT_ASSUMED_RANK=ON` with nvfortran now falls back to the per-rank
+  interfaces, since its `c_loc` of an assumed-rank argument is wrong.
+* Warnings with the Cray compiler.
+* The `find_package` test on platforms that install to `lib64`.
 
 ## hipfort 0.10.0 for ROCm 10.1.0
 
