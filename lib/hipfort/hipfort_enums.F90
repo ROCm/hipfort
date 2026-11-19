@@ -1561,7 +1561,7 @@ module hipfort_enums
 
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
   integer(c_int), parameter :: HIP_VERSION_MINOR = 17
-  integer(c_int), parameter :: HIP_VERSION_PATCH = 26422
+  integer(c_int), parameter :: HIP_VERSION_PATCH = 26434
   integer(c_int), parameter :: HIP_VERSION_BUILD_ID = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_DEFAULT = 0
   integer(c_int), parameter :: HIP_GET_PROC_ADDRESS_LEGACY_STREAM = 1
