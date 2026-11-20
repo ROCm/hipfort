@@ -213,6 +213,45 @@ if(BUILD_TESTING)
   # Run the suite in both HSA_XNACK modes. CI enables it on the MI300A nodes.
   option(HIPFORT_XNACK_MATRIX "Also run every test with HSA_XNACK=1" OFF)
 
+  # The GPU architecture of the tests that build GPU code: the HIP kernels of
+  # vecadd, occupancy, cooperative_launch, roctx and the module_kernel code
+  # object, and the OpenMP offload tests. An explicit HIPFORT_OFFLOAD_ARCH or
+  # CMAKE_HIP_ARCHITECTURES wins, and otherwise the first GPU that
+  # rocm_agent_enumerator reports. It stays a bare gfxNNN: the :xnack suffix
+  # that --offload-arch=native and `rocm_agent_enumerator -name` append pins a
+  # code object to one XNACK mode, and the tests run in both. With no GPU and
+  # no architecture given, as on a login node, these tests are skipped: built
+  # for the compiler's default architecture, they would fail on the GPU they
+  # later run on.
+  if(NOT DEFINED HIPFORT_OFFLOAD_ARCH)
+    set(_hipfort_arch "")
+    if(CMAKE_HIP_ARCHITECTURES)
+      list(GET CMAKE_HIP_ARCHITECTURES 0 _hipfort_arch)
+    else()
+      find_program(HIPFORT_AGENT_ENUMERATOR rocm_agent_enumerator
+                   HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
+      if(HIPFORT_AGENT_ENUMERATOR)
+        execute_process(COMMAND ${HIPFORT_AGENT_ENUMERATOR}
+                        OUTPUT_VARIABLE _hipfort_agents
+                        OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
+        string(REGEX MATCHALL "gfx[0-9a-z]+" _hipfort_gpus "${_hipfort_agents}")
+        list(REMOVE_ITEM _hipfort_gpus "gfx000")   # the CPU agent
+        if(_hipfort_gpus)
+          list(GET _hipfort_gpus 0 _hipfort_arch)
+        endif()
+      endif()
+    endif()
+    set(HIPFORT_OFFLOAD_ARCH "${_hipfort_arch}" CACHE STRING
+      "XNACK-agnostic AMD GPU architecture of the tests that build GPU code")
+  endif()
+  if(HIPFORT_OFFLOAD_ARCH AND NOT CMAKE_HIP_ARCHITECTURES)
+    set(CMAKE_HIP_ARCHITECTURES "${HIPFORT_OFFLOAD_ARCH}")
+  endif()
+  if(NOT HIPFORT_OFFLOAD_ARCH)
+    message(STATUS "No GPU found and no HIPFORT_OFFLOAD_ARCH or CMAKE_HIP_ARCHITECTURES "
+                   "given: skipping the tests that build GPU code")
+  endif()
+
   function(hipfort_add_test lib func dir)
     # The f2008 tests exercise the per-rank array overloads and
     # the f2018 tests the assumed-rank overloads; skip each when its interface
@@ -1769,30 +1808,15 @@ if(BUILD_TESTING)
     # it for AMD, hence the ROCm-backend guard.
     find_package(hip QUIET PATHS ${ROCM_PATH})
     find_program(HIPFORT_HIPCC hipcc HINTS ${ROCM_PATH}/bin)
-    if(HIPFORT_HIPCC AND HIP_PLATFORM STREQUAL "amd" AND NOT _hipfort_cuda_backend)
-      # --offload-arch=native and `rocm_agent_enumerator -name` both append the
-      # :xnack suffix, which pins the code object to one XNACK mode and makes
-      # hipModuleLoad fail in the other. The bare gfxNNN loads under both.
-      set(_hipfort_arch "native")
-      find_program(HIPFORT_AGENT_ENUM rocm_agent_enumerator
-                   HINTS ${ROCM_PATH}/bin)
-      if(HIPFORT_AGENT_ENUM)
-        execute_process(COMMAND ${HIPFORT_AGENT_ENUM}
-                        OUTPUT_VARIABLE _hipfort_agents
-                        OUTPUT_STRIP_TRAILING_WHITESPACE)
-        string(REPLACE "\n" ";" _hipfort_agents "${_hipfort_agents}")
-        list(REMOVE_ITEM _hipfort_agents "gfx000")
-        if(_hipfort_agents)
-          list(GET _hipfort_agents 0 _hipfort_arch)
-        endif()
-      endif()
+    if(HIPFORT_HIPCC AND HIPFORT_OFFLOAD_ARCH AND HIP_PLATFORM STREQUAL "amd"
+       AND NOT _hipfort_cuda_backend)
       # The custom command does not see the HIP compile options set at the top
       # of this file, so it repeats the -isystem; --rocm-path takes the device
       # libraries from ROCM_PATH too.
       set(_hipfort_code_object "${CMAKE_CURRENT_BINARY_DIR}/vecadd_kernel.co")
       add_custom_command(
         OUTPUT "${_hipfort_code_object}"
-        COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=${_hipfort_arch}
+        COMMAND ${HIPFORT_HIPCC} --genco --offload-arch=${HIPFORT_OFFLOAD_ARCH}
                 --rocm-path=${ROCM_PATH} -isystem ${ROCM_PATH}/include
                 "${CMAKE_CURRENT_SOURCE_DIR}/f2003/vecadd/hip_implementation.cpp"
                 -o "${_hipfort_code_object}"
@@ -1815,7 +1839,7 @@ if(BUILD_TESTING)
   # language enabled rather than the plain hipfort_add_test() helper.
   include(CheckLanguage)
   check_language(HIP)
-  if(CMAKE_HIP_COMPILER)
+  if(CMAKE_HIP_COMPILER AND HIPFORT_OFFLOAD_ARCH)
     enable_language(HIP)
     foreach(std IN ITEMS f2003 f2008)
       # The f2008 vecadd test needs the f2008 interfaces, which a C-binding
@@ -1855,8 +1879,8 @@ if(BUILD_TESTING)
 
   # hipOccupancy* and hipLaunchCooperativeKernel take the host stub of a kernel.
   # Like module_kernel, these need the ROCm backend: the kernel is built for AMD.
-  if(CMAKE_HIP_COMPILER AND TARGET hipfort::hip AND HIP_PLATFORM STREQUAL "amd"
-     AND NOT _hipfort_cuda_backend)
+  if(CMAKE_HIP_COMPILER AND HIPFORT_OFFLOAD_ARCH AND TARGET hipfort::hip
+     AND HIP_PLATFORM STREQUAL "amd" AND NOT _hipfort_cuda_backend)
     foreach(kernel_test IN ITEMS occupancy cooperative_launch)
       hipfort_add_test(hip ${kernel_test} f2003)
       # Exits 77 (skipped) on a device without the feature it exercises.
@@ -1876,7 +1900,7 @@ if(BUILD_TESTING)
     hipfort_add_symbol_test(roctx)
     include(CheckLanguage)
     check_language(HIP)
-    if(CMAKE_HIP_COMPILER)
+    if(CMAKE_HIP_COMPILER AND HIPFORT_OFFLOAD_ARCH)
       enable_language(HIP)
       hipfort_add_test(roctx main f2003)
       target_sources(hipfort_test_f2003_roctx_main PRIVATE f2003/roctx/hip_implementation.cpp)
@@ -1908,26 +1932,7 @@ if(BUILD_TESTING)
   # test/openmp needs offload (LLVM Flang) and a host LAPACK for the reference.
   # Other toolchains skip the whole block silently; under LLVM Flang, a missing
   # GPU or LAPACK skips with an explicit reason instead of failing.
-  if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang")
-    # The arch must stay XNACK-agnostic, since the tests below run in both modes.
-    if(NOT DEFINED HIPFORT_OFFLOAD_ARCH)
-      set(_hipfort_arch "native")
-      find_program(HIPFORT_AGENT_ENUMERATOR rocm_agent_enumerator
-                   HINTS ${ROCM_PATH}/bin /opt/rocm/bin)
-      if(HIPFORT_AGENT_ENUMERATOR)
-        execute_process(COMMAND ${HIPFORT_AGENT_ENUMERATOR}
-                        OUTPUT_VARIABLE _hipfort_agents
-                        OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
-        string(REGEX MATCHALL "gfx[0-9a-z]+" _hipfort_gpus "${_hipfort_agents}")
-        list(REMOVE_ITEM _hipfort_gpus "gfx000")   # the CPU agent
-        list(REMOVE_DUPLICATES _hipfort_gpus)
-        if(_hipfort_gpus)
-          list(GET _hipfort_gpus 0 _hipfort_arch)
-        endif()
-      endif()
-      set(HIPFORT_OFFLOAD_ARCH "${_hipfort_arch}" CACHE STRING
-        "XNACK-agnostic AMD GPU architecture for the OpenMP offload tests")
-    endif()
+  if(CMAKE_Fortran_COMPILER_ID MATCHES "LLVMFlang" AND HIPFORT_OFFLOAD_ARCH)
     set(_offload_flags -fopenmp -fopenmp-version=51 -fopenmp-offload-mandatory
                        --offload-arch=${HIPFORT_OFFLOAD_ARCH})
 
