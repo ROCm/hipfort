@@ -41,8 +41,8 @@ bindings into ROCm fixes that at the root:
    of the same repository, and kept in sync by CI whenever a header changes. Every entry point the ``.so`` exports is
    declared, and none that it does not.
 *  **Nothing extra to build.** The bindings arrive precompiled with ROCm: in
-   TheRock's tarballs from the 10.3 tech preview, and in the
-   ``amdrocm-<family>-fortran-devel`` packages from 10.4. There is no separate
+   TheRock's tarballs from the 10.4 tech preview, and in the
+   ``amdrocm-<family>-fortran-devel`` packages from 10.5. There is no separate
    project to clone, configure, and keep in step.
 *  **Pay for what you use.** One module and one archive per library, built
    against that library in a separate stage and shipped in the family's Fortran
@@ -85,13 +85,13 @@ Timeline
 
    * - ROCm
      - What happens
-   * - **≤ 10.2**
+   * - **≤ 10.3**
      - Nothing changes. Keep using hipFORT as today.
-   * - **10.3**
+   * - **10.4**
      - The new bindings ship as a tech preview, in TheRock's tarballs and, if
        they are ready, in the OS packages. Their interfaces can still change.
        **hipFORT is still maintained beside them.**
-   * - **10.4 to 10.x**
+   * - **10.5 to 10.x**
      - The new bindings are production: they ship in the OS packages, with the
        full documentation and the compatibility promise below. hipFORT is still
        maintained, so both work and you can migrate at any point in this window.
@@ -106,21 +106,21 @@ underneath, so you migrate on your own schedule. Migrate early anyway: the edit 
 but if something does behave differently you want releases to spare, and an
 early report gets fixed for everyone.
 
-From 10.4, a binding is versioned with its library and stays valid across a
-major ROCm series in one direction: a binding built for 10.4 still links against
+From 10.5, a binding is versioned with its library and stays valid across a
+major ROCm series in one direction: a binding built for 10.5 still links against
 the libraries of any later 10.x, and the CMake package accepts any version with
-the same major number. The 10.3 tech preview carries no such promise. A binding newer than the libraries it links against is
+the same major number. The 10.4 tech preview carries no such promise. A binding newer than the libraries it links against is
 another matter (`Binding and library versions`_). You revisit your build at a
 major release, not at every point release.
 
 Codes that build on several ROCm versions
 -----------------------------------------
 
-If one code base has to build on systems that will not reach ROCm 10.3 for a
+If one code base has to build on systems that will not reach ROCm 10.4 for a
 while (a production machine frozen on ROCm 6.x, for example) and on newer ones,
 you have two options:
 
-*  **Stay on hipFORT until your oldest system reaches 10.3.** hipFORT keeps
+*  **Stay on hipFORT until your oldest system reaches 10.4.** hipFORT keeps
    working through the 10.x series, so a single hipFORT-based build covers
    everything until then. On each system, use the hipFORT release that matches
    its ROCm (hipFORT tags them ``rocm-<version>``, for example ``rocm-6.3.3``):
@@ -159,7 +159,7 @@ you have two options:
    Test the target rather than ``rocblas-fortran_FOUND``: the package can be
    found but have nothing installed for your compiler.
 
-If you need the new bindings on a ROCm older than 10.3, `open an issue
+If you need the new bindings on a ROCm older than 10.4, `open an issue
 <https://github.com/ROCm/hipfort/issues>`_ saying which release: the bindings
 are generated from a release's headers, and an older release can be generated
 on request.
@@ -175,10 +175,10 @@ Usually not. Find your case:
 
    * - Your situation
      - What you build
-   * - ROCm 10.3 or later, compiling with ``amdflang``
+   * - ROCm 10.4 or later, compiling with ``amdflang``
      - **Nothing.** The ``.mod`` and ``.a`` files are installed with ROCm.
        Point your build at them (`Compile and link`_).
-   * - ROCm 10.3 or later, compiling with ``gfortran``, Cray ``ftn``, or any
+   * - ROCm 10.4 or later, compiling with ``gfortran``, Cray ``ftn``, or any
        other compiler
      - **Each binding you use, once per compiler.** A ``.mod`` only works
        with the compiler that wrote it. The sources are installed with ROCm,
@@ -191,7 +191,7 @@ Usually not. Find your case:
        ``bindings/fortran/`` tree of the repository that holds its library,
        built after the library and against it (`Building a binding with
        your compiler`_). TheRock builds them all.
-   * - ROCm older than 10.3
+   * - ROCm older than 10.4
      - **hipFORT, as today.** See `Codes that build on several ROCm versions`_.
    * - Windows
      - **Each binding you use, from the repository.** ROCm for Windows ships
@@ -826,7 +826,7 @@ and rocSPARSE, is unrelated: it still builds the Fortran part of the library's
 To test from CMake whether a binding is available, use
 ``if(TARGET roc::rocblas_fortran)`` after ``find_package(rocblas-fortran)``.
 
-Trying the bindings before ROCm 10.3
+Trying the bindings before ROCm 10.4
 ====================================
 
 The bindings are under review in one pull request per library. Until they ship
@@ -901,7 +901,7 @@ Special cases
 =============
 
 The in-tree Fortran modules that rocBLAS, hipSPARSE, hipRAND and the others
-shipped themselves have collisions of their own at 10.3; those are covered in
+shipped themselves have collisions of their own at 10.4; those are covered in
 :doc:`migration-guide-in-tree`, not here.
 
 **If you build for NVIDIA (CUDA)**, the ``nvptx`` backend is dropped from the
@@ -990,9 +990,9 @@ and it is the whole of the migration.
 **Where do I get the new bindings?**
 
 They ship precompiled for ``amdflang`` with ROCm: in TheRock's tarballs from
-the 10.3 tech preview (and in the OS packages if they are ready), and in the OS
-packages from 10.4, where you install ``amdrocm-<family>-fortran-devel`` (for
+the 10.4 tech preview (and in the OS packages if they are ready), and in the OS
+packages from 10.5, where you install ``amdrocm-<family>-fortran-devel`` (for
 example ``amdrocm-blas-fortran-devel``), or ``amdrocm-fortran`` for all of
 them. For another compiler, see
-`Building a binding with your compiler`_; before 10.3, see
-`Trying the bindings before ROCm 10.3`_.
+`Building a binding with your compiler`_; before 10.4, see
+`Trying the bindings before ROCm 10.4`_.

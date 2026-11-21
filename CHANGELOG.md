@@ -5,7 +5,7 @@
 ### Deprecated
 
 * hipFORT is deprecated. It is maintained through the ROCm 10.x series and
-  removed no earlier than ROCm 11.0. From ROCm 10.3, ROCm ships Fortran
+  removed no earlier than ROCm 11.0. From ROCm 10.4, ROCm ships Fortran
   bindings for HIP, ROCTx and the math libraries, one module and one CMake
   package per library (`use hip`, `use rocblas`,
   `find_package(rocblas-fortran)`), and the migration guide explains how to

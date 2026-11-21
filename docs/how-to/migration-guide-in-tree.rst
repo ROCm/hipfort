@@ -13,7 +13,7 @@ You call a ROCm math library from Fortran through the module **that library
 ships itself**, ``use rocblas`` compiled against
 ``/opt/rocm/include/rocblas/rocblas_module.f90``, ``use rocsparse``,
 ``use rocrand_m``. Several ROCm libraries have shipped a hand-written Fortran
-module next to their C API for years. From ROCm 10.3 a generated binding
+module next to their C API for years. From ROCm 10.4 a generated binding
 supersedes them: they are deprecated, and removed no earlier than ROCm 11.0.
 
 If instead you build **hipFORT** yourself and write ``use hipfort_rocblas``,
@@ -45,13 +45,13 @@ example, goes from 224 entry points to 546.
 When to move
 ============
 
-ROCm 10.3 ships the generated binding beside the hand-written module, which is
+ROCm 10.4 ships the generated binding beside the hand-written module, which is
 deprecated from then on and removed no earlier than ROCm 11.0, announced in
 the library's CHANGELOG. Move during that window.
 
-In 10.3 the generated bindings are a tech preview: they ship in TheRock's
+In 10.4 the generated bindings are a tech preview: they ship in TheRock's
 tarballs and, if they are ready, in the OS packages, and their interfaces can
-still change. From 10.4 they are production and ship in the OS packages, one
+still change. From 10.5 they are production and ship in the OS packages, one
 ``amdrocm-<family>-fortran-devel`` package per library family (for example
 ``amdrocm-blas-fortran-devel``).
 
@@ -165,8 +165,8 @@ The build change catches people precisely because the ``use`` line often does
 not move. rocBLAS, hipBLAS and rocSPARSE installed their module as a **source**
 file (``/opt/rocm/include/rocblas/rocblas_module.f90``), so you almost certainly
 compile it as part of your own build today. Stop: the file is deprecated from
-10.3 and goes away no earlier than ROCm 11.0, and a compiled module ships with
-ROCm from 10.3 (as a tech preview, see `When to move`_). Drop it from your source list and link the archive instead.
+10.4 and goes away no earlier than ROCm 11.0, and a compiled module ships with
+ROCm from 10.4 (as a tech preview, see `When to move`_). Drop it from your source list and link the archive instead.
 
 rocRAND and hipRAND did the same thing one level further out, installing their
 sources under ``<lib>/src/fortran/`` and pointing at them from the config
@@ -349,19 +349,19 @@ If you hit a difference not described here, report it at
 around it locally: these are generator differences, and a fix there fixes it for
 everyone.
 
-Building on ROCm versions before and after 10.3
+Building on ROCm versions before and after 10.4
 ===============================================
 
 Because the module name stays the same, a code that has to build on both sides
-of 10.3 does not need a wrapper module; only the build differs. Compile the
+of 10.4 does not need a wrapper module; only the build differs. Compile the
 hand-written source where it exists, and link the generated binding otherwise:
 
 .. code-block:: cmake
 
    find_package(rocblas-fortran CONFIG QUIET)
-   if(TARGET roc::rocblas_fortran)          # ROCm 10.3 or later
+   if(TARGET roc::rocblas_fortran)          # ROCm 10.4 or later
      target_link_libraries(app PRIVATE roc::rocblas roc::rocblas_fortran)
-   else()                                   # before 10.3
+   else()                                   # before 10.4
      find_package(rocblas REQUIRED)
      find_file(ROCBLAS_MODULE_F90 rocblas_module.f90
                HINTS /opt/rocm PATH_SUFFIXES include/rocblas REQUIRED)
@@ -371,7 +371,7 @@ hand-written source where it exists, and link the generated binding otherwise:
 
 The call sites are the harder part. The handle and stream calls and the
 ``rocblas_enums`` line differ on each side, so guard them: define a macro in the
-10.3 branch above, ``target_compile_definitions(app PRIVATE
+10.4 branch above, ``target_compile_definitions(app PRIVATE
 ROCBLAS_FORTRAN_GENERATED)``, use a preprocessed ``.F90`` file, and guard the
 ``use`` line and the call separately (a ``use`` must come first in its scope):
 
