@@ -241,6 +241,19 @@ and pulls in the C library:
 If ROCm is not in ``/opt/rocm``, add its prefix to ``CMAKE_PREFIX_PATH``. If
 you built a binding into a prefix of your own, add that prefix too.
 
+Each target is in the namespace of its C library, next to it:
+``roc::rocblas_fortran`` next to ``roc::rocblas``, but ``hip::hiprand_fortran``
+next to ``hip::hiprand``. To avoid spelling it, each package also sets
+``<library>_FORTRAN_LIBRARIES``, the target to link, and
+``<library>_FORTRAN_INCLUDE_DIRS``, the directory of its ``.mod`` files, for a
+build that passes the paths to another tool:
+
+.. code-block:: cmake
+
+   find_package(rocblas-fortran REQUIRED)
+   target_link_libraries(app PRIVATE ${rocblas_FORTRAN_LIBRARIES})
+   message(STATUS "rocBLAS modules: ${rocblas_FORTRAN_INCLUDE_DIRS}")
+
 Without CMake
 -------------
 
