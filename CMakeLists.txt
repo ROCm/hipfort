@@ -294,6 +294,8 @@ INCLUDE(${CMAKE_MODULE_PATH}/rocm-cmake.cmake)
 rocm_setup_version(VERSION ${PROJECT_VERSION} NO_GIT_TAG_VERSION)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/lib)
 ADD_SUBDIRECTORY(${CMAKE_SOURCE_DIR}/test)
+# Sandbox: the per-library bindings of the monorepos, with their own tests.
+add_subdirectory(${CMAKE_SOURCE_DIR}/bindings/fortran)
 
 set(CPACK_DEBIAN_PACKAGE_DEPENDS "hip-runtime-amd (>= 6.0.0)")
 set(CPACK_RPM_PACKAGE_REQUIRES "hip-runtime-amd >= 6.0.0")
