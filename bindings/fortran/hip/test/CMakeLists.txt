@@ -259,9 +259,8 @@ else()
     )
 endif()
 
-# module_kernel loads the same kernel as a standalone code object at runtime,
-# built by the HIP compiler alone: --offload-device-only makes the object the
-# clang offload bundle that hipModuleLoad takes, as hipcc --genco would.
+# module_kernel and library_module load the same kernel as a code object at
+# runtime. --offload-device-only makes the object a bundle hipModuleLoad takes.
 if(_archs AND NOT CMAKE_HIP_COMPILER_LOADED)
     message(
         STATUS
