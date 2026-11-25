@@ -43,7 +43,7 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
 
 *  **Communication**:
 
-   *  RCCL, whose routine names follow NCCL, on AMD GPUs only
+   *  RCCL, whose routine names follow NCCL
 
 The available interfaces depend on which Fortran compiler was used to compile the hipFORT modules and libraries.
 The interfaces use the ``iso_c_binding`` module, so the minimum requirement is a Fortran compiler that supports
