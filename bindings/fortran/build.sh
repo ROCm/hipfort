@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build, install and test the twelve Fortran bindings of this directory, the way
+# Build, install and test the thirteen Fortran bindings of this directory, the way
 # TheRock does: each bindings/fortran/<lib> is a standalone CMake project, built
 # against the installed ROCm and installed into one prefix, in dependency order,
 # so that a binding finds the ones it uses (HIP for every test, rocBLAS for
@@ -28,7 +28,7 @@ JOBS="${JOBS:-$(nproc)}"
 RUN_TESTS="${RUN_TESTS:-1}"
 
 # HIP first: every test uses it. rocBLAS before rocSOLVER, whose module uses rocblas.
-libs=(hip roctx rocblas hipblas rocsolver hipsolver rocsparse hipsparse rocfft hipfft rocrand hiprand)
+libs=(hip roctx rccl rocblas hipblas rocsolver hipsolver rocsparse hipsparse rocfft hipfft rocrand hiprand)
 
 fc_args=()
 [[ -n "${FC:-}" ]] && fc_args=(-DCMAKE_Fortran_COMPILER="$FC")

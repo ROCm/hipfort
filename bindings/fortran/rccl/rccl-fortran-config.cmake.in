@@ -1,0 +1,126 @@
+# Copyright (c) Advanced Micro Devices, Inc., or its affiliates.
+#
+# SPDX-License-Identifier: MIT
+
+# Config package for the RCCL Fortran bindings:
+#   find_package(rccl-fortran REQUIRED)
+#   target_link_libraries(my_app PRIVATE roc::rccl_fortran)
+# A consumer may set RCCL_FORTRAN_COMPILER_DIR to pick the per-compiler directory.
+
+@PACKAGE_INIT@
+
+set(_rccl_built_dir "@RCCL_FORTRAN_COMPILER_DIR@")
+set(_rccl_libdir "@PACKAGE_RCCL_FORTRAN_LIBDIR@")
+set(_rccl_incdir "@PACKAGE_RCCL_FORTRAN_INCLUDEDIR@")
+
+set(rccl_FORTRAN_FOUND FALSE)
+
+if(NOT CMAKE_Fortran_COMPILER_LOADED)
+  set(rccl-fortran_FOUND FALSE)
+  string(CONCAT rccl-fortran_NOT_FOUND_MESSAGE
+      "The RCCL Fortran bindings need Fortran enabled before find_package: "
+      "add Fortran to your project() languages, or call enable_language(Fortran).")
+  return()
+endif()
+
+# Must match the mapping in bindings/fortran/rccl/CMakeLists.txt.
+if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
+  set(_rccl_fc "gfortran")
+elseif(CMAKE_Fortran_COMPILER_ID MATCHES "Flang")     # Flang, LLVMFlang
+  set(_rccl_fc "amdflang")
+elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "Cray")
+  set(_rccl_fc "ftn")
+elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "IntelLLVM")
+  set(_rccl_fc "ifx")
+elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "Intel")
+  set(_rccl_fc "ifort")
+elseif(CMAKE_Fortran_COMPILER_ID STREQUAL "NVHPC")
+  set(_rccl_fc "nvfortran")
+else()
+  get_filename_component(_rccl_fc "${CMAKE_Fortran_COMPILER}" NAME_WE)
+  string(TOLOWER "${_rccl_fc}" _rccl_fc)
+endif()
+
+function(_rccl_dir_matches DIR FC OUT)
+  set(${OUT} FALSE PARENT_SCOPE)
+  if(DIR STREQUAL FC)
+    set(${OUT} TRUE PARENT_SCOPE)
+    return()
+  endif()
+  string(LENGTH "${FC}" _n)
+  string(LENGTH "${DIR}" _dn)
+  if(_dn GREATER _n)
+    string(SUBSTRING "${DIR}" 0 ${_n} _head)
+    string(SUBSTRING "${DIR}" ${_n} 1 _sep)
+    if(_head STREQUAL FC AND _sep MATCHES "^[-._]$")
+      set(${OUT} TRUE PARENT_SCOPE)
+    endif()
+  endif()
+endfunction()
+
+file(GLOB _rccl_avail RELATIVE "${_rccl_incdir}" "${_rccl_incdir}/*")
+
+if(DEFINED RCCL_FORTRAN_COMPILER_DIR)
+  set(_rccl_dir "${RCCL_FORTRAN_COMPILER_DIR}")
+  if(NOT EXISTS "${_rccl_incdir}/${_rccl_dir}/rccl.mod"
+     OR NOT EXISTS "${_rccl_libdir}/${_rccl_dir}/librccl_fortran.a")
+    set(rccl-fortran_FOUND FALSE)
+    string(CONCAT rccl-fortran_NOT_FOUND_MESSAGE
+        "RCCL_FORTRAN_COMPILER_DIR is ${_rccl_dir}, but rccl.mod and "
+        "librccl_fortran.a are not both installed for it under ${_rccl_incdir} "
+        "and ${_rccl_libdir}. Available: ${_rccl_avail}.")
+    return()
+  endif()
+else()
+  set(_rccl_dir "")
+  if(EXISTS "${_rccl_incdir}/${_rccl_fc}/rccl.mod")
+    set(_rccl_dir "${_rccl_fc}")
+  else()
+    _rccl_dir_matches("${_rccl_built_dir}" "${_rccl_fc}" _rccl_ok)
+    if(_rccl_ok)
+      set(_rccl_dir "${_rccl_built_dir}")
+    endif()
+  endif()
+
+  if(NOT _rccl_dir)
+    set(rccl-fortran_FOUND FALSE)
+    string(CONCAT rccl-fortran_NOT_FOUND_MESSAGE
+        "This project builds with ${_rccl_fc}, but no rccl.mod for it is installed "
+        "under ${_rccl_incdir}. Available: ${_rccl_avail}. "
+        "A Fortran .mod cannot be shared across compilers; rebuild the bindings "
+        "with ${_rccl_fc}, or set RCCL_FORTRAN_COMPILER_DIR to the directory to use.")
+    return()
+  endif()
+endif()
+
+if(@RCCL_FORTRAN_NEEDS_C_PACKAGE@)
+  if(NOT TARGET roc::rccl)
+    if(NOT CMAKE_C_COMPILER_LOADED AND NOT CMAKE_CXX_COMPILER_LOADED)
+      enable_language(C)
+    endif()
+    include(CMakeFindDependencyMacro)
+    find_dependency(rccl)
+  endif()
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/rccl-fortran-targets.cmake")
+
+if(NOT _rccl_dir STREQUAL _rccl_built_dir)
+  set_target_properties(roc::rccl_fortran PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${_rccl_incdir}/${_rccl_dir}")
+  get_target_property(_rccl_cfgs roc::rccl_fortran IMPORTED_CONFIGURATIONS)
+  foreach(_rccl_c IN LISTS _rccl_cfgs)
+    set_target_properties(roc::rccl_fortran PROPERTIES
+      IMPORTED_LOCATION_${_rccl_c}
+        "${_rccl_libdir}/${_rccl_dir}/librccl_fortran.a")
+  endforeach()
+endif()
+
+# The target and the .mod directory, for a project that does not want to spell
+# the target's namespace or that passes the paths to another build system.
+set(rccl_FORTRAN_LIBRARIES roc::rccl_fortran)
+set(rccl_FORTRAN_INCLUDE_DIRS "${_rccl_incdir}/${_rccl_dir}")
+
+set(rccl_FORTRAN_FOUND TRUE)
+
+check_required_components(rccl-fortran)

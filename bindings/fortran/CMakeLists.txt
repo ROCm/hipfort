@@ -1,4 +1,4 @@
-# Sandbox superbuild: builds the twelve bindings of this directory as TheRock
+# Sandbox superbuild: builds the thirteen bindings of this directory as TheRock
 # does. Each bindings/fortran/<lib> is a standalone project, built against the
 # installed ROCm and installed into one prefix in dependency order, so that a
 # binding finds the ones it uses (HIP for every test, rocBLAS for rocSOLVER)
@@ -42,7 +42,7 @@ endif()
 
 # <lib>:<dependencies>. HIP first, every test uses it; rocBLAS before rocSOLVER.
 set(_bindings
-  "hip:" "roctx:" "rocblas:hip" "hipblas:hip" "rocsolver:hip,rocblas"
+  "hip:" "roctx:" "rccl:hip" "rocblas:hip" "hipblas:hip" "rocsolver:hip,rocblas"
   "hipsolver:hip" "rocsparse:hip" "hipsparse:hip" "rocfft:hip" "hipfft:hip"
   "rocrand:hip" "hiprand:hip")
 
