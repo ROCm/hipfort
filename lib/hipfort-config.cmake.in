@@ -27,7 +27,7 @@
 
 include(CMakeFindDependencyMacro)
 
-set(_hipfort_supported_components hip roctx
+set(_hipfort_supported_components hip roctx rccl
   rocblas rocfft rocrand rocsolver rocsparse
   hipblas hipfft hipfftw hipfftxt hiprand hipsolver hipsparse)
 

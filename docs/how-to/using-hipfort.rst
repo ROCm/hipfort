@@ -41,6 +41,10 @@ hipFORT provides interfaces to the HIP runtime and to the ROCm libraries:
    *  hipFFTW, whose routine names, planner flags, and calling sequence follow FFTW3
       rather than an NVIDIA library
 
+*  **Communication**:
+
+   *  RCCL, whose routine names follow NCCL, on AMD GPUs only
+
 The available interfaces depend on which Fortran compiler was used to compile the hipFORT modules and libraries.
 The interfaces use the ``iso_c_binding`` module, so the minimum requirement is a Fortran compiler that supports
 the Fortran 2003 standard (``f2003``). These interfaces typically require passing ``type(c_ptr)`` variables
@@ -95,6 +99,10 @@ constants and C structures are in separate modules.
      - ``roctx``
      - ``-lrocprofiler-sdk-roctx``
      - None
+   * - ``hipfort_rccl``
+     - ``rccl``
+     - ``-lrccl``
+     - ``hipfort_rccl_enums``, ``hipfort_rccl_types``
    * - ``hipfort_rocblas``
      - ``rocblas``
      - ``-lrocblas``
@@ -289,7 +297,8 @@ own examples: the :doc:`hipBLAS examples <../tutorials/hipblas-examples>`, the
 :doc:`hipSOLVER examples <../tutorials/hipsolver-examples>`, and the
 :doc:`hipSPARSE examples <../tutorials/hipsparse-examples>`.
 For the FFTW3-compatible interface, see the
-:doc:`hipFFTW examples <../tutorials/hipfftw-examples>`.
+:doc:`hipFFTW examples <../tutorials/hipfftw-examples>`, and for collectives
+across GPUs, the :doc:`RCCL examples <../tutorials/rccl-examples>`.
 
 Supported HIP and ROCm APIs
 ---------------------------
@@ -313,6 +322,7 @@ links as long as it does not call them. The following tables list the supported 
 * :doc:`rocSOLVER API <../doxygen/html/md_input_2supported__api__rocsolver>`
 * :doc:`rocSPARSE API <../doxygen/html/md_input_2supported__api__rocsparse>`
 * :doc:`ROCTx API <../doxygen/html/md_input_2supported__api__roctx>`
+* :doc:`RCCL API <../doxygen/html/md_input_2supported__api__rccl>`
 
 .. note::
 

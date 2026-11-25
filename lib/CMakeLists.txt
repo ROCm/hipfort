@@ -40,8 +40,8 @@ set(HIPFORT_SRC_HIP ${HIPFORT_SRC_HIP_F90} ${HIPFORT_SRC_HIP_F90_UPPER})
 # Everything else is common to both backends.
 set(HIPFORT_SRC_ROC "")
 # roctx is AMD-only: its entry points exist only in ROCm's
-# rocprofiler-sdk-roctx, with no CUDA counterpart.
-foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand roctx)
+# rocprofiler-sdk-roctx, with no CUDA counterpart. So is rccl.
+foreach(_roclib rocblas rocsolver rocsparse rocfft rocrand roctx rccl)
   file(GLOB _rocfiles "${CMAKE_CURRENT_SOURCE_DIR}/hipfort/hipfort_${_roclib}.[fF]90")  # API module only, not *_enums
   list(APPEND HIPFORT_SRC_ROC ${_rocfiles})
 endforeach()
@@ -290,6 +290,13 @@ if(HIP_PLATFORM STREQUAL "amd" AND TARGET hipfort-amdgcn)
     message(STATUS "Skipping hipfort::roctx target export")
   endif()
 
+  find_package(rccl PATHS ${ROCM_PATH})
+  if(rccl_FOUND)
+    hipfort_add_component(rccl roc::rccl)
+  else()
+    message(STATUS "Skipping hipfort::rccl target export")
+  endif()
+
   find_package(rocblas PATHS ${ROCM_PATH})
   if(rocblas_FOUND)
     hipfort_add_component(rocblas roc::rocblas)
@@ -502,7 +509,7 @@ if(HIPFORT_EXTENDED_TESTS)
     # (roctxMarkA@@ROCTX_4.1) -- so resolve the same one the component does,
     # falling back to the legacy name.
     set(_amd_libs hipfftw hipfft rocfft hipsolver rocsolver hipblas rocblas
-                  rocrand hiprand hipsparse rocsparse roctx amdhip64)
+                  rocrand hiprand hipsparse rocsparse roctx rccl amdhip64)
     set(_amd_names_roctx rocprofiler-sdk-roctx roctx64)
     set(_amd_ok TRUE)
     set(_amd_missing "")

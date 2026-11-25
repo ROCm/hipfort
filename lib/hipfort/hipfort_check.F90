@@ -489,6 +489,41 @@ contains
     end if
   end subroutine hipsparseCheck
 #ifndef USE_CUDA_NAMES
+  subroutine ncclCheck(status)
+    use hipfort_rccl_enums, only: ncclSuccess, ncclUnhandledCudaError, ncclSystemError, &
+      ncclInternalError, ncclInvalidArgument, ncclInvalidUsage, ncclRemoteError, ncclInProgress, &
+      ncclTimeout, ncclNumResults
+    implicit none
+    integer(kind(ncclSuccess)) :: status
+    character(len=22) :: name
+    if (status /= ncclSuccess) then
+      name = "unknown status"
+      select case (status)
+      case (ncclUnhandledCudaError)
+        name = "ncclUnhandledCudaError"
+      case (ncclSystemError)
+        name = "ncclSystemError"
+      case (ncclInternalError)
+        name = "ncclInternalError"
+      case (ncclInvalidArgument)
+        name = "ncclInvalidArgument"
+      case (ncclInvalidUsage)
+        name = "ncclInvalidUsage"
+      case (ncclRemoteError)
+        name = "ncclRemoteError"
+      case (ncclInProgress)
+        name = "ncclInProgress"
+      case (ncclTimeout)
+        name = "ncclTimeout"
+      case (ncclNumResults)
+        name = "ncclNumResults"
+      end select
+      write (*, "(a,i0,a)") "RCCL ERROR: " // trim(name) // " (code ", status, ")"
+      stop 1
+    end if
+  end subroutine ncclCheck
+#endif
+#ifndef USE_CUDA_NAMES
   subroutine rocblasCheck(status)
     use hipfort_rocblas_enums, only: rocblas_status_success, rocblas_status_invalid_handle, &
       rocblas_status_not_implemented, rocblas_status_invalid_pointer, rocblas_status_invalid_size, &
