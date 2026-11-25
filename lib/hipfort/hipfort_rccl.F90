@@ -407,7 +407,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclGetLastError
     function ncclGetLastError_(comm) bind(c, name="ncclGetLastError")
       import
@@ -417,7 +416,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclResetDebugInit
     subroutine ncclResetDebugInit_() bind(c, name="ncclResetDebugInit")
       import
@@ -498,7 +496,6 @@ module hipfort_rccl
     module procedure ncclCommUserRank_typed
   end interface
 
-  !>  @endcond
   interface ncclCommRegister
     function ncclCommRegister_(comm,buff,mySize,handle) bind(c, name="ncclCommRegister")
       import
@@ -511,7 +508,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclCommDeregister
     function ncclCommDeregister_(comm,handle) bind(c, name="ncclCommDeregister")
       import
@@ -574,7 +570,6 @@ module hipfort_rccl
     module procedure ncclCommMemStats_typed
   end interface
 
-  !>  @endcond
   interface ncclCommWindowRegister
     function ncclCommWindowRegister_(comm,buff,mySize,win,winFlags) &
         bind(c, name="ncclCommWindowRegister")
@@ -589,7 +584,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclCommWindowDeregister
     function ncclCommWindowDeregister_(comm,win) bind(c, name="ncclCommWindowDeregister")
       import
@@ -600,7 +594,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclWinGetUserPtr
     function ncclWinGetUserPtr_(comm,win,outUserPtr) bind(c, name="ncclWinGetUserPtr")
       import
@@ -1016,7 +1009,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclAllReduceConfig
     function ncclAllReduceConfig_(sendbuff,recvbuff,count,datatype,op,comm,stream,config) &
         bind(c, name="ncclAllReduceConfig")
@@ -1215,7 +1207,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclPutSignal
     function ncclPutSignal_(localbuff,count,datatype,peer,peerWin,peerWinOffset,sigIdx,ctx,flags, &
         comm,stream) &
@@ -1289,7 +1280,6 @@ module hipfort_rccl
     end function
   end interface
 
-  !>  @endcond
   interface ncclGroupSimulateEnd
     function ncclGroupSimulateEnd_(simInfo) bind(c, name="ncclGroupSimulateEnd")
       import
