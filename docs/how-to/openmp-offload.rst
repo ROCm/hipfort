@@ -73,6 +73,19 @@ link with ``-Wl,-z,nostart-stop-gc``. ``amdflang`` links with ``ld.lld``, which
 by default lets ``-Wl,--gc-sections`` remove the table of offload kernels, so
 the program aborts at its first ``target`` construct.
 
+Where to call hipFORT routines
+==============================
+
+Call hipFORT routines from host code, outside ``target`` constructs, and pass
+them device data as shown above. Each routine is a host API: it launches its
+own GPU kernels, so it runs between OpenMP kernels, not inside one.
+
+hipFORT has no bindings for device-side functions, the ones called from inside
+a GPU kernel, such as the block and warp primitives of rocPRIM and hipCUB or
+the device API of rocRAND. These are C++ templates, instantiated at compile
+time for each type and size, so there is no fixed set of C functions to bind,
+and they cannot be called from an OpenMP ``target`` region.
+
 Unified memory
 ==============
 
