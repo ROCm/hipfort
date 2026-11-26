@@ -6,8 +6,8 @@
 
 * RCCL, the ROCm Communication Collectives Library, in the new `hipfort_rccl`
   module (`hipfort::rccl` CMake component), with `hipfort_rccl_enums`,
-  `hipfort_rccl_types` and `ncclCheck` in `hipfort_check`. It is available on
-  AMD GPUs only. `ncclCommInitAll` takes an array of communicators.
+  `hipfort_rccl_types` and `ncclCheck` in `hipfort_check`.
+  `ncclCommInitAll` takes an array of communicators.
 * An *RCCL examples* tutorial page.
 
 ## hipfort 0.11.0 for ROCm 10.2.0

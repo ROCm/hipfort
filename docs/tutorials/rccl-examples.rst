@@ -13,7 +13,7 @@ keeps the names of NVIDIA's NCCL: ``ncclAllReduce``, ``ncclCommInitRank``,
 ``ncclSum`` and so on. hipFORT exposes it through the ``hipfort_rccl`` module,
 together with ``hipfort_rccl_enums`` for the data types, reduction operations
 and status codes, and ``hipfort_rccl_types`` for ``ncclUniqueId`` and
-``ncclConfig_t``. ``hipfort_rccl`` is available on AMD GPUs only.
+``ncclConfig_t``.
 
 Every program on this page is a complete example that is built and run as part
 of the hipFORT test suite, from ``test/f2003/rccl`` and ``test/f2008/rccl``.
