@@ -6,6 +6,7 @@ hipfort provides Fortran interfaces to the HIP runtime and the ROCm libraries:
 * **HIP math libraries (`hip*`):** hipBLAS, hipFFT, hipFFTXt, hipRAND, hipSOLVER, hipSPARSE
 * **FFTW3-compatible interface:** hipFFTW
 * **ROCm math libraries (`roc*`):** rocBLAS, rocFFT, rocRAND, rocSOLVER, rocSPARSE
+* **Communication:** RCCL
 
 The interfaces are derived from ROCm 10.2.0. They take `type(c_ptr)` arguments, and
 with a Fortran 2008 compiler, hipfort also provides interfaces that take Fortran

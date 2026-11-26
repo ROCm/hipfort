@@ -45,6 +45,8 @@ subtrees:
         title: hipSOLVER examples
       - file: tutorials/hipsparse-examples.rst
         title: hipSPARSE examples
+      - file: tutorials/rccl-examples.rst
+        title: RCCL examples
 
   - caption: API reference
     entries:

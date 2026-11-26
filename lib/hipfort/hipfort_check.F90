@@ -488,14 +488,43 @@ contains
       stop 1
     end if
   end subroutine hipsparseCheck
-  subroutine rocblasCheck(status)
-#ifdef USE_CUDA_NAMES
-    use hipfort_rocblas_enums, only: rocblas_status_success
+#ifndef USE_CUDA_NAMES
+  subroutine ncclCheck(status)
+    use hipfort_rccl_enums, only: ncclSuccess, ncclUnhandledCudaError, ncclSystemError, &
+      ncclInternalError, ncclInvalidArgument, ncclInvalidUsage, ncclRemoteError, ncclInProgress, &
+      ncclTimeout, ncclNumResults
     implicit none
-    integer(kind(rocblas_status_success)) :: status
-    if (status /= rocblas_status_success) then
-      write (*, *) "ROCBLAS ERROR: code = ", status
-#else
+    integer(kind(ncclSuccess)) :: status
+    character(len=22) :: name
+    if (status /= ncclSuccess) then
+      name = "unknown status"
+      select case (status)
+      case (ncclUnhandledCudaError)
+        name = "ncclUnhandledCudaError"
+      case (ncclSystemError)
+        name = "ncclSystemError"
+      case (ncclInternalError)
+        name = "ncclInternalError"
+      case (ncclInvalidArgument)
+        name = "ncclInvalidArgument"
+      case (ncclInvalidUsage)
+        name = "ncclInvalidUsage"
+      case (ncclRemoteError)
+        name = "ncclRemoteError"
+      case (ncclInProgress)
+        name = "ncclInProgress"
+      case (ncclTimeout)
+        name = "ncclTimeout"
+      case (ncclNumResults)
+        name = "ncclNumResults"
+      end select
+      write (*, "(a,i0,a)") "RCCL ERROR: " // trim(name) // " (code ", status, ")"
+      stop 1
+    end if
+  end subroutine ncclCheck
+#endif
+#ifndef USE_CUDA_NAMES
+  subroutine rocblasCheck(status)
     use hipfort_rocblas_enums, only: rocblas_status_success, rocblas_status_invalid_handle, &
       rocblas_status_not_implemented, rocblas_status_invalid_pointer, rocblas_status_invalid_size, &
       rocblas_status_memory_error, rocblas_status_internal_error, rocblas_status_perf_degraded, &
@@ -541,18 +570,12 @@ contains
         name = "rocblas_status_arch_mismatch"
       end select
       write (*, "(a,i0,a)") "ROCBLAS ERROR: " // trim(name) // " (code ", status, ")"
-#endif
       stop 1
     end if
   end subroutine rocblasCheck
+#endif
+#ifndef USE_CUDA_NAMES
   subroutine rocfftCheck(status)
-#ifdef USE_CUDA_NAMES
-    use hipfort_rocfft_enums, only: rocfft_status_success
-    implicit none
-    integer(kind(rocfft_status_success)) :: status
-    if (status /= rocfft_status_success) then
-      write (*, *) "ROCFFT ERROR: code = ", status
-#else
     use hipfort_rocfft_enums, only: rocfft_status_success, rocfft_status_failure, &
       rocfft_status_invalid_arg_value, rocfft_status_invalid_dimensions, &
       rocfft_status_invalid_array_type, rocfft_status_invalid_strides, &
@@ -582,18 +605,12 @@ contains
         name = "rocfft_status_invalid_work_buffer"
       end select
       write (*, "(a,i0,a)") "ROCFFT ERROR: " // trim(name) // " (code ", status, ")"
-#endif
       stop 1
     end if
   end subroutine rocfftCheck
+#endif
+#ifndef USE_CUDA_NAMES
   subroutine rocrandCheck(status)
-#ifdef USE_CUDA_NAMES
-    use hipfort_rocrand_enums, only: ROCRAND_STATUS_SUCCESS
-    implicit none
-    integer(kind(ROCRAND_STATUS_SUCCESS)) :: status
-    if (status /= ROCRAND_STATUS_SUCCESS) then
-      write (*, *) "ROCRAND ERROR: code = ", status
-#else
     use hipfort_rocrand_enums, only: ROCRAND_STATUS_SUCCESS, ROCRAND_STATUS_VERSION_MISMATCH, &
       ROCRAND_STATUS_NOT_CREATED, ROCRAND_STATUS_ALLOCATION_FAILED, ROCRAND_STATUS_TYPE_ERROR, &
       ROCRAND_STATUS_OUT_OF_RANGE, ROCRAND_STATUS_LENGTH_NOT_MULTIPLE, &
@@ -625,18 +642,12 @@ contains
         name = "ROCRAND_STATUS_INTERNAL_ERROR"
       end select
       write (*, "(a,i0,a)") "ROCRAND ERROR: " // trim(name) // " (code ", status, ")"
-#endif
       stop 1
     end if
   end subroutine rocrandCheck
+#endif
+#ifndef USE_CUDA_NAMES
   subroutine rocsolverCheck(status)
-#ifdef USE_CUDA_NAMES
-    use hipfort_rocblas_enums, only: ROCBLAS_STATUS_SUCCESS
-    implicit none
-    integer(kind(ROCBLAS_STATUS_SUCCESS)) :: status
-    if (status /= ROCBLAS_STATUS_SUCCESS) then
-      write (*, *) "ROCSOLVER ERROR: code = ", status
-#else
     use hipfort_rocblas_enums, only: ROCBLAS_STATUS_SUCCESS, rocblas_status_invalid_handle, &
       rocblas_status_not_implemented, rocblas_status_invalid_pointer, rocblas_status_invalid_size, &
       rocblas_status_memory_error, rocblas_status_internal_error, rocblas_status_perf_degraded, &
@@ -682,18 +693,12 @@ contains
         name = "rocblas_status_arch_mismatch"
       end select
       write (*, "(a,i0,a)") "ROCSOLVER ERROR: " // trim(name) // " (code ", status, ")"
-#endif
       stop 1
     end if
   end subroutine rocsolverCheck
+#endif
+#ifndef USE_CUDA_NAMES
   subroutine rocsparseCheck(status)
-#ifdef USE_CUDA_NAMES
-    use hipfort_rocsparse_enums, only: rocsparse_status_success
-    implicit none
-    integer(kind(rocsparse_status_success)) :: status
-    if (status /= rocsparse_status_success) then
-      write (*, *) "ROCSPARSE ERROR: code = ", status
-#else
     use hipfort_rocsparse_enums, only: rocsparse_status_success, rocsparse_status_invalid_handle, &
       rocsparse_status_not_implemented, rocsparse_status_invalid_pointer, &
       rocsparse_status_invalid_size, rocsparse_status_memory_error, &
@@ -738,8 +743,8 @@ contains
         name = "rocsparse_status_continue"
       end select
       write (*, "(a,i0,a)") "ROCSPARSE ERROR: " // trim(name) // " (code ", status, ")"
-#endif
       stop 1
     end if
   end subroutine rocsparseCheck
+#endif
 end module hipfort_check

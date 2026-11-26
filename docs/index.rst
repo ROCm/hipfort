@@ -42,6 +42,7 @@ The hipFORT public repository is located at `<https://github.com/ROCm/hipfort>`_
      * :doc:`hipRAND examples <./tutorials/hiprand-examples>`
      * :doc:`hipSOLVER examples <./tutorials/hipsolver-examples>`
      * :doc:`hipSPARSE examples <./tutorials/hipsparse-examples>`
+     * :doc:`RCCL examples <./tutorials/rccl-examples>`
 
   .. grid-item-card:: API reference
 

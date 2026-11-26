@@ -1892,6 +1892,21 @@ if(BUILD_TESTING)
     endif()
   endif()
 
+  if(TARGET hipfort::rccl)
+    hipfort_add_symbol_test(rccl)
+    hipfort_add_test(rccl rccl_version f2003)
+    hipfort_add_test(rccl rccl_allreduce_single f2003)
+    # Needs two GPUs, else exits 77 (skipped).
+    hipfort_add_test(rccl rccl_allreduce_multi f2003)
+    hipfort_add_test(rccl rccl_allreduce_multi f2008)
+    foreach(_t f2003_rccl_rccl_allreduce_multi f2003_rccl_rccl_allreduce_multi_xnack
+               f2008_rccl_rccl_allreduce_multi f2008_rccl_rccl_allreduce_multi_xnack)
+      if(TEST hipfort_test_${_t})
+        set_tests_properties(hipfort_test_${_t} PROPERTIES SKIP_RETURN_CODE 77)
+      endif()
+    endforeach()
+  endif()
+
   # Regression test for SWDEV-427498: installing hipfort and calling
   # find_package(hipfort) from the install prefix must succeed. This guards the
   # multitoolchain-layout shim (lib/cmake/hipfort forwarding to
